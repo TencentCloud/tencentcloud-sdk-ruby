@@ -15388,27 +15388,27 @@ module TencentCloud
 
       # Web安全的例外规则
       class ExceptionRule < TencentCloud::Common::AbstractModel
-        # @param Id: 例外规则的 ID。<br>通过规则 ID 可支持不同的规则配置操作：<br> <li> <b>增加</b>新规则：ID 为空或不指定 ID 参数；</li><li> <b>修改</b>已有规则：指定需要更新/修改的规则 ID；</li><li> <b>删除</b>已有规则：ExceptionRules 参数中，Rules 列表中未包含的已有规则将被删除。</li>
+        # @param Id: <p>例外规则的 ID。<br>通过规则 ID 可支持不同的规则配置操作：<br> <li> <b>增加</b>新规则：ID 为空或不指定 ID 参数；</li><li> <b>修改</b>已有规则：指定需要更新/修改的规则 ID；</li><li> <b>删除</b>已有规则：ExceptionRules 参数中，Rules 列表中未包含的已有规则将被删除。</li></p>
         # @type Id: String
-        # @param Name: 例外规则的名称。
+        # @param Name: <p>例外规则的名称。</p>
         # @type Name: String
-        # @param Condition: 例外规则的具体内容，需符合表达式语法，详细规范参见产品文档。
+        # @param Condition: <p>例外规则的具体内容，需符合表达式语法，详细规范参见产品文档。</p>
         # @type Condition: String
-        # @param SkipScope: 例外规则执行选项，取值有：<li>WebSecurityModules: 指定例外规则的安全防护模块，需配合  ⁠WebSecurityModulesForException⁠  使用；</li><li>WebSecuritySubmodules: 指定例外规则的安全防护子模块，需配合  ⁠WebSecuritySubmodulesForException⁠  使用；</li><li>ManagedRules：指定例外规则的具体托管规则，需配合  ⁠ManagedRulesForException⁠  使用；</li><li>ManagedRuleGroups：指定例外规则的托管规则组，需配合  ⁠ManagedRuleGroupsForException⁠  使用。</li>
+        # @param SkipScope: <p>例外规则执行选项，取值有：<li>WebSecurityModules: 指定例外规则的安全防护模块，需配合 WebSecurityModulesForException 使用；</li><li>WebSecuritySubmodules: 指定例外规则的安全防护子模块，需配合 WebSecuritySubmodulesForException 使用；</li><li>ManagedRules：指定例外规则的具体托管规则，需配合 ManagedRulesForException 使用；</li><li>ManagedRuleGroups：指定例外规则的托管规则组，需配合 ManagedRuleGroupsForException 使用。</li></p>
         # @type SkipScope: String
-        # @param SkipOption: 跳过请求的具体类型，取值有：<li>SkipOnAllRequestFields: 跳过所有请求；</li><li>SkipOnSpecifiedRequestFields: 跳过指定请求字段。</li>仅当 SkipScope 为 ManagedRules 或 ManagedRuleGroups 时有效。
+        # @param SkipOption: <p>跳过请求的具体类型，取值有：<li>SkipOnAllRequestFields: 跳过所有请求；</li><li>SkipOnSpecifiedRequestFields: 跳过指定请求字段。</li>仅当 SkipScope 为 ManagedRules 或 ManagedRuleGroups 时有效。</p>
         # @type SkipOption: String
-        # @param WebSecurityModulesForException: 指定例外规则的安全防护模块，仅当 SkipScope 为 WebSecurityModules 时有效，取值有：<li>websec-mod-managed-rules：托管规则；</li><li>websec-mod-rate-limiting：速率限制；</li><li>websec-mod-custom-rules：自定义规则；</li><li>websec-mod-adaptive-control：自适应频控、智能客户端过滤、慢速攻击防护、流量盗刷防护；</li><li>websec-mod-bot：Bot管理。</li>
+        # @param WebSecurityModulesForException: <p>指定例外规则的安全防护模块，仅当 SkipScope 为 WebSecurityModules 时有效，取值有：<li>websec-mod-managed-rules：托管规则；</li><li>websec-mod-rate-limiting：速率限制；</li><li>websec-mod-custom-rules：自定义规则；</li><li>websec-mod-adaptive-control：自适应频控、智能客户端过滤、慢速攻击防护、流量盗刷防护；</li><li>websec-mod-bot：Bot管理。</li></p>
         # @type WebSecurityModulesForException: Array
-        # @param WebSecuritySubmodulesForException: 指定例外规则的安全防护子模块，仅当 SkipScope 为 WebSecuritySubmodules 时有效，取值有：<ul><li>托管规则（ManagedRules）模块功能：<ul><li>websec-mod-managed-rules/managed-rule-groups：规则集；</li><li>websec-mod-managed-rules/frequent-scanning-protection：高频扫描防护；</li></ul></li><li>速率限制（RateLimitingRules）模块功能：<ul><li>websec-mod-rate-limiting-rules：速率限制规则；</li></ul></li><li>自定义规则（CustomRules）模块功能：<ul><li>websec-mod-custom-rules：自定义规则；</li></ul></li><li>HTTP DDoS 防护（HttpDDoSProtection）模块功能：<ul><li>websec-mod-http-ddos-protection/adaptive-frequency-control：自适应频控；</li><li>websec-mod-http-ddos-protection/client-filtering：智能客户端过滤；</li><li>websec-mod-http-ddos-protection/bandwidth-abuse-defense：流量盗刷防护；</li></ul></li><li>高级 Bot 管理（BotManagement）模块功能：<ul><li>websec-mod-bot-management/basic-feature：基础特征管理；</li><li>websec-mod-bot-management/ip-reputation：客户端画像分析；</li><li>websec-mod-bot-management/bot-intelligence：智能 Bot 分析；</li><li>websec-mod-bot-management/custom-rules：自定义规则；</li><li>websec-mod-bot-management/browser-impersonation-detection：主动特征识别；</li><li>websec-mod-bot-management/client-attestation-rules：客户端认证；</li></ul></li><li>基础 Bot 管理（BotManagementLite）模块功能：<ul><li>websec-mod-bot-management-lite/ai-crawler-detection：AI 爬虫处置；</li><li>websec-mod-bot-management-lite/captcha-page-challenge：人机校验页。</li></ul></li></ul>
+        # @param WebSecuritySubmodulesForException: <p>指定例外规则的安全防护子模块，仅当 SkipScope 为 WebSecuritySubmodules 时有效。</p><p>枚举值：</p><ul><li>websec-mod-managed-rules/semantic-analysis： 托管规则-深度分析</li><li>websec-mod-managed-rules/managed-rule-groups： 托管规则-规则集</li><li>websec-mod-managed-rules/frequent-scanning-protection： 托管规则-高频扫描防护</li><li>websec-mod-rate-limiting-rules： 速率限制规则</li><li>websec-mod-custom-rules： 自定义规则</li><li>websec-mod-http-ddos-protection/adaptive-frequency-control： HTTP DDoS 防护-自适应频控</li><li>websec-mod-http-ddos-protection/client-filtering： HTTP DDoS 防护-智能客户端过滤</li><li>websec-mod-http-ddos-protection/bandwidth-abuse-defense： HTTP DDoS 防护-流量盗刷防护</li><li>websec-mod-bot-management/basic-feature： 高级 Bot 管理-基础特征管理</li><li>websec-mod-bot-management/ip-reputation： 高级 Bot 管理-客户端画像分析</li><li>websec-mod-bot-management/bot-intelligence： 高级 Bot 管理-智能 Bot 分析</li><li>websec-mod-bot-management/custom-rules： 高级 Bot 管理-自定义规则</li><li>websec-mod-bot-management/browser-impersonation-detection： 高级 Bot 管理-主动特征识别</li><li>websec-mod-bot-management/client-attestation-rules： 高级 Bot 管理-客户端认证</li><li>websec-mod-bot-management-lite/ai-crawler-detection： 基础 Bot 管理-AI 爬虫处置</li><li>websec-mod-bot-management-lite/captcha-page-challenge： 基础 Bot 管理-人机校验页</li></ul>
         # @type WebSecuritySubmodulesForException: Array
-        # @param ManagedRulesForException: 指定例外规则的具体托管规则，仅当 SkipScope 为 ManagedRules 时有效。
+        # @param ManagedRulesForException: <p>指定例外规则的具体托管规则，仅当 SkipScope 为 ManagedRules 时有效。</p>
         # @type ManagedRulesForException: Array
-        # @param ManagedRuleGroupsForException: 指定例外规则的托管规则组，仅当 SkipScope 为 ManagedRuleGroups 时有效。
+        # @param ManagedRuleGroupsForException: <p>指定例外规则的托管规则组，仅当 SkipScope 为 ManagedRuleGroups 时有效。</p>
         # @type ManagedRuleGroupsForException: Array
-        # @param RequestFieldsForException: 指定例外规则跳过指定请求字段的具体配置，仅当 SkipScope 为 ManagedRules 或 ManagedRuleGroups 并且 SkipOption 为 SkipOnSpecifiedRequestFields 时有效。
+        # @param RequestFieldsForException: <p>指定例外规则跳过指定请求字段的具体配置，仅当 SkipScope 为 ManagedRules 或 ManagedRuleGroups 并且 SkipOption 为 SkipOnSpecifiedRequestFields 时有效。</p>
         # @type RequestFieldsForException: Array
-        # @param Enabled: 例外规则是否开启。取值有：<li>on：开启</li><li>off：关闭</li>
+        # @param Enabled: <p>例外规则是否开启。取值有：<li>on：开启</li><li>off：关闭</li></p>
         # @type Enabled: String
 
         attr_accessor :Id, :Name, :Condition, :SkipScope, :SkipOption, :WebSecurityModulesForException, :WebSecuritySubmodulesForException, :ManagedRulesForException, :ManagedRuleGroupsForException, :RequestFieldsForException, :Enabled
@@ -16360,6 +16360,8 @@ module TencentCloud
         # @type CriticalThreshold: Integer
         # @param Path: <p>该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示探测路径，需要填写完整的 host/path，不包含协议部分，例如：www.example.com/test。</p>
         # @type Path: String
+        # @param HostHeaderPolicy: <p>探测请求 Host Header 策略，仅当 Type=HTTP 或 Type=HTTPS ，且实例类型为 HTTP 专用型（V2）时生效。取值有：</p><li>FollowCheckURL：遵循探测 URL 指定的 Host，即 HealthChecker.Path 字段中的 Host 部分将作为探测的 Host 地址；</li><li>FollowOriginGroup：遵循源站组配置的回源 Host Header，即探测时使用本次探测源站所在源站组的 OriginGroup.HostHeader 字段值作为探测 Host 地址，若该源站组未配置 HostHeader，则使用 HealthChecker.Path 字段中的 Host 部分作为探测的 Host 地址；</li><li>FollowOrigin：遵循源站地址，即探测时使用本次探测源站所在源站组中对应源站记录的 OriginGroup.Records[N].Record 字段值（即源站本身地址）作为探测的 Host 地址。</li>默认为 FollowCheckURL。
+        # @type HostHeaderPolicy: String
         # @param Method: <p>该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示请求方法，取值有：</p><li>GET；</li><li>HEAD。</li>
         # @type Method: String
         # @param ExpectedCodes: <p>该参数仅当 Type=HTTP 或 Type=HTTPS 时有效，表示探测节点向源站发起健康检查时，响应哪些状态码可用于认定探测结果为健康。</p>
@@ -16372,12 +16374,12 @@ module TencentCloud
         # @type SendContext: String
         # @param RecvContext: <p>该参数仅当 Type=UDP 时有效，表示健康检查期望源站返回结果。只允许 ASCII 可见字符，最大长度限制 500 个字符。</p>
         # @type RecvContext: String
-        # @param ProbeCluster: <p>健康检查探测集群。指定本负载均衡实例发起健康探测的集群区域范围，探测集群地区分布详见<a href="https://cloud.tencent.com/document/product/1552/104228">健康检查策略介绍</a>，仅 HTTP 专用型（V2）版本负载均衡实例支持设置。取值有：<br>global：由全球所有区域的探测集群发起探测，包括中国大陆区域以及非中国大陆区域，各个区域的集群独立维护各自的探测结果；<br>mainland_china：仅由中国大陆区域的探测集群发起探测，当前中国大陆区域共用一个探测集群，探测结果由中国大陆区域的探测集群维护，其他区域跟随中国大陆区域的集群的探测结果；<br>overseas：仅由非中国大陆区域的探测集群发起探测，当前非中国大陆区域包含多个地区的探测集群，探测结果由各个地区的探测集群独立维护，中国大陆区域的探测结果由所有其他地区的探测集群的探测结果汇总生成。<br>默认为 global。</p>
+        # @param ProbeCluster: <p>健康检查探测集群。指定本负载均衡实例发起健康探测的集群区域范围，探测集群地区分布详见<a href="https://cloud.tencent.com/document/product/1552/104228">健康检查策略介绍</a>，仅 HTTP 专用型（V2）版本负载均衡实例支持设置。取值有：</p><li>global：由全球所有区域的探测集群发起探测，包括中国大陆区域以及非中国大陆区域，各个区域的集群独立维护各自的探测结果；</li><li>mainland_china：仅由中国大陆区域的探测集群发起探测，当前中国大陆区域共用一个探测集群，探测结果由中国大陆区域的探测集群维护，其他区域跟随中国大陆区域的集群的探测结果；</li><li>overseas：仅由非中国大陆区域的探测集群发起探测，当前非中国大陆区域包含多个地区的探测集群，探测结果由各个地区的探测集群独立维护，中国大陆区域的探测结果由所有其他地区的探测集群的探测结果汇总生成。</li>默认为 global。
         # @type ProbeCluster: String
 
-        attr_accessor :Type, :Port, :Interval, :Timeout, :HealthThreshold, :CriticalThreshold, :Path, :Method, :ExpectedCodes, :Headers, :FollowRedirect, :SendContext, :RecvContext, :ProbeCluster
+        attr_accessor :Type, :Port, :Interval, :Timeout, :HealthThreshold, :CriticalThreshold, :Path, :HostHeaderPolicy, :Method, :ExpectedCodes, :Headers, :FollowRedirect, :SendContext, :RecvContext, :ProbeCluster
 
-        def initialize(type=nil, port=nil, interval=nil, timeout=nil, healththreshold=nil, criticalthreshold=nil, path=nil, method=nil, expectedcodes=nil, headers=nil, followredirect=nil, sendcontext=nil, recvcontext=nil, probecluster=nil)
+        def initialize(type=nil, port=nil, interval=nil, timeout=nil, healththreshold=nil, criticalthreshold=nil, path=nil, hostheaderpolicy=nil, method=nil, expectedcodes=nil, headers=nil, followredirect=nil, sendcontext=nil, recvcontext=nil, probecluster=nil)
           @Type = type
           @Port = port
           @Interval = interval
@@ -16385,6 +16387,7 @@ module TencentCloud
           @HealthThreshold = healththreshold
           @CriticalThreshold = criticalthreshold
           @Path = path
+          @HostHeaderPolicy = hostheaderpolicy
           @Method = method
           @ExpectedCodes = expectedcodes
           @Headers = headers
@@ -16402,6 +16405,7 @@ module TencentCloud
           @HealthThreshold = params['HealthThreshold']
           @CriticalThreshold = params['CriticalThreshold']
           @Path = params['Path']
+          @HostHeaderPolicy = params['HostHeaderPolicy']
           @Method = params['Method']
           @ExpectedCodes = params['ExpectedCodes']
           unless params['Headers'].nil?
@@ -19084,25 +19088,28 @@ module TencentCloud
 
       # Web安全的托管规则
       class ManagedRules < TencentCloud::Common::AbstractModel
-        # @param Enabled: 托管规则是否开启。取值有：<li>on：开启，所有托管规则按配置生效；</li><li>off：关闭，所有托管规则不生效。</li>
+        # @param Enabled: <p>托管规则是否开启。取值有：<li>on：开启，所有托管规则按配置生效；</li><li>off：关闭，所有托管规则不生效。</li></p>
         # @type Enabled: String
-        # @param DetectionOnly: 评估模式是否开启，仅在 Enabled 参数为 on 时有效。取值有：<li>on：开启，表示所有托管规则以观察模式生效；</li><li>off：关闭，表示所有托管规则以实际配置生效。</li>
+        # @param DetectionOnly: <p>评估模式是否开启，仅在 Enabled 参数为 on 时有效。取值有：<li>on：开启，表示所有托管规则以观察模式生效；</li><li>off：关闭，表示所有托管规则以实际配置生效。</li></p>
         # @type DetectionOnly: String
-        # @param SemanticAnalysis: 托管规则语义分析选项是否开启，仅在 Enabled 参数为 on 时有效。取值有：<li>on：开启，对请求进行语义分析后进行处理；</li><li>off：关闭，对请求不进行语义分析，直接进行处理。</li> <br/>默认为 off。
+        # @param SemanticAnalysis: <p>托管规则深度分析选项是否开启，仅在 Enabled 参数为 on 时有效。取值有：<li>on：开启，对请求进行深度分析后进行处理；</li><li>off：关闭，对请求不进行深度分析，直接进行处理。</li> <br>此参数待废弃，深度分析规则开关迁移至 SemanticAnalysisRules.Enabled 参数。</p>
         # @type SemanticAnalysis: String
-        # @param AutoUpdate: 托管规则自动更新选项。
+        # @param SemanticAnalysisRules: <p>深度分析配置选项，识别请求中的恶意行为（如：SQL 注入，XSS 攻击等），对恶意请求进行日志记录和拦截。</p>
+        # @type SemanticAnalysisRules: :class:`Tencentcloud::Teo.v20220901.models.SemanticAnalysisRules`
+        # @param AutoUpdate: <p>托管规则自动更新选项。</p>
         # @type AutoUpdate: :class:`Tencentcloud::Teo.v20220901.models.ManagedRuleAutoUpdate`
-        # @param ManagedRuleGroups: 托管规则组的配置。如果此结构传空数组或 GroupId 未包含在列表内将按照默认方式处理。
+        # @param ManagedRuleGroups: <p>托管规则组的配置。如果此结构传空数组或 GroupId 未包含在列表内将按照默认方式处理。</p>
         # @type ManagedRuleGroups: Array
-        # @param FrequentScanningProtection: 高频扫描防护配置选项，当某一访客的请求频繁命中「配置为拦截」的托管规则时，在一段时间内封禁该访客所有请求。
+        # @param FrequentScanningProtection: <p>高频扫描防护配置选项，当某一访客的请求频繁命中「配置为拦截」的托管规则时，在一段时间内封禁该访客所有请求。</p>
         # @type FrequentScanningProtection: :class:`Tencentcloud::Teo.v20220901.models.FrequentScanningProtection`
 
-        attr_accessor :Enabled, :DetectionOnly, :SemanticAnalysis, :AutoUpdate, :ManagedRuleGroups, :FrequentScanningProtection
+        attr_accessor :Enabled, :DetectionOnly, :SemanticAnalysis, :SemanticAnalysisRules, :AutoUpdate, :ManagedRuleGroups, :FrequentScanningProtection
 
-        def initialize(enabled=nil, detectiononly=nil, semanticanalysis=nil, autoupdate=nil, managedrulegroups=nil, frequentscanningprotection=nil)
+        def initialize(enabled=nil, detectiononly=nil, semanticanalysis=nil, semanticanalysisrules=nil, autoupdate=nil, managedrulegroups=nil, frequentscanningprotection=nil)
           @Enabled = enabled
           @DetectionOnly = detectiononly
           @SemanticAnalysis = semanticanalysis
+          @SemanticAnalysisRules = semanticanalysisrules
           @AutoUpdate = autoupdate
           @ManagedRuleGroups = managedrulegroups
           @FrequentScanningProtection = frequentscanningprotection
@@ -19112,6 +19119,10 @@ module TencentCloud
           @Enabled = params['Enabled']
           @DetectionOnly = params['DetectionOnly']
           @SemanticAnalysis = params['SemanticAnalysis']
+          unless params['SemanticAnalysisRules'].nil?
+            @SemanticAnalysisRules = SemanticAnalysisRules.new
+            @SemanticAnalysisRules.deserialize(params['SemanticAnalysisRules'])
+          end
           unless params['AutoUpdate'].nil?
             @AutoUpdate = ManagedRuleAutoUpdate.new
             @AutoUpdate.deserialize(params['AutoUpdate'])
@@ -23936,19 +23947,11 @@ module TencentCloud
 
       # 查询条件
       class QueryCondition < TencentCloud::Common::AbstractModel
-        # @param Key: 筛选条件的key。
+        # @param Key: <p>筛选条件的key。</p>
         # @type Key: String
-        # @param Operator: 查询条件操作符，操作类型有：
-        # <li>equals: 等于；</li>
-        # <li>notEquals: 不等于；</li>
-        # <li>include: 包含；</li>
-        # <li>notInclude: 不包含; </li>
-        # <li>startWith: 开始的值是value；</li>
-        # <li>notStartWith: 不以value的值开始；</li>
-        # <li>endWith: 结尾是value值；</li>
-        # <li>notEndWith: 不以value的值结尾。</li>
+        # @param Operator: <p>查询条件操作符，操作类型有：</p><li>equals: 等于；</li><li>notEquals: 不等于；</li><li>include: 包含；</li><li>notInclude: 不包含; </li><li>startWith: 开始的值是value；</li><li>notStartWith: 不以value的值开始；</li><li>endWith: 结尾是value值；</li><li>notEndWith: 不以value的值结尾。</li>
         # @type Operator: String
-        # @param Value: 筛选条件的值。
+        # @param Value: <p>筛选条件的值。</p>
         # @type Value: Array
 
         attr_accessor :Key, :Operator, :Value
@@ -26424,6 +26427,40 @@ module TencentCloud
             @SecurityAction.deserialize(params['SecurityAction'])
           end
           @Weight = params['Weight']
+        end
+      end
+
+      # 深度分析配置选项。
+      class SemanticAnalysisRules < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>深度分析规则是否开启。取值有：<li>on：开启，深度分析规则生效；</li><li>off：关闭，深度分析规则不生效。</li></p>
+        # @type Enabled: String
+        # @param RuleActions: <p>深度分析下规则项的具体配置。</p>
+        # @type RuleActions: Array
+        # @param MetaData: <p>深度分析配置信息，仅出参使用。</p>
+        # @type MetaData: :class:`Tencentcloud::Teo.v20220901.models.ManagedRuleGroupMeta`
+
+        attr_accessor :Enabled, :RuleActions, :MetaData
+
+        def initialize(enabled=nil, ruleactions=nil, metadata=nil)
+          @Enabled = enabled
+          @RuleActions = ruleactions
+          @MetaData = metadata
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          unless params['RuleActions'].nil?
+            @RuleActions = []
+            params['RuleActions'].each do |i|
+              managedruleaction_tmp = ManagedRuleAction.new
+              managedruleaction_tmp.deserialize(i)
+              @RuleActions << managedruleaction_tmp
+            end
+          end
+          unless params['MetaData'].nil?
+            @MetaData = ManagedRuleGroupMeta.new
+            @MetaData.deserialize(params['MetaData'])
+          end
         end
       end
 

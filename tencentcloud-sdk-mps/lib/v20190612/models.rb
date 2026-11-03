@@ -2553,36 +2553,44 @@ module TencentCloud
 
       # AI解说二创结果信息
       class AiAnalysisTaskReelOutput < TencentCloud::Common::AbstractModel
-        # @param VideoPath: 解说视频路径。
+        # @param VideoPath: <p>解说视频路径。</p>
         # @type VideoPath: String
-        # @param VideoPaths: 解说视频路径列表。
-
-        # **注意**：
-        # 1. 当返回一个文件时，`VideoPath `返回一个文件路径，`VideoPaths `也会填充同样路径的一个元素。
-        # 2. 当返回多个文件时，`VideoPath `返回为空字符串，`VideoPaths `返回多文件路径列表。
+        # @param VideoPaths: <p>解说视频路径列表。</p><p><strong>注意</strong>：</p><ol><li>当返回一个文件时，<code>VideoPath</code>返回一个文件路径，<code>VideoPaths</code>也会填充同样路径的一个元素。</li><li>当返回多个文件时，<code>VideoPath</code>返回为空字符串，<code>VideoPaths</code>返回多文件路径列表。</li></ol>
         # @type VideoPaths: Array
-        # @param ScriptPath: 脚本文件路径
+        # @param ScriptPath: <p>脚本文件路径</p>
         # @type ScriptPath: String
-        # @param OutputStorage: 解说视频存储位置。
+        # @param ScriptPaths: <p>多个脚本文件路径</p>
+        # @type ScriptPaths: Array
+        # @param OutputStorage: <p>解说视频存储位置。</p>
         # @type OutputStorage: :class:`Tencentcloud::Mps.v20190612.models.TaskOutputStorage`
+        # @param OutputSubtitlePath: <p>输出视频字幕文件</p>
+        # @type OutputSubtitlePath: String
+        # @param OutputSubtitlePaths: <p>多个输出视频字幕文件，与输出的VideoPaths对应</p>
+        # @type OutputSubtitlePaths: Array
 
-        attr_accessor :VideoPath, :VideoPaths, :ScriptPath, :OutputStorage
+        attr_accessor :VideoPath, :VideoPaths, :ScriptPath, :ScriptPaths, :OutputStorage, :OutputSubtitlePath, :OutputSubtitlePaths
 
-        def initialize(videopath=nil, videopaths=nil, scriptpath=nil, outputstorage=nil)
+        def initialize(videopath=nil, videopaths=nil, scriptpath=nil, scriptpaths=nil, outputstorage=nil, outputsubtitlepath=nil, outputsubtitlepaths=nil)
           @VideoPath = videopath
           @VideoPaths = videopaths
           @ScriptPath = scriptpath
+          @ScriptPaths = scriptpaths
           @OutputStorage = outputstorage
+          @OutputSubtitlePath = outputsubtitlepath
+          @OutputSubtitlePaths = outputsubtitlepaths
         end
 
         def deserialize(params)
           @VideoPath = params['VideoPath']
           @VideoPaths = params['VideoPaths']
           @ScriptPath = params['ScriptPath']
+          @ScriptPaths = params['ScriptPaths']
           unless params['OutputStorage'].nil?
             @OutputStorage = TaskOutputStorage.new
             @OutputStorage.deserialize(params['OutputStorage'])
           end
+          @OutputSubtitlePath = params['OutputSubtitlePath']
+          @OutputSubtitlePaths = params['OutputSubtitlePaths']
         end
       end
 

@@ -611,12 +611,12 @@ module TencentCloud
 
         attr_accessor :AddressTemplateId, :AddressTemplateName, :From, :To, :Description, :UpdatedTime
         extend Gem::Deprecate
-        deprecate :AddressTemplateName, :none, 2026, 10
-        deprecate :AddressTemplateName=, :none, 2026, 10
-        deprecate :From, :none, 2026, 10
-        deprecate :From=, :none, 2026, 10
-        deprecate :To, :none, 2026, 10
-        deprecate :To=, :none, 2026, 10
+        deprecate :AddressTemplateName, :none, 2026, 11
+        deprecate :AddressTemplateName=, :none, 2026, 11
+        deprecate :From, :none, 2026, 11
+        deprecate :From=, :none, 2026, 11
+        deprecate :To, :none, 2026, 11
+        deprecate :To=, :none, 2026, 11
 
         def initialize(addresstemplateid=nil, addresstemplatename=nil, from=nil, to=nil, description=nil, updatedtime=nil)
           @AddressTemplateId = addresstemplateid
@@ -791,8 +791,8 @@ module TencentCloud
 
         attr_accessor :AddressCount, :InternetServiceProvider, :InternetChargeType, :IPChargeType, :InternetMaxBandwidthOut, :AddressChargePrepaid, :AddressType, :AnycastZone, :VipCluster, :ApplicableForCLB, :Tags, :BandwidthPackageId, :AddressName, :DedicatedClusterId, :IsDedicatedAddressPool, :Egress, :AntiDDoSPackageId, :ClientToken
         extend Gem::Deprecate
-        deprecate :ApplicableForCLB, :none, 2026, 10
-        deprecate :ApplicableForCLB=, :none, 2026, 10
+        deprecate :ApplicableForCLB, :none, 2026, 11
+        deprecate :ApplicableForCLB=, :none, 2026, 11
 
         def initialize(addresscount=nil, internetserviceprovider=nil, internetchargetype=nil, ipchargetype=nil, internetmaxbandwidthout=nil, addresschargeprepaid=nil, addresstype=nil, anycastzone=nil, vipcluster=nil, applicableforclb=nil, tags=nil, bandwidthpackageid=nil, addressname=nil, dedicatedclusterid=nil, isdedicatedaddresspool=nil, egress=nil, antiddospackageid=nil, clienttoken=nil)
           @AddressCount = addresscount
@@ -3539,8 +3539,8 @@ module TencentCloud
 
         attr_accessor :ConfilctId, :DestinationItem, :ConflictId
         extend Gem::Deprecate
-        deprecate :ConfilctId, :none, 2026, 10
-        deprecate :ConfilctId=, :none, 2026, 10
+        deprecate :ConfilctId, :none, 2026, 11
+        deprecate :ConfilctId=, :none, 2026, 11
 
         def initialize(confilctid=nil, destinationitem=nil, conflictid=nil)
           @ConfilctId = confilctid
@@ -5141,8 +5141,8 @@ module TencentCloud
 
         attr_accessor :NatGatewayName, :VpcId, :InternetMaxBandwidthOut, :MaxConcurrentConnection, :AddressCount, :PublicIpAddresses, :Zone, :Tags, :SubnetId, :StockPublicIpAddressesBandwidthOut, :PublicIpAddressesBandwidthOut, :PublicIpFromSameZone, :NatProductVersion, :DeletionProtectionEnabled, :ExclusiveType
         extend Gem::Deprecate
-        deprecate :SubnetId, :none, 2026, 10
-        deprecate :SubnetId=, :none, 2026, 10
+        deprecate :SubnetId, :none, 2026, 11
+        deprecate :SubnetId=, :none, 2026, 11
 
         def initialize(natgatewayname=nil, vpcid=nil, internetmaxbandwidthout=nil, maxconcurrentconnection=nil, addresscount=nil, publicipaddresses=nil, zone=nil, tags=nil, subnetid=nil, stockpublicipaddressesbandwidthout=nil, publicipaddressesbandwidthout=nil, publicipfromsamezone=nil, natproductversion=nil, deletionprotectionenabled=nil, exclusivetype=nil)
           @NatGatewayName = natgatewayname
@@ -7015,8 +7015,8 @@ module TencentCloud
 
         attr_accessor :VpcId, :EndPointServiceName, :AutoAcceptFlag, :ServiceInstanceId, :IsPassService, :ServiceType, :Tags, :IpAddressType
         extend Gem::Deprecate
-        deprecate :IsPassService, :none, 2026, 10
-        deprecate :IsPassService=, :none, 2026, 10
+        deprecate :IsPassService, :none, 2026, 11
+        deprecate :IsPassService=, :none, 2026, 11
 
         def initialize(vpcid=nil, endpointservicename=nil, autoacceptflag=nil, serviceinstanceid=nil, ispassservice=nil, servicetype=nil, tags=nil, ipaddresstype=nil)
           @VpcId = vpcid
@@ -7345,8 +7345,8 @@ module TencentCloud
 
         attr_accessor :VpnGatewayId, :CustomerGatewayId, :VpnConnectionName, :PreShareKey, :VpcId, :SecurityPolicyDatabases, :IKEOptionsSpecification, :IPSECOptionsSpecification, :Tags, :EnableHealthCheck, :HealthCheckLocalIp, :HealthCheckRemoteIp, :RouteType, :NegotiationType, :DpdEnable, :DpdTimeout, :DpdAction, :Route, :BgpConfig, :HealthCheckConfig
         extend Gem::Deprecate
-        deprecate :Route, :none, 2026, 10
-        deprecate :Route=, :none, 2026, 10
+        deprecate :Route, :none, 2026, 11
+        deprecate :Route=, :none, 2026, 11
 
         def initialize(vpngatewayid=nil, customergatewayid=nil, vpnconnectionname=nil, presharekey=nil, vpcid=nil, securitypolicydatabases=nil, ikeoptionsspecification=nil, ipsecoptionsspecification=nil, tags=nil, enablehealthcheck=nil, healthchecklocalip=nil, healthcheckremoteip=nil, routetype=nil, negotiationtype=nil, dpdenable=nil, dpdtimeout=nil, dpdaction=nil, route=nil, bgpconfig=nil, healthcheckconfig=nil)
           @VpnGatewayId = vpngatewayid
@@ -7484,8 +7484,8 @@ module TencentCloud
 
         attr_accessor :VpcId, :VpnGatewayName, :InternetMaxBandwidthOut, :InstanceChargeType, :InstanceChargePrepaid, :Zone, :Type, :Tags, :CdcId, :MaxConnection, :BgpAsn, :IsPrivate, :SubnetId, :BgpEnable, :IpStack, :AccessSubnet
         extend Gem::Deprecate
-        deprecate :Zone, :none, 2026, 10
-        deprecate :Zone=, :none, 2026, 10
+        deprecate :Zone, :none, 2026, 11
+        deprecate :Zone=, :none, 2026, 11
 
         def initialize(vpcid=nil, vpngatewayname=nil, internetmaxbandwidthout=nil, instancechargetype=nil, instancechargeprepaid=nil, zone=nil, type=nil, tags=nil, cdcid=nil, maxconnection=nil, bgpasn=nil, isprivate=nil, subnetid=nil, bgpenable=nil, ipstack=nil, accesssubnet=nil)
           @VpcId = vpcid
@@ -17012,8 +17012,8 @@ module TencentCloud
 
         attr_accessor :VpcEndpointServiceUserSet, :VpcEndPointServiceUserSet, :TotalCount, :RequestId
         extend Gem::Deprecate
-        deprecate :VpcEndpointServiceUserSet, :none, 2026, 10
-        deprecate :VpcEndpointServiceUserSet=, :none, 2026, 10
+        deprecate :VpcEndpointServiceUserSet, :none, 2026, 11
+        deprecate :VpcEndpointServiceUserSet=, :none, 2026, 11
 
         def initialize(vpcendpointserviceuserset=nil, totalcount=nil, requestid=nil)
           @VpcEndPointServiceUserSet = vpcendpointserviceuserset
@@ -20307,8 +20307,8 @@ module TencentCloud
 
         attr_accessor :EncryptAlgorithm, :IntegrityAlgorith, :IPSECSaLifetimeSeconds, :PfsDhGroup, :IPSECSaLifetimeTraffic, :IntegrityAlgorithm
         extend Gem::Deprecate
-        deprecate :IntegrityAlgorith, :none, 2026, 10
-        deprecate :IntegrityAlgorith=, :none, 2026, 10
+        deprecate :IntegrityAlgorith, :none, 2026, 11
+        deprecate :IntegrityAlgorith=, :none, 2026, 11
 
         def initialize(encryptalgorithm=nil, integrityalgorith=nil, ipsecsalifetimeseconds=nil, pfsdhgroup=nil, ipsecsalifetimetraffic=nil, integrityalgorithm=nil)
           @EncryptAlgorithm = encryptalgorithm
@@ -21721,10 +21721,10 @@ module TencentCloud
 
         attr_accessor :AddressIds, :InternetMaxBandwidthOut, :StartTime, :EndTime
         extend Gem::Deprecate
-        deprecate :StartTime, :none, 2026, 10
-        deprecate :StartTime=, :none, 2026, 10
-        deprecate :EndTime, :none, 2026, 10
-        deprecate :EndTime=, :none, 2026, 10
+        deprecate :StartTime, :none, 2026, 11
+        deprecate :StartTime=, :none, 2026, 11
+        deprecate :EndTime, :none, 2026, 11
+        deprecate :EndTime=, :none, 2026, 11
 
         def initialize(addressids=nil, internetmaxbandwidthout=nil, starttime=nil, endtime=nil)
           @AddressIds = addressids
@@ -24862,8 +24862,8 @@ module TencentCloud
 
         attr_accessor :SslVpnServerId, :SslVpnServerName, :LocalAddress, :RemoteAddress, :SslVpnProtocol, :SslVpnPort, :EncryptAlgorithm, :IntegrityAlgorithm, :Compress, :SsoEnabled, :SamlData, :DnsServers
         extend Gem::Deprecate
-        deprecate :SslVpnProtocol, :none, 2026, 10
-        deprecate :SslVpnProtocol=, :none, 2026, 10
+        deprecate :SslVpnProtocol, :none, 2026, 11
+        deprecate :SslVpnProtocol=, :none, 2026, 11
 
         def initialize(sslvpnserverid=nil, sslvpnservername=nil, localaddress=nil, remoteaddress=nil, sslvpnprotocol=nil, sslvpnport=nil, encryptalgorithm=nil, integrityalgorithm=nil, compress=nil, ssoenabled=nil, samldata=nil, dnsservers=nil)
           @SslVpnServerId = sslvpnserverid
@@ -28806,30 +28806,29 @@ module TencentCloud
 
       # 安全组规则对象
       class SecurityGroupPolicy < TencentCloud::Common::AbstractModel
-        # @param PolicyIndex: 安全组规则索引号，值会随着安全组规则的变更动态变化。使用PolicyIndex时，请先调用`DescribeSecurityGroupPolicies`获取到规则的PolicyIndex，并且结合返回值中的Version一起使用处理规则。
+        # @param PolicyIndex: <p>安全组规则索引号，值会随着安全组规则的变更动态变化。使用PolicyIndex时，请先调用<code>DescribeSecurityGroupPolicies</code>获取到规则的PolicyIndex，并且结合返回值中的Version一起使用处理规则。</p>
         # @type PolicyIndex: Integer
-        # @param Protocol: 协议, 取值: TCP,UDP,ICMP,ICMPv6,ALL。
+        # @param Protocol: <p>协议, 取值: TCP,UDP,ICMP,ICMPv6,ALL。</p>
         # @type Protocol: String
-        # @param Port: 端口(all, 离散port,  range)。
-        # 说明：如果Protocol设置为ALL，则Port也需要设置为all。
+        # @param Port: <p>端口(all, 离散port,  range)。<br>说明：如果Protocol设置为ALL，则Port也需要设置为all。</p>
         # @type Port: String
-        # @param ServiceTemplate: 协议端口ID或者协议端口组ID。ServiceTemplate和Protocol+Port互斥。
+        # @param ServiceTemplate: <p>协议端口ID或者协议端口组ID。ServiceTemplate和Protocol+Port互斥。</p>
         # @type ServiceTemplate: :class:`Tencentcloud::Vpc.v20170312.models.ServiceTemplateSpecification`
-        # @param CidrBlock: 网段或IP(互斥)，特殊说明：0.0.0.0/n 都会映射为0.0.0.0/0。作为入参时，可使用字符串`MY_PUBLIC_IP`指代发起请求的公网IP地址。
+        # @param CidrBlock: <p>网段或IP(互斥)，特殊说明：0.0.0.0/n 都会映射为0.0.0.0/0。作为入参时，可使用字符串<code>MY_PUBLIC_IP</code>指代发起请求的公网IP地址。</p>
         # @type CidrBlock: String
-        # @param Ipv6CidrBlock: 网段或IPv6(互斥)。作为入参时，可使用字符串`MY_PUBLIC_IP`指代发起请求的公网IPv6地址。
+        # @param Ipv6CidrBlock: <p>网段或IPv6(互斥)。作为入参时，可使用字符串<code>MY_PUBLIC_IP</code>指代发起请求的公网IPv6地址。</p>
         # @type Ipv6CidrBlock: String
-        # @param SecurityGroupId: 安全组实例ID，例如：sg-ohuuioma。
+        # @param SecurityGroupId: <p>安全组实例ID，例如：sg-ohuuioma。</p>
         # @type SecurityGroupId: String
-        # @param AddressTemplate: IP地址ID或者IP地址组ID。
+        # @param AddressTemplate: <p>IP地址ID或者IP地址组ID。</p>
         # @type AddressTemplate: :class:`Tencentcloud::Vpc.v20170312.models.AddressTemplateSpecification`
-        # @param Action: ACCEPT 或 DROP。
+        # @param Action: <p>ACCEPT 或 DROP。</p>
         # @type Action: String
-        # @param PolicyDescription: 安全组规则描述。作为入参时，当未传递该参数或值为空，且参数CidrBlock或Ipv6CidrBlock值为MY_PUBLIC_IP时，该参数的值将会被自动填充为Replaced-From-MY_PUBLIC_IP。
+        # @param PolicyDescription: <p>安全组规则描述。作为入参时，当未传递该参数或值为空，且参数CidrBlock或Ipv6CidrBlock值为MY_PUBLIC_IP时，该参数的值将会被自动填充为Replaced-From-MY_PUBLIC_IP。</p>
         # @type PolicyDescription: String
-        # @param ModifyTime: 安全组最近修改时间。
+        # @param ModifyTime: <p>安全组最近修改时间。</p>
         # @type ModifyTime: String
-        # @param Priority: 安全组规则优先级，值会随着安全组规则的变更动态变化。使用Priority时，请先调用`DescribeSecurityGroupPolicies`获取到规则的Priority，并且结合返回值中的Version一起使用处理规则。
+        # @param Priority: <p>安全组规则优先级，值会随着安全组规则的变更动态变化。使用Priority时，请先调用<code>DescribeSecurityGroupPolicies</code>获取到规则的Priority，并且结合返回值中的Version一起使用处理规则。</p>
         # @type Priority: Integer
 
         attr_accessor :PolicyIndex, :Protocol, :Port, :ServiceTemplate, :CidrBlock, :Ipv6CidrBlock, :SecurityGroupId, :AddressTemplate, :Action, :PolicyDescription, :ModifyTime, :Priority

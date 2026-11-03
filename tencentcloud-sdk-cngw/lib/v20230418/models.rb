@@ -5351,25 +5351,60 @@ module TencentCloud
 
       # CreateCloudNativeAPIGatewayMCPTool请求参数结构体
       class CreateCloudNativeAPIGatewayMCPToolRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例 id</p>
+        # @type GatewayId: String
+        # @param ServerId: <p>MCP Server Id</p>
+        # @type ServerId: String
         # @param ContentType: <p>内容类型</p>
         # @type ContentType: String
+        # @param Name: <p>名字</p>
+        # @type Name: String
+        # @param Method: <p>方法</p><p>枚举值：</p><ul><li>GET： GET</li><li>POST： POST</li><li>PUT： PUT</li><li>DELETE： DELETE</li><li>PATCH： PATCH</li></ul>
+        # @type Method: String
+        # @param Path: <p>路径</p>
+        # @type Path: String
         # @param DisplayName: <p>展示名字</p>
         # @type DisplayName: String
         # @param ServiceId: <p>服务 id</p>
         # @type ServiceId: String
+        # @param InputParams: <p>输入</p>
+        # @type InputParams: Array
+        # @param Description: <p>描述</p>
+        # @type Description: String
 
-        attr_accessor :ContentType, :DisplayName, :ServiceId
+        attr_accessor :GatewayId, :ServerId, :ContentType, :Name, :Method, :Path, :DisplayName, :ServiceId, :InputParams, :Description
 
-        def initialize(contenttype=nil, displayname=nil, serviceid=nil)
+        def initialize(gatewayid=nil, serverid=nil, contenttype=nil, name=nil, method=nil, path=nil, displayname=nil, serviceid=nil, inputparams=nil, description=nil)
+          @GatewayId = gatewayid
+          @ServerId = serverid
           @ContentType = contenttype
+          @Name = name
+          @Method = method
+          @Path = path
           @DisplayName = displayname
           @ServiceId = serviceid
+          @InputParams = inputparams
+          @Description = description
         end
 
         def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ServerId = params['ServerId']
           @ContentType = params['ContentType']
+          @Name = params['Name']
+          @Method = params['Method']
+          @Path = params['Path']
           @DisplayName = params['DisplayName']
           @ServiceId = params['ServiceId']
+          unless params['InputParams'].nil?
+            @InputParams = []
+            params['InputParams'].each do |i|
+              cnapigwmcptoolparam_tmp = CNAPIGwMCPToolParam.new
+              cnapigwmcptoolparam_tmp.deserialize(i)
+              @InputParams << cnapigwmcptoolparam_tmp
+            end
+          end
+          @Description = params['Description']
         end
       end
 

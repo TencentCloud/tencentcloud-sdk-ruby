@@ -312,8 +312,8 @@ module TencentCloud
 
         attr_accessor :ReqTime, :Seq, :IdCard, :Idcard, :Name, :Sim, :IsNeedCharge, :ChargeType, :ErrorCode, :ErrorMessage
         extend Gem::Deprecate
-        deprecate :Idcard, :none, 2026, 9
-        deprecate :Idcard=, :none, 2026, 9
+        deprecate :Idcard, :none, 2026, 11
+        deprecate :Idcard=, :none, 2026, 11
 
         def initialize(reqtime=nil, seq=nil, idcard=nil, name=nil, sim=nil, isneedcharge=nil, chargetype=nil, errorcode=nil, errormessage=nil)
           @ReqTime = reqtime
@@ -2607,7 +2607,7 @@ module TencentCloud
         # @type Name: String
         # @param ImageBase64: <p>身份证人像面的 Base64 值。</p><ul><li>支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。</li><li>支持的图片大小：所下载图片经Base64编码后不超过 3M。请使用标准的Base64编码方式(带=补位)，编码规范参考RFC4648。</li></ul>
         # @type ImageBase64: String
-        # @param ImageUrl: <p>身份证人像面的 Url 地址。</p><ul><li>支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。</li><li>支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。</li><li>图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。</li><li>非腾讯云存储的 Url 速度和稳定性可能受一定影响。</li></ul>
+        # @param ImageUrl: <p>身份证人像面的 Url 地址。- 支持的图片格式：PNG、JPG、JPEG，暂不支持 GIF 格式。- 支持的图片大小：所下载图片经 Base64 编码后不超过 3M。图片下载时间不超过 3 秒。- 图片存储于腾讯云的 Url 可保障更高的下载速度和稳定性，建议图片存储于腾讯云。- 非腾讯云COS的 Url 速度和稳定性可能受一定影响。</p>
         # @type ImageUrl: String
         # @param Encryption: <p>敏感数据加密信息。</p><ul><li>对传入信息（姓名、身份证号）有加密需求的用户可使用此参数，详情请点击左侧链接。</li></ul>
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
@@ -3059,8 +3059,8 @@ module TencentCloud
 
         attr_accessor :IntentionVerifyVideo, :AsrResult, :ErrorCode, :ErrorMessage, :IntentionVerifyBestFrame, :AsrResultSimilarity, :IntentionVerifyAudio
         extend Gem::Deprecate
-        deprecate :AsrResultSimilarity, :none, 2026, 9
-        deprecate :AsrResultSimilarity=, :none, 2026, 9
+        deprecate :AsrResultSimilarity, :none, 2026, 11
+        deprecate :AsrResultSimilarity=, :none, 2026, 11
 
         def initialize(intentionverifyvideo=nil, asrresult=nil, errorcode=nil, errormessage=nil, intentionverifybestframe=nil, asrresultsimilarity=nil, intentionverifyaudio=nil)
           @IntentionVerifyVideo = intentionverifyvideo

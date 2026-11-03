@@ -75,45 +75,36 @@ module TencentCloud
 
       # CreateVRSTask请求参数结构体
       class CreateVRSTaskRequest < TencentCloud::Common::AbstractModel
-        # @param SessionId: 唯一请求 ID
+        # @param SessionId: <p>唯一请求 ID</p>
         # @type SessionId: String
-        # @param VoiceName: 音色名称
+        # @param VoiceName: <p>音色名称</p>
         # @type VoiceName: String
-        # @param VoiceGender: 音色性别:
-
-        # 1-male
-
-        # 2-female
+        # @param VoiceGender: <p>音色性别:</p><p>1-male</p><p>2-female</p>
         # @type VoiceGender: Integer
-        # @param VoiceLanguage: 语言类型：
-
-        # 1-中文
+        # @param VoiceLanguage: <p>语言类型：</p><p>1-中文</p>
         # @type VoiceLanguage: Integer
-        # @param AudioIdList: 音频ID集合。（一句话声音复刻仅需填写一个音质检测接口返回的AudioId）
+        # @param AudioIdList: <p>音频ID集合。（一句话声音复刻仅需填写一个音质检测接口返回的AudioId）</p>
         # @type AudioIdList: Array
-        # @param SampleRate: 音频采样率：
-
-        # 16000：16k
+        # @param SampleRate: <p>音频采样率：</p><p>16000：16k</p>
         # @type SampleRate: Integer
-        # @param Codec: 音频格式，音频类型(wav,mp3,aac,m4a)
+        # @param Codec: <p>音频格式，音频类型(wav,mp3,aac,m4a)</p>
         # @type Codec: String
-        # @param CallbackUrl: 回调 URL，用户自行搭建的用于接收结果的服务URL。如果用户使用轮询方式获取识别结果，则无需提交该参数。（注意：回调方式暂不支持一句话版声音复刻）
-        # 回调采用POST请求方式，Content-Type为application/json，回调数据格式如下:{"TaskId":"xxxxxxxxxxxxxx","Status":2,"StatusStr":"success","VoiceType":xxxxx,"ErrorMsg":""}
+        # @param CallbackUrl: <p>回调 URL，用户自行搭建的用于接收结果的服务URL。如果用户使用轮询方式获取识别结果，则无需提交该参数。（注意：回调方式暂不支持一句话版声音复刻）<br>回调采用POST请求方式，Content-Type为application/json，回调数据格式如下:{&quot;TaskId&quot;:&quot;xxxxxxxxxxxxxx&quot;,&quot;Status&quot;:2,&quot;StatusStr&quot;:&quot;success&quot;,&quot;VoiceType&quot;:xxxxx,&quot;ErrorMsg&quot;:&quot;&quot;}</p>
         # @type CallbackUrl: String
-        # @param ModelType: 模型类型 1:在线 2:离线  默认为1
+        # @param ModelType: <p>模型类型 1:在线 2:离线  默认为1</p>
         # @type ModelType: Integer
-        # @param TaskType: 复刻类型。
-        # 5 - 一句话声音复刻。
+        # @param TaskType: <p>复刻类型。<br>5 - 一句话声音复刻。</p>
         # @type TaskType: Integer
-        # @param VPRAudioId: 校验音频ID。（仅基础版声音复刻使用）
+        # @param VPRAudioId: <p>校验音频ID。（仅基础版声音复刻使用）</p>
         # @type VPRAudioId: String
-        # @param EnableVoiceEnhance: 是否开启语音增强，0 - 关闭，1 - 开启 。默认关闭
-        # 语音增强仅适用于一句话复刻场景
+        # @param EnableVoiceEnhance: <p>是否开启语音增强，0 - 关闭，1 - 开启 。默认关闭<br>语音增强仅适用于一句话复刻场景</p>
         # @type EnableVoiceEnhance: Integer
+        # @param EngineType: <p>模型引擎，可选值：</p><ul><li><p>WXZL（默认）</p></li><li><p>YTLX_V2（新版）</p></li></ul><p>示例：YTLX_V2</p>
+        # @type EngineType: String
 
-        attr_accessor :SessionId, :VoiceName, :VoiceGender, :VoiceLanguage, :AudioIdList, :SampleRate, :Codec, :CallbackUrl, :ModelType, :TaskType, :VPRAudioId, :EnableVoiceEnhance
+        attr_accessor :SessionId, :VoiceName, :VoiceGender, :VoiceLanguage, :AudioIdList, :SampleRate, :Codec, :CallbackUrl, :ModelType, :TaskType, :VPRAudioId, :EnableVoiceEnhance, :EngineType
 
-        def initialize(sessionid=nil, voicename=nil, voicegender=nil, voicelanguage=nil, audioidlist=nil, samplerate=nil, codec=nil, callbackurl=nil, modeltype=nil, tasktype=nil, vpraudioid=nil, enablevoiceenhance=nil)
+        def initialize(sessionid=nil, voicename=nil, voicegender=nil, voicelanguage=nil, audioidlist=nil, samplerate=nil, codec=nil, callbackurl=nil, modeltype=nil, tasktype=nil, vpraudioid=nil, enablevoiceenhance=nil, enginetype=nil)
           @SessionId = sessionid
           @VoiceName = voicename
           @VoiceGender = voicegender
@@ -126,6 +117,7 @@ module TencentCloud
           @TaskType = tasktype
           @VPRAudioId = vpraudioid
           @EnableVoiceEnhance = enablevoiceenhance
+          @EngineType = enginetype
         end
 
         def deserialize(params)
@@ -141,6 +133,7 @@ module TencentCloud
           @TaskType = params['TaskType']
           @VPRAudioId = params['VPRAudioId']
           @EnableVoiceEnhance = params['EnableVoiceEnhance']
+          @EngineType = params['EngineType']
         end
       end
 
@@ -163,7 +156,7 @@ module TencentCloud
 
       # CreateVRSTask返回参数结构体
       class CreateVRSTaskResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 创建任务结果
+        # @param Data: <p>创建任务结果</p>
         # @type Data: :class:`Tencentcloud::Vrs.v20200824.models.CreateVRSTaskRespData`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

@@ -1458,7 +1458,7 @@ module TencentCloud
         end
       end
 
-      # 通用的列表检索过滤选项
+      # 通用的列表检索过滤选项.
       class CommonFilter < TencentCloud::Common::AbstractModel
         # @param Name: 检索的键值
         # @type Name: String
@@ -11084,16 +11084,19 @@ module TencentCloud
 
       # ModifyBlockIgnoreRuleNew请求参数结构体
       class ModifyBlockIgnoreRuleNewRequest < TencentCloud::Common::AbstractModel
-        # @param Rule: 规则
+        # @param Rule: <p>规则</p>
         # @type Rule: :class:`Tencentcloud::Cfw.v20190904.models.BanAndAllowRule`
-        # @param RuleType: RuleType: 1放通列表 2外部IP 3域名 4情报 5资产 6自定义规则  7入侵防御规则
+        # @param RuleType: <p>RuleType: 1放通列表 2外部IP 3域名 4情报 5资产 6自定义规则  7入侵防御规则</p>
         # @type RuleType: Integer
+        # @param CoverDuplicate: <p>冲突选择</p><p>枚举值：</p><ul><li>1： 删除对端写入</li><li>0： 跳过写入</li></ul>
+        # @type CoverDuplicate: Integer
 
-        attr_accessor :Rule, :RuleType
+        attr_accessor :Rule, :RuleType, :CoverDuplicate
 
-        def initialize(rule=nil, ruletype=nil)
+        def initialize(rule=nil, ruletype=nil, coverduplicate=nil)
           @Rule = rule
           @RuleType = ruletype
+          @CoverDuplicate = coverduplicate
         end
 
         def deserialize(params)
@@ -11102,6 +11105,7 @@ module TencentCloud
             @Rule.deserialize(params['Rule'])
           end
           @RuleType = params['RuleType']
+          @CoverDuplicate = params['CoverDuplicate']
         end
       end
 
@@ -16612,36 +16616,38 @@ module TencentCloud
 
       # 白名单匹配条件；各字段的适用 RuleType 和取值要求见字段说明。
       class WhiteRuleInfo < TencentCloud::Common::AbstractModel
-        # @param DstIP: 访问目的。RuleType=2：本字段与 SrcIP 两个字段中恰好填写一个，值为精确 IP；RuleType=5：本字段与 SrcIP 两个字段中恰好填写一个，值为资产 instance_id；RuleType=6：与 SrcIP 至少一项为具体 IP，另一项可省略或使用同 IP 版本的 0.0.0.0/0、::/0，两项均为具体 IP 时使用相同 IP 版本；FwType=16 时具体目的 IPv4 可带端口。RuleType=8：IP、CIDR、IP:端口或 CIDR:端口，可与 SrcIP 组合；RuleType=9：IP、CIDR 或带端口地址，可与 NDR 专属条件组合；搭配 IdsRuleId 时使用 IPv4 或 IPv4:端口。IPv6 带端口时使用 [IPv6]:端口；已选字段的多值用逗号分隔。
+        # @param DstIP: <p>访问目的。RuleType=2：本字段与 SrcIP 两个字段中恰好填写一个，值为精确 IP；RuleType=5：本字段与 SrcIP 两个字段中恰好填写一个，值为资产 instance_id；RuleType=6：与 SrcIP 至少一项为具体 IP，另一项可省略或使用同 IP 版本的 0.0.0.0/0、::/0，两项均为具体 IP 时使用相同 IP 版本；FwType=16 时具体目的 IPv4 可带端口。RuleType=8：IP、CIDR、IP:端口或 CIDR:端口，可与 SrcIP 组合；RuleType=9：IP、CIDR 或带端口地址，可与 NDR 专属条件组合；搭配 IdsRuleId 时使用 IPv4 或 IPv4:端口。IPv6 带端口时使用 [IPv6]:端口；已选字段的多值用逗号分隔。</p>
         # @type DstIP: String
-        # @param FileMd5: 文件 MD5，仅 RuleType=9。32 位十六进制；多值逗号分隔，最多 10 个。
+        # @param FileMd5: <p>文件 MD5，仅 RuleType=9。32 位十六进制；多值逗号分隔，最多 10 个。</p>
         # @type FileMd5: String
-        # @param FileName: 文件名，仅 RuleType=9；支持精确匹配及 ?、* 通配符，区分大小写；多值用逗号分隔，最多 10 个。
+        # @param FileName: <p>文件名，仅 RuleType=9；支持精确匹配及 ?、* 通配符，区分大小写；多值用逗号分隔，最多 10 个。</p>
         # @type FileName: String
-        # @param HostName: HTTP Host，仅 RuleType=9；填写主机名或 IP，支持 ?、* 通配符并区分大小写；多值用逗号分隔。
+        # @param HostName: <p>HTTP Host，仅 RuleType=9；填写主机名或 IP，支持 ?、* 通配符并区分大小写；多值用逗号分隔。</p>
         # @type HostName: String
-        # @param Id: 服务端内部字段。
+        # @param Id: <p>服务端内部字段。</p>
         # @type Id: Integer
-        # @param IdsRuleId: IPS 规则 ID，取自 DescribeIpsRuleListNew.Data[].RuleID。RuleType=6 必填；RuleType=9 可选，填写时同时填写 SrcIP 或 DstIP。
+        # @param IdsRuleId: <p>IPS 规则 ID，取自 DescribeIpsRuleListNew.Data[].RuleID。RuleType=6 必填；RuleType=9 可选，填写时同时填写 SrcIP 或 DstIP。</p>
         # @type IdsRuleId: String
-        # @param IdsRuleName: 服务端保留字段。
+        # @param IdsRuleName: <p>服务端保留字段。</p>
         # @type IdsRuleName: String
-        # @param Ioc: RuleType=3 填一个合法域名；RuleType=4 填情报 IP、CIDR 或域名。
+        # @param Ioc: <p>RuleType=3 填一个合法域名；RuleType=4 填情报 IP、CIDR 或域名。</p>
         # @type Ioc: String
-        # @param SrcIP: 访问源。RuleType=2：本字段与 DstIP 两个字段中恰好填写一个，值为精确 IP；RuleType=5：本字段与 DstIP 两个字段中恰好填写一个，值为资产 instance_id；RuleType=6：与 DstIP 至少一项为具体 IP，另一项可省略或使用同 IP 版本的 0.0.0.0/0、::/0，两项均为具体 IP 时使用相同 IP 版本；RuleType=8：IP 或 CIDR；RuleType=9：IP 或 CIDR，可与 NDR 专属条件组合；搭配 IdsRuleId 时使用 IPv4。源地址使用无端口格式；已选字段的多值用逗号分隔。
+        # @param SrcIP: <p>访问源。RuleType=2：本字段与 DstIP 两个字段中恰好填写一个，值为精确 IP；RuleType=5：本字段与 DstIP 两个字段中恰好填写一个，值为资产 instance_id；RuleType=6：与 DstIP 至少一项为具体 IP，另一项可省略或使用同 IP 版本的 0.0.0.0/0、::/0，两项均为具体 IP 时使用相同 IP 版本；RuleType=8：IP 或 CIDR；RuleType=9：IP 或 CIDR，可与 NDR 专属条件组合；搭配 IdsRuleId 时使用 IPv4。源地址使用无端口格式；已选字段的多值用逗号分隔。</p>
         # @type SrcIP: String
-        # @param Url: HTTP URL，仅 RuleType=9；支持精确匹配及 ?、* 通配符，区分大小写；多值用逗号分隔，最多 10 个。
+        # @param Url: <p>HTTP URL，仅 RuleType=9；支持精确匹配及 ?、* 通配符，区分大小写；多值用逗号分隔，最多 10 个。</p>
         # @type Url: String
-        # @param UserAgent: HTTP User-Agent，仅 RuleType=9；支持精确匹配及 ?、* 通配符，区分大小写；单值少于 255 个字符，最多 2 个，多值用 <#cfw-splite#> 分隔。
+        # @param UserAgent: <p>HTTP User-Agent，仅 RuleType=9；支持精确匹配及 ?、* 通配符，区分大小写；单值少于 255 个字符，最多 2 个，多值用 &lt;#cfw-splite#&gt; 分隔。</p>
         # @type UserAgent: String
-        # @param WhiteId: 白名单策略唯一 ID。
+        # @param WhiteId: <p>白名单策略唯一 ID。</p>
         # @type WhiteId: String
-        # @param XForwardedFor: HTTP X-Forwarded-For，仅 RuleType=9；精确 IP，多值逗号分隔，最多 50 个。
+        # @param XForwardedFor: <p>HTTP X-Forwarded-For，仅 RuleType=9；精确 IP，多值逗号分隔，最多 50 个。</p>
         # @type XForwardedFor: String
+        # @param RiskEventType: <p>风险事件类型</p>
+        # @type RiskEventType: String
 
-        attr_accessor :DstIP, :FileMd5, :FileName, :HostName, :Id, :IdsRuleId, :IdsRuleName, :Ioc, :SrcIP, :Url, :UserAgent, :WhiteId, :XForwardedFor
+        attr_accessor :DstIP, :FileMd5, :FileName, :HostName, :Id, :IdsRuleId, :IdsRuleName, :Ioc, :SrcIP, :Url, :UserAgent, :WhiteId, :XForwardedFor, :RiskEventType
 
-        def initialize(dstip=nil, filemd5=nil, filename=nil, hostname=nil, id=nil, idsruleid=nil, idsrulename=nil, ioc=nil, srcip=nil, url=nil, useragent=nil, whiteid=nil, xforwardedfor=nil)
+        def initialize(dstip=nil, filemd5=nil, filename=nil, hostname=nil, id=nil, idsruleid=nil, idsrulename=nil, ioc=nil, srcip=nil, url=nil, useragent=nil, whiteid=nil, xforwardedfor=nil, riskeventtype=nil)
           @DstIP = dstip
           @FileMd5 = filemd5
           @FileName = filename
@@ -16655,6 +16661,7 @@ module TencentCloud
           @UserAgent = useragent
           @WhiteId = whiteid
           @XForwardedFor = xforwardedfor
+          @RiskEventType = riskeventtype
         end
 
         def deserialize(params)
@@ -16671,6 +16678,7 @@ module TencentCloud
           @UserAgent = params['UserAgent']
           @WhiteId = params['WhiteId']
           @XForwardedFor = params['XForwardedFor']
+          @RiskEventType = params['RiskEventType']
         end
       end
 

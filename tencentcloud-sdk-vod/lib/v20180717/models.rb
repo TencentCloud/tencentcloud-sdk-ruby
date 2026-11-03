@@ -2278,8 +2278,8 @@ module TencentCloud
 
         attr_accessor :Name, :SegmentSet, :RecognitionSegmentSet
         extend Gem::Deprecate
-        deprecate :SegmentSet, :none, 2026, 10
-        deprecate :SegmentSet=, :none, 2026, 10
+        deprecate :SegmentSet, :none, 2026, 11
+        deprecate :SegmentSet=, :none, 2026, 11
 
         def initialize(name=nil, segmentset=nil, recognitionsegmentset=nil)
           @Name = name
@@ -5197,6 +5197,58 @@ module TencentCloud
         end
       end
 
+      # AIGC 单配额模型。
+      class AigcModelQuota < TencentCloud::Common::AbstractModel
+        # @param ModelName: <p>模型名称。</p>
+        # @type ModelName: String
+        # @param QuotaLimit: <p>任务的配额数。</p><p>单位：张/秒。</p><ul><li>当 QuotaType 为 Image 时，单位为张；</li><li>当 QuotaType 为 Video 时，单位为秒；</li></ul>
+        # @type QuotaLimit: Integer
+        # @param ModelVersion: <p>模型版本。</p>
+        # @type ModelVersion: String
+
+        attr_accessor :ModelName, :QuotaLimit, :ModelVersion
+
+        def initialize(modelname=nil, quotalimit=nil, modelversion=nil)
+          @ModelName = modelname
+          @QuotaLimit = quotalimit
+          @ModelVersion = modelversion
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @QuotaLimit = params['QuotaLimit']
+          @ModelVersion = params['ModelVersion']
+        end
+      end
+
+      # AIGC 单模型配额与用量信息。
+      class AigcModelQuotaWithUsage < TencentCloud::Common::AbstractModel
+        # @param ModelName: <p>模型名称。</p>
+        # @type ModelName: String
+        # @param ModelVersion: <p>模型版本。</p>
+        # @type ModelVersion: String
+        # @param QuotaLimit: <p>任务的配额数。</p><p>单位：张/秒。</p><ul><li>当 QuotaType 为 Image 时，单位为张；</li><li>当 QuotaType 为 Video 时，单位为秒；</li></ul>
+        # @type QuotaLimit: Integer
+        # @param Usage: <p>已经使用的用量数</p><p>单位：</p><ul><li>当QuotaLimit=Image时，单位为张</li><li>当QuotaLimit=Video时，单位为秒</li></ul>
+        # @type Usage: Integer
+
+        attr_accessor :ModelName, :ModelVersion, :QuotaLimit, :Usage
+
+        def initialize(modelname=nil, modelversion=nil, quotalimit=nil, usage=nil)
+          @ModelName = modelname
+          @ModelVersion = modelversion
+          @QuotaLimit = quotalimit
+          @Usage = usage
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+          @QuotaLimit = params['QuotaLimit']
+          @Usage = params['Usage']
+        end
+      end
+
       # AIGC 配额
       class AigcQuotaItem < TencentCloud::Common::AbstractModel
         # @param QuotaType: <p>配额类型</p><p>枚举值：</p><ul><li>Image： AIGC 生图任务</li><li>Video： AIGC 生视频任务</li><li>Text： AIGC 生文任务</li></ul>
@@ -5207,14 +5259,26 @@ module TencentCloud
         # @type QuotaLimit: Integer
         # @param Usage: <p>已经使用的用量数</p><p>单位：</p><ul><li>当QuotaLimit=Image时，单位为张</li><li>当QuotaLimit=Video时，单位为秒</li><li>当QuotaLimit=Text时，单位为token</li></ul>
         # @type Usage: Integer
+        # @param QuotaPeriod: <p>配额重置周期。</p><p>枚举值：</p><ul><li>Day： 每天重置。</li><li>Month： 每月指定日期重置。</li><li>Total： 永不重置，QuotaLimit参数即为总额度。</li></ul>
+        # @type QuotaPeriod: String
+        # @param ResetDay: <p>每月配额的重置日期，仅QuotaPeriod=Month时有效。</p><p>如果当月无所选日期时，顺延至次月 1 日 00:00 重置。</p>
+        # @type ResetDay: Integer
+        # @param ModelQuotaSwitch: <p>是否开启按单个模型设置配额</p><p>枚举值：</p><ul><li>ON： 打开</li><li>OFF： 关闭</li></ul><p>默认值：OFF</p>
+        # @type ModelQuotaSwitch: String
+        # @param ModelQuotas: <p>按单个模型设置的配额，仅ModelQuotaSwitch=ON时有效。</p>
+        # @type ModelQuotas: Array
 
-        attr_accessor :QuotaType, :ApiToken, :QuotaLimit, :Usage
+        attr_accessor :QuotaType, :ApiToken, :QuotaLimit, :Usage, :QuotaPeriod, :ResetDay, :ModelQuotaSwitch, :ModelQuotas
 
-        def initialize(quotatype=nil, apitoken=nil, quotalimit=nil, usage=nil)
+        def initialize(quotatype=nil, apitoken=nil, quotalimit=nil, usage=nil, quotaperiod=nil, resetday=nil, modelquotaswitch=nil, modelquotas=nil)
           @QuotaType = quotatype
           @ApiToken = apitoken
           @QuotaLimit = quotalimit
           @Usage = usage
+          @QuotaPeriod = quotaperiod
+          @ResetDay = resetday
+          @ModelQuotaSwitch = modelquotaswitch
+          @ModelQuotas = modelquotas
         end
 
         def deserialize(params)
@@ -5222,6 +5286,17 @@ module TencentCloud
           @ApiToken = params['ApiToken']
           @QuotaLimit = params['QuotaLimit']
           @Usage = params['Usage']
+          @QuotaPeriod = params['QuotaPeriod']
+          @ResetDay = params['ResetDay']
+          @ModelQuotaSwitch = params['ModelQuotaSwitch']
+          unless params['ModelQuotas'].nil?
+            @ModelQuotas = []
+            params['ModelQuotas'].each do |i|
+              aigcmodelquotawithusage_tmp = AigcModelQuotaWithUsage.new
+              aigcmodelquotawithusage_tmp.deserialize(i)
+              @ModelQuotas << aigcmodelquotawithusage_tmp
+            end
+          end
         end
       end
 
@@ -6336,8 +6411,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormats, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2026, 10
-        deprecate :SubtitleFormat=, :none, 2026, 10
+        deprecate :SubtitleFormat, :none, 2026, 11
+        deprecate :SubtitleFormat=, :none, 2026, 11
 
         def initialize(switch=nil, subtitleformats=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -6380,8 +6455,8 @@ module TencentCloud
 
         attr_accessor :Switch, :SubtitleFormatsOperation, :SubtitleFormat, :SrcLanguage, :SubtitleName
         extend Gem::Deprecate
-        deprecate :SubtitleFormat, :none, 2026, 10
-        deprecate :SubtitleFormat=, :none, 2026, 10
+        deprecate :SubtitleFormat, :none, 2026, 11
+        deprecate :SubtitleFormat=, :none, 2026, 11
 
         def initialize(switch=nil, subtitleformatsoperation=nil, subtitleformat=nil, srclanguage=nil, subtitlename=nil)
           @Switch = switch
@@ -10018,14 +10093,26 @@ module TencentCloud
         # @type QuotaLimit: Integer
         # @param ApiToken: <p>仅当QuotaType=Text时有效，用于选择需要进行配额限制ApiToken</p>
         # @type ApiToken: String
+        # @param QuotaPeriod: <p>配额重置周期。</p><p>枚举值：</p><ul><li>Day： 每天重置。</li><li>Month： 每月指定日期重置。</li><li>Total： 永不重置，QuotaLimit参数即为总额度。</li></ul>
+        # @type QuotaPeriod: String
+        # @param ResetDay: <p>每月配额的重置日期，仅QuotaPeriod=Month时有效。</p><p>如果当月无所选日期时，顺延至次月 1 日 00:00 重置。</p>
+        # @type ResetDay: Integer
+        # @param ModelQuotaSwitch: <p>是否开启按单个模型设置配额</p><p>枚举值：</p><ul><li>ON： 打开</li><li>OFF： 关闭</li></ul>
+        # @type ModelQuotaSwitch: String
+        # @param ModelQuotas: <p>按单个模型设置的配额，仅ModelQuotaSwitch=ON时有效。</p>
+        # @type ModelQuotas: Array
 
-        attr_accessor :SubAppId, :QuotaType, :QuotaLimit, :ApiToken
+        attr_accessor :SubAppId, :QuotaType, :QuotaLimit, :ApiToken, :QuotaPeriod, :ResetDay, :ModelQuotaSwitch, :ModelQuotas
 
-        def initialize(subappid=nil, quotatype=nil, quotalimit=nil, apitoken=nil)
+        def initialize(subappid=nil, quotatype=nil, quotalimit=nil, apitoken=nil, quotaperiod=nil, resetday=nil, modelquotaswitch=nil, modelquotas=nil)
           @SubAppId = subappid
           @QuotaType = quotatype
           @QuotaLimit = quotalimit
           @ApiToken = apitoken
+          @QuotaPeriod = quotaperiod
+          @ResetDay = resetday
+          @ModelQuotaSwitch = modelquotaswitch
+          @ModelQuotas = modelquotas
         end
 
         def deserialize(params)
@@ -10033,6 +10120,17 @@ module TencentCloud
           @QuotaType = params['QuotaType']
           @QuotaLimit = params['QuotaLimit']
           @ApiToken = params['ApiToken']
+          @QuotaPeriod = params['QuotaPeriod']
+          @ResetDay = params['ResetDay']
+          @ModelQuotaSwitch = params['ModelQuotaSwitch']
+          unless params['ModelQuotas'].nil?
+            @ModelQuotas = []
+            params['ModelQuotas'].each do |i|
+              aigcmodelquota_tmp = AigcModelQuota.new
+              aigcmodelquota_tmp.deserialize(i)
+              @ModelQuotas << aigcmodelquota_tmp
+            end
+          end
         end
       end
 
@@ -11603,8 +11701,8 @@ module TencentCloud
 
         attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask, :ImportMediaKnowledgeTaskSet
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 10
-        deprecate :AiRecognitionTask=, :none, 2026, 10
+        deprecate :AiRecognitionTask, :none, 2026, 11
+        deprecate :AiRecognitionTask=, :none, 2026, 11
 
         def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil, importmediaknowledgetaskset=nil)
           @Name = name
@@ -15956,8 +16054,8 @@ module TencentCloud
 
         attr_accessor :DomainName, :Domain, :Scheme, :PlayKey, :RequestId
         extend Gem::Deprecate
-        deprecate :DomainName, :none, 2026, 10
-        deprecate :DomainName=, :none, 2026, 10
+        deprecate :DomainName, :none, 2026, 11
+        deprecate :DomainName=, :none, 2026, 11
 
         def initialize(domainname=nil, domain=nil, scheme=nil, playkey=nil, requestid=nil)
           @DomainName = domainname
@@ -17616,8 +17714,8 @@ module TencentCloud
 
         attr_accessor :SubAppId, :RoundPlayIds, :Status, :CreateTime, :UpdateTime, :ScrollToken, :Offset, :Limit
         extend Gem::Deprecate
-        deprecate :Offset, :none, 2026, 10
-        deprecate :Offset=, :none, 2026, 10
+        deprecate :Offset, :none, 2026, 11
+        deprecate :Offset=, :none, 2026, 11
 
         def initialize(subappid=nil, roundplayids=nil, status=nil, createtime=nil, updatetime=nil, scrolltoken=nil, offset=nil, limit=nil)
           @SubAppId = subappid
@@ -17661,8 +17759,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :RoundPlaySet, :ScrollToken, :RequestId
         extend Gem::Deprecate
-        deprecate :TotalCount, :none, 2026, 10
-        deprecate :TotalCount=, :none, 2026, 10
+        deprecate :TotalCount, :none, 2026, 11
+        deprecate :TotalCount=, :none, 2026, 11
 
         def initialize(totalcount=nil, roundplayset=nil, scrolltoken=nil, requestid=nil)
           @TotalCount = totalcount
@@ -20920,8 +21018,8 @@ module TencentCloud
 
         attr_accessor :Uv, :Uid
         extend Gem::Deprecate
-        deprecate :Uid, :none, 2026, 10
-        deprecate :Uid=, :none, 2026, 10
+        deprecate :Uid, :none, 2026, 11
+        deprecate :Uid=, :none, 2026, 11
 
         def initialize(uv=nil, uid=nil)
           @Uv = uv
@@ -22534,8 +22632,8 @@ module TencentCloud
 
         attr_accessor :SubAppId, :FileId, :Definition, :KnowledgeBaseIds, :ImportTasks
         extend Gem::Deprecate
-        deprecate :ImportTasks, :none, 2026, 10
-        deprecate :ImportTasks=, :none, 2026, 10
+        deprecate :ImportTasks, :none, 2026, 11
+        deprecate :ImportTasks=, :none, 2026, 11
 
         def initialize(subappid=nil, fileid=nil, definition=nil, knowledgebaseids=nil, importtasks=nil)
           @SubAppId = subappid
@@ -25648,8 +25746,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Suggestion, :Name, :Label, :Url, :AreaCoordSet, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2026, 10
-        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 10
+        deprecate :PicUrlExpireTimeStamp, :none, 2026, 11
+        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 11
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, suggestion=nil, name=nil, label=nil, url=nil, areacoordset=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -25703,8 +25801,8 @@ module TencentCloud
 
         attr_accessor :StartTimeOffset, :EndTimeOffset, :Confidence, :Label, :Suggestion, :Url, :PicUrlExpireTimeStamp, :PicUrlExpireTime
         extend Gem::Deprecate
-        deprecate :PicUrlExpireTimeStamp, :none, 2026, 10
-        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 10
+        deprecate :PicUrlExpireTimeStamp, :none, 2026, 11
+        deprecate :PicUrlExpireTimeStamp=, :none, 2026, 11
 
         def initialize(starttimeoffset=nil, endtimeoffset=nil, confidence=nil, label=nil, suggestion=nil, url=nil, picurlexpiretimestamp=nil, picurlexpiretime=nil)
           @StartTimeOffset = starttimeoffset
@@ -27318,8 +27416,8 @@ module TencentCloud
 
         attr_accessor :Duration, :Transitions, :MediaTransitions
         extend Gem::Deprecate
-        deprecate :Transitions, :none, 2026, 10
-        deprecate :Transitions=, :none, 2026, 10
+        deprecate :Transitions, :none, 2026, 11
+        deprecate :Transitions=, :none, 2026, 11
 
         def initialize(duration=nil, transitions=nil, mediatransitions=nil)
           @Duration = duration
@@ -27668,14 +27766,26 @@ module TencentCloud
         # @type QuotaLimit: Integer
         # @param ApiToken: <p>仅当QuotaType=Text时有效，用于选择需要进行配额限制ApiToken</p>
         # @type ApiToken: String
+        # @param QuotaPeriod: <p>配额重置周期。</p><p>枚举值：</p><ul><li>Day： 每天重置。</li><li>Month： 每月指定日期重置。</li><li>Total： 永不重置，QuotaLimit参数即为总额度。</li></ul>
+        # @type QuotaPeriod: String
+        # @param ResetDay: <p>每月配额的重置日期，仅QuotaPeriod=Month时有效。</p><p>如果当月无所选日期时，顺延至次月 1 日 00:00 重置。</p>
+        # @type ResetDay: Integer
+        # @param ModelQuotaSwitch: <p>是否开启按单个模型设置配额</p><p>枚举值：</p><ul><li>ON： 打开</li><li>OFF： 关闭</li></ul>
+        # @type ModelQuotaSwitch: String
+        # @param ModelQuotas: <p>按单个模型设置的配额，仅ModelQuotaSwitch=ON时有效。</p>
+        # @type ModelQuotas: Array
 
-        attr_accessor :SubAppId, :QuotaType, :QuotaLimit, :ApiToken
+        attr_accessor :SubAppId, :QuotaType, :QuotaLimit, :ApiToken, :QuotaPeriod, :ResetDay, :ModelQuotaSwitch, :ModelQuotas
 
-        def initialize(subappid=nil, quotatype=nil, quotalimit=nil, apitoken=nil)
+        def initialize(subappid=nil, quotatype=nil, quotalimit=nil, apitoken=nil, quotaperiod=nil, resetday=nil, modelquotaswitch=nil, modelquotas=nil)
           @SubAppId = subappid
           @QuotaType = quotatype
           @QuotaLimit = quotalimit
           @ApiToken = apitoken
+          @QuotaPeriod = quotaperiod
+          @ResetDay = resetday
+          @ModelQuotaSwitch = modelquotaswitch
+          @ModelQuotas = modelquotas
         end
 
         def deserialize(params)
@@ -27683,6 +27793,17 @@ module TencentCloud
           @QuotaType = params['QuotaType']
           @QuotaLimit = params['QuotaLimit']
           @ApiToken = params['ApiToken']
+          @QuotaPeriod = params['QuotaPeriod']
+          @ResetDay = params['ResetDay']
+          @ModelQuotaSwitch = params['ModelQuotaSwitch']
+          unless params['ModelQuotas'].nil?
+            @ModelQuotas = []
+            params['ModelQuotas'].each do |i|
+              aigcmodelquota_tmp = AigcModelQuota.new
+              aigcmodelquota_tmp.deserialize(i)
+              @ModelQuotas << aigcmodelquota_tmp
+            end
+          end
         end
       end
 
@@ -31105,10 +31226,10 @@ module TencentCloud
 
         attr_accessor :TaskId, :Status, :ErrCode, :Message, :FileId, :FileName, :FileUrl, :MetaData, :MediaProcessResultSet, :AiContentReviewResultSet, :AiAnalysisResultSet, :AiRecognitionResultSet, :TasksPriority, :TasksNotifyMode, :SessionContext, :SessionId, :Operator, :OperationType
         extend Gem::Deprecate
-        deprecate :ErrCode, :none, 2026, 10
-        deprecate :ErrCode=, :none, 2026, 10
-        deprecate :Message, :none, 2026, 10
-        deprecate :Message=, :none, 2026, 10
+        deprecate :ErrCode, :none, 2026, 11
+        deprecate :ErrCode=, :none, 2026, 11
+        deprecate :Message, :none, 2026, 11
+        deprecate :Message=, :none, 2026, 11
 
         def initialize(taskid=nil, status=nil, errcode=nil, message=nil, fileid=nil, filename=nil, fileurl=nil, metadata=nil, mediaprocessresultset=nil, aicontentreviewresultset=nil, aianalysisresultset=nil, airecognitionresultset=nil, taskspriority=nil, tasksnotifymode=nil, sessioncontext=nil, sessionid=nil, operator=nil, operationtype=nil)
           @TaskId = taskid
@@ -31221,8 +31342,8 @@ module TencentCloud
 
         attr_accessor :Name, :Type, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :MiniProgramPublishTask, :ReviewAudioVideoTask, :ImportMediaKnowledgeTaskSet, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 10
-        deprecate :AiRecognitionTask=, :none, 2026, 10
+        deprecate :AiRecognitionTask, :none, 2026, 11
+        deprecate :AiRecognitionTask=, :none, 2026, 11
 
         def initialize(name=nil, type=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, miniprogrampublishtask=nil, reviewaudiovideotask=nil, importmediaknowledgetaskset=nil, createtime=nil, updatetime=nil)
           @Name = name
@@ -32159,8 +32280,8 @@ module TencentCloud
 
         attr_accessor :ProductType, :StartTime, :ExpireTime, :ProductInstanceId, :LastConsumeDate, :BindStatus, :ProductInstanceResourceSet, :ResourceSet, :ProductInstanceStatus, :RefundStatus, :RenewStatus
         extend Gem::Deprecate
-        deprecate :ProductInstanceResourceSet, :none, 2026, 10
-        deprecate :ProductInstanceResourceSet=, :none, 2026, 10
+        deprecate :ProductInstanceResourceSet, :none, 2026, 11
+        deprecate :ProductInstanceResourceSet=, :none, 2026, 11
 
         def initialize(producttype=nil, starttime=nil, expiretime=nil, productinstanceid=nil, lastconsumedate=nil, bindstatus=nil, productinstanceresourceset=nil, resourceset=nil, productinstancestatus=nil, refundstatus=nil, renewstatus=nil)
           @ProductType = producttype
@@ -34666,8 +34787,8 @@ module TencentCloud
 
         attr_accessor :FileId, :SubAppId, :SessionId, :SessionContext, :TasksPriority, :TasksNotifyMode
         extend Gem::Deprecate
-        deprecate :TasksNotifyMode, :none, 2026, 10
-        deprecate :TasksNotifyMode=, :none, 2026, 10
+        deprecate :TasksNotifyMode, :none, 2026, 11
+        deprecate :TasksNotifyMode=, :none, 2026, 11
 
         def initialize(fileid=nil, subappid=nil, sessionid=nil, sessioncontext=nil, taskspriority=nil, tasksnotifymode=nil)
           @FileId = fileid
@@ -34819,8 +34940,8 @@ module TencentCloud
 
         attr_accessor :Name, :SubAppId, :Comment, :MediaProcessTask, :AiContentReviewTask, :AiAnalysisTask, :AiRecognitionTaskSet, :AiRecognitionTask, :ReviewAudioVideoTask, :ImportMediaKnowledgeTaskSet
         extend Gem::Deprecate
-        deprecate :AiRecognitionTask, :none, 2026, 10
-        deprecate :AiRecognitionTask=, :none, 2026, 10
+        deprecate :AiRecognitionTask, :none, 2026, 11
+        deprecate :AiRecognitionTask=, :none, 2026, 11
 
         def initialize(name=nil, subappid=nil, comment=nil, mediaprocesstask=nil, aicontentreviewtask=nil, aianalysistask=nil, airecognitiontaskset=nil, airecognitiontask=nil, reviewaudiovideotask=nil, importmediaknowledgetaskset=nil)
           @Name = name
@@ -35006,10 +35127,10 @@ module TencentCloud
 
         attr_accessor :FileId, :OriginalStorageClass, :TargetStorageClass, :RestoreTier, :RestoreDay, :Status, :Message
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 10
-        deprecate :Status=, :none, 2026, 10
-        deprecate :Message, :none, 2026, 10
-        deprecate :Message=, :none, 2026, 10
+        deprecate :Status, :none, 2026, 11
+        deprecate :Status=, :none, 2026, 11
+        deprecate :Message, :none, 2026, 11
+        deprecate :Message=, :none, 2026, 11
 
         def initialize(fileid=nil, originalstorageclass=nil, targetstorageclass=nil, restoretier=nil, restoreday=nil, status=nil, message=nil)
           @FileId = fileid
@@ -35369,8 +35490,8 @@ module TencentCloud
 
         attr_accessor :ReviewResultSet, :MediaReviewResult, :RequestId
         extend Gem::Deprecate
-        deprecate :ReviewResultSet, :none, 2026, 10
-        deprecate :ReviewResultSet=, :none, 2026, 10
+        deprecate :ReviewResultSet, :none, 2026, 11
+        deprecate :ReviewResultSet=, :none, 2026, 11
 
         def initialize(reviewresultset=nil, mediareviewresult=nil, requestid=nil)
           @ReviewResultSet = reviewresultset
@@ -36153,7 +36274,7 @@ module TencentCloud
         # @type AspectRatio: String
         # @param Duration: <p>生成视频时长。</p><ul><li>当使用生商品图场景时，可选值4、6、8秒。</li><li>当使用角色场景时，可选值为4到15秒。</li></ul>
         # @type Duration: Float
-        # @param Resolution: <p>分辨率。仅当角色场景时有效。取值如下：</p><ul><li>当 Model 是 character_scene_standard 时，支持 480p、720p、1080p、4K；</li><li>当 Model 是 character_scene_mini 时，支持 480p、720p；</li><li>当 Model 是 character_scene_fast 时，支持 720p。</li></ul>
+        # @param Resolution: <p>分辨率。仅当角色场景时有效。取值如下：</p><ul><li>当 Model 是 character_scene_standard 时，支持 480P、720P、1080P、4K；</li><li>当 Model 是 character_scene_mini 时，支持 480P、720P；</li><li>当 Model 是 character_scene_fast 时，支持 720P。</li></ul>
         # @type Resolution: String
 
         attr_accessor :StorageMode, :MediaName, :ClassId, :ExpireTime, :AspectRatio, :Duration, :Resolution
@@ -36938,8 +37059,8 @@ module TencentCloud
 
         attr_accessor :Url, :SubAppId, :StartTimeOffset, :EndTimeOffset, :IsPersistence, :ExpireTime, :Procedure, :ClassId, :SourceContext, :SessionContext, :Precision, :OutputMediaType, :ExtInfo
         extend Gem::Deprecate
-        deprecate :Precision, :none, 2026, 10
-        deprecate :Precision=, :none, 2026, 10
+        deprecate :Precision, :none, 2026, 11
+        deprecate :Precision=, :none, 2026, 11
 
         def initialize(url=nil, subappid=nil, starttimeoffset=nil, endtimeoffset=nil, ispersistence=nil, expiretime=nil, procedure=nil, classid=nil, sourcecontext=nil, sessioncontext=nil, precision=nil, outputmediatype=nil, extinfo=nil)
           @Url = url
@@ -37946,8 +38067,8 @@ module TencentCloud
 
         attr_accessor :Width, :Height, :CycleConfig
         extend Gem::Deprecate
-        deprecate :CycleConfig, :none, 2026, 10
-        deprecate :CycleConfig=, :none, 2026, 10
+        deprecate :CycleConfig, :none, 2026, 11
+        deprecate :CycleConfig=, :none, 2026, 11
 
         def initialize(width=nil, height=nil, cycleconfig=nil)
           @Width = width
@@ -38890,8 +39011,8 @@ module TencentCloud
 
         attr_accessor :Switch, :Definition
         extend Gem::Deprecate
-        deprecate :Definition, :none, 2026, 10
-        deprecate :Definition=, :none, 2026, 10
+        deprecate :Definition, :none, 2026, 11
+        deprecate :Definition=, :none, 2026, 11
 
         def initialize(switch=nil, definition=nil)
           @Switch = switch
@@ -39891,19 +40012,23 @@ module TencentCloud
         # @param ExpireTime: <p>输出媒资过期时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>，仅 StorageMode 为 Permanent 时生效。不传表示永不过期。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
+        # @param KeepAudio: <p>是否保留原视频音频，默认不保留原视频音频。</p><p>枚举值：</p><ul><li>ON： 保留音频</li><li>OFF： 不保留音频</li></ul>
+        # @type KeepAudio: String
 
-        attr_accessor :StorageMode, :MediaName, :ExpireTime
+        attr_accessor :StorageMode, :MediaName, :ExpireTime, :KeepAudio
 
-        def initialize(storagemode=nil, medianame=nil, expiretime=nil)
+        def initialize(storagemode=nil, medianame=nil, expiretime=nil, keepaudio=nil)
           @StorageMode = storagemode
           @MediaName = medianame
           @ExpireTime = expiretime
+          @KeepAudio = keepaudio
         end
 
         def deserialize(params)
           @StorageMode = params['StorageMode']
           @MediaName = params['MediaName']
           @ExpireTime = params['ExpireTime']
+          @KeepAudio = params['KeepAudio']
         end
       end
 

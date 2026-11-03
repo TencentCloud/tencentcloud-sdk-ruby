@@ -3705,6 +3705,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 批量删除 CSC 异常登录自定义白名单（软删 status=2），支持跨页全选。Ids 与 SelectAll 二选一，均为空时返回 InvalidParameter；跨页全选总量超过 100000 条时整体拒绝。
+
+        # @param request: Request instance for DeleteLoginWhiteCustomEDR.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteLoginWhiteCustomEDRRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteLoginWhiteCustomEDRResponse`
+        def DeleteLoginWhiteCustomEDR(request)
+          body = send_request('DeleteLoginWhiteCustomEDR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLoginWhiteCustomEDRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 批量删除 CSC 异常登录自学习白名单规则组（整组软删 enable=0），传入组内任一行 ID 即可定位整组，支持跨页全选（上限 100000 个规则组）。删除后不会被自动重学，需重新开关自学习刷新学习锚点；本接口不回扫历史告警。
+
+        # @param request: Request instance for DeleteLoginWhiteLearnEDR.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteLoginWhiteLearnEDRRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteLoginWhiteLearnEDRResponse`
+        def DeleteLoginWhiteLearnEDR(request)
+          body = send_request('DeleteLoginWhiteLearnEDR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteLoginWhiteLearnEDRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口用于删除异地登录白名单规则。
 
         # @param request: Request instance for DeleteLoginWhiteList.
@@ -9674,6 +9722,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 按 EDR 告警标识定位恶意文件告警，返回其恶意样本的下载链接。仅 alert_sub_type=1（恶意文件）的告警允许下载，其它子类型按资源不存在处理。公有云返回 COS 预签名 URL（1 小时有效）；非公有云且导出开关打开时返回 base64 DataURL 并同时返回 FileName。跨账号场景由 TargetAppId 指定告警所属账号，会做归属校验（fail-close，无权限返回 InvalidParameter）。
+
+        # @param request: Request instance for DescribeEdrMalwareFile.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeEdrMalwareFileRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeEdrMalwareFileResponse`
+        def DescribeEdrMalwareFile(request)
+          body = send_request('DescribeEdrMalwareFile', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEdrMalwareFileResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 导出任务结果下载URL
 
         # @param request: Request instance for DescribeExportJobDownloadURL.
@@ -11090,6 +11162,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询 CSC 异常登录自定义白名单列表。多账号场景按 MemberId 解析出全部成员 AppId 后一次聚合查询。按 ModifyTime DESC 分页返回，出参切片字段恒为 [] 不会为 null。
+
+        # @param request: Request instance for DescribeLoginWhiteCustomListEDR.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeLoginWhiteCustomListEDRRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeLoginWhiteCustomListEDRResponse`
+        def DescribeLoginWhiteCustomListEDR(request)
+          body = send_request('DescribeLoginWhiteCustomListEDR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLoginWhiteCustomListEDRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询合并后白名单机器列表
 
         # @param request: Request instance for DescribeLoginWhiteHostList.
@@ -11100,6 +11196,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeLoginWhiteHostListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询 CSC 异常登录自学习白名单列表（规则组）。规则组按 (AppId, 常用登录地) 聚合，Id 为组内最小行 ID；出参 SrcIp/UserName/StartTime/EndTime 恒为空。AutoLearnEnable 返回自学习开关状态，供前端空态展示判断是否跳转开启。
+
+        # @param request: Request instance for DescribeLoginWhiteLearnListEDR.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeLoginWhiteLearnListEDRRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeLoginWhiteLearnListEDRResponse`
+        def DescribeLoginWhiteLearnListEDR(request)
+          body = send_request('DescribeLoginWhiteLearnListEDR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeLoginWhiteLearnListEDRResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -16200,6 +16320,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyImageVulWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改 CSC 异常登录自定义白名单，全量覆盖保存（未传字段视为清空）。本接口不触发历史告警回扫；查重时排除自身；规则不存在返回 ResourceNotFound。
+
+        # @param request: Request instance for ModifyLoginWhiteCustomEDR.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyLoginWhiteCustomEDRRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyLoginWhiteCustomEDRResponse`
+        def ModifyLoginWhiteCustomEDR(request)
+          body = send_request('ModifyLoginWhiteCustomEDR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLoginWhiteCustomEDRResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改 CSC 异常登录自学习白名单规则组，按 (AppId, 常用登录地) 定位整组。约束：不支持新建、不支持按标签生效（TagIDs 必须为空）；仅支持 Scope=0 直接选择 与 Scope=1 全部资产+剔除；规则组行数超过 5000 时拒绝；单事务先插后删；编辑后最长一个缓存周期（默认 120s）内生效。本接口不回扫历史告警。
+
+        # @param request: Request instance for ModifyLoginWhiteLearnEDR.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyLoginWhiteLearnEDRRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyLoginWhiteLearnEDRResponse`
+        def ModifyLoginWhiteLearnEDR(request)
+          body = send_request('ModifyLoginWhiteLearnEDR', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyLoginWhiteLearnEDRResponse.new
             model.deserialize(response['Response'])
             model
           else

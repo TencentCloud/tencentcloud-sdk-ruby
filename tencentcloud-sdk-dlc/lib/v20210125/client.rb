@@ -6370,6 +6370,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 通过 ResourceManager 调用 CLS SearchLog API 查询 RayServe 部署相关事件日志。不返回总数，使用 Context 进行翻页，ListOver 标识是否还有更多数据。
+
+        # @param request: Request instance for GetRayServeEvent.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::GetRayServeEventRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::GetRayServeEventResponse`
+        def GetRayServeEvent(request)
+          body = send_request('GetRayServeEvent', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetRayServeEventResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取资源配置模板详情
 
         # @param request: Request instance for GetResourceConfig.
@@ -7148,6 +7172,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListServiceApiKeysResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 根据集群ID列出所有Ray任务
+
+        # @param request: Request instance for ListStorages.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::ListStoragesRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::ListStoragesResponse`
+        def ListStorages(request)
+          body = send_request('ListStorages', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListStoragesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -8324,6 +8372,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopRayClusterResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 提交新的Ray任务到指定集群
+
+        # @param request: Request instance for SubmitRayJob.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::SubmitRayJobRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::SubmitRayJobResponse`
+        def SubmitRayJob(request)
+          body = send_request('SubmitRayJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SubmitRayJobResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -338,10 +338,10 @@ module TencentCloud
 
         attr_accessor :TableResultType, :ResultType, :EnableMllm, :MaxChunkSize, :IgnoreFailedPage, :SplitResultType, :SplitTableResultType, :ReturnPageFormat, :PageFormat
         extend Gem::Deprecate
-        deprecate :TableResultType, :none, 2026, 9
-        deprecate :TableResultType=, :none, 2026, 9
-        deprecate :ResultType, :none, 2026, 9
-        deprecate :ResultType=, :none, 2026, 9
+        deprecate :TableResultType, :none, 2026, 11
+        deprecate :TableResultType=, :none, 2026, 11
+        deprecate :ResultType, :none, 2026, 11
+        deprecate :ResultType=, :none, 2026, 11
 
         def initialize(tableresulttype=nil, resulttype=nil, enablemllm=nil, maxchunksize=nil, ignorefailedpage=nil, splitresulttype=nil, splittableresulttype=nil, returnpageformat=nil, pageformat=nil)
           @TableResultType = tableresulttype
@@ -395,8 +395,8 @@ module TencentCloud
 
         attr_accessor :FileType, :FileUrl, :FileName, :FileBase64, :FileStartPageNumber, :FileEndPageNumber, :Config
         extend Gem::Deprecate
-        deprecate :FileBase64, :none, 2026, 9
-        deprecate :FileBase64=, :none, 2026, 9
+        deprecate :FileBase64, :none, 2026, 11
+        deprecate :FileBase64=, :none, 2026, 11
 
         def initialize(filetype=nil, fileurl=nil, filename=nil, filebase64=nil, filestartpagenumber=nil, fileendpagenumber=nil, config=nil)
           @FileType = filetype
@@ -488,8 +488,8 @@ module TencentCloud
 
         attr_accessor :PageNumber, :TotalToken, :TotalTokens, :SplitTokens, :MllmTokens, :SuccessPageNum, :FailPageNum, :FileSize
         extend Gem::Deprecate
-        deprecate :TotalToken, :none, 2026, 9
-        deprecate :TotalToken=, :none, 2026, 9
+        deprecate :TotalToken, :none, 2026, 11
+        deprecate :TotalToken=, :none, 2026, 11
 
         def initialize(pagenumber=nil, totaltoken=nil, totaltokens=nil, splittokens=nil, mllmtokens=nil, successpagenum=nil, failpagenum=nil, filesize=nil)
           @PageNumber = pagenumber
@@ -649,8 +649,7 @@ module TencentCloud
 
       # GetReconstructDocumentResult请求参数结构体
       class GetReconstructDocumentResultRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 说明：解析任务ID
-        # 备注：仅支持单个任务ID
+        # @param TaskId: <p>说明：解析任务ID<br>备注：仅支持单个任务ID</p>
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -666,32 +665,33 @@ module TencentCloud
 
       # GetReconstructDocumentResult返回参数结构体
       class GetReconstructDocumentResultResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态。
-        # - `Success`：执行完成
-        # - `Processing`：执行中
-        # -  `Pause`: 暂停
-        # -  `Failed`：执行失败
-        # -  `WaitExecute`：等待执行
+        # @param Status: <p>任务状态。</p><ul><li><code>Success</code>：执行完成</li><li><code>Processing</code>：执行中</li><li><code>Pause</code>: 暂停</li><li><code>Failed</code>：执行失败</li><li><code>WaitExecute</code>：等待执行</li></ul>
         # @type Status: String
-        # @param DocumentRecognizeResultUrl: 解析结果的临时下载地址。文件类型为zip压缩包，下载链接有效期30分钟
+        # @param DocumentRecognizeResultUrl: <p>解析结果的临时下载地址。文件类型为zip压缩包，下载链接有效期30分钟</p>
         # @type DocumentRecognizeResultUrl: String
-        # @param FailedPages: 文档解析失败的页码
+        # @param FailedPages: <p>文档解析失败的页码</p>
         # @type FailedPages: Array
-        # @param Usage: 文档拆分任务的用量
+        # @param Usage: <p>文档拆分任务的用量</p>
         # @type Usage: :class:`Tencentcloud::Lkeap.v20240522.models.DocumentUsage`
-        # @param Error: 文档解析任务失败错误信息，当文档解析任务失败会返回具体的错误信息
+        # @param Error: <p>文档解析任务失败错误信息，当文档解析任务失败会返回具体的错误信息</p>
         # @type Error: :class:`Tencentcloud::Lkeap.v20240522.models.ErrorInfo`
+        # @param TaskErrInfo: <p>文档解析任务失败错误信息，当文档解析任务失败会返回具体的错误信息</p>
+        # @type TaskErrInfo: :class:`Tencentcloud::Lkeap.v20240522.models.TaskErrInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :DocumentRecognizeResultUrl, :FailedPages, :Usage, :Error, :RequestId
+        attr_accessor :Status, :DocumentRecognizeResultUrl, :FailedPages, :Usage, :Error, :TaskErrInfo, :RequestId
+        extend Gem::Deprecate
+        deprecate :Error, :none, 2026, 11
+        deprecate :Error=, :none, 2026, 11
 
-        def initialize(status=nil, documentrecognizeresulturl=nil, failedpages=nil, usage=nil, error=nil, requestid=nil)
+        def initialize(status=nil, documentrecognizeresulturl=nil, failedpages=nil, usage=nil, error=nil, taskerrinfo=nil, requestid=nil)
           @Status = status
           @DocumentRecognizeResultUrl = documentrecognizeresulturl
           @FailedPages = failedpages
           @Usage = usage
           @Error = error
+          @TaskErrInfo = taskerrinfo
           @RequestId = requestid
         end
 
@@ -713,6 +713,10 @@ module TencentCloud
           unless params['Error'].nil?
             @Error = ErrorInfo.new
             @Error.deserialize(params['Error'])
+          end
+          unless params['TaskErrInfo'].nil?
+            @TaskErrInfo = TaskErrInfo.new
+            @TaskErrInfo.deserialize(params['TaskErrInfo'])
           end
           @RequestId = params['RequestId']
         end
@@ -767,8 +771,8 @@ module TencentCloud
 
         attr_accessor :Status, :DocumentRecognizeResultUrl, :FailedPages, :Usage, :Error, :RequestId
         extend Gem::Deprecate
-        deprecate :FailedPages, :none, 2026, 9
-        deprecate :FailedPages=, :none, 2026, 9
+        deprecate :FailedPages, :none, 2026, 11
+        deprecate :FailedPages=, :none, 2026, 11
 
         def initialize(status=nil, documentrecognizeresulturl=nil, failedpages=nil, usage=nil, error=nil, requestid=nil)
           @Status = status
@@ -1162,6 +1166,17 @@ module TencentCloud
 
         def deserialize(params)
           @PageNumber = params['PageNumber']
+        end
+      end
+
+      # 文档解析/拆分任务失败原因
+      class TaskErrInfo < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
         end
       end
 

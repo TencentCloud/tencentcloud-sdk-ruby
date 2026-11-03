@@ -221,6 +221,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除指定的物料，删除后不可恢复。
+
+        # @param request: Request instance for DeleteSessionArtifactList.
+        # @type request: :class:`Tencentcloud::workbuddyenterprise::V20260709::DeleteSessionArtifactListRequest`
+        # @rtype: :class:`Tencentcloud::workbuddyenterprise::V20260709::DeleteSessionArtifactListResponse`
+        def DeleteSessionArtifactList(request)
+          body = send_request('DeleteSessionArtifactList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteSessionArtifactListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询单个 Agent 的详细信息，包括基础配置和路由配置。
 
         # @param request: Request instance for DescribeAgent.
@@ -591,6 +615,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeScheduledTaskLogListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取会话物料下载链接。
+
+        # @param request: Request instance for DescribeSessionArtifactDownloadUrl.
+        # @type request: :class:`Tencentcloud::workbuddyenterprise::V20260709::DescribeSessionArtifactDownloadUrlRequest`
+        # @rtype: :class:`Tencentcloud::workbuddyenterprise::V20260709::DescribeSessionArtifactDownloadUrlResponse`
+        def DescribeSessionArtifactDownloadUrl(request)
+          body = send_request('DescribeSessionArtifactDownloadUrl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSessionArtifactDownloadUrlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 分页查询会话物料列表。
+
+        # @param request: Request instance for DescribeSessionArtifactList.
+        # @type request: :class:`Tencentcloud::workbuddyenterprise::V20260709::DescribeSessionArtifactListRequest`
+        # @rtype: :class:`Tencentcloud::workbuddyenterprise::V20260709::DescribeSessionArtifactListResponse`
+        def DescribeSessionArtifactList(request)
+          body = send_request('DescribeSessionArtifactList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSessionArtifactListResponse.new
             model.deserialize(response['Response'])
             model
           else

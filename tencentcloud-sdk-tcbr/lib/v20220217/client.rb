@@ -365,6 +365,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建云托管环境，并开通资源。
+
+        # @param request: Request instance for InitializeCloudRunResource.
+        # @type request: :class:`Tencentcloud::tcbr::V20220217::InitializeCloudRunResourceRequest`
+        # @rtype: :class:`Tencentcloud::tcbr::V20220217::InitializeCloudRunResourceResponse`
+        def InitializeCloudRunResource(request)
+          body = send_request('InitializeCloudRunResource', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = InitializeCloudRunResourceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 操作发布单
 
         # @param request: Request instance for OperateServerManage.

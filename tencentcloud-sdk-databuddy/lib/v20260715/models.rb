@@ -3718,7 +3718,7 @@ module TencentCloud
         # @type CatalogName: String
         # @param WorkspaceId: <p>调用时所在workspace唯一id</p>
         # @type WorkspaceId: String
-        # @param CatalogId: <p>数据目录id</p>
+        # @param CatalogId: <p>数据目录id，通过ListCatalogs接口获取</p>
         # @type CatalogId: String
         # @param FetchOption: <p>数据获取选项，可选，控制是否返回权限信息及按权限过滤</p>
         # @type FetchOption: :class:`Tencentcloud::Databuddy.v20260715.models.FetchOption`
@@ -8037,6 +8037,96 @@ module TencentCloud
         end
       end
 
+      # ListWorkspaceRoles请求参数结构体
+      class ListWorkspaceRolesRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间ID</p>
+        # @type WorkspaceId: String
+        # @param NameKeyword: <p>关键字，支持按角色名称模糊搜索</p>
+        # @type NameKeyword: String
+        # @param PageNumber: <p>页码，从1开始，默认1</p><p>默认值：1</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页大小，默认10，取值范围为 [1,100]，越界时自动收敛到边界值</p><p>默认值：10</p>
+        # @type PageSize: Integer
+
+        attr_accessor :WorkspaceId, :NameKeyword, :PageNumber, :PageSize
+
+        def initialize(workspaceid=nil, namekeyword=nil, pagenumber=nil, pagesize=nil)
+          @WorkspaceId = workspaceid
+          @NameKeyword = namekeyword
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          @NameKeyword = params['NameKeyword']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListWorkspaceRoles返回参数结构体
+      class ListWorkspaceRolesResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>工作空间角色结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.ListWorkspaceRolesRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListWorkspaceRolesRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询工作空间角色列表
+      class ListWorkspaceRolesRsp < TencentCloud::Common::AbstractModel
+        # @param Items: <p>角色列表</p>
+        # @type Items: Array
+        # @param PageNumber: <p>当前页码</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页大小</p>
+        # @type PageSize: Integer
+        # @param TotalCount: <p>总记录数</p>
+        # @type TotalCount: Integer
+        # @param TotalPageNumber: <p>总页数</p>
+        # @type TotalPageNumber: Integer
+
+        attr_accessor :Items, :PageNumber, :PageSize, :TotalCount, :TotalPageNumber
+
+        def initialize(items=nil, pagenumber=nil, pagesize=nil, totalcount=nil, totalpagenumber=nil)
+          @Items = items
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @TotalCount = totalcount
+          @TotalPageNumber = totalpagenumber
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              role_tmp = Role.new
+              role_tmp.deserialize(i)
+              @Items << role_tmp
+            end
+          end
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @TotalCount = params['TotalCount']
+          @TotalPageNumber = params['TotalPageNumber']
+        end
+      end
+
       # ListWorkspaceUsers请求参数结构体
       class ListWorkspaceUsersRequest < TencentCloud::Common::AbstractModel
         # @param WorkspaceId: <p>工作空间ID</p>
@@ -9220,6 +9310,36 @@ module TencentCloud
           @ResourceGroupId = params['ResourceGroupId']
           @ResourceGroupName = params['ResourceGroupName']
           @ResourceGroupStatus = params['ResourceGroupStatus']
+        end
+      end
+
+      # 角色完整信息
+      class Role < TencentCloud::Common::AbstractModel
+        # @param BasicInfo: <p>角色基本信息</p>
+        # @type BasicInfo: :class:`Tencentcloud::Databuddy.v20260715.models.RoleBasicInfo`
+        # @param Permissions: <p>角色权限</p>
+        # @type Permissions: Array
+
+        attr_accessor :BasicInfo, :Permissions
+
+        def initialize(basicinfo=nil, permissions=nil)
+          @BasicInfo = basicinfo
+          @Permissions = permissions
+        end
+
+        def deserialize(params)
+          unless params['BasicInfo'].nil?
+            @BasicInfo = RoleBasicInfo.new
+            @BasicInfo.deserialize(params['BasicInfo'])
+          end
+          unless params['Permissions'].nil?
+            @Permissions = []
+            params['Permissions'].each do |i|
+              rolepermission_tmp = RolePermission.new
+              rolepermission_tmp.deserialize(i)
+              @Permissions << rolepermission_tmp
+            end
+          end
         end
       end
 

@@ -5426,15 +5426,18 @@ module TencentCloud
         # @type NeedUsageDetails: Boolean
         # @param PlatformId: <p>平台版套餐id</p>
         # @type PlatformId: String
+        # @param QueryLevel: <p>查询返回数据时间界别</p><p>枚举值：</p><ul><li>Daily： 按照天级别返回数据</li><li>Hourly： 按照小时级别返回数据</li></ul><p>默认值：Daily</p><p>部分数据按照天级别统计，无法按照小时级别返回</p>
+        # @type QueryLevel: String
 
-        attr_accessor :Modules, :StartDate, :EndDate, :NeedUsageDetails, :PlatformId
+        attr_accessor :Modules, :StartDate, :EndDate, :NeedUsageDetails, :PlatformId, :QueryLevel
 
-        def initialize(modules=nil, startdate=nil, enddate=nil, needusagedetails=nil, platformid=nil)
+        def initialize(modules=nil, startdate=nil, enddate=nil, needusagedetails=nil, platformid=nil, querylevel=nil)
           @Modules = modules
           @StartDate = startdate
           @EndDate = enddate
           @NeedUsageDetails = needusagedetails
           @PlatformId = platformid
+          @QueryLevel = querylevel
         end
 
         def deserialize(params)
@@ -5443,6 +5446,7 @@ module TencentCloud
           @EndDate = params['EndDate']
           @NeedUsageDetails = params['NeedUsageDetails']
           @PlatformId = params['PlatformId']
+          @QueryLevel = params['QueryLevel']
         end
       end
 

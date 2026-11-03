@@ -1499,6 +1499,66 @@ module TencentCloud
         end
       end
 
+      # InitializeCloudRunResource请求参数结构体
+      class InitializeCloudRunResourceRequest < TencentCloud::Common::AbstractModel
+        # @param EnvType: <p>tcbr,run,weda,baas</p>
+        # @type EnvType: String
+        # @param EnvId: <p>环境ID 云开发平台必填</p>
+        # @type EnvId: String
+        # @param VpcId: <p>私有网络Id</p>
+        # @type VpcId: String
+        # @param SubNetIds: <p>子网列表</p>
+        # @type SubNetIds: Array
+        # @param Source: <p>来源：wechat | cloud | weda</p>
+        # @type Source: String
+        # @param Channel: <p>渠道：wechat | cloud | weda</p>
+        # @type Channel: String
+
+        attr_accessor :EnvType, :EnvId, :VpcId, :SubNetIds, :Source, :Channel
+
+        def initialize(envtype=nil, envid=nil, vpcid=nil, subnetids=nil, source=nil, channel=nil)
+          @EnvType = envtype
+          @EnvId = envid
+          @VpcId = vpcid
+          @SubNetIds = subnetids
+          @Source = source
+          @Channel = channel
+        end
+
+        def deserialize(params)
+          @EnvType = params['EnvType']
+          @EnvId = params['EnvId']
+          @VpcId = params['VpcId']
+          @SubNetIds = params['SubNetIds']
+          @Source = params['Source']
+          @Channel = params['Channel']
+        end
+      end
+
+      # InitializeCloudRunResource返回参数结构体
+      class InitializeCloudRunResourceResponse < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境Id</p>
+        # @type EnvId: String
+        # @param TranId: <p>后付费订单号</p>
+        # @type TranId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :EnvId, :TranId, :RequestId
+
+        def initialize(envid=nil, tranid=nil, requestid=nil)
+          @EnvId = envid
+          @TranId = tranid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @TranId = params['TranId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CLS日志单条信息
       class LogObject < TencentCloud::Common::AbstractModel
         # @param TopicId: 日志属于的 topic ID

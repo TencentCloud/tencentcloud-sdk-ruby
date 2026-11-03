@@ -1065,6 +1065,33 @@ module TencentCloud
         end
       end
 
+      # DeleteSessionArtifactList请求参数结构体
+      class DeleteSessionArtifactListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteSessionArtifactList返回参数结构体
+      class DeleteSessionArtifactListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 投递目标
       class DeliveryTarget < TencentCloud::Common::AbstractModel
         # @param Type: <p>投递类型：BOT_CHANNEL（IM 渠道投递）或 WEBHOOK（自定义回调）</p>
@@ -2354,6 +2381,60 @@ module TencentCloud
               @DeliveryTargetSet << deliverytarget_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSessionArtifactDownloadUrl请求参数结构体
+      class DescribeSessionArtifactDownloadUrlRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSessionArtifactDownloadUrl返回参数结构体
+      class DescribeSessionArtifactDownloadUrlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeSessionArtifactList请求参数结构体
+      class DescribeSessionArtifactListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeSessionArtifactList返回参数结构体
+      class DescribeSessionArtifactListResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

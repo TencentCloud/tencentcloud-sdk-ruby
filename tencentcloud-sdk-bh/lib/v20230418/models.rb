@@ -8419,10 +8419,14 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: <p>分页的页内记录数，默认为20，最大200</p>
         # @type Limit: Integer
+        # @param Category: <p>任务类别</p><p>枚举值：</p><ul><li>0： Linux 类型任务</li><li>1： Windows 类型任务</li></ul>
+        # @type Category: Array
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>1： 执行中</li><li>2： 成功</li><li>3： 失败</li><li>4： 部分成功</li></ul>
+        # @type Status: Array
 
-        attr_accessor :StartTime, :EndTime, :OperationId, :Name, :UserName, :RealName, :TaskType, :Offset, :Limit
+        attr_accessor :StartTime, :EndTime, :OperationId, :Name, :UserName, :RealName, :TaskType, :Offset, :Limit, :Category, :Status
 
-        def initialize(starttime=nil, endtime=nil, operationid=nil, name=nil, username=nil, realname=nil, tasktype=nil, offset=nil, limit=nil)
+        def initialize(starttime=nil, endtime=nil, operationid=nil, name=nil, username=nil, realname=nil, tasktype=nil, offset=nil, limit=nil, category=nil, status=nil)
           @StartTime = starttime
           @EndTime = endtime
           @OperationId = operationid
@@ -8432,6 +8436,8 @@ module TencentCloud
           @TaskType = tasktype
           @Offset = offset
           @Limit = limit
+          @Category = category
+          @Status = status
         end
 
         def deserialize(params)
@@ -8444,6 +8450,8 @@ module TencentCloud
           @TaskType = params['TaskType']
           @Offset = params['Offset']
           @Limit = params['Limit']
+          @Category = params['Category']
+          @Status = params['Status']
         end
       end
 

@@ -58,8 +58,8 @@ module TencentCloud
 
         attr_accessor :Notes, :Host, :User, :ModifyTime, :ModifyPasswordTime, :CreateTime, :MaxUserConnections, :OpenCam
         extend Gem::Deprecate
-        deprecate :CreateTime, :none, 2026, 10
-        deprecate :CreateTime=, :none, 2026, 10
+        deprecate :CreateTime, :none, 2026, 11
+        deprecate :CreateTime=, :none, 2026, 11
 
         def initialize(notes=nil, host=nil, user=nil, modifytime=nil, modifypasswordtime=nil, createtime=nil, maxuserconnections=nil, opencam=nil)
           @Notes = notes
@@ -439,8 +439,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :AggregationConditions, :AuditLogFilter, :LogFilter
         extend Gem::Deprecate
-        deprecate :AuditLogFilter, :none, 2026, 10
-        deprecate :AuditLogFilter=, :none, 2026, 10
+        deprecate :AuditLogFilter, :none, 2026, 11
+        deprecate :AuditLogFilter=, :none, 2026, 11
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, aggregationconditions=nil, auditlogfilter=nil, logfilter=nil)
           @InstanceId = instanceid
@@ -1104,10 +1104,10 @@ module TencentCloud
 
         attr_accessor :ExpandThreshold, :ShrinkThreshold, :ExpandPeriod, :ShrinkPeriod, :ExpandSecondPeriod, :ShrinkSecondPeriod
         extend Gem::Deprecate
-        deprecate :ExpandPeriod, :none, 2026, 10
-        deprecate :ExpandPeriod=, :none, 2026, 10
-        deprecate :ShrinkPeriod, :none, 2026, 10
-        deprecate :ShrinkPeriod=, :none, 2026, 10
+        deprecate :ExpandPeriod, :none, 2026, 11
+        deprecate :ExpandPeriod=, :none, 2026, 11
+        deprecate :ShrinkPeriod, :none, 2026, 11
+        deprecate :ShrinkPeriod=, :none, 2026, 11
 
         def initialize(expandthreshold=nil, shrinkthreshold=nil, expandperiod=nil, shrinkperiod=nil, expandsecondperiod=nil, shrinksecondperiod=nil)
           @ExpandThreshold = expandthreshold
@@ -1424,8 +1424,8 @@ module TencentCloud
 
         attr_accessor :Name, :Size, :Date, :IntranetUrl, :InternetUrl, :Type, :BinlogStartTime, :BinlogFinishTime, :Region, :Status, :RemoteInfo, :CosStorageType, :InstanceId, :Progress
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 10
-        deprecate :InstanceId=, :none, 2026, 10
+        deprecate :InstanceId, :none, 2026, 11
+        deprecate :InstanceId=, :none, 2026, 11
 
         def initialize(name=nil, size=nil, date=nil, intraneturl=nil, interneturl=nil, type=nil, binlogstarttime=nil, binlogfinishtime=nil, region=nil, status=nil, remoteinfo=nil, cosstoragetype=nil, instanceid=nil, progress=nil)
           @Name = name
@@ -2299,15 +2299,18 @@ module TencentCloud
         # @type Description: String
         # @param MaxUserConnections: <p>新账户最大可用连接数，默认值为10240，最大可设置值为10240。</p>
         # @type MaxUserConnections: Integer
+        # @param CreateAccounts: <p>创建账号时的完整信息</p>
+        # @type CreateAccounts: Array
 
-        attr_accessor :InstanceId, :Accounts, :Password, :Description, :MaxUserConnections
+        attr_accessor :InstanceId, :Accounts, :Password, :Description, :MaxUserConnections, :CreateAccounts
 
-        def initialize(instanceid=nil, accounts=nil, password=nil, description=nil, maxuserconnections=nil)
+        def initialize(instanceid=nil, accounts=nil, password=nil, description=nil, maxuserconnections=nil, createaccounts=nil)
           @InstanceId = instanceid
           @Accounts = accounts
           @Password = password
           @Description = description
           @MaxUserConnections = maxuserconnections
+          @CreateAccounts = createaccounts
         end
 
         def deserialize(params)
@@ -2323,6 +2326,14 @@ module TencentCloud
           @Password = params['Password']
           @Description = params['Description']
           @MaxUserConnections = params['MaxUserConnections']
+          unless params['CreateAccounts'].nil?
+            @CreateAccounts = []
+            params['CreateAccounts'].each do |i|
+              createdbaccount_tmp = CreateDBAccount.new
+              createdbaccount_tmp.deserialize(i)
+              @CreateAccounts << createdbaccount_tmp
+            end
+          end
         end
       end
 
@@ -2367,8 +2378,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :StartTime, :EndTime, :Order, :OrderBy, :Filter, :LogFilter, :ColumnFilter
         extend Gem::Deprecate
-        deprecate :Filter, :none, 2026, 10
-        deprecate :Filter=, :none, 2026, 10
+        deprecate :Filter, :none, 2026, 11
+        deprecate :Filter=, :none, 2026, 11
 
         def initialize(instanceid=nil, starttime=nil, endtime=nil, order=nil, orderby=nil, filter=nil, logfilter=nil, columnfilter=nil)
           @InstanceId = instanceid
@@ -2915,8 +2926,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SpecifiedRollbackTime, :SpecifiedBackupId, :UniqVpcId, :UniqSubnetId, :Memory, :Volume, :InstanceName, :SecurityGroup, :ResourceTags, :Cpu, :ProtectMode, :DeployMode, :SlaveZone, :BackupZone, :DeviceType, :InstanceNodes, :DeployGroupId, :DryRun, :CageId, :ProjectId, :PayType, :Period, :ClusterTopology, :SrcRegion, :SpecifiedSubBackupId, :MasterZone, :Zone, :FourthZone
         extend Gem::Deprecate
-        deprecate :MasterZone, :none, 2026, 10
-        deprecate :MasterZone=, :none, 2026, 10
+        deprecate :MasterZone, :none, 2026, 11
+        deprecate :MasterZone=, :none, 2026, 11
 
         def initialize(instanceid=nil, specifiedrollbacktime=nil, specifiedbackupid=nil, uniqvpcid=nil, uniqsubnetid=nil, memory=nil, volume=nil, instancename=nil, securitygroup=nil, resourcetags=nil, cpu=nil, protectmode=nil, deploymode=nil, slavezone=nil, backupzone=nil, devicetype=nil, instancenodes=nil, deploygroupid=nil, dryrun=nil, cageid=nil, projectid=nil, paytype=nil, period=nil, clustertopology=nil, srcregion=nil, specifiedsubbackupid=nil, masterzone=nil, zone=nil, fourthzone=nil)
           @InstanceId = instanceid
@@ -3010,6 +3021,33 @@ module TencentCloud
         def deserialize(params)
           @AsyncRequestId = params['AsyncRequestId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建账号信息
+      class CreateDBAccount < TencentCloud::Common::AbstractModel
+        # @param User: <p>账号名称</p>
+        # @type User: String
+        # @param Host: <p>主机名</p>
+        # @type Host: String
+        # @param SSMInfos: <p>开始SSM托管的相关信息</p>
+        # @type SSMInfos: :class:`Tencentcloud::Cdb.v20170320.models.SSMCreateAccountInfos`
+
+        attr_accessor :User, :Host, :SSMInfos
+
+        def initialize(user=nil, host=nil, ssminfos=nil)
+          @User = user
+          @Host = host
+          @SSMInfos = ssminfos
+        end
+
+        def deserialize(params)
+          @User = params['User']
+          @Host = params['Host']
+          unless params['SSMInfos'].nil?
+            @SSMInfos = SSMCreateAccountInfos.new
+            @SSMInfos.deserialize(params['SSMInfos'])
+          end
         end
       end
 
@@ -3908,12 +3946,15 @@ module TencentCloud
         # @type InstanceId: String
         # @param Accounts: <p>云数据库账号。</p>
         # @type Accounts: Array
+        # @param DeleteAccounts: <p>待删除账号的完整信息。</p>
+        # @type DeleteAccounts: Array
 
-        attr_accessor :InstanceId, :Accounts
+        attr_accessor :InstanceId, :Accounts, :DeleteAccounts
 
-        def initialize(instanceid=nil, accounts=nil)
+        def initialize(instanceid=nil, accounts=nil, deleteaccounts=nil)
           @InstanceId = instanceid
           @Accounts = accounts
+          @DeleteAccounts = deleteaccounts
         end
 
         def deserialize(params)
@@ -3924,6 +3965,14 @@ module TencentCloud
               account_tmp = Account.new
               account_tmp.deserialize(i)
               @Accounts << account_tmp
+            end
+          end
+          unless params['DeleteAccounts'].nil?
+            @DeleteAccounts = []
+            params['DeleteAccounts'].each do |i|
+              deletedbaccount_tmp = DeleteDBAccount.new
+              deletedbaccount_tmp.deserialize(i)
+              @DeleteAccounts << deletedbaccount_tmp
             end
           end
         end
@@ -4118,6 +4167,38 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 删除账号信息
+      class DeleteDBAccount < TencentCloud::Common::AbstractModel
+        # @param User: <p>用户名</p>
+        # @type User: String
+        # @param Host: <p>主机名</p>
+        # @type Host: String
+        # @param SecretName: <p>凭据名称</p>
+        # @type SecretName: String
+        # @param RecoveryWindowInDays: <p>保留时间，0表示立即删除(最大30天)</p>
+        # @type RecoveryWindowInDays: Integer
+        # @param DeleteMode: <p>删除模式</p><p>枚举值：</p><ul><li>0： 仅删除凭据</li><li>1： 删除凭据+账号</li></ul>
+        # @type DeleteMode: Integer
+
+        attr_accessor :User, :Host, :SecretName, :RecoveryWindowInDays, :DeleteMode
+
+        def initialize(user=nil, host=nil, secretname=nil, recoverywindowindays=nil, deletemode=nil)
+          @User = user
+          @Host = host
+          @SecretName = secretname
+          @RecoveryWindowInDays = recoverywindowindays
+          @DeleteMode = deletemode
+        end
+
+        def deserialize(params)
+          @User = params['User']
+          @Host = params['Host']
+          @SecretName = params['SecretName']
+          @RecoveryWindowInDays = params['RecoveryWindowInDays']
+          @DeleteMode = params['DeleteMode']
         end
       end
 
@@ -5164,10 +5245,10 @@ module TencentCloud
 
         attr_accessor :StartTimeMin, :StartTimeMax, :BackupExpireDays, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :EnableBackupArchive, :BackupArchiveDays, :EnableBinlogArchive, :BinlogArchiveDays, :EnableBackupStandby, :BackupStandbyDays, :EnableBinlogStandby, :BinlogStandbyDays, :RequestId
         extend Gem::Deprecate
-        deprecate :StartTimeMin, :none, 2026, 10
-        deprecate :StartTimeMin=, :none, 2026, 10
-        deprecate :StartTimeMax, :none, 2026, 10
-        deprecate :StartTimeMax=, :none, 2026, 10
+        deprecate :StartTimeMin, :none, 2026, 11
+        deprecate :StartTimeMin=, :none, 2026, 11
+        deprecate :StartTimeMax, :none, 2026, 11
+        deprecate :StartTimeMax=, :none, 2026, 11
 
         def initialize(starttimemin=nil, starttimemax=nil, backupexpiredays=nil, backupmethod=nil, binlogexpiredays=nil, backuptimewindow=nil, enablebackupperiodsave=nil, backupperiodsavedays=nil, backupperiodsaveinterval=nil, backupperiodsavecount=nil, startbackupperiodsavedate=nil, enablebackuparchive=nil, backuparchivedays=nil, enablebinlogarchive=nil, binlogarchivedays=nil, enablebackupstandby=nil, backupstandbydays=nil, enablebinlogstandby=nil, binlogstandbydays=nil, requestid=nil)
           @StartTimeMin = starttimemin
@@ -7875,8 +7956,8 @@ module TencentCloud
 
         attr_accessor :Count, :CustomConf, :WeightRule, :CustomConfInfo, :RequestId
         extend Gem::Deprecate
-        deprecate :CustomConf, :none, 2026, 10
-        deprecate :CustomConf=, :none, 2026, 10
+        deprecate :CustomConf, :none, 2026, 11
+        deprecate :CustomConf=, :none, 2026, 11
 
         def initialize(count=nil, customconf=nil, weightrule=nil, customconfinfo=nil, requestid=nil)
           @Count = count
@@ -9898,8 +9979,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2026, 10
-        deprecate :AsyncRequestId=, :none, 2026, 10
+        deprecate :AsyncRequestId, :none, 2026, 11
+        deprecate :AsyncRequestId=, :none, 2026, 11
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -10303,8 +10384,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :NewPassword, :Accounts, :SkipValidatePassword
         extend Gem::Deprecate
-        deprecate :SkipValidatePassword, :none, 2026, 10
-        deprecate :SkipValidatePassword=, :none, 2026, 10
+        deprecate :SkipValidatePassword, :none, 2026, 11
+        deprecate :SkipValidatePassword=, :none, 2026, 11
 
         def initialize(instanceid=nil, newpassword=nil, accounts=nil, skipvalidatepassword=nil)
           @InstanceId = instanceid
@@ -10642,8 +10723,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditAll, :AuditRuleFilters, :RuleTemplateIds
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 10
-        deprecate :AuditRuleFilters=, :none, 2026, 10
+        deprecate :AuditRuleFilters, :none, 2026, 11
+        deprecate :AuditRuleFilters=, :none, 2026, 11
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditall=nil, auditrulefilters=nil, ruletemplateids=nil)
           @InstanceId = instanceid
@@ -11406,8 +11487,8 @@ module TencentCloud
 
         attr_accessor :AsyncRequestId, :RequestId
         extend Gem::Deprecate
-        deprecate :AsyncRequestId, :none, 2026, 10
-        deprecate :AsyncRequestId=, :none, 2026, 10
+        deprecate :AsyncRequestId, :none, 2026, 11
+        deprecate :AsyncRequestId=, :none, 2026, 11
 
         def initialize(asyncrequestid=nil, requestid=nil)
           @AsyncRequestId = asyncrequestid
@@ -11915,8 +11996,8 @@ module TencentCloud
 
         attr_accessor :RoGroupId, :RoGroupInfo, :RoWeightValues, :IsBalanceRoLoad, :ReplicationDelayTime
         extend Gem::Deprecate
-        deprecate :ReplicationDelayTime, :none, 2026, 10
-        deprecate :ReplicationDelayTime=, :none, 2026, 10
+        deprecate :ReplicationDelayTime, :none, 2026, 11
+        deprecate :ReplicationDelayTime=, :none, 2026, 11
 
         def initialize(rogroupid=nil, rogroupinfo=nil, roweightvalues=nil, isbalanceroload=nil, replicationdelaytime=nil)
           @RoGroupId = rogroupid
@@ -12147,8 +12228,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditRuleFilters, :RuleTemplateIds, :AuditAll
         extend Gem::Deprecate
-        deprecate :AuditRuleFilters, :none, 2026, 10
-        deprecate :AuditRuleFilters=, :none, 2026, 10
+        deprecate :AuditRuleFilters, :none, 2026, 11
+        deprecate :AuditRuleFilters=, :none, 2026, 11
 
         def initialize(instanceid=nil, logexpireday=nil, highlogexpireday=nil, auditrulefilters=nil, ruletemplateids=nil, auditall=nil)
           @InstanceId = instanceid
@@ -12427,8 +12508,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ParamName, :OldValue, :NewValue, :IsSucess, :ModifyTime, :IsSuccess
         extend Gem::Deprecate
-        deprecate :IsSucess, :none, 2026, 10
-        deprecate :IsSucess=, :none, 2026, 10
+        deprecate :IsSucess, :none, 2026, 11
+        deprecate :IsSucess=, :none, 2026, 11
 
         def initialize(instanceid=nil, paramname=nil, oldvalue=nil, newvalue=nil, issucess=nil, modifytime=nil, issuccess=nil)
           @InstanceId = instanceid
@@ -12589,6 +12670,59 @@ module TencentCloud
           unless params['TimeInterval'].nil?
             @TimeInterval = TimeInterval.new
             @TimeInterval.deserialize(params['TimeInterval'])
+          end
+        end
+      end
+
+      # 权限组
+      class PrivilegeGroup < TencentCloud::Common::AbstractModel
+        # @param GlobalPrivileges: 全局权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type GlobalPrivileges: Array
+        # @param DatabasePrivileges: 数据库权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DatabasePrivileges: Array
+        # @param TablePrivileges: 表权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TablePrivileges: Array
+        # @param ColumnPrivileges: 列权限
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ColumnPrivileges: Array
+
+        attr_accessor :GlobalPrivileges, :DatabasePrivileges, :TablePrivileges, :ColumnPrivileges
+
+        def initialize(globalprivileges=nil, databaseprivileges=nil, tableprivileges=nil, columnprivileges=nil)
+          @GlobalPrivileges = globalprivileges
+          @DatabasePrivileges = databaseprivileges
+          @TablePrivileges = tableprivileges
+          @ColumnPrivileges = columnprivileges
+        end
+
+        def deserialize(params)
+          @GlobalPrivileges = params['GlobalPrivileges']
+          unless params['DatabasePrivileges'].nil?
+            @DatabasePrivileges = []
+            params['DatabasePrivileges'].each do |i|
+              databaseprivilege_tmp = DatabasePrivilege.new
+              databaseprivilege_tmp.deserialize(i)
+              @DatabasePrivileges << databaseprivilege_tmp
+            end
+          end
+          unless params['TablePrivileges'].nil?
+            @TablePrivileges = []
+            params['TablePrivileges'].each do |i|
+              tableprivilege_tmp = TablePrivilege.new
+              tableprivilege_tmp.deserialize(i)
+              @TablePrivileges << tableprivilege_tmp
+            end
+          end
+          unless params['ColumnPrivileges'].nil?
+            @ColumnPrivileges = []
+            params['ColumnPrivileges'].each do |i|
+              columnprivilege_tmp = ColumnPrivilege.new
+              columnprivilege_tmp.deserialize(i)
+              @ColumnPrivileges << columnprivilege_tmp
+            end
           end
         end
       end
@@ -13850,6 +13984,66 @@ module TencentCloud
         end
       end
 
+      # 创建SSM账号相关信息
+      class SSMCreateAccountInfos < TencentCloud::Common::AbstractModel
+        # @param IsOpenSSM: <p>是否开启SSM托管</p><p>枚举值：</p><ul><li>true： 开启托管</li><li>false： 不开启托管</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsOpenSSM: Boolean
+        # @param IsRotationAccount: <p>是否创建轮转账号</p><p>枚举值：</p><ul><li>true： 创建轮转账号</li><li>false： 创建非轮转账号</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsRotationAccount: Boolean
+        # @param SecretName: <p>凭据名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SecretName: String
+        # @param KmsKeyId: <p>KMS CMK ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KmsKeyId: String
+        # @param EncryptType: <p>密钥类型</p><p>枚举值：</p><ul><li>0： KMS密码</li><li>1： 软件密钥</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EncryptType: Integer
+        # @param EnableRotation: <p>是否开启轮转</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableRotation: Boolean
+        # @param RotationFrequency: <p>轮转周期</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RotationFrequency: Integer
+        # @param PrivilegesList: <p>权限列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PrivilegesList: :class:`Tencentcloud::Cdb.v20170320.models.PrivilegeGroup`
+        # @param KmsHsmClusterId: <p>独享版 KMS 集群 ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type KmsHsmClusterId: String
+
+        attr_accessor :IsOpenSSM, :IsRotationAccount, :SecretName, :KmsKeyId, :EncryptType, :EnableRotation, :RotationFrequency, :PrivilegesList, :KmsHsmClusterId
+
+        def initialize(isopenssm=nil, isrotationaccount=nil, secretname=nil, kmskeyid=nil, encrypttype=nil, enablerotation=nil, rotationfrequency=nil, privilegeslist=nil, kmshsmclusterid=nil)
+          @IsOpenSSM = isopenssm
+          @IsRotationAccount = isrotationaccount
+          @SecretName = secretname
+          @KmsKeyId = kmskeyid
+          @EncryptType = encrypttype
+          @EnableRotation = enablerotation
+          @RotationFrequency = rotationfrequency
+          @PrivilegesList = privilegeslist
+          @KmsHsmClusterId = kmshsmclusterid
+        end
+
+        def deserialize(params)
+          @IsOpenSSM = params['IsOpenSSM']
+          @IsRotationAccount = params['IsRotationAccount']
+          @SecretName = params['SecretName']
+          @KmsKeyId = params['KmsKeyId']
+          @EncryptType = params['EncryptType']
+          @EnableRotation = params['EnableRotation']
+          @RotationFrequency = params['RotationFrequency']
+          unless params['PrivilegesList'].nil?
+            @PrivilegesList = PrivilegeGroup.new
+            @PrivilegesList.deserialize(params['PrivilegesList'])
+          end
+          @KmsHsmClusterId = params['KmsHsmClusterId']
+        end
+      end
+
       # 安全组详情
       class SecurityGroup < TencentCloud::Common::AbstractModel
         # @param ProjectId: 项目ID
@@ -14500,8 +14694,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :DstSlave, :ForceSwitch, :WaitSwitch, :DstNodeId, :SyncTimeout, :SyncDistance
         extend Gem::Deprecate
-        deprecate :ForceSwitch, :none, 2026, 10
-        deprecate :ForceSwitch=, :none, 2026, 10
+        deprecate :ForceSwitch, :none, 2026, 11
+        deprecate :ForceSwitch=, :none, 2026, 11
 
         def initialize(instanceid=nil, dstslave=nil, forceswitch=nil, waitswitch=nil, dstnodeid=nil, synctimeout=nil, syncdistance=nil)
           @InstanceId = instanceid

@@ -18548,6 +18548,140 @@ module TencentCloud
         end
       end
 
+      # DeleteLoginWhiteCustomEDR请求参数结构体
+      class DeleteLoginWhiteCustomEDRRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Ids: <p>显式勾选的规则ID列表，最多 1000 个；与 SelectAll 二选一</p>
+        # @type Ids: Array
+        # @param SelectAll: <p>是否跨页全选：true-删除符合 Filters 的全部规则（此时 Filters 必填） false-仅删除 Ids</p>
+        # @type SelectAll: Boolean
+        # @param TargetAppIDs: <p>多账号目标账号 AppId 列表，最多 1000 个；为空表示仅当前账号；传入但全部无权限时返回 InvalidParameter</p>
+        # @type TargetAppIDs: Array
+        # @param ExcludeIds: <p>排除的规则ID列表，最多1000个</p>
+        # @type ExcludeIds: Array
+        # @param Filters: <p>全选条件下的筛选条件</p>
+        # @type Filters: Array
+
+        attr_accessor :MemberId, :Ids, :SelectAll, :TargetAppIDs, :ExcludeIds, :Filters
+
+        def initialize(memberid=nil, ids=nil, selectall=nil, targetappids=nil, excludeids=nil, filters=nil)
+          @MemberId = memberid
+          @Ids = ids
+          @SelectAll = selectall
+          @TargetAppIDs = targetappids
+          @ExcludeIds = excludeids
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          @Ids = params['Ids']
+          @SelectAll = params['SelectAll']
+          @TargetAppIDs = params['TargetAppIDs']
+          @ExcludeIds = params['ExcludeIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              edrfilter_tmp = EDRFilter.new
+              edrfilter_tmp.deserialize(i)
+              @Filters << edrfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteLoginWhiteCustomEDR返回参数结构体
+      class DeleteLoginWhiteCustomEDRResponse < TencentCloud::Common::AbstractModel
+        # @param DeletedCount: <p>删除的规则条数</p>
+        # @type DeletedCount: Integer
+        # @param FailedAppIds: <p>删除失败的账号 AppId 列表；仅当全部失败时才返回错误</p>
+        # @type FailedAppIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeletedCount, :FailedAppIds, :RequestId
+
+        def initialize(deletedcount=nil, failedappids=nil, requestid=nil)
+          @DeletedCount = deletedcount
+          @FailedAppIds = failedappids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DeletedCount = params['DeletedCount']
+          @FailedAppIds = params['FailedAppIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteLoginWhiteLearnEDR请求参数结构体
+      class DeleteLoginWhiteLearnEDRRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Ids: <p>显式勾选的规则ID列表，最多 1000 个；与 SelectAll 二选一</p>
+        # @type Ids: Array
+        # @param SelectAll: <p>是否跨页全选：true-删除符合 Filters 的全部规则（此时 Filters 必填） false-仅删除 Ids</p>
+        # @type SelectAll: Boolean
+        # @param TargetAppIDs: <p>多账号目标账号 AppId 列表，最多 1000 个；为空表示仅当前账号；传入但全部无权限时返回 InvalidParameter</p>
+        # @type TargetAppIDs: Array
+        # @param ExcludeIds: <p>排除的规则ID列表</p>
+        # @type ExcludeIds: Array
+        # @param Filters: <p>全选条件下的筛选条件</p>
+        # @type Filters: Array
+
+        attr_accessor :MemberId, :Ids, :SelectAll, :TargetAppIDs, :ExcludeIds, :Filters
+
+        def initialize(memberid=nil, ids=nil, selectall=nil, targetappids=nil, excludeids=nil, filters=nil)
+          @MemberId = memberid
+          @Ids = ids
+          @SelectAll = selectall
+          @TargetAppIDs = targetappids
+          @ExcludeIds = excludeids
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          @Ids = params['Ids']
+          @SelectAll = params['SelectAll']
+          @TargetAppIDs = params['TargetAppIDs']
+          @ExcludeIds = params['ExcludeIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              edrfilter_tmp = EDRFilter.new
+              edrfilter_tmp.deserialize(i)
+              @Filters << edrfilter_tmp
+            end
+          end
+        end
+      end
+
+      # DeleteLoginWhiteLearnEDR返回参数结构体
+      class DeleteLoginWhiteLearnEDRResponse < TencentCloud::Common::AbstractModel
+        # @param DeletedCount: <p>删除的主机记录行数（一个规则组可能含多行，与自定义白名单接口按规则条数统计的口径不同）</p>
+        # @type DeletedCount: Integer
+        # @param FailedAppIds: <p>删除失败的账号 AppId 列表；仅当全部失败时才返回错误</p>
+        # @type FailedAppIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :DeletedCount, :FailedAppIds, :RequestId
+
+        def initialize(deletedcount=nil, failedappids=nil, requestid=nil)
+          @DeletedCount = deletedcount
+          @FailedAppIds = failedappids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @DeletedCount = params['DeletedCount']
+          @FailedAppIds = params['FailedAppIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteLoginWhiteList请求参数结构体
       class DeleteLoginWhiteListRequest < TencentCloud::Common::AbstractModel
         # @param Ids: <p>白名单ID (最大 100 条)</p>
@@ -34409,6 +34543,54 @@ module TencentCloud
         end
       end
 
+      # DescribeEdrMalwareFile请求参数结构体
+      class DescribeEdrMalwareFileRequest < TencentCloud::Common::AbstractModel
+        # @param AlertId: <p>EDR 告警唯一标识，必填，最长 34 字符</p>
+        # @type AlertId: String
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param TargetAppId: <p>告警所属账号 AppId（跨账号场景由前端透传成员 AppId）；为 0 或省略时回退为登录账号 AppId</p>
+        # @type TargetAppId: Integer
+
+        attr_accessor :AlertId, :MemberId, :TargetAppId
+
+        def initialize(alertid=nil, memberid=nil, targetappid=nil)
+          @AlertId = alertid
+          @MemberId = memberid
+          @TargetAppId = targetappid
+        end
+
+        def deserialize(params)
+          @AlertId = params['AlertId']
+          @MemberId = params['MemberId']
+          @TargetAppId = params['TargetAppId']
+        end
+      end
+
+      # DescribeEdrMalwareFile返回参数结构体
+      class DescribeEdrMalwareFileResponse < TencentCloud::Common::AbstractModel
+        # @param FileUrl: <p>样本下载链接。公有云为 COS 预签名 URL（1 小时过期）；非公有云且导出开关打开时为 data:application/octet-stream;base64,&lt;zip 的 base64&gt;</p>
+        # @type FileUrl: String
+        # @param FileName: <p>导出文件名，形如 &lt;name&gt;.zip；仅非公有云 base64 分支返回，其余场景不返回该字段</p>
+        # @type FileName: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FileUrl, :FileName, :RequestId
+
+        def initialize(fileurl=nil, filename=nil, requestid=nil)
+          @FileUrl = fileurl
+          @FileName = filename
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FileUrl = params['FileUrl']
+          @FileName = params['FileName']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeExportJobDownloadURL请求参数结构体
       class DescribeExportJobDownloadURLRequest < TencentCloud::Common::AbstractModel
         # @param JobID: 任务ID
@@ -37885,6 +38067,80 @@ module TencentCloud
         end
       end
 
+      # DescribeLoginWhiteCustomListEDR请求参数结构体
+      class DescribeLoginWhiteCustomListEDRRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Filters: <p>过滤条件数组（多个 Filter 间为 AND 关系）。支持 Name：Keyword（SrcIp/UserName/Locations/Remark 模糊）、SrcIp、UserName、Location、Remark、ModifyBeginTime、ModifyEndTime（时间格式 2006-01-02 15:04:05）；未知 Name 忽略不报错</p>
+        # @type Filters: Array
+        # @param Limit: <p>分页大小，默认 10，上限 100；传 0 或大于 100 时按默认/上限返回</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页偏移，默认 0</p>
+        # @type Offset: Integer
+        # @param Order: <p>排序方向：ASC-正序 DESC-倒序（大小写不敏感），默认 DESC</p>
+        # @type Order: String
+        # @param By: <p>排序字段：CreateTime-创建时间 ModifyTime-修改时间，默认 ModifyTime；传非法值返回 InvalidParameter</p>
+        # @type By: String
+
+        attr_accessor :MemberId, :Filters, :Limit, :Offset, :Order, :By
+
+        def initialize(memberid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @MemberId = memberid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              edrfilter_tmp = EDRFilter.new
+              edrfilter_tmp.deserialize(i)
+              @Filters << edrfilter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeLoginWhiteCustomListEDR返回参数结构体
+      class DescribeLoginWhiteCustomListEDRResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>符合筛选条件的规则总数</p>
+        # @type TotalCount: Integer
+        # @param List: <p>自定义白名单规则列表（Type 恒为 Custom），为空时返回 []</p>
+        # @type List: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :RequestId
+
+        def initialize(totalcount=nil, list=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              loginwhiteitem_tmp = LoginWhiteItem.new
+              loginwhiteitem_tmp.deserialize(i)
+              @List << loginwhiteitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLoginWhiteHostList请求参数结构体
       class DescribeLoginWhiteHostListRequest < TencentCloud::Common::AbstractModel
         # @param Id: <p>白名单ID</p>
@@ -37951,6 +38207,84 @@ module TencentCloud
               @Hosts << hostdesc_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLoginWhiteLearnListEDR请求参数结构体
+      class DescribeLoginWhiteLearnListEDRRequest < TencentCloud::Common::AbstractModel
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param Filters: <p>过滤条件数组（多个 Filter 间为 AND 关系）。支持 Name：Keyword 或 Location（常用登录地模糊）、Remark、ModifyBeginTime、ModifyEndTime（时间格式 2006-01-02 15:04:05）；未知 Name 忽略不报错</p>
+        # @type Filters: Array
+        # @param Limit: <p>分页大小，默认 10，上限 100；传 0 或大于 100 时按默认/上限返回</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页偏移，默认 0</p>
+        # @type Offset: Integer
+        # @param Order: <p>排序方向：ASC-正序 DESC-倒序（大小写不敏感），默认 DESC</p>
+        # @type Order: String
+        # @param By: <p>排序字段：CreateTime-创建时间 ModifyTime-修改时间，默认 ModifyTime；传非法值返回 InvalidParameter</p>
+        # @type By: String
+
+        attr_accessor :MemberId, :Filters, :Limit, :Offset, :Order, :By
+
+        def initialize(memberid=nil, filters=nil, limit=nil, offset=nil, order=nil, by=nil)
+          @MemberId = memberid
+          @Filters = filters
+          @Limit = limit
+          @Offset = offset
+          @Order = order
+          @By = by
+        end
+
+        def deserialize(params)
+          @MemberId = params['MemberId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              edrfilter_tmp = EDRFilter.new
+              edrfilter_tmp.deserialize(i)
+              @Filters << edrfilter_tmp
+            end
+          end
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+          @Order = params['Order']
+          @By = params['By']
+        end
+      end
+
+      # DescribeLoginWhiteLearnListEDR返回参数结构体
+      class DescribeLoginWhiteLearnListEDRResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>规则组总数（按 AppId + 常用登录地聚合）</p>
+        # @type TotalCount: Integer
+        # @param List: <p>自学习白名单规则组列表（Type 恒为 Learn），为空时返回 []</p>
+        # @type List: Array
+        # @param AutoLearnEnable: <p>自学习白名单开关状态；多账号时取当前账号，供前端空态提示前往开启</p>
+        # @type AutoLearnEnable: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :List, :AutoLearnEnable, :RequestId
+
+        def initialize(totalcount=nil, list=nil, autolearnenable=nil, requestid=nil)
+          @TotalCount = totalcount
+          @List = list
+          @AutoLearnEnable = autolearnenable
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              loginwhiteitem_tmp = LoginWhiteItem.new
+              loginwhiteitem_tmp.deserialize(i)
+              @List << loginwhiteitem_tmp
+            end
+          end
+          @AutoLearnEnable = params['AutoLearnEnable']
           @RequestId = params['RequestId']
         end
       end
@@ -56946,6 +57280,160 @@ module TencentCloud
         end
       end
 
+      # 异常登录白名单规则项（自定义与自学习共用，以 Type 区分）
+      class LoginWhiteItem < TencentCloud::Common::AbstractModel
+        # @param Type: <p>白名单类型：Custom-自定义白名单 Learn-自学习白名单</p>
+        # @type Type: String
+        # @param AppId: <p>规则所属账号 AppId，多账号场景下用于区分与后续编辑定位</p>
+        # @type AppId: Integer
+        # @param Id: <p>规则ID；自学习为规则组ID（组内最小行ID）</p>
+        # @type Id: Integer
+        # @param SrcIp: <p>登录源IP（逗号分隔）；自学习白名单恒为空</p>
+        # @type SrcIp: String
+        # @param UserName: <p>登录用户名（逗号分隔）；自学习白名单恒为空</p>
+        # @type UserName: String
+        # @param StartTime: <p>登录时段起始 HH:MM；自学习白名单恒为空</p>
+        # @type StartTime: String
+        # @param EndTime: <p>登录时段结束 HH:MM；自学习白名单恒为空</p>
+        # @type EndTime: String
+        # @param Places: <p>常用登录地列表</p>
+        # @type Places: Array
+        # @param Locations: <p>常用登录地展示文案（逗号分隔），供列表直接展示</p>
+        # @type Locations: String
+        # @param Scope: <p>生效资产范围：0-指定主机（主机或标签命中） 1-全部主机</p>
+        # @type Scope: Integer
+        # @param QUUIDS: <p>生效主机 QUUID 列表（与 InstanceIDs 一一对应）</p>
+        # @type QUUIDS: Array
+        # @param InstanceIDs: <p>生效主机实例ID列表（与 QUUIDS 一一对应）</p>
+        # @type InstanceIDs: Array
+        # @param ExcludeQUUIDS: <p>剔除主机 QUUID 列表</p>
+        # @type ExcludeQUUIDS: Array
+        # @param ExcludeInstanceIDs: <p>剔除主机实例ID列表</p>
+        # @type ExcludeInstanceIDs: Array
+        # @param TagItems: <p>生效标签详情列表</p>
+        # @type TagItems: Array
+        # @param HostCount: <p>主机数：自定义为指定主机数（Scope=1 时为 0，前端展示全部主机）；自学习为组内去重主机数</p>
+        # @type HostCount: Integer
+        # @param Remark: <p>备注</p>
+        # @type Remark: String
+        # @param CreateTime: <p>创建时间，格式 2006-01-02 15:04:05</p>
+        # @type CreateTime: String
+        # @param ModifyTime: <p>最近修改时间，格式 2006-01-02 15:04:05</p>
+        # @type ModifyTime: String
+
+        attr_accessor :Type, :AppId, :Id, :SrcIp, :UserName, :StartTime, :EndTime, :Places, :Locations, :Scope, :QUUIDS, :InstanceIDs, :ExcludeQUUIDS, :ExcludeInstanceIDs, :TagItems, :HostCount, :Remark, :CreateTime, :ModifyTime
+
+        def initialize(type=nil, appid=nil, id=nil, srcip=nil, username=nil, starttime=nil, endtime=nil, places=nil, locations=nil, scope=nil, quuids=nil, instanceids=nil, excludequuids=nil, excludeinstanceids=nil, tagitems=nil, hostcount=nil, remark=nil, createtime=nil, modifytime=nil)
+          @Type = type
+          @AppId = appid
+          @Id = id
+          @SrcIp = srcip
+          @UserName = username
+          @StartTime = starttime
+          @EndTime = endtime
+          @Places = places
+          @Locations = locations
+          @Scope = scope
+          @QUUIDS = quuids
+          @InstanceIDs = instanceids
+          @ExcludeQUUIDS = excludequuids
+          @ExcludeInstanceIDs = excludeinstanceids
+          @TagItems = tagitems
+          @HostCount = hostcount
+          @Remark = remark
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @AppId = params['AppId']
+          @Id = params['Id']
+          @SrcIp = params['SrcIp']
+          @UserName = params['UserName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Places'].nil?
+            @Places = []
+            params['Places'].each do |i|
+              loginwhiteplace_tmp = LoginWhitePlace.new
+              loginwhiteplace_tmp.deserialize(i)
+              @Places << loginwhiteplace_tmp
+            end
+          end
+          @Locations = params['Locations']
+          @Scope = params['Scope']
+          @QUUIDS = params['QUUIDS']
+          @InstanceIDs = params['InstanceIDs']
+          @ExcludeQUUIDS = params['ExcludeQUUIDS']
+          @ExcludeInstanceIDs = params['ExcludeInstanceIDs']
+          unless params['TagItems'].nil?
+            @TagItems = []
+            params['TagItems'].each do |i|
+              edrruletagitem_tmp = EDRRuleTagItem.new
+              edrruletagitem_tmp.deserialize(i)
+              @TagItems << edrruletagitem_tmp
+            end
+          end
+          @HostCount = params['HostCount']
+          @Remark = params['Remark']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+        end
+      end
+
+      # 常用登录地（出参）
+      class LoginWhitePlace < TencentCloud::Common::AbstractModel
+        # @param CountryId: <p>国家ID</p>
+        # @type CountryId: Integer
+        # @param ProvinceId: <p>省份ID；99999 表示全部省份</p>
+        # @type ProvinceId: Integer
+        # @param CityId: <p>城市ID；99999 表示全部城市</p>
+        # @type CityId: Integer
+        # @param Location: <p>地点展示文案，服务端按 Language 生成，如 中国-广东-深圳</p>
+        # @type Location: String
+
+        attr_accessor :CountryId, :ProvinceId, :CityId, :Location
+
+        def initialize(countryid=nil, provinceid=nil, cityid=nil, location=nil)
+          @CountryId = countryid
+          @ProvinceId = provinceid
+          @CityId = cityid
+          @Location = location
+        end
+
+        def deserialize(params)
+          @CountryId = params['CountryId']
+          @ProvinceId = params['ProvinceId']
+          @CityId = params['CityId']
+          @Location = params['Location']
+        end
+      end
+
+      # 常用登录地（入参）
+      class LoginWhitePlaceInput < TencentCloud::Common::AbstractModel
+        # @param CountryId: <p>国家ID，当前仅支持国内：1</p>
+        # @type CountryId: Integer
+        # @param ProvinceId: <p>省份ID；99999 表示全部省份</p>
+        # @type ProvinceId: Integer
+        # @param CityId: <p>城市ID；99999 表示全部城市</p>
+        # @type CityId: Integer
+
+        attr_accessor :CountryId, :ProvinceId, :CityId
+
+        def initialize(countryid=nil, provinceid=nil, cityid=nil)
+          @CountryId = countryid
+          @ProvinceId = provinceid
+          @CityId = cityid
+        end
+
+        def deserialize(params)
+          @CountryId = params['CountryId']
+          @ProvinceId = params['ProvinceId']
+          @CityId = params['CityId']
+        end
+      end
+
       # 主机列表
       class Machine < TencentCloud::Common::AbstractModel
         # @param AgentStatus: <p>Agent状态，取值：ONLINE-在线，OFFLINE-离线，UNINSTALL-未安装</p>
@@ -61643,6 +62131,200 @@ module TencentCloud
           @MachineType = params['MachineType']
           @Message = params['Message']
           @MessageDesc = params['MessageDesc']
+        end
+      end
+
+      # ModifyLoginWhiteCustomEDR请求参数结构体
+      class ModifyLoginWhiteCustomEDRRequest < TencentCloud::Common::AbstractModel
+        # @param Id: <p>规则ID；自学习为规则组ID（组内最小行ID）</p>
+        # @type Id: Integer
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param SrcIp: <p>登录源IP，多个以逗号分隔；支持单个IP、区间(a-b)、CIDR，支持 IPv4 与 IPv6；最长 2048 字符</p>
+        # @type SrcIp: String
+        # @param UserName: <p>登录用户名，多个以逗号分隔；最长 1024 字符</p>
+        # @type UserName: String
+        # @param StartTime: <p>登录时段起始 HH:MM；与 EndTime 必须同时填写或同时为空</p>
+        # @type StartTime: String
+        # @param EndTime: <p>登录时段结束 HH:MM；与 StartTime 必须同时填写或同时为空</p>
+        # @type EndTime: String
+        # @param Places: <p>常用登录地列表，最多 200 个；ProvinceId/CityId 传 99999 表示全部省份/全部城市</p>
+        # @type Places: Array
+        # @param Remark: <p>备注，最长 255 字符</p>
+        # @type Remark: String
+        # @param Scope: <p>生效资产范围：0-指定主机（主机或标签命中） 1-全部主机</p>
+        # @type Scope: Integer
+        # @param InstanceIDsWithAppId: <p>指定主机（实例ID 形态）列表，最多 10000 项；服务端经 idmap 翻译为 QUUID 后与 QUUIDSWithAppId 合并去重</p>
+        # @type InstanceIDsWithAppId: Array
+        # @param ExcludeInstanceIDsWithAppId: <p>剔除主机（实例ID 形态）列表，最多 10000 项</p>
+        # @type ExcludeInstanceIDsWithAppId: Array
+        # @param TagIDs: <p>安全中心标签ID列表，最多 100 个；Scope=0 时与主机为或关系；自学习白名单不支持按标签生效（传非空将被拒绝）</p>
+        # @type TagIDs: Array
+        # @param TargetAppIDs: <p>目标appid</p>
+        # @type TargetAppIDs: Array
+        # @param DealOldEvents: <p>是否加白历史告警</p>
+        # @type DealOldEvents: Integer
+
+        attr_accessor :Id, :MemberId, :SrcIp, :UserName, :StartTime, :EndTime, :Places, :Remark, :Scope, :InstanceIDsWithAppId, :ExcludeInstanceIDsWithAppId, :TagIDs, :TargetAppIDs, :DealOldEvents
+
+        def initialize(id=nil, memberid=nil, srcip=nil, username=nil, starttime=nil, endtime=nil, places=nil, remark=nil, scope=nil, instanceidswithappid=nil, excludeinstanceidswithappid=nil, tagids=nil, targetappids=nil, dealoldevents=nil)
+          @Id = id
+          @MemberId = memberid
+          @SrcIp = srcip
+          @UserName = username
+          @StartTime = starttime
+          @EndTime = endtime
+          @Places = places
+          @Remark = remark
+          @Scope = scope
+          @InstanceIDsWithAppId = instanceidswithappid
+          @ExcludeInstanceIDsWithAppId = excludeinstanceidswithappid
+          @TagIDs = tagids
+          @TargetAppIDs = targetappids
+          @DealOldEvents = dealoldevents
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @MemberId = params['MemberId']
+          @SrcIp = params['SrcIp']
+          @UserName = params['UserName']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          unless params['Places'].nil?
+            @Places = []
+            params['Places'].each do |i|
+              loginwhiteplaceinput_tmp = LoginWhitePlaceInput.new
+              loginwhiteplaceinput_tmp.deserialize(i)
+              @Places << loginwhiteplaceinput_tmp
+            end
+          end
+          @Remark = params['Remark']
+          @Scope = params['Scope']
+          unless params['InstanceIDsWithAppId'].nil?
+            @InstanceIDsWithAppId = []
+            params['InstanceIDsWithAppId'].each do |i|
+              instanceidwithappiditem_tmp = InstanceIDWithAppIdItem.new
+              instanceidwithappiditem_tmp.deserialize(i)
+              @InstanceIDsWithAppId << instanceidwithappiditem_tmp
+            end
+          end
+          unless params['ExcludeInstanceIDsWithAppId'].nil?
+            @ExcludeInstanceIDsWithAppId = []
+            params['ExcludeInstanceIDsWithAppId'].each do |i|
+              instanceidwithappiditem_tmp = InstanceIDWithAppIdItem.new
+              instanceidwithappiditem_tmp.deserialize(i)
+              @ExcludeInstanceIDsWithAppId << instanceidwithappiditem_tmp
+            end
+          end
+          @TagIDs = params['TagIDs']
+          @TargetAppIDs = params['TargetAppIDs']
+          @DealOldEvents = params['DealOldEvents']
+        end
+      end
+
+      # ModifyLoginWhiteCustomEDR返回参数结构体
+      class ModifyLoginWhiteCustomEDRResponse < TencentCloud::Common::AbstractModel
+        # @param FailedAppIds: <p>失败的账号</p>
+        # @type FailedAppIds: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FailedAppIds, :RequestId
+
+        def initialize(failedappids=nil, requestid=nil)
+          @FailedAppIds = failedappids
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FailedAppIds = params['FailedAppIds']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyLoginWhiteLearnEDR请求参数结构体
+      class ModifyLoginWhiteLearnEDRRequest < TencentCloud::Common::AbstractModel
+        # @param Id: <p>规则ID；自学习为规则组ID（组内最小行ID）</p>
+        # @type Id: Integer
+        # @param Places: <p>常用登录地列表，必填，1-200 个；为自学习规则唯一的内容维度</p>
+        # @type Places: Array
+        # @param MemberId: <p>集团账号的成员id</p>
+        # @type MemberId: Array
+        # @param RuleAppId: <p>规则所属账号 AppId（取列表出参 AppId）；为空取当前账号；非当前账号需通过归属校验</p>
+        # @type RuleAppId: Integer
+        # @param Remark: <p>备注，最长 255 字符</p>
+        # @type Remark: String
+        # @param Scope: <p>生效资产范围：0-指定主机（主机或标签命中） 1-全部主机</p>
+        # @type Scope: Integer
+        # @param InstanceIDsWithAppId: <p>指定主机（实例ID 形态）列表，最多 10000 项；服务端经 idmap 翻译为 QUUID 后与 QUUIDSWithAppId 合并去重</p>
+        # @type InstanceIDsWithAppId: Array
+        # @param ExcludeInstanceIDsWithAppId: <p>剔除主机（实例ID 形态）列表，最多 10000 项</p>
+        # @type ExcludeInstanceIDsWithAppId: Array
+        # @param TagIDs: <p>安全中心标签ID列表，最多 100 个；Scope=0 时与主机为或关系；自学习白名单不支持按标签生效（传非空将被拒绝）</p>
+        # @type TagIDs: Array
+
+        attr_accessor :Id, :Places, :MemberId, :RuleAppId, :Remark, :Scope, :InstanceIDsWithAppId, :ExcludeInstanceIDsWithAppId, :TagIDs
+
+        def initialize(id=nil, places=nil, memberid=nil, ruleappid=nil, remark=nil, scope=nil, instanceidswithappid=nil, excludeinstanceidswithappid=nil, tagids=nil)
+          @Id = id
+          @Places = places
+          @MemberId = memberid
+          @RuleAppId = ruleappid
+          @Remark = remark
+          @Scope = scope
+          @InstanceIDsWithAppId = instanceidswithappid
+          @ExcludeInstanceIDsWithAppId = excludeinstanceidswithappid
+          @TagIDs = tagids
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          unless params['Places'].nil?
+            @Places = []
+            params['Places'].each do |i|
+              loginwhiteplaceinput_tmp = LoginWhitePlaceInput.new
+              loginwhiteplaceinput_tmp.deserialize(i)
+              @Places << loginwhiteplaceinput_tmp
+            end
+          end
+          @MemberId = params['MemberId']
+          @RuleAppId = params['RuleAppId']
+          @Remark = params['Remark']
+          @Scope = params['Scope']
+          unless params['InstanceIDsWithAppId'].nil?
+            @InstanceIDsWithAppId = []
+            params['InstanceIDsWithAppId'].each do |i|
+              instanceidwithappiditem_tmp = InstanceIDWithAppIdItem.new
+              instanceidwithappiditem_tmp.deserialize(i)
+              @InstanceIDsWithAppId << instanceidwithappiditem_tmp
+            end
+          end
+          unless params['ExcludeInstanceIDsWithAppId'].nil?
+            @ExcludeInstanceIDsWithAppId = []
+            params['ExcludeInstanceIDsWithAppId'].each do |i|
+              instanceidwithappiditem_tmp = InstanceIDWithAppIdItem.new
+              instanceidwithappiditem_tmp.deserialize(i)
+              @ExcludeInstanceIDsWithAppId << instanceidwithappiditem_tmp
+            end
+          end
+          @TagIDs = params['TagIDs']
+        end
+      end
+
+      # ModifyLoginWhiteLearnEDR返回参数结构体
+      class ModifyLoginWhiteLearnEDRResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 
