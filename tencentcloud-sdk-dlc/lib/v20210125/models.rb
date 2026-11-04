@@ -3426,10 +3426,16 @@ module TencentCloud
         # @type JobPackage: String
         # @param JobPackageName: <p>作业包名称</p>
         # @type JobPackageName: String
+        # @param JobPackageSource: <p>作业包来源类型（Local: 本地上传, Cos: 用户自有 COS 桶地址）；缺省时按 Local 处理</p>
+        # @type JobPackageSource: String
         # @param AppId: <p>应用ID</p>
         # @type AppId: Integer
         # @param Uin: <p>创建者UIN</p>
         # @type Uin: String
+        # @param SubAccountUin: <p>子用户UIN</p>
+        # @type SubAccountUin: String
+        # @param SubAccountName: <p>子用户名称（由聚合层通过 CAM 接口回填）</p>
+        # @type SubAccountName: String
         # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: Integer
         # @param UpdateTime: <p>更新时间</p>
@@ -3462,9 +3468,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :Name, :Description, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :ResourceConfig, :RuntimeEnv, :Catalog, :AutoscalerOptions, :ResourceConfigId, :ResourceConfigChanged, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :JobPackage, :JobPackageName, :AppId, :Uin, :CreateTime, :UpdateTime, :JobInstanceCount, :HasRunningJobs, :AdvancedOptions, :GroupId, :ClusterId, :Priority, :Tags, :DispatchStrategy, :SubmissionTarget, :GroupName, :ClusterName, :RequestId
+        attr_accessor :Id, :Name, :Description, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :ResourceConfig, :RuntimeEnv, :Catalog, :AutoscalerOptions, :ResourceConfigId, :ResourceConfigChanged, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :JobPackage, :JobPackageName, :JobPackageSource, :AppId, :Uin, :SubAccountUin, :SubAccountName, :CreateTime, :UpdateTime, :JobInstanceCount, :HasRunningJobs, :AdvancedOptions, :GroupId, :ClusterId, :Priority, :Tags, :DispatchStrategy, :SubmissionTarget, :GroupName, :ClusterName, :RequestId
 
-        def initialize(id=nil, name=nil, description=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourceconfig=nil, runtimeenv=nil, catalog=nil, autoscaleroptions=nil, resourceconfigid=nil, resourceconfigchanged=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, jobpackage=nil, jobpackagename=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, jobinstancecount=nil, hasrunningjobs=nil, advancedoptions=nil, groupid=nil, clusterid=nil, priority=nil, tags=nil, dispatchstrategy=nil, submissiontarget=nil, groupname=nil, clustername=nil, requestid=nil)
+        def initialize(id=nil, name=nil, description=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourceconfig=nil, runtimeenv=nil, catalog=nil, autoscaleroptions=nil, resourceconfigid=nil, resourceconfigchanged=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, jobpackage=nil, jobpackagename=nil, jobpackagesource=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, createtime=nil, updatetime=nil, jobinstancecount=nil, hasrunningjobs=nil, advancedoptions=nil, groupid=nil, clusterid=nil, priority=nil, tags=nil, dispatchstrategy=nil, submissiontarget=nil, groupname=nil, clustername=nil, requestid=nil)
           @Id = id
           @Name = name
           @Description = description
@@ -3484,8 +3490,11 @@ module TencentCloud
           @QueueAlias = queuealias
           @JobPackage = jobpackage
           @JobPackageName = jobpackagename
+          @JobPackageSource = jobpackagesource
           @AppId = appid
           @Uin = uin
+          @SubAccountUin = subaccountuin
+          @SubAccountName = subaccountname
           @CreateTime = createtime
           @UpdateTime = updatetime
           @JobInstanceCount = jobinstancecount
@@ -3522,8 +3531,11 @@ module TencentCloud
           @QueueAlias = params['QueueAlias']
           @JobPackage = params['JobPackage']
           @JobPackageName = params['JobPackageName']
+          @JobPackageSource = params['JobPackageSource']
           @AppId = params['AppId']
           @Uin = params['Uin']
+          @SubAccountUin = params['SubAccountUin']
+          @SubAccountName = params['SubAccountName']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @JobInstanceCount = params['JobInstanceCount']
@@ -5791,6 +5803,8 @@ module TencentCloud
         # @type PersistentWorkDir: :class:`Tencentcloud::Dlc.v20210125.models.PersistentWorkDir`
         # @param EnableToken: <p>是否开启token认证</p>
         # @type EnableToken: Boolean
+        # @param AutoscalerOptions: <p>弹性伸缩配置（JSON）</p>
+        # @type AutoscalerOptions: String
         # @param ImagePullType: <p>镜像拉取类型（BuiltIn: 内置, Custom: 自定义-TCR, CustomCcr: 自定义-CCR）</p>
         # @type ImagePullType: String
         # @param LabImagePullType: <p>Lab sidecar 镜像拉取类型（BuiltIn: 内置, Custom: 自定义-TCR, CustomCcr: 自定义-CCR）</p>
@@ -5798,9 +5812,9 @@ module TencentCloud
         # @param NetworkConfig: <p>用户网络配置 JSON 字符串（跨租户 ENI 注入）</p>
         # @type NetworkConfig: String
 
-        attr_accessor :Name, :ResourcePartitionId, :Queue, :Image, :LabImage, :Description, :ImagePullPolicy, :ResourceConfig, :ResourceConfigId, :Catalog, :GroupId, :ServiceTypes, :ExampleId, :CodeArchiveUrl, :LabImagePullPolicy, :AdvancedOptions, :Priority, :Tags, :PersistentWorkDir, :EnableToken, :ImagePullType, :LabImagePullType, :NetworkConfig
+        attr_accessor :Name, :ResourcePartitionId, :Queue, :Image, :LabImage, :Description, :ImagePullPolicy, :ResourceConfig, :ResourceConfigId, :Catalog, :GroupId, :ServiceTypes, :ExampleId, :CodeArchiveUrl, :LabImagePullPolicy, :AdvancedOptions, :Priority, :Tags, :PersistentWorkDir, :EnableToken, :AutoscalerOptions, :ImagePullType, :LabImagePullType, :NetworkConfig
 
-        def initialize(name=nil, resourcepartitionid=nil, queue=nil, image=nil, labimage=nil, description=nil, imagepullpolicy=nil, resourceconfig=nil, resourceconfigid=nil, catalog=nil, groupid=nil, servicetypes=nil, exampleid=nil, codearchiveurl=nil, labimagepullpolicy=nil, advancedoptions=nil, priority=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, imagepulltype=nil, labimagepulltype=nil, networkconfig=nil)
+        def initialize(name=nil, resourcepartitionid=nil, queue=nil, image=nil, labimage=nil, description=nil, imagepullpolicy=nil, resourceconfig=nil, resourceconfigid=nil, catalog=nil, groupid=nil, servicetypes=nil, exampleid=nil, codearchiveurl=nil, labimagepullpolicy=nil, advancedoptions=nil, priority=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, autoscaleroptions=nil, imagepulltype=nil, labimagepulltype=nil, networkconfig=nil)
           @Name = name
           @ResourcePartitionId = resourcepartitionid
           @Queue = queue
@@ -5821,6 +5835,7 @@ module TencentCloud
           @Tags = tags
           @PersistentWorkDir = persistentworkdir
           @EnableToken = enabletoken
+          @AutoscalerOptions = autoscaleroptions
           @ImagePullType = imagepulltype
           @LabImagePullType = labimagepulltype
           @NetworkConfig = networkconfig
@@ -5857,6 +5872,7 @@ module TencentCloud
             @PersistentWorkDir.deserialize(params['PersistentWorkDir'])
           end
           @EnableToken = params['EnableToken']
+          @AutoscalerOptions = params['AutoscalerOptions']
           @ImagePullType = params['ImagePullType']
           @LabImagePullType = params['LabImagePullType']
           @NetworkConfig = params['NetworkConfig']
@@ -5895,6 +5911,8 @@ module TencentCloud
         # @type Status: String
         # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: Integer
         # @param GroupId: <p>计算组 ID</p>
         # @type GroupId: String
         # @param ResourceConfig: <p>资源配置(JSON)</p>
@@ -5911,12 +5929,22 @@ module TencentCloud
         # @type AdvancedOptions: String
         # @param Priority: <p>优先级（1-9，数字越大优先级越高）</p>
         # @type Priority: Integer
+        # @param StartTime: <p>启动时间（最近一次启动）</p>
+        # @type StartTime: Integer
+        # @param StopTime: <p>停止时间（最近一次停止/休眠）</p>
+        # @type StopTime: Integer
+        # @param DeleteTime: <p>删除时间</p>
+        # @type DeleteTime: Integer
         # @param Tags: <p>标签列表（TagKey-TagValue）</p>
         # @type Tags: Array
         # @param PersistentWorkDir: <p>持久化工作目录配置（可选）。启用后将 COS/CFS 指定路径挂载到容器内 /workspace 工作目录，与现有 Catalog 的卷配置互斥（不允许同时在 Catalog 中显式声明 MountPath=/workspace）。</p>
         # @type PersistentWorkDir: :class:`Tencentcloud::Dlc.v20210125.models.PersistentWorkDir`
         # @param EnableToken: <p>是否开启token认证</p>
         # @type EnableToken: Boolean
+        # @param Token: <p>Token 认证密钥（开启 token 认证时由系统生成）</p>
+        # @type Token: String
+        # @param AutoscalerOptions: <p>弹性伸缩配置（JSON）</p>
+        # @type AutoscalerOptions: String
         # @param LabImagePullType: <p>Lab sidecar 镜像拉取类型（BuiltIn: 内置, Custom: 自定义-TCR, CustomCcr: 自定义-CCR）</p>
         # @type LabImagePullType: String
         # @param SubAccountName: <p>子用户名称（由聚合层通过 CAM 接口回填）</p>
@@ -5928,9 +5956,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ExampleId, :CodeArchiveUrl, :Services, :Id, :Type, :Name, :Description, :ResourcePartitionId, :ResourcePartitionName, :Queue, :AppId, :Uin, :SubAccountUin, :Status, :CreateTime, :GroupId, :ResourceConfig, :ResourceConfigId, :Image, :Catalog, :ImagePullPolicy, :AdvancedOptions, :Priority, :Tags, :PersistentWorkDir, :EnableToken, :LabImagePullType, :SubAccountName, :ImagePullType, :NetworkConfig, :RequestId
+        attr_accessor :ExampleId, :CodeArchiveUrl, :Services, :Id, :Type, :Name, :Description, :ResourcePartitionId, :ResourcePartitionName, :Queue, :AppId, :Uin, :SubAccountUin, :Status, :CreateTime, :UpdateTime, :GroupId, :ResourceConfig, :ResourceConfigId, :Image, :Catalog, :ImagePullPolicy, :AdvancedOptions, :Priority, :StartTime, :StopTime, :DeleteTime, :Tags, :PersistentWorkDir, :EnableToken, :Token, :AutoscalerOptions, :LabImagePullType, :SubAccountName, :ImagePullType, :NetworkConfig, :RequestId
 
-        def initialize(exampleid=nil, codearchiveurl=nil, services=nil, id=nil, type=nil, name=nil, description=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, appid=nil, uin=nil, subaccountuin=nil, status=nil, createtime=nil, groupid=nil, resourceconfig=nil, resourceconfigid=nil, image=nil, catalog=nil, imagepullpolicy=nil, advancedoptions=nil, priority=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, labimagepulltype=nil, subaccountname=nil, imagepulltype=nil, networkconfig=nil, requestid=nil)
+        def initialize(exampleid=nil, codearchiveurl=nil, services=nil, id=nil, type=nil, name=nil, description=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, appid=nil, uin=nil, subaccountuin=nil, status=nil, createtime=nil, updatetime=nil, groupid=nil, resourceconfig=nil, resourceconfigid=nil, image=nil, catalog=nil, imagepullpolicy=nil, advancedoptions=nil, priority=nil, starttime=nil, stoptime=nil, deletetime=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, token=nil, autoscaleroptions=nil, labimagepulltype=nil, subaccountname=nil, imagepulltype=nil, networkconfig=nil, requestid=nil)
           @ExampleId = exampleid
           @CodeArchiveUrl = codearchiveurl
           @Services = services
@@ -5946,6 +5974,7 @@ module TencentCloud
           @SubAccountUin = subaccountuin
           @Status = status
           @CreateTime = createtime
+          @UpdateTime = updatetime
           @GroupId = groupid
           @ResourceConfig = resourceconfig
           @ResourceConfigId = resourceconfigid
@@ -5954,9 +5983,14 @@ module TencentCloud
           @ImagePullPolicy = imagepullpolicy
           @AdvancedOptions = advancedoptions
           @Priority = priority
+          @StartTime = starttime
+          @StopTime = stoptime
+          @DeleteTime = deletetime
           @Tags = tags
           @PersistentWorkDir = persistentworkdir
           @EnableToken = enabletoken
+          @Token = token
+          @AutoscalerOptions = autoscaleroptions
           @LabImagePullType = labimagepulltype
           @SubAccountName = subaccountname
           @ImagePullType = imagepulltype
@@ -5987,6 +6021,7 @@ module TencentCloud
           @SubAccountUin = params['SubAccountUin']
           @Status = params['Status']
           @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
           @GroupId = params['GroupId']
           @ResourceConfig = params['ResourceConfig']
           @ResourceConfigId = params['ResourceConfigId']
@@ -5995,6 +6030,9 @@ module TencentCloud
           @ImagePullPolicy = params['ImagePullPolicy']
           @AdvancedOptions = params['AdvancedOptions']
           @Priority = params['Priority']
+          @StartTime = params['StartTime']
+          @StopTime = params['StopTime']
+          @DeleteTime = params['DeleteTime']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -6008,6 +6046,8 @@ module TencentCloud
             @PersistentWorkDir.deserialize(params['PersistentWorkDir'])
           end
           @EnableToken = params['EnableToken']
+          @Token = params['Token']
+          @AutoscalerOptions = params['AutoscalerOptions']
           @LabImagePullType = params['LabImagePullType']
           @SubAccountName = params['SubAccountName']
           @ImagePullType = params['ImagePullType']
@@ -20808,6 +20848,10 @@ module TencentCloud
         # @type Status: String
         # @param StatusMessage: <p>状态详情/错误信息</p>
         # @type StatusMessage: String
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: Integer
         # @param ResourceConfig: <p>资源配置(JSON)</p>
         # @type ResourceConfig: String
         # @param ResourceConfigId: <p>资源配置ID</p>
@@ -20836,6 +20880,10 @@ module TencentCloud
         # @type PersistentWorkDir: :class:`Tencentcloud::Dlc.v20210125.models.PersistentWorkDir`
         # @param EnableToken: <p>是否开启token认证</p>
         # @type EnableToken: Boolean
+        # @param Token: <p>Token 认证密钥（开启 token 认证时由系统生成）</p>
+        # @type Token: String
+        # @param AutoscalerOptions: <p>弹性伸缩配置（JSON）</p>
+        # @type AutoscalerOptions: String
         # @param LabImagePullType: <p>Lab sidecar 镜像拉取类型（BuiltIn: 内置, Custom: 自定义-TCR, CustomCcr: 自定义-CCR）</p>
         # @type LabImagePullType: String
         # @param SubAccountName: <p>子用户名称（由聚合层通过 CAM 接口回填）</p>
@@ -20847,9 +20895,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ExampleId, :CodeArchiveUrl, :Services, :Id, :Type, :Name, :Description, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :AppId, :Uin, :SubAccountUin, :Status, :StatusMessage, :ResourceConfig, :ResourceConfigId, :Image, :Catalog, :HistoryUrl, :ImagePullPolicy, :AdvancedOptions, :Priority, :StartTime, :StopTime, :DeleteTime, :Tags, :PersistentWorkDir, :EnableToken, :LabImagePullType, :SubAccountName, :ImagePullType, :NetworkConfig, :RequestId
+        attr_accessor :ExampleId, :CodeArchiveUrl, :Services, :Id, :Type, :Name, :Description, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :AppId, :Uin, :SubAccountUin, :Status, :StatusMessage, :CreateTime, :UpdateTime, :ResourceConfig, :ResourceConfigId, :Image, :Catalog, :HistoryUrl, :ImagePullPolicy, :AdvancedOptions, :Priority, :StartTime, :StopTime, :DeleteTime, :Tags, :PersistentWorkDir, :EnableToken, :Token, :AutoscalerOptions, :LabImagePullType, :SubAccountName, :ImagePullType, :NetworkConfig, :RequestId
 
-        def initialize(exampleid=nil, codearchiveurl=nil, services=nil, id=nil, type=nil, name=nil, description=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, appid=nil, uin=nil, subaccountuin=nil, status=nil, statusmessage=nil, resourceconfig=nil, resourceconfigid=nil, image=nil, catalog=nil, historyurl=nil, imagepullpolicy=nil, advancedoptions=nil, priority=nil, starttime=nil, stoptime=nil, deletetime=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, labimagepulltype=nil, subaccountname=nil, imagepulltype=nil, networkconfig=nil, requestid=nil)
+        def initialize(exampleid=nil, codearchiveurl=nil, services=nil, id=nil, type=nil, name=nil, description=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, appid=nil, uin=nil, subaccountuin=nil, status=nil, statusmessage=nil, createtime=nil, updatetime=nil, resourceconfig=nil, resourceconfigid=nil, image=nil, catalog=nil, historyurl=nil, imagepullpolicy=nil, advancedoptions=nil, priority=nil, starttime=nil, stoptime=nil, deletetime=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, token=nil, autoscaleroptions=nil, labimagepulltype=nil, subaccountname=nil, imagepulltype=nil, networkconfig=nil, requestid=nil)
           @ExampleId = exampleid
           @CodeArchiveUrl = codearchiveurl
           @Services = services
@@ -20866,6 +20914,8 @@ module TencentCloud
           @SubAccountUin = subaccountuin
           @Status = status
           @StatusMessage = statusmessage
+          @CreateTime = createtime
+          @UpdateTime = updatetime
           @ResourceConfig = resourceconfig
           @ResourceConfigId = resourceconfigid
           @Image = image
@@ -20880,6 +20930,8 @@ module TencentCloud
           @Tags = tags
           @PersistentWorkDir = persistentworkdir
           @EnableToken = enabletoken
+          @Token = token
+          @AutoscalerOptions = autoscaleroptions
           @LabImagePullType = labimagepulltype
           @SubAccountName = subaccountname
           @ImagePullType = imagepulltype
@@ -20911,6 +20963,8 @@ module TencentCloud
           @SubAccountUin = params['SubAccountUin']
           @Status = params['Status']
           @StatusMessage = params['StatusMessage']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
           @ResourceConfig = params['ResourceConfig']
           @ResourceConfigId = params['ResourceConfigId']
           @Image = params['Image']
@@ -20935,6 +20989,8 @@ module TencentCloud
             @PersistentWorkDir.deserialize(params['PersistentWorkDir'])
           end
           @EnableToken = params['EnableToken']
+          @Token = params['Token']
+          @AutoscalerOptions = params['AutoscalerOptions']
           @LabImagePullType = params['LabImagePullType']
           @SubAccountName = params['SubAccountName']
           @ImagePullType = params['ImagePullType']
@@ -22319,6 +22375,8 @@ module TencentCloud
       class GetRayJobResponse < TencentCloud::Common::AbstractModel
         # @param Id: <p>任务ID</p>
         # @type Id: String
+        # @param ClusterId: <p>所属集群ID</p>
+        # @type ClusterId: String
         # @param ResourcePartitionId: <p>所属资源分区ID</p>
         # @type ResourcePartitionId: String
         # @param ResourcePartitionName: <p>默认资源分区名称</p>
@@ -22327,6 +22385,8 @@ module TencentCloud
         # @type Queue: String
         # @param QueueAlias: <p>所属队列别名</p>
         # @type QueueAlias: String
+        # @param SubmissionId: <p>Ray Submission ID</p>
+        # @type SubmissionId: String
         # @param Status: <p>任务状态</p>
         # @type Status: String
         # @param Entrypoint: <p>入口命令</p>
@@ -22339,6 +22399,8 @@ module TencentCloud
         # @type Uin: String
         # @param SubAccountUin: <p>创建账号</p>
         # @type SubAccountUin: String
+        # @param SubAccountName: <p>子用户名称（由聚合层通过 CAM 接口回填）</p>
+        # @type SubAccountName: String
         # @param HistoryUrl: <p>历史记录链接</p>
         # @type HistoryUrl: String
         # @param RunningTime: <p>运行时间(ms)</p>
@@ -22378,20 +22440,23 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :Status, :Entrypoint, :JobName, :AppId, :Uin, :SubAccountUin, :HistoryUrl, :RunningTime, :FinishTime, :CreateTime, :ErrorMessage, :RuntimeEnv, :Image, :ResourceConfig, :Catalog, :ImagePullPolicy, :AutoscalerOptions, :SpecId, :SpecName, :AdvancedOptions, :Priority, :Tags, :JobSource, :ClusterName, :RequestId
+        attr_accessor :Id, :ClusterId, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :SubmissionId, :Status, :Entrypoint, :JobName, :AppId, :Uin, :SubAccountUin, :SubAccountName, :HistoryUrl, :RunningTime, :FinishTime, :CreateTime, :ErrorMessage, :RuntimeEnv, :Image, :ResourceConfig, :Catalog, :ImagePullPolicy, :AutoscalerOptions, :SpecId, :SpecName, :AdvancedOptions, :Priority, :Tags, :JobSource, :ClusterName, :RequestId
 
-        def initialize(id=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, status=nil, entrypoint=nil, jobname=nil, appid=nil, uin=nil, subaccountuin=nil, historyurl=nil, runningtime=nil, finishtime=nil, createtime=nil, errormessage=nil, runtimeenv=nil, image=nil, resourceconfig=nil, catalog=nil, imagepullpolicy=nil, autoscaleroptions=nil, specid=nil, specname=nil, advancedoptions=nil, priority=nil, tags=nil, jobsource=nil, clustername=nil, requestid=nil)
+        def initialize(id=nil, clusterid=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, submissionid=nil, status=nil, entrypoint=nil, jobname=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, historyurl=nil, runningtime=nil, finishtime=nil, createtime=nil, errormessage=nil, runtimeenv=nil, image=nil, resourceconfig=nil, catalog=nil, imagepullpolicy=nil, autoscaleroptions=nil, specid=nil, specname=nil, advancedoptions=nil, priority=nil, tags=nil, jobsource=nil, clustername=nil, requestid=nil)
           @Id = id
+          @ClusterId = clusterid
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
           @QueueAlias = queuealias
+          @SubmissionId = submissionid
           @Status = status
           @Entrypoint = entrypoint
           @JobName = jobname
           @AppId = appid
           @Uin = uin
           @SubAccountUin = subaccountuin
+          @SubAccountName = subaccountname
           @HistoryUrl = historyurl
           @RunningTime = runningtime
           @FinishTime = finishtime
@@ -22415,16 +22480,19 @@ module TencentCloud
 
         def deserialize(params)
           @Id = params['Id']
+          @ClusterId = params['ClusterId']
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
           @QueueAlias = params['QueueAlias']
+          @SubmissionId = params['SubmissionId']
           @Status = params['Status']
           @Entrypoint = params['Entrypoint']
           @JobName = params['JobName']
           @AppId = params['AppId']
           @Uin = params['Uin']
           @SubAccountUin = params['SubAccountUin']
+          @SubAccountName = params['SubAccountName']
           @HistoryUrl = params['HistoryUrl']
           @RunningTime = params['RunningTime']
           @FinishTime = params['FinishTime']
@@ -26820,19 +26888,19 @@ module TencentCloud
 
       # ListRayClusterJobs请求参数结构体
       class ListRayClusterJobsRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID（必填）
+        # @param ClusterId: <p>集群ID（必填）</p>
         # @type ClusterId: String
-        # @param Page: 当前页码（从1开始）
+        # @param Page: <p>当前页码（从1开始）</p>
         # @type Page: Integer
-        # @param PageSize: 每页数量
+        # @param PageSize: <p>每页数量</p>
         # @type PageSize: Integer
-        # @param Filters: 额外过滤条件（ClusterId 已由外层单独传入，无需再在此处指定）
+        # @param Filters: <p>额外过滤条件（ClusterId 已由外层单独传入，无需再在此处指定）</p>
         # @type Filters: Array
-        # @param StartTime: 提交时间起始过滤-时间戳（毫秒，可选）
+        # @param StartTime: <p>提交时间起始过滤-时间戳（毫秒，可选）</p>
         # @type StartTime: Integer
-        # @param EndTime: 提交时间截止过滤-时间戳（毫秒，可选）
+        # @param EndTime: <p>提交时间截止过滤-时间戳（毫秒，可选）</p>
         # @type EndTime: Integer
-        # @param SortFields: 排序字段列表
+        # @param SortFields: <p>排序字段列表</p>
         # @type SortFields: Array
 
         attr_accessor :ClusterId, :Page, :PageSize, :Filters, :StartTime, :EndTime, :SortFields
@@ -26874,20 +26942,23 @@ module TencentCloud
 
       # ListRayClusterJobs返回参数结构体
       class ListRayClusterJobsResponse < TencentCloud::Common::AbstractModel
-        # @param Page: 当前页码（从1开始）
+        # @param Total: <p>总记录数</p>
+        # @type Total: Integer
+        # @param Page: <p>当前页码（从1开始）</p>
         # @type Page: Integer
-        # @param PageSize: 每页数量
+        # @param PageSize: <p>每页数量</p>
         # @type PageSize: Integer
-        # @param TotalPages: 总页数
+        # @param TotalPages: <p>总页数</p>
         # @type TotalPages: Integer
-        # @param Items: 该集群下的Ray作业列表
+        # @param Items: <p>该集群下的Ray作业列表</p>
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Page, :PageSize, :TotalPages, :Items, :RequestId
+        attr_accessor :Total, :Page, :PageSize, :TotalPages, :Items, :RequestId
 
-        def initialize(page=nil, pagesize=nil, totalpages=nil, items=nil, requestid=nil)
+        def initialize(total=nil, page=nil, pagesize=nil, totalpages=nil, items=nil, requestid=nil)
+          @Total = total
           @Page = page
           @PageSize = pagesize
           @TotalPages = totalpages
@@ -26896,6 +26967,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @Total = params['Total']
           @Page = params['Page']
           @PageSize = params['PageSize']
           @TotalPages = params['TotalPages']
@@ -27006,17 +27078,17 @@ module TencentCloud
 
       # ListRayJobs请求参数结构体
       class ListRayJobsRequest < TencentCloud::Common::AbstractModel
-        # @param Page: 当前页码（从1开始）
+        # @param Page: <p>当前页码（从1开始）</p>
         # @type Page: Integer
-        # @param PageSize: 页数
+        # @param PageSize: <p>页数</p>
         # @type PageSize: Integer
-        # @param Filters: 过滤条件列表（列表的字段名称）
+        # @param Filters: <p>过滤条件列表（列表的字段名称）</p>
         # @type Filters: Array
-        # @param StartTime: 提交时间起始过滤-时间戳（毫秒，可选）
+        # @param StartTime: <p>提交时间起始过滤-时间戳（毫秒，可选）</p>
         # @type StartTime: Integer
-        # @param EndTime: 提交时间截止过滤-时间戳（毫秒，可选）
+        # @param EndTime: <p>提交时间截止过滤-时间戳（毫秒，可选）</p>
         # @type EndTime: Integer
-        # @param SortFields: 排序字段列表（列表字段）
+        # @param SortFields: <p>排序字段列表（列表字段）</p>
         # @type SortFields: Array
 
         attr_accessor :Page, :PageSize, :Filters, :StartTime, :EndTime, :SortFields
@@ -27056,20 +27128,23 @@ module TencentCloud
 
       # ListRayJobs返回参数结构体
       class ListRayJobsResponse < TencentCloud::Common::AbstractModel
-        # @param Page: 当前页码（从1开始）
+        # @param Total: <p>总记录数</p>
+        # @type Total: Integer
+        # @param Page: <p>当前页码（从1开始）</p>
         # @type Page: Integer
-        # @param PageSize: 页数
+        # @param PageSize: <p>页数</p>
         # @type PageSize: Integer
-        # @param TotalPages: 总页数
+        # @param TotalPages: <p>总页数</p>
         # @type TotalPages: Integer
-        # @param Items: ray作业列表
+        # @param Items: <p>ray作业列表</p>
         # @type Items: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Page, :PageSize, :TotalPages, :Items, :RequestId
+        attr_accessor :Total, :Page, :PageSize, :TotalPages, :Items, :RequestId
 
-        def initialize(page=nil, pagesize=nil, totalpages=nil, items=nil, requestid=nil)
+        def initialize(total=nil, page=nil, pagesize=nil, totalpages=nil, items=nil, requestid=nil)
+          @Total = total
           @Page = page
           @PageSize = pagesize
           @TotalPages = totalpages
@@ -27078,6 +27153,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @Total = params['Total']
           @Page = params['Page']
           @PageSize = params['PageSize']
           @TotalPages = params['TotalPages']
@@ -33420,10 +33496,18 @@ module TencentCloud
       class RunJobSpecResponse < TencentCloud::Common::AbstractModel
         # @param Id: <p>任务ID</p>
         # @type Id: String
+        # @param ClusterId: <p>所属集群ID</p>
+        # @type ClusterId: String
+        # @param ClusterName: <p>集群名称</p>
+        # @type ClusterName: String
         # @param ResourcePartitionId: <p>所属资源分区ID</p>
         # @type ResourcePartitionId: String
+        # @param ResourcePartitionName: <p>默认资源分区名称</p>
+        # @type ResourcePartitionName: String
         # @param Queue: <p>所属队列名称</p>
         # @type Queue: String
+        # @param SubmissionId: <p>Ray Submission ID</p>
+        # @type SubmissionId: String
         # @param Status: <p>任务状态</p>
         # @type Status: String
         # @param Entrypoint: <p>入口命令</p>
@@ -33436,10 +33520,16 @@ module TencentCloud
         # @type Uin: String
         # @param SubAccountUin: <p>子用户UIN</p>
         # @type SubAccountUin: String
+        # @param HistoryUrl: <p>历史记录链接</p>
+        # @type HistoryUrl: String
         # @param RunningTime: <p>运行时间(ms)</p>
         # @type RunningTime: Integer
+        # @param FinishTime: <p>完成时间</p>
+        # @type FinishTime: Integer
         # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: Integer
+        # @param ErrorMessage: <p>失败原因/错误信息</p>
+        # @type ErrorMessage: String
         # @param RuntimeEnv: <p>运行时环境配置(JSON)</p>
         # @type RuntimeEnv: String
         # @param Image: <p>镜像地址</p>
@@ -33467,20 +33557,27 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :ResourcePartitionId, :Queue, :Status, :Entrypoint, :JobName, :AppId, :Uin, :SubAccountUin, :RunningTime, :CreateTime, :RuntimeEnv, :Image, :ResourceConfig, :Catalog, :ImagePullPolicy, :AutoscalerOptions, :SpecId, :SpecName, :AdvancedOptions, :Priority, :Tags, :JobSource, :RequestId
+        attr_accessor :Id, :ClusterId, :ClusterName, :ResourcePartitionId, :ResourcePartitionName, :Queue, :SubmissionId, :Status, :Entrypoint, :JobName, :AppId, :Uin, :SubAccountUin, :HistoryUrl, :RunningTime, :FinishTime, :CreateTime, :ErrorMessage, :RuntimeEnv, :Image, :ResourceConfig, :Catalog, :ImagePullPolicy, :AutoscalerOptions, :SpecId, :SpecName, :AdvancedOptions, :Priority, :Tags, :JobSource, :RequestId
 
-        def initialize(id=nil, resourcepartitionid=nil, queue=nil, status=nil, entrypoint=nil, jobname=nil, appid=nil, uin=nil, subaccountuin=nil, runningtime=nil, createtime=nil, runtimeenv=nil, image=nil, resourceconfig=nil, catalog=nil, imagepullpolicy=nil, autoscaleroptions=nil, specid=nil, specname=nil, advancedoptions=nil, priority=nil, tags=nil, jobsource=nil, requestid=nil)
+        def initialize(id=nil, clusterid=nil, clustername=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, submissionid=nil, status=nil, entrypoint=nil, jobname=nil, appid=nil, uin=nil, subaccountuin=nil, historyurl=nil, runningtime=nil, finishtime=nil, createtime=nil, errormessage=nil, runtimeenv=nil, image=nil, resourceconfig=nil, catalog=nil, imagepullpolicy=nil, autoscaleroptions=nil, specid=nil, specname=nil, advancedoptions=nil, priority=nil, tags=nil, jobsource=nil, requestid=nil)
           @Id = id
+          @ClusterId = clusterid
+          @ClusterName = clustername
           @ResourcePartitionId = resourcepartitionid
+          @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @SubmissionId = submissionid
           @Status = status
           @Entrypoint = entrypoint
           @JobName = jobname
           @AppId = appid
           @Uin = uin
           @SubAccountUin = subaccountuin
+          @HistoryUrl = historyurl
           @RunningTime = runningtime
+          @FinishTime = finishtime
           @CreateTime = createtime
+          @ErrorMessage = errormessage
           @RuntimeEnv = runtimeenv
           @Image = image
           @ResourceConfig = resourceconfig
@@ -33498,16 +33595,23 @@ module TencentCloud
 
         def deserialize(params)
           @Id = params['Id']
+          @ClusterId = params['ClusterId']
+          @ClusterName = params['ClusterName']
           @ResourcePartitionId = params['ResourcePartitionId']
+          @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @SubmissionId = params['SubmissionId']
           @Status = params['Status']
           @Entrypoint = params['Entrypoint']
           @JobName = params['JobName']
           @AppId = params['AppId']
           @Uin = params['Uin']
           @SubAccountUin = params['SubAccountUin']
+          @HistoryUrl = params['HistoryUrl']
           @RunningTime = params['RunningTime']
+          @FinishTime = params['FinishTime']
           @CreateTime = params['CreateTime']
+          @ErrorMessage = params['ErrorMessage']
           @RuntimeEnv = params['RuntimeEnv']
           @Image = params['Image']
           @ResourceConfig = params['ResourceConfig']
@@ -34874,6 +34978,8 @@ module TencentCloud
         # @type Status: String
         # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: Integer
         # @param GroupName: <p>所属集群组名称</p>
         # @type GroupName: String
         # @param GroupId: <p>计算组 ID</p>
@@ -34896,12 +35002,20 @@ module TencentCloud
         # @type Priority: Integer
         # @param StartTime: <p>启动时间（最近一次启动）</p>
         # @type StartTime: Integer
+        # @param StopTime: <p>停止时间（最近一次停止/休眠）</p>
+        # @type StopTime: Integer
+        # @param DeleteTime: <p>删除时间</p>
+        # @type DeleteTime: Integer
         # @param Tags: <p>标签列表（TagKey-TagValue）</p>
         # @type Tags: Array
         # @param PersistentWorkDir: <p>持久化工作目录配置（可选）。启用后将 COS/CFS 指定路径挂载到容器内 /workspace 工作目录，与现有 Catalog 的卷配置互斥（不允许同时在 Catalog 中显式声明 MountPath=/workspace）。</p>
         # @type PersistentWorkDir: :class:`Tencentcloud::Dlc.v20210125.models.PersistentWorkDir`
         # @param EnableToken: <p>是否开启token认证</p>
         # @type EnableToken: Boolean
+        # @param Token: <p>Token 认证密钥（开启 token 认证时由系统生成）</p>
+        # @type Token: String
+        # @param AutoscalerOptions: <p>弹性伸缩配置（JSON）</p>
+        # @type AutoscalerOptions: String
         # @param LabImagePullType: <p>Lab sidecar 镜像拉取类型（BuiltIn: 内置, Custom: 自定义-TCR, CustomCcr: 自定义-CCR）</p>
         # @type LabImagePullType: String
         # @param SubAccountName: <p>子用户名称（由聚合层通过 CAM 接口回填）</p>
@@ -34913,9 +35027,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ExampleId, :CodeArchiveUrl, :Services, :LabImage, :Id, :Type, :Name, :Description, :ResourcePartitionId, :ResourcePartitionName, :Queue, :AppId, :Uin, :SubAccountUin, :Status, :CreateTime, :GroupName, :GroupId, :ResourceConfig, :ResourceConfigId, :Image, :Catalog, :HistoryUrl, :ImagePullPolicy, :AdvancedOptions, :Priority, :StartTime, :Tags, :PersistentWorkDir, :EnableToken, :LabImagePullType, :SubAccountName, :ImagePullType, :NetworkConfig, :RequestId
+        attr_accessor :ExampleId, :CodeArchiveUrl, :Services, :LabImage, :Id, :Type, :Name, :Description, :ResourcePartitionId, :ResourcePartitionName, :Queue, :AppId, :Uin, :SubAccountUin, :Status, :CreateTime, :UpdateTime, :GroupName, :GroupId, :ResourceConfig, :ResourceConfigId, :Image, :Catalog, :HistoryUrl, :ImagePullPolicy, :AdvancedOptions, :Priority, :StartTime, :StopTime, :DeleteTime, :Tags, :PersistentWorkDir, :EnableToken, :Token, :AutoscalerOptions, :LabImagePullType, :SubAccountName, :ImagePullType, :NetworkConfig, :RequestId
 
-        def initialize(exampleid=nil, codearchiveurl=nil, services=nil, labimage=nil, id=nil, type=nil, name=nil, description=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, appid=nil, uin=nil, subaccountuin=nil, status=nil, createtime=nil, groupname=nil, groupid=nil, resourceconfig=nil, resourceconfigid=nil, image=nil, catalog=nil, historyurl=nil, imagepullpolicy=nil, advancedoptions=nil, priority=nil, starttime=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, labimagepulltype=nil, subaccountname=nil, imagepulltype=nil, networkconfig=nil, requestid=nil)
+        def initialize(exampleid=nil, codearchiveurl=nil, services=nil, labimage=nil, id=nil, type=nil, name=nil, description=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, appid=nil, uin=nil, subaccountuin=nil, status=nil, createtime=nil, updatetime=nil, groupname=nil, groupid=nil, resourceconfig=nil, resourceconfigid=nil, image=nil, catalog=nil, historyurl=nil, imagepullpolicy=nil, advancedoptions=nil, priority=nil, starttime=nil, stoptime=nil, deletetime=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, token=nil, autoscaleroptions=nil, labimagepulltype=nil, subaccountname=nil, imagepulltype=nil, networkconfig=nil, requestid=nil)
           @ExampleId = exampleid
           @CodeArchiveUrl = codearchiveurl
           @Services = services
@@ -34932,6 +35046,7 @@ module TencentCloud
           @SubAccountUin = subaccountuin
           @Status = status
           @CreateTime = createtime
+          @UpdateTime = updatetime
           @GroupName = groupname
           @GroupId = groupid
           @ResourceConfig = resourceconfig
@@ -34943,9 +35058,13 @@ module TencentCloud
           @AdvancedOptions = advancedoptions
           @Priority = priority
           @StartTime = starttime
+          @StopTime = stoptime
+          @DeleteTime = deletetime
           @Tags = tags
           @PersistentWorkDir = persistentworkdir
           @EnableToken = enabletoken
+          @Token = token
+          @AutoscalerOptions = autoscaleroptions
           @LabImagePullType = labimagepulltype
           @SubAccountName = subaccountname
           @ImagePullType = imagepulltype
@@ -34977,6 +35096,7 @@ module TencentCloud
           @SubAccountUin = params['SubAccountUin']
           @Status = params['Status']
           @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
           @GroupName = params['GroupName']
           @GroupId = params['GroupId']
           @ResourceConfig = params['ResourceConfig']
@@ -34988,6 +35108,8 @@ module TencentCloud
           @AdvancedOptions = params['AdvancedOptions']
           @Priority = params['Priority']
           @StartTime = params['StartTime']
+          @StopTime = params['StopTime']
+          @DeleteTime = params['DeleteTime']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -35001,6 +35123,8 @@ module TencentCloud
             @PersistentWorkDir.deserialize(params['PersistentWorkDir'])
           end
           @EnableToken = params['EnableToken']
+          @Token = params['Token']
+          @AutoscalerOptions = params['AutoscalerOptions']
           @LabImagePullType = params['LabImagePullType']
           @SubAccountName = params['SubAccountName']
           @ImagePullType = params['ImagePullType']
@@ -35738,16 +35862,22 @@ module TencentCloud
       class StopLabResponse < TencentCloud::Common::AbstractModel
         # @param ExampleId: <p>案例模板ID（startMode=EXAMPLE 时使用）</p>
         # @type ExampleId: String
+        # @param CodeArchiveUrl: <p>代码包/工程归档地址</p>
+        # @type CodeArchiveUrl: String
         # @param Services: <p>数据实验室服务入口（服务类型 -&gt; 访问地址）</p>
         # @type Services: Array
         # @param LabImage: <p>Lab 镜像地址（必填，用于开发工具如 Jupyter/VSCode/WebShell）。前端在&quot;内置 / 自定义&quot;两态中选择此值；当 Image 字段未显式传入时，后端会基于该字段按 R1（镜像表命中）/R2（同值 fallback）派生 Ray 集群镜像。</p>
         # @type LabImage: String
+        # @param LabImagePullPolicy: <p>Lab sidecar 镜像拉取策略（Always, IfNotPresent, Never）</p>
+        # @type LabImagePullPolicy: String
         # @param Id: <p>集群ID</p>
         # @type Id: String
         # @param Type: <p>资源类型：CLUSTER-普通集群；WORKSPACE-数据实验室（开发入口）</p>
         # @type Type: String
         # @param Name: <p>集群名称</p>
         # @type Name: String
+        # @param Description: <p>集群描述</p>
+        # @type Description: String
         # @param ResourcePartitionId: <p>所属资源分区ID</p>
         # @type ResourcePartitionId: String
         # @param ResourcePartitionName: <p>默认资源分区名称</p>
@@ -35762,22 +35892,38 @@ module TencentCloud
         # @type SubAccountUin: String
         # @param Status: <p>集群状态</p>
         # @type Status: String
+        # @param StatusMessage: <p>状态详情/错误信息</p>
+        # @type StatusMessage: String
         # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: Integer
+        # @param GroupName: <p>所属集群组名称</p>
+        # @type GroupName: String
+        # @param GroupId: <p>计算组 ID</p>
+        # @type GroupId: String
         # @param ResourceConfig: <p>资源配置(JSON)</p>
         # @type ResourceConfig: String
+        # @param ResourceConfigId: <p>资源配置ID</p>
+        # @type ResourceConfigId: String
         # @param Image: <p>Ray 集群镜像地址（可选，OpenAPI/SDK 高级控制入口）。前端不再传递此字段；为空时后端按 R1（镜像表查询命中）→ R2（同值 fallback）顺序自动派生。非空时直接作为 Ray 集群镜像，跳过派生（EXPLICIT），且后端不校验其与 LabImage 的兼容性。</p>
         # @type Image: String
         # @param Catalog: <p>存储卷和挂载卷配置(JSON)</p>
         # @type Catalog: String
         # @param HistoryUrl: <p>Dashboard URL / 历史记录链接</p>
         # @type HistoryUrl: String
+        # @param ImagePullPolicy: <p>镜像拉取策略</p>
+        # @type ImagePullPolicy: String
         # @param AdvancedOptions: <p>高级参数（扁平 Key-Value 的 JSON 字符串），Key 以 spec. 开头，按 RayCluster CRD 下钻；详见 ADVANCED_CLUSTER_OPTIONS_DESIGN.md</p>
         # @type AdvancedOptions: String
         # @param Priority: <p>优先级（1-9，数字越大优先级越高）</p>
         # @type Priority: Integer
         # @param StartTime: <p>启动时间（最近一次启动）</p>
         # @type StartTime: Integer
+        # @param StopTime: <p>停止时间（最近一次停止/休眠）</p>
+        # @type StopTime: Integer
+        # @param DeleteTime: <p>删除时间</p>
+        # @type DeleteTime: Integer
         # @param Tags: <p>标签列表（TagKey-TagValue）</p>
         # @type Tags: Array
         # @param PersistentWorkDir: <p>持久化工作目录配置（可选）。启用后将 COS/CFS 指定路径挂载到容器内 /workspace 工作目录，与现有 Catalog 的卷配置互斥（不允许同时在 Catalog 中显式声明 MountPath=/workspace）。</p>
@@ -35786,6 +35932,8 @@ module TencentCloud
         # @type EnableToken: Boolean
         # @param Token: <p>Token 认证密钥（开启 token 认证时由系统生成）</p>
         # @type Token: String
+        # @param AutoscalerOptions: <p>弹性伸缩配置（JSON）</p>
+        # @type AutoscalerOptions: String
         # @param LabImagePullType: <p>Lab sidecar 镜像拉取类型（BuiltIn: 内置, Custom: 自定义-TCR, CustomCcr: 自定义-CCR）</p>
         # @type LabImagePullType: String
         # @param SubAccountName: <p>子用户名称（由聚合层通过 CAM 接口回填）</p>
@@ -35797,15 +35945,18 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ExampleId, :Services, :LabImage, :Id, :Type, :Name, :ResourcePartitionId, :ResourcePartitionName, :Queue, :AppId, :Uin, :SubAccountUin, :Status, :CreateTime, :ResourceConfig, :Image, :Catalog, :HistoryUrl, :AdvancedOptions, :Priority, :StartTime, :Tags, :PersistentWorkDir, :EnableToken, :Token, :LabImagePullType, :SubAccountName, :ImagePullType, :NetworkConfig, :RequestId
+        attr_accessor :ExampleId, :CodeArchiveUrl, :Services, :LabImage, :LabImagePullPolicy, :Id, :Type, :Name, :Description, :ResourcePartitionId, :ResourcePartitionName, :Queue, :AppId, :Uin, :SubAccountUin, :Status, :StatusMessage, :CreateTime, :UpdateTime, :GroupName, :GroupId, :ResourceConfig, :ResourceConfigId, :Image, :Catalog, :HistoryUrl, :ImagePullPolicy, :AdvancedOptions, :Priority, :StartTime, :StopTime, :DeleteTime, :Tags, :PersistentWorkDir, :EnableToken, :Token, :AutoscalerOptions, :LabImagePullType, :SubAccountName, :ImagePullType, :NetworkConfig, :RequestId
 
-        def initialize(exampleid=nil, services=nil, labimage=nil, id=nil, type=nil, name=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, appid=nil, uin=nil, subaccountuin=nil, status=nil, createtime=nil, resourceconfig=nil, image=nil, catalog=nil, historyurl=nil, advancedoptions=nil, priority=nil, starttime=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, token=nil, labimagepulltype=nil, subaccountname=nil, imagepulltype=nil, networkconfig=nil, requestid=nil)
+        def initialize(exampleid=nil, codearchiveurl=nil, services=nil, labimage=nil, labimagepullpolicy=nil, id=nil, type=nil, name=nil, description=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, appid=nil, uin=nil, subaccountuin=nil, status=nil, statusmessage=nil, createtime=nil, updatetime=nil, groupname=nil, groupid=nil, resourceconfig=nil, resourceconfigid=nil, image=nil, catalog=nil, historyurl=nil, imagepullpolicy=nil, advancedoptions=nil, priority=nil, starttime=nil, stoptime=nil, deletetime=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, token=nil, autoscaleroptions=nil, labimagepulltype=nil, subaccountname=nil, imagepulltype=nil, networkconfig=nil, requestid=nil)
           @ExampleId = exampleid
+          @CodeArchiveUrl = codearchiveurl
           @Services = services
           @LabImage = labimage
+          @LabImagePullPolicy = labimagepullpolicy
           @Id = id
           @Type = type
           @Name = name
+          @Description = description
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
@@ -35813,18 +35964,27 @@ module TencentCloud
           @Uin = uin
           @SubAccountUin = subaccountuin
           @Status = status
+          @StatusMessage = statusmessage
           @CreateTime = createtime
+          @UpdateTime = updatetime
+          @GroupName = groupname
+          @GroupId = groupid
           @ResourceConfig = resourceconfig
+          @ResourceConfigId = resourceconfigid
           @Image = image
           @Catalog = catalog
           @HistoryUrl = historyurl
+          @ImagePullPolicy = imagepullpolicy
           @AdvancedOptions = advancedoptions
           @Priority = priority
           @StartTime = starttime
+          @StopTime = stoptime
+          @DeleteTime = deletetime
           @Tags = tags
           @PersistentWorkDir = persistentworkdir
           @EnableToken = enabletoken
           @Token = token
+          @AutoscalerOptions = autoscaleroptions
           @LabImagePullType = labimagepulltype
           @SubAccountName = subaccountname
           @ImagePullType = imagepulltype
@@ -35834,6 +35994,7 @@ module TencentCloud
 
         def deserialize(params)
           @ExampleId = params['ExampleId']
+          @CodeArchiveUrl = params['CodeArchiveUrl']
           unless params['Services'].nil?
             @Services = []
             params['Services'].each do |i|
@@ -35843,9 +36004,11 @@ module TencentCloud
             end
           end
           @LabImage = params['LabImage']
+          @LabImagePullPolicy = params['LabImagePullPolicy']
           @Id = params['Id']
           @Type = params['Type']
           @Name = params['Name']
+          @Description = params['Description']
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
@@ -35853,14 +36016,22 @@ module TencentCloud
           @Uin = params['Uin']
           @SubAccountUin = params['SubAccountUin']
           @Status = params['Status']
+          @StatusMessage = params['StatusMessage']
           @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @GroupName = params['GroupName']
+          @GroupId = params['GroupId']
           @ResourceConfig = params['ResourceConfig']
+          @ResourceConfigId = params['ResourceConfigId']
           @Image = params['Image']
           @Catalog = params['Catalog']
           @HistoryUrl = params['HistoryUrl']
+          @ImagePullPolicy = params['ImagePullPolicy']
           @AdvancedOptions = params['AdvancedOptions']
           @Priority = params['Priority']
           @StartTime = params['StartTime']
+          @StopTime = params['StopTime']
+          @DeleteTime = params['DeleteTime']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -35875,6 +36046,7 @@ module TencentCloud
           end
           @EnableToken = params['EnableToken']
           @Token = params['Token']
+          @AutoscalerOptions = params['AutoscalerOptions']
           @LabImagePullType = params['LabImagePullType']
           @SubAccountName = params['SubAccountName']
           @ImagePullType = params['ImagePullType']
@@ -36110,6 +36282,8 @@ module TencentCloud
       class SubmitRayJobRequest < TencentCloud::Common::AbstractModel
         # @param Entrypoint: <p>入口命令</p>
         # @type Entrypoint: String
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
         # @param ResourcePartitionId: <p>资源分区ID</p>
         # @type ResourcePartitionId: String
         # @param Queue: <p>队列名称</p>
@@ -36134,17 +36308,32 @@ module TencentCloud
         # @type AdvancedOptions: String
         # @param GroupId: <p>计算组ID；与 ClusterId 互斥。组成员展开为候选集群后由 neutrino 侧路由</p>
         # @type GroupId: String
+        # @param DispatchStrategy: <p>集群分派策略，本期仅支持 RANDOM；大小写不敏感</p>
+        # @type DispatchStrategy: String
         # @param Priority: <p>作业优先级（1-9，数字越大优先级越高）</p>
         # @type Priority: Integer
         # @param Tags: <p>标签列表（TagKey-TagValue），用于将资源与腾讯云标签系统中的标签绑定</p>
         # @type Tags: Array
+        # @param JobPackage: <p>作业包 URL</p>
+        # @type JobPackage: String
+        # @param JobPackageName: <p>作业包名称</p>
+        # @type JobPackageName: String
+        # @param JobPackageSource: <p>作业包来源类型（Local: 本地上传, Cos: 用户自有 COS 桶地址）；缺省时按 Local 处理</p>
+        # @type JobPackageSource: String
+        # @param JobSource: <p>业务来源标识，只为调用上下文，不落盘 JobSpec</p>
+        # @type JobSource: String
+        # @param FlowId: <p>外部工作流引擎业务键 flowId</p>
+        # @type FlowId: String
+        # @param ExecutionId: <p>外部工作流引擎业务键 executionId</p>
+        # @type ExecutionId: String
         # @param NetworkConfig: <p>用户网络配置 JSON 字符串</p>
         # @type NetworkConfig: String
 
-        attr_accessor :Entrypoint, :ResourcePartitionId, :Queue, :JobName, :RuntimeEnv, :Image, :ImagePullPolicy, :ImagePullType, :ResourceConfig, :Catalog, :AutoscalerOptions, :AdvancedOptions, :GroupId, :Priority, :Tags, :NetworkConfig
+        attr_accessor :Entrypoint, :ClusterId, :ResourcePartitionId, :Queue, :JobName, :RuntimeEnv, :Image, :ImagePullPolicy, :ImagePullType, :ResourceConfig, :Catalog, :AutoscalerOptions, :AdvancedOptions, :GroupId, :DispatchStrategy, :Priority, :Tags, :JobPackage, :JobPackageName, :JobPackageSource, :JobSource, :FlowId, :ExecutionId, :NetworkConfig
 
-        def initialize(entrypoint=nil, resourcepartitionid=nil, queue=nil, jobname=nil, runtimeenv=nil, image=nil, imagepullpolicy=nil, imagepulltype=nil, resourceconfig=nil, catalog=nil, autoscaleroptions=nil, advancedoptions=nil, groupid=nil, priority=nil, tags=nil, networkconfig=nil)
+        def initialize(entrypoint=nil, clusterid=nil, resourcepartitionid=nil, queue=nil, jobname=nil, runtimeenv=nil, image=nil, imagepullpolicy=nil, imagepulltype=nil, resourceconfig=nil, catalog=nil, autoscaleroptions=nil, advancedoptions=nil, groupid=nil, dispatchstrategy=nil, priority=nil, tags=nil, jobpackage=nil, jobpackagename=nil, jobpackagesource=nil, jobsource=nil, flowid=nil, executionid=nil, networkconfig=nil)
           @Entrypoint = entrypoint
+          @ClusterId = clusterid
           @ResourcePartitionId = resourcepartitionid
           @Queue = queue
           @JobName = jobname
@@ -36157,13 +36346,21 @@ module TencentCloud
           @AutoscalerOptions = autoscaleroptions
           @AdvancedOptions = advancedoptions
           @GroupId = groupid
+          @DispatchStrategy = dispatchstrategy
           @Priority = priority
           @Tags = tags
+          @JobPackage = jobpackage
+          @JobPackageName = jobpackagename
+          @JobPackageSource = jobpackagesource
+          @JobSource = jobsource
+          @FlowId = flowid
+          @ExecutionId = executionid
           @NetworkConfig = networkconfig
         end
 
         def deserialize(params)
           @Entrypoint = params['Entrypoint']
+          @ClusterId = params['ClusterId']
           @ResourcePartitionId = params['ResourcePartitionId']
           @Queue = params['Queue']
           @JobName = params['JobName']
@@ -36176,6 +36373,7 @@ module TencentCloud
           @AutoscalerOptions = params['AutoscalerOptions']
           @AdvancedOptions = params['AdvancedOptions']
           @GroupId = params['GroupId']
+          @DispatchStrategy = params['DispatchStrategy']
           @Priority = params['Priority']
           unless params['Tags'].nil?
             @Tags = []
@@ -36185,6 +36383,12 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @JobPackage = params['JobPackage']
+          @JobPackageName = params['JobPackageName']
+          @JobPackageSource = params['JobPackageSource']
+          @JobSource = params['JobSource']
+          @FlowId = params['FlowId']
+          @ExecutionId = params['ExecutionId']
           @NetworkConfig = params['NetworkConfig']
         end
       end
@@ -36193,10 +36397,16 @@ module TencentCloud
       class SubmitRayJobResponse < TencentCloud::Common::AbstractModel
         # @param Id: <p>任务ID</p>
         # @type Id: String
+        # @param ClusterId: <p>所属集群ID</p>
+        # @type ClusterId: String
         # @param ResourcePartitionId: <p>所属资源分区ID</p>
         # @type ResourcePartitionId: String
+        # @param ResourcePartitionName: <p>默认资源分区名称</p>
+        # @type ResourcePartitionName: String
         # @param Queue: <p>所属队列名称</p>
         # @type Queue: String
+        # @param SubmissionId: <p>Ray Submission ID</p>
+        # @type SubmissionId: String
         # @param Status: <p>任务状态</p>
         # @type Status: String
         # @param Entrypoint: <p>入口命令</p>
@@ -36209,10 +36419,18 @@ module TencentCloud
         # @type Uin: String
         # @param SubAccountUin: <p>子用户UIN</p>
         # @type SubAccountUin: String
+        # @param SubAccountName: <p>子用户名称（由聚合层通过 CAM 接口回填）</p>
+        # @type SubAccountName: String
+        # @param HistoryUrl: <p>历史记录链接</p>
+        # @type HistoryUrl: String
         # @param RunningTime: <p>运行时间(ms)</p>
         # @type RunningTime: Integer
+        # @param FinishTime: <p>完成时间</p>
+        # @type FinishTime: Integer
         # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: Integer
+        # @param ErrorMessage: <p>失败原因/错误信息</p>
+        # @type ErrorMessage: String
         # @param RuntimeEnv: <p>运行时环境配置(JSON)</p>
         # @type RuntimeEnv: String
         # @param Image: <p>镜像地址</p>
@@ -36225,6 +36443,10 @@ module TencentCloud
         # @type ImagePullPolicy: String
         # @param AutoscalerOptions: <p>弹性伸缩配置(JSON)</p>
         # @type AutoscalerOptions: String
+        # @param SpecId: <p>来源配置ID</p>
+        # @type SpecId: String
+        # @param SpecName: <p>来源配置名称</p>
+        # @type SpecName: String
         # @param AdvancedOptions: <p>高级参数，JSON 字符串（透传到 Neutrino）</p>
         # @type AdvancedOptions: String
         # @param Priority: <p>作业优先级（1-9，数字越大优先级越高）</p>
@@ -36238,26 +36460,35 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :ResourcePartitionId, :Queue, :Status, :Entrypoint, :JobName, :AppId, :Uin, :SubAccountUin, :RunningTime, :CreateTime, :RuntimeEnv, :Image, :ResourceConfig, :Catalog, :ImagePullPolicy, :AutoscalerOptions, :AdvancedOptions, :Priority, :Tags, :JobSource, :ClusterName, :RequestId
+        attr_accessor :Id, :ClusterId, :ResourcePartitionId, :ResourcePartitionName, :Queue, :SubmissionId, :Status, :Entrypoint, :JobName, :AppId, :Uin, :SubAccountUin, :SubAccountName, :HistoryUrl, :RunningTime, :FinishTime, :CreateTime, :ErrorMessage, :RuntimeEnv, :Image, :ResourceConfig, :Catalog, :ImagePullPolicy, :AutoscalerOptions, :SpecId, :SpecName, :AdvancedOptions, :Priority, :Tags, :JobSource, :ClusterName, :RequestId
 
-        def initialize(id=nil, resourcepartitionid=nil, queue=nil, status=nil, entrypoint=nil, jobname=nil, appid=nil, uin=nil, subaccountuin=nil, runningtime=nil, createtime=nil, runtimeenv=nil, image=nil, resourceconfig=nil, catalog=nil, imagepullpolicy=nil, autoscaleroptions=nil, advancedoptions=nil, priority=nil, tags=nil, jobsource=nil, clustername=nil, requestid=nil)
+        def initialize(id=nil, clusterid=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, submissionid=nil, status=nil, entrypoint=nil, jobname=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, historyurl=nil, runningtime=nil, finishtime=nil, createtime=nil, errormessage=nil, runtimeenv=nil, image=nil, resourceconfig=nil, catalog=nil, imagepullpolicy=nil, autoscaleroptions=nil, specid=nil, specname=nil, advancedoptions=nil, priority=nil, tags=nil, jobsource=nil, clustername=nil, requestid=nil)
           @Id = id
+          @ClusterId = clusterid
           @ResourcePartitionId = resourcepartitionid
+          @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @SubmissionId = submissionid
           @Status = status
           @Entrypoint = entrypoint
           @JobName = jobname
           @AppId = appid
           @Uin = uin
           @SubAccountUin = subaccountuin
+          @SubAccountName = subaccountname
+          @HistoryUrl = historyurl
           @RunningTime = runningtime
+          @FinishTime = finishtime
           @CreateTime = createtime
+          @ErrorMessage = errormessage
           @RuntimeEnv = runtimeenv
           @Image = image
           @ResourceConfig = resourceconfig
           @Catalog = catalog
           @ImagePullPolicy = imagepullpolicy
           @AutoscalerOptions = autoscaleroptions
+          @SpecId = specid
+          @SpecName = specname
           @AdvancedOptions = advancedoptions
           @Priority = priority
           @Tags = tags
@@ -36268,22 +36499,31 @@ module TencentCloud
 
         def deserialize(params)
           @Id = params['Id']
+          @ClusterId = params['ClusterId']
           @ResourcePartitionId = params['ResourcePartitionId']
+          @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @SubmissionId = params['SubmissionId']
           @Status = params['Status']
           @Entrypoint = params['Entrypoint']
           @JobName = params['JobName']
           @AppId = params['AppId']
           @Uin = params['Uin']
           @SubAccountUin = params['SubAccountUin']
+          @SubAccountName = params['SubAccountName']
+          @HistoryUrl = params['HistoryUrl']
           @RunningTime = params['RunningTime']
+          @FinishTime = params['FinishTime']
           @CreateTime = params['CreateTime']
+          @ErrorMessage = params['ErrorMessage']
           @RuntimeEnv = params['RuntimeEnv']
           @Image = params['Image']
           @ResourceConfig = params['ResourceConfig']
           @Catalog = params['Catalog']
           @ImagePullPolicy = params['ImagePullPolicy']
           @AutoscalerOptions = params['AutoscalerOptions']
+          @SpecId = params['SpecId']
+          @SpecName = params['SpecName']
           @AdvancedOptions = params['AdvancedOptions']
           @Priority = params['Priority']
           unless params['Tags'].nil?
@@ -39429,6 +39669,8 @@ module TencentCloud
         # @type ClusterId: String
         # @param DispatchStrategy: <p>集群分派策略（本期仅支持 RANDOM；NULL 时退化为依赖 ClusterGroup 配置兜底）</p>
         # @type DispatchStrategy: String
+        # @param SubmissionTarget: <p>作业提交目标：GROUP（按计算组分派）/ CLUSTER（指定集群）/ SERVERLESS（按 Serverless 拉起）</p>
+        # @type SubmissionTarget: String
         # @param JobPackage: <p>作业包URL</p>
         # @type JobPackage: String
         # @param JobPackageName: <p>作业包名称</p>
@@ -39454,14 +39696,20 @@ module TencentCloud
         # @type AdvancedOptions: String
         # @param Tags: <p>标签列表（TagKey-TagValue），用于将资源与腾讯云标签系统中的标签绑定</p>
         # @type Tags: Array
+        # @param GroupName: <p>计算组名称</p>
+        # @type GroupName: String
+        # @param ClusterName: <p>集群名称</p>
+        # @type ClusterName: String
         # @param JobPackageSource: <p>作业包来源类型（Local: 本地上传, Cos: 用户自有 COS 桶地址）；缺时按 Local 处理</p>
         # @type JobPackageSource: String
+        # @param SubAccountName: <p>子用户名称（由聚合层通过 CAM 接口回填）</p>
+        # @type SubAccountName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :Name, :Description, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :ResourceConfig, :RuntimeEnv, :Catalog, :AutoscalerOptions, :ResourceConfigId, :ResourceConfigChanged, :ResourcePartitionId, :ResourcePartitionName, :Queue, :GroupId, :ClusterId, :DispatchStrategy, :JobPackage, :JobPackageName, :Priority, :AppId, :Uin, :SubAccountUin, :CreateTime, :UpdateTime, :JobInstanceCount, :HasRunningJobs, :AdvancedOptions, :Tags, :JobPackageSource, :RequestId
+        attr_accessor :Id, :Name, :Description, :Entrypoint, :Image, :ImagePullType, :ImagePullPolicy, :ResourceConfig, :RuntimeEnv, :Catalog, :AutoscalerOptions, :ResourceConfigId, :ResourceConfigChanged, :ResourcePartitionId, :ResourcePartitionName, :Queue, :GroupId, :ClusterId, :DispatchStrategy, :SubmissionTarget, :JobPackage, :JobPackageName, :Priority, :AppId, :Uin, :SubAccountUin, :CreateTime, :UpdateTime, :JobInstanceCount, :HasRunningJobs, :AdvancedOptions, :Tags, :GroupName, :ClusterName, :JobPackageSource, :SubAccountName, :RequestId
 
-        def initialize(id=nil, name=nil, description=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourceconfig=nil, runtimeenv=nil, catalog=nil, autoscaleroptions=nil, resourceconfigid=nil, resourceconfigchanged=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, groupid=nil, clusterid=nil, dispatchstrategy=nil, jobpackage=nil, jobpackagename=nil, priority=nil, appid=nil, uin=nil, subaccountuin=nil, createtime=nil, updatetime=nil, jobinstancecount=nil, hasrunningjobs=nil, advancedoptions=nil, tags=nil, jobpackagesource=nil, requestid=nil)
+        def initialize(id=nil, name=nil, description=nil, entrypoint=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourceconfig=nil, runtimeenv=nil, catalog=nil, autoscaleroptions=nil, resourceconfigid=nil, resourceconfigchanged=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, groupid=nil, clusterid=nil, dispatchstrategy=nil, submissiontarget=nil, jobpackage=nil, jobpackagename=nil, priority=nil, appid=nil, uin=nil, subaccountuin=nil, createtime=nil, updatetime=nil, jobinstancecount=nil, hasrunningjobs=nil, advancedoptions=nil, tags=nil, groupname=nil, clustername=nil, jobpackagesource=nil, subaccountname=nil, requestid=nil)
           @Id = id
           @Name = name
           @Description = description
@@ -39481,6 +39729,7 @@ module TencentCloud
           @GroupId = groupid
           @ClusterId = clusterid
           @DispatchStrategy = dispatchstrategy
+          @SubmissionTarget = submissiontarget
           @JobPackage = jobpackage
           @JobPackageName = jobpackagename
           @Priority = priority
@@ -39493,7 +39742,10 @@ module TencentCloud
           @HasRunningJobs = hasrunningjobs
           @AdvancedOptions = advancedoptions
           @Tags = tags
+          @GroupName = groupname
+          @ClusterName = clustername
           @JobPackageSource = jobpackagesource
+          @SubAccountName = subaccountname
           @RequestId = requestid
         end
 
@@ -39517,6 +39769,7 @@ module TencentCloud
           @GroupId = params['GroupId']
           @ClusterId = params['ClusterId']
           @DispatchStrategy = params['DispatchStrategy']
+          @SubmissionTarget = params['SubmissionTarget']
           @JobPackage = params['JobPackage']
           @JobPackageName = params['JobPackageName']
           @Priority = params['Priority']
@@ -39536,7 +39789,10 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @GroupName = params['GroupName']
+          @ClusterName = params['ClusterName']
           @JobPackageSource = params['JobPackageSource']
+          @SubAccountName = params['SubAccountName']
           @RequestId = params['RequestId']
         end
       end
@@ -39836,6 +40092,8 @@ module TencentCloud
 
       # UpdateLab请求参数结构体
       class UpdateLabRequest < TencentCloud::Common::AbstractModel
+        # @param Id: <p>数据实验室ID</p>
+        # @type Id: String
         # @param Name: <p>数据实验室名称</p>
         # @type Name: String
         # @param Image: <p>Ray 集群镜像地址（可选，OpenAPI/SDK 高级控制入口）。前端不再传递此字段；为空时后端按 R1（镜像表查询命中）→ R2（同值 fallback）顺序自动派生。非空时直接作为 Ray 集群镜像，跳过派生（EXPLICIT），且后端不校验其与 LabImage 的兼容性。</p>
@@ -39846,20 +40104,28 @@ module TencentCloud
         # @type Description: String
         # @param ImagePullPolicy: <p>镜像拉取策略（Always, IfNotPresent, Never）</p>
         # @type ImagePullPolicy: String
+        # @param ResourceConfig: <p>资源配置</p>
+        # @type ResourceConfig: String
         # @param ResourceConfigId: <p>资源配置ID</p>
         # @type ResourceConfigId: String
+        # @param Catalog: <p>存储卷和挂载卷配置</p>
+        # @type Catalog: String
         # @param GroupId: <p>计算组 ID</p>
         # @type GroupId: String
         # @param ResourcePartitionId: <p>资源分区ID</p>
         # @type ResourcePartitionId: String
         # @param Queue: <p>队列名称</p>
         # @type Queue: String
+        # @param ServiceTypes: <p>服务类型列表(VSCODE, JUPYTER, WEBSHELL)，不填则使用默认配置</p>
+        # @type ServiceTypes: Array
         # @param ExampleId: <p>案例ID，当 startMode=EXAMPLE 时必填</p>
         # @type ExampleId: String
         # @param CodeArchiveUrl: <p>案例代码包地址，当 startMode=EXAMPLE 时填写</p>
         # @type CodeArchiveUrl: String
         # @param LabImagePullPolicy: <p>Lab sidecar 镜像拉取策略（Always, IfNotPresent, Never）</p>
         # @type LabImagePullPolicy: String
+        # @param AdvancedOptions: <p>高级参数（扁平 Key-Value 的 JSON 字符串），Key 以 spec. 开头，按 RayCluster CRD 下钻；详见 ADVANCED_CLUSTER_OPTIONS_DESIGN.md</p>
+        # @type AdvancedOptions: String
         # @param Priority: <p>优先级（1-9，数字越大优先级越高）</p>
         # @type Priority: Integer
         # @param EnableToken: <p>是否开启token认证</p>
@@ -39868,6 +40134,8 @@ module TencentCloud
         # @type Tags: Array
         # @param PersistentWorkDir: <p>持久化工作目录配置（可选）。启用后将 COS/CFS 指定路径挂载到容器内 /workspace 工作目录，与现有 Catalog 的卷配置互斥（不允许同时在 Catalog 中显式声明 MountPath=/workspace）。</p>
         # @type PersistentWorkDir: :class:`Tencentcloud::Dlc.v20210125.models.PersistentWorkDir`
+        # @param AutoscalerOptions: <p>弹性伸缩配置（JSON）</p>
+        # @type AutoscalerOptions: String
         # @param ImagePullType: <p>镜像拉取类型（BuiltIn: 内置, Custom: 自定义-TCR, CustomCcr: 自定义-CCR）</p>
         # @type ImagePullType: String
         # @param LabImagePullType: <p>Lab sidecar 镜像拉取类型（BuiltIn: 内置, Custom: 自定义-TCR, CustomCcr: 自定义-CCR）</p>
@@ -39875,43 +40143,54 @@ module TencentCloud
         # @param NetworkConfig: <p>用户网络配置(JSON，跨租户 ENI 等)</p>
         # @type NetworkConfig: String
 
-        attr_accessor :Name, :Image, :LabImage, :Description, :ImagePullPolicy, :ResourceConfigId, :GroupId, :ResourcePartitionId, :Queue, :ExampleId, :CodeArchiveUrl, :LabImagePullPolicy, :Priority, :EnableToken, :Tags, :PersistentWorkDir, :ImagePullType, :LabImagePullType, :NetworkConfig
+        attr_accessor :Id, :Name, :Image, :LabImage, :Description, :ImagePullPolicy, :ResourceConfig, :ResourceConfigId, :Catalog, :GroupId, :ResourcePartitionId, :Queue, :ServiceTypes, :ExampleId, :CodeArchiveUrl, :LabImagePullPolicy, :AdvancedOptions, :Priority, :EnableToken, :Tags, :PersistentWorkDir, :AutoscalerOptions, :ImagePullType, :LabImagePullType, :NetworkConfig
 
-        def initialize(name=nil, image=nil, labimage=nil, description=nil, imagepullpolicy=nil, resourceconfigid=nil, groupid=nil, resourcepartitionid=nil, queue=nil, exampleid=nil, codearchiveurl=nil, labimagepullpolicy=nil, priority=nil, enabletoken=nil, tags=nil, persistentworkdir=nil, imagepulltype=nil, labimagepulltype=nil, networkconfig=nil)
+        def initialize(id=nil, name=nil, image=nil, labimage=nil, description=nil, imagepullpolicy=nil, resourceconfig=nil, resourceconfigid=nil, catalog=nil, groupid=nil, resourcepartitionid=nil, queue=nil, servicetypes=nil, exampleid=nil, codearchiveurl=nil, labimagepullpolicy=nil, advancedoptions=nil, priority=nil, enabletoken=nil, tags=nil, persistentworkdir=nil, autoscaleroptions=nil, imagepulltype=nil, labimagepulltype=nil, networkconfig=nil)
+          @Id = id
           @Name = name
           @Image = image
           @LabImage = labimage
           @Description = description
           @ImagePullPolicy = imagepullpolicy
+          @ResourceConfig = resourceconfig
           @ResourceConfigId = resourceconfigid
+          @Catalog = catalog
           @GroupId = groupid
           @ResourcePartitionId = resourcepartitionid
           @Queue = queue
+          @ServiceTypes = servicetypes
           @ExampleId = exampleid
           @CodeArchiveUrl = codearchiveurl
           @LabImagePullPolicy = labimagepullpolicy
+          @AdvancedOptions = advancedoptions
           @Priority = priority
           @EnableToken = enabletoken
           @Tags = tags
           @PersistentWorkDir = persistentworkdir
+          @AutoscalerOptions = autoscaleroptions
           @ImagePullType = imagepulltype
           @LabImagePullType = labimagepulltype
           @NetworkConfig = networkconfig
         end
 
         def deserialize(params)
+          @Id = params['Id']
           @Name = params['Name']
           @Image = params['Image']
           @LabImage = params['LabImage']
           @Description = params['Description']
           @ImagePullPolicy = params['ImagePullPolicy']
+          @ResourceConfig = params['ResourceConfig']
           @ResourceConfigId = params['ResourceConfigId']
+          @Catalog = params['Catalog']
           @GroupId = params['GroupId']
           @ResourcePartitionId = params['ResourcePartitionId']
           @Queue = params['Queue']
+          @ServiceTypes = params['ServiceTypes']
           @ExampleId = params['ExampleId']
           @CodeArchiveUrl = params['CodeArchiveUrl']
           @LabImagePullPolicy = params['LabImagePullPolicy']
+          @AdvancedOptions = params['AdvancedOptions']
           @Priority = params['Priority']
           @EnableToken = params['EnableToken']
           unless params['Tags'].nil?
@@ -39926,6 +40205,7 @@ module TencentCloud
             @PersistentWorkDir = PersistentWorkDir.new
             @PersistentWorkDir.deserialize(params['PersistentWorkDir'])
           end
+          @AutoscalerOptions = params['AutoscalerOptions']
           @ImagePullType = params['ImagePullType']
           @LabImagePullType = params['LabImagePullType']
           @NetworkConfig = params['NetworkConfig']
@@ -39962,8 +40242,18 @@ module TencentCloud
         # @type AppId: Integer
         # @param Uin: <p>用户UIN</p>
         # @type Uin: String
+        # @param SubAccountUin: <p>子用户UIN</p>
+        # @type SubAccountUin: String
         # @param Status: <p>集群状态</p>
         # @type Status: String
+        # @param StatusMessage: <p>状态详情/错误信息</p>
+        # @type StatusMessage: String
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: Integer
+        # @param GroupName: <p>所属集群组名称</p>
+        # @type GroupName: String
         # @param GroupId: <p>计算组 ID</p>
         # @type GroupId: String
         # @param ResourceConfig: <p>资源配置(JSON)</p>
@@ -39972,14 +40262,32 @@ module TencentCloud
         # @type ResourceConfigId: String
         # @param Image: <p>Ray 集群镜像地址（可选，OpenAPI/SDK 高级控制入口）。前端不再传递此字段；为空时后端按 R1（镜像表查询命中）→ R2（同值 fallback）顺序自动派生。非空时直接作为 Ray 集群镜像，跳过派生（EXPLICIT），且后端不校验其与 LabImage 的兼容性。</p>
         # @type Image: String
+        # @param Catalog: <p>存储卷和挂载卷配置(JSON)</p>
+        # @type Catalog: String
+        # @param HistoryUrl: <p>Dashboard URL / 历史记录链接</p>
+        # @type HistoryUrl: String
         # @param ImagePullPolicy: <p>镜像拉取策略</p>
         # @type ImagePullPolicy: String
+        # @param AdvancedOptions: <p>高级参数（扁平 Key-Value 的 JSON 字符串），Key 以 spec. 开头，按 RayCluster CRD 下钻；详见 ADVANCED_CLUSTER_OPTIONS_DESIGN.md</p>
+        # @type AdvancedOptions: String
         # @param Priority: <p>优先级（1-9，数字越大优先级越高）</p>
         # @type Priority: Integer
+        # @param StartTime: <p>启动时间（最近一次启动）</p>
+        # @type StartTime: Integer
+        # @param StopTime: <p>停止时间（最近一次停止/休眠）</p>
+        # @type StopTime: Integer
+        # @param DeleteTime: <p>删除时间</p>
+        # @type DeleteTime: Integer
+        # @param Tags: <p>标签列表（TagKey-TagValue）</p>
+        # @type Tags: Array
         # @param PersistentWorkDir: <p>持久化工作目录配置（可选）。启用后将 COS/CFS 指定路径挂载到容器内 /workspace 工作目录，与现有 Catalog 的卷配置互斥（不允许同时在 Catalog 中显式声明 MountPath=/workspace）。</p>
         # @type PersistentWorkDir: :class:`Tencentcloud::Dlc.v20210125.models.PersistentWorkDir`
         # @param EnableToken: <p>是否开启token认证</p>
         # @type EnableToken: Boolean
+        # @param Token: <p>Token 认证密钥（开启 token 认证时由系统生成）</p>
+        # @type Token: String
+        # @param AutoscalerOptions: <p>弹性伸缩配置（JSON）</p>
+        # @type AutoscalerOptions: String
         # @param LabImagePullType: <p>Lab sidecar 镜像拉取类型（BuiltIn: 内置, Custom: 自定义-TCR, CustomCcr: 自定义-CCR）</p>
         # @type LabImagePullType: String
         # @param SubAccountName: <p>子用户名称（由聚合层通过 CAM 接口回填）</p>
@@ -39991,9 +40299,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ExampleId, :CodeArchiveUrl, :Services, :LabImage, :LabImagePullPolicy, :Id, :Type, :Name, :Description, :ResourcePartitionId, :ResourcePartitionName, :Queue, :AppId, :Uin, :Status, :GroupId, :ResourceConfig, :ResourceConfigId, :Image, :ImagePullPolicy, :Priority, :PersistentWorkDir, :EnableToken, :LabImagePullType, :SubAccountName, :ImagePullType, :NetworkConfig, :RequestId
+        attr_accessor :ExampleId, :CodeArchiveUrl, :Services, :LabImage, :LabImagePullPolicy, :Id, :Type, :Name, :Description, :ResourcePartitionId, :ResourcePartitionName, :Queue, :AppId, :Uin, :SubAccountUin, :Status, :StatusMessage, :CreateTime, :UpdateTime, :GroupName, :GroupId, :ResourceConfig, :ResourceConfigId, :Image, :Catalog, :HistoryUrl, :ImagePullPolicy, :AdvancedOptions, :Priority, :StartTime, :StopTime, :DeleteTime, :Tags, :PersistentWorkDir, :EnableToken, :Token, :AutoscalerOptions, :LabImagePullType, :SubAccountName, :ImagePullType, :NetworkConfig, :RequestId
 
-        def initialize(exampleid=nil, codearchiveurl=nil, services=nil, labimage=nil, labimagepullpolicy=nil, id=nil, type=nil, name=nil, description=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, appid=nil, uin=nil, status=nil, groupid=nil, resourceconfig=nil, resourceconfigid=nil, image=nil, imagepullpolicy=nil, priority=nil, persistentworkdir=nil, enabletoken=nil, labimagepulltype=nil, subaccountname=nil, imagepulltype=nil, networkconfig=nil, requestid=nil)
+        def initialize(exampleid=nil, codearchiveurl=nil, services=nil, labimage=nil, labimagepullpolicy=nil, id=nil, type=nil, name=nil, description=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, appid=nil, uin=nil, subaccountuin=nil, status=nil, statusmessage=nil, createtime=nil, updatetime=nil, groupname=nil, groupid=nil, resourceconfig=nil, resourceconfigid=nil, image=nil, catalog=nil, historyurl=nil, imagepullpolicy=nil, advancedoptions=nil, priority=nil, starttime=nil, stoptime=nil, deletetime=nil, tags=nil, persistentworkdir=nil, enabletoken=nil, token=nil, autoscaleroptions=nil, labimagepulltype=nil, subaccountname=nil, imagepulltype=nil, networkconfig=nil, requestid=nil)
           @ExampleId = exampleid
           @CodeArchiveUrl = codearchiveurl
           @Services = services
@@ -40008,15 +40316,29 @@ module TencentCloud
           @Queue = queue
           @AppId = appid
           @Uin = uin
+          @SubAccountUin = subaccountuin
           @Status = status
+          @StatusMessage = statusmessage
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @GroupName = groupname
           @GroupId = groupid
           @ResourceConfig = resourceconfig
           @ResourceConfigId = resourceconfigid
           @Image = image
+          @Catalog = catalog
+          @HistoryUrl = historyurl
           @ImagePullPolicy = imagepullpolicy
+          @AdvancedOptions = advancedoptions
           @Priority = priority
+          @StartTime = starttime
+          @StopTime = stoptime
+          @DeleteTime = deletetime
+          @Tags = tags
           @PersistentWorkDir = persistentworkdir
           @EnableToken = enabletoken
+          @Token = token
+          @AutoscalerOptions = autoscaleroptions
           @LabImagePullType = labimagepulltype
           @SubAccountName = subaccountname
           @ImagePullType = imagepulltype
@@ -40046,18 +40368,39 @@ module TencentCloud
           @Queue = params['Queue']
           @AppId = params['AppId']
           @Uin = params['Uin']
+          @SubAccountUin = params['SubAccountUin']
           @Status = params['Status']
+          @StatusMessage = params['StatusMessage']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @GroupName = params['GroupName']
           @GroupId = params['GroupId']
           @ResourceConfig = params['ResourceConfig']
           @ResourceConfigId = params['ResourceConfigId']
           @Image = params['Image']
+          @Catalog = params['Catalog']
+          @HistoryUrl = params['HistoryUrl']
           @ImagePullPolicy = params['ImagePullPolicy']
+          @AdvancedOptions = params['AdvancedOptions']
           @Priority = params['Priority']
+          @StartTime = params['StartTime']
+          @StopTime = params['StopTime']
+          @DeleteTime = params['DeleteTime']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              tag_tmp = Tag.new
+              tag_tmp.deserialize(i)
+              @Tags << tag_tmp
+            end
+          end
           unless params['PersistentWorkDir'].nil?
             @PersistentWorkDir = PersistentWorkDir.new
             @PersistentWorkDir.deserialize(params['PersistentWorkDir'])
           end
           @EnableToken = params['EnableToken']
+          @Token = params['Token']
+          @AutoscalerOptions = params['AutoscalerOptions']
           @LabImagePullType = params['LabImagePullType']
           @SubAccountName = params['SubAccountName']
           @ImagePullType = params['ImagePullType']
@@ -40328,12 +40671,16 @@ module TencentCloud
       class UpdateRayJobPriorityResponse < TencentCloud::Common::AbstractModel
         # @param Id: <p>任务ID</p>
         # @type Id: String
+        # @param ClusterId: <p>所属集群ID</p>
+        # @type ClusterId: String
         # @param ResourcePartitionId: <p>所属资源分区ID</p>
         # @type ResourcePartitionId: String
         # @param ResourcePartitionName: <p>默认资源分区名称</p>
         # @type ResourcePartitionName: String
         # @param Queue: <p>所属队列名称</p>
         # @type Queue: String
+        # @param SubmissionId: <p>Ray Submission ID</p>
+        # @type SubmissionId: String
         # @param Status: <p>任务状态</p>
         # @type Status: String
         # @param Entrypoint: <p>入口命令</p>
@@ -40346,6 +40693,8 @@ module TencentCloud
         # @type Uin: String
         # @param SubAccountUin: <p>创建账号</p>
         # @type SubAccountUin: String
+        # @param SubAccountName: <p>子用户名称（由聚合层通过 CAM 接口回填）</p>
+        # @type SubAccountName: String
         # @param HistoryUrl: <p>历史记录链接</p>
         # @type HistoryUrl: String
         # @param RunningTime: <p>运行时间(ms)</p>
@@ -40354,6 +40703,10 @@ module TencentCloud
         # @type FinishTime: Integer
         # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: Integer
+        # @param ErrorMessage: <p>失败原因/错误信息</p>
+        # @type ErrorMessage: String
+        # @param RuntimeEnv: <p>运行时环境配置(JSON)</p>
+        # @type RuntimeEnv: String
         # @param Image: <p>镜像地址</p>
         # @type Image: String
         # @param ResourceConfig: <p>资源配置(JSON)</p>
@@ -40362,65 +40715,90 @@ module TencentCloud
         # @type Catalog: String
         # @param ImagePullPolicy: <p>镜像拉取策略</p>
         # @type ImagePullPolicy: String
+        # @param AutoscalerOptions: <p>弹性伸缩配置(JSON)</p>
+        # @type AutoscalerOptions: String
         # @param SpecId: <p>来源配置ID</p>
         # @type SpecId: String
+        # @param SpecName: <p>来源配置名称</p>
+        # @type SpecName: String
+        # @param AdvancedOptions: <p>高级参数，JSON 字符串</p>
+        # @type AdvancedOptions: String
         # @param Priority: <p>作业优先级（1-9，数字越大优先级越高）</p>
         # @type Priority: Integer
         # @param Tags: <p>标签列表（TagKey-TagValue），用于将资源与腾讯云标签系统中的标签绑定</p>
         # @type Tags: Array
         # @param JobSource: <p>业务来源标识（调用上下文，长度上限 64，禁止控制字符）</p>
         # @type JobSource: String
+        # @param ClusterName: <p>集群名称</p>
+        # @type ClusterName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Id, :ResourcePartitionId, :ResourcePartitionName, :Queue, :Status, :Entrypoint, :JobName, :AppId, :Uin, :SubAccountUin, :HistoryUrl, :RunningTime, :FinishTime, :CreateTime, :Image, :ResourceConfig, :Catalog, :ImagePullPolicy, :SpecId, :Priority, :Tags, :JobSource, :RequestId
+        attr_accessor :Id, :ClusterId, :ResourcePartitionId, :ResourcePartitionName, :Queue, :SubmissionId, :Status, :Entrypoint, :JobName, :AppId, :Uin, :SubAccountUin, :SubAccountName, :HistoryUrl, :RunningTime, :FinishTime, :CreateTime, :ErrorMessage, :RuntimeEnv, :Image, :ResourceConfig, :Catalog, :ImagePullPolicy, :AutoscalerOptions, :SpecId, :SpecName, :AdvancedOptions, :Priority, :Tags, :JobSource, :ClusterName, :RequestId
 
-        def initialize(id=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, status=nil, entrypoint=nil, jobname=nil, appid=nil, uin=nil, subaccountuin=nil, historyurl=nil, runningtime=nil, finishtime=nil, createtime=nil, image=nil, resourceconfig=nil, catalog=nil, imagepullpolicy=nil, specid=nil, priority=nil, tags=nil, jobsource=nil, requestid=nil)
+        def initialize(id=nil, clusterid=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, submissionid=nil, status=nil, entrypoint=nil, jobname=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, historyurl=nil, runningtime=nil, finishtime=nil, createtime=nil, errormessage=nil, runtimeenv=nil, image=nil, resourceconfig=nil, catalog=nil, imagepullpolicy=nil, autoscaleroptions=nil, specid=nil, specname=nil, advancedoptions=nil, priority=nil, tags=nil, jobsource=nil, clustername=nil, requestid=nil)
           @Id = id
+          @ClusterId = clusterid
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
           @Queue = queue
+          @SubmissionId = submissionid
           @Status = status
           @Entrypoint = entrypoint
           @JobName = jobname
           @AppId = appid
           @Uin = uin
           @SubAccountUin = subaccountuin
+          @SubAccountName = subaccountname
           @HistoryUrl = historyurl
           @RunningTime = runningtime
           @FinishTime = finishtime
           @CreateTime = createtime
+          @ErrorMessage = errormessage
+          @RuntimeEnv = runtimeenv
           @Image = image
           @ResourceConfig = resourceconfig
           @Catalog = catalog
           @ImagePullPolicy = imagepullpolicy
+          @AutoscalerOptions = autoscaleroptions
           @SpecId = specid
+          @SpecName = specname
+          @AdvancedOptions = advancedoptions
           @Priority = priority
           @Tags = tags
           @JobSource = jobsource
+          @ClusterName = clustername
           @RequestId = requestid
         end
 
         def deserialize(params)
           @Id = params['Id']
+          @ClusterId = params['ClusterId']
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
           @Queue = params['Queue']
+          @SubmissionId = params['SubmissionId']
           @Status = params['Status']
           @Entrypoint = params['Entrypoint']
           @JobName = params['JobName']
           @AppId = params['AppId']
           @Uin = params['Uin']
           @SubAccountUin = params['SubAccountUin']
+          @SubAccountName = params['SubAccountName']
           @HistoryUrl = params['HistoryUrl']
           @RunningTime = params['RunningTime']
           @FinishTime = params['FinishTime']
           @CreateTime = params['CreateTime']
+          @ErrorMessage = params['ErrorMessage']
+          @RuntimeEnv = params['RuntimeEnv']
           @Image = params['Image']
           @ResourceConfig = params['ResourceConfig']
           @Catalog = params['Catalog']
           @ImagePullPolicy = params['ImagePullPolicy']
+          @AutoscalerOptions = params['AutoscalerOptions']
           @SpecId = params['SpecId']
+          @SpecName = params['SpecName']
+          @AdvancedOptions = params['AdvancedOptions']
           @Priority = params['Priority']
           unless params['Tags'].nil?
             @Tags = []
@@ -40431,6 +40809,7 @@ module TencentCloud
             end
           end
           @JobSource = params['JobSource']
+          @ClusterName = params['ClusterName']
           @RequestId = params['RequestId']
         end
       end

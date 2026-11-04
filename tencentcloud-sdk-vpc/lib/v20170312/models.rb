@@ -8613,17 +8613,21 @@ module TencentCloud
 
       # DeleteHaVip请求参数结构体
       class DeleteHaVipRequest < TencentCloud::Common::AbstractModel
-        # @param HaVipId: `HAVIP`唯一`ID`，形如：`havip-9o233uri`。
+        # @param HaVipId: <p><code>HAVIP</code>唯一<code>ID</code>，形如：<code>havip-9o233uri</code>。</p>
         # @type HaVipId: String
+        # @param SkipTerminationProtection: <p>忽略删除保护。</p>
+        # @type SkipTerminationProtection: Boolean
 
-        attr_accessor :HaVipId
+        attr_accessor :HaVipId, :SkipTerminationProtection
 
-        def initialize(havipid=nil)
+        def initialize(havipid=nil, skipterminationprotection=nil)
           @HaVipId = havipid
+          @SkipTerminationProtection = skipterminationprotection
         end
 
         def deserialize(params)
           @HaVipId = params['HaVipId']
+          @SkipTerminationProtection = params['SkipTerminationProtection']
         end
       end
 
@@ -22567,21 +22571,29 @@ module TencentCloud
 
       # ModifyHaVipAttribute请求参数结构体
       class ModifyHaVipAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param HaVipId: `HAVIP`唯一`ID`，形如：`havip-9o233uri`。
+        # @param HaVipId: <p><code>HAVIP</code>唯一<code>ID</code>，形如：<code>havip-9o233uri</code>。</p>
         # @type HaVipId: String
-        # @param HaVipName: `HAVIP`名称，可任意命名，但不得超过60个字符。
+        # @param HaVipName: <p><code>HAVIP</code>名称，可任意命名，但不得超过60个字符。</p>
         # @type HaVipName: String
+        # @param TerminationProtection: <p>删除保护。</p>
+        # @type TerminationProtection: Boolean
+        # @param TrafficProtection: <p>流量保护。</p>
+        # @type TrafficProtection: Boolean
 
-        attr_accessor :HaVipId, :HaVipName
+        attr_accessor :HaVipId, :HaVipName, :TerminationProtection, :TrafficProtection
 
-        def initialize(havipid=nil, havipname=nil)
+        def initialize(havipid=nil, havipname=nil, terminationprotection=nil, trafficprotection=nil)
           @HaVipId = havipid
           @HaVipName = havipname
+          @TerminationProtection = terminationprotection
+          @TrafficProtection = trafficprotection
         end
 
         def deserialize(params)
           @HaVipId = params['HaVipId']
           @HaVipName = params['HaVipName']
+          @TerminationProtection = params['TerminationProtection']
+          @TrafficProtection = params['TrafficProtection']
         end
       end
 

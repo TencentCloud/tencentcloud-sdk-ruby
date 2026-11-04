@@ -3194,6 +3194,53 @@ module TencentCloud
         end
       end
 
+      # 文件到达触发信息
+      class FileArrivalConfig < TencentCloud::Common::AbstractModel
+        # @param CosBucket: <p>运行命中的文件所在COS桶名</p><p>举例：dlc-sh-store-139153****</p><p>入参不填，如果填写则忽略；</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosBucket: String
+        # @param CosRegion: <p>运行命中的文件所在COS地域</p><p>举例：ap-shanghai</p><p>入参不填，如果填写则忽略；</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CosRegion: String
+        # @param FileStoragePath: <p>文件存储路径</p><p>举例：cosn://dlc-sh-store-139153****/test/</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileStoragePath: String
+        # @param FileNamePattern: <p>文件名匹配规则</p><p>举例：</p><ul><li>空: 当前监听范围内的全部文件</li><li><code>*.csv: 任意以 .csv 结尾的文件名</code></li><li><code>orders_*.csv: orders_ 开头且以 .csv 结尾的文件名</code></li><li>orders.csv: 精确匹配 orders.csv</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileNamePattern: String
+        # @param Recursive: <p>是否包含子目录</p><p>默认值：false</p><p>是否递归匹配子目录，默认 false</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Recursive: Boolean
+        # @param MinTriggerIntervalTime: <p>最小触发间隔时间</p><p>参数格式：数字</p><p>默认值：300</p><p>单位：秒；默认 300秒（5 分钟）；60-86400 秒（1–1440 分钟）；两次触发之间的最小间隔。期间内到达的文件，需等待该时间结束后才会触发运行。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinTriggerIntervalTime: String
+        # @param BatchWaitTime: <p>批次等待时间</p><p>参数格式：数字</p><p>默认值：120</p><p>单位：秒；默认 120秒（2 分钟）；60-3600 秒（1–60 分钟）；文件到达后等待该时长才触发运行。若等待期间再次有新文件到达，则重新开始计时。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BatchWaitTime: String
+
+        attr_accessor :CosBucket, :CosRegion, :FileStoragePath, :FileNamePattern, :Recursive, :MinTriggerIntervalTime, :BatchWaitTime
+
+        def initialize(cosbucket=nil, cosregion=nil, filestoragepath=nil, filenamepattern=nil, recursive=nil, mintriggerintervaltime=nil, batchwaittime=nil)
+          @CosBucket = cosbucket
+          @CosRegion = cosregion
+          @FileStoragePath = filestoragepath
+          @FileNamePattern = filenamepattern
+          @Recursive = recursive
+          @MinTriggerIntervalTime = mintriggerintervaltime
+          @BatchWaitTime = batchwaittime
+        end
+
+        def deserialize(params)
+          @CosBucket = params['CosBucket']
+          @CosRegion = params['CosRegion']
+          @FileStoragePath = params['FileStoragePath']
+          @FileNamePattern = params['FileNamePattern']
+          @Recursive = params['Recursive']
+          @MinTriggerIntervalTime = params['MinTriggerIntervalTime']
+          @BatchWaitTime = params['BatchWaitTime']
+        end
+      end
+
       # 文件运行配置
       class FileConfig < TencentCloud::Common::AbstractModel
         # @param Params: <p>高级运行参数，变量替换用，map-json String,String</p>
@@ -4943,10 +4990,13 @@ module TencentCloud
         # @param ScheduledTime: <p>计划调度时间</p><p>参数格式：毫秒时间戳（UTC）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduledTime: String
+        # @param FileArrivalConfig: <p>工作流调度文件到达方式配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileArrivalConfig: :class:`Tencentcloud::Databuddy.v20260715.models.FileArrivalConfig`
 
-        attr_accessor :TaskName, :WorkflowTaskRunId, :RunState, :WorkspaceId, :WorkflowId, :WorkflowRunId, :TaskId, :TaskTypeName, :TaskVersionId, :TriggerType, :ResourceGroupId, :ErrorCodeString, :RunUserUin, :RunUserName, :CreateUserUin, :JobId, :CreateTime, :UpdateTime, :DependenceFinishedTime, :RunStartTime, :RunEndTime, :RunCostTime, :WaitTime, :IssueTime, :TimeZone, :DependOnList, :RunParams, :TaskTypeExtensions, :LeftCoordinate, :TopCoordinate, :RetryTimes, :WorkflowName, :RerunTimes, :IsLatestRun, :ResourceGroupInfoList, :ErrorMessage, :RunResult, :InnerWorkflowTaskRun, :ScheduledTime
+        attr_accessor :TaskName, :WorkflowTaskRunId, :RunState, :WorkspaceId, :WorkflowId, :WorkflowRunId, :TaskId, :TaskTypeName, :TaskVersionId, :TriggerType, :ResourceGroupId, :ErrorCodeString, :RunUserUin, :RunUserName, :CreateUserUin, :JobId, :CreateTime, :UpdateTime, :DependenceFinishedTime, :RunStartTime, :RunEndTime, :RunCostTime, :WaitTime, :IssueTime, :TimeZone, :DependOnList, :RunParams, :TaskTypeExtensions, :LeftCoordinate, :TopCoordinate, :RetryTimes, :WorkflowName, :RerunTimes, :IsLatestRun, :ResourceGroupInfoList, :ErrorMessage, :RunResult, :InnerWorkflowTaskRun, :ScheduledTime, :FileArrivalConfig
 
-        def initialize(taskname=nil, workflowtaskrunid=nil, runstate=nil, workspaceid=nil, workflowid=nil, workflowrunid=nil, taskid=nil, tasktypename=nil, taskversionid=nil, triggertype=nil, resourcegroupid=nil, errorcodestring=nil, runuseruin=nil, runusername=nil, createuseruin=nil, jobid=nil, createtime=nil, updatetime=nil, dependencefinishedtime=nil, runstarttime=nil, runendtime=nil, runcosttime=nil, waittime=nil, issuetime=nil, timezone=nil, dependonlist=nil, runparams=nil, tasktypeextensions=nil, leftcoordinate=nil, topcoordinate=nil, retrytimes=nil, workflowname=nil, reruntimes=nil, islatestrun=nil, resourcegroupinfolist=nil, errormessage=nil, runresult=nil, innerworkflowtaskrun=nil, scheduledtime=nil)
+        def initialize(taskname=nil, workflowtaskrunid=nil, runstate=nil, workspaceid=nil, workflowid=nil, workflowrunid=nil, taskid=nil, tasktypename=nil, taskversionid=nil, triggertype=nil, resourcegroupid=nil, errorcodestring=nil, runuseruin=nil, runusername=nil, createuseruin=nil, jobid=nil, createtime=nil, updatetime=nil, dependencefinishedtime=nil, runstarttime=nil, runendtime=nil, runcosttime=nil, waittime=nil, issuetime=nil, timezone=nil, dependonlist=nil, runparams=nil, tasktypeextensions=nil, leftcoordinate=nil, topcoordinate=nil, retrytimes=nil, workflowname=nil, reruntimes=nil, islatestrun=nil, resourcegroupinfolist=nil, errormessage=nil, runresult=nil, innerworkflowtaskrun=nil, scheduledtime=nil, filearrivalconfig=nil)
           @TaskName = taskname
           @WorkflowTaskRunId = workflowtaskrunid
           @RunState = runstate
@@ -4986,6 +5036,7 @@ module TencentCloud
           @RunResult = runresult
           @InnerWorkflowTaskRun = innerworkflowtaskrun
           @ScheduledTime = scheduledtime
+          @FileArrivalConfig = filearrivalconfig
         end
 
         def deserialize(params)
@@ -5038,6 +5089,10 @@ module TencentCloud
             @InnerWorkflowTaskRun.deserialize(params['InnerWorkflowTaskRun'])
           end
           @ScheduledTime = params['ScheduledTime']
+          unless params['FileArrivalConfig'].nil?
+            @FileArrivalConfig = FileArrivalConfig.new
+            @FileArrivalConfig.deserialize(params['FileArrivalConfig'])
+          end
         end
       end
 
@@ -5526,7 +5581,7 @@ module TencentCloud
         end
       end
 
-      # 内嵌工作流任务运行列表选项（仅限 FOR_EACH 任务使用）
+      # <p>嵌套工作流任务运行的查询选项。<br>PageNumber：页码，从 1 开始<br>PageSize：每页数量，最大 200<br>RunStates：按运行状态过滤，如 ["SUCCESS"]</p>
       class InnerWorkflowTaskRunListOption < TencentCloud::Common::AbstractModel
         # @param PageNumber: <p>分页页码，从 1 开始。非必填，默认 1</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -10597,6 +10652,72 @@ module TencentCloud
       # | CodeFileId     | 代码文件ID           | Source 为 5 时，需从工作空间文件选择组件获取所选文件/文件夹对应的ID | Source 为 5 时，必填 |
       # | WorkspaceEntryType | 工作空间入口类型 | Source 为 5 时，所选工作空间条目的类型：FILE（文件）/ FOLDER（文件夹），由前端选择器随选择目标自动写入 | Source 为 5 时，必填 |
 
+      # ### 10. DEPENDENCY_SENSOR（依赖检查）任务类型
+
+      # #### 属性配置
+
+      # | 属性键                      | 属性名称       | 描述                                                       | 是否必需 |
+      # | --------------------------- | -------------- | ---------------------------------------------------------- | -------- |
+      # | checkIntervalSeconds        | 检查间隔（秒） | 轮询检查间隔，数字字符串，取值 5~600，缺省默认 10          | 否       |
+      # | workflowDependencyCondition | 依赖工作流配置 | 依赖条件 JSON 字符串，结构见下方说明                       | 是       |
+
+      # > 说明：
+      # > 1. 属性键大小写敏感，仅允许以上两个 key，不允许重复或出现未知 key。
+      # > 2. 该任务类型不支持 `RuntimePropertyList`，传入会报错。
+
+      # #### workflowDependencyCondition 结构
+
+      # ```json
+      # {
+      #   "condition": {
+      #     "dependencies": [
+      #       {
+      #         "workflowId": "被依赖工作流ID",
+      #         "workflowName": "工作流名称",
+      #         "taskIds": [],
+      #         "timeOffsetExpression": "${yyyyMMdd-1d}",
+      #         "expectedState": "SUCCESS",
+      #         "logicalRelWithPre": "and"
+      #       }
+      #     ]
+      #   }
+      # }
+      # ```
+
+      # | 字段                 | 是否必需               | 描述                                                                 |
+      # | -------------------- | ---------------------- | -------------------------------------------------------------------- |
+      # | dependencies         | 是                     | 依赖项列表，1~20 项                                                  |
+      # | workflowId           | 是                     | 被依赖工作流 ID，不能等于当前工作流自身 ID                           |
+      # | workflowName         | 否                     | 工作流名称快照，仅用于回显，读取时以最新名称覆盖                     |
+      # | taskIds              | 否                     | 本期必须为空数组（表示依赖整个工作流），传非空值会被忽略             |
+      # | timeOffsetExpression | 是                     | 时间偏移表达式，格式见下                                             |
+      # | expectedState        | 是                     | 期望上游状态，本期仅支持 `SUCCESS`                                   |
+      # | logicalRelWithPre    | 首项可空，其余项必填   | 与前一项的逻辑关系，本期仅支持 `and`                                 |
+
+      # **timeOffsetExpression 格式**：`${基础格式[±N单位]}`
+
+      # - 基础格式：`yyyy` / `yyyyMM` / `yyyyMMdd` / `yyyyMMddHH` / `yyyyMMddHHmm` / `yyyyMMddHHmmss`
+      # - 偏移单位（大小写敏感）：`y`（年）/ `M`（月）/ `w`（周）/ `d`（天）/ `H`（时）/ `m`（分）/ `s`（秒）
+      # - 不允许包含空格
+      # - 示例：`${yyyyMMdd}`、`${yyyyMMdd-1d}`、`${yyyyMM+1y}`
+
+      # ### 11. JAR（Spark Jar）任务类型
+
+      # #### 属性配置
+
+      # | 属性键       | 属性名称     | 描述                                                                                         | 是否必需 |
+      # | ------------ | ------------ | -------------------------------------------------------------------------------------------- | -------- |
+      # | Source       | 来源         | 只支持填 5，表示来源为工作空间                                                               | 是       |
+      # | SourcePath   | Jar 文件路径 | 工作空间中 Jar 文件的完整路径，必须以 `.jar` 结尾（不区分大小写）                            | 是       |
+      # | MainClass    | 主类         | 作业入口类全限定名，如 `com.example.JobMain`，长度 1~128                                     | 是       |
+      # | ProgramArgs  | 程序参数     | 传给 main 方法的参数，单个字符串，多个参数以空格分隔，长度不超过 65536，支持 `${}` 参数      | 否       |
+      # | EngineConfig | 引擎参数     | Spark 参数（SparkConfig，最多 100 项，key 唯一）及数据访问策略（RoleArn，数字字符串）        | 否       |
+
+      # > 说明：
+      # > 1. 仅支持作业集群（DATA_COMPUTE），不支持交互式集群。
+      # > 2. 资源配置通过 `RuntimePropertyList` 传入，参见下方 RuntimePropertyList 说明（ResourceMode、ExecutorCU 等）。
+
+
       # ### RuntimePropertyList
       # <p>任务运行参数列表，用于配置任务运行时的计算资源，与 TaskTypePropertyList（任务扩展属性）区分：TaskTypePropertyList 承载任务自身的业务配置（如脚本来源、路径等），RuntimePropertyList 承载任务运行时的资源配置（如资源模式、CU规格、Executor数量等）。</p>
       # <p>主要适用于需要配置计算资源的任务类型（如 NOTEBOOK、PYTHON）。</p>
@@ -13117,10 +13238,13 @@ module TencentCloud
         # @param ScheduledTime: <p>计划调度时间</p><p>参数格式：毫秒时间戳（UTC）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduledTime: String
+        # @param FileArrivalConfig: <p>工作流调度文件到达方式配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileArrivalConfig: :class:`Tencentcloud::Databuddy.v20260715.models.FileArrivalConfig`
 
-        attr_accessor :AppId, :WorkflowName, :WorkflowId, :WorkflowRunId, :WorkspaceId, :TriggerType, :RunStartTime, :PendingStartTime, :QueueStartTime, :RunEndTime, :EndTime, :RunCostTime, :QueueCostTime, :PendingCostTime, :RunState, :ResourceGroupIds, :RunUserUin, :RunUserName, :ErrorCodeString, :WorkflowParams, :WorkflowVersionId, :SupportRerun, :CreateTime, :RerunTimes, :SelectedTaskIds, :ResourceGroupInfoList, :LabelList, :ParentWorkflowRunId, :ParentWorkflowTaskRunId, :ParentWorkflowTaskRunName, :Permission, :AdvancedParameters, :ScheduledTime
+        attr_accessor :AppId, :WorkflowName, :WorkflowId, :WorkflowRunId, :WorkspaceId, :TriggerType, :RunStartTime, :PendingStartTime, :QueueStartTime, :RunEndTime, :EndTime, :RunCostTime, :QueueCostTime, :PendingCostTime, :RunState, :ResourceGroupIds, :RunUserUin, :RunUserName, :ErrorCodeString, :WorkflowParams, :WorkflowVersionId, :SupportRerun, :CreateTime, :RerunTimes, :SelectedTaskIds, :ResourceGroupInfoList, :LabelList, :ParentWorkflowRunId, :ParentWorkflowTaskRunId, :ParentWorkflowTaskRunName, :Permission, :AdvancedParameters, :ScheduledTime, :FileArrivalConfig
 
-        def initialize(appid=nil, workflowname=nil, workflowid=nil, workflowrunid=nil, workspaceid=nil, triggertype=nil, runstarttime=nil, pendingstarttime=nil, queuestarttime=nil, runendtime=nil, endtime=nil, runcosttime=nil, queuecosttime=nil, pendingcosttime=nil, runstate=nil, resourcegroupids=nil, runuseruin=nil, runusername=nil, errorcodestring=nil, workflowparams=nil, workflowversionid=nil, supportrerun=nil, createtime=nil, reruntimes=nil, selectedtaskids=nil, resourcegroupinfolist=nil, labellist=nil, parentworkflowrunid=nil, parentworkflowtaskrunid=nil, parentworkflowtaskrunname=nil, permission=nil, advancedparameters=nil, scheduledtime=nil)
+        def initialize(appid=nil, workflowname=nil, workflowid=nil, workflowrunid=nil, workspaceid=nil, triggertype=nil, runstarttime=nil, pendingstarttime=nil, queuestarttime=nil, runendtime=nil, endtime=nil, runcosttime=nil, queuecosttime=nil, pendingcosttime=nil, runstate=nil, resourcegroupids=nil, runuseruin=nil, runusername=nil, errorcodestring=nil, workflowparams=nil, workflowversionid=nil, supportrerun=nil, createtime=nil, reruntimes=nil, selectedtaskids=nil, resourcegroupinfolist=nil, labellist=nil, parentworkflowrunid=nil, parentworkflowtaskrunid=nil, parentworkflowtaskrunname=nil, permission=nil, advancedparameters=nil, scheduledtime=nil, filearrivalconfig=nil)
           @AppId = appid
           @WorkflowName = workflowname
           @WorkflowId = workflowid
@@ -13154,6 +13278,7 @@ module TencentCloud
           @Permission = permission
           @AdvancedParameters = advancedparameters
           @ScheduledTime = scheduledtime
+          @FileArrivalConfig = filearrivalconfig
         end
 
         def deserialize(params)
@@ -13211,6 +13336,10 @@ module TencentCloud
             end
           end
           @ScheduledTime = params['ScheduledTime']
+          unless params['FileArrivalConfig'].nil?
+            @FileArrivalConfig = FileArrivalConfig.new
+            @FileArrivalConfig.deserialize(params['FileArrivalConfig'])
+          end
         end
       end
 
@@ -13595,10 +13724,13 @@ module TencentCloud
         # @param ScheduledTime: <p>计划调度时间</p><p>参数格式：毫秒时间戳，UTC</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ScheduledTime: String
+        # @param FileArrivalConfig: <p>工作流调度文件到达方式配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileArrivalConfig: :class:`Tencentcloud::Databuddy.v20260715.models.FileArrivalConfig`
 
-        attr_accessor :TaskName, :WorkflowTaskRunId, :RunState, :WorkspaceId, :WorkflowId, :WorkflowRunId, :TaskId, :TaskTypeName, :TaskVersionId, :TriggerType, :ResourceGroupId, :ErrorCodeString, :RunUserUin, :RunUserName, :CreateUserUin, :JobId, :CreateTime, :UpdateTime, :DependenceFinishedTime, :RunStartTime, :RunEndTime, :RunCostTime, :WaitTime, :IssueTime, :TimeZone, :DependOnList, :RunParams, :TaskTypeExtensions, :LeftCoordinate, :TopCoordinate, :RetryTimes, :WorkflowName, :RerunTimes, :IsLatestRun, :ResourceGroupInfoList, :RunResult, :DependOnRunCondition, :AdvancedDependencyConfig, :InnerTask, :ScheduledTime
+        attr_accessor :TaskName, :WorkflowTaskRunId, :RunState, :WorkspaceId, :WorkflowId, :WorkflowRunId, :TaskId, :TaskTypeName, :TaskVersionId, :TriggerType, :ResourceGroupId, :ErrorCodeString, :RunUserUin, :RunUserName, :CreateUserUin, :JobId, :CreateTime, :UpdateTime, :DependenceFinishedTime, :RunStartTime, :RunEndTime, :RunCostTime, :WaitTime, :IssueTime, :TimeZone, :DependOnList, :RunParams, :TaskTypeExtensions, :LeftCoordinate, :TopCoordinate, :RetryTimes, :WorkflowName, :RerunTimes, :IsLatestRun, :ResourceGroupInfoList, :RunResult, :DependOnRunCondition, :AdvancedDependencyConfig, :InnerTask, :ScheduledTime, :FileArrivalConfig
 
-        def initialize(taskname=nil, workflowtaskrunid=nil, runstate=nil, workspaceid=nil, workflowid=nil, workflowrunid=nil, taskid=nil, tasktypename=nil, taskversionid=nil, triggertype=nil, resourcegroupid=nil, errorcodestring=nil, runuseruin=nil, runusername=nil, createuseruin=nil, jobid=nil, createtime=nil, updatetime=nil, dependencefinishedtime=nil, runstarttime=nil, runendtime=nil, runcosttime=nil, waittime=nil, issuetime=nil, timezone=nil, dependonlist=nil, runparams=nil, tasktypeextensions=nil, leftcoordinate=nil, topcoordinate=nil, retrytimes=nil, workflowname=nil, reruntimes=nil, islatestrun=nil, resourcegroupinfolist=nil, runresult=nil, dependonruncondition=nil, advanceddependencyconfig=nil, innertask=nil, scheduledtime=nil)
+        def initialize(taskname=nil, workflowtaskrunid=nil, runstate=nil, workspaceid=nil, workflowid=nil, workflowrunid=nil, taskid=nil, tasktypename=nil, taskversionid=nil, triggertype=nil, resourcegroupid=nil, errorcodestring=nil, runuseruin=nil, runusername=nil, createuseruin=nil, jobid=nil, createtime=nil, updatetime=nil, dependencefinishedtime=nil, runstarttime=nil, runendtime=nil, runcosttime=nil, waittime=nil, issuetime=nil, timezone=nil, dependonlist=nil, runparams=nil, tasktypeextensions=nil, leftcoordinate=nil, topcoordinate=nil, retrytimes=nil, workflowname=nil, reruntimes=nil, islatestrun=nil, resourcegroupinfolist=nil, runresult=nil, dependonruncondition=nil, advanceddependencyconfig=nil, innertask=nil, scheduledtime=nil, filearrivalconfig=nil)
           @TaskName = taskname
           @WorkflowTaskRunId = workflowtaskrunid
           @RunState = runstate
@@ -13639,6 +13771,7 @@ module TencentCloud
           @AdvancedDependencyConfig = advanceddependencyconfig
           @InnerTask = innertask
           @ScheduledTime = scheduledtime
+          @FileArrivalConfig = filearrivalconfig
         end
 
         def deserialize(params)
@@ -13695,6 +13828,10 @@ module TencentCloud
             @InnerTask.deserialize(params['InnerTask'])
           end
           @ScheduledTime = params['ScheduledTime']
+          unless params['FileArrivalConfig'].nil?
+            @FileArrivalConfig = FileArrivalConfig.new
+            @FileArrivalConfig.deserialize(params['FileArrivalConfig'])
+          end
         end
       end
 
@@ -13750,10 +13887,13 @@ module TencentCloud
         # @param AdvancedConfig: <p>高级配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AdvancedConfig: :class:`Tencentcloud::Databuddy.v20260715.models.WorkflowTriggerAdvancedConfiguration`
+        # @param FileArrivalConfig: <p>工作流调度文件到达方式配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileArrivalConfig: :class:`Tencentcloud::Databuddy.v20260715.models.FileArrivalConfig`
 
-        attr_accessor :TriggerId, :SchedulerStatus, :TriggerMode, :SchedulerTimeZone, :StartTime, :EndTime, :ConfigMode, :CycleType, :CrontabExpression, :ExtraInfo, :AdvancedConfig
+        attr_accessor :TriggerId, :SchedulerStatus, :TriggerMode, :SchedulerTimeZone, :StartTime, :EndTime, :ConfigMode, :CycleType, :CrontabExpression, :ExtraInfo, :AdvancedConfig, :FileArrivalConfig
 
-        def initialize(triggerid=nil, schedulerstatus=nil, triggermode=nil, schedulertimezone=nil, starttime=nil, endtime=nil, configmode=nil, cycletype=nil, crontabexpression=nil, extrainfo=nil, advancedconfig=nil)
+        def initialize(triggerid=nil, schedulerstatus=nil, triggermode=nil, schedulertimezone=nil, starttime=nil, endtime=nil, configmode=nil, cycletype=nil, crontabexpression=nil, extrainfo=nil, advancedconfig=nil, filearrivalconfig=nil)
           @TriggerId = triggerid
           @SchedulerStatus = schedulerstatus
           @TriggerMode = triggermode
@@ -13765,6 +13905,7 @@ module TencentCloud
           @CrontabExpression = crontabexpression
           @ExtraInfo = extrainfo
           @AdvancedConfig = advancedconfig
+          @FileArrivalConfig = filearrivalconfig
         end
 
         def deserialize(params)
@@ -13781,6 +13922,10 @@ module TencentCloud
           unless params['AdvancedConfig'].nil?
             @AdvancedConfig = WorkflowTriggerAdvancedConfiguration.new
             @AdvancedConfig.deserialize(params['AdvancedConfig'])
+          end
+          unless params['FileArrivalConfig'].nil?
+            @FileArrivalConfig = FileArrivalConfig.new
+            @FileArrivalConfig.deserialize(params['FileArrivalConfig'])
           end
         end
       end

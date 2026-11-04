@@ -297,6 +297,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建安卓实例MCP token
+
+        # @param request: Request instance for CreateAndroidInstanceMCPToken.
+        # @type request: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceMCPTokenRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::CreateAndroidInstanceMCPTokenResponse`
+        def CreateAndroidInstanceMCPToken(request)
+          body = send_request('CreateAndroidInstanceMCPToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAndroidInstanceMCPTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建安卓实例 SSH 连接信息，请将返回结果的 PrivateKey 字段保存为 pem 文件，并将 pem 文件权限设置为 600，再参考返回结果的 ConnectCommand 使用 ssh 连接实例。
 
         # @param request: Request instance for CreateAndroidInstanceSSH.
@@ -609,6 +633,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除安卓实例 MCP token
+
+        # @param request: Request instance for DeleteAndroidInstanceMCPToken.
+        # @type request: :class:`Tencentcloud::gs::V20191118::DeleteAndroidInstanceMCPTokenRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::DeleteAndroidInstanceMCPTokenResponse`
+        def DeleteAndroidInstanceMCPToken(request)
+          body = send_request('DeleteAndroidInstanceMCPToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAndroidInstanceMCPTokenResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询安卓应用信息
 
         # @param request: Request instance for DescribeAndroidApps.
@@ -715,6 +763,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAndroidInstanceLabelsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询安卓实例MCP Token
+
+        # @param request: Request instance for DescribeAndroidInstanceMCPTokens.
+        # @type request: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstanceMCPTokensRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::DescribeAndroidInstanceMCPTokensResponse`
+        def DescribeAndroidInstanceMCPTokens(request)
+          body = send_request('DescribeAndroidInstanceMCPTokens', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAndroidInstanceMCPTokensResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1462,6 +1534,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = RebootAndroidInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 续期安卓实例 MCP token
+
+        # @param request: Request instance for RenewAndroidInstanceMCPToken.
+        # @type request: :class:`Tencentcloud::gs::V20191118::RenewAndroidInstanceMCPTokenRequest`
+        # @rtype: :class:`Tencentcloud::gs::V20191118::RenewAndroidInstanceMCPTokenResponse`
+        def RenewAndroidInstanceMCPToken(request)
+          body = send_request('RenewAndroidInstanceMCPToken', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = RenewAndroidInstanceMCPTokenResponse.new
             model.deserialize(response['Response'])
             model
           else

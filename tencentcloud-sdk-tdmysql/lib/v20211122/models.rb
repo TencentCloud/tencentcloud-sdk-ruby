@@ -1413,10 +1413,14 @@ module TencentCloud
         # @type IsSupportParamTemplate: Boolean
         # @param IsSupportServerless: <p>是否支持Serverless模式</p>
         # @type IsSupportServerless: Boolean
+        # @param IsSupportTDE: <p>是否支持透明加密</p>
+        # @type IsSupportTDE: Boolean
+        # @param IsSupportPasswordComplexity: <p>是否支持密码复杂度</p>
+        # @type IsSupportPasswordComplexity: Boolean
 
-        attr_accessor :Type, :Version, :Name, :Description, :New, :SQLMode, :IsSupportParamTemplate, :IsSupportServerless
+        attr_accessor :Type, :Version, :Name, :Description, :New, :SQLMode, :IsSupportParamTemplate, :IsSupportServerless, :IsSupportTDE, :IsSupportPasswordComplexity
 
-        def initialize(type=nil, version=nil, name=nil, description=nil, new=nil, sqlmode=nil, issupportparamtemplate=nil, issupportserverless=nil)
+        def initialize(type=nil, version=nil, name=nil, description=nil, new=nil, sqlmode=nil, issupportparamtemplate=nil, issupportserverless=nil, issupporttde=nil, issupportpasswordcomplexity=nil)
           @Type = type
           @Version = version
           @Name = name
@@ -1425,6 +1429,8 @@ module TencentCloud
           @SQLMode = sqlmode
           @IsSupportParamTemplate = issupportparamtemplate
           @IsSupportServerless = issupportserverless
+          @IsSupportTDE = issupporttde
+          @IsSupportPasswordComplexity = issupportpasswordcomplexity
         end
 
         def deserialize(params)
@@ -1436,6 +1442,8 @@ module TencentCloud
           @SQLMode = params['SQLMode']
           @IsSupportParamTemplate = params['IsSupportParamTemplate']
           @IsSupportServerless = params['IsSupportServerless']
+          @IsSupportTDE = params['IsSupportTDE']
+          @IsSupportPasswordComplexity = params['IsSupportPasswordComplexity']
         end
       end
 
@@ -3987,30 +3995,30 @@ module TencentCloud
 
         attr_accessor :ComputeNodeNum, :Zone, :CreateVersion, :InitParams, :Status, :InstanceId, :StorageNodeNum, :ResourceTags, :InstanceName, :Cpu, :VpcId, :Mem, :Vip, :SubnetId, :Vport, :Disk, :CreateTime, :Region, :StatusDesc, :MCCpu, :MCMem, :ComputerNodeCpu, :ComputerNodeMem, :StorageNodeCpu, :StorageNodeMem, :MCNum, :RenewFlag, :PayMode, :AccountTag, :InstanceType, :StorageType, :DestroyedAt, :ExpireAt, :IsolatedAt, :IsolatedFrom, :Replications, :FullReplications, :AppId, :SubAccountUin, :Uin, :Zones, :Nodes, :BinlogStatus, :CdcNodeCpu, :CdcNodeMem, :CdcNodeNum, :AZMode, :StandbyFlag, :StandbySecondaryNum, :ColumnarNodeCpu, :ColumnarNodeMem, :ColumnarNodeNum, :ColumnarNodeDisk, :ColumnarNodeStorageType, :InstanceCategory, :ExclusiveClusterId, :SQLMode, :InstanceMode, :ClusterId, :AutoScaleConfig, :AnalysisMode, :AnalysisRelationInfos, :AnalysisInstanceInfo, :AutoScaleConfigs
         extend Gem::Deprecate
-        deprecate :ComputeNodeNum, :none, 2026, 10
-        deprecate :ComputeNodeNum=, :none, 2026, 10
-        deprecate :Cpu, :none, 2026, 10
-        deprecate :Cpu=, :none, 2026, 10
-        deprecate :Mem, :none, 2026, 10
-        deprecate :Mem=, :none, 2026, 10
-        deprecate :MCCpu, :none, 2026, 10
-        deprecate :MCCpu=, :none, 2026, 10
-        deprecate :MCMem, :none, 2026, 10
-        deprecate :MCMem=, :none, 2026, 10
-        deprecate :ComputerNodeCpu, :none, 2026, 10
-        deprecate :ComputerNodeCpu=, :none, 2026, 10
-        deprecate :ComputerNodeMem, :none, 2026, 10
-        deprecate :ComputerNodeMem=, :none, 2026, 10
-        deprecate :MCNum, :none, 2026, 10
-        deprecate :MCNum=, :none, 2026, 10
-        deprecate :CdcNodeCpu, :none, 2026, 10
-        deprecate :CdcNodeCpu=, :none, 2026, 10
-        deprecate :CdcNodeMem, :none, 2026, 10
-        deprecate :CdcNodeMem=, :none, 2026, 10
-        deprecate :CdcNodeNum, :none, 2026, 10
-        deprecate :CdcNodeNum=, :none, 2026, 10
-        deprecate :ClusterId, :none, 2026, 10
-        deprecate :ClusterId=, :none, 2026, 10
+        deprecate :ComputeNodeNum, :none, 2026, 11
+        deprecate :ComputeNodeNum=, :none, 2026, 11
+        deprecate :Cpu, :none, 2026, 11
+        deprecate :Cpu=, :none, 2026, 11
+        deprecate :Mem, :none, 2026, 11
+        deprecate :Mem=, :none, 2026, 11
+        deprecate :MCCpu, :none, 2026, 11
+        deprecate :MCCpu=, :none, 2026, 11
+        deprecate :MCMem, :none, 2026, 11
+        deprecate :MCMem=, :none, 2026, 11
+        deprecate :ComputerNodeCpu, :none, 2026, 11
+        deprecate :ComputerNodeCpu=, :none, 2026, 11
+        deprecate :ComputerNodeMem, :none, 2026, 11
+        deprecate :ComputerNodeMem=, :none, 2026, 11
+        deprecate :MCNum, :none, 2026, 11
+        deprecate :MCNum=, :none, 2026, 11
+        deprecate :CdcNodeCpu, :none, 2026, 11
+        deprecate :CdcNodeCpu=, :none, 2026, 11
+        deprecate :CdcNodeMem, :none, 2026, 11
+        deprecate :CdcNodeMem=, :none, 2026, 11
+        deprecate :CdcNodeNum, :none, 2026, 11
+        deprecate :CdcNodeNum=, :none, 2026, 11
+        deprecate :ClusterId, :none, 2026, 11
+        deprecate :ClusterId=, :none, 2026, 11
 
         def initialize(computenodenum=nil, zone=nil, createversion=nil, initparams=nil, status=nil, instanceid=nil, storagenodenum=nil, resourcetags=nil, instancename=nil, cpu=nil, vpcid=nil, mem=nil, vip=nil, subnetid=nil, vport=nil, disk=nil, createtime=nil, region=nil, statusdesc=nil, mccpu=nil, mcmem=nil, computernodecpu=nil, computernodemem=nil, storagenodecpu=nil, storagenodemem=nil, mcnum=nil, renewflag=nil, paymode=nil, accounttag=nil, instancetype=nil, storagetype=nil, destroyedat=nil, expireat=nil, isolatedat=nil, isolatedfrom=nil, replications=nil, fullreplications=nil, appid=nil, subaccountuin=nil, uin=nil, zones=nil, nodes=nil, binlogstatus=nil, cdcnodecpu=nil, cdcnodemem=nil, cdcnodenum=nil, azmode=nil, standbyflag=nil, standbysecondarynum=nil, columnarnodecpu=nil, columnarnodemem=nil, columnarnodenum=nil, columnarnodedisk=nil, columnarnodestoragetype=nil, instancecategory=nil, exclusiveclusterid=nil, sqlmode=nil, instancemode=nil, clusterid=nil, autoscaleconfig=nil, analysismode=nil, analysisrelationinfos=nil, analysisinstanceinfo=nil, autoscaleconfigs=nil)
           @ComputeNodeNum = computenodenum
@@ -5529,10 +5537,13 @@ module TencentCloud
         # @param Explain: <p>执行计划</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Explain: Array
+        # @param ExplainTree: <p>执行计划树</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExplainTree: String
 
-        attr_accessor :Timestamp, :QueryTime, :SqlText, :UserHost, :UserName, :Database, :LockTime, :RowsExamined, :RowsSent, :TransactionId, :RpcTime, :StorageRpcTime, :RpcRetryDelayTime, :NodeId, :RpcTrace, :TDStoreLockTime, :TraceId, :Explain
+        attr_accessor :Timestamp, :QueryTime, :SqlText, :UserHost, :UserName, :Database, :LockTime, :RowsExamined, :RowsSent, :TransactionId, :RpcTime, :StorageRpcTime, :RpcRetryDelayTime, :NodeId, :RpcTrace, :TDStoreLockTime, :TraceId, :Explain, :ExplainTree
 
-        def initialize(timestamp=nil, querytime=nil, sqltext=nil, userhost=nil, username=nil, database=nil, locktime=nil, rowsexamined=nil, rowssent=nil, transactionid=nil, rpctime=nil, storagerpctime=nil, rpcretrydelaytime=nil, nodeid=nil, rpctrace=nil, tdstorelocktime=nil, traceid=nil, explain=nil)
+        def initialize(timestamp=nil, querytime=nil, sqltext=nil, userhost=nil, username=nil, database=nil, locktime=nil, rowsexamined=nil, rowssent=nil, transactionid=nil, rpctime=nil, storagerpctime=nil, rpcretrydelaytime=nil, nodeid=nil, rpctrace=nil, tdstorelocktime=nil, traceid=nil, explain=nil, explaintree=nil)
           @Timestamp = timestamp
           @QueryTime = querytime
           @SqlText = sqltext
@@ -5551,6 +5562,7 @@ module TencentCloud
           @TDStoreLockTime = tdstorelocktime
           @TraceId = traceid
           @Explain = explain
+          @ExplainTree = explaintree
         end
 
         def deserialize(params)
@@ -5579,6 +5591,7 @@ module TencentCloud
               @Explain << explain_tmp
             end
           end
+          @ExplainTree = params['ExplainTree']
         end
       end
 

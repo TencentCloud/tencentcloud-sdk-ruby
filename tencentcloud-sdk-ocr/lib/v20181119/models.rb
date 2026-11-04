@@ -2951,6 +2951,26 @@ module TencentCloud
         end
       end
 
+      # 文本向量化结果
+      class EmbeddingObject < TencentCloud::Common::AbstractModel
+        # @param Index: 输入文本在 Inputs 列表中的索引，从 0 开始。
+        # @type Index: Integer
+        # @param Embedding: 向量化结果，维度由所选模型决定。
+        # @type Embedding: Array
+
+        attr_accessor :Index, :Embedding
+
+        def initialize(index=nil, embedding=nil)
+          @Index = index
+          @Embedding = embedding
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @Embedding = params['Embedding']
+        end
+      end
+
       # 敏感数据加密
       class Encryption < TencentCloud::Common::AbstractModel
         # @param CiphertextBlob: 有加密需求的用户，接入传入kms的CiphertextBlob（Base64编码），关于数据加密可查阅[敏感数据加密指引](https://cloud.tencent.com/document/product/866/106048)文档。
@@ -4460,6 +4480,140 @@ module TencentCloud
           @Total = params['Total']
           @TaxRate = params['TaxRate']
           @Tax = params['Tax']
+        end
+      end
+
+      # GenerateTextEmbedding请求参数结构体
+      class GenerateTextEmbeddingRequest < TencentCloud::Common::AbstractModel
+        # @param Model: <p>选择生成向量的模型（不同模型计费单价不同）。取值：</p><ul><li>0：text-embedding-0.6b</li><li>1：text-embedding-4b</li></ul>
+        # @type Model: String
+        # @param Inputs: <p>输入文本列表。单次最多 7 条，单条不超过 2000 字符。</p>
+        # @type Inputs: Array
+        # @param TextType: <p>文本向量化类型。取值：</p><ul><li>query：查询文本，用于检索场景的查询侧</li><li>document：文档文本，用于检索场景的文档侧</li></ul><p>默认为 document</p>
+        # @type TextType: String
+        # @param Instruction: <p>自定义任务指令词，用于指定向量化任务。最大 2000 字符。不传时按 TextType 使用系统默认指令词。</p>
+        # @type Instruction: String
+
+        attr_accessor :Model, :Inputs, :TextType, :Instruction
+
+        def initialize(model=nil, inputs=nil, texttype=nil, instruction=nil)
+          @Model = model
+          @Inputs = inputs
+          @TextType = texttype
+          @Instruction = instruction
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @Inputs = params['Inputs']
+          @TextType = params['TextType']
+          @Instruction = params['Instruction']
+        end
+      end
+
+      # GenerateTextEmbedding返回参数结构体
+      class GenerateTextEmbeddingResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>向量化结果列表。顺序与输入 Inputs 列表一一对应。</p>
+        # @type Data: Array
+        # @param InputTokens: <p>输入 Token 数。</p>
+        # @type InputTokens: Integer
+        # @param TotalTokens: <p>总 Token 数。</p>
+        # @type TotalTokens: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :InputTokens, :TotalTokens, :RequestId
+
+        def initialize(data=nil, inputtokens=nil, totaltokens=nil, requestid=nil)
+          @Data = data
+          @InputTokens = inputtokens
+          @TotalTokens = totaltokens
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              embeddingobject_tmp = EmbeddingObject.new
+              embeddingobject_tmp.deserialize(i)
+              @Data << embeddingobject_tmp
+            end
+          end
+          @InputTokens = params['InputTokens']
+          @TotalTokens = params['TotalTokens']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GenerateVLEmbedding请求参数结构体
+      class GenerateVLEmbeddingRequest < TencentCloud::Common::AbstractModel
+        # @param Model: <p>选择生成向量的模型。取值：</p><ul><li>0：vl-embedding-4b</li><li>1：vl-embedding-8b</li><li>2：vl-embedding-2b</li></ul>
+        # @type Model: String
+        # @param Type: <p>内容类型标识。取值：</p><ul><li>1：文本</li><li>2：图像 URL</li><li>3：视频 URL</li><li>4：图文混合</li></ul>
+        # @type Type: String
+        # @param Text: <p>文本内容。仅当 Type 为 1 或 4 时必填，单条文本不超过 2000 字符。</p>
+        # @type Text: String
+        # @param ImageUrl: <p>图像地址，支持公网 http/https 链接或 base64 内容。仅当 Type 为 2 或 4 时必填。</p>
+        # @type ImageUrl: String
+        # @param VideoUrl: <p>视频地址，支持公网 http/https 链接或 base64 内容。仅当 Type 为 3 时必填。</p>
+        # @type VideoUrl: String
+        # @param SearchMode: <p>检索场景，未传入该参数时将自动匹配。取值：</p><ul><li>0：自动匹配</li><li>1：图搜图（找同款、相似图），仅 Type 为 2 或 4 时可用</li><li>2：图文搜图（图 + 问题），仅 Type 为 4 时可用</li><li>3：文搜图（纯文本搜图），仅 Type 为 1 或 4 时可用</li><li>4：文搜视频（纯文本搜视频），仅 Type 为 1 或 4 时可用</li><li>5：图搜视频、图文搜视频，仅 Type 为 2 或 4 时可用</li></ul>
+        # @type SearchMode: String
+
+        attr_accessor :Model, :Type, :Text, :ImageUrl, :VideoUrl, :SearchMode
+
+        def initialize(model=nil, type=nil, text=nil, imageurl=nil, videourl=nil, searchmode=nil)
+          @Model = model
+          @Type = type
+          @Text = text
+          @ImageUrl = imageurl
+          @VideoUrl = videourl
+          @SearchMode = searchmode
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          @Type = params['Type']
+          @Text = params['Text']
+          @ImageUrl = params['ImageUrl']
+          @VideoUrl = params['VideoUrl']
+          @SearchMode = params['SearchMode']
+        end
+      end
+
+      # GenerateVLEmbedding返回参数结构体
+      class GenerateVLEmbeddingResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>向量化结果列表。单条图文混合输入可能返回多个向量。</p>
+        # @type Data: Array
+        # @param InputTokens: <p>输入 Token 数，多模态场景含图像、视频折算的 Token。</p>
+        # @type InputTokens: Integer
+        # @param TotalTokens: <p>总 Token 数。</p>
+        # @type TotalTokens: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :InputTokens, :TotalTokens, :RequestId
+
+        def initialize(data=nil, inputtokens=nil, totaltokens=nil, requestid=nil)
+          @Data = data
+          @InputTokens = inputtokens
+          @TotalTokens = totaltokens
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              embeddingobject_tmp = EmbeddingObject.new
+              embeddingobject_tmp.deserialize(i)
+              @Data << embeddingobject_tmp
+            end
+          end
+          @InputTokens = params['InputTokens']
+          @TotalTokens = params['TotalTokens']
+          @RequestId = params['RequestId']
         end
       end
 

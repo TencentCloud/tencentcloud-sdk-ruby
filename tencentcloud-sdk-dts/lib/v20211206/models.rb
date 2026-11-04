@@ -5209,28 +5209,31 @@ module TencentCloud
 
       # 查询迁移实例列表的实例对象
       class MigrateDBItem < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
-        # @param Vip: 实例Vip
+        # @param Vip: <p>实例Vip</p>
         # @type Vip: String
-        # @param Vport: 实例Vport
+        # @param Vport: <p>实例Vport</p>
         # @type Vport: Integer
-        # @param Usable: 是否可以作为迁移对象，1-可以，0-不可以
+        # @param Usable: <p>是否可以作为迁移对象，1-可以，0-不可以</p>
         # @type Usable: Integer
-        # @param Hint: 不可以作为迁移对象的原因
+        # @param Hint: <p>不可以作为迁移对象的原因</p>
         # @type Hint: String
+        # @param StorageType: <p>硬盘类型，仅Postgresql适用</p><p>枚举值：</p><ul><li>PHYSICAL_LOCAL_SSD： 本地SSD</li><li>CLOUD_PREMIUM： 高性能云硬盘</li><li>CLOUD_SSD： SSD云硬盘</li><li>CLOUD_HSSD： 增强型SSD云硬盘</li></ul>
+        # @type StorageType: String
 
-        attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :Usable, :Hint
+        attr_accessor :InstanceId, :InstanceName, :Vip, :Vport, :Usable, :Hint, :StorageType
 
-        def initialize(instanceid=nil, instancename=nil, vip=nil, vport=nil, usable=nil, hint=nil)
+        def initialize(instanceid=nil, instancename=nil, vip=nil, vport=nil, usable=nil, hint=nil, storagetype=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Vip = vip
           @Vport = vport
           @Usable = usable
           @Hint = hint
+          @StorageType = storagetype
         end
 
         def deserialize(params)
@@ -5240,6 +5243,7 @@ module TencentCloud
           @Vport = params['Vport']
           @Usable = params['Usable']
           @Hint = params['Hint']
+          @StorageType = params['StorageType']
         end
       end
 
@@ -7636,17 +7640,21 @@ module TencentCloud
 
       # StopMigrateJob请求参数结构体
       class StopMigrateJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 数据迁移任务ID，可通过[DescribeMigrationJobs](https://cloud.tencent.com/document/product/571/82084)接口获取。
+        # @param JobId: <p>数据迁移任务ID，可通过<a href="https://cloud.tencent.com/document/product/571/82084">DescribeMigrationJobs</a>接口获取。</p>
         # @type JobId: String
+        # @param MigrateAdvancedObject: <p>任务结束时是否强制迁移高级对象，仅PG适用</p><p>枚举值：</p><ul><li>yes： 是</li><li>no： 否</li></ul>
+        # @type MigrateAdvancedObject: String
 
-        attr_accessor :JobId
+        attr_accessor :JobId, :MigrateAdvancedObject
 
-        def initialize(jobid=nil)
+        def initialize(jobid=nil, migrateadvancedobject=nil)
           @JobId = jobid
+          @MigrateAdvancedObject = migrateadvancedobject
         end
 
         def deserialize(params)
           @JobId = params['JobId']
+          @MigrateAdvancedObject = params['MigrateAdvancedObject']
         end
       end
 

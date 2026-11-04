@@ -17,6 +17,34 @@
 module TencentCloud
   module Tione
     module V20211111
+      # 访问规则
+      class AccessRule < TencentCloud::Common::AbstractModel
+        # @param Module: <p>模块</p>
+        # @type Module: String
+        # @param ActionType: <p>功能权限点</p>
+        # @type ActionType: Array
+        # @param DataActionType: <p>数据权限点</p>
+        # @type DataActionType: Array
+        # @param ActionTypeName: <p>功能权限点名称</p>
+        # @type ActionTypeName: Array
+
+        attr_accessor :Module, :ActionType, :DataActionType, :ActionTypeName
+
+        def initialize(_module=nil, actiontype=nil, dataactiontype=nil, actiontypename=nil)
+          @Module = _module
+          @ActionType = actiontype
+          @DataActionType = dataactiontype
+          @ActionTypeName = actiontypename
+        end
+
+        def deserialize(params)
+          @Module = params['Module']
+          @ActionType = params['ActionType']
+          @DataActionType = params['DataActionType']
+          @ActionTypeName = params['ActionTypeName']
+        end
+      end
+
       # 聚合后的公共算法版本
       class AggregatePublicAlgoVersion < TencentCloud::Common::AbstractModel
         # @param GroupName: 用于聚合的系列名字
@@ -1535,6 +1563,50 @@ module TencentCloud
         end
       end
 
+      # CreateRole请求参数结构体
+      class CreateRoleRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+        # @param RoleName: <p>角色名称</p>
+        # @type RoleName: String
+        # @param Description: <p>角色备注</p>
+        # @type Description: String
+
+        attr_accessor :TiProjectId, :RoleName, :Description
+
+        def initialize(tiprojectid=nil, rolename=nil, description=nil)
+          @TiProjectId = tiprojectid
+          @RoleName = rolename
+          @Description = description
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+          @RoleName = params['RoleName']
+          @Description = params['Description']
+        end
+      end
+
+      # CreateRole返回参数结构体
+      class CreateRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RoleId: <p>角色ID</p>
+        # @type RoleId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleId, :RequestId
+
+        def initialize(roleid=nil, requestid=nil)
+          @RoleId = roleid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateTrainingModel请求参数结构体
       class CreateTrainingModelRequest < TencentCloud::Common::AbstractModel
         # @param ImportMethod: 导入方式
@@ -2119,6 +2191,34 @@ module TencentCloud
 
         def deserialize(params)
           @Id = params['Id']
+        end
+      end
+
+      # 数据源简要信息
+      class DataSourceBrief < TencentCloud::Common::AbstractModel
+        # @param StorageId: <p>存储实例ID</p>
+        # @type StorageId: String
+        # @param StorageName: <p>存储实例名称</p>
+        # @type StorageName: String
+        # @param WorkDir: <p>存储目录</p>
+        # @type WorkDir: String
+        # @param Permission: <p>数据源读写权限，RW/RO</p>
+        # @type Permission: String
+
+        attr_accessor :StorageId, :StorageName, :WorkDir, :Permission
+
+        def initialize(storageid=nil, storagename=nil, workdir=nil, permission=nil)
+          @StorageId = storageid
+          @StorageName = storagename
+          @WorkDir = workdir
+          @Permission = permission
+        end
+
+        def deserialize(params)
+          @StorageId = params['StorageId']
+          @StorageName = params['StorageName']
+          @WorkDir = params['WorkDir']
+          @Permission = params['Permission']
         end
       end
 
@@ -2952,6 +3052,42 @@ module TencentCloud
         end
       end
 
+      # DeleteRole请求参数结构体
+      class DeleteRoleRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+        # @param RoleId: <p>角色ID</p>
+        # @type RoleId: String
+
+        attr_accessor :TiProjectId, :RoleId
+
+        def initialize(tiprojectid=nil, roleid=nil)
+          @TiProjectId = tiprojectid
+          @RoleId = roleid
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+          @RoleId = params['RoleId']
+        end
+      end
+
+      # DeleteRole返回参数结构体
+      class DeleteRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteTrainingModel请求参数结构体
       class DeleteTrainingModelRequest < TencentCloud::Common::AbstractModel
         # @param TrainingModelId: 模型ID
@@ -3068,6 +3204,86 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAccessRules请求参数结构体
+      class DescribeAccessRulesRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+
+        attr_accessor :TiProjectId
+
+        def initialize(tiprojectid=nil)
+          @TiProjectId = tiprojectid
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+        end
+      end
+
+      # DescribeAccessRules返回参数结构体
+      class DescribeAccessRulesResponse < TencentCloud::Common::AbstractModel
+        # @param AccessRules: <p>当前用户有哪些权限</p>
+        # @type AccessRules: Array
+        # @param FullAccessRules: <p>权限点全量集合</p>
+        # @type FullAccessRules: Array
+        # @param GlobalRoles: <p>当前用户拥有的空间外角色</p>
+        # @type GlobalRoles: Array
+        # @param Workspaces: <p>当前用户可见的空间列表</p>
+        # @type Workspaces: Array
+        # @param OutsideAccessRules: <p>当前用户有哪些空间外权限</p>
+        # @type OutsideAccessRules: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AccessRules, :FullAccessRules, :GlobalRoles, :Workspaces, :OutsideAccessRules, :RequestId
+
+        def initialize(accessrules=nil, fullaccessrules=nil, globalroles=nil, workspaces=nil, outsideaccessrules=nil, requestid=nil)
+          @AccessRules = accessrules
+          @FullAccessRules = fullaccessrules
+          @GlobalRoles = globalroles
+          @Workspaces = workspaces
+          @OutsideAccessRules = outsideaccessrules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AccessRules'].nil?
+            @AccessRules = []
+            params['AccessRules'].each do |i|
+              accessrule_tmp = AccessRule.new
+              accessrule_tmp.deserialize(i)
+              @AccessRules << accessrule_tmp
+            end
+          end
+          unless params['FullAccessRules'].nil?
+            @FullAccessRules = []
+            params['FullAccessRules'].each do |i|
+              accessrule_tmp = AccessRule.new
+              accessrule_tmp.deserialize(i)
+              @FullAccessRules << accessrule_tmp
+            end
+          end
+          @GlobalRoles = params['GlobalRoles']
+          unless params['Workspaces'].nil?
+            @Workspaces = []
+            params['Workspaces'].each do |i|
+              workspace_tmp = Workspace.new
+              workspace_tmp.deserialize(i)
+              @Workspaces << workspace_tmp
+            end
+          end
+          unless params['OutsideAccessRules'].nil?
+            @OutsideAccessRules = []
+            params['OutsideAccessRules'].each do |i|
+              accessrule_tmp = AccessRule.new
+              accessrule_tmp.deserialize(i)
+              @OutsideAccessRules << accessrule_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3198,7 +3414,7 @@ module TencentCloud
       class DescribeBillingResourceGroupRequest < TencentCloud::Common::AbstractModel
         # @param ResourceGroupId: <p>资源组id, 取值为创建资源组接口(CreateBillingResourceGroup)响应中的ResourceGroupId</p>
         # @type ResourceGroupId: String
-        # @param TiProjectId: <p>TI工作空间ID</p><p>仅用于“工作空间”白名单功能。如需使用，请联系TI管理员开通白名单。</p>
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
         # @param Filters: <p>过滤条件<br>注意: </p><ol><li>Filter.Name 只支持以下枚举值:<br> InstanceId (资源组节点id)<br> InstanceStatus (资源组节点状态)</li><li>Filter.Values: 长度为1且Filter.Fuzzy=true时，支持模糊查询; 不为1时，精确查询</li><li>Filter.Negative: 是否取反，默认为false</li><li>Filter.Fuzzy: 是否模糊查询，默认为false</li><li>每次请求的Filters的上限为10，Filter.Values的上限为100</li></ol>
         # @type Filters: Array
@@ -5122,6 +5338,240 @@ module TencentCloud
         end
       end
 
+      # DescribeRole请求参数结构体
+      class DescribeRoleRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+        # @param RoleId: <p>角色ID</p>
+        # @type RoleId: String
+        # @param ResourceType: <p>资源类型</p>
+        # @type ResourceType: String
+        # @param Offset: <p>偏移值</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页数量</p>
+        # @type Limit: Integer
+        # @param Filters: <p>过滤条件</p>
+        # @type Filters: Array
+
+        attr_accessor :TiProjectId, :RoleId, :ResourceType, :Offset, :Limit, :Filters
+
+        def initialize(tiprojectid=nil, roleid=nil, resourcetype=nil, offset=nil, limit=nil, filters=nil)
+          @TiProjectId = tiprojectid
+          @RoleId = roleid
+          @ResourceType = resourcetype
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+          @RoleId = params['RoleId']
+          @ResourceType = params['ResourceType']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+        end
+      end
+
+      # DescribeRole返回参数结构体
+      class DescribeRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RoleId: <p>角色ID</p>
+        # @type RoleId: String
+        # @param RoleName: <p>角色名称</p>
+        # @type RoleName: String
+        # @param RoleType: <p>角色类型</p>
+        # @type RoleType: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param AccessRules: <p>权限规则列表</p>
+        # @type AccessRules: Array
+        # @param ResourcePermissions: <p>资源级权限列表</p>
+        # @type ResourcePermissions: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RoleId, :RoleName, :RoleType, :Description, :CreateTime, :AccessRules, :ResourcePermissions, :TotalCount, :RequestId
+
+        def initialize(roleid=nil, rolename=nil, roletype=nil, description=nil, createtime=nil, accessrules=nil, resourcepermissions=nil, totalcount=nil, requestid=nil)
+          @RoleId = roleid
+          @RoleName = rolename
+          @RoleType = roletype
+          @Description = description
+          @CreateTime = createtime
+          @AccessRules = accessrules
+          @ResourcePermissions = resourcepermissions
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RoleName = params['RoleName']
+          @RoleType = params['RoleType']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          unless params['AccessRules'].nil?
+            @AccessRules = []
+            params['AccessRules'].each do |i|
+              accessrule_tmp = AccessRule.new
+              accessrule_tmp.deserialize(i)
+              @AccessRules << accessrule_tmp
+            end
+          end
+          unless params['ResourcePermissions'].nil?
+            @ResourcePermissions = []
+            params['ResourcePermissions'].each do |i|
+              resourcepermission_tmp = ResourcePermission.new
+              resourcepermission_tmp.deserialize(i)
+              @ResourcePermissions << resourcepermission_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRoleUsers请求参数结构体
+      class DescribeRoleUsersRequest < TencentCloud::Common::AbstractModel
+        # @param RoleId: <p>角色ID</p>
+        # @type RoleId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+
+        attr_accessor :RoleId, :TiProjectId
+
+        def initialize(roleid=nil, tiprojectid=nil)
+          @RoleId = roleid
+          @TiProjectId = tiprojectid
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @TiProjectId = params['TiProjectId']
+        end
+      end
+
+      # DescribeRoleUsers返回参数结构体
+      class DescribeRoleUsersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>符合过滤条件的用户总数</p>
+        # @type TotalCount: Integer
+        # @param Users: <p>用户列表</p>
+        # @type Users: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Users, :RequestId
+
+        def initialize(totalcount=nil, users=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Users = users
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Users'].nil?
+            @Users = []
+            params['Users'].each do |i|
+              userroleinfo_tmp = UserRoleInfo.new
+              userroleinfo_tmp.deserialize(i)
+              @Users << userroleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeRoles请求参数结构体
+      class DescribeRolesRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+        # @param Filters: <p>过滤条件</p>
+        # @type Filters: Array
+        # @param Offset: <p>偏移值</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页数量</p>
+        # @type Limit: Integer
+        # @param Order: <p>排序方式</p>
+        # @type Order: String
+        # @param OrderField: <p>排序字段</p>
+        # @type OrderField: String
+        # @param WithUserCount: <p>是否返回绑定的用户数</p>
+        # @type WithUserCount: Boolean
+
+        attr_accessor :TiProjectId, :Filters, :Offset, :Limit, :Order, :OrderField, :WithUserCount
+
+        def initialize(tiprojectid=nil, filters=nil, offset=nil, limit=nil, order=nil, orderfield=nil, withusercount=nil)
+          @TiProjectId = tiprojectid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @OrderField = orderfield
+          @WithUserCount = withusercount
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Order = params['Order']
+          @OrderField = params['OrderField']
+          @WithUserCount = params['WithUserCount']
+        end
+      end
+
+      # DescribeRoles返回参数结构体
+      class DescribeRolesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param Roles: <p>角色列表</p>
+        # @type Roles: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Roles, :RequestId
+
+        def initialize(totalcount=nil, roles=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Roles = roles
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              roleinfo_tmp = RoleInfo.new
+              roleinfo_tmp.deserialize(i)
+              @Roles << roleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSubAccountLinuxUserInfos请求参数结构体
       class DescribeSubAccountLinuxUserInfosRequest < TencentCloud::Common::AbstractModel
         # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
@@ -5521,6 +5971,241 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWorkspaceMembers请求参数结构体
+      class DescribeWorkspaceMembersRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+        # @param Filters: <p>过滤条件</p>
+        # @type Filters: Array
+        # @param Offset: <p>偏移量</p>
+        # @type Offset: Integer
+        # @param Limit: <p>数量</p>
+        # @type Limit: Integer
+        # @param OrderField: <p>排序字段</p>
+        # @type OrderField: String
+        # @param Order: <p>排序方式</p>
+        # @type Order: String
+        # @param WithRoles: <p>是否包含角色信息</p>
+        # @type WithRoles: Boolean
+
+        attr_accessor :TiProjectId, :Filters, :Offset, :Limit, :OrderField, :Order, :WithRoles
+
+        def initialize(tiprojectid=nil, filters=nil, offset=nil, limit=nil, orderfield=nil, order=nil, withroles=nil)
+          @TiProjectId = tiprojectid
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+          @OrderField = orderfield
+          @Order = order
+          @WithRoles = withroles
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @Order = params['Order']
+          @WithRoles = params['WithRoles']
+        end
+      end
+
+      # DescribeWorkspaceMembers返回参数结构体
+      class DescribeWorkspaceMembersResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param Members: <p>用户列表</p>
+        # @type Members: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Members, :RequestId
+
+        def initialize(totalcount=nil, members=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Members = members
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Members'].nil?
+            @Members = []
+            params['Members'].each do |i|
+              userroleinfo_tmp = UserRoleInfo.new
+              userroleinfo_tmp.deserialize(i)
+              @Members << userroleinfo_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWorkspaceQuotaUsage请求参数结构体
+      class DescribeWorkspaceQuotaUsageRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+
+        attr_accessor :TiProjectId
+
+        def initialize(tiprojectid=nil)
+          @TiProjectId = tiprojectid
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+        end
+      end
+
+      # DescribeWorkspaceQuotaUsage返回参数结构体
+      class DescribeWorkspaceQuotaUsageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWorkspaceQuotas请求参数结构体
+      class DescribeWorkspaceQuotasRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+
+        attr_accessor :TiProjectId
+
+        def initialize(tiprojectid=nil)
+          @TiProjectId = tiprojectid
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+        end
+      end
+
+      # DescribeWorkspaceQuotas返回参数结构体
+      class DescribeWorkspaceQuotasResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeWorkspace请求参数结构体
+      class DescribeWorkspaceRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+        # @param WithRunningTasks: <p>是否包含运行中的任务</p>
+        # @type WithRunningTasks: Boolean
+        # @param WithMembers: <p>是否包含有管理权限的人员信息</p>
+        # @type WithMembers: Boolean
+
+        attr_accessor :TiProjectId, :WithRunningTasks, :WithMembers
+
+        def initialize(tiprojectid=nil, withrunningtasks=nil, withmembers=nil)
+          @TiProjectId = tiprojectid
+          @WithRunningTasks = withrunningtasks
+          @WithMembers = withmembers
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+          @WithRunningTasks = params['WithRunningTasks']
+          @WithMembers = params['WithMembers']
+        end
+      end
+
+      # DescribeWorkspace返回参数结构体
+      class DescribeWorkspaceResponse < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>项目ID</p>
+        # @type TiProjectId: String
+        # @param Name: <p>名称</p>
+        # @type Name: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param RunningTasks: <p>运行中的任务信息</p>
+        # @type RunningTasks: Array
+        # @param Creator: <p>空间创建人信息</p>
+        # @type Creator: :class:`Tencentcloud::Tione.v20211111.models.UserBriefInfo`
+        # @param OwnedRoles: <p>当前空间拥有的角色信息</p>
+        # @type OwnedRoles: Array
+        # @param MemberInfo: <p>空间成员信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MemberInfo: :class:`Tencentcloud::Tione.v20211111.models.MemberInfo`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TiProjectId, :Name, :Description, :CreateTime, :RunningTasks, :Creator, :OwnedRoles, :MemberInfo, :RequestId
+
+        def initialize(tiprojectid=nil, name=nil, description=nil, createtime=nil, runningtasks=nil, creator=nil, ownedroles=nil, memberinfo=nil, requestid=nil)
+          @TiProjectId = tiprojectid
+          @Name = name
+          @Description = description
+          @CreateTime = createtime
+          @RunningTasks = runningtasks
+          @Creator = creator
+          @OwnedRoles = ownedroles
+          @MemberInfo = memberinfo
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+          @Name = params['Name']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          unless params['RunningTasks'].nil?
+            @RunningTasks = []
+            params['RunningTasks'].each do |i|
+              workspacetaskinfo_tmp = WorkspaceTaskInfo.new
+              workspacetaskinfo_tmp.deserialize(i)
+              @RunningTasks << workspacetaskinfo_tmp
+            end
+          end
+          unless params['Creator'].nil?
+            @Creator = UserBriefInfo.new
+            @Creator.deserialize(params['Creator'])
+          end
+          unless params['OwnedRoles'].nil?
+            @OwnedRoles = []
+            params['OwnedRoles'].each do |i|
+              rolebriefinfo_tmp = RoleBriefInfo.new
+              rolebriefinfo_tmp.deserialize(i)
+              @OwnedRoles << rolebriefinfo_tmp
+            end
+          end
+          unless params['MemberInfo'].nil?
+            @MemberInfo = MemberInfo.new
+            @MemberInfo.deserialize(params['MemberInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -6837,6 +7522,42 @@ module TencentCloud
         end
       end
 
+      # 空间成员信息
+      class MemberInfo < TencentCloud::Common::AbstractModel
+        # @param SuperAdmins: <p>超管成员列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SuperAdmins: Array
+        # @param Admins: <p>空间内管理员列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Admins: Array
+
+        attr_accessor :SuperAdmins, :Admins
+
+        def initialize(superadmins=nil, admins=nil)
+          @SuperAdmins = superadmins
+          @Admins = admins
+        end
+
+        def deserialize(params)
+          unless params['SuperAdmins'].nil?
+            @SuperAdmins = []
+            params['SuperAdmins'].each do |i|
+              userbriefinfo_tmp = UserBriefInfo.new
+              userbriefinfo_tmp.deserialize(i)
+              @SuperAdmins << userbriefinfo_tmp
+            end
+          end
+          unless params['Admins'].nil?
+            @Admins = []
+            params['Admins'].each do |i|
+              userbriefinfo_tmp = UserBriefInfo.new
+              userbriefinfo_tmp.deserialize(i)
+              @Admins << userbriefinfo_tmp
+            end
+          end
+        end
+      end
+
       # 对话输入内容
       class Message < TencentCloud::Common::AbstractModel
         # @param Role: 角色名。支持三个角色：system、user、assistant，其中system仅开头可出现一次，也可忽略。
@@ -7939,6 +8660,121 @@ module TencentCloud
         end
       end
 
+      # ModifyRoleAccessRules请求参数结构体
+      class ModifyRoleAccessRulesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyRoleAccessRules返回参数结构体
+      class ModifyRoleAccessRulesResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRole请求参数结构体
+      class ModifyRoleRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+        # @param RoleId: <p>角色ID</p>
+        # @type RoleId: String
+        # @param RoleName: <p>角色名称</p>
+        # @type RoleName: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
+
+        attr_accessor :TiProjectId, :RoleId, :RoleName, :Description
+
+        def initialize(tiprojectid=nil, roleid=nil, rolename=nil, description=nil)
+          @TiProjectId = tiprojectid
+          @RoleId = roleid
+          @RoleName = rolename
+          @Description = description
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+          @RoleId = params['RoleId']
+          @RoleName = params['RoleName']
+          @Description = params['Description']
+        end
+      end
+
+      # ModifyRole返回参数结构体
+      class ModifyRoleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyRoleUserGrant请求参数结构体
+      class ModifyRoleUserGrantRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+        # @param RoleIds: <p>角色ID列表</p>
+        # @type RoleIds: Array
+        # @param SubUins: <p>用户UIN列表</p>
+        # @type SubUins: Array
+        # @param Grant: <p>授权方式</p>
+        # @type Grant: String
+
+        attr_accessor :TiProjectId, :RoleIds, :SubUins, :Grant
+
+        def initialize(tiprojectid=nil, roleids=nil, subuins=nil, grant=nil)
+          @TiProjectId = tiprojectid
+          @RoleIds = roleids
+          @SubUins = subuins
+          @Grant = grant
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+          @RoleIds = params['RoleIds']
+          @SubUins = params['SubUins']
+          @Grant = params['Grant']
+        end
+      end
+
+      # ModifyRoleUserGrant返回参数结构体
+      class ModifyRoleUserGrantResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyServiceGroupWeights请求参数结构体
       class ModifyServiceGroupWeightsRequest < TencentCloud::Common::AbstractModel
         # @param ServiceGroupId: 服务组id
@@ -7990,6 +8826,82 @@ module TencentCloud
             @ServiceGroup = ServiceGroup.new
             @ServiceGroup.deserialize(params['ServiceGroup'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyUserGrant请求参数结构体
+      class ModifyUserGrantRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+        # @param SubUins: <p>用户列表</p>
+        # @type SubUins: Array
+        # @param RoleIds: <p>角色列表</p>
+        # @type RoleIds: Array
+        # @param Grant: <p>授权类型</p>
+        # @type Grant: String
+
+        attr_accessor :TiProjectId, :SubUins, :RoleIds, :Grant
+
+        def initialize(tiprojectid=nil, subuins=nil, roleids=nil, grant=nil)
+          @TiProjectId = tiprojectid
+          @SubUins = subuins
+          @RoleIds = roleids
+          @Grant = grant
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+          @SubUins = params['SubUins']
+          @RoleIds = params['RoleIds']
+          @Grant = params['Grant']
+        end
+      end
+
+      # ModifyUserGrant返回参数结构体
+      class ModifyUserGrantResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyWorkspaceMembers请求参数结构体
+      class ModifyWorkspaceMembersRequest < TencentCloud::Common::AbstractModel
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+
+        attr_accessor :TiProjectId
+
+        def initialize(tiprojectid=nil)
+          @TiProjectId = tiprojectid
+        end
+
+        def deserialize(params)
+          @TiProjectId = params['TiProjectId']
+        end
+      end
+
+      # ModifyWorkspaceMembers返回参数结构体
+      class ModifyWorkspaceMembersResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -9830,6 +10742,49 @@ module TencentCloud
         end
       end
 
+      # 资源级权限记录
+      class ResourcePermission < TencentCloud::Common::AbstractModel
+        # @param ResourceType: <p>资源类型</p>
+        # @type ResourceType: String
+        # @param Id: <p>资源ID</p>
+        # @type Id: String
+        # @param Permission: <p>权限值</p>
+        # @type Permission: String
+        # @param Name: <p>资源名称</p>
+        # @type Name: String
+        # @param SubUin: <p>创建者子账号</p>
+        # @type SubUin: String
+        # @param SubUinName: <p>创建者昵称</p>
+        # @type SubUinName: String
+        # @param DataSourceBrief: <p>数据源简要信息</p>
+        # @type DataSourceBrief: :class:`Tencentcloud::Tione.v20211111.models.DataSourceBrief`
+
+        attr_accessor :ResourceType, :Id, :Permission, :Name, :SubUin, :SubUinName, :DataSourceBrief
+
+        def initialize(resourcetype=nil, id=nil, permission=nil, name=nil, subuin=nil, subuinname=nil, datasourcebrief=nil)
+          @ResourceType = resourcetype
+          @Id = id
+          @Permission = permission
+          @Name = name
+          @SubUin = subuin
+          @SubUinName = subuinname
+          @DataSourceBrief = datasourcebrief
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @Id = params['Id']
+          @Permission = params['Permission']
+          @Name = params['Name']
+          @SubUin = params['SubUin']
+          @SubUinName = params['SubUinName']
+          unless params['DataSourceBrief'].nil?
+            @DataSourceBrief = DataSourceBrief.new
+            @DataSourceBrief.deserialize(params['DataSourceBrief'])
+          end
+        end
+      end
+
       # TI资源规格
       class ResourceSpec < TencentCloud::Common::AbstractModel
         # @param SpecAlias: 规格简称
@@ -9874,6 +10829,64 @@ module TencentCloud
         def deserialize(params)
           @SupplyType = params['SupplyType']
           @ClusterType = params['ClusterType']
+        end
+      end
+
+      # 角色简要信息
+      class RoleBriefInfo < TencentCloud::Common::AbstractModel
+        # @param RoleId: <p>角色id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleId: String
+        # @param RoleName: <p>角色名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RoleName: String
+
+        attr_accessor :RoleId, :RoleName
+
+        def initialize(roleid=nil, rolename=nil)
+          @RoleId = roleid
+          @RoleName = rolename
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RoleName = params['RoleName']
+        end
+      end
+
+      # 角色信息
+      class RoleInfo < TencentCloud::Common::AbstractModel
+        # @param RoleId: <p>角色ID</p>
+        # @type RoleId: String
+        # @param RoleName: <p>名称</p>
+        # @type RoleName: String
+        # @param RoleType: <p>角色类型。&quot;SYSTEM&quot; 内置角色，&quot;CUSTOMER&quot; 自定义角色</p>
+        # @type RoleType: String
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param UserCount: <p>绑定的用户数</p>
+        # @type UserCount: Integer
+
+        attr_accessor :RoleId, :RoleName, :RoleType, :Description, :CreateTime, :UserCount
+
+        def initialize(roleid=nil, rolename=nil, roletype=nil, description=nil, createtime=nil, usercount=nil)
+          @RoleId = roleid
+          @RoleName = rolename
+          @RoleType = roletype
+          @Description = description
+          @CreateTime = createtime
+          @UserCount = usercount
+        end
+
+        def deserialize(params)
+          @RoleId = params['RoleId']
+          @RoleName = params['RoleName']
+          @RoleType = params['RoleType']
+          @Description = params['Description']
+          @CreateTime = params['CreateTime']
+          @UserCount = params['UserCount']
         end
       end
 
@@ -12449,6 +13462,63 @@ module TencentCloud
         end
       end
 
+      # 用户简要信息
+      class UserBriefInfo < TencentCloud::Common::AbstractModel
+        # @param SubUin: <p>子用户uin</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubUin: String
+        # @param SubUinName: <p>子用户名</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SubUinName: String
+
+        attr_accessor :SubUin, :SubUinName
+
+        def initialize(subuin=nil, subuinname=nil)
+          @SubUin = subuin
+          @SubUinName = subuinname
+        end
+
+        def deserialize(params)
+          @SubUin = params['SubUin']
+          @SubUinName = params['SubUinName']
+        end
+      end
+
+      # 用户+角色信息
+      class UserRoleInfo < TencentCloud::Common::AbstractModel
+        # @param SubUin: <p>子账号</p>
+        # @type SubUin: String
+        # @param NickName: <p>名称</p>
+        # @type NickName: String
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param Roles: <p>角色列表</p>
+        # @type Roles: Array
+
+        attr_accessor :SubUin, :NickName, :CreateTime, :Roles
+
+        def initialize(subuin=nil, nickname=nil, createtime=nil, roles=nil)
+          @SubUin = subuin
+          @NickName = nickname
+          @CreateTime = createtime
+          @Roles = roles
+        end
+
+        def deserialize(params)
+          @SubUin = params['SubUin']
+          @NickName = params['NickName']
+          @CreateTime = params['CreateTime']
+          unless params['Roles'].nil?
+            @Roles = []
+            params['Roles'].each do |i|
+              roleinfo_tmp = RoleInfo.new
+              roleinfo_tmp.deserialize(i)
+              @Roles << roleinfo_tmp
+            end
+          end
+        end
+      end
+
       # 外部挂载信息
       class VolumeMount < TencentCloud::Common::AbstractModel
         # @param CFSConfig: <p>cfs的配置信息</p>
@@ -12622,6 +13692,38 @@ module TencentCloud
           end
           @ActionType = params['ActionType']
           @Status = params['Status']
+        end
+      end
+
+      # 工作空间任务信息
+      class WorkspaceTaskInfo < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param TaskName: <p>任务名称</p>
+        # @type TaskName: String
+        # @param Region: <p>地域</p>
+        # @type Region: String
+        # @param ResourceTaskType: <p>任务类型</p>
+        # @type ResourceTaskType: String
+        # @param ResourceGroupId: <p>任务所属资源组</p>
+        # @type ResourceGroupId: String
+
+        attr_accessor :TaskId, :TaskName, :Region, :ResourceTaskType, :ResourceGroupId
+
+        def initialize(taskid=nil, taskname=nil, region=nil, resourcetasktype=nil, resourcegroupid=nil)
+          @TaskId = taskid
+          @TaskName = taskname
+          @Region = region
+          @ResourceTaskType = resourcetasktype
+          @ResourceGroupId = resourcegroupid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @TaskName = params['TaskName']
+          @Region = params['Region']
+          @ResourceTaskType = params['ResourceTaskType']
+          @ResourceGroupId = params['ResourceGroupId']
         end
       end
 

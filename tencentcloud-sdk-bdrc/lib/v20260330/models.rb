@@ -170,53 +170,56 @@ module TencentCloud
 
       # 定期备份策略的详细信息
       class AutoBackupPolicy < TencentCloud::Common::AbstractModel
-        # @param IsActivated: 定期备份策略是否激活。
+        # @param IsActivated: <p>定期备份策略是否激活。</p>
         # @type IsActivated: Boolean
-        # @param IsPermanent: 使用该定期备份策略创建出来的备份是否永久保留。
+        # @param IsPermanent: <p>使用该定期备份策略创建出来的备份是否永久保留。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsPermanent: Boolean
-        # @param NextTriggerTime: 使用该定期备份策略创建出来的备份是否永久保留。
+        # @param NextTriggerTime: <p>使用该定期备份策略创建出来的备份是否永久保留。</p>
         # @type NextTriggerTime: String
-        # @param AutoBackupPolicyState: NORMAL
+        # @param AutoBackupPolicyState: <p>NORMAL</p>
         # @type AutoBackupPolicyState: String
-        # @param AutoBackupPolicyName: 备份策略的名称。
+        # @param AutoBackupPolicyName: <p>备份策略的名称。</p>
         # @type AutoBackupPolicyName: String
-        # @param Policy: 定期备份的执行策略。
+        # @param Policy: <p>定期备份的执行策略。</p>
         # @type Policy: Array
-        # @param AutoBackupPolicyId: 备份策略ID。
+        # @param AutoBackupPolicyId: <p>备份策略ID。</p>
         # @type AutoBackupPolicyId: String
-        # @param CreateTime: 备份策略的创建时间。
+        # @param CreateTime: <p>备份策略的创建时间。</p>
         # @type CreateTime: String
-        # @param RetentionDays: 使用该定期备份策略创建出来的备份保留天数。
+        # @param RetentionDays: <p>使用该定期备份策略创建出来的备份保留天数。</p>
         # @type RetentionDays: Integer
-        # @param AppId: 用户AppId。
+        # @param AppId: <p>用户AppId。</p>
         # @type AppId: Integer
-        # @param InstanceIdSet: 定期备份策略绑定的实例ID列表。
+        # @param InstanceIdSet: <p>定期备份策略绑定的实例ID列表。</p>
         # @type InstanceIdSet: Array
-        # @param RetentionMonths: 该定期快照创建的快照最大保留月数
+        # @param RetentionMonths: <p>使用该定期备份策略创建的备份最大保留月数</p>
         # @type RetentionMonths: Integer
-        # @param RetentionAmount: 该定期快照创建的快照最大保留数量
+        # @param RetentionAmount: <p>使用该定期备份策略创建的备份最大保留数量</p>
         # @type RetentionAmount: Integer
-        # @param AccountName: 创建人。
+        # @param AccountName: <p>创建人。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountName: String
-        # @param AccountUin: 主账号uin。
+        # @param AccountUin: <p>主账号uin。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountUin: String
-        # @param SubAccountUin: 子账号uin。
+        # @param SubAccountUin: <p>子账号uin。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubAccountUin: String
-        # @param StorageType: 策略存储类型
+        # @param StorageType: <p>策略存储类型</p>
         # @type StorageType: String
-        # @param VaultId: 备份库ID
+        # @param VaultId: <p>备份库ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VaultId: String
-        # @param AdvancedRetentionPolicy: 高级保留策略
+        # @param AdvancedRetentionPolicy: <p>高级保留策略</p>
         # @type AdvancedRetentionPolicy: :class:`Tencentcloud::Bdrc.v20260330.models.AdvancedRetentionPolicy`
+        # @param BackupResourceInfos: <p>备份资源信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupResourceInfos: Array
 
-        attr_accessor :IsActivated, :IsPermanent, :NextTriggerTime, :AutoBackupPolicyState, :AutoBackupPolicyName, :Policy, :AutoBackupPolicyId, :CreateTime, :RetentionDays, :AppId, :InstanceIdSet, :RetentionMonths, :RetentionAmount, :AccountName, :AccountUin, :SubAccountUin, :StorageType, :VaultId, :AdvancedRetentionPolicy
+        attr_accessor :IsActivated, :IsPermanent, :NextTriggerTime, :AutoBackupPolicyState, :AutoBackupPolicyName, :Policy, :AutoBackupPolicyId, :CreateTime, :RetentionDays, :AppId, :InstanceIdSet, :RetentionMonths, :RetentionAmount, :AccountName, :AccountUin, :SubAccountUin, :StorageType, :VaultId, :AdvancedRetentionPolicy, :BackupResourceInfos
 
-        def initialize(isactivated=nil, ispermanent=nil, nexttriggertime=nil, autobackuppolicystate=nil, autobackuppolicyname=nil, policy=nil, autobackuppolicyid=nil, createtime=nil, retentiondays=nil, appid=nil, instanceidset=nil, retentionmonths=nil, retentionamount=nil, accountname=nil, accountuin=nil, subaccountuin=nil, storagetype=nil, vaultid=nil, advancedretentionpolicy=nil)
+        def initialize(isactivated=nil, ispermanent=nil, nexttriggertime=nil, autobackuppolicystate=nil, autobackuppolicyname=nil, policy=nil, autobackuppolicyid=nil, createtime=nil, retentiondays=nil, appid=nil, instanceidset=nil, retentionmonths=nil, retentionamount=nil, accountname=nil, accountuin=nil, subaccountuin=nil, storagetype=nil, vaultid=nil, advancedretentionpolicy=nil, backupresourceinfos=nil)
           @IsActivated = isactivated
           @IsPermanent = ispermanent
           @NextTriggerTime = nexttriggertime
@@ -236,6 +239,7 @@ module TencentCloud
           @StorageType = storagetype
           @VaultId = vaultid
           @AdvancedRetentionPolicy = advancedretentionpolicy
+          @BackupResourceInfos = backupresourceinfos
         end
 
         def deserialize(params)
@@ -267,6 +271,14 @@ module TencentCloud
           unless params['AdvancedRetentionPolicy'].nil?
             @AdvancedRetentionPolicy = AdvancedRetentionPolicy.new
             @AdvancedRetentionPolicy.deserialize(params['AdvancedRetentionPolicy'])
+          end
+          unless params['BackupResourceInfos'].nil?
+            @BackupResourceInfos = []
+            params['BackupResourceInfos'].each do |i|
+              backupresourceinfo_tmp = BackupResourceInfo.new
+              backupresourceinfo_tmp.deserialize(i)
+              @BackupResourceInfos << backupresourceinfo_tmp
+            end
           end
         end
       end
@@ -539,78 +551,85 @@ module TencentCloud
 
       # 备份点信息
       class BackupInfo < TencentCloud::Common::AbstractModel
-        # @param BackupId: 备份点ID
+        # @param BackupId: <p>备份点ID</p>
         # @type BackupId: String
-        # @param BackupName: 备份名称
+        # @param BackupName: <p>备份名称</p>
         # @type BackupName: String
-        # @param PlanId: 所属计划ID
+        # @param PlanId: <p>所属计划ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PlanId: String
-        # @param AspInstanceId: 策略ID
+        # @param AspInstanceId: <p>策略ID</p>
         # @type AspInstanceId: String
-        # @param ResourceId: 资源ID
+        # @param ResourceId: <p>资源ID</p>
         # @type ResourceId: String
-        # @param Status: 备份状态，取值如下：
-        # 0 备份完成
-        # 1 创建中（备份进行中）
-        # 2 部分成功（指定的备份路径中部分目录不存在）
-        # 3 恢复中（该备份点正在被恢复任务使用）
-        # 92  已取消
-        # 98 创建失败
-        # 99 已删除
-        # 100 删除中
+        # @param Status: <p>备份状态，取值如下：<br>0 备份完成<br>1 创建中（备份进行中）<br>2 部分成功（指定的备份路径中部分目录不存在）<br>3 恢复中（该备份点正在被恢复任务使用）<br>92  已取消<br>98 创建失败<br>99 已删除<br>100 删除中</p>
         # @type Status: Integer
-        # @param BackupPaths: 备份路径
+        # @param BackupPaths: <p>备份路径</p>
         # @type BackupPaths: Array
-        # @param IncludeFileTypes: 包含文件类型
+        # @param IncludeFileTypes: <p>包含文件类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncludeFileTypes: Array
-        # @param ExcludePatterns: 排除路径
+        # @param ExcludePatterns: <p>排除路径</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExcludePatterns: Array
-        # @param ExcludeSystemDirectories: 是否排除系统目录
+        # @param ExcludeSystemDirectories: <p>是否排除系统目录</p>
         # @type ExcludeSystemDirectories: Boolean
-        # @param VaultId: 备份库ID
+        # @param VaultId: <p>备份库ID</p>
         # @type VaultId: String
-        # @param ScannedFileCount: 扫描文件数
+        # @param ScannedFileCount: <p>扫描文件数</p>
         # @type ScannedFileCount: Integer
-        # @param ScannedSize: 扫描大小(字节)
+        # @param ScannedSize: <p>扫描大小(字节)</p>
         # @type ScannedSize: Integer
-        # @param ScannedSizeFormatted: 扫描大小(格式化)
+        # @param ScannedSizeFormatted: <p>扫描大小(格式化)</p>
         # @type ScannedSizeFormatted: String
-        # @param BackupFileCount: 已备份文件数量
+        # @param BackupFileCount: <p>已备份文件数量</p>
         # @type BackupFileCount: Integer
-        # @param BackupSize: 已备份大小(字节)
+        # @param BackupSize: <p>已备份大小(字节)</p>
         # @type BackupSize: Integer
-        # @param BackupSizeFormatted: 已备份大小(格式化)
+        # @param BackupSizeFormatted: <p>已备份大小(格式化)</p>
         # @type BackupSizeFormatted: String
-        # @param Progress: 备份进度(0-100)
+        # @param Progress: <p>备份进度(0-100)</p>
         # @type Progress: Float
-        # @param JobId: 任务ID
+        # @param JobId: <p>任务ID</p>
         # @type JobId: String
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: String
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: <p>创建时间</p>
         # @type CreatedTime: String
-        # @param IsPermanent: 是否为永久保留
+        # @param IsPermanent: <p>是否为永久保留</p>
         # @type IsPermanent: Boolean
-        # @param Deadline: 到期时间
+        # @param Deadline: <p>到期时间</p>
         # @type Deadline: String
-        # @param NonExistSourcePaths: 不存在的路径信息
+        # @param NonExistSourcePaths: <p>不存在的路径信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NonExistSourcePaths: Array
-        # @param FailReason: 备份失败原因
+        # @param FailReason: <p>备份失败原因</p>
         # @type FailReason: String
-        # @param AppId: 备份所属AppId
+        # @param AppId: <p>备份所属AppId</p>
         # @type AppId: Integer
-        # @param ResourceType: 备份类型
+        # @param ResourceType: <p>备份类型</p>
         # @type ResourceType: String
+        # @param IsInventoryPending: <p>cos备份场景使用，标识是否清单生成中</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsInventoryPending: Boolean
+        # @param EnableObjectAcl: <p>是否备份对象ACL（仅COS备份支持）</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableObjectAcl: Boolean
+        # @param EnableObjectTags: <p>是否备份对象标签（仅COS备份支持）</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableObjectTags: Boolean
+        # @param CloudResourceId: <p>云上资源ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudResourceId: String
+        # @param ProductType: <p>产品存储类型</p><p>枚举值：</p><ul><li>SD： 文件系统通用标准型存储</li><li>HP： 文件系统通用性能性存储</li><li>TB： 文件系统Turbo标准型存储</li><li>TP： 文件系统Turbo性能型存储</li><li>THP： 文件系统Turbo吞吐型存储</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductType: String
 
-        attr_accessor :BackupId, :BackupName, :PlanId, :AspInstanceId, :ResourceId, :Status, :BackupPaths, :IncludeFileTypes, :ExcludePatterns, :ExcludeSystemDirectories, :VaultId, :ScannedFileCount, :ScannedSize, :ScannedSizeFormatted, :BackupFileCount, :BackupSize, :BackupSizeFormatted, :Progress, :JobId, :StartTime, :EndTime, :CreatedTime, :IsPermanent, :Deadline, :NonExistSourcePaths, :FailReason, :AppId, :ResourceType
+        attr_accessor :BackupId, :BackupName, :PlanId, :AspInstanceId, :ResourceId, :Status, :BackupPaths, :IncludeFileTypes, :ExcludePatterns, :ExcludeSystemDirectories, :VaultId, :ScannedFileCount, :ScannedSize, :ScannedSizeFormatted, :BackupFileCount, :BackupSize, :BackupSizeFormatted, :Progress, :JobId, :StartTime, :EndTime, :CreatedTime, :IsPermanent, :Deadline, :NonExistSourcePaths, :FailReason, :AppId, :ResourceType, :IsInventoryPending, :EnableObjectAcl, :EnableObjectTags, :CloudResourceId, :ProductType
 
-        def initialize(backupid=nil, backupname=nil, planid=nil, aspinstanceid=nil, resourceid=nil, status=nil, backuppaths=nil, includefiletypes=nil, excludepatterns=nil, excludesystemdirectories=nil, vaultid=nil, scannedfilecount=nil, scannedsize=nil, scannedsizeformatted=nil, backupfilecount=nil, backupsize=nil, backupsizeformatted=nil, progress=nil, jobid=nil, starttime=nil, endtime=nil, createdtime=nil, ispermanent=nil, deadline=nil, nonexistsourcepaths=nil, failreason=nil, appid=nil, resourcetype=nil)
+        def initialize(backupid=nil, backupname=nil, planid=nil, aspinstanceid=nil, resourceid=nil, status=nil, backuppaths=nil, includefiletypes=nil, excludepatterns=nil, excludesystemdirectories=nil, vaultid=nil, scannedfilecount=nil, scannedsize=nil, scannedsizeformatted=nil, backupfilecount=nil, backupsize=nil, backupsizeformatted=nil, progress=nil, jobid=nil, starttime=nil, endtime=nil, createdtime=nil, ispermanent=nil, deadline=nil, nonexistsourcepaths=nil, failreason=nil, appid=nil, resourcetype=nil, isinventorypending=nil, enableobjectacl=nil, enableobjecttags=nil, cloudresourceid=nil, producttype=nil)
           @BackupId = backupid
           @BackupName = backupname
           @PlanId = planid
@@ -639,6 +658,11 @@ module TencentCloud
           @FailReason = failreason
           @AppId = appid
           @ResourceType = resourcetype
+          @IsInventoryPending = isinventorypending
+          @EnableObjectAcl = enableobjectacl
+          @EnableObjectTags = enableobjecttags
+          @CloudResourceId = cloudresourceid
+          @ProductType = producttype
         end
 
         def deserialize(params)
@@ -670,33 +694,41 @@ module TencentCloud
           @FailReason = params['FailReason']
           @AppId = params['AppId']
           @ResourceType = params['ResourceType']
+          @IsInventoryPending = params['IsInventoryPending']
+          @EnableObjectAcl = params['EnableObjectAcl']
+          @EnableObjectTags = params['EnableObjectTags']
+          @CloudResourceId = params['CloudResourceId']
+          @ProductType = params['ProductType']
         end
       end
 
       # 描述实例的备份信息
       class BackupInstance < TencentCloud::Common::AbstractModel
-        # @param AutoBackupPolicyIdSet: 实例绑定的定期备份策略列表。
+        # @param AutoBackupPolicyIdSet: <p>实例绑定的定期备份策略列表。</p>
         # @type AutoBackupPolicyIdSet: Array
-        # @param InstanceId: 实例ID。
+        # @param InstanceId: <p>实例ID。</p>
         # @type InstanceId: String
-        # @param AppId: 用户AppId。
+        # @param AppId: <p>用户AppId。</p>
         # @type AppId: Integer
-        # @param LatestBackupTime: 实例最新备份时间。
+        # @param LatestBackupTime: <p>实例最新备份时间。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LatestBackupTime: String
-        # @param BackupGroupIdSet: 实例的备份组ID列表。
+        # @param BackupGroupIdSet: <p>实例的备份组ID列表。</p>
         # @type BackupGroupIdSet: Array
-        # @param ModifyTime: 修改时间。
+        # @param ModifyTime: <p>修改时间。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifyTime: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # @type InstanceName: String
+        # @param BackupSizeMb: <p>备份数据量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupSizeMb: Integer
 
-        attr_accessor :AutoBackupPolicyIdSet, :InstanceId, :AppId, :LatestBackupTime, :BackupGroupIdSet, :ModifyTime, :CreateTime, :InstanceName
+        attr_accessor :AutoBackupPolicyIdSet, :InstanceId, :AppId, :LatestBackupTime, :BackupGroupIdSet, :ModifyTime, :CreateTime, :InstanceName, :BackupSizeMb
 
-        def initialize(autobackuppolicyidset=nil, instanceid=nil, appid=nil, latestbackuptime=nil, backupgroupidset=nil, modifytime=nil, createtime=nil, instancename=nil)
+        def initialize(autobackuppolicyidset=nil, instanceid=nil, appid=nil, latestbackuptime=nil, backupgroupidset=nil, modifytime=nil, createtime=nil, instancename=nil, backupsizemb=nil)
           @AutoBackupPolicyIdSet = autobackuppolicyidset
           @InstanceId = instanceid
           @AppId = appid
@@ -705,6 +737,7 @@ module TencentCloud
           @ModifyTime = modifytime
           @CreateTime = createtime
           @InstanceName = instancename
+          @BackupSizeMb = backupsizemb
         end
 
         def deserialize(params)
@@ -716,6 +749,7 @@ module TencentCloud
           @ModifyTime = params['ModifyTime']
           @CreateTime = params['CreateTime']
           @InstanceName = params['InstanceName']
+          @BackupSizeMb = params['BackupSizeMb']
         end
       end
 
@@ -786,6 +820,26 @@ module TencentCloud
           @TotalCount = params['TotalCount']
           @BoundCount = params['BoundCount']
           @UnboundCount = params['UnboundCount']
+        end
+      end
+
+      # 文件备份资源
+      class BackupResourceInfo < TencentCloud::Common::AbstractModel
+        # @param ResourceType: <p>资源类型</p><p>枚举值：</p><ul><li>CVM_AGENT： CVM文件备份</li><li>COS_AGENT： COS备份</li><li>CFS_AGENT： CFS文件备份</li><li>INSTANCE： CVM整机备份</li></ul>
+        # @type ResourceType: String
+        # @param ResourceIds: <p>资源ID</p>
+        # @type ResourceIds: Array
+
+        attr_accessor :ResourceType, :ResourceIds
+
+        def initialize(resourcetype=nil, resourceids=nil)
+          @ResourceType = resourcetype
+          @ResourceIds = resourceids
+        end
+
+        def deserialize(params)
+          @ResourceType = params['ResourceType']
+          @ResourceIds = params['ResourceIds']
         end
       end
 
@@ -908,12 +962,21 @@ module TencentCloud
 
       # BindAutoBackupPolicy请求参数结构体
       class BindAutoBackupPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param AutoBackupPolicyId: <p>备份策略ID</p>
+        # @type AutoBackupPolicyId: String
+        # @param InstanceIds: <p>实例ID列表</p>
+        # @type InstanceIds: Array
 
+        attr_accessor :AutoBackupPolicyId, :InstanceIds
 
-        def initialize()
+        def initialize(autobackuppolicyid=nil, instanceids=nil)
+          @AutoBackupPolicyId = autobackuppolicyid
+          @InstanceIds = instanceids
         end
 
         def deserialize(params)
+          @AutoBackupPolicyId = params['AutoBackupPolicyId']
+          @InstanceIds = params['InstanceIds']
         end
       end
 
@@ -1266,25 +1329,25 @@ module TencentCloud
 
       # CreateAutoBackupPolicy请求参数结构体
       class CreateAutoBackupPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param Policy: 定期备份的执行策略。
+        # @param Policy: <p>定期备份的执行策略。</p>
         # @type Policy: Array
-        # @param IsPermanent: 通过该定期备份策略创建的备份是否永久保留。false表示非永久保留，true表示永久保留，默认为false。
+        # @param IsPermanent: <p>通过该定期备份策略创建的备份是否永久保留。false表示非永久保留，true表示永久保留，默认为false。</p>
         # @type IsPermanent: Boolean
-        # @param AutoBackupPolicyName: 定期备份策略的名称。
+        # @param AutoBackupPolicyName: <p>定期备份策略的名称。</p>
         # @type AutoBackupPolicyName: String
-        # @param IsActivated: 是否激活定期备份策略。
+        # @param IsActivated: <p>是否激活定期备份策略。</p>
         # @type IsActivated: Boolean
-        # @param RetentionDays: 通过定期备份策略创建出的备份保留时间。
+        # @param RetentionDays: <p>通过定期备份策略创建出的备份保留时间。本参数与 RetentionMonths、RetentionAmount 互斥，不可同时传入。当 IsPermanent 为 false 或不传时，RetentionDays / RetentionMonths / RetentionAmount / AdvancedRetentionPolicy 必须传入至少一项有效值。</p>
         # @type RetentionDays: Integer
-        # @param RetentionMonths: 该定期备份策略创建的备份可以保留的月数，该参数不可与IsPermanent/RetentionDays参数冲突。
+        # @param RetentionMonths: <p>该定期备份策略创建的备份可以保留的月数。本参数与 RetentionDays、RetentionAmount 互斥，不可同时传入。当 IsPermanent 为 false 或不传时，RetentionDays / RetentionMonths / RetentionAmount / AdvancedRetentionPolicy 必须传入至少一项有效值。</p>
         # @type RetentionMonths: Integer
-        # @param RetentionAmount: 通过该定期备份策略最多保留的备份个数，超过该个数限制后自动删除最先创建的备份，该参数不可与IsPermanent参数冲突。
+        # @param RetentionAmount: <p>通过该定期备份策略最多保留的备份个数，超过该个数限制后自动删除最先创建的备份。本参数与 RetentionDays、RetentionMonths互斥，不可同时传入。当 IsPermanent 为 false 或不传时，RetentionDays / RetentionMonths / RetentionAmount / AdvancedRetentionPolicy 必须传入至少一项有效值。</p>
         # @type RetentionAmount: Integer
-        # @param StorageType: 备份存储类型。COMMON表示走普通模式（不需要备份库），VAULT表示走备份库（必须关联一个备份库）。默认为COMMON
+        # @param StorageType: <p>备份存储类型。COMMON表示走普通模式（不需要备份库），VAULT表示走备份库（必须关联一个备份库）。默认为COMMON</p>
         # @type StorageType: String
-        # @param VaultId: 备份库ID，创建agent备份策略时必须指定。当StorageType为VAULT时必传。
+        # @param VaultId: <p>备份库ID，创建agent备份策略时必须指定。当StorageType为VAULT时必传。</p>
         # @type VaultId: String
-        # @param AdvancedRetentionPolicy: 定期备份高级保留策略，该参数不可与IsPermanent参数冲突。
+        # @param AdvancedRetentionPolicy: <p>定期备份高级保留策略，该参数不可与 IsPermanent 参数冲突。当 IsPermanent 为 false 或不传、且未传入 RetentionDays / RetentionMonths / RetentionAmount 时，必须传入本参数。</p>
         # @type AdvancedRetentionPolicy: :class:`Tencentcloud::Bdrc.v20260330.models.AdvancedRetentionPolicy`
 
         attr_accessor :Policy, :IsPermanent, :AutoBackupPolicyName, :IsActivated, :RetentionDays, :RetentionMonths, :RetentionAmount, :StorageType, :VaultId, :AdvancedRetentionPolicy
@@ -1328,7 +1391,7 @@ module TencentCloud
 
       # CreateAutoBackupPolicy返回参数结构体
       class CreateAutoBackupPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param AutoBackupPolicyId: 定期备份策略ID。
+        # @param AutoBackupPolicyId: <p>定期备份策略ID。</p>
         # @type AutoBackupPolicyId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1618,7 +1681,7 @@ module TencentCloud
         # @type BackupStorageId: String
         # @param PlanName: <p>计划名称</p>
         # @type PlanName: String
-        # @param Resources: <p>实例配置列表，[1,20]</p>
+        # @param Resources: <p>实例配置列表，1~20 项，此参数必填。</p>
         # @type Resources: Array
         # @param ResourceType: <p>资源类型</p><p>枚举值：</p><ul><li>CVM_AGENT： CVM文件备份</li><li>CFS_AGENT： 文件系统备份</li><li>COS_AGENT： COS备份</li></ul><p>默认值：CVM_AGENT</p>
         # @type ResourceType: String
@@ -1671,28 +1734,34 @@ module TencentCloud
 
       # CreateFileBackup请求参数结构体
       class CreateFileBackupRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源ID列表
+        # @param ResourceId: <p>资源ID列表</p>
         # @type ResourceId: String
-        # @param PlanId: 计划ID
+        # @param PlanId: <p>计划ID</p>
         # @type PlanId: String
-        # @param BackupPaths: 备份路径列表，1~20 个
+        # @param BackupPaths: <p>备份路径列表，1~20 个</p>
         # @type BackupPaths: Array
-        # @param IncludeFileTypes: 包含文件类型，0~20 个
+        # @param IncludeFileTypes: <p>包含文件类型，0~20 个</p>
         # @type IncludeFileTypes: Array
-        # @param ExcludePatterns: 排除文件路径列表，0~20 个
+        # @param ExcludePatterns: <p>排除文件路径列表，0~20 个</p>
         # @type ExcludePatterns: Array
-        # @param ExcludeSystemDirectories: 是否排除系统目录
+        # @param ExcludeSystemDirectories: <p>是否排除系统目录</p>
         # @type ExcludeSystemDirectories: Boolean
-        # @param BackupStorageId: 备份库ID
+        # @param BackupStorageId: <p>备份库ID，此参数必填。</p>
         # @type BackupStorageId: String
-        # @param Deadline: 备份到期时间
+        # @param Deadline: <p>备份到期时间</p>
         # @type Deadline: String
-        # @param BackupName: 备份名称
+        # @param BackupName: <p>备份名称</p>
         # @type BackupName: String
+        # @param ResourceType: <p>资源类型</p><p>枚举值：</p><ul><li>CVM_AGENT： CVM文件备份</li><li>CFS_AGENT： 文件系统备份</li><li>COS_AGENT： COS备份</li></ul><p>默认值：CVM_AGENT</p>
+        # @type ResourceType: String
+        # @param EnableObjectAcl: <p>是否备份对象ACL（仅COS备份支持）</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul><p>默认值：false</p>
+        # @type EnableObjectAcl: Boolean
+        # @param EnableObjectTags: <p>是否备份对象标签（仅COS备份支持）</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul><p>默认值：false</p>
+        # @type EnableObjectTags: Boolean
 
-        attr_accessor :ResourceId, :PlanId, :BackupPaths, :IncludeFileTypes, :ExcludePatterns, :ExcludeSystemDirectories, :BackupStorageId, :Deadline, :BackupName
+        attr_accessor :ResourceId, :PlanId, :BackupPaths, :IncludeFileTypes, :ExcludePatterns, :ExcludeSystemDirectories, :BackupStorageId, :Deadline, :BackupName, :ResourceType, :EnableObjectAcl, :EnableObjectTags
 
-        def initialize(resourceid=nil, planid=nil, backuppaths=nil, includefiletypes=nil, excludepatterns=nil, excludesystemdirectories=nil, backupstorageid=nil, deadline=nil, backupname=nil)
+        def initialize(resourceid=nil, planid=nil, backuppaths=nil, includefiletypes=nil, excludepatterns=nil, excludesystemdirectories=nil, backupstorageid=nil, deadline=nil, backupname=nil, resourcetype=nil, enableobjectacl=nil, enableobjecttags=nil)
           @ResourceId = resourceid
           @PlanId = planid
           @BackupPaths = backuppaths
@@ -1702,6 +1771,9 @@ module TencentCloud
           @BackupStorageId = backupstorageid
           @Deadline = deadline
           @BackupName = backupname
+          @ResourceType = resourcetype
+          @EnableObjectAcl = enableobjectacl
+          @EnableObjectTags = enableobjecttags
         end
 
         def deserialize(params)
@@ -1714,12 +1786,15 @@ module TencentCloud
           @BackupStorageId = params['BackupStorageId']
           @Deadline = params['Deadline']
           @BackupName = params['BackupName']
+          @ResourceType = params['ResourceType']
+          @EnableObjectAcl = params['EnableObjectAcl']
+          @EnableObjectTags = params['EnableObjectTags']
         end
       end
 
       # CreateFileBackup返回参数结构体
       class CreateFileBackupResponse < TencentCloud::Common::AbstractModel
-        # @param BackupId: 备份Id
+        # @param BackupId: <p>备份Id</p>
         # @type BackupId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1739,32 +1814,52 @@ module TencentCloud
 
       # CreateFileRestoreTask请求参数结构体
       class CreateFileRestoreTaskRequest < TencentCloud::Common::AbstractModel
-        # @param ConflictStrategy: 冲突处理策略：skip-跳过/"         "overwrite-覆盖/newer-保留较新的版本/"         "if_changed-内容变化时覆盖，默认overwrite
+        # @param BackupId: <p>待恢复的备份ID</p>
+        # @type BackupId: String
+        # @param TargetResourceId: <p>目标实例ID</p>
+        # @type TargetResourceId: String
+        # @param RestorePaths: <ol><li>恢复路径列表（1-500项）；2. CVM和CFS文件备份不传则使用备份点中所有路径，COS备份该参数必填；3. 必须是绝对路径；</li></ol>
+        # @type RestorePaths: Array
+        # @param TargetLocation: <p>目标位置</p><ol><li>不传则恢复到原始路径</li><li>cos恢复时不能以【/】开头</li></ol>
+        # @type TargetLocation: String
+        # @param ConflictStrategy: <p>冲突处理策略：skip-跳过/&quot;         &quot;overwrite-覆盖/newer-保留较新的版本/&quot;         &quot;if_changed-内容变化时覆盖，默认overwrite</p>
         # @type ConflictStrategy: String
 
-        attr_accessor :ConflictStrategy
+        attr_accessor :BackupId, :TargetResourceId, :RestorePaths, :TargetLocation, :ConflictStrategy
 
-        def initialize(conflictstrategy=nil)
+        def initialize(backupid=nil, targetresourceid=nil, restorepaths=nil, targetlocation=nil, conflictstrategy=nil)
+          @BackupId = backupid
+          @TargetResourceId = targetresourceid
+          @RestorePaths = restorepaths
+          @TargetLocation = targetlocation
           @ConflictStrategy = conflictstrategy
         end
 
         def deserialize(params)
+          @BackupId = params['BackupId']
+          @TargetResourceId = params['TargetResourceId']
+          @RestorePaths = params['RestorePaths']
+          @TargetLocation = params['TargetLocation']
           @ConflictStrategy = params['ConflictStrategy']
         end
       end
 
       # CreateFileRestoreTask返回参数结构体
       class CreateFileRestoreTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>恢复任务ID</p>
+        # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TaskId, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -2440,7 +2535,7 @@ module TencentCloud
 
       # DeleteFileBackupPlans请求参数结构体
       class DeleteFileBackupPlansRequest < TencentCloud::Common::AbstractModel
-        # @param PlanIds: 备份点 ID 列表
+        # @param PlanIds: <p>备份计划 ID 列表</p>
         # @type PlanIds: Array
 
         attr_accessor :PlanIds
@@ -2559,15 +2654,15 @@ module TencentCloud
 
       # DescribeAutoBackupPolicies请求参数结构体
       class DescribeAutoBackupPoliciesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件。支持以下过滤条件：\n"              "auto-backup-policy-id - 定期快照策略ID，如asp-xxx。\n"              "auto-backup-policy-state - 定期快照策略状态。\n"              "auto-backup-policy-name - 定期快照策略名称，支持模糊匹配。\n"              "tag - 按标签键值对过滤，需包含Key和/或Value。\n"              "tag-key - 按标签键过滤。\n"              "tag-value - 按标签值过滤。\n"              "tag:tag-key - 按指定标签键的标签值过滤。\n"              "vault-id - 备份库ID过滤。\n"              "storage-type - 存储类型过滤"              "（COMMON：普通模式，VAULT：备份库模式）。
+        # @param Filters: <p>过滤条件，支持以下Name：</p><ul><li>auto-backup-policy-id - 按定期备份策略ID过滤，如abp-xxx。</li><li>auto-backup-policy-state - 按定期备份策略状态过滤，如NORMAL。</li><li>auto-backup-policy-name - 按定期备份策略名称过滤，支持模糊匹配。</li><li>tag - 按标签键值对过滤，需包含Key和/或Value。</li><li>tag-key - 按标签键过滤。</li><li>tag-value - 按标签值过滤。</li><li>tag:tag-key - 按指定标签键的标签值过滤。</li><li>vault-id - 按备份库ID过滤。</li><li>storage-type - 按存储类型过滤：COMMON（普通模式）、VAULT（备份库模式）。</li></ul>
         # @type Filters: Array
-        # @param Offset: 偏移量，默认0
+        # @param Offset: <p>偏移量，默认0</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认20，最大1000
+        # @param Limit: <p>返回数量，默认20，最大1000</p>
         # @type Limit: Integer
-        # @param Order: 排序方式
+        # @param Order: <p>排序方式</p><p>枚举值：</p><ul><li>ASC： 升序排序</li><li>DESC： 降序排序</li></ul><p>默认值：DESC</p>
         # @type Order: String
-        # @param OrderField: 排序字段
+        # @param OrderField: <p>排序字段</p><p>枚举值：</p><ul><li>CREATE_TIME： 创建时间</li></ul><p>默认值：CREATE_TIME</p>
         # @type OrderField: String
 
         attr_accessor :Filters, :Offset, :Limit, :Order, :OrderField
@@ -2598,9 +2693,9 @@ module TencentCloud
 
       # DescribeAutoBackupPolicies返回参数结构体
       class DescribeAutoBackupPoliciesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合条件的总数量。
+        # @param TotalCount: <p>符合条件的总数量。</p>
         # @type TotalCount: Integer
-        # @param AutoBackupPolicySet: 备份策略列表详情。
+        # @param AutoBackupPolicySet: <p>备份策略列表详情。</p>
         # @type AutoBackupPolicySet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2629,15 +2724,15 @@ module TencentCloud
 
       # DescribeBackupGroupRollbackTasks请求参数结构体
       class DescribeBackupGroupRollbackTasksRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件，支持恢复任务ID（task-id）、备份组ID（backup-group-id）、源实例ID（source-instance-id）、目标实例ID（target-instance-id）、恢复状态（status）和回滚类型（rollback-type）过滤
+        # @param Filters: <p>过滤条件，支持恢复任务ID（task-id）、备份组ID（backup-group-id）、源实例ID（source-instance-id）、目标实例ID（target-instance-id）、恢复状态（status）和回滚类型（rollback-type）过滤</p>
         # @type Filters: Array
-        # @param Offset: 偏移量，默认0
+        # @param Offset: <p>偏移量，默认0</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认20，最大1000
+        # @param Limit: <p>返回数量，默认20，最大1000</p>
         # @type Limit: Integer
-        # @param Order: 排序方式
+        # @param Order: <p>排序方式</p><p>枚举值：</p><ul><li>ASC： 升序排序</li><li>DESC： 降序排序</li></ul><p>默认值：DESC</p>
         # @type Order: String
-        # @param OrderField: 排序字段
+        # @param OrderField: <p>排序字段</p><p>枚举值：</p><ul><li>CREATE_TIME： 创建时间</li></ul><p>默认值：CREATE_TIME</p>
         # @type OrderField: String
 
         attr_accessor :Filters, :Offset, :Limit, :Order, :OrderField
@@ -2668,9 +2763,9 @@ module TencentCloud
 
       # DescribeBackupGroupRollbackTasks返回参数结构体
       class DescribeBackupGroupRollbackTasksResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合条件的总数量。
+        # @param TotalCount: <p>符合条件的总数量。</p>
         # @type TotalCount: Integer
-        # @param RollbackTaskSet: 备份组恢复详情。
+        # @param RollbackTaskSet: <p>备份组恢复详情。</p>
         # @type RollbackTaskSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2748,9 +2843,9 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认20，最大500
         # @type Limit: Integer
-        # @param Order: 排序方式
+        # @param Order: <p>排序方式</p><p>枚举值：</p><ul><li>ASC： 升序排序</li><li>DESC： 降序排序</li></ul><p>默认值：DESC</p>
         # @type Order: String
-        # @param OrderField: 排序字段。目前支持CREATE_TIME。
+        # @param OrderField: <p>排序字段</p><p>枚举值：</p><ul><li>CREATE_TIME： 创建时间</li></ul><p>默认值：CREATE_TIME</p>
         # @type OrderField: String
 
         attr_accessor :Filters, :Offset, :Limit, :Order, :OrderField
@@ -2812,15 +2907,15 @@ module TencentCloud
 
       # DescribeBackupInstances请求参数结构体
       class DescribeBackupInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件。;instance-id - Array of String - 是否必填：否 -（过滤条件）按实例ID过滤。;auto-backup-policy-id - Array of String - 是否必填：否 -（过滤条件）按照实例绑定的定期备份策略过滤。;auto-backup-policy-name - Array of String - 是否必填：否 -（过滤条件）按照云硬盘绑定的定期备份策略名称过滤。
+        # @param Filters: <p>过滤条件。;instance-id - Array of String - 是否必填：否 -（过滤条件）按实例ID过滤。;auto-backup-policy-id - Array of String - 是否必填：否 -（过滤条件）按照实例绑定的定期备份策略过滤。;auto-backup-policy-name - Array of String - 是否必填：否 -（过滤条件）按照云硬盘绑定的定期备份策略名称过滤。</p>
         # @type Filters: Array
-        # @param Offset: 偏移量，默认0
+        # @param Offset: <p>偏移量，默认0</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认20，最大500
+        # @param Limit: <p>返回数量，默认20，最大500</p>
         # @type Limit: Integer
-        # @param Order: 排序方式
+        # @param Order: <p>排序方式</p><p>枚举值：</p><ul><li>ASC： 升序排序</li><li>DESC： 降序排序</li></ul><p>默认值：DESC</p>
         # @type Order: String
-        # @param OrderField: 排序字段
+        # @param OrderField: <p>排序字段</p><p>枚举值：</p><ul><li>CREATE_TIME： 创建时间</li></ul><p>默认值：CREATE_TIME</p>
         # @type OrderField: String
 
         attr_accessor :Filters, :Offset, :Limit, :Order, :OrderField
@@ -2851,9 +2946,9 @@ module TencentCloud
 
       # DescribeBackupInstances返回参数结构体
       class DescribeBackupInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合条件的受保护实例总数量
+        # @param TotalCount: <p>符合条件的受保护实例总数量</p>
         # @type TotalCount: Integer
-        # @param BackupInstanceSet: 符合条件的受保护实例详情
+        # @param BackupInstanceSet: <p>符合条件的受保护实例详情</p>
         # @type BackupInstanceSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2900,7 +2995,7 @@ module TencentCloud
       class DescribeBackupOverviewGeneralResponse < TencentCloud::Common::AbstractModel
         # @param InstanceBackupOverview: <p>整机备份（CVM 备份组）概览数据</p>
         # @type InstanceBackupOverview: :class:`Tencentcloud::Bdrc.v20260330.models.InstanceBackupOverview`
-        # @param FileBackupOverview: <p>文件备份概览数据</p>
+        # @param FileBackupOverview: <p>CVM文件备份概览数据</p>
         # @type FileBackupOverview: :class:`Tencentcloud::Bdrc.v20260330.models.FileBackupOverview`
         # @param BackupPolicyOverview: <p>备份策略概览</p>
         # @type BackupPolicyOverview: :class:`Tencentcloud::Bdrc.v20260330.models.BackupPolicyOverview`
@@ -2908,17 +3003,23 @@ module TencentCloud
         # @type BackupVaultOverview: :class:`Tencentcloud::Bdrc.v20260330.models.BackupVaultOverview`
         # @param ProtectedResourceOverview: <p>受保护资源概览</p>
         # @type ProtectedResourceOverview: :class:`Tencentcloud::Bdrc.v20260330.models.ProtectedResourceOverview`
+        # @param CFSAgentBackupOverview: <p>CFS文件备份概览数据</p>
+        # @type CFSAgentBackupOverview: :class:`Tencentcloud::Bdrc.v20260330.models.FileBackupOverview`
+        # @param COSAgentBackupOverview: <p>COS备份概览数据</p>
+        # @type COSAgentBackupOverview: :class:`Tencentcloud::Bdrc.v20260330.models.FileBackupOverview`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceBackupOverview, :FileBackupOverview, :BackupPolicyOverview, :BackupVaultOverview, :ProtectedResourceOverview, :RequestId
+        attr_accessor :InstanceBackupOverview, :FileBackupOverview, :BackupPolicyOverview, :BackupVaultOverview, :ProtectedResourceOverview, :CFSAgentBackupOverview, :COSAgentBackupOverview, :RequestId
 
-        def initialize(instancebackupoverview=nil, filebackupoverview=nil, backuppolicyoverview=nil, backupvaultoverview=nil, protectedresourceoverview=nil, requestid=nil)
+        def initialize(instancebackupoverview=nil, filebackupoverview=nil, backuppolicyoverview=nil, backupvaultoverview=nil, protectedresourceoverview=nil, cfsagentbackupoverview=nil, cosagentbackupoverview=nil, requestid=nil)
           @InstanceBackupOverview = instancebackupoverview
           @FileBackupOverview = filebackupoverview
           @BackupPolicyOverview = backuppolicyoverview
           @BackupVaultOverview = backupvaultoverview
           @ProtectedResourceOverview = protectedresourceoverview
+          @CFSAgentBackupOverview = cfsagentbackupoverview
+          @COSAgentBackupOverview = cosagentbackupoverview
           @RequestId = requestid
         end
 
@@ -2943,6 +3044,14 @@ module TencentCloud
             @ProtectedResourceOverview = ProtectedResourceOverview.new
             @ProtectedResourceOverview.deserialize(params['ProtectedResourceOverview'])
           end
+          unless params['CFSAgentBackupOverview'].nil?
+            @CFSAgentBackupOverview = FileBackupOverview.new
+            @CFSAgentBackupOverview.deserialize(params['CFSAgentBackupOverview'])
+          end
+          unless params['COSAgentBackupOverview'].nil?
+            @COSAgentBackupOverview = FileBackupOverview.new
+            @COSAgentBackupOverview.deserialize(params['COSAgentBackupOverview'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2955,9 +3064,9 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: 返回数量，默认20，最大100
         # @type Limit: Integer
-        # @param Order: 排序方式
+        # @param Order: <p>排序方式</p><p>枚举值：</p><ul><li>ASC： 升序排序</li><li>DESC： 降序排序</li></ul><p>默认值：DESC</p>
         # @type Order: String
-        # @param OrderField: 排序字段
+        # @param OrderField: <p>排序字段</p><p>枚举值：</p><ul><li>CREATE_TIME： 创建时间</li></ul><p>默认值：CREATE_TIME</p>
         # @type OrderField: String
 
         attr_accessor :Filters, :Offset, :Limit, :Order, :OrderField
@@ -3062,17 +3171,17 @@ module TencentCloud
 
       # DescribeBackupVaults请求参数结构体
       class DescribeBackupVaultsRequest < TencentCloud::Common::AbstractModel
-        # @param VaultIds: 备份库ID列表
+        # @param VaultIds: <p>备份库ID列表</p>
         # @type VaultIds: Array
-        # @param Filters: 过滤条件，支持instance-id和auto-backup-policy-id
+        # @param Filters: <p>过滤条件，支持vault-id、vault-name、status</p>
         # @type Filters: Array
-        # @param Offset: 偏移量，默认0
+        # @param Offset: <p>偏移量，默认0</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认20，最大1000
+        # @param Limit: <p>返回数量，默认20，最大100</p><p>取值范围：[1, 100]</p>
         # @type Limit: Integer
-        # @param Order: 排序方式
+        # @param Order: <p>排序方式</p><p>枚举值：</p><ul><li>ASC： 升序排序</li><li>DESC： 降序排序</li></ul><p>默认值：DESC</p>
         # @type Order: String
-        # @param OrderField: 排序字段
+        # @param OrderField: <p>排序字段</p><p>枚举值：</p><ul><li>CREATE_TIME： 创建时间</li></ul><p>默认值：CREATE_TIME</p>
         # @type OrderField: String
 
         attr_accessor :VaultIds, :Filters, :Offset, :Limit, :Order, :OrderField
@@ -3105,9 +3214,9 @@ module TencentCloud
 
       # DescribeBackupVaults返回参数结构体
       class DescribeBackupVaultsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合条件的总数量。
+        # @param TotalCount: <p>符合条件的总数量。</p>
         # @type TotalCount: Integer
-        # @param BackupVaultSet: 备份库列表详情。
+        # @param BackupVaultSet: <p>备份库列表详情。</p>
         # @type BackupVaultSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3234,7 +3343,7 @@ module TencentCloud
         # @type CopyPairType: String
         # @param CopyPairIds: <p>要查询复制对ID列表</p>
         # @type CopyPairIds: Array
-        # @param Filters: <p>过滤条件，详见过滤条件表。支持的Name：disaster-recovery-site-pair-id、target-resource-id、source-resource-id、copy-pair-id、copy-pair-name</p>
+        # @param Filters: <p>过滤条件。支持的Name：disaster-recovery-site-pair-id、target-resource-id、source-resource-id、copy-pair-id、copy-pair-name</p>
         # @type Filters: Array
         # @param Offset: <p>偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节</p>
         # @type Offset: Integer
@@ -3452,19 +3561,19 @@ module TencentCloud
 
       # DescribeDisasterRecoveryProtectGroups请求参数结构体
       class DescribeDisasterRecoveryProtectGroupsRequest < TencentCloud::Common::AbstractModel
-        # @param ProtectGroupType: 要查询的容灾保护组产品类型，枚举值：DISK / INSTANCE / CFS。
+        # @param ProtectGroupType: <p>要查询的容灾保护组产品类型，枚举值：DISK / INSTANCE / CFS。</p>
         # @type ProtectGroupType: String
-        # @param ProtectGroupIds: 要查询的容灾保护组ID列表。
+        # @param ProtectGroupIds: <p>要查询的容灾保护组ID列表。</p>
         # @type ProtectGroupIds: Array
-        # @param Filters: 过滤条件（过滤项由 core handler 定义，如 disaster-recovery-protect-group-id 等）。
+        # @param Filters: <p>过滤条件（过滤项由 core handler 定义，如 disaster-recovery-protect-group-id 等）。</p>
         # @type Filters: Array
-        # @param Offset: 偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。
+        # @param Offset: <p>偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API 简介中的相关小节。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API 简介中的相关小节。</p>
         # @type Limit: Integer
-        # @param Order: 输出结果按升序还是降序
+        # @param Order: <p>输出结果按升序还是降序</p><p>枚举值：</p><ul><li>ASC： 升序排序</li><li>DESC： 降序排序</li></ul><p>默认值：DESC</p>
         # @type Order: String
-        # @param OrderField: 输出结果的排序字段
+        # @param OrderField: <p>输出结果的排序字段</p><p>枚举值：</p><ul><li>CREATE_TIME： 创建时间</li></ul><p>默认值：CREATE_TIME</p>
         # @type OrderField: String
 
         attr_accessor :ProtectGroupType, :ProtectGroupIds, :Filters, :Offset, :Limit, :Order, :OrderField
@@ -3499,9 +3608,9 @@ module TencentCloud
 
       # DescribeDisasterRecoveryProtectGroups返回参数结构体
       class DescribeDisasterRecoveryProtectGroupsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合条件的容灾保护组总数
+        # @param TotalCount: <p>符合条件的容灾保护组总数</p>
         # @type TotalCount: Integer
-        # @param ProtectGroupSet: 容灾保护组列表
+        # @param ProtectGroupSet: <p>容灾保护组列表</p>
         # @type ProtectGroupSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3573,19 +3682,19 @@ module TencentCloud
 
       # DescribeDisasterRecoverySitePairs请求参数结构体
       class DescribeDisasterRecoverySitePairsRequest < TencentCloud::Common::AbstractModel
-        # @param SitePairType: 要查询的容灾策略产品类型。取值范围：DISK / INSTANCE / CFS。
+        # @param SitePairType: <p>要查询的容灾策略产品类型。取值范围：INSTANCE 。</p><p>枚举值：</p><ul><li>INSTANCE： CVM站点对</li></ul>
         # @type SitePairType: String
-        # @param SitePairIds: 要查询的容灾策略ID列表。
+        # @param SitePairIds: <p>要查询的容灾策略ID列表。</p>
         # @type SitePairIds: Array
-        # @param Filters: 过滤条件，详见定期快照过滤条件表。
+        # @param Filters: <p>过滤条件，详见定期快照过滤条件表。</p>
         # @type Filters: Array
-        # @param Offset: 偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。
+        # @param Offset: <p>偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API 简介中的相关小节。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。关于Limit的更进一步介绍请参考 API 简介中的相关小节。</p>
         # @type Limit: Integer
-        # @param Order: 输出结果按升序还是降序，DESC表示降序，ASC表示升序
+        # @param Order: <p>输出结果按升序还是降序，DESC表示降序，ASC表示升序</p>
         # @type Order: String
-        # @param OrderField: 输出结果的排序字段
+        # @param OrderField: <p>输出结果的排序字段</p><p>枚举值：</p><ul><li>CREATE_TIME： 创建时间</li></ul><p>默认值：CREATE_TIME</p>
         # @type OrderField: String
 
         attr_accessor :SitePairType, :SitePairIds, :Filters, :Offset, :Limit, :Order, :OrderField
@@ -3620,9 +3729,9 @@ module TencentCloud
 
       # DescribeDisasterRecoverySitePairs返回参数结构体
       class DescribeDisasterRecoverySitePairsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 有效的容灾策略数量。
+        # @param TotalCount: <p>有效的容灾策略数量。</p>
         # @type TotalCount: Integer
-        # @param SitePairSet: 容灾策略列表。
+        # @param SitePairSet: <p>容灾策略列表。</p>
         # @type SitePairSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3800,7 +3909,7 @@ module TencentCloud
         # @type DrillPairType: String
         # @param DrillPairIds: 要查询演练对ID列表。
         # @type DrillPairIds: Array
-        # @param Filters: 过滤条件，详见定期快照过滤条件表。
+        # @param Filters: 过滤条件。
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节。
         # @type Offset: Integer
@@ -3874,30 +3983,81 @@ module TencentCloud
 
       # DescribeFileBackupObjects请求参数结构体
       class DescribeFileBackupObjectsRequest < TencentCloud::Common::AbstractModel
+        # @param BackupId: <p>备份实例ID</p>
+        # @type BackupId: String
+        # @param Path: <p>浏览路径</p>
+        # @type Path: String
+        # @param Offset: <p>偏移量，默认0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量，默认50，最大1000</p>
+        # @type Limit: Integer
+        # @param OrderField: <p>排序字段</p><p>枚举值：</p><ul><li>name： 文件名称</li></ul><p>默认值：name</p>
+        # @type OrderField: String
+        # @param Order: <p>排序方式</p><p>枚举值：</p><ul><li>asc： 升序排序</li><li>desc： 降序排序</li></ul><p>默认值：asc</p>
+        # @type Order: String
+        # @param ObjectType: <p>返回模式</p><p>枚举值：</p><ul><li>all： 返回目录和文件</li><li>dir： 仅返回目录</li><li>file： 仅返回文件（含符号连接）</li></ul>
+        # @type ObjectType: String
 
+        attr_accessor :BackupId, :Path, :Offset, :Limit, :OrderField, :Order, :ObjectType
 
-        def initialize()
+        def initialize(backupid=nil, path=nil, offset=nil, limit=nil, orderfield=nil, order=nil, objecttype=nil)
+          @BackupId = backupid
+          @Path = path
+          @Offset = offset
+          @Limit = limit
+          @OrderField = orderfield
+          @Order = order
+          @ObjectType = objecttype
         end
 
         def deserialize(params)
+          @BackupId = params['BackupId']
+          @Path = params['Path']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @OrderField = params['OrderField']
+          @Order = params['Order']
+          @ObjectType = params['ObjectType']
         end
       end
 
       # DescribeFileBackupObjects返回参数结构体
       class DescribeFileBackupObjectsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 当前路径下包含的目录及文件总数
+        # @param DirList: <p>当前路径下包含的目录信息</p>
+        # @type DirList: Array
+        # @param FileList: <p>当前路径下包含的文件信息</p>
+        # @type FileList: Array
+        # @param TotalCount: <p>当前路径下包含的目录及文件总数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TotalCount, :RequestId
+        attr_accessor :DirList, :FileList, :TotalCount, :RequestId
 
-        def initialize(totalcount=nil, requestid=nil)
+        def initialize(dirlist=nil, filelist=nil, totalcount=nil, requestid=nil)
+          @DirList = dirlist
+          @FileList = filelist
           @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['DirList'].nil?
+            @DirList = []
+            params['DirList'].each do |i|
+              fileinfo_tmp = FileInfo.new
+              fileinfo_tmp.deserialize(i)
+              @DirList << fileinfo_tmp
+            end
+          end
+          unless params['FileList'].nil?
+            @FileList = []
+            params['FileList'].each do |i|
+              fileinfo_tmp = FileInfo.new
+              fileinfo_tmp.deserialize(i)
+              @FileList << fileinfo_tmp
+            end
+          end
           @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
@@ -3905,25 +4065,28 @@ module TencentCloud
 
       # DescribeFileBackupPlans请求参数结构体
       class DescribeFileBackupPlansRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量，默认0
+        # @param Offset: <p>偏移量，默认0</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认20，最大500
+        # @param Limit: <p>返回数量，默认20，最大100</p>
         # @type Limit: Integer
-        # @param OrderField: 排序字段
+        # @param OrderField: <p>排序字段</p><p>枚举值：</p><ul><li>CREATE_TIME： 创建时间</li><li>CreatedTime： 创建时间</li></ul><p>默认值：CREATE_TIME</p>
         # @type OrderField: String
-        # @param Order: 排序方式
+        # @param Order: <p>排序方式</p><p>枚举值：</p><ul><li>ASC： 升序排序</li><li>DESC： 降序排序</li></ul><p>默认值：DESC</p>
         # @type Order: String
-        # @param Filters: 过滤条件。支持: instance-id, plan-id, plan-name, status, auto-backup-policy-id
+        # @param Filters: <p>过滤条件。支持: instance-id, plan-id, plan-name, status, auto-backup-policy-id</p>
         # @type Filters: Array
+        # @param ResourceType: <p>资源类型</p><p>枚举值：</p><ul><li>CVM_AGENT： CVM 文件备份</li><li>CFS_AGENT： 文件系统备份</li><li>COS_AGENT： COS备份</li></ul><p>默认值：CVM_AGENT</p>
+        # @type ResourceType: String
 
-        attr_accessor :Offset, :Limit, :OrderField, :Order, :Filters
+        attr_accessor :Offset, :Limit, :OrderField, :Order, :Filters, :ResourceType
 
-        def initialize(offset=nil, limit=nil, orderfield=nil, order=nil, filters=nil)
+        def initialize(offset=nil, limit=nil, orderfield=nil, order=nil, filters=nil, resourcetype=nil)
           @Offset = offset
           @Limit = limit
           @OrderField = orderfield
           @Order = order
           @Filters = filters
+          @ResourceType = resourcetype
         end
 
         def deserialize(params)
@@ -3939,14 +4102,15 @@ module TencentCloud
               @Filters << filtermodel_tmp
             end
           end
+          @ResourceType = params['ResourceType']
         end
       end
 
       # DescribeFileBackupPlans返回参数结构体
       class DescribeFileBackupPlansResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合条件的计划总数量
+        # @param TotalCount: <p>符合条件的计划总数量</p>
         # @type TotalCount: Integer
-        # @param PlanSet: 符合条件的计划详情
+        # @param PlanSet: <p>符合条件的计划详情</p>
         # @type PlanSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4018,25 +4182,28 @@ module TencentCloud
 
       # DescribeFileBackups请求参数结构体
       class DescribeFileBackupsRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量，默认0
+        # @param Offset: <p>偏移量，默认0</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认20，最大500
+        # @param Limit: <p>返回数量，默认20，最大100</p><p>取值范围：[1, 100]</p><p>默认值：20</p>
         # @type Limit: Integer
-        # @param OrderField: 排序字段
+        # @param OrderField: <p>排序字段</p><p>枚举值：</p><ul><li>CreatedTime： 创建时间</li><li>CREATE_TIME： 创建时间</li></ul><p>默认值：CREATE_TIME</p>
         # @type OrderField: String
-        # @param Order: 排序方式
+        # @param Order: <p>排序方式</p><p>枚举值：</p><ul><li>DESC： 降序排序</li><li>ASC： 升序排序</li></ul><p>默认值：DESC</p>
         # @type Order: String
-        # @param Filters: 过滤条件。支持: backup-id, plan-id, instance-id, status, backup-type, auto-backup-policy-id
+        # @param Filters: <p>过滤条件。支持: backup-id, plan-id, instance-id, status, backup-type, auto-backup-policy-id</p>
         # @type Filters: Array
+        # @param ResourceType: <p>资源类型</p><p>枚举值：</p><ul><li>CVM_AGENT： CVM文件备份</li><li>CFS_AGENT： 文件系统备份</li><li>COS_AGENT： COS备份</li></ul><p>默认值：CVM_AGENT</p>
+        # @type ResourceType: String
 
-        attr_accessor :Offset, :Limit, :OrderField, :Order, :Filters
+        attr_accessor :Offset, :Limit, :OrderField, :Order, :Filters, :ResourceType
 
-        def initialize(offset=nil, limit=nil, orderfield=nil, order=nil, filters=nil)
+        def initialize(offset=nil, limit=nil, orderfield=nil, order=nil, filters=nil, resourcetype=nil)
           @Offset = offset
           @Limit = limit
           @OrderField = orderfield
           @Order = order
           @Filters = filters
+          @ResourceType = resourcetype
         end
 
         def deserialize(params)
@@ -4052,14 +4219,15 @@ module TencentCloud
               @Filters << filtermodel_tmp
             end
           end
+          @ResourceType = params['ResourceType']
         end
       end
 
       # DescribeFileBackups返回参数结构体
       class DescribeFileBackupsResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合条件的备份点总数量
+        # @param TotalCount: <p>符合条件的备份点总数量</p>
         # @type TotalCount: Integer
-        # @param BackupSet: 符合条件的备份点详情
+        # @param BackupSet: <p>符合条件的备份点详情</p>
         # @type BackupSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4088,25 +4256,28 @@ module TencentCloud
 
       # DescribeFileRestoreTasks请求参数结构体
       class DescribeFileRestoreTasksRequest < TencentCloud::Common::AbstractModel
-        # @param Filters: 过滤条件。支持: backup-id, task-id, instance-id, "         "target-instance-id, status
+        # @param Filters: <p>过滤条件。支持: backup-id, task-id, instance-id, &quot;         &quot;target-instance-id, status</p>
         # @type Filters: Array
-        # @param Offset: 偏移量，默认0
+        # @param Offset: <p>偏移量，默认0</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认20，最大500
+        # @param Limit: <p>返回数量，默认20，最大100</p>
         # @type Limit: Integer
-        # @param Order: 排序方式
+        # @param Order: <p>排序方式</p><p>枚举值：</p><ul><li>ASC： 升序排序</li><li>DESC： 降序排序</li></ul><p>默认值：DESC</p>
         # @type Order: String
-        # @param OrderField: 排序字段
+        # @param OrderField: <p>排序字段</p><p>枚举值：</p><ul><li>CREATE_TIME： 创建时间</li><li>CreatedTime： 创建时间</li></ul><p>默认值：CREATE_TIME</p>
         # @type OrderField: String
+        # @param ResourceType: <p>资源类型</p><p>枚举值：</p><ul><li>CVM_AGENT： CVM 文件备份</li><li>CFS_AGENT： 文件系统备份</li><li>COS_AGENT： COS备份</li></ul><p>默认值：CVM_AGENT</p>
+        # @type ResourceType: String
 
-        attr_accessor :Filters, :Offset, :Limit, :Order, :OrderField
+        attr_accessor :Filters, :Offset, :Limit, :Order, :OrderField, :ResourceType
 
-        def initialize(filters=nil, offset=nil, limit=nil, order=nil, orderfield=nil)
+        def initialize(filters=nil, offset=nil, limit=nil, order=nil, orderfield=nil, resourcetype=nil)
           @Filters = filters
           @Offset = offset
           @Limit = limit
           @Order = order
           @OrderField = orderfield
+          @ResourceType = resourcetype
         end
 
         def deserialize(params)
@@ -4122,14 +4293,15 @@ module TencentCloud
           @Limit = params['Limit']
           @Order = params['Order']
           @OrderField = params['OrderField']
+          @ResourceType = params['ResourceType']
         end
       end
 
       # DescribeFileRestoreTasks返回参数结构体
       class DescribeFileRestoreTasksResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合条件的总数量。
+        # @param TotalCount: <p>符合条件的总数量。</p>
         # @type TotalCount: Integer
-        # @param RestoreTaskSet: 恢复任务列表详情。
+        # @param RestoreTaskSet: <p>恢复任务列表详情。</p>
         # @type RestoreTaskSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4271,15 +4443,15 @@ module TencentCloud
 
       # DescribeProtectedInstances请求参数结构体
       class DescribeProtectedInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Offset: 偏移量，默认0
+        # @param Offset: <p>偏移量，默认0</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认20，最大500
+        # @param Limit: <p>返回数量，默认20，最大100</p>
         # @type Limit: Integer
-        # @param OrderField: 排序字段
+        # @param OrderField: <p>排序字段</p><p>枚举值：</p><ul><li>CREATE_TIME： 创建时间</li><li>CreatedTime： 创建时间</li></ul><p>默认值：CREATE_TIME</p>
         # @type OrderField: String
-        # @param Order: 排序方式
+        # @param Order: <p>排序方式</p><p>枚举值：</p><ul><li>ASC： 升序排序</li><li>DESC： 降序排序</li></ul><p>默认值：DESC</p>
         # @type Order: String
-        # @param Filters: 过滤条件。支持: instance-id, agent-status
+        # @param Filters: <p>过滤条件。支持: instance-id, agent-status</p>
         # @type Filters: Array
 
         attr_accessor :Offset, :Limit, :OrderField, :Order, :Filters
@@ -4310,9 +4482,9 @@ module TencentCloud
 
       # DescribeProtectedInstances返回参数结构体
       class DescribeProtectedInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 符合条件的受保护实例总数量
+        # @param TotalCount: <p>符合条件的受保护实例总数量</p>
         # @type TotalCount: Integer
-        # @param InstanceSet: 符合条件的受保护实例详情
+        # @param InstanceSet: <p>符合条件的受保护实例详情</p>
         # @type InstanceSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4343,7 +4515,7 @@ module TencentCloud
       class DescribeSecurityGroupMappingsRequest < TencentCloud::Common::AbstractModel
         # @param SitePairId: 安全组映射所属的站点对ID。
         # @type SitePairId: String
-        # @param Filters: 过滤条件，详见过滤条件表。支持的Name：src-security-group-id、target-security-group-id
+        # @param Filters: 过滤条件。支持的Name：src-security-group-id、target-security-group-id
         # @type Filters: Array
         # @param Offset: 偏移量，默认为0。关于Offset的更进一步介绍请参考 API 简介中的相关小节
         # @type Offset: Integer
@@ -4991,19 +5163,19 @@ module TencentCloud
 
       # 文件备份概览数据
       class FileBackupOverview < TencentCloud::Common::AbstractModel
-        # @param BackupCount: 整机备份点总数
+        # @param BackupCount: <p>备份点总数</p>
         # @type BackupCount: Integer
-        # @param CreatingBackupCount: 创建中数量
+        # @param CreatingBackupCount: <p>创建中数量</p>
         # @type CreatingBackupCount: Integer
-        # @param FailedBackupCount: 失败数量
+        # @param FailedBackupCount: <p>失败数量</p>
         # @type FailedBackupCount: Integer
-        # @param SuccessBackupCount: 已完成数量
+        # @param SuccessBackupCount: <p>已完成数量</p>
         # @type SuccessBackupCount: Integer
-        # @param RestoringBackupCount: 恢复中的总数量
+        # @param RestoringBackupCount: <p>恢复中的总数量</p>
         # @type RestoringBackupCount: Integer
-        # @param BackupSizeMb: 整机备份总容量
+        # @param BackupSizeMb: <p>备份总容量</p>
         # @type BackupSizeMb: Integer
-        # @param BackupResourceCount: 受保护 CVM 资源数
+        # @param BackupResourceCount: <p>受保护资源数</p>
         # @type BackupResourceCount: Integer
 
         attr_accessor :BackupCount, :CreatingBackupCount, :FailedBackupCount, :SuccessBackupCount, :RestoringBackupCount, :BackupSizeMb, :BackupResourceCount
@@ -5029,11 +5201,43 @@ module TencentCloud
         end
       end
 
+      # 文件信息
+      class FileInfo < TencentCloud::Common::AbstractModel
+        # @param Path: 文件名称
+        # @type Path: String
+        # @param Size: 文件大小，单位是Bytes
+        # @type Size: Integer
+        # @param ModifyTime: 文件mtime
+        # @type ModifyTime: Integer
+        # @param ChangeTime: 文件ctime
+        # @type ChangeTime: Integer
+        # @param Type: 文件类型。取值包含"dir"、"file"、"symlink"
+        # @type Type: String
+
+        attr_accessor :Path, :Size, :ModifyTime, :ChangeTime, :Type
+
+        def initialize(path=nil, size=nil, modifytime=nil, changetime=nil, type=nil)
+          @Path = path
+          @Size = size
+          @ModifyTime = modifytime
+          @ChangeTime = changetime
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Size = params['Size']
+          @ModifyTime = params['ModifyTime']
+          @ChangeTime = params['ChangeTime']
+          @Type = params['Type']
+        end
+      end
+
       # 过滤条件
       class FilterModel < TencentCloud::Common::AbstractModel
-        # @param Name: 过滤器名
+        # @param Name: 过滤器名，此参数必填。
         # @type Name: String
-        # @param Values: 过滤器值
+        # @param Values: 过滤器值，此参数必填。
         # @type Values: Array
 
         attr_accessor :Name, :Values
@@ -5549,33 +5753,37 @@ module TencentCloud
 
       # ModifyFileBackupPlan请求参数结构体
       class ModifyFileBackupPlanRequest < TencentCloud::Common::AbstractModel
-        # @param PlanId: 备份计划ID
+        # @param PlanId: <p>备份计划ID，此参数必填。</p>
         # @type PlanId: String
-        # @param PolicyId: 备份策略ID
+        # @param PolicyId: <p>备份策略ID</p>
         # @type PolicyId: String
-        # @param PlanName: 计划名称
+        # @param PlanName: <p>计划名称</p>
         # @type PlanName: String
-        # @param BackupPaths: 备份路径列表，1~20 个
+        # @param BackupPaths: <p>备份路径列表，1~20 个</p>
         # @type BackupPaths: Array
-        # @param IncludeFileTypes: 包含文件类型，0~20 个
+        # @param IncludeFileTypes: <p>包含文件类型，0~20 个</p>
         # @type IncludeFileTypes: Array
-        # @param ExcludePatterns: 排除文件路径列表，0~20 个
+        # @param ExcludePatterns: <p>排除文件路径列表，0~20 个</p>
         # @type ExcludePatterns: Array
-        # @param ExcludeSystemDirectories: 是否排除系统目录
+        # @param ExcludeSystemDirectories: <p>是否排除系统目录</p>
         # @type ExcludeSystemDirectories: Boolean
-        # @param BackupStorageId: 备份库ID
+        # @param BackupStorageId: <p>备份库ID</p>
         # @type BackupStorageId: String
-        # @param Status: 计划状态，可选值：normal（正常）、paused（暂停）
+        # @param Status: <p>计划状态，可选值：normal（正常）、paused（暂停）</p>
         # @type Status: String
+        # @param EnableObjectAcl: <p>是否备份对象ACL（仅COS备份支持）</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # @type EnableObjectAcl: Boolean
+        # @param EnableObjectTags: <p>是否备份对象标签（仅COS备份支持）</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # @type EnableObjectTags: Boolean
 
-        attr_accessor :PlanId, :PolicyId, :PlanName, :BackupPaths, :IncludeFileTypes, :ExcludePatterns, :ExcludeSystemDirectories, :BackupStorageId, :Status
+        attr_accessor :PlanId, :PolicyId, :PlanName, :BackupPaths, :IncludeFileTypes, :ExcludePatterns, :ExcludeSystemDirectories, :BackupStorageId, :Status, :EnableObjectAcl, :EnableObjectTags
         extend Gem::Deprecate
-        deprecate :PolicyId, :none, 2026, 9
-        deprecate :PolicyId=, :none, 2026, 9
-        deprecate :BackupStorageId, :none, 2026, 9
-        deprecate :BackupStorageId=, :none, 2026, 9
+        deprecate :PolicyId, :none, 2026, 11
+        deprecate :PolicyId=, :none, 2026, 11
+        deprecate :BackupStorageId, :none, 2026, 11
+        deprecate :BackupStorageId=, :none, 2026, 11
 
-        def initialize(planid=nil, policyid=nil, planname=nil, backuppaths=nil, includefiletypes=nil, excludepatterns=nil, excludesystemdirectories=nil, backupstorageid=nil, status=nil)
+        def initialize(planid=nil, policyid=nil, planname=nil, backuppaths=nil, includefiletypes=nil, excludepatterns=nil, excludesystemdirectories=nil, backupstorageid=nil, status=nil, enableobjectacl=nil, enableobjecttags=nil)
           @PlanId = planid
           @PolicyId = policyid
           @PlanName = planname
@@ -5585,6 +5793,8 @@ module TencentCloud
           @ExcludeSystemDirectories = excludesystemdirectories
           @BackupStorageId = backupstorageid
           @Status = status
+          @EnableObjectAcl = enableobjectacl
+          @EnableObjectTags = enableobjecttags
         end
 
         def deserialize(params)
@@ -5597,6 +5807,8 @@ module TencentCloud
           @ExcludeSystemDirectories = params['ExcludeSystemDirectories']
           @BackupStorageId = params['BackupStorageId']
           @Status = params['Status']
+          @EnableObjectAcl = params['EnableObjectAcl']
+          @EnableObjectTags = params['EnableObjectTags']
         end
       end
 
@@ -5722,49 +5934,58 @@ module TencentCloud
 
       # 备份计划详情
       class PlanInfo < TencentCloud::Common::AbstractModel
-        # @param PlanId: 备份计划ID
+        # @param PlanId: <p>备份计划ID</p>
         # @type PlanId: String
-        # @param ResourceIds: 计划关联的实例ID
+        # @param ResourceIds: <p>计划关联的实例ID</p>
         # @type ResourceIds: Array
-        # @param PlanName: 计划名称
+        # @param PlanName: <p>计划名称</p>
         # @type PlanName: String
-        # @param BackupPaths: 备份路径列表，1~20 个
+        # @param BackupPaths: <p>备份路径列表，1~20 个</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupPaths: Array
-        # @param IncludeFileTypes: 包含文件类型，0~20 个
+        # @param IncludeFileTypes: <p>包含文件类型，0~20 个</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IncludeFileTypes: Array
-        # @param ExcludePatterns: 排除文件路径列表，0~20 个
+        # @param ExcludePatterns: <p>排除文件路径列表，0~20 个</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExcludePatterns: Array
-        # @param ExcludeSystemDirectories: 是否排除系统目录
+        # @param ExcludeSystemDirectories: <p>是否排除系统目录</p>
         # @type ExcludeSystemDirectories: Boolean
-        # @param VaultId: 备份库ID
+        # @param VaultId: <p>备份库ID</p>
         # @type VaultId: String
-        # @param Status: 备份计划状态
+        # @param Status: <p>备份计划状态</p>
         # @type Status: String
-        # @param AspId: 策略ID
+        # @param AspId: <p>策略ID</p>
         # @type AspId: String
-        # @param AspName: 策略名称
+        # @param AspName: <p>策略名称</p>
         # @type AspName: String
-        # @param AspPolicy: 策略详情
+        # @param AspPolicy: <p>策略详情</p>
         # @type AspPolicy: :class:`Tencentcloud::Bdrc.v20260330.models.AspInfo`
-        # @param LastExecuteTime: 最近一次执行时间
+        # @param LastExecuteTime: <p>最近一次执行时间</p>
         # @type LastExecuteTime: String
-        # @param NextTriggerTime: 下次触发时间
+        # @param NextTriggerTime: <p>下次触发时间</p>
         # @type NextTriggerTime: String
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: <p>创建时间</p>
         # @type CreatedTime: String
-        # @param LastTriggerError: 最近一次执行错误信息
+        # @param LastTriggerError: <p>最近一次执行错误信息</p>
         # @type LastTriggerError: String
-        # @param BackupCount: 备份数量
+        # @param BackupCount: <p>备份数量</p>
         # @type BackupCount: Integer
-        # @param FlowControlSettings: 流控信息
+        # @param FlowControlSettings: <p>流控信息</p>
         # @type FlowControlSettings: Array
+        # @param EnableObjectAcl: <p>是否备份对象ACL（仅COS备份支持）</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableObjectAcl: Boolean
+        # @param EnableObjectTags: <p>是否备份对象标签（仅COS备份支持）</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableObjectTags: Boolean
+        # @param ProductType: <p>产品存储类型</p><p>枚举值：</p><ul><li>SD： 文件系统通用标准型存储</li><li>HP： 文件系统通用性能性存储</li><li>TB： 文件系统Turbo标准型存储</li><li>TP： 文件系统Turbo性能型存储</li><li>THP： 文件系统Turbo吞吐型存储</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductType: String
 
-        attr_accessor :PlanId, :ResourceIds, :PlanName, :BackupPaths, :IncludeFileTypes, :ExcludePatterns, :ExcludeSystemDirectories, :VaultId, :Status, :AspId, :AspName, :AspPolicy, :LastExecuteTime, :NextTriggerTime, :CreatedTime, :LastTriggerError, :BackupCount, :FlowControlSettings
+        attr_accessor :PlanId, :ResourceIds, :PlanName, :BackupPaths, :IncludeFileTypes, :ExcludePatterns, :ExcludeSystemDirectories, :VaultId, :Status, :AspId, :AspName, :AspPolicy, :LastExecuteTime, :NextTriggerTime, :CreatedTime, :LastTriggerError, :BackupCount, :FlowControlSettings, :EnableObjectAcl, :EnableObjectTags, :ProductType
 
-        def initialize(planid=nil, resourceids=nil, planname=nil, backuppaths=nil, includefiletypes=nil, excludepatterns=nil, excludesystemdirectories=nil, vaultid=nil, status=nil, aspid=nil, aspname=nil, asppolicy=nil, lastexecutetime=nil, nexttriggertime=nil, createdtime=nil, lasttriggererror=nil, backupcount=nil, flowcontrolsettings=nil)
+        def initialize(planid=nil, resourceids=nil, planname=nil, backuppaths=nil, includefiletypes=nil, excludepatterns=nil, excludesystemdirectories=nil, vaultid=nil, status=nil, aspid=nil, aspname=nil, asppolicy=nil, lastexecutetime=nil, nexttriggertime=nil, createdtime=nil, lasttriggererror=nil, backupcount=nil, flowcontrolsettings=nil, enableobjectacl=nil, enableobjecttags=nil, producttype=nil)
           @PlanId = planid
           @ResourceIds = resourceids
           @PlanName = planname
@@ -5783,6 +6004,9 @@ module TencentCloud
           @LastTriggerError = lasttriggererror
           @BackupCount = backupcount
           @FlowControlSettings = flowcontrolsettings
+          @EnableObjectAcl = enableobjectacl
+          @EnableObjectTags = enableobjecttags
+          @ProductType = producttype
         end
 
         def deserialize(params)
@@ -5814,6 +6038,9 @@ module TencentCloud
               @FlowControlSettings << flowcontrolrule_tmp
             end
           end
+          @EnableObjectAcl = params['EnableObjectAcl']
+          @EnableObjectTags = params['EnableObjectTags']
+          @ProductType = params['ProductType']
         end
       end
 
@@ -6003,33 +6230,39 @@ module TencentCloud
 
       # 受保护实例信息
       class ProtectInstance < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param AgentId: 客户端ID
+        # @param AgentId: <p>客户端ID</p>
         # @type AgentId: String
-        # @param AgentVersion: 客户端版本
+        # @param AgentVersion: <p>客户端版本</p>
         # @type AgentVersion: String
-        # @param AgentStatus: 客户端状态
+        # @param AgentStatus: <p>客户端状态</p>
         # @type AgentStatus: String
-        # @param LastHeartbeatTime: 最后心跳时间
+        # @param LastHeartbeatTime: <p>最后心跳时间</p>
         # @type LastHeartbeatTime: String
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: <p>创建时间</p>
         # @type CreatedTime: String
-        # @param ExtraInfo: 最新备份点中记录的 CVM 基础信息
+        # @param ExtraInfo: <p>最新备份点中记录的 CVM 基础信息</p>
         # @type ExtraInfo: String
-        # @param BackupCount: 该实例可用备份点数量
+        # @param BackupCount: <p>该实例可用备份点数量</p>
         # @type BackupCount: Integer
-        # @param InstanceName: 实例名称
+        # @param InstanceName: <p>实例名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceName: String
-        # @param LatestBackupTime: 最近一次备份时间
+        # @param LatestBackupTime: <p>最近一次备份时间</p>
         # @type LatestBackupTime: String
-        # @param OfflineReason: 离线原因
+        # @param OfflineReason: <p>离线原因</p>
         # @type OfflineReason: String
+        # @param BackupSize: <p>备份数据量，单位为字节</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupSize: Integer
+        # @param ProductType: <p>产品存储类型</p><p>枚举值：</p><ul><li>SD： 文件系统通用标准型存储</li><li>HP： 文件系统通用性能性存储</li><li>TB： 文件系统Turbo标准型存储</li><li>TP： 文件系统Turbo性能型存储</li><li>THP： 文件系统Turbo吞吐型存储</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ProductType: String
 
-        attr_accessor :InstanceId, :AgentId, :AgentVersion, :AgentStatus, :LastHeartbeatTime, :CreatedTime, :ExtraInfo, :BackupCount, :InstanceName, :LatestBackupTime, :OfflineReason
+        attr_accessor :InstanceId, :AgentId, :AgentVersion, :AgentStatus, :LastHeartbeatTime, :CreatedTime, :ExtraInfo, :BackupCount, :InstanceName, :LatestBackupTime, :OfflineReason, :BackupSize, :ProductType
 
-        def initialize(instanceid=nil, agentid=nil, agentversion=nil, agentstatus=nil, lastheartbeattime=nil, createdtime=nil, extrainfo=nil, backupcount=nil, instancename=nil, latestbackuptime=nil, offlinereason=nil)
+        def initialize(instanceid=nil, agentid=nil, agentversion=nil, agentstatus=nil, lastheartbeattime=nil, createdtime=nil, extrainfo=nil, backupcount=nil, instancename=nil, latestbackuptime=nil, offlinereason=nil, backupsize=nil, producttype=nil)
           @InstanceId = instanceid
           @AgentId = agentid
           @AgentVersion = agentversion
@@ -6041,6 +6274,8 @@ module TencentCloud
           @InstanceName = instancename
           @LatestBackupTime = latestbackuptime
           @OfflineReason = offlinereason
+          @BackupSize = backupsize
+          @ProductType = producttype
         end
 
         def deserialize(params)
@@ -6055,6 +6290,8 @@ module TencentCloud
           @InstanceName = params['InstanceName']
           @LatestBackupTime = params['LatestBackupTime']
           @OfflineReason = params['OfflineReason']
+          @BackupSize = params['BackupSize']
+          @ProductType = params['ProductType']
         end
       end
 
@@ -6080,22 +6317,30 @@ module TencentCloud
 
       # 受保护资源概览
       class ProtectedResourceOverview < TencentCloud::Common::AbstractModel
-        # @param TotalProtectedCount: 受保护资源总数
+        # @param TotalProtectedCount: <p>受保护资源总数</p>
         # @type TotalProtectedCount: Integer
-        # @param TotalResourceCount: 总资源数
+        # @param TotalResourceCount: <p>总资源数</p>
         # @type TotalResourceCount: Integer
-        # @param Cvm: CVM 受保护统计
+        # @param Cvm: <p>CVM整机备份受保护统计</p>
         # @type Cvm: :class:`Tencentcloud::Bdrc.v20260330.models.ResourceProtectStat`
-        # @param CFS: CFS 受保护统计
+        # @param CFS: <p>CVM文件备份受保护统计</p>
         # @type CFS: :class:`Tencentcloud::Bdrc.v20260330.models.ResourceProtectStat`
+        # @param CFSAgent: <p>CFS文件备份受保护统计</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CFSAgent: :class:`Tencentcloud::Bdrc.v20260330.models.ResourceProtectStat`
+        # @param COSAgent: <p>COS备份受保护统计</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type COSAgent: :class:`Tencentcloud::Bdrc.v20260330.models.ResourceProtectStat`
 
-        attr_accessor :TotalProtectedCount, :TotalResourceCount, :Cvm, :CFS
+        attr_accessor :TotalProtectedCount, :TotalResourceCount, :Cvm, :CFS, :CFSAgent, :COSAgent
 
-        def initialize(totalprotectedcount=nil, totalresourcecount=nil, cvm=nil, cfs=nil)
+        def initialize(totalprotectedcount=nil, totalresourcecount=nil, cvm=nil, cfs=nil, cfsagent=nil, cosagent=nil)
           @TotalProtectedCount = totalprotectedcount
           @TotalResourceCount = totalresourcecount
           @Cvm = cvm
           @CFS = cfs
+          @CFSAgent = cfsagent
+          @COSAgent = cosagent
         end
 
         def deserialize(params)
@@ -6108,6 +6353,14 @@ module TencentCloud
           unless params['CFS'].nil?
             @CFS = ResourceProtectStat.new
             @CFS.deserialize(params['CFS'])
+          end
+          unless params['CFSAgent'].nil?
+            @CFSAgent = ResourceProtectStat.new
+            @CFSAgent.deserialize(params['CFSAgent'])
+          end
+          unless params['COSAgent'].nil?
+            @COSAgent = ResourceProtectStat.new
+            @COSAgent.deserialize(params['COSAgent'])
           end
         end
       end
@@ -6215,28 +6468,34 @@ module TencentCloud
 
       # 实例Id与备份计划映射信息
       class ResourcePlan < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 云服务器实例 ID
+        # @param ResourceId: <p>云服务器实例 ID</p>
         # @type ResourceId: String
-        # @param BackupPaths: 备份路径，[0,20]
+        # @param BackupPaths: <p>备份路径，[0,20]</p>
         # @type BackupPaths: Array
-        # @param IncludeFileTypes: 包含文件类型，[0,20]
+        # @param IncludeFileTypes: <p>包含文件类型，[0,20]</p>
         # @type IncludeFileTypes: Array
-        # @param ExcludePatterns: 排除路径，[0,20]
+        # @param ExcludePatterns: <p>排除路径，[0,20]</p>
         # @type ExcludePatterns: Array
-        # @param ExcludeSystemDirectories: 是否排除系统目录
+        # @param ExcludeSystemDirectories: <p>是否排除系统目录</p>
         # @type ExcludeSystemDirectories: Boolean
-        # @param ExecuteImmediately: 是否立即触发全量备份
+        # @param ExecuteImmediately: <p>是否立即触发全量备份</p>
         # @type ExecuteImmediately: Boolean
+        # @param EnableObjectAcl: <p>cos备份是否备份ACL</p>
+        # @type EnableObjectAcl: Boolean
+        # @param EnableObjectTags: <p>cos备份是否备份tag</p>
+        # @type EnableObjectTags: Boolean
 
-        attr_accessor :ResourceId, :BackupPaths, :IncludeFileTypes, :ExcludePatterns, :ExcludeSystemDirectories, :ExecuteImmediately
+        attr_accessor :ResourceId, :BackupPaths, :IncludeFileTypes, :ExcludePatterns, :ExcludeSystemDirectories, :ExecuteImmediately, :EnableObjectAcl, :EnableObjectTags
 
-        def initialize(resourceid=nil, backuppaths=nil, includefiletypes=nil, excludepatterns=nil, excludesystemdirectories=nil, executeimmediately=nil)
+        def initialize(resourceid=nil, backuppaths=nil, includefiletypes=nil, excludepatterns=nil, excludesystemdirectories=nil, executeimmediately=nil, enableobjectacl=nil, enableobjecttags=nil)
           @ResourceId = resourceid
           @BackupPaths = backuppaths
           @IncludeFileTypes = includefiletypes
           @ExcludePatterns = excludepatterns
           @ExcludeSystemDirectories = excludesystemdirectories
           @ExecuteImmediately = executeimmediately
+          @EnableObjectAcl = enableobjectacl
+          @EnableObjectTags = enableobjecttags
         end
 
         def deserialize(params)
@@ -6246,6 +6505,8 @@ module TencentCloud
           @ExcludePatterns = params['ExcludePatterns']
           @ExcludeSystemDirectories = params['ExcludeSystemDirectories']
           @ExecuteImmediately = params['ExecuteImmediately']
+          @EnableObjectAcl = params['EnableObjectAcl']
+          @EnableObjectTags = params['EnableObjectTags']
         end
       end
 

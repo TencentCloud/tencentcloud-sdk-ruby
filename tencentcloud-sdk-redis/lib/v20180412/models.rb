@@ -801,8 +801,8 @@ module TencentCloud
 
         attr_accessor :DealId, :InstanceIds, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 10
-        deprecate :DealId=, :none, 2026, 10
+        deprecate :DealId, :none, 2026, 11
+        deprecate :DealId=, :none, 2026, 11
 
         def initialize(dealid=nil, instanceids=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -1204,8 +1204,8 @@ module TencentCloud
 
         attr_accessor :DealId, :InstanceIds, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 10
-        deprecate :DealId=, :none, 2026, 10
+        deprecate :DealId, :none, 2026, 11
+        deprecate :DealId=, :none, 2026, 11
 
         def initialize(dealid=nil, instanceids=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -1891,12 +1891,12 @@ module TencentCloud
 
         attr_accessor :DownloadUrl, :InnerDownloadUrl, :Filenames, :BackupInfos, :RequestId
         extend Gem::Deprecate
-        deprecate :DownloadUrl, :none, 2026, 10
-        deprecate :DownloadUrl=, :none, 2026, 10
-        deprecate :InnerDownloadUrl, :none, 2026, 10
-        deprecate :InnerDownloadUrl=, :none, 2026, 10
-        deprecate :Filenames, :none, 2026, 10
-        deprecate :Filenames=, :none, 2026, 10
+        deprecate :DownloadUrl, :none, 2026, 11
+        deprecate :DownloadUrl=, :none, 2026, 11
+        deprecate :InnerDownloadUrl, :none, 2026, 11
+        deprecate :InnerDownloadUrl=, :none, 2026, 11
+        deprecate :Filenames, :none, 2026, 11
+        deprecate :Filenames=, :none, 2026, 11
 
         def initialize(downloadurl=nil, innerdownloadurl=nil, filenames=nil, backupinfos=nil, requestid=nil)
           @DownloadUrl = downloadurl
@@ -2466,8 +2466,8 @@ module TencentCloud
 
         attr_accessor :DealIds, :DealName
         extend Gem::Deprecate
-        deprecate :DealIds, :none, 2026, 10
-        deprecate :DealIds=, :none, 2026, 10
+        deprecate :DealIds, :none, 2026, 11
+        deprecate :DealIds=, :none, 2026, 11
 
         def initialize(dealids=nil, dealname=nil)
           @DealIds = dealids
@@ -4497,15 +4497,19 @@ module TencentCloud
       class DescribeSSLStatusRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>实例 ID。请登录 <a href="https://console.cloud.tencent.com/redis/instance/list">Redis 控制台</a>在实例列表复制实例 ID。</p>
         # @type InstanceId: String
+        # @param ServiceType: <p>证书下载格式类型，不传时默认 nginx。仅对自定义证书（CertSource=1）生效</p><p>枚举值：</p><ul><li>nginx： nginx可用</li><li>apache： apache可用</li><li>tomcat： tomcat可用</li><li>iis： iis可用</li></ul>
+        # @type ServiceType: String
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :ServiceType
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, servicetype=nil)
           @InstanceId = instanceid
+          @ServiceType = servicetype
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @ServiceType = params['ServiceType']
         end
       end
 
@@ -4525,12 +4529,28 @@ module TencentCloud
         # @type AddressType: Integer
         # @param EncryptAddress: <p>当前加密连接地址</p>
         # @type EncryptAddress: String
+        # @param CertSource: <p>密钥来源</p><p>枚举值：</p><ul><li>0： 腾讯云提供</li><li>1： 自定义证书</li></ul>
+        # @type CertSource: Integer
+        # @param CertStatus: <p>证书有效性</p><p>枚举值：</p><ul><li>0： 有效</li><li>1： 即将过期（30天内）</li><li>2： 已过期</li><li>404： 证书已被删除</li><li>500： 查询异常</li></ul>
+        # @type CertStatus: Integer
+        # @param CertId: <p>SSL 证书服务的证书 ID，CertSource=1 时必填</p>
+        # @type CertId: String
+        # @param CertAlias: <p>证书别名</p>
+        # @type CertAlias: String
+        # @param CertExpireTime: <p>证书到期时间</p><p>参数格式：时间格式YYYY-MM-DD hh:mm:ss</p>
+        # @type CertExpireTime: String
+        # @param Domain: <p>证书关联域名（SAN）</p><p>包括了IP</p>
+        # @type Domain: String
+        # @param SSLMinVersion: <p>最低 TLS 版本</p><p>枚举值：</p><ul><li>TLSv1.0： TLSv1.0</li><li>TLSv1.1： TLSv1.1</li><li>TLSv1.2： TLSv1.2</li></ul>
+        # @type SSLMinVersion: String
+        # @param EncryptionMode: <p>当前加密模式</p><p>枚举值：</p><ul><li>required： 强制加密</li><li>flexible： 兼容模式</li></ul>
+        # @type EncryptionMode: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :CertDownloadUrl, :UrlExpiredTime, :SSLConfig, :FeatureSupport, :Status, :AddressType, :EncryptAddress, :RequestId
+        attr_accessor :CertDownloadUrl, :UrlExpiredTime, :SSLConfig, :FeatureSupport, :Status, :AddressType, :EncryptAddress, :CertSource, :CertStatus, :CertId, :CertAlias, :CertExpireTime, :Domain, :SSLMinVersion, :EncryptionMode, :RequestId
 
-        def initialize(certdownloadurl=nil, urlexpiredtime=nil, sslconfig=nil, featuresupport=nil, status=nil, addresstype=nil, encryptaddress=nil, requestid=nil)
+        def initialize(certdownloadurl=nil, urlexpiredtime=nil, sslconfig=nil, featuresupport=nil, status=nil, addresstype=nil, encryptaddress=nil, certsource=nil, certstatus=nil, certid=nil, certalias=nil, certexpiretime=nil, domain=nil, sslminversion=nil, encryptionmode=nil, requestid=nil)
           @CertDownloadUrl = certdownloadurl
           @UrlExpiredTime = urlexpiredtime
           @SSLConfig = sslconfig
@@ -4538,6 +4558,14 @@ module TencentCloud
           @Status = status
           @AddressType = addresstype
           @EncryptAddress = encryptaddress
+          @CertSource = certsource
+          @CertStatus = certstatus
+          @CertId = certid
+          @CertAlias = certalias
+          @CertExpireTime = certexpiretime
+          @Domain = domain
+          @SSLMinVersion = sslminversion
+          @EncryptionMode = encryptionmode
           @RequestId = requestid
         end
 
@@ -4549,6 +4577,14 @@ module TencentCloud
           @Status = params['Status']
           @AddressType = params['AddressType']
           @EncryptAddress = params['EncryptAddress']
+          @CertSource = params['CertSource']
+          @CertStatus = params['CertStatus']
+          @CertId = params['CertId']
+          @CertAlias = params['CertAlias']
+          @CertExpireTime = params['CertExpireTime']
+          @Domain = params['Domain']
+          @SSLMinVersion = params['SSLMinVersion']
+          @EncryptionMode = params['EncryptionMode']
           @RequestId = params['RequestId']
         end
       end
@@ -4670,8 +4706,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :InstanceSlowlogDetail, :InstanceSlowLogDetail, :RequestId
         extend Gem::Deprecate
-        deprecate :InstanceSlowlogDetail, :none, 2026, 10
-        deprecate :InstanceSlowlogDetail=, :none, 2026, 10
+        deprecate :InstanceSlowlogDetail, :none, 2026, 11
+        deprecate :InstanceSlowlogDetail=, :none, 2026, 11
 
         def initialize(totalcount=nil, instanceslowlogdetail=nil, requestid=nil)
           @TotalCount = totalcount
@@ -4839,10 +4875,10 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceName, :Limit, :Offset, :ProjectIds, :TaskTypes, :BeginTime, :EndTime, :TaskStatus, :Result, :OperatorUin, :OperateUin
         extend Gem::Deprecate
-        deprecate :ProjectIds, :none, 2026, 10
-        deprecate :ProjectIds=, :none, 2026, 10
-        deprecate :OperatorUin, :none, 2026, 10
-        deprecate :OperatorUin=, :none, 2026, 10
+        deprecate :ProjectIds, :none, 2026, 11
+        deprecate :ProjectIds=, :none, 2026, 11
+        deprecate :OperatorUin, :none, 2026, 11
+        deprecate :OperatorUin=, :none, 2026, 11
 
         def initialize(instanceid=nil, instancename=nil, limit=nil, offset=nil, projectids=nil, tasktypes=nil, begintime=nil, endtime=nil, taskstatus=nil, result=nil, operatoruin=nil, operateuin=nil)
           @InstanceId = instanceid
@@ -5036,8 +5072,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 10
-        deprecate :DealId=, :none, 2026, 10
+        deprecate :DealId, :none, 2026, 11
+        deprecate :DealId=, :none, 2026, 11
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -5161,8 +5197,8 @@ module TencentCloud
 
         attr_accessor :Status, :TaskId, :RequestId
         extend Gem::Deprecate
-        deprecate :Status, :none, 2026, 10
-        deprecate :Status=, :none, 2026, 10
+        deprecate :Status, :none, 2026, 11
+        deprecate :Status=, :none, 2026, 11
 
         def initialize(status=nil, taskid=nil, requestid=nil)
           @Status = status
@@ -5778,30 +5814,36 @@ module TencentCloud
 
       # 实例枚举类型参数描述
       class InstanceEnumParam < TencentCloud::Common::AbstractModel
-        # @param ParamName: 参数名称。
+        # @param ParamName: <p>参数名称。</p>
         # @type ParamName: String
-        # @param ValueType: 参数类型，例如：Enum。
+        # @param ValueType: <p>参数类型，例如：Enum。</p>
         # @type ValueType: String
-        # @param NeedRestart: 参数值修改后是否需要重启。
-        # - true：需要。
-        # - false：不需要。
+        # @param NeedRestart: <p>参数值修改后是否需要重启。</p><ul><li>true：需要。</li><li>false：不需要。</li></ul>
         # @type NeedRestart: String
-        # @param DefaultValue: 参数默认值。
+        # @param DefaultValue: <p>参数默认值。</p>
         # @type DefaultValue: String
-        # @param CurrentValue: 参数当前运行值。
+        # @param CurrentValue: <p>参数当前运行值。</p>
         # @type CurrentValue: String
-        # @param Tips: 参数说明。
+        # @param Tips: <p>参数说明。</p>
         # @type Tips: String
-        # @param EnumValue: 参数可取的值。
+        # @param EnumValue: <p>参数可取的值。</p>
         # @type EnumValue: Array
-        # @param Status: 参数修改状态。
-        # - 1: 修改中。
-        # - 2：修改完成。
+        # @param Status: <p>参数修改状态。</p><ul><li>1: 修改中。</li><li>2：修改完成。</li></ul>
         # @type Status: Integer
+        # @param ParamType: <p>参数类型</p><p>枚举值：</p><ul><li>redis： cache节点支持的参数</li><li>redis-interface： 代理proxy支持的参数</li><li>tendis： tendis支持的参数</li></ul>
+        # @type ParamType: String
+        # @param FeatureSupported: <p>当前实例是否支持该特性</p>
+        # @type FeatureSupported: Boolean
+        # @param NewFeatureOnlineTime: <p>新特性上线日期</p><p>参数格式：时间格式YYYY-MM-DD</p>
+        # @type NewFeatureOnlineTime: String
+        # @param Pattern: <p>正则校验规则</p>
+        # @type Pattern: String
+        # @param InputDescription: <p>输入格式描述</p>
+        # @type InputDescription: String
 
-        attr_accessor :ParamName, :ValueType, :NeedRestart, :DefaultValue, :CurrentValue, :Tips, :EnumValue, :Status
+        attr_accessor :ParamName, :ValueType, :NeedRestart, :DefaultValue, :CurrentValue, :Tips, :EnumValue, :Status, :ParamType, :FeatureSupported, :NewFeatureOnlineTime, :Pattern, :InputDescription
 
-        def initialize(paramname=nil, valuetype=nil, needrestart=nil, defaultvalue=nil, currentvalue=nil, tips=nil, enumvalue=nil, status=nil)
+        def initialize(paramname=nil, valuetype=nil, needrestart=nil, defaultvalue=nil, currentvalue=nil, tips=nil, enumvalue=nil, status=nil, paramtype=nil, featuresupported=nil, newfeatureonlinetime=nil, pattern=nil, inputdescription=nil)
           @ParamName = paramname
           @ValueType = valuetype
           @NeedRestart = needrestart
@@ -5810,6 +5852,11 @@ module TencentCloud
           @Tips = tips
           @EnumValue = enumvalue
           @Status = status
+          @ParamType = paramtype
+          @FeatureSupported = featuresupported
+          @NewFeatureOnlineTime = newfeatureonlinetime
+          @Pattern = pattern
+          @InputDescription = inputdescription
         end
 
         def deserialize(params)
@@ -5821,6 +5868,11 @@ module TencentCloud
           @Tips = params['Tips']
           @EnumValue = params['EnumValue']
           @Status = params['Status']
+          @ParamType = params['ParamType']
+          @FeatureSupported = params['FeatureSupported']
+          @NewFeatureOnlineTime = params['NewFeatureOnlineTime']
+          @Pattern = params['Pattern']
+          @InputDescription = params['InputDescription']
         end
       end
 
@@ -5889,30 +5941,40 @@ module TencentCloud
 
       # 实例整型参数描述
       class InstanceIntegerParam < TencentCloud::Common::AbstractModel
-        # @param ParamName: 参数名
+        # @param ParamName: <p>参数名</p>
         # @type ParamName: String
-        # @param ValueType: 参数类型：integer
+        # @param ValueType: <p>参数类型：integer</p>
         # @type ValueType: String
-        # @param NeedRestart: 修改后是否需要重启：true，false
+        # @param NeedRestart: <p>修改后是否需要重启：true，false</p>
         # @type NeedRestart: String
-        # @param DefaultValue: 参数默认值
+        # @param DefaultValue: <p>参数默认值</p>
         # @type DefaultValue: String
-        # @param CurrentValue: 当前运行参数值
+        # @param CurrentValue: <p>当前运行参数值</p>
         # @type CurrentValue: String
-        # @param Tips: 参数说明
+        # @param Tips: <p>参数说明</p>
         # @type Tips: String
-        # @param Min: 参数最小值
+        # @param Min: <p>参数最小值</p>
         # @type Min: String
-        # @param Max: 参数最大值
+        # @param Max: <p>参数最大值</p>
         # @type Max: String
-        # @param Status: 参数状态, 1: 修改中， 2：修改完成
+        # @param Status: <p>参数状态, 1: 修改中， 2：修改完成</p>
         # @type Status: Integer
-        # @param Unit: 参数单位
+        # @param Unit: <p>参数单位</p>
         # @type Unit: String
+        # @param ParamType: <p>参数类型</p><p>枚举值：</p><ul><li>redis： cache节点支持的参数</li><li>redis-interface： 代理proxy支持的参数</li><li>tendis：  tendis支持的参数</li></ul>
+        # @type ParamType: String
+        # @param FeatureSupported: <p>当前实例是否支持该特性</p>
+        # @type FeatureSupported: Boolean
+        # @param NewFeatureOnlineTime: <p>新特性上线日期</p><p>参数格式：时间格式YYYY-MM-DD</p>
+        # @type NewFeatureOnlineTime: String
+        # @param Pattern: <p>正则校验规则</p>
+        # @type Pattern: String
+        # @param InputDescription: <p>输入格式描述</p>
+        # @type InputDescription: String
 
-        attr_accessor :ParamName, :ValueType, :NeedRestart, :DefaultValue, :CurrentValue, :Tips, :Min, :Max, :Status, :Unit
+        attr_accessor :ParamName, :ValueType, :NeedRestart, :DefaultValue, :CurrentValue, :Tips, :Min, :Max, :Status, :Unit, :ParamType, :FeatureSupported, :NewFeatureOnlineTime, :Pattern, :InputDescription
 
-        def initialize(paramname=nil, valuetype=nil, needrestart=nil, defaultvalue=nil, currentvalue=nil, tips=nil, min=nil, max=nil, status=nil, unit=nil)
+        def initialize(paramname=nil, valuetype=nil, needrestart=nil, defaultvalue=nil, currentvalue=nil, tips=nil, min=nil, max=nil, status=nil, unit=nil, paramtype=nil, featuresupported=nil, newfeatureonlinetime=nil, pattern=nil, inputdescription=nil)
           @ParamName = paramname
           @ValueType = valuetype
           @NeedRestart = needrestart
@@ -5923,6 +5985,11 @@ module TencentCloud
           @Max = max
           @Status = status
           @Unit = unit
+          @ParamType = paramtype
+          @FeatureSupported = featuresupported
+          @NewFeatureOnlineTime = newfeatureonlinetime
+          @Pattern = pattern
+          @InputDescription = inputdescription
         end
 
         def deserialize(params)
@@ -5936,35 +6003,46 @@ module TencentCloud
           @Max = params['Max']
           @Status = params['Status']
           @Unit = params['Unit']
+          @ParamType = params['ParamType']
+          @FeatureSupported = params['FeatureSupported']
+          @NewFeatureOnlineTime = params['NewFeatureOnlineTime']
+          @Pattern = params['Pattern']
+          @InputDescription = params['InputDescription']
         end
       end
 
       # 实例多选项类型参数描述
       class InstanceMultiParam < TencentCloud::Common::AbstractModel
-        # @param ParamName: 参数名称。
+        # @param ParamName: <p>参数名称。</p>
         # @type ParamName: String
-        # @param ValueType: 参数类型。例如：multi。
+        # @param ValueType: <p>参数类型。例如：multi。</p>
         # @type ValueType: String
-        # @param NeedRestart: 参数修改后是否需要重启。
-        # - true：需要。
-        # - false：不需要。
+        # @param NeedRestart: <p>参数修改后是否需要重启。</p><ul><li>true：需要。</li><li>false：不需要。</li></ul>
         # @type NeedRestart: String
-        # @param DefaultValue: 参数默认值。
+        # @param DefaultValue: <p>参数默认值。</p>
         # @type DefaultValue: String
-        # @param CurrentValue: 当前运行参数值。
+        # @param CurrentValue: <p>当前运行参数值。</p>
         # @type CurrentValue: String
-        # @param Tips: 参数说明。
+        # @param Tips: <p>参数说明。</p>
         # @type Tips: String
-        # @param EnumValue: 参数枚举值。
+        # @param EnumValue: <p>参数枚举值。</p>
         # @type EnumValue: Array
-        # @param Status: 参数修改的状态。
-        # - 1：修改中。
-        # - 2：修改完成。
+        # @param Status: <p>参数修改的状态。</p><ul><li>1：修改中。</li><li>2：修改完成。</li></ul>
         # @type Status: Integer
+        # @param ParamType: <p>参数类型</p><p>枚举值：</p><ul><li>redis： cache节点支持的参数</li><li>redis-interface： 代理proxy支持的参数</li><li>tendis： tendis支持的参数</li></ul>
+        # @type ParamType: String
+        # @param FeatureSupported: <p>当前实例是否支持该特性</p>
+        # @type FeatureSupported: Boolean
+        # @param NewFeatureOnlineTime: <p>新特性上线日期</p><p>参数格式：参数格式：时间格式YYYY-MM-DD</p>
+        # @type NewFeatureOnlineTime: String
+        # @param Pattern: <p>正则校验规则</p>
+        # @type Pattern: String
+        # @param InputDescription: <p>输入格式描述</p>
+        # @type InputDescription: String
 
-        attr_accessor :ParamName, :ValueType, :NeedRestart, :DefaultValue, :CurrentValue, :Tips, :EnumValue, :Status
+        attr_accessor :ParamName, :ValueType, :NeedRestart, :DefaultValue, :CurrentValue, :Tips, :EnumValue, :Status, :ParamType, :FeatureSupported, :NewFeatureOnlineTime, :Pattern, :InputDescription
 
-        def initialize(paramname=nil, valuetype=nil, needrestart=nil, defaultvalue=nil, currentvalue=nil, tips=nil, enumvalue=nil, status=nil)
+        def initialize(paramname=nil, valuetype=nil, needrestart=nil, defaultvalue=nil, currentvalue=nil, tips=nil, enumvalue=nil, status=nil, paramtype=nil, featuresupported=nil, newfeatureonlinetime=nil, pattern=nil, inputdescription=nil)
           @ParamName = paramname
           @ValueType = valuetype
           @NeedRestart = needrestart
@@ -5973,6 +6051,11 @@ module TencentCloud
           @Tips = tips
           @EnumValue = enumvalue
           @Status = status
+          @ParamType = paramtype
+          @FeatureSupported = featuresupported
+          @NewFeatureOnlineTime = newfeatureonlinetime
+          @Pattern = pattern
+          @InputDescription = inputdescription
         end
 
         def deserialize(params)
@@ -5984,6 +6067,11 @@ module TencentCloud
           @Tips = params['Tips']
           @EnumValue = params['EnumValue']
           @Status = params['Status']
+          @ParamType = params['ParamType']
+          @FeatureSupported = params['FeatureSupported']
+          @NewFeatureOnlineTime = params['NewFeatureOnlineTime']
+          @Pattern = params['Pattern']
+          @InputDescription = params['InputDescription']
         end
       end
 
@@ -6267,8 +6355,8 @@ module TencentCloud
 
         attr_accessor :InstanceName, :InstanceId, :Appid, :ProjectId, :RegionId, :ZoneId, :VpcId, :SubnetId, :Status, :WanIp, :Port, :Createtime, :Size, :SizeUsed, :Type, :AutoRenewFlag, :DeadlineTime, :Engine, :ProductType, :UniqVpcId, :UniqSubnetId, :BillingMode, :InstanceTitle, :OfflineTime, :SubStatus, :Tags, :InstanceNode, :RedisShardSize, :RedisShardNum, :RedisReplicasNum, :PriceId, :CloseTime, :SlaveReadWeight, :InstanceTags, :ProjectName, :NoAuth, :ClientLimit, :DtsStatus, :NetLimit, :PasswordFree, :Vip6, :IPv6, :ReadOnly, :RemainBandwidthDuration, :DiskSize, :MonitorVersion, :ClientLimitMin, :ClientLimitMax, :NodeSet, :Region, :WanAddress, :PolarisServer, :RedisClusterId, :DedicatedClusterId, :ProductVersion, :CurrentProxyVersion, :CurrentRedisVersion, :UpgradeProxyVersion, :UpgradeRedisVersion, :BackupMode, :DeleteProtectionSwitch
         extend Gem::Deprecate
-        deprecate :SizeUsed, :none, 2026, 10
-        deprecate :SizeUsed=, :none, 2026, 10
+        deprecate :SizeUsed, :none, 2026, 11
+        deprecate :SizeUsed=, :none, 2026, 11
 
         def initialize(instancename=nil, instanceid=nil, appid=nil, projectid=nil, regionid=nil, zoneid=nil, vpcid=nil, subnetid=nil, status=nil, wanip=nil, port=nil, createtime=nil, size=nil, sizeused=nil, type=nil, autorenewflag=nil, deadlinetime=nil, engine=nil, producttype=nil, uniqvpcid=nil, uniqsubnetid=nil, billingmode=nil, instancetitle=nil, offlinetime=nil, substatus=nil, tags=nil, instancenode=nil, redisshardsize=nil, redisshardnum=nil, redisreplicasnum=nil, priceid=nil, closetime=nil, slavereadweight=nil, instancetags=nil, projectname=nil, noauth=nil, clientlimit=nil, dtsstatus=nil, netlimit=nil, passwordfree=nil, vip6=nil, ipv6=nil, readonly=nil, remainbandwidthduration=nil, disksize=nil, monitorversion=nil, clientlimitmin=nil, clientlimitmax=nil, nodeset=nil, region=nil, wanaddress=nil, polarisserver=nil, redisclusterid=nil, dedicatedclusterid=nil, productversion=nil, currentproxyversion=nil, currentredisversion=nil, upgradeproxyversion=nil, upgraderedisversion=nil, backupmode=nil, deleteprotectionswitch=nil)
           @InstanceName = instancename
@@ -6478,30 +6566,36 @@ module TencentCloud
 
       # 实例字符型参数描述
       class InstanceTextParam < TencentCloud::Common::AbstractModel
-        # @param ParamName: 参数名称。
+        # @param ParamName: <p>参数名称。</p>
         # @type ParamName: String
-        # @param ValueType: 参数类型。例如：text。
+        # @param ValueType: <p>参数类型。例如：text。</p>
         # @type ValueType: String
-        # @param NeedRestart: 参数修改后是否需要重启。
-        # - true：需要。
-        # - false：不需要。
+        # @param NeedRestart: <p>参数修改后是否需要重启。</p><ul><li>true：需要。</li><li>false：不需要。</li></ul>
         # @type NeedRestart: String
-        # @param DefaultValue: 参数默认值。
+        # @param DefaultValue: <p>参数默认值。</p>
         # @type DefaultValue: String
-        # @param CurrentValue: 参数当前运行值。
+        # @param CurrentValue: <p>参数当前运行值。</p>
         # @type CurrentValue: String
-        # @param Tips: 参数说明。
+        # @param Tips: <p>参数说明。</p>
         # @type Tips: String
-        # @param TextValue: 参数可取值。
+        # @param TextValue: <p>参数可取值。</p>
         # @type TextValue: Array
-        # @param Status: 参数修改状态。
-        # - 1: 修改中。
-        # - 2：修改完成。
+        # @param Status: <p>参数修改状态。</p><ul><li>1: 修改中。</li><li>2：修改完成。</li></ul>
         # @type Status: Integer
+        # @param ParamType: <p>参数类型</p><p>枚举值：</p><ul><li>redis： cache节点支持的参数</li><li>redis-interface： 代理proxy支持的参数</li><li>tendis： tendis支持的参数</li></ul>
+        # @type ParamType: String
+        # @param FeatureSupported: <p>当前实例是否支持该特性</p>
+        # @type FeatureSupported: Boolean
+        # @param NewFeatureOnlineTime: <p>新特性上线日期</p><p>参数格式：时间格式YYYY-MM-DD</p>
+        # @type NewFeatureOnlineTime: String
+        # @param Pattern: <p>正则校验规则</p>
+        # @type Pattern: String
+        # @param InputDescription: <p>输入格式描述</p>
+        # @type InputDescription: String
 
-        attr_accessor :ParamName, :ValueType, :NeedRestart, :DefaultValue, :CurrentValue, :Tips, :TextValue, :Status
+        attr_accessor :ParamName, :ValueType, :NeedRestart, :DefaultValue, :CurrentValue, :Tips, :TextValue, :Status, :ParamType, :FeatureSupported, :NewFeatureOnlineTime, :Pattern, :InputDescription
 
-        def initialize(paramname=nil, valuetype=nil, needrestart=nil, defaultvalue=nil, currentvalue=nil, tips=nil, textvalue=nil, status=nil)
+        def initialize(paramname=nil, valuetype=nil, needrestart=nil, defaultvalue=nil, currentvalue=nil, tips=nil, textvalue=nil, status=nil, paramtype=nil, featuresupported=nil, newfeatureonlinetime=nil, pattern=nil, inputdescription=nil)
           @ParamName = paramname
           @ValueType = valuetype
           @NeedRestart = needrestart
@@ -6510,6 +6604,11 @@ module TencentCloud
           @Tips = tips
           @TextValue = textvalue
           @Status = status
+          @ParamType = paramtype
+          @FeatureSupported = featuresupported
+          @NewFeatureOnlineTime = newfeatureonlinetime
+          @Pattern = pattern
+          @InputDescription = inputdescription
         end
 
         def deserialize(params)
@@ -6521,6 +6620,11 @@ module TencentCloud
           @Tips = params['Tips']
           @TextValue = params['TextValue']
           @Status = params['Status']
+          @ParamType = params['ParamType']
+          @FeatureSupported = params['FeatureSupported']
+          @NewFeatureOnlineTime = params['NewFeatureOnlineTime']
+          @Pattern = params['Pattern']
+          @InputDescription = params['InputDescription']
         end
       end
 
@@ -6828,10 +6932,12 @@ module TencentCloud
         # @type CommandDetail: String
         # @param ErrMsg: <p>错误信息</p>
         # @type ErrMsg: String
+        # @param Node: <p>proxy的节点ID</p>
+        # @type Node: String
 
-        attr_accessor :DBId, :CommandLatency, :Timestamp, :ClientAddr, :UserName, :CommandType, :CacheCode, :CommandDetail, :ErrMsg
+        attr_accessor :DBId, :CommandLatency, :Timestamp, :ClientAddr, :UserName, :CommandType, :CacheCode, :CommandDetail, :ErrMsg, :Node
 
-        def initialize(dbid=nil, commandlatency=nil, timestamp=nil, clientaddr=nil, username=nil, commandtype=nil, cachecode=nil, commanddetail=nil, errmsg=nil)
+        def initialize(dbid=nil, commandlatency=nil, timestamp=nil, clientaddr=nil, username=nil, commandtype=nil, cachecode=nil, commanddetail=nil, errmsg=nil, node=nil)
           @DBId = dbid
           @CommandLatency = commandlatency
           @Timestamp = timestamp
@@ -6841,6 +6947,7 @@ module TencentCloud
           @CacheCode = cachecode
           @CommandDetail = commanddetail
           @ErrMsg = errmsg
+          @Node = node
         end
 
         def deserialize(params)
@@ -6853,6 +6960,7 @@ module TencentCloud
           @CacheCode = params['CacheCode']
           @CommandDetail = params['CommandDetail']
           @ErrMsg = params['ErrMsg']
+          @Node = params['Node']
         end
       end
 
@@ -7767,12 +7875,12 @@ module TencentCloud
 
         attr_accessor :Operation, :InstanceIds, :InstanceNames, :ProjectId, :AutoRenews, :DeleteProtectionSwitches, :InstanceId, :InstanceName, :AutoRenew
         extend Gem::Deprecate
-        deprecate :InstanceId, :none, 2026, 10
-        deprecate :InstanceId=, :none, 2026, 10
-        deprecate :InstanceName, :none, 2026, 10
-        deprecate :InstanceName=, :none, 2026, 10
-        deprecate :AutoRenew, :none, 2026, 10
-        deprecate :AutoRenew=, :none, 2026, 10
+        deprecate :InstanceId, :none, 2026, 11
+        deprecate :InstanceId=, :none, 2026, 11
+        deprecate :InstanceName, :none, 2026, 11
+        deprecate :InstanceName=, :none, 2026, 11
+        deprecate :AutoRenew, :none, 2026, 11
+        deprecate :AutoRenew=, :none, 2026, 11
 
         def initialize(operation=nil, instanceids=nil, instancenames=nil, projectid=nil, autorenews=nil, deleteprotectionswitches=nil, instanceid=nil, instancename=nil, autorenew=nil)
           @Operation = operation
@@ -8148,17 +8256,40 @@ module TencentCloud
         # @type InstanceId: String
         # @param AddressType: <p>SSL地址类型。</p><p>枚举值：</p><ul><li>0： 不限。</li><li>1： 内网IPv4。</li><li>2： 内网IPv6。</li><li>3： 外网。</li><li>-1： 未指定。</li></ul><p>默认值：0</p>
         # @type AddressType: Integer
+        # @param CertSource: <p>密钥类型。</p><p>枚举值：</p><ul><li>0： 腾讯云提供</li><li>1： 用户自定义证书</li></ul><p>默认值：0</p>
+        # @type CertSource: Integer
+        # @param SwitchOption: <p>切换时间。（该参数废弃，不再生效）</p><p>枚举值：</p><ul><li>1： 维护时间窗操作：指开启SSL加密在设置的维护时间窗内执行。请通过接口DescribeMaintenanceWindow查询设置的维护时间窗时间段。</li><li>2： 立即操作：操作将立即执行，无需等待维护时间窗。系统默认设置为立即操作。</li></ul>
+        # @type SwitchOption: Integer
+        # @param CertId: <p>SSL 证书服务的证书 ID，CertSource=1 时必填</p>
+        # @type CertId: String
+        # @param SSLMinVersion: <p>最低TLS版本</p><p>枚举值：</p><ul><li>TLSv1.0： TLSv1.0</li><li>TLSv1.1： TLSv1.1</li><li>TLSv1.2： TLSv1.2</li></ul>
+        # @type SSLMinVersion: String
+        # @param EncryptionMode: <p>目标加密模式</p><p>枚举值：</p><ul><li>required： 强制加密</li><li>flexible： 兼容模式</li></ul><p>默认值：flexible</p>
+        # @type EncryptionMode: String
 
-        attr_accessor :InstanceId, :AddressType
+        attr_accessor :InstanceId, :AddressType, :CertSource, :SwitchOption, :CertId, :SSLMinVersion, :EncryptionMode
+        extend Gem::Deprecate
+        deprecate :SwitchOption, :none, 2026, 11
+        deprecate :SwitchOption=, :none, 2026, 11
 
-        def initialize(instanceid=nil, addresstype=nil)
+        def initialize(instanceid=nil, addresstype=nil, certsource=nil, switchoption=nil, certid=nil, sslminversion=nil, encryptionmode=nil)
           @InstanceId = instanceid
           @AddressType = addresstype
+          @CertSource = certsource
+          @SwitchOption = switchoption
+          @CertId = certid
+          @SSLMinVersion = sslminversion
+          @EncryptionMode = encryptionmode
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @AddressType = params['AddressType']
+          @CertSource = params['CertSource']
+          @SwitchOption = params['SwitchOption']
+          @CertId = params['CertId']
+          @SSLMinVersion = params['SSLMinVersion']
+          @EncryptionMode = params['EncryptionMode']
         end
       end
 
@@ -8397,8 +8528,8 @@ module TencentCloud
 
         attr_accessor :Type, :TypeName, :MinBuyNum, :MaxBuyNum, :Saleout, :Engine, :Version, :TotalSize, :ShardSize, :ReplicaNum, :ShardNum, :PayMode, :EnableRepicaReadOnly, :EnableReplicaReadOnly
         extend Gem::Deprecate
-        deprecate :EnableRepicaReadOnly, :none, 2026, 10
-        deprecate :EnableRepicaReadOnly=, :none, 2026, 10
+        deprecate :EnableRepicaReadOnly, :none, 2026, 11
+        deprecate :EnableRepicaReadOnly=, :none, 2026, 11
 
         def initialize(type=nil, typename=nil, minbuynum=nil, maxbuynum=nil, saleout=nil, engine=nil, version=nil, totalsize=nil, shardsize=nil, replicanum=nil, shardnum=nil, paymode=nil, enablerepicareadonly=nil, enablereplicareadonly=nil)
           @Type = type
@@ -8964,8 +9095,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 10
-        deprecate :DealId=, :none, 2026, 10
+        deprecate :DealId, :none, 2026, 11
+        deprecate :DealId=, :none, 2026, 11
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -9389,8 +9520,8 @@ module TencentCloud
 
         attr_accessor :TaskId, :RequestId
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2026, 10
-        deprecate :TaskId=, :none, 2026, 10
+        deprecate :TaskId, :none, 2026, 11
+        deprecate :TaskId=, :none, 2026, 11
 
         def initialize(taskid=nil, requestid=nil)
           @TaskId = taskid
@@ -9727,8 +9858,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :ZoneId, :GoodsNum, :Creater, :CreatTime, :OverdueTime, :EndTime, :Status, :Description, :Price, :InstanceIds
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 10
-        deprecate :DealId=, :none, 2026, 10
+        deprecate :DealId, :none, 2026, 11
+        deprecate :DealId=, :none, 2026, 11
 
         def initialize(dealid=nil, dealname=nil, zoneid=nil, goodsnum=nil, creater=nil, creattime=nil, overduetime=nil, endtime=nil, status=nil, description=nil, price=nil, instanceids=nil)
           @DealId = dealid
@@ -9868,8 +9999,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 10
-        deprecate :DealId=, :none, 2026, 10
+        deprecate :DealId, :none, 2026, 11
+        deprecate :DealId=, :none, 2026, 11
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -9925,8 +10056,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 10
-        deprecate :DealId=, :none, 2026, 10
+        deprecate :DealId, :none, 2026, 11
+        deprecate :DealId=, :none, 2026, 11
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid

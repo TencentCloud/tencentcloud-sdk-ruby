@@ -80,49 +80,51 @@ module TencentCloud
 
       # 视立方license用户 应用结构
       class ApplicationInfo < TencentCloud::Common::AbstractModel
-        # @param AppName: 应用名称
+        # @param AppName: <p>应用名称</p>
         # @type AppName: String
-        # @param BundleId: Ios应用的唯一标识
+        # @param BundleId: <p>Ios应用的唯一标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BundleId: String
-        # @param AppType: 应用类型，formal： 正式应用，test：测试应用
+        # @param AppType: <p>应用类型，formal： 正式应用，test：测试应用</p>
         # @type AppType: String
-        # @param Licenses: license数组
+        # @param Licenses: <p>license数组</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Licenses: Array
-        # @param LicenseKey: license 秘钥
+        # @param LicenseKey: <p>license 秘钥</p>
         # @type LicenseKey: String
-        # @param PackageName: 安卓应用的唯一标识
+        # @param PackageName: <p>安卓应用的唯一标识</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PackageName: String
-        # @param CreatedAt: 创建时间
+        # @param CreatedAt: <p>创建时间</p>
         # @type CreatedAt: String
-        # @param UpdatedAt: 更新时间
+        # @param UpdatedAt: <p>更新时间</p>
         # @type UpdatedAt: String
-        # @param ApplicationId: 用户应用Id
+        # @param ApplicationId: <p>用户应用Id</p>
         # @type ApplicationId: Integer
-        # @param LicenseUrl: 视立方下载license的url
+        # @param LicenseUrl: <p>视立方下载license的url</p>
         # @type LicenseUrl: String
-        # @param XMagics: 优图美视信息列表
+        # @param XMagics: <p>优图美视信息列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type XMagics: Array
-        # @param MacBundleId: Mac  进程名
+        # @param MacBundleId: <p>Mac  进程名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MacBundleId: String
-        # @param WinProcessName: windows 进程名
+        # @param WinProcessName: <p>windows 进程名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WinProcessName: String
-        # @param DomainList: web端Domain列表
+        # @param DomainList: <p>web端Domain列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DomainList: Array
-        # @param AppId: 账号AppId
+        # @param AppId: <p>账号AppId</p>
         # @type AppId: String
-        # @param NameLimit: 扩展包名数量上限
+        # @param NameLimit: <p>扩展包名数量上限</p>
         # @type NameLimit: Integer
+        # @param LinuxProcessName: <p>linux 进程名</p>
+        # @type LinuxProcessName: String
 
-        attr_accessor :AppName, :BundleId, :AppType, :Licenses, :LicenseKey, :PackageName, :CreatedAt, :UpdatedAt, :ApplicationId, :LicenseUrl, :XMagics, :MacBundleId, :WinProcessName, :DomainList, :AppId, :NameLimit
+        attr_accessor :AppName, :BundleId, :AppType, :Licenses, :LicenseKey, :PackageName, :CreatedAt, :UpdatedAt, :ApplicationId, :LicenseUrl, :XMagics, :MacBundleId, :WinProcessName, :DomainList, :AppId, :NameLimit, :LinuxProcessName
 
-        def initialize(appname=nil, bundleid=nil, apptype=nil, licenses=nil, licensekey=nil, packagename=nil, createdat=nil, updatedat=nil, applicationid=nil, licenseurl=nil, xmagics=nil, macbundleid=nil, winprocessname=nil, domainlist=nil, appid=nil, namelimit=nil)
+        def initialize(appname=nil, bundleid=nil, apptype=nil, licenses=nil, licensekey=nil, packagename=nil, createdat=nil, updatedat=nil, applicationid=nil, licenseurl=nil, xmagics=nil, macbundleid=nil, winprocessname=nil, domainlist=nil, appid=nil, namelimit=nil, linuxprocessname=nil)
           @AppName = appname
           @BundleId = bundleid
           @AppType = apptype
@@ -139,6 +141,7 @@ module TencentCloud
           @DomainList = domainlist
           @AppId = appid
           @NameLimit = namelimit
+          @LinuxProcessName = linuxprocessname
         end
 
         def deserialize(params)
@@ -172,6 +175,7 @@ module TencentCloud
           @DomainList = params['DomainList']
           @AppId = params['AppId']
           @NameLimit = params['NameLimit']
+          @LinuxProcessName = params['LinuxProcessName']
         end
       end
 

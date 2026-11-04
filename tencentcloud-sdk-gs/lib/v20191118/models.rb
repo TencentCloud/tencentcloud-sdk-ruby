@@ -287,8 +287,8 @@ module TencentCloud
 
         attr_accessor :AndroidAppId, :Name, :AndroidAppVersion, :PackageName, :PackageVersion, :PackageLabel, :VersionName
         extend Gem::Deprecate
-        deprecate :PackageVersion, :none, 2026, 10
-        deprecate :PackageVersion=, :none, 2026, 10
+        deprecate :PackageVersion, :none, 2026, 11
+        deprecate :PackageVersion=, :none, 2026, 11
 
         def initialize(androidappid=nil, name=nil, androidappversion=nil, packagename=nil, packageversion=nil, packagelabel=nil, versionname=nil)
           @AndroidAppId = androidappid
@@ -1195,6 +1195,33 @@ module TencentCloud
         end
       end
 
+      # CreateAndroidInstanceMCPToken请求参数结构体
+      class CreateAndroidInstanceMCPTokenRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # CreateAndroidInstanceMCPToken返回参数结构体
+      class CreateAndroidInstanceMCPTokenResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAndroidInstanceSSH请求参数结构体
       class CreateAndroidInstanceSSHRequest < TencentCloud::Common::AbstractModel
         # @param AndroidInstanceId: 实例ID
@@ -1899,6 +1926,33 @@ module TencentCloud
         end
       end
 
+      # DeleteAndroidInstanceMCPToken请求参数结构体
+      class DeleteAndroidInstanceMCPTokenRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DeleteAndroidInstanceMCPToken返回参数结构体
+      class DeleteAndroidInstanceMCPTokenResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeAndroidApps请求参数结构体
       class DescribeAndroidAppsRequest < TencentCloud::Common::AbstractModel
         # @param Offset: <p>分页偏移</p>
@@ -2178,8 +2232,8 @@ module TencentCloud
 
         attr_accessor :Total, :Labels, :AndroidInstanceLabels, :RequestId
         extend Gem::Deprecate
-        deprecate :Labels, :none, 2026, 10
-        deprecate :Labels=, :none, 2026, 10
+        deprecate :Labels, :none, 2026, 11
+        deprecate :Labels=, :none, 2026, 11
 
         def initialize(total=nil, labels=nil, androidinstancelabels=nil, requestid=nil)
           @Total = total
@@ -2206,6 +2260,33 @@ module TencentCloud
               @AndroidInstanceLabels << androidinstancelabeldetail_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAndroidInstanceMCPTokens请求参数结构体
+      class DescribeAndroidInstanceMCPTokensRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeAndroidInstanceMCPTokens返回参数结构体
+      class DescribeAndroidInstanceMCPTokensResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -3843,6 +3924,33 @@ module TencentCloud
               @TaskSet << androidinstancetask_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # RenewAndroidInstanceMCPToken请求参数结构体
+      class RenewAndroidInstanceMCPTokenRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # RenewAndroidInstanceMCPToken返回参数结构体
+      class RenewAndroidInstanceMCPTokenResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

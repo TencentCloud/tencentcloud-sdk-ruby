@@ -269,7 +269,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建恢复任务
+        # 创建恢复任务。
 
         # @param request: Request instance for CreateFileRestoreTask.
         # @type request: :class:`Tencentcloud::bdrc::V20260330::CreateFileRestoreTaskRequest`
