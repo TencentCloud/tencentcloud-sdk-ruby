@@ -8088,6 +8088,162 @@ module TencentCloud
         end
       end
 
+      # QueryEnterpriseBasicInfo请求参数结构体
+      class QueryEnterpriseBasicInfoRequest < TencentCloud::Common::AbstractModel
+        # @param CreditCode: <p>统一社会信用代码。CreditCode、EntName 必须提供一个，如果都提供，只使用 CreditCode。</p>
+        # @type CreditCode: String
+        # @param EntName: <p>企业名称。CreditCode、EntName 必须提供一个，如果都提供，只使用 CreditCode。</p>
+        # @type EntName: String
+
+        attr_accessor :CreditCode, :EntName
+
+        def initialize(creditcode=nil, entname=nil)
+          @CreditCode = creditcode
+          @EntName = entname
+        end
+
+        def deserialize(params)
+          @CreditCode = params['CreditCode']
+          @EntName = params['EntName']
+        end
+      end
+
+      # QueryEnterpriseBasicInfo返回参数结构体
+      class QueryEnterpriseBasicInfoResponse < TencentCloud::Common::AbstractModel
+        # @param StatusCode: <p>请求状态。<br>枚举值：<br>0：成功，计费；<br>1：系统异常，不计费；<br>2：查询无结果，不计费。</p>
+        # @type StatusCode: Integer
+        # @param CreditCode: <p>统一社会信用代码。</p>
+        # @type CreditCode: String
+        # @param EntName: <p>企业名称。</p>
+        # @type EntName: String
+        # @param Type: <p>主体类型。</p>
+        # @type Type: String
+        # @param LrName: <p>法人代表。</p>
+        # @type LrName: String
+        # @param Capital: <p>注册资本。</p>
+        # @type Capital: String
+        # @param Address: <p>企业登记住所或注册地址。</p>
+        # @type Address: String
+        # @param Business: <p>经营范围。</p>
+        # @type Business: String
+        # @param RegistrationAuthority: <p>登记机关。</p>
+        # @type RegistrationAuthority: String
+        # @param OperatingStatus: <p>经营状态（标准化），枚举值：<br>1：开业（在营）；<br>2：迁出；<br>3：注销；<br>4：吊销；<br>5：撤销；<br>6：停业；<br>7：撤销登记；<br>0：其他；/：无法查询。</p>
+        # @type OperatingStatus: String
+        # @param RawOperatingStatus: <p>经营状态（原始值）。</p>
+        # @type RawOperatingStatus: String
+        # @param SetDate: <p>成立日期。</p>
+        # @type SetDate: String
+        # @param OperatingPeriod: <p>营业期限：一般包括营业开始时间和结束时间<br>参数格式：yyyy-MM-dd/yyyy-MM-dd<br>无固定期限的格式为：yyyy-MM-dd/<br>部分企业历史数据可能为空，将返回：/<br>无法查询，将返回：/</p>
+        # @type OperatingPeriod: String
+        # @param ApprovalDate: <p>核准日期。</p>
+        # @type ApprovalDate: String
+        # @param Province: <p>所在省份。</p>
+        # @type Province: String
+        # @param ProvinceCode: <p>所在省份的行政区划代码。</p>
+        # @type ProvinceCode: String
+        # @param City: <p>所在城市。</p>
+        # @type City: String
+        # @param CityCode: <p>所在城市的行政区划代码。</p>
+        # @type CityCode: String
+        # @param District: <p>所在区县。</p>
+        # @type District: String
+        # @param DistrictCode: <p>所在区县的行政区划代码。</p>
+        # @type DistrictCode: String
+        # @param CapitalCurrency: <p>注册资本币种。</p>
+        # @type CapitalCurrency: String
+        # @param OrganizationCode: <p>组织机构代码。</p>
+        # @type OrganizationCode: String
+        # @param EnglishName: <p>企业英文名称。</p>
+        # @type EnglishName: String
+        # @param FormerNames: <p>企业曾用名列表。</p>
+        # @type FormerNames: Array
+        # @param OriginalRegNum: <p>原注册号。</p>
+        # @type OriginalRegNum: String
+        # @param PaidInCapital: <p>实收资本。</p>
+        # @type PaidInCapital: String
+        # @param RevokeDate: <p>吊销日期。</p>
+        # @type RevokeDate: String
+        # @param RevokeReason: <p>吊销原因。</p>
+        # @type RevokeReason: String
+        # @param CancellationDate: <p>注销日期。</p>
+        # @type CancellationDate: String
+        # @param CancellationReason: <p>注销原因。</p>
+        # @type CancellationReason: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StatusCode, :CreditCode, :EntName, :Type, :LrName, :Capital, :Address, :Business, :RegistrationAuthority, :OperatingStatus, :RawOperatingStatus, :SetDate, :OperatingPeriod, :ApprovalDate, :Province, :ProvinceCode, :City, :CityCode, :District, :DistrictCode, :CapitalCurrency, :OrganizationCode, :EnglishName, :FormerNames, :OriginalRegNum, :PaidInCapital, :RevokeDate, :RevokeReason, :CancellationDate, :CancellationReason, :RequestId
+
+        def initialize(statuscode=nil, creditcode=nil, entname=nil, type=nil, lrname=nil, capital=nil, address=nil, business=nil, registrationauthority=nil, operatingstatus=nil, rawoperatingstatus=nil, setdate=nil, operatingperiod=nil, approvaldate=nil, province=nil, provincecode=nil, city=nil, citycode=nil, district=nil, districtcode=nil, capitalcurrency=nil, organizationcode=nil, englishname=nil, formernames=nil, originalregnum=nil, paidincapital=nil, revokedate=nil, revokereason=nil, cancellationdate=nil, cancellationreason=nil, requestid=nil)
+          @StatusCode = statuscode
+          @CreditCode = creditcode
+          @EntName = entname
+          @Type = type
+          @LrName = lrname
+          @Capital = capital
+          @Address = address
+          @Business = business
+          @RegistrationAuthority = registrationauthority
+          @OperatingStatus = operatingstatus
+          @RawOperatingStatus = rawoperatingstatus
+          @SetDate = setdate
+          @OperatingPeriod = operatingperiod
+          @ApprovalDate = approvaldate
+          @Province = province
+          @ProvinceCode = provincecode
+          @City = city
+          @CityCode = citycode
+          @District = district
+          @DistrictCode = districtcode
+          @CapitalCurrency = capitalcurrency
+          @OrganizationCode = organizationcode
+          @EnglishName = englishname
+          @FormerNames = formernames
+          @OriginalRegNum = originalregnum
+          @PaidInCapital = paidincapital
+          @RevokeDate = revokedate
+          @RevokeReason = revokereason
+          @CancellationDate = cancellationdate
+          @CancellationReason = cancellationreason
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StatusCode = params['StatusCode']
+          @CreditCode = params['CreditCode']
+          @EntName = params['EntName']
+          @Type = params['Type']
+          @LrName = params['LrName']
+          @Capital = params['Capital']
+          @Address = params['Address']
+          @Business = params['Business']
+          @RegistrationAuthority = params['RegistrationAuthority']
+          @OperatingStatus = params['OperatingStatus']
+          @RawOperatingStatus = params['RawOperatingStatus']
+          @SetDate = params['SetDate']
+          @OperatingPeriod = params['OperatingPeriod']
+          @ApprovalDate = params['ApprovalDate']
+          @Province = params['Province']
+          @ProvinceCode = params['ProvinceCode']
+          @City = params['City']
+          @CityCode = params['CityCode']
+          @District = params['District']
+          @DistrictCode = params['DistrictCode']
+          @CapitalCurrency = params['CapitalCurrency']
+          @OrganizationCode = params['OrganizationCode']
+          @EnglishName = params['EnglishName']
+          @FormerNames = params['FormerNames']
+          @OriginalRegNum = params['OriginalRegNum']
+          @PaidInCapital = params['PaidInCapital']
+          @RevokeDate = params['RevokeDate']
+          @RevokeReason = params['RevokeReason']
+          @CancellationDate = params['CancellationDate']
+          @CancellationReason = params['CancellationReason']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 试题识别结果
       class QuestionInfo < TencentCloud::Common::AbstractModel
         # @param Angle: <p>旋转角度</p>

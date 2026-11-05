@@ -2052,8 +2052,8 @@ module TencentCloud
 
         attr_accessor :GroupQuota, :CurrentNum, :CvmInHostGroupQuota, :CvmInSwGroupQuota, :CvmInRackGroupQuota, :CvmInSwitchGroupQuota, :RequestId
         extend Gem::Deprecate
-        deprecate :CvmInSwGroupQuota, :none, 2026, 9
-        deprecate :CvmInSwGroupQuota=, :none, 2026, 9
+        deprecate :CvmInSwGroupQuota, :none, 2026, 11
+        deprecate :CvmInSwGroupQuota=, :none, 2026, 11
 
         def initialize(groupquota=nil, currentnum=nil, cvminhostgroupquota=nil, cvminswgroupquota=nil, cvminrackgroupquota=nil, cvminswitchgroupquota=nil, requestid=nil)
           @GroupQuota = groupquota
@@ -3964,8 +3964,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Password, :Username, :ForceStop, :StopType
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2026, 9
-        deprecate :ForceStop=, :none, 2026, 9
+        deprecate :ForceStop, :none, 2026, 11
+        deprecate :ForceStop=, :none, 2026, 11
 
         def initialize(instanceid=nil, password=nil, username=nil, forcestop=nil, stoptype=nil)
           @InstanceId = instanceid
@@ -5566,13 +5566,15 @@ module TencentCloud
         # @type CpuTopology: :class:`Tencentcloud::Cvm.v20170312.models.CpuTopology`
         # @param PartitionNumber: <p>分区置放群组的分区号，具体取决于所选置放群组的分区数量(功能灰度中)</p>
         # @type PartitionNumber: Integer
+        # @param SuperNodeId: <p>逻辑超节点标识</p>
+        # @type SuperNodeId: String
 
-        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :DisasterRecoverGroupIds, :GPUInfo, :LicenseType, :DisableApiTermination, :HostName, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg, :EnableJumboFrame, :Metadata, :PublicIPv6Addresses, :CpuTopology, :PartitionNumber
+        attr_accessor :Placement, :InstanceId, :InstanceType, :CPU, :Memory, :RestrictState, :InstanceName, :InstanceChargeType, :SystemDisk, :DataDisks, :PrivateIpAddresses, :PublicIpAddresses, :InternetAccessible, :VirtualPrivateCloud, :ImageId, :RenewFlag, :CreatedTime, :ExpiredTime, :OsName, :SecurityGroupIds, :LoginSettings, :InstanceState, :Tags, :StopChargingMode, :Uuid, :LatestOperation, :LatestOperationState, :LatestOperationRequestId, :DisasterRecoverGroupId, :IPv6Addresses, :CamRoleName, :HpcClusterId, :RdmaIpAddresses, :DedicatedClusterId, :IsolatedSource, :DisasterRecoverGroupIds, :GPUInfo, :LicenseType, :DisableApiTermination, :HostName, :DefaultLoginUser, :DefaultLoginPort, :LatestOperationErrorMsg, :EnableJumboFrame, :Metadata, :PublicIPv6Addresses, :CpuTopology, :PartitionNumber, :SuperNodeId
         extend Gem::Deprecate
-        deprecate :DisasterRecoverGroupId, :none, 2026, 9
-        deprecate :DisasterRecoverGroupId=, :none, 2026, 9
+        deprecate :DisasterRecoverGroupId, :none, 2026, 11
+        deprecate :DisasterRecoverGroupId=, :none, 2026, 11
 
-        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, disasterrecovergroupids=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, hostname=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil, enablejumboframe=nil, metadata=nil, publicipv6addresses=nil, cputopology=nil, partitionnumber=nil)
+        def initialize(placement=nil, instanceid=nil, instancetype=nil, cpu=nil, memory=nil, restrictstate=nil, instancename=nil, instancechargetype=nil, systemdisk=nil, datadisks=nil, privateipaddresses=nil, publicipaddresses=nil, internetaccessible=nil, virtualprivatecloud=nil, imageid=nil, renewflag=nil, createdtime=nil, expiredtime=nil, osname=nil, securitygroupids=nil, loginsettings=nil, instancestate=nil, tags=nil, stopchargingmode=nil, uuid=nil, latestoperation=nil, latestoperationstate=nil, latestoperationrequestid=nil, disasterrecovergroupid=nil, ipv6addresses=nil, camrolename=nil, hpcclusterid=nil, rdmaipaddresses=nil, dedicatedclusterid=nil, isolatedsource=nil, disasterrecovergroupids=nil, gpuinfo=nil, licensetype=nil, disableapitermination=nil, hostname=nil, defaultloginuser=nil, defaultloginport=nil, latestoperationerrormsg=nil, enablejumboframe=nil, metadata=nil, publicipv6addresses=nil, cputopology=nil, partitionnumber=nil, supernodeid=nil)
           @Placement = placement
           @InstanceId = instanceid
           @InstanceType = instancetype
@@ -5621,6 +5623,7 @@ module TencentCloud
           @PublicIPv6Addresses = publicipv6addresses
           @CpuTopology = cputopology
           @PartitionNumber = partitionnumber
+          @SuperNodeId = supernodeid
         end
 
         def deserialize(params)
@@ -5710,6 +5713,7 @@ module TencentCloud
             @CpuTopology.deserialize(params['CpuTopology'])
           end
           @PartitionNumber = params['PartitionNumber']
+          @SuperNodeId = params['SuperNodeId']
         end
       end
 
@@ -7143,8 +7147,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :DisasterRecoverGroupId, :Force, :DisasterRecoverGroupIds, :PartitionNumber
         extend Gem::Deprecate
-        deprecate :DisasterRecoverGroupId, :none, 2026, 9
-        deprecate :DisasterRecoverGroupId=, :none, 2026, 9
+        deprecate :DisasterRecoverGroupId, :none, 2026, 11
+        deprecate :DisasterRecoverGroupId=, :none, 2026, 11
 
         def initialize(instanceids=nil, disasterrecovergroupid=nil, force=nil, disasterrecovergroupids=nil, partitionnumber=nil)
           @InstanceIds = instanceids
@@ -7729,8 +7733,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceReboot, :StopType
         extend Gem::Deprecate
-        deprecate :ForceReboot, :none, 2026, 9
-        deprecate :ForceReboot=, :none, 2026, 9
+        deprecate :ForceReboot, :none, 2026, 11
+        deprecate :ForceReboot=, :none, 2026, 11
 
         def initialize(instanceids=nil, forcereboot=nil, stoptype=nil)
           @InstanceIds = instanceids
@@ -8991,8 +8995,8 @@ module TencentCloud
 
         attr_accessor :InstanceIds, :ForceStop, :StopType, :StoppedMode
         extend Gem::Deprecate
-        deprecate :ForceStop, :none, 2026, 9
-        deprecate :ForceStop=, :none, 2026, 9
+        deprecate :ForceStop, :none, 2026, 11
+        deprecate :ForceStop=, :none, 2026, 11
 
         def initialize(instanceids=nil, forcestop=nil, stoptype=nil, stoppedmode=nil)
           @InstanceIds = instanceids

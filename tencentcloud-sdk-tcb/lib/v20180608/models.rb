@@ -2657,18 +2657,13 @@ module TencentCloud
 
       # 数据库资源信息
       class DatabasesInfo < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 数据库唯一标识
+        # @param InstanceId: <p>数据库唯一标识</p>
         # @type InstanceId: String
-        # @param Status: 状态。包含以下取值：
-        # <li>INITIALIZING：资源初始化中</li>
-        # <li>RUNNING：运行中，可正常使用的状态</li>
-        # <li>UNUSABLE：禁用，不可用</li>
-        # <li>OVERDUE：资源过期</li>
+        # @param Status: <p>状态。包含以下取值：</p><li>INITIALIZING：资源初始化中</li><li>RUNNING：运行中，可正常使用的状态</li><li>UNUSABLE：禁用，不可用</li><li>OVERDUE：资源过期</li>
         # @type Status: String
-        # @param Region: 所属地域。
-        # 当前支持ap-shanghai
+        # @param Region: <p>所属地域。<br>当前支持ap-shanghai</p>
         # @type Region: String
-        # @param UpdateTime: 更新时间
+        # @param UpdateTime: <p>更新时间</p>
         # @type UpdateTime: String
 
         attr_accessor :InstanceId, :Status, :Region, :UpdateTime
@@ -4665,6 +4660,33 @@ module TencentCloud
         def deserialize(params)
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeEnvInfo请求参数结构体
+      class DescribeEnvInfoRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeEnvInfo返回参数结构体
+      class DescribeEnvInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end

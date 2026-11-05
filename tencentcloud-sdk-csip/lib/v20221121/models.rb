@@ -53372,22 +53372,28 @@ module TencentCloud
         # @type KBDetail: :class:`Tencentcloud::Csip.v20221121.models.KBDetail`
         # @param EffectHostCount: <p>受影响主机数</p>
         # @type EffectHostCount: Integer
-        # @param LatestScanTime: <p>最近扫描时间<br>参数格式：YYYY-MM-DDTHH:mm:ssZ</p>
+        # @param LatestScanTime: <p>最近扫描时间<br>参数格式：YYYY-MM-DD HH:mm:ss</p>
         # @type LatestScanTime: String
         # @param Account: <p>所属账号列表</p>
         # @type Account: Array
         # @param RiskStatus: <p>修复状态<br>枚举值：<br>PENDING：待修复<br>SCANNING：扫描中<br>FIXED：已修复<br>IGNORED：已加白<br>FIXING：修复中<br>FIX_FAILED：修复失败</p>
         # @type RiskStatus: String
+        # @param IsNew: <p>是否最新补丁</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # @type IsNew: Boolean
+        # @param FixTaskId: <p>修复任务id</p>
+        # @type FixTaskId: String
 
-        attr_accessor :RiskID, :KBDetail, :EffectHostCount, :LatestScanTime, :Account, :RiskStatus
+        attr_accessor :RiskID, :KBDetail, :EffectHostCount, :LatestScanTime, :Account, :RiskStatus, :IsNew, :FixTaskId
 
-        def initialize(riskid=nil, kbdetail=nil, effecthostcount=nil, latestscantime=nil, account=nil, riskstatus=nil)
+        def initialize(riskid=nil, kbdetail=nil, effecthostcount=nil, latestscantime=nil, account=nil, riskstatus=nil, isnew=nil, fixtaskid=nil)
           @RiskID = riskid
           @KBDetail = kbdetail
           @EffectHostCount = effecthostcount
           @LatestScanTime = latestscantime
           @Account = account
           @RiskStatus = riskstatus
+          @IsNew = isnew
+          @FixTaskId = fixtaskid
         end
 
         def deserialize(params)
@@ -53407,6 +53413,8 @@ module TencentCloud
             end
           end
           @RiskStatus = params['RiskStatus']
+          @IsNew = params['IsNew']
+          @FixTaskId = params['FixTaskId']
         end
       end
 
@@ -53603,10 +53611,14 @@ module TencentCloud
         # @type RiskStatus: String
         # @param VulDetail: <p>漏洞详细信息</p>
         # @type VulDetail: :class:`Tencentcloud::Csip.v20221121.models.VulDetailInfo`
+        # @param FixTaskId: <p>修复任务ID</p>
+        # @type FixTaskId: String
+        # @param SupportAutoFix: <p>当前用户可见范围内存在至少一台支持自动修复的主机时为 1，否则为 0</p><p>单位：1</p>
+        # @type SupportAutoFix: Integer
 
-        attr_accessor :RiskID, :EffectHostCount, :LatestScanTime, :Account, :DefendStatus, :RiskStatus, :VulDetail
+        attr_accessor :RiskID, :EffectHostCount, :LatestScanTime, :Account, :DefendStatus, :RiskStatus, :VulDetail, :FixTaskId, :SupportAutoFix
 
-        def initialize(riskid=nil, effecthostcount=nil, latestscantime=nil, account=nil, defendstatus=nil, riskstatus=nil, vuldetail=nil)
+        def initialize(riskid=nil, effecthostcount=nil, latestscantime=nil, account=nil, defendstatus=nil, riskstatus=nil, vuldetail=nil, fixtaskid=nil, supportautofix=nil)
           @RiskID = riskid
           @EffectHostCount = effecthostcount
           @LatestScanTime = latestscantime
@@ -53614,6 +53626,8 @@ module TencentCloud
           @DefendStatus = defendstatus
           @RiskStatus = riskstatus
           @VulDetail = vuldetail
+          @FixTaskId = fixtaskid
+          @SupportAutoFix = supportautofix
         end
 
         def deserialize(params)
@@ -53634,6 +53648,8 @@ module TencentCloud
             @VulDetail = VulDetailInfo.new
             @VulDetail.deserialize(params['VulDetail'])
           end
+          @FixTaskId = params['FixTaskId']
+          @SupportAutoFix = params['SupportAutoFix']
         end
       end
 
@@ -56133,38 +56149,64 @@ module TencentCloud
 
       # 可更新补丁主机信息
       class KBUpdateMachineItem < TencentCloud::Common::AbstractModel
-        # @param KBId: <p>KB补丁ID</p>
+        # @param KBId: KB补丁ID
         # @type KBId: Integer
-        # @param InstanceId: <p>主机实例ID</p>
+        # @param InstanceId: 主机实例ID
         # @type InstanceId: String
-        # @param MachineName: <p>主机名称</p>
+        # @param MachineName: 主机名称
         # @type MachineName: String
-        # @param MachineIp: <p>主机IP</p>
+        # @param MachineIp: 主机IP
         # @type MachineIp: String
-        # @param PublicIp: <p>公网IP</p>
+        # @param PublicIp: 公网IP
         # @type PublicIp: String
-        # @param OsName: <p>操作系统名称</p>
+        # @param OsName: 操作系统名称
         # @type OsName: String
-        # @param MachineStatus: <p>主机在线状态<br>枚举值：<br>ONLINE：在线<br>OFFLINE：离线</p>
+        # @param MachineStatus: 主机在线状态
+        # 枚举值：
+        # ONLINE：在线
+        # OFFLINE：离线
         # @type MachineStatus: String
-        # @param SupportAutoFix: <p>是否支持自动更新补丁<br>枚举值：<br>0：不支持<br>1：支持</p>
+        # @param HostStatus: 主机运行状态
+        # 枚举值：
+        # RUNNING：运行中
+        # STOPPED：已停止
+        # EXPIRED：待回收
+        # @type HostStatus: String
+        # @param SupportAutoFix: 是否支持自动更新补丁
+        # 枚举值：
+        # 0：不支持
+        # 1：支持
         # @type SupportAutoFix: Integer
-        # @param FixStatus: <p>当前修复状态<br>枚举值：<br>0：未修复<br>1：修复中<br>2：修复失败<br>3：修复成功<br>4：修复超时</p>
+        # @param FixStatus: 当前修复状态
+        # 枚举值：
+        # 0：未修复
+        # 1：修复中
+        # 2：修复失败
+        # 3：修复成功
+        # 4：修复超时
         # @type FixStatus: Integer
-        # @param LatestFixTime: <p>最近一次修复时间<br>参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）</p>
+        # @param LatestFixTime: 最近一次修复时间
+        # 参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）
         # @type LatestFixTime: String
-        # @param NotFixableReason: <p>不可修复原因，SupportAutoFix为0时返回</p>
+        # @param NotFixableReason: 不可修复原因，SupportAutoFix为0时返回
         # @type NotFixableReason: String
-        # @param TagItems: <p>资产标签列表</p>
+        # @param NotFixableAction: 不可修复原因关联动作，SupportAutoFix为0且存在可引导动作时返回
+        # @type NotFixableAction: :class:`Tencentcloud::Csip.v20221121.models.VulFixableMachineAction`
+        # @param TagItems: 资产标签列表
         # @type TagItems: Array
-        # @param AppId: <p>所属账号AppId</p>
+        # @param AppId: 所属账号AppId
         # @type AppId: Integer
-        # @param PayVersion: <p>付费版本信息<br>枚举值：<br>BASIC：基础版<br>PRO：专业版<br>ULTIMATE：旗舰版</p>
+        # @param PayVersion: 付费版本信息
+        # 枚举值：
+        # BASIC：基础版
+        # PRO：专业版
+        # ULTIMATE：旗舰版
+        # PRO_LH：轻量版
         # @type PayVersion: String
 
-        attr_accessor :KBId, :InstanceId, :MachineName, :MachineIp, :PublicIp, :OsName, :MachineStatus, :SupportAutoFix, :FixStatus, :LatestFixTime, :NotFixableReason, :TagItems, :AppId, :PayVersion
+        attr_accessor :KBId, :InstanceId, :MachineName, :MachineIp, :PublicIp, :OsName, :MachineStatus, :HostStatus, :SupportAutoFix, :FixStatus, :LatestFixTime, :NotFixableReason, :NotFixableAction, :TagItems, :AppId, :PayVersion
 
-        def initialize(kbid=nil, instanceid=nil, machinename=nil, machineip=nil, publicip=nil, osname=nil, machinestatus=nil, supportautofix=nil, fixstatus=nil, latestfixtime=nil, notfixablereason=nil, tagitems=nil, appid=nil, payversion=nil)
+        def initialize(kbid=nil, instanceid=nil, machinename=nil, machineip=nil, publicip=nil, osname=nil, machinestatus=nil, hoststatus=nil, supportautofix=nil, fixstatus=nil, latestfixtime=nil, notfixablereason=nil, notfixableaction=nil, tagitems=nil, appid=nil, payversion=nil)
           @KBId = kbid
           @InstanceId = instanceid
           @MachineName = machinename
@@ -56172,10 +56214,12 @@ module TencentCloud
           @PublicIp = publicip
           @OsName = osname
           @MachineStatus = machinestatus
+          @HostStatus = hoststatus
           @SupportAutoFix = supportautofix
           @FixStatus = fixstatus
           @LatestFixTime = latestfixtime
           @NotFixableReason = notfixablereason
+          @NotFixableAction = notfixableaction
           @TagItems = tagitems
           @AppId = appid
           @PayVersion = payversion
@@ -56189,10 +56233,15 @@ module TencentCloud
           @PublicIp = params['PublicIp']
           @OsName = params['OsName']
           @MachineStatus = params['MachineStatus']
+          @HostStatus = params['HostStatus']
           @SupportAutoFix = params['SupportAutoFix']
           @FixStatus = params['FixStatus']
           @LatestFixTime = params['LatestFixTime']
           @NotFixableReason = params['NotFixableReason']
+          unless params['NotFixableAction'].nil?
+            @NotFixableAction = VulFixableMachineAction.new
+            @NotFixableAction.deserialize(params['NotFixableAction'])
+          end
           unless params['TagItems'].nil?
             @TagItems = []
             params['TagItems'].each do |i|
@@ -72740,19 +72789,23 @@ module TencentCloud
         # @type Name: String
         # @param Remark: <p>标签描述</p>
         # @type Remark: String
+        # @param Level: <p>危害等级</p><p>枚举值：</p><ul><li>LOW： 低危</li><li>MEDIUM： 中危</li><li>HIGH： 高危</li><li>CRITICAL： 严重</li></ul>
+        # @type Level: String
 
-        attr_accessor :Key, :Name, :Remark
+        attr_accessor :Key, :Name, :Remark, :Level
 
-        def initialize(key=nil, name=nil, remark=nil)
+        def initialize(key=nil, name=nil, remark=nil, level=nil)
           @Key = key
           @Name = name
           @Remark = remark
+          @Level = level
         end
 
         def deserialize(params)
           @Key = params['Key']
           @Name = params['Name']
           @Remark = params['Remark']
+          @Level = params['Level']
         end
       end
 
@@ -73737,10 +73790,16 @@ module TencentCloud
         # @type HarmDescription: String
         # @param AffectVendorProduct: <p>漏洞影响产品</p>
         # @type AffectVendorProduct: Array
+        # @param VPRExplainInfo: <p>VPR暴露面信息</p>
+        # @type VPRExplainInfo: :class:`Tencentcloud::Csip.v20221121.models.VPRExplainInfo`
+        # @param ScanTaskId: <p>最近扫描任务id(应急漏洞)</p>
+        # @type ScanTaskId: Integer
+        # @param AffectAsset: <p>影响资产数(应急漏洞)</p>
+        # @type AffectAsset: Integer
 
-        attr_accessor :ID, :Name, :CVEID, :Category, :PublishTime, :CheckMethod, :DefendStatus, :SupportFix, :VRPRatingInfo, :CvssScore, :Label, :Remark, :Summary, :DefendHostCount, :NotDefendHostCount, :LatestScanTime, :CVSSLevel, :VulAffect, :KVERecord, :KVERecordTime, :EPSSScore, :AffectVendor, :AffectProduct, :Mechanism, :Precondition, :LatestTrend, :FixSolution, :RefLink, :HarmDescription, :AffectVendorProduct
+        attr_accessor :ID, :Name, :CVEID, :Category, :PublishTime, :CheckMethod, :DefendStatus, :SupportFix, :VRPRatingInfo, :CvssScore, :Label, :Remark, :Summary, :DefendHostCount, :NotDefendHostCount, :LatestScanTime, :CVSSLevel, :VulAffect, :KVERecord, :KVERecordTime, :EPSSScore, :AffectVendor, :AffectProduct, :Mechanism, :Precondition, :LatestTrend, :FixSolution, :RefLink, :HarmDescription, :AffectVendorProduct, :VPRExplainInfo, :ScanTaskId, :AffectAsset
 
-        def initialize(id=nil, name=nil, cveid=nil, category=nil, publishtime=nil, checkmethod=nil, defendstatus=nil, supportfix=nil, vrpratinginfo=nil, cvssscore=nil, label=nil, remark=nil, summary=nil, defendhostcount=nil, notdefendhostcount=nil, latestscantime=nil, cvsslevel=nil, vulaffect=nil, kverecord=nil, kverecordtime=nil, epssscore=nil, affectvendor=nil, affectproduct=nil, mechanism=nil, precondition=nil, latesttrend=nil, fixsolution=nil, reflink=nil, harmdescription=nil, affectvendorproduct=nil)
+        def initialize(id=nil, name=nil, cveid=nil, category=nil, publishtime=nil, checkmethod=nil, defendstatus=nil, supportfix=nil, vrpratinginfo=nil, cvssscore=nil, label=nil, remark=nil, summary=nil, defendhostcount=nil, notdefendhostcount=nil, latestscantime=nil, cvsslevel=nil, vulaffect=nil, kverecord=nil, kverecordtime=nil, epssscore=nil, affectvendor=nil, affectproduct=nil, mechanism=nil, precondition=nil, latesttrend=nil, fixsolution=nil, reflink=nil, harmdescription=nil, affectvendorproduct=nil, vprexplaininfo=nil, scantaskid=nil, affectasset=nil)
           @ID = id
           @Name = name
           @CVEID = cveid
@@ -73771,6 +73830,9 @@ module TencentCloud
           @RefLink = reflink
           @HarmDescription = harmdescription
           @AffectVendorProduct = affectvendorproduct
+          @VPRExplainInfo = vprexplaininfo
+          @ScanTaskId = scantaskid
+          @AffectAsset = affectasset
         end
 
         def deserialize(params)
@@ -73828,6 +73890,12 @@ module TencentCloud
               @AffectVendorProduct << vulvendorproduct_tmp
             end
           end
+          unless params['VPRExplainInfo'].nil?
+            @VPRExplainInfo = VPRExplainInfo.new
+            @VPRExplainInfo.deserialize(params['VPRExplainInfo'])
+          end
+          @ScanTaskId = params['ScanTaskId']
+          @AffectAsset = params['AffectAsset']
         end
       end
 
@@ -73912,7 +73980,7 @@ module TencentCloud
         # @type AffectedCount: Integer
         # @param NeedReboot: <p>修复后是否需要重启系统</p>
         # @type NeedReboot: Boolean
-        # @param FixSwitch: <p>是否支持一键修复true-支持 false-不支持</p>
+        # @param FixSwitch: <p>是否支持一键修复</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
         # @type FixSwitch: Boolean
 
         attr_accessor :VulId, :VulName, :CveId, :AffectedCount, :NeedReboot, :FixSwitch
@@ -73962,6 +74030,14 @@ module TencentCloud
         # @type SnapshotStatus: Integer
         # @param ExceptionMessage: <p>异常提示信息</p>
         # @type ExceptionMessage: String
+        # @param ErrorCode: <p>结构化错误码（如 VF-INS-002、VF-AG-013）</p>
+        # @type ErrorCode: String
+        # @param ErrorReason: <p>结构化失败原因</p>
+        # @type ErrorReason: String
+        # @param ErrorSolution: <p>结构化解决方案</p>
+        # @type ErrorSolution: String
+        # @param RawErrorMessage: <p>原始错误信息（不做翻译）</p>
+        # @type RawErrorMessage: String
         # @param StartTime: <p>修复启动时间<br>参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）</p>
         # @type StartTime: String
         # @param EndTime: <p>修复结束时间<br>参数格式：YYYY-MM-DDTHH:mm:ssZ（ISO8601格式）</p>
@@ -73972,10 +74048,14 @@ module TencentCloud
         # @type SnapshotExpireTime: String
         # @param SnapshotFailReason: <p>快照创建失败原因（当 SnapshotStatus=3 时有值）</p>
         # @type SnapshotFailReason: String
+        # @param MachineType: <p>机器类型</p><p>枚举值：</p><ul><li>CVM： 腾讯云cvm</li><li>Other： 混合云机器</li></ul>
+        # @type MachineType: String
+        # @param SnapshotReused: <p>快照是否复用</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
+        # @type SnapshotReused: Boolean
 
-        attr_accessor :Id, :TaskId, :VulId, :KBId, :InstanceId, :MachineName, :MachineIp, :VulName, :Status, :FixStatus, :SnapshotStatus, :ExceptionMessage, :StartTime, :EndTime, :SnapshotCreateTime, :SnapshotExpireTime, :SnapshotFailReason
+        attr_accessor :Id, :TaskId, :VulId, :KBId, :InstanceId, :MachineName, :MachineIp, :VulName, :Status, :FixStatus, :SnapshotStatus, :ExceptionMessage, :ErrorCode, :ErrorReason, :ErrorSolution, :RawErrorMessage, :StartTime, :EndTime, :SnapshotCreateTime, :SnapshotExpireTime, :SnapshotFailReason, :MachineType, :SnapshotReused
 
-        def initialize(id=nil, taskid=nil, vulid=nil, kbid=nil, instanceid=nil, machinename=nil, machineip=nil, vulname=nil, status=nil, fixstatus=nil, snapshotstatus=nil, exceptionmessage=nil, starttime=nil, endtime=nil, snapshotcreatetime=nil, snapshotexpiretime=nil, snapshotfailreason=nil)
+        def initialize(id=nil, taskid=nil, vulid=nil, kbid=nil, instanceid=nil, machinename=nil, machineip=nil, vulname=nil, status=nil, fixstatus=nil, snapshotstatus=nil, exceptionmessage=nil, errorcode=nil, errorreason=nil, errorsolution=nil, rawerrormessage=nil, starttime=nil, endtime=nil, snapshotcreatetime=nil, snapshotexpiretime=nil, snapshotfailreason=nil, machinetype=nil, snapshotreused=nil)
           @Id = id
           @TaskId = taskid
           @VulId = vulid
@@ -73988,11 +74068,17 @@ module TencentCloud
           @FixStatus = fixstatus
           @SnapshotStatus = snapshotstatus
           @ExceptionMessage = exceptionmessage
+          @ErrorCode = errorcode
+          @ErrorReason = errorreason
+          @ErrorSolution = errorsolution
+          @RawErrorMessage = rawerrormessage
           @StartTime = starttime
           @EndTime = endtime
           @SnapshotCreateTime = snapshotcreatetime
           @SnapshotExpireTime = snapshotexpiretime
           @SnapshotFailReason = snapshotfailreason
+          @MachineType = machinetype
+          @SnapshotReused = snapshotreused
         end
 
         def deserialize(params)
@@ -74008,11 +74094,17 @@ module TencentCloud
           @FixStatus = params['FixStatus']
           @SnapshotStatus = params['SnapshotStatus']
           @ExceptionMessage = params['ExceptionMessage']
+          @ErrorCode = params['ErrorCode']
+          @ErrorReason = params['ErrorReason']
+          @ErrorSolution = params['ErrorSolution']
+          @RawErrorMessage = params['RawErrorMessage']
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @SnapshotCreateTime = params['SnapshotCreateTime']
           @SnapshotExpireTime = params['SnapshotExpireTime']
           @SnapshotFailReason = params['SnapshotFailReason']
+          @MachineType = params['MachineType']
+          @SnapshotReused = params['SnapshotReused']
         end
       end
 
@@ -74209,6 +74301,29 @@ module TencentCloud
         end
       end
 
+      # 不可修复原因关联动作
+      class VulFixableMachineAction < TencentCloud::Common::AbstractModel
+        # @param ActionType: 动作类型
+        # 枚举值：
+        # UPGRADE_PROTECTION：升级防护
+        # REINSTALL_CLIENT：重新安装客户端
+        # @type ActionType: String
+        # @param ActionText: 动作按钮文案
+        # @type ActionText: String
+
+        attr_accessor :ActionType, :ActionText
+
+        def initialize(actiontype=nil, actiontext=nil)
+          @ActionType = actiontype
+          @ActionText = actiontext
+        end
+
+        def deserialize(params)
+          @ActionType = params['ActionType']
+          @ActionText = params['ActionText']
+        end
+      end
+
       # 可修复主机信息
       class VulFixableMachineItem < TencentCloud::Common::AbstractModel
         # @param VulIds: <p>漏洞ID列表，按 SupportAutoFix 维度分组：SupportAutoFix=1 时为可修复的漏洞ID，SupportAutoFix=0 时为不可修复的漏洞ID</p>
@@ -74227,6 +74342,8 @@ module TencentCloud
         # @type OsName: String
         # @param MachineStatus: <p>主机在线状态<br>枚举值：<br>ONLINE：在线<br>OFFLINE：离线</p>
         # @type MachineStatus: String
+        # @param HostStatus: <p>主机运行状态</p><p>枚举值：</p><ul><li>RUNNING： 运行中</li><li>STOPPED： 已停止</li><li>EXPIRED： 待回收</li></ul>
+        # @type HostStatus: String
         # @param SupportAutoFix: <p>是否支持自动修复<br>枚举值：<br>0：不支持<br>1：支持</p>
         # @type SupportAutoFix: Integer
         # @param FixStatus: <p>当前修复状态<br>枚举值：<br>0：未修复<br>1：修复中<br>2：修复失败<br>3：修复成功<br>4：修复超时</p>
@@ -74235,6 +74352,10 @@ module TencentCloud
         # @type LatestFixTime: String
         # @param NotFixableReason: <p>不可修复原因，SupportAutoFix为0时返回</p>
         # @type NotFixableReason: String
+        # @param NotFixableReasonCode: <p>不可修复原因码，SupportAutoFix为0时返回<br>枚举值：<br>BASIC_VERSION：基础版主机不支持一键修复<br>HOST_STOPPED：主机已关机<br>CLIENT_OFFLINE：主机防护客户端已离线<br>PATCH_UNAVAILABLE：官方已停止发布该系统版本的安全补丁<br>SOURCE_COMPILED：源码编译安装，不支持一键修复</p>
+        # @type NotFixableReasonCode: String
+        # @param NotFixableAction: <p>不可修复原因关联动作，SupportAutoFix为0且存在可引导动作时返回</p>
+        # @type NotFixableAction: :class:`Tencentcloud::Csip.v20221121.models.VulFixableMachineAction`
         # @param FixCommands: <p>修复命令列表，SupportAutoFix为1时返回</p>
         # @type FixCommands: Array
         # @param Components: <p>关联组件列表</p>
@@ -74246,9 +74367,9 @@ module TencentCloud
         # @param PayVersion: <p>付费版本信息<br>枚举值：<br>BASIC：基础版<br>PRO：专业版<br>ULTIMATE：旗舰版</p>
         # @type PayVersion: String
 
-        attr_accessor :VulIds, :InstanceId, :MachineName, :MachineIp, :PublicIp, :OsType, :OsName, :MachineStatus, :SupportAutoFix, :FixStatus, :LatestFixTime, :NotFixableReason, :FixCommands, :Components, :TagItems, :AppId, :PayVersion
+        attr_accessor :VulIds, :InstanceId, :MachineName, :MachineIp, :PublicIp, :OsType, :OsName, :MachineStatus, :HostStatus, :SupportAutoFix, :FixStatus, :LatestFixTime, :NotFixableReason, :NotFixableReasonCode, :NotFixableAction, :FixCommands, :Components, :TagItems, :AppId, :PayVersion
 
-        def initialize(vulids=nil, instanceid=nil, machinename=nil, machineip=nil, publicip=nil, ostype=nil, osname=nil, machinestatus=nil, supportautofix=nil, fixstatus=nil, latestfixtime=nil, notfixablereason=nil, fixcommands=nil, components=nil, tagitems=nil, appid=nil, payversion=nil)
+        def initialize(vulids=nil, instanceid=nil, machinename=nil, machineip=nil, publicip=nil, ostype=nil, osname=nil, machinestatus=nil, hoststatus=nil, supportautofix=nil, fixstatus=nil, latestfixtime=nil, notfixablereason=nil, notfixablereasoncode=nil, notfixableaction=nil, fixcommands=nil, components=nil, tagitems=nil, appid=nil, payversion=nil)
           @VulIds = vulids
           @InstanceId = instanceid
           @MachineName = machinename
@@ -74257,10 +74378,13 @@ module TencentCloud
           @OsType = ostype
           @OsName = osname
           @MachineStatus = machinestatus
+          @HostStatus = hoststatus
           @SupportAutoFix = supportautofix
           @FixStatus = fixstatus
           @LatestFixTime = latestfixtime
           @NotFixableReason = notfixablereason
+          @NotFixableReasonCode = notfixablereasoncode
+          @NotFixableAction = notfixableaction
           @FixCommands = fixcommands
           @Components = components
           @TagItems = tagitems
@@ -74277,10 +74401,16 @@ module TencentCloud
           @OsType = params['OsType']
           @OsName = params['OsName']
           @MachineStatus = params['MachineStatus']
+          @HostStatus = params['HostStatus']
           @SupportAutoFix = params['SupportAutoFix']
           @FixStatus = params['FixStatus']
           @LatestFixTime = params['LatestFixTime']
           @NotFixableReason = params['NotFixableReason']
+          @NotFixableReasonCode = params['NotFixableReasonCode']
+          unless params['NotFixableAction'].nil?
+            @NotFixableAction = VulFixableMachineAction.new
+            @NotFixableAction.deserialize(params['NotFixableAction'])
+          end
           @FixCommands = params['FixCommands']
           @Components = params['Components']
           unless params['TagItems'].nil?
@@ -74322,10 +74452,12 @@ module TencentCloud
         # @type LatestFixTime: String
         # @param VPRExplainInfo: <p>VPR评级依据</p>
         # @type VPRExplainInfo: :class:`Tencentcloud::Csip.v20221121.models.VPRExplainInfo`
+        # @param RepairMethod: <p>修复方式：AUTO_FIX-一键修复 MANUAL_FIX-手动修复 </p>
+        # @type RepairMethod: String
 
-        attr_accessor :VulId, :VulName, :Level, :VRPRatingInfo, :VulCategory, :CveId, :MachineName, :InstanceId, :ComponentCount, :Components, :LatestFixTime, :VPRExplainInfo
+        attr_accessor :VulId, :VulName, :Level, :VRPRatingInfo, :VulCategory, :CveId, :MachineName, :InstanceId, :ComponentCount, :Components, :LatestFixTime, :VPRExplainInfo, :RepairMethod
 
-        def initialize(vulid=nil, vulname=nil, level=nil, vrpratinginfo=nil, vulcategory=nil, cveid=nil, machinename=nil, instanceid=nil, componentcount=nil, components=nil, latestfixtime=nil, vprexplaininfo=nil)
+        def initialize(vulid=nil, vulname=nil, level=nil, vrpratinginfo=nil, vulcategory=nil, cveid=nil, machinename=nil, instanceid=nil, componentcount=nil, components=nil, latestfixtime=nil, vprexplaininfo=nil, repairmethod=nil)
           @VulId = vulid
           @VulName = vulname
           @Level = level
@@ -74338,6 +74470,7 @@ module TencentCloud
           @Components = components
           @LatestFixTime = latestfixtime
           @VPRExplainInfo = vprexplaininfo
+          @RepairMethod = repairmethod
         end
 
         def deserialize(params)
@@ -74359,6 +74492,7 @@ module TencentCloud
             @VPRExplainInfo = VPRExplainInfo.new
             @VPRExplainInfo.deserialize(params['VPRExplainInfo'])
           end
+          @RepairMethod = params['RepairMethod']
         end
       end
 
@@ -74372,13 +74506,13 @@ module TencentCloud
         # @type PublicIP: String
         # @param PrivateIP: <p>内网 IP 地址</p>
         # @type PrivateIP: String
-        # @param DefendVersion: <p>防护版本<br>枚举值：<br>NONE：无防护<br>BASIC：基础版<br>PRO：专业版<br>ULTIMATE：旗舰版<br>PRO_LH：轻量版</p>
+        # @param DefendVersion: <p>防护版本枚举值 BASIC：基础版PRO：专业版ULTIMATE：旗舰版PRO_LH：轻量版</p>
         # @type DefendVersion: String
         # @param DefendStatus: <p>漏洞防御状态<br>枚举值：<br>ENABLED：已开启<br>NOT_SUPPORTED：不支持<br>NOT_ENABLED：未开启</p>
         # @type DefendStatus: String
         # @param Account: <p>所属账号信息</p>
         # @type Account: :class:`Tencentcloud::Csip.v20221121.models.AccountBriefInfo`
-        # @param InstanceStatus: <p>云主机实例状态<br>枚举值：<br>RUNNING：运行中<br>STOPPED：已停止<br>UNKNOWN：未知</p>
+        # @param InstanceStatus: <p>云主机实例状态</p><p>枚举值：</p><ul><li>RUNNING： 运行中</li><li>STOPPED： 已停止</li><li>EXPIRED： 待回收</li></ul>
         # @type InstanceStatus: String
         # @param RiskStatus: <p>修复状态枚举值</p><p>枚举值：</p><ul><li>PENDING： 待修复</li><li>SCANNING： 扫描中</li><li>FIXED： 已修复</li><li>IGNORED： 已忽略</li><li>FIXING： 修复中</li><li>FIX_FAILED： 修复失败</li><li>NEED_REBOOT： 修复待重启</li></ul>
         # @type RiskStatus: String
@@ -74390,10 +74524,12 @@ module TencentCloud
         # @type TagItem: Array
         # @param CloudTag: <p>云上标签列表（云资产侧 Tag）</p>
         # @type CloudTag: Array
+        # @param VPRExplainInfo: <p>VPR评级解释卡片</p>
+        # @type VPRExplainInfo: :class:`Tencentcloud::Csip.v20221121.models.VPRExplainInfo`
 
-        attr_accessor :InstanceID, :Name, :PublicIP, :PrivateIP, :DefendVersion, :DefendStatus, :Account, :InstanceStatus, :RiskStatus, :VPRRating, :AgentStatus, :TagItem, :CloudTag
+        attr_accessor :InstanceID, :Name, :PublicIP, :PrivateIP, :DefendVersion, :DefendStatus, :Account, :InstanceStatus, :RiskStatus, :VPRRating, :AgentStatus, :TagItem, :CloudTag, :VPRExplainInfo
 
-        def initialize(instanceid=nil, name=nil, publicip=nil, privateip=nil, defendversion=nil, defendstatus=nil, account=nil, instancestatus=nil, riskstatus=nil, vprrating=nil, agentstatus=nil, tagitem=nil, cloudtag=nil)
+        def initialize(instanceid=nil, name=nil, publicip=nil, privateip=nil, defendversion=nil, defendstatus=nil, account=nil, instancestatus=nil, riskstatus=nil, vprrating=nil, agentstatus=nil, tagitem=nil, cloudtag=nil, vprexplaininfo=nil)
           @InstanceID = instanceid
           @Name = name
           @PublicIP = publicip
@@ -74407,6 +74543,7 @@ module TencentCloud
           @AgentStatus = agentstatus
           @TagItem = tagitem
           @CloudTag = cloudtag
+          @VPRExplainInfo = vprexplaininfo
         end
 
         def deserialize(params)
@@ -74442,6 +74579,10 @@ module TencentCloud
               tag_tmp.deserialize(i)
               @CloudTag << tag_tmp
             end
+          end
+          unless params['VPRExplainInfo'].nil?
+            @VPRExplainInfo = VPRExplainInfo.new
+            @VPRExplainInfo.deserialize(params['VPRExplainInfo'])
           end
         end
       end

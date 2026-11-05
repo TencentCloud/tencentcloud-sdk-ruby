@@ -2726,6 +2726,8 @@ module TencentCloud
         # @type NodeList: Array
         # @param ServerlessStatus: <p>serverless实例子状态</p>
         # @type ServerlessStatus: String
+        # @param ServerlessQuotaInfo: <p>实例Serverless弹性配置信息</p>
+        # @type ServerlessQuotaInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.InstanceServerlessQuotaInfo`
         # @param AIOptimizerStatus: <p>AI优化器状态</p>
         # @type AIOptimizerStatus: :class:`Tencentcloud::Cynosdb.v20190107.models.AIOptimizerStatus`
         # @param ProjectId: <p>项目ID</p>
@@ -2796,7 +2798,7 @@ module TencentCloud
         # @param GdnId: <p>全球数据库唯一标识</p>
         # @type GdnId: String
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :InstanceType, :Status, :InstanceStatus, :StatusDesc, :InstanceStatusDesc, :Cpu, :InstanceCpu, :MinCpu, :MaxCpu, :Memory, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :InstanceTasks, :DeviceType, :InstanceDeviceType, :InstanceStorageType, :DbMode, :NodeList, :ServerlessStatus, :AIOptimizerStatus, :ProjectId, :Region, :Zone, :PhysicalZone, :DbType, :DbVersion, :Storage, :StorageId, :StoragePayMode, :CreateTime, :UpdateTime, :IsolateTime, :DestroyTime, :DestroyDeadlineText, :PeriodEndTime, :VpcId, :SubnetId, :Vip, :Vport, :NetType, :WanIP, :WanPort, :WanStatus, :WanDomain, :InstanceNetInfo, :PayMode, :ProcessingTask, :RenewFlag, :Tasks, :IsFreeze, :ResourceTags, :InstanceAbility, :GdnId
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :InstanceType, :Status, :InstanceStatus, :StatusDesc, :InstanceStatusDesc, :Cpu, :InstanceCpu, :MinCpu, :MaxCpu, :Memory, :InstanceMemory, :InstanceStorage, :InstanceRole, :MaintainStartTime, :MaintainDuration, :MaintainWeekDays, :InstanceTasks, :DeviceType, :InstanceDeviceType, :InstanceStorageType, :DbMode, :NodeList, :ServerlessStatus, :ServerlessQuotaInfo, :AIOptimizerStatus, :ProjectId, :Region, :Zone, :PhysicalZone, :DbType, :DbVersion, :Storage, :StorageId, :StoragePayMode, :CreateTime, :UpdateTime, :IsolateTime, :DestroyTime, :DestroyDeadlineText, :PeriodEndTime, :VpcId, :SubnetId, :Vip, :Vport, :NetType, :WanIP, :WanPort, :WanStatus, :WanDomain, :InstanceNetInfo, :PayMode, :ProcessingTask, :RenewFlag, :Tasks, :IsFreeze, :ResourceTags, :InstanceAbility, :GdnId
         extend Gem::Deprecate
         deprecate :InstanceStatus, :none, 2026, 11
         deprecate :InstanceStatus=, :none, 2026, 11
@@ -2809,7 +2811,7 @@ module TencentCloud
         deprecate :InstanceDeviceType, :none, 2026, 11
         deprecate :InstanceDeviceType=, :none, 2026, 11
 
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, instancetype=nil, status=nil, instancestatus=nil, statusdesc=nil, instancestatusdesc=nil, cpu=nil, instancecpu=nil, mincpu=nil, maxcpu=nil, memory=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, instancetasks=nil, devicetype=nil, instancedevicetype=nil, instancestoragetype=nil, dbmode=nil, nodelist=nil, serverlessstatus=nil, aioptimizerstatus=nil, projectid=nil, region=nil, zone=nil, physicalzone=nil, dbtype=nil, dbversion=nil, storage=nil, storageid=nil, storagepaymode=nil, createtime=nil, updatetime=nil, isolatetime=nil, destroytime=nil, destroydeadlinetext=nil, periodendtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, nettype=nil, wanip=nil, wanport=nil, wanstatus=nil, wandomain=nil, instancenetinfo=nil, paymode=nil, processingtask=nil, renewflag=nil, tasks=nil, isfreeze=nil, resourcetags=nil, instanceability=nil, gdnid=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, instancetype=nil, status=nil, instancestatus=nil, statusdesc=nil, instancestatusdesc=nil, cpu=nil, instancecpu=nil, mincpu=nil, maxcpu=nil, memory=nil, instancememory=nil, instancestorage=nil, instancerole=nil, maintainstarttime=nil, maintainduration=nil, maintainweekdays=nil, instancetasks=nil, devicetype=nil, instancedevicetype=nil, instancestoragetype=nil, dbmode=nil, nodelist=nil, serverlessstatus=nil, serverlessquotainfo=nil, aioptimizerstatus=nil, projectid=nil, region=nil, zone=nil, physicalzone=nil, dbtype=nil, dbversion=nil, storage=nil, storageid=nil, storagepaymode=nil, createtime=nil, updatetime=nil, isolatetime=nil, destroytime=nil, destroydeadlinetext=nil, periodendtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, nettype=nil, wanip=nil, wanport=nil, wanstatus=nil, wandomain=nil, instancenetinfo=nil, paymode=nil, processingtask=nil, renewflag=nil, tasks=nil, isfreeze=nil, resourcetags=nil, instanceability=nil, gdnid=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -2839,6 +2841,7 @@ module TencentCloud
           @DbMode = dbmode
           @NodeList = nodelist
           @ServerlessStatus = serverlessstatus
+          @ServerlessQuotaInfo = serverlessquotainfo
           @AIOptimizerStatus = aioptimizerstatus
           @ProjectId = projectid
           @Region = region
@@ -2912,6 +2915,10 @@ module TencentCloud
           @DbMode = params['DbMode']
           @NodeList = params['NodeList']
           @ServerlessStatus = params['ServerlessStatus']
+          unless params['ServerlessQuotaInfo'].nil?
+            @ServerlessQuotaInfo = InstanceServerlessQuotaInfo.new
+            @ServerlessQuotaInfo.deserialize(params['ServerlessQuotaInfo'])
+          end
           unless params['AIOptimizerStatus'].nil?
             @AIOptimizerStatus = AIOptimizerStatus.new
             @AIOptimizerStatus.deserialize(params['AIOptimizerStatus'])
@@ -3101,6 +3108,30 @@ module TencentCloud
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @ReadOnlyValue = params['ReadOnlyValue']
+        end
+      end
+
+      # 集群serverless弹性配置
+      class ClusterServerlessQuotaConfig < TencentCloud::Common::AbstractModel
+        # @param InstanceType: <p>实例类型</p><p>枚举值：</p><ul><li>rw： 读写</li><li>ro： 只读</li></ul>
+        # @type InstanceType: String
+        # @param MaxCcu: <p>实例Serverless弹性CCU上限</p>
+        # @type MaxCcu: Float
+        # @param Status: <p>实例Serverless弹性状态</p><p>枚举值：</p><ul><li>opening： 开启中</li><li>opened： 已开启</li><li>closing： 关闭中</li><li>closed： 已关闭</li></ul>
+        # @type Status: String
+
+        attr_accessor :InstanceType, :MaxCcu, :Status
+
+        def initialize(instancetype=nil, maxccu=nil, status=nil)
+          @InstanceType = instancetype
+          @MaxCcu = maxccu
+          @Status = status
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @MaxCcu = params['MaxCcu']
+          @Status = params['Status']
         end
       end
 
@@ -3926,10 +3957,12 @@ module TencentCloud
         # @type SyncWay: String
         # @param SemiSyncTimeout: <p>半同步超时时间，单位ms。为保证业务稳定性，半同步复制存在退化逻辑，当主可用区集群在等待备可用区集群确认事务时若超过该超时时间，复制方式将降为异步复制。</p><p>取值范围：[1000, 4294967295]</p><p>单位：毫秒</p><p>默认值：10000</p>
         # @type SemiSyncTimeout: Integer
+        # @param ServerlessQuotaConfigs: <p>集群实例Serverless弹性配置</p>
+        # @type ServerlessQuotaConfigs: Array
 
-        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :InstanceCount, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :SlaveZone, :InstanceInitInfos, :GdnId, :ProxyConfig, :AutoArchive, :AutoArchiveDelayHours, :ClusterLevel, :CynosVersion, :SyncWay, :SemiSyncTimeout
+        attr_accessor :Zone, :VpcId, :SubnetId, :DbType, :DbVersion, :ProjectId, :Cpu, :Memory, :InstanceCount, :Storage, :ClusterName, :AdminPassword, :Port, :PayMode, :Count, :RollbackStrategy, :RollbackId, :OriginalClusterId, :ExpectTime, :ExpectTimeThresh, :StorageLimit, :TimeSpan, :TimeUnit, :AutoRenewFlag, :AutoVoucher, :HaCount, :OrderSource, :ResourceTags, :DbMode, :MinCpu, :MaxCpu, :AutoPause, :AutoPauseDelay, :StoragePayMode, :SecurityGroupIds, :AlarmPolicyIds, :ClusterParams, :DealMode, :ParamTemplateId, :SlaveZone, :InstanceInitInfos, :GdnId, :ProxyConfig, :AutoArchive, :AutoArchiveDelayHours, :ClusterLevel, :CynosVersion, :SyncWay, :SemiSyncTimeout, :ServerlessQuotaConfigs
 
-        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, instancecount=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, storagepaymode=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil, slavezone=nil, instanceinitinfos=nil, gdnid=nil, proxyconfig=nil, autoarchive=nil, autoarchivedelayhours=nil, clusterlevel=nil, cynosversion=nil, syncway=nil, semisynctimeout=nil)
+        def initialize(zone=nil, vpcid=nil, subnetid=nil, dbtype=nil, dbversion=nil, projectid=nil, cpu=nil, memory=nil, instancecount=nil, storage=nil, clustername=nil, adminpassword=nil, port=nil, paymode=nil, count=nil, rollbackstrategy=nil, rollbackid=nil, originalclusterid=nil, expecttime=nil, expecttimethresh=nil, storagelimit=nil, timespan=nil, timeunit=nil, autorenewflag=nil, autovoucher=nil, hacount=nil, ordersource=nil, resourcetags=nil, dbmode=nil, mincpu=nil, maxcpu=nil, autopause=nil, autopausedelay=nil, storagepaymode=nil, securitygroupids=nil, alarmpolicyids=nil, clusterparams=nil, dealmode=nil, paramtemplateid=nil, slavezone=nil, instanceinitinfos=nil, gdnid=nil, proxyconfig=nil, autoarchive=nil, autoarchivedelayhours=nil, clusterlevel=nil, cynosversion=nil, syncway=nil, semisynctimeout=nil, serverlessquotaconfigs=nil)
           @Zone = zone
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -3979,6 +4012,7 @@ module TencentCloud
           @CynosVersion = cynosversion
           @SyncWay = syncway
           @SemiSyncTimeout = semisynctimeout
+          @ServerlessQuotaConfigs = serverlessquotaconfigs
         end
 
         def deserialize(params)
@@ -4055,6 +4089,14 @@ module TencentCloud
           @CynosVersion = params['CynosVersion']
           @SyncWay = params['SyncWay']
           @SemiSyncTimeout = params['SemiSyncTimeout']
+          unless params['ServerlessQuotaConfigs'].nil?
+            @ServerlessQuotaConfigs = []
+            params['ServerlessQuotaConfigs'].each do |i|
+              serverlessquotaconfig_tmp = ServerlessQuotaConfig.new
+              serverlessquotaconfig_tmp.deserialize(i)
+              @ServerlessQuotaConfigs << serverlessquotaconfig_tmp
+            end
+          end
         end
       end
 
@@ -5604,10 +5646,12 @@ module TencentCloud
         # @type GdnId: String
         # @param RealZone: <p>实例当前所在可用区</p>
         # @type RealZone: String
+        # @param ServerlessQuotaInfo: <p>实例Serverless弹性信息</p>
+        # @type ServerlessQuotaInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.InstanceServerlessQuotaInfo`
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages, :InstanceIndexMode, :InstanceAbility, :DeviceType, :InstanceStorageType, :CynosVersionTag, :NodeList, :GdnId, :RealZone
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :DbMode, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :VpcId, :SubnetId, :Vip, :Vport, :PayMode, :PeriodEndTime, :DestroyDeadlineText, :IsolateTime, :NetType, :WanDomain, :WanIP, :WanPort, :WanStatus, :DestroyTime, :CynosVersion, :ProcessingTask, :RenewFlag, :MinCpu, :MaxCpu, :ServerlessStatus, :StorageId, :StoragePayMode, :PhysicalZone, :BusinessType, :Tasks, :IsFreeze, :ResourceTags, :MasterZone, :SlaveZones, :InstanceNetInfo, :ResourcePackages, :InstanceIndexMode, :InstanceAbility, :DeviceType, :InstanceStorageType, :CynosVersionTag, :NodeList, :GdnId, :RealZone, :ServerlessQuotaInfo
 
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbmode=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil, resourcepackages=nil, instanceindexmode=nil, instanceability=nil, devicetype=nil, instancestoragetype=nil, cynosversiontag=nil, nodelist=nil, gdnid=nil, realzone=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, dbmode=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, paymode=nil, periodendtime=nil, destroydeadlinetext=nil, isolatetime=nil, nettype=nil, wandomain=nil, wanip=nil, wanport=nil, wanstatus=nil, destroytime=nil, cynosversion=nil, processingtask=nil, renewflag=nil, mincpu=nil, maxcpu=nil, serverlessstatus=nil, storageid=nil, storagepaymode=nil, physicalzone=nil, businesstype=nil, tasks=nil, isfreeze=nil, resourcetags=nil, masterzone=nil, slavezones=nil, instancenetinfo=nil, resourcepackages=nil, instanceindexmode=nil, instanceability=nil, devicetype=nil, instancestoragetype=nil, cynosversiontag=nil, nodelist=nil, gdnid=nil, realzone=nil, serverlessquotainfo=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -5668,6 +5712,7 @@ module TencentCloud
           @NodeList = nodelist
           @GdnId = gdnid
           @RealZone = realzone
+          @ServerlessQuotaInfo = serverlessquotainfo
         end
 
         def deserialize(params)
@@ -5762,6 +5807,10 @@ module TencentCloud
           @NodeList = params['NodeList']
           @GdnId = params['GdnId']
           @RealZone = params['RealZone']
+          unless params['ServerlessQuotaInfo'].nil?
+            @ServerlessQuotaInfo = InstanceServerlessQuotaInfo.new
+            @ServerlessQuotaInfo.deserialize(params['ServerlessQuotaInfo'])
+          end
         end
       end
 
@@ -5845,10 +5894,12 @@ module TencentCloud
         # @type SlaveZones: Array
         # @param StorageVersion: <p>存储版本</p><p>枚举值：</p><ul><li>1.0： 1.0版本存储</li><li>2.0： 2.0版本存储</li></ul>
         # @type StorageVersion: String
+        # @param ServerlessQuotaInfo: <p>实例Serverless弹性信息</p>
+        # @type ServerlessQuotaInfo: :class:`Tencentcloud::Cynosdb.v20190107.models.InstanceServerlessQuotaInfo`
 
-        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :ServerlessStatus, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodEndTime, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :WanDomain, :Charset, :CynosVersion, :RenewFlag, :MinCpu, :MaxCpu, :DbMode, :MasterZone, :RealZone, :SlaveZones, :StorageVersion
+        attr_accessor :Uin, :AppId, :ClusterId, :ClusterName, :InstanceId, :InstanceName, :ProjectId, :Region, :Zone, :Status, :StatusDesc, :ServerlessStatus, :DbType, :DbVersion, :Cpu, :Memory, :Storage, :InstanceType, :InstanceRole, :UpdateTime, :CreateTime, :PayMode, :PeriodEndTime, :NetType, :VpcId, :SubnetId, :Vip, :Vport, :WanDomain, :Charset, :CynosVersion, :RenewFlag, :MinCpu, :MaxCpu, :DbMode, :MasterZone, :RealZone, :SlaveZones, :StorageVersion, :ServerlessQuotaInfo
 
-        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, paymode=nil, periodendtime=nil, nettype=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, wandomain=nil, charset=nil, cynosversion=nil, renewflag=nil, mincpu=nil, maxcpu=nil, dbmode=nil, masterzone=nil, realzone=nil, slavezones=nil, storageversion=nil)
+        def initialize(uin=nil, appid=nil, clusterid=nil, clustername=nil, instanceid=nil, instancename=nil, projectid=nil, region=nil, zone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, dbtype=nil, dbversion=nil, cpu=nil, memory=nil, storage=nil, instancetype=nil, instancerole=nil, updatetime=nil, createtime=nil, paymode=nil, periodendtime=nil, nettype=nil, vpcid=nil, subnetid=nil, vip=nil, vport=nil, wandomain=nil, charset=nil, cynosversion=nil, renewflag=nil, mincpu=nil, maxcpu=nil, dbmode=nil, masterzone=nil, realzone=nil, slavezones=nil, storageversion=nil, serverlessquotainfo=nil)
           @Uin = uin
           @AppId = appid
           @ClusterId = clusterid
@@ -5888,6 +5939,7 @@ module TencentCloud
           @RealZone = realzone
           @SlaveZones = slavezones
           @StorageVersion = storageversion
+          @ServerlessQuotaInfo = serverlessquotainfo
         end
 
         def deserialize(params)
@@ -5930,6 +5982,10 @@ module TencentCloud
           @RealZone = params['RealZone']
           @SlaveZones = params['SlaveZones']
           @StorageVersion = params['StorageVersion']
+          unless params['ServerlessQuotaInfo'].nil?
+            @ServerlessQuotaInfo = InstanceServerlessQuotaInfo.new
+            @ServerlessQuotaInfo.deserialize(params['ServerlessQuotaInfo'])
+          end
         end
       end
 
@@ -9539,6 +9595,64 @@ module TencentCloud
               instanceparamitem_tmp = InstanceParamItem.new
               instanceparamitem_tmp.deserialize(i)
               @Items << instanceparamitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInstanceServerlessQuota请求参数结构体
+      class DescribeInstanceServerlessQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+        # @param InstanceType: <p>实例类型</p><p>枚举值：</p><ul><li>rw： 读写</li><li>ro： 只读</li></ul>
+        # @type InstanceType: String
+
+        attr_accessor :ClusterId, :InstanceType
+
+        def initialize(clusterid=nil, instancetype=nil)
+          @ClusterId = clusterid
+          @InstanceType = instancetype
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          @InstanceType = params['InstanceType']
+        end
+      end
+
+      # DescribeInstanceServerlessQuota返回参数结构体
+      class DescribeInstanceServerlessQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param QuotaConfigs: <p>集群实例Serveless弹性配置</p>
+        # @type QuotaConfigs: Array
+        # @param InstanceQuotas: <p>集群实例Serverless弹性状态</p>
+        # @type InstanceQuotas: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :QuotaConfigs, :InstanceQuotas, :RequestId
+
+        def initialize(quotaconfigs=nil, instancequotas=nil, requestid=nil)
+          @QuotaConfigs = quotaconfigs
+          @InstanceQuotas = instancequotas
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['QuotaConfigs'].nil?
+            @QuotaConfigs = []
+            params['QuotaConfigs'].each do |i|
+              clusterserverlessquotaconfig_tmp = ClusterServerlessQuotaConfig.new
+              clusterserverlessquotaconfig_tmp.deserialize(i)
+              @QuotaConfigs << clusterserverlessquotaconfig_tmp
+            end
+          end
+          unless params['InstanceQuotas'].nil?
+            @InstanceQuotas = []
+            params['InstanceQuotas'].each do |i|
+              instanceserverlessquotainfo_tmp = InstanceServerlessQuotaInfo.new
+              instanceserverlessquotainfo_tmp.deserialize(i)
+              @InstanceQuotas << instanceserverlessquotainfo_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -14152,6 +14266,38 @@ module TencentCloud
               @ParamsItems << paramitemdetail_tmp
             end
           end
+        end
+      end
+
+      # 实例serverless弹性配置详情
+      class InstanceServerlessQuotaInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param InstanceType: <p>实例类型</p><p>枚举值：</p><ul><li>rw： 读写</li><li>ro： 只读</li></ul>
+        # @type InstanceType: String
+        # @param MaxCcu: <p>最大CCU规格</p>
+        # @type MaxCcu: Float
+        # @param Status: <p>实例Serverless弹性开启状态</p><p>枚举值：</p><ul><li>opening： 开启中</li><li>opened： 已开启</li><li>closing： 关闭中</li><li>closed： 已关闭</li></ul>
+        # @type Status: String
+        # @param EnableTime: <p>开启Serverless弹性的时间</p>
+        # @type EnableTime: String
+
+        attr_accessor :InstanceId, :InstanceType, :MaxCcu, :Status, :EnableTime
+
+        def initialize(instanceid=nil, instancetype=nil, maxccu=nil, status=nil, enabletime=nil)
+          @InstanceId = instanceid
+          @InstanceType = instancetype
+          @MaxCcu = maxccu
+          @Status = status
+          @EnableTime = enabletime
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @InstanceType = params['InstanceType']
+          @MaxCcu = params['MaxCcu']
+          @Status = params['Status']
+          @EnableTime = params['EnableTime']
         end
       end
 
@@ -21908,6 +22054,30 @@ module TencentCloud
         end
       end
 
+      # serverless弹性配额
+      class ServerlessQuotaConfig < TencentCloud::Common::AbstractModel
+        # @param InstanceType: <p>实例类型</p><p>枚举值：</p><ul><li>rw： 读写</li><li>ro： 只读</li></ul>
+        # @type InstanceType: String
+        # @param MaxCcu: <p>最大CCU</p>
+        # @type MaxCcu: Float
+        # @param Enabled: <p>开关</p>
+        # @type Enabled: Boolean
+
+        attr_accessor :InstanceType, :MaxCcu, :Enabled
+
+        def initialize(instancetype=nil, maxccu=nil, enabled=nil)
+          @InstanceType = instancetype
+          @MaxCcu = maxccu
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @InstanceType = params['InstanceType']
+          @MaxCcu = params['MaxCcu']
+          @Enabled = params['Enabled']
+        end
+      end
+
       # serverless规格
       class ServerlessSpec < TencentCloud::Common::AbstractModel
         # @param MinCpu: <p>cpu最小值</p>
@@ -21988,6 +22158,53 @@ module TencentCloud
               @SlaveZoneStockInfos << slavezonestockinfo_tmp
             end
           end
+        end
+      end
+
+      # SetInstanceServerlessQuota请求参数结构体
+      class SetInstanceServerlessQuotaRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群ID</p>
+        # @type ClusterId: String
+        # @param ServerlessQuotaConfigs: <p>实例SLS规格配置</p>
+        # @type ServerlessQuotaConfigs: Array
+
+        attr_accessor :ClusterId, :ServerlessQuotaConfigs
+
+        def initialize(clusterid=nil, serverlessquotaconfigs=nil)
+          @ClusterId = clusterid
+          @ServerlessQuotaConfigs = serverlessquotaconfigs
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['ServerlessQuotaConfigs'].nil?
+            @ServerlessQuotaConfigs = []
+            params['ServerlessQuotaConfigs'].each do |i|
+              serverlessquotaconfig_tmp = ServerlessQuotaConfig.new
+              serverlessquotaconfig_tmp.deserialize(i)
+              @ServerlessQuotaConfigs << serverlessquotaconfig_tmp
+            end
+          end
+        end
+      end
+
+      # SetInstanceServerlessQuota返回参数结构体
+      class SetInstanceServerlessQuotaResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务id</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 

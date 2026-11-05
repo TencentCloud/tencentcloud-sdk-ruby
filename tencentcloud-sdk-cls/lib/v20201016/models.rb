@@ -3267,8 +3267,8 @@ module TencentCloud
 
         attr_accessor :Name, :AlarmTargets, :MonitorTime, :TriggerCount, :AlarmPeriod, :Condition, :AlarmLevel, :MultiConditions, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications, :AlarmNoticeIds, :MonitorNotice
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2026, 10
-        deprecate :Enable=, :none, 2026, 10
+        deprecate :Enable, :none, 2026, 11
+        deprecate :Enable=, :none, 2026, 11
 
         def initialize(name=nil, alarmtargets=nil, monitortime=nil, triggercount=nil, alarmperiod=nil, condition=nil, alarmlevel=nil, multiconditions=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil, alarmnoticeids=nil, monitornotice=nil)
           @Name = name
@@ -3679,8 +3679,8 @@ module TencentCloud
 
         attr_accessor :Name, :TopicId, :Type, :LogType, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :HostFile, :ContainerFile, :ContainerStdout, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :GroupId, :GroupIds, :CollectInfos, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2026, 10
-        deprecate :LogFormat=, :none, 2026, 10
+        deprecate :LogFormat, :none, 2026, 11
+        deprecate :LogFormat=, :none, 2026, 11
 
         def initialize(name=nil, topicid=nil, type=nil, logtype=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, groupid=nil, groupids=nil, collectinfos=nil, advancedconfig=nil)
           @Name = name
@@ -3775,7 +3775,7 @@ module TencentCloud
 
       # CreateConfig请求参数结构体
       class CreateConfigRequest < TencentCloud::Common::AbstractModel
-        # @param Name: <p>采集配置名称</p><ul><li>名称种不得包含特殊字符｜</li><li>名称最长255字符，超过截断</li></ul>
+        # @param Name: <p>采集配置名称- 名称中不得包含特殊字符&quot;|&quot;</p><p>名称最长255字符，超过截断</p>
         # @type Name: String
         # @param Output: <p>采集配置所属日志主题ID即TopicId</p><ul><li>通过<a href="https://cloud.tencent.com/document/product/614/56454">获取日志主题列表</a>获取日志主题Id。</li></ul>
         # @type Output: String
@@ -14988,8 +14988,8 @@ module TencentCloud
 
         attr_accessor :From, :To, :Query, :QueryString, :Limit, :Context, :Sort, :UseNewAnalysis
         extend Gem::Deprecate
-        deprecate :Query, :none, 2026, 10
-        deprecate :Query=, :none, 2026, 10
+        deprecate :Query, :none, 2026, 11
+        deprecate :Query=, :none, 2026, 11
 
         def initialize(from=nil, to=nil, query=nil, querystring=nil, limit=nil, context=nil, sort=nil, usenewanalysis=nil)
           @From = from
@@ -17030,8 +17030,8 @@ module TencentCloud
 
         attr_accessor :AlarmId, :Name, :MonitorTime, :Condition, :AlarmLevel, :MultiConditions, :TriggerCount, :AlarmPeriod, :AlarmTargets, :Status, :Enable, :MessageTemplate, :CallBack, :Analysis, :GroupTriggerStatus, :GroupTriggerCondition, :Tags, :MonitorObjectType, :Classifications, :AlarmNoticeIds, :MonitorNotice
         extend Gem::Deprecate
-        deprecate :Enable, :none, 2026, 10
-        deprecate :Enable=, :none, 2026, 10
+        deprecate :Enable, :none, 2026, 11
+        deprecate :Enable=, :none, 2026, 11
 
         def initialize(alarmid=nil, name=nil, monitortime=nil, condition=nil, alarmlevel=nil, multiconditions=nil, triggercount=nil, alarmperiod=nil, alarmtargets=nil, status=nil, enable=nil, messagetemplate=nil, callback=nil, analysis=nil, grouptriggerstatus=nil, grouptriggercondition=nil, tags=nil, monitorobjecttype=nil, classifications=nil, alarmnoticeids=nil, monitornotice=nil)
           @AlarmId = alarmid
@@ -17402,8 +17402,8 @@ module TencentCloud
 
         attr_accessor :ConfigExtraId, :Name, :TopicId, :HostFile, :ContainerFile, :ContainerStdout, :LogType, :LogFormat, :ExtractRule, :ExcludePaths, :UserDefineRule, :Type, :GroupId, :ConfigFlag, :LogsetId, :LogsetName, :TopicName, :AdvancedConfig
         extend Gem::Deprecate
-        deprecate :LogFormat, :none, 2026, 10
-        deprecate :LogFormat=, :none, 2026, 10
+        deprecate :LogFormat, :none, 2026, 11
+        deprecate :LogFormat=, :none, 2026, 11
 
         def initialize(configextraid=nil, name=nil, topicid=nil, hostfile=nil, containerfile=nil, containerstdout=nil, logtype=nil, logformat=nil, extractrule=nil, excludepaths=nil, userdefinerule=nil, type=nil, groupid=nil, configflag=nil, logsetid=nil, logsetname=nil, topicname=nil, advancedconfig=nil)
           @ConfigExtraId = configextraid
@@ -18671,11 +18671,11 @@ module TencentCloud
 
       # ModifyLogset请求参数结构体
       class ModifyLogsetRequest < TencentCloud::Common::AbstractModel
-        # @param LogsetId: 日志集Id。通过 [获取日志集列表](https://cloud.tencent.com/document/product/614/58624)获取日志集Id。
+        # @param LogsetId: <p>日志集Id。通过 <a href="https://cloud.tencent.com/document/product/614/58624">获取日志集列表</a>获取日志集Id。</p>
         # @type LogsetId: String
-        # @param LogsetName: 日志集名字。- 最大支持255个字符。不支持`|`字符。
+        # @param LogsetName: <p>日志集名字。- 最大支持255个字符。不支持&quot;|&quot;字符。</p>
         # @type LogsetName: String
-        # @param Tags: 日志集的绑定的标签键值对。最大支持10个标签键值对，同一个资源只能同时绑定一个标签键。
+        # @param Tags: <p>日志集的绑定的标签键值对。最大支持10个标签键值对，同一个资源只能同时绑定一个标签键。</p>
         # @type Tags: Array
 
         attr_accessor :LogsetId, :LogsetName, :Tags
@@ -21069,8 +21069,8 @@ module TencentCloud
 
         attr_accessor :LogContent, :LineNum, :DstTopicId, :FailReason, :Time, :DstTopicName
         extend Gem::Deprecate
-        deprecate :DstTopicName, :none, 2026, 10
-        deprecate :DstTopicName=, :none, 2026, 10
+        deprecate :DstTopicName, :none, 2026, 11
+        deprecate :DstTopicName=, :none, 2026, 11
 
         def initialize(logcontent=nil, linenum=nil, dsttopicid=nil, failreason=nil, time=nil, dsttopicname=nil)
           @LogContent = logcontent
@@ -22648,10 +22648,10 @@ module TencentCloud
 
         attr_accessor :From, :To, :QueryString, :QuerySyntax, :TopicId, :Topics, :Sort, :Limit, :Offset, :Context, :SamplingRate, :UseNewAnalysis, :HighLight, :Query, :SyntaxRule
         extend Gem::Deprecate
-        deprecate :Query, :none, 2026, 10
-        deprecate :Query=, :none, 2026, 10
-        deprecate :SyntaxRule, :none, 2026, 10
-        deprecate :SyntaxRule=, :none, 2026, 10
+        deprecate :Query, :none, 2026, 11
+        deprecate :Query=, :none, 2026, 11
+        deprecate :SyntaxRule, :none, 2026, 11
+        deprecate :SyntaxRule=, :none, 2026, 11
 
         def initialize(from=nil, to=nil, querystring=nil, querysyntax=nil, topicid=nil, topics=nil, sort=nil, limit=nil, offset=nil, context=nil, samplingrate=nil, usenewanalysis=nil, highlight=nil, query=nil, syntaxrule=nil)
           @From = from
@@ -23846,8 +23846,8 @@ module TencentCloud
 
         attr_accessor :TopicId, :HashKey, :CompressType
         extend Gem::Deprecate
-        deprecate :HashKey, :none, 2026, 10
-        deprecate :HashKey=, :none, 2026, 10
+        deprecate :HashKey, :none, 2026, 11
+        deprecate :HashKey=, :none, 2026, 11
 
         def initialize(topicid=nil, hashkey=nil, compresstype=nil)
           @TopicId = topicid
@@ -24024,10 +24024,10 @@ module TencentCloud
 
         attr_accessor :CallbackType, :Url, :WebCallbackId, :Method, :NoticeContentId, :RemindType, :Mobiles, :UserIds, :Headers, :Body, :Index
         extend Gem::Deprecate
-        deprecate :Headers, :none, 2026, 10
-        deprecate :Headers=, :none, 2026, 10
-        deprecate :Body, :none, 2026, 10
-        deprecate :Body=, :none, 2026, 10
+        deprecate :Headers, :none, 2026, 11
+        deprecate :Headers=, :none, 2026, 11
+        deprecate :Body, :none, 2026, 11
+        deprecate :Body=, :none, 2026, 11
 
         def initialize(callbacktype=nil, url=nil, webcallbackid=nil, method=nil, noticecontentid=nil, remindtype=nil, mobiles=nil, userids=nil, headers=nil, body=nil, index=nil)
           @CallbackType = callbacktype

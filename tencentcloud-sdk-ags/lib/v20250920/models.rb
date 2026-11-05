@@ -2620,14 +2620,16 @@ module TencentCloud
         # @type SourceType: String
         # @param CachedImageSizeBytes: <p>镜像预热存储大小</p><p>单位：Byte</p>
         # @type CachedImageSizeBytes: Integer
+        # @param ReadyTime: <p>镜像预热完成时间</p>
+        # @type ReadyTime: String
         # @param LastUsedTime: <p>该预热镜像最近一次被沙箱实例使用时间</p>
         # @type LastUsedTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Image, :ImageDigest, :ImageRegistryType, :Status, :Message, :CreateTime, :PreCacheImageId, :SourceType, :CachedImageSizeBytes, :LastUsedTime, :RequestId
+        attr_accessor :Image, :ImageDigest, :ImageRegistryType, :Status, :Message, :CreateTime, :PreCacheImageId, :SourceType, :CachedImageSizeBytes, :ReadyTime, :LastUsedTime, :RequestId
 
-        def initialize(image=nil, imagedigest=nil, imageregistrytype=nil, status=nil, message=nil, createtime=nil, precacheimageid=nil, sourcetype=nil, cachedimagesizebytes=nil, lastusedtime=nil, requestid=nil)
+        def initialize(image=nil, imagedigest=nil, imageregistrytype=nil, status=nil, message=nil, createtime=nil, precacheimageid=nil, sourcetype=nil, cachedimagesizebytes=nil, readytime=nil, lastusedtime=nil, requestid=nil)
           @Image = image
           @ImageDigest = imagedigest
           @ImageRegistryType = imageregistrytype
@@ -2637,6 +2639,7 @@ module TencentCloud
           @PreCacheImageId = precacheimageid
           @SourceType = sourcetype
           @CachedImageSizeBytes = cachedimagesizebytes
+          @ReadyTime = readytime
           @LastUsedTime = lastusedtime
           @RequestId = requestid
         end
@@ -2651,6 +2654,7 @@ module TencentCloud
           @PreCacheImageId = params['PreCacheImageId']
           @SourceType = params['SourceType']
           @CachedImageSizeBytes = params['CachedImageSizeBytes']
+          @ReadyTime = params['ReadyTime']
           @LastUsedTime = params['LastUsedTime']
           @RequestId = params['RequestId']
         end
@@ -4462,12 +4466,14 @@ module TencentCloud
         # @type SourceType: String
         # @param CachedImageSizeBytes: <p>镜像预热存储大小</p><p>单位：Byte</p>
         # @type CachedImageSizeBytes: Integer
+        # @param ReadyTime: <p>镜像预热完成时间</p>
+        # @type ReadyTime: String
         # @param LastUsedTime: <p>该预热镜像最近一次被沙箱实例使用时间</p>
         # @type LastUsedTime: String
 
-        attr_accessor :Image, :ImageDigest, :ImageRegistryType, :Status, :CreateTime, :PreCacheImageId, :SourceType, :CachedImageSizeBytes, :LastUsedTime
+        attr_accessor :Image, :ImageDigest, :ImageRegistryType, :Status, :CreateTime, :PreCacheImageId, :SourceType, :CachedImageSizeBytes, :ReadyTime, :LastUsedTime
 
-        def initialize(image=nil, imagedigest=nil, imageregistrytype=nil, status=nil, createtime=nil, precacheimageid=nil, sourcetype=nil, cachedimagesizebytes=nil, lastusedtime=nil)
+        def initialize(image=nil, imagedigest=nil, imageregistrytype=nil, status=nil, createtime=nil, precacheimageid=nil, sourcetype=nil, cachedimagesizebytes=nil, readytime=nil, lastusedtime=nil)
           @Image = image
           @ImageDigest = imagedigest
           @ImageRegistryType = imageregistrytype
@@ -4476,6 +4482,7 @@ module TencentCloud
           @PreCacheImageId = precacheimageid
           @SourceType = sourcetype
           @CachedImageSizeBytes = cachedimagesizebytes
+          @ReadyTime = readytime
           @LastUsedTime = lastusedtime
         end
 
@@ -4488,6 +4495,7 @@ module TencentCloud
           @PreCacheImageId = params['PreCacheImageId']
           @SourceType = params['SourceType']
           @CachedImageSizeBytes = params['CachedImageSizeBytes']
+          @ReadyTime = params['ReadyTime']
           @LastUsedTime = params['LastUsedTime']
         end
       end

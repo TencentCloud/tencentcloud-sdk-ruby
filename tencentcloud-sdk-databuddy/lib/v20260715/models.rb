@@ -12051,7 +12051,7 @@ module TencentCloud
         # @type WorkspaceId: String
         # @param WorkflowId: <p>待更新的工作流ID，可通过 ListWorkflows 获取。必填</p>
         # @type WorkflowId: String
-        # @param FieldToRemoveList: <p>需要清空的字段名列表，用于将指定字段重置为空</p>
+        # @param FieldToRemoveList: <p>需要清空的字段名列表，用于将指定字段重置为空。每项为斜杠分隔的字段路径（如 /BaseInfo/Description、/ParamList:[参数ID]），路径段与 NewSetting 字段名一致；列表字段用 字段名:[主键值] 定位单个元素、不带 [] 表示清空整个列表；workflowId、workspaceId、baseInfo 等标识类受保护字段不可删除，路径无效或未命中将返回 InvalidParameterValue 报错。</p>
         # @type FieldToRemoveList: Array
         # @param NewSetting: <p>更新后的工作流配置，仅传入需要变更的部分即可</p>
         # @type NewSetting: :class:`Tencentcloud::Databuddy.v20260715.models.Workflow`
@@ -13377,43 +13377,43 @@ module TencentCloud
 
       # 工作流任务信息。 注意：本结构同时用于入参（CreateWorkflow / UpdateWorkflow）与出参（GetWorkflow）， 其中 CreateTime / UpdateTime / CreateUserUin 为系统生成字段，仅在出参中有值， 入参传值不生效（服务端忽略且不报错）。
       class WorkflowTask < TencentCloud::Common::AbstractModel
-        # @param ParamList: 任务参数
+        # @param ParamList: <p>任务参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ParamList: Array
-        # @param DependOnList: 任务依赖
+        # @param DependOnList: <p>任务依赖</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependOnList: Array
-        # @param TaskId: 任务ID，创建时无需传入，由服务端生成
+        # @param TaskId: <p>任务ID，创建时无需传入，由服务端生成</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskId: String
-        # @param TaskName: 任务名称
+        # @param TaskName: <p>任务名称</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskName: String
-        # @param TaskType: 任务类型
+        # @param TaskType: <p>任务类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskType: :class:`Tencentcloud::Databuddy.v20260715.models.TaskType`
-        # @param ResourceGroupId: 资源组ID，可通过资源组相关接口获取
+        # @param ResourceGroupId: <p>计算资源组ID，计算资源取值通过 ListComputeResourceOptions 接口获取，入参 ResourceTypes 需按任务类型传值：DATA_INTEGRATION 传 [1]（平台集群），PYTHON/NOTEBOOK/RAY_JOB/DATA_QUALITY/IF_ELSE 传 [2]（作业集群），SQL 传 [2,3]（交互式+作业集群），其余任务类型无需填写本字段。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceGroupId: String
-        # @param Description: 任务描述
+        # @param Description: <p>任务描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Description: String
-        # @param Alarm: 任务告警
+        # @param Alarm: <p>任务告警</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Alarm: :class:`Tencentcloud::Databuddy.v20260715.models.AlarmBrief`
-        # @param MonitorMetric: 监控指标
+        # @param MonitorMetric: <p>监控指标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MonitorMetric: :class:`Tencentcloud::Databuddy.v20260715.models.MonitorMetricBrief`
-        # @param TaskRetryStrategy: 任务重试策略
+        # @param TaskRetryStrategy: <p>任务重试策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TaskRetryStrategy: :class:`Tencentcloud::Databuddy.v20260715.models.TaskRetryStrategy`
         # @param DependOnRunCondition: <p>任依赖运行条件</p><ul><li>ALL_SUCCESS: 全部成功：所有上游依赖任务均已执行并成功</li><li>ONE_SUCCESS: 至少一个成功：至少有一个上游依赖任务成功</li><li>NONE_FAILED: 目前没有失败：没有依赖任务失败，并且至少有一个依赖任务在运行中</li><li>ALL_DONE: 全部完成：所有上游依赖任务均已执行并完成（无论成功或失败</li><li>ONE_FAILED: 至少一个失败：至少有一个上游依赖任务失败</li><li>ALL_FAILED: 全部失败：所有上游依赖任务都失败</li><li>ALL_DONE_AT_LEAST_ONE_SUCCESS：上游全部完成至少一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个成功，则依赖判断成功，否则就是跳过运行</li><li>ALL_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行</li><li>ONE_DONE：至少一个完成：上游只要有一个完成了，就进行依赖判断，且依赖判断成功，否则还是等待上游</li><li>ALL_DONE_NONE_FAILED_AT_LEAST_ONE_SUCCESS：上游全部完成，没有失败，至少有一个成功: 所有上游依赖任务都达到终态时，进行依赖判断，上游没有一个失败且至少有一个成功的情况下，依赖判断成功，否则就是跳过运行</li><li>NONE_SKIPPED：上游全部完成，没有跳过运行: 所有上游依赖任务都达到终态时，进行依赖判断, 如果上游状态全部都是成功、失败、上游失败状态，则依赖判断成功，否则为跳过运行</li><li>ALL_DONE_AT_LEAST_ONE_FAILED：上游全部完成至少一个失败: 所有上游依赖任务都达到终态时，进行依赖判断，至少有一个失败，则依赖判断成功，否则就是跳过运行</li><li>ADVANCED:运行条件为高级模式时配置</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DependOnRunCondition: String
-        # @param LeftCoordinate: 任务X坐标
+        # @param LeftCoordinate: <p>任务X坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LeftCoordinate: Float
-        # @param TopCoordinate: 任务Y坐标
+        # @param TopCoordinate: <p>任务Y坐标</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TopCoordinate: Float
         # @param AdvancedDependencyConfig: <p>任务高级运行参数，当DependOnRunCondition为ADVANCED时配置</p>

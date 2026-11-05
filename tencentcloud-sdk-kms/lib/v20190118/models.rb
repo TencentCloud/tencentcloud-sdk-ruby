@@ -335,17 +335,17 @@ module TencentCloud
 
       # CreateKey请求参数结构体
       class CreateKeyRequest < TencentCloud::Common::AbstractModel
-        # @param Alias: 作为密钥更容易辨识，更容易被人看懂的别名， 不可为空，1-60个字母数字 - _ 的组合，首字符必须为字母或者数字。以 kms- 作为前缀的用于云产品使用，Alias 不可重复。
+        # @param Alias: <p>作为密钥更容易辨识，更容易被人看懂的别名， 不可为空，1-60个字母数字 - _ 的组合，首字符必须为字母或者数字。以 kms- 作为前缀的用于云产品使用，Alias 不可重复。</p>
         # @type Alias: String
-        # @param Description: CMK 的描述，最大1024字节
+        # @param Description: <p>CMK 的描述，最大1024字节</p>
         # @type Description: String
-        # @param KeyUsage: 指定key的用途，默认为  "ENCRYPT_DECRYPT" 表示创建对称加解密密钥，其它支持用途 “ASYMMETRIC_DECRYPT_RSA_2048” 表示创建用于加解密的RSA2048非对称密钥，“ASYMMETRIC_DECRYPT_SM2” 表示创建用于加解密的SM2非对称密钥，“ASYMMETRIC_SIGN_VERIFY_SM2” 表示创建用于签名验签的SM2非对称密钥，“ASYMMETRIC_SIGN_VERIFY_ECC” 表示创建用于签名验签的ECC非对称密钥，“ASYMMETRIC_SIGN_VERIFY_RSA_2048” 表示创建用于签名验签的RSA_2048非对称密钥，“ASYMMETRIC_SIGN_VERIFY_ECDSA384”表示创建用于签名验签的 ECDSA384 非对称密钥。完整的密钥用途与算法支持列表可通过 ListAlgorithms 接口获取。
+        # @param KeyUsage: <p>指定key的用途，默认为  &quot;ENCRYPT_DECRYPT&quot; 表示创建对称加解密密钥，其它支持用途 “ASYMMETRIC_DECRYPT_RSA_2048” 表示创建用于加解密的RSA2048非对称密钥，“ASYMMETRIC_DECRYPT_RSA_3072”表示创建用于加解密的RSA3072非对称密钥，“ASYMMETRIC_DECRYPT_RSA_4096”表示创建用于加解密的RSA4096非对称密钥，“ASYMMETRIC_DECRYPT_SM2” 表示创建用于加解密的SM2非对称密钥，“ASYMMETRIC_SIGN_VERIFY_SM2” 表示创建用于签名验签的SM2非对称密钥，“ASYMMETRIC_SIGN_VERIFY_ECC” 表示创建用于签名验签的ECC非对称密钥，“ASYMMETRIC_SIGN_VERIFY_RSA_2048” 表示创建用于签名验签的RSA_2048非对称密钥，“ASYMMETRIC_SIGN_VERIFY_RSA_3072” 表示创建用于签名验签的RSA_3072非对称密钥，<br>“ASYMMETRIC_SIGN_VERIFY_RSA_4096” 表示创建用于签名验签的RSA_4096非对称密钥，“ASYMMETRIC_SIGN_VERIFY_ECDSA384”表示创建用于签名验签的 ECDSA384 非对称密钥。完整的密钥用途与算法支持列表可通过 ListAlgorithms 接口获取。</p>
         # @type KeyUsage: String
-        # @param Type: 指定key类型，默认为1，1表示默认类型，由KMS创建CMK密钥，2 表示EXTERNAL 类型，该类型需要用户导入密钥材料，参考 GetParametersForImport 和 ImportKeyMaterial 接口
+        # @param Type: <p>指定key类型，默认为1，1表示默认类型，由KMS创建CMK密钥，2 表示EXTERNAL 类型，该类型需要用户导入密钥材料，参考 GetParametersForImport 和 ImportKeyMaterial 接口</p>
         # @type Type: Integer
-        # @param Tags: 标签列表
+        # @param Tags: <p>标签列表</p>
         # @type Tags: Array
-        # @param HsmClusterId: KMS 高级版对应的 HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）。
+        # @param HsmClusterId: <p>KMS 高级版对应的 HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）。</p>
         # @type HsmClusterId: String
 
         attr_accessor :Alias, :Description, :KeyUsage, :Type, :Tags, :HsmClusterId
@@ -378,23 +378,23 @@ module TencentCloud
 
       # CreateKey返回参数结构体
       class CreateKeyResponse < TencentCloud::Common::AbstractModel
-        # @param KeyId: CMK的全局唯一标识符
+        # @param KeyId: <p>CMK的全局唯一标识符</p>
         # @type KeyId: String
-        # @param Alias: 作为密钥更容易辨识，更容易被人看懂的别名
+        # @param Alias: <p>作为密钥更容易辨识，更容易被人看懂的别名</p>
         # @type Alias: String
-        # @param CreateTime: 密钥创建时间，unix时间戳
+        # @param CreateTime: <p>密钥创建时间，unix时间戳</p>
         # @type CreateTime: Integer
-        # @param Description: CMK的描述
+        # @param Description: <p>CMK的描述</p>
         # @type Description: String
-        # @param KeyState: CMK的状态
+        # @param KeyState: <p>CMK的状态</p>
         # @type KeyState: String
-        # @param KeyUsage: CMK的用途
+        # @param KeyUsage: <p>CMK的用途</p>
         # @type KeyUsage: String
-        # @param TagCode: 标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误
+        # @param TagCode: <p>标签操作的返回码. 0: 成功；1: 内部错误；2: 业务处理错误</p>
         # @type TagCode: Integer
-        # @param TagMsg: 标签操作的返回信息
+        # @param TagMsg: <p>标签操作的返回信息</p>
         # @type TagMsg: String
-        # @param HsmClusterId: HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）
+        # @param HsmClusterId: <p>HSM 集群 ID（仅对 KMS 独占版/托管版服务实例有效）</p>
         # @type HsmClusterId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3587,13 +3587,13 @@ module TencentCloud
 
       # SignByAsymmetricKey请求参数结构体
       class SignByAsymmetricKeyRequest < TencentCloud::Common::AbstractModel
-        # @param Algorithm: 签名算法，支持的算法：SM2DSA，ECC_P256_R1，RSA_PSS_SHA_256，RSA_PKCS1_SHA_256 等。更多支持的算法可通过 ListAlgorithms 接口进行查询。
+        # @param Algorithm: <p>签名算法，支持的算法：SM2DSA，ECC_P256_R1，ECDSA384_SHA384，RSA_PSS_SHA_256，RSA_PKCS1_SHA_256，RSA_PSS_SHA_384，RSA_PKCS1_SHA_384，RSA_PSS_SHA_512，RSA_PKCS1_SHA_512 等。更多支持的算法可通过 ListAlgorithms 接口进行查询。</p>
         # @type Algorithm: String
-        # @param Message: 消息原文或消息摘要。如果提供的是消息原文，则消息原文的长度（Base64编码前的长度）不超过4096字节。如果提供的是消息摘要，消息摘要长度（Base64编码前的长度）必须等于32字节
+        # @param Message: <p>消息原文或消息摘要。如果提供的是消息原文，则消息原文的长度（Base64编码前的长度）不超过4096字节。如果提供的是消息摘要，消息摘要长度（Base64编码前的长度）必须等于32字节</p>
         # @type Message: String
-        # @param KeyId: 密钥的唯一标识
+        # @param KeyId: <p>密钥的唯一标识</p>
         # @type KeyId: String
-        # @param MessageType: 消息类型：RAW，DIGEST，如果不传，默认为RAW，表示消息原文。
+        # @param MessageType: <p>消息类型：RAW，DIGEST，如果不传，默认为RAW，表示消息原文。</p>
         # @type MessageType: String
 
         attr_accessor :Algorithm, :Message, :KeyId, :MessageType
@@ -3615,7 +3615,7 @@ module TencentCloud
 
       # SignByAsymmetricKey返回参数结构体
       class SignByAsymmetricKeyResponse < TencentCloud::Common::AbstractModel
-        # @param Signature: 签名，Base64编码
+        # @param Signature: <p>签名，Base64编码</p>
         # @type Signature: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3887,15 +3887,15 @@ module TencentCloud
 
       # VerifyByAsymmetricKey请求参数结构体
       class VerifyByAsymmetricKeyRequest < TencentCloud::Common::AbstractModel
-        # @param KeyId: 密钥的唯一标识
+        # @param KeyId: <p>密钥的唯一标识</p>
         # @type KeyId: String
-        # @param SignatureValue: 签名值，通过调用KMS签名接口生成
+        # @param SignatureValue: <p>签名值，通过调用KMS签名接口生成</p>
         # @type SignatureValue: String
-        # @param Message: 消息原文或消息摘要。如果提供的是消息原文，则消息原文的长度（Base64编码前的长度）不超过4096字节。如果提供的是消息摘要，则消息摘要长度（Base64编码前的长度）必须等于32字节
+        # @param Message: <p>消息原文或消息摘要。如果提供的是消息原文，则消息原文的长度（Base64编码前的长度）不超过4096字节。如果提供的是消息摘要，则消息摘要长度（Base64编码前的长度）必须等于32字节</p>
         # @type Message: String
-        # @param Algorithm: 签名算法，支持的算法：SM2DSA，ECC_P256_R1，RSA_PSS_SHA_256，RSA_PKCS1_SHA_256 等。更多支持的算法可通过 ListAlgorithms 接口进行查询。
+        # @param Algorithm: <p>签名算法，支持的算法：SM2DSA，ECC_P256_R1，ECDSA384_SHA384，RSA_PSS_SHA_256，RSA_PKCS1_SHA_256，RSA_PSS_SHA_384，RSA_PKCS1_SHA_384，RSA_PSS_SHA_512，RSA_PKCS1_SHA_512 等。更多支持的算法可通过 ListAlgorithms 接口进行查询</p>
         # @type Algorithm: String
-        # @param MessageType: 消息类型：RAW，DIGEST，如果不传，默认为RAW，表示消息原文。
+        # @param MessageType: <p>消息类型：RAW，DIGEST，如果不传，默认为RAW，表示消息原文。</p>
         # @type MessageType: String
 
         attr_accessor :KeyId, :SignatureValue, :Message, :Algorithm, :MessageType
@@ -3919,7 +3919,7 @@ module TencentCloud
 
       # VerifyByAsymmetricKey返回参数结构体
       class VerifyByAsymmetricKeyResponse < TencentCloud::Common::AbstractModel
-        # @param SignatureValid: 签名是否有效。true：签名有效，false：签名无效。
+        # @param SignatureValid: <p>签名是否有效。true：签名有效，false：签名无效。</p>
         # @type SignatureValid: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

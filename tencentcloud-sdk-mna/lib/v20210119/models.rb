@@ -1169,24 +1169,27 @@ module TencentCloud
 
       # DownloadActiveDeviceCount请求参数结构体
       class DownloadActiveDeviceCountRequest < TencentCloud::Common::AbstractModel
-        # @param Period: 查询粒度。0:day, 1:week, 2:month, 不传默认为day
+        # @param Period: <p>查询粒度。0:day, 1:week, 2:month, 不传默认为day</p>
         # @type Period: Integer
-        # @param StartTime: 开始时间。单位秒
+        # @param StartTime: <p>开始时间。单位秒</p>
         # @type StartTime: Integer
-        # @param EndTime: 结束时间。单位秒
+        # @param EndTime: <p>结束时间。单位秒</p>
         # @type EndTime: Integer
-        # @param DevGroup: 设备组, 不传查询全部
+        # @param DevGroup: <p>设备组, 不传查询全部</p>
         # @type DevGroup: String
-        # @param LicenseType: license类型, 不传查询全部, 1: 租户月付，2：厂商月付，3：永久授权
+        # @param ApplicationId: <p>应用ID，指控制台上设备管理中的动态设备应用ID，不传查询全部。</p>
+        # @type ApplicationId: String
+        # @param LicenseType: <p>license类型, 不传查询全部, 1: 租户月付，2：厂商月付，3：永久授权</p>
         # @type LicenseType: Integer
 
-        attr_accessor :Period, :StartTime, :EndTime, :DevGroup, :LicenseType
+        attr_accessor :Period, :StartTime, :EndTime, :DevGroup, :ApplicationId, :LicenseType
 
-        def initialize(period=nil, starttime=nil, endtime=nil, devgroup=nil, licensetype=nil)
+        def initialize(period=nil, starttime=nil, endtime=nil, devgroup=nil, applicationid=nil, licensetype=nil)
           @Period = period
           @StartTime = starttime
           @EndTime = endtime
           @DevGroup = devgroup
+          @ApplicationId = applicationid
           @LicenseType = licensetype
         end
 
@@ -1195,13 +1198,14 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @DevGroup = params['DevGroup']
+          @ApplicationId = params['ApplicationId']
           @LicenseType = params['LicenseType']
         end
       end
 
       # DownloadActiveDeviceCount返回参数结构体
       class DownloadActiveDeviceCountResponse < TencentCloud::Common::AbstractModel
-        # @param FilePath: URL地址
+        # @param FilePath: <p>URL地址</p>
         # @type FilePath: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1431,24 +1435,27 @@ module TencentCloud
 
       # GetActiveDeviceCount请求参数结构体
       class GetActiveDeviceCountRequest < TencentCloud::Common::AbstractModel
-        # @param Period: 查询粒度。0:day, 1:week, 2:month, 不传默认为day
+        # @param Period: <p>查询粒度。0:day, 1:week, 2:month, 不传默认为day</p>
         # @type Period: Integer
-        # @param StartTime: 开始时间。单位秒
+        # @param StartTime: <p>开始时间。单位秒</p>
         # @type StartTime: Integer
-        # @param EndTime: 结束时间。单位秒
+        # @param EndTime: <p>结束时间。单位秒</p>
         # @type EndTime: Integer
-        # @param DevGroup: 设备组, 不传查询全部
+        # @param DevGroup: <p>设备组, 不传查询全部</p>
         # @type DevGroup: String
-        # @param LicenseType: license类型, 不传查询全部, 1: 租户月付，2：厂商月付，3：永久授权
+        # @param ApplicationId: <p>应用ID，指控制台上设备管理中的动态设备应用ID，不传查询全部。</p>
+        # @type ApplicationId: String
+        # @param LicenseType: <p>license类型, 不传查询全部, 1: 租户月付，2：厂商月付，3：永久授权</p>
         # @type LicenseType: Integer
 
-        attr_accessor :Period, :StartTime, :EndTime, :DevGroup, :LicenseType
+        attr_accessor :Period, :StartTime, :EndTime, :DevGroup, :ApplicationId, :LicenseType
 
-        def initialize(period=nil, starttime=nil, endtime=nil, devgroup=nil, licensetype=nil)
+        def initialize(period=nil, starttime=nil, endtime=nil, devgroup=nil, applicationid=nil, licensetype=nil)
           @Period = period
           @StartTime = starttime
           @EndTime = endtime
           @DevGroup = devgroup
+          @ApplicationId = applicationid
           @LicenseType = licensetype
         end
 
@@ -1457,25 +1464,26 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @DevGroup = params['DevGroup']
+          @ApplicationId = params['ApplicationId']
           @LicenseType = params['LicenseType']
         end
       end
 
       # GetActiveDeviceCount返回参数结构体
       class GetActiveDeviceCountResponse < TencentCloud::Common::AbstractModel
-        # @param ActiveDeviceList: 激活设备统计
+        # @param ActiveDeviceList: <p>激活设备统计</p>
         # @type ActiveDeviceList: Array
-        # @param Period: 查询粒度，0:day, 1:week, 2:month, 不传默认为day
+        # @param Period: <p>查询粒度，0:day, 1:week, 2:month, 不传默认为day</p>
         # @type Period: Integer
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: String
-        # @param DevGroup: 设备组
+        # @param DevGroup: <p>设备组</p>
         # @type DevGroup: String
-        # @param LicenseType: license类型, 不传查询全部, 1: 租户月付，2：厂商月付，3：永久授权
+        # @param LicenseType: <p>license类型, 不传查询全部, 1: 租户月付，2：厂商月付，3：永久授权</p>
         # @type LicenseType: String
-        # @param AppId: 租户ID
+        # @param AppId: <p>租户ID</p>
         # @type AppId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

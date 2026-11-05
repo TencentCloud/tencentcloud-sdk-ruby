@@ -1413,6 +1413,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询环境详细信息
+
+        # @param request: Request instance for DescribeEnvInfo.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeEnvInfoRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeEnvInfoResponse`
+        def DescribeEnvInfo(request)
+          body = send_request('DescribeEnvInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEnvInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询环境个数上限
 
         # @param request: Request instance for DescribeEnvLimit.

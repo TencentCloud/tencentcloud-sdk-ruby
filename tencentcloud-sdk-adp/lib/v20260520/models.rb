@@ -17,6 +17,22 @@
 module TencentCloud
   module Adp
     module V20260520
+      # A2AConfig
+      class A2AConfig < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>企业共享开关</p>
+        # @type Enabled: Boolean
+
+        attr_accessor :Enabled
+
+        def initialize(enabled=nil)
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+        end
+      end
+
       # 智能通话配置
       class AICallConfig < TencentCloud::Common::AbstractModel
         # @param DigitalHuman: 数智人配置
@@ -390,7 +406,7 @@ module TencentCloud
 
       # Agent输入值，支持直接赋值和引用
       class AgentInput < TencentCloud::Common::AbstractModel
-        # @param InputType: <p>输入来源类型：0 用户输入，3 自定义变量（API参数）</p>
+        # @param InputType: <p>输入来源类型</p><p>枚举值：</p><ul><li>1： 用户输入</li><li>2： 系统变量</li><li>3： 自定义变量（API参数）</li><li>4： 环境变量</li><li>5： 应用变量</li><li>6： 工具参数</li></ul>
         # @type InputType: Integer
         # @param UserInputValue: <p>用户手写输入</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -1385,10 +1401,13 @@ module TencentCloud
         # @param FileVolumeMountList: <p>应用挂载云盘</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileVolumeMountList: Array
+        # @param A2AConfig: <p>A2A配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type A2AConfig: :class:`Tencentcloud::Adp.v20260520.models.A2AConfig`
 
-        attr_accessor :AuxiliaryInfo, :Config, :Metadata, :SecretInfo, :ShareUrlInfo, :Status, :CorpShareConfig, :SharedKbList, :PortalShareConfig, :FileVolumeMountList
+        attr_accessor :AuxiliaryInfo, :Config, :Metadata, :SecretInfo, :ShareUrlInfo, :Status, :CorpShareConfig, :SharedKbList, :PortalShareConfig, :FileVolumeMountList, :A2AConfig
 
-        def initialize(auxiliaryinfo=nil, config=nil, metadata=nil, secretinfo=nil, shareurlinfo=nil, status=nil, corpshareconfig=nil, sharedkblist=nil, portalshareconfig=nil, filevolumemountlist=nil)
+        def initialize(auxiliaryinfo=nil, config=nil, metadata=nil, secretinfo=nil, shareurlinfo=nil, status=nil, corpshareconfig=nil, sharedkblist=nil, portalshareconfig=nil, filevolumemountlist=nil, a2aconfig=nil)
           @AuxiliaryInfo = auxiliaryinfo
           @Config = config
           @Metadata = metadata
@@ -1399,6 +1418,7 @@ module TencentCloud
           @SharedKbList = sharedkblist
           @PortalShareConfig = portalshareconfig
           @FileVolumeMountList = filevolumemountlist
+          @A2AConfig = a2aconfig
         end
 
         def deserialize(params)
@@ -1449,6 +1469,10 @@ module TencentCloud
               filevolumemount_tmp.deserialize(i)
               @FileVolumeMountList << filevolumemount_tmp
             end
+          end
+          unless params['A2AConfig'].nil?
+            @A2AConfig = A2AConfig.new
+            @A2AConfig.deserialize(params['A2AConfig'])
           end
         end
       end
@@ -5447,10 +5471,12 @@ module TencentCloud
         # @type IsPublishAsTemplate: Boolean
         # @param PortalShareConfig: <p>portal配置</p>
         # @type PortalShareConfig: :class:`Tencentcloud::Adp.v20260520.models.PortalShareConfig`
+        # @param A2AConfig: <p>A2A配置</p>
+        # @type A2AConfig: :class:`Tencentcloud::Adp.v20260520.models.A2AConfig`
 
-        attr_accessor :AppId, :AppShareAccessControl, :ChannelIdList, :CorpShareConfig, :Description, :IsDevToRelease, :IsPublishAsTemplate, :PortalShareConfig
+        attr_accessor :AppId, :AppShareAccessControl, :ChannelIdList, :CorpShareConfig, :Description, :IsDevToRelease, :IsPublishAsTemplate, :PortalShareConfig, :A2AConfig
 
-        def initialize(appid=nil, appshareaccesscontrol=nil, channelidlist=nil, corpshareconfig=nil, description=nil, isdevtorelease=nil, ispublishastemplate=nil, portalshareconfig=nil)
+        def initialize(appid=nil, appshareaccesscontrol=nil, channelidlist=nil, corpshareconfig=nil, description=nil, isdevtorelease=nil, ispublishastemplate=nil, portalshareconfig=nil, a2aconfig=nil)
           @AppId = appid
           @AppShareAccessControl = appshareaccesscontrol
           @ChannelIdList = channelidlist
@@ -5459,6 +5485,7 @@ module TencentCloud
           @IsDevToRelease = isdevtorelease
           @IsPublishAsTemplate = ispublishastemplate
           @PortalShareConfig = portalshareconfig
+          @A2AConfig = a2aconfig
         end
 
         def deserialize(params)
@@ -5478,6 +5505,10 @@ module TencentCloud
           unless params['PortalShareConfig'].nil?
             @PortalShareConfig = PortalShareConfig.new
             @PortalShareConfig.deserialize(params['PortalShareConfig'])
+          end
+          unless params['A2AConfig'].nil?
+            @A2AConfig = A2AConfig.new
+            @A2AConfig.deserialize(params['A2AConfig'])
           end
         end
       end
@@ -7004,7 +7035,7 @@ module TencentCloud
         # @type AppId: String
         # @param Domain: <p>应用域: ADP_DOMAIN_DEV(1)=开发域, ADP_DOMAIN_PROD(2)=发布域。枚举值: 1:开发域, 2:生产域</p>
         # @type Domain: Integer
-        # @param FieldMask: <p>字段掩码，指定需要返回的字段(Paths为空则返回所有字段)。Paths枚举值：AppConfig(应用配置), SecretInfo(应用密钥信息), ShareUrlInfo(分享链接信息), SpecialStatusInfo(特殊状态信息), SearchResourceStatus(搜索资源状态), SharedKbList(应用引用的共享知识库列表),CorpShareConfig(企业共享配置), FileVolumeMountList(云盘挂载列表)</p>
+        # @param FieldMask: <p>字段掩码，指定需要返回的字段(Paths为空则返回所有字段)。Paths枚举值：AppConfig(应用配置), SecretInfo(应用密钥信息), ShareUrlInfo(分享链接信息), SpecialStatusInfo(特殊状态信息), SearchResourceStatus(搜索资源状态), SharedKbList(应用引用的共享知识库列表),CorpShareConfig(企业共享配置), FileVolumeMountList(云盘挂载列表), A2AConfig(A2A启用配置)</p>
         # @type FieldMask: :class:`Tencentcloud::Adp.v20260520.models.FieldMask`
         # @param StatusType: <p>特殊状态类型(当FieldMask包含SpecialStatusInfo时必填)。枚举值: 1:回滚状态, 2:首次导入状态</p>
         # @type StatusType: Integer
@@ -8221,8 +8252,8 @@ module TencentCloud
 
         attr_accessor :FirstRecordId, :HasMoreAfter, :HasMoreBefore, :LastRecordId, :MessageList, :Messages, :RecordSummaryList, :ResetInfo, :RequestId
         extend Gem::Deprecate
-        deprecate :Messages, :none, 2026, 10
-        deprecate :Messages=, :none, 2026, 10
+        deprecate :Messages, :none, 2026, 11
+        deprecate :Messages=, :none, 2026, 11
 
         def initialize(firstrecordid=nil, hasmoreafter=nil, hasmorebefore=nil, lastrecordid=nil, messagelist=nil, messages=nil, recordsummarylist=nil, resetinfo=nil, requestid=nil)
           @FirstRecordId = firstrecordid
@@ -16045,10 +16076,13 @@ module TencentCloud
         # @param PortalShareConfig: <p>portal配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PortalShareConfig: :class:`Tencentcloud::Adp.v20260520.models.PortalShareConfig`
+        # @param A2AConfig: <p>A2A配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type A2AConfig: :class:`Tencentcloud::Adp.v20260520.models.A2AConfig`
 
-        attr_accessor :CreateTime, :Description, :ReleaseId, :Status, :StatusDescription, :AppShareAccessControl, :ChannelIdList, :CorpShareConfig, :PortalShareConfig
+        attr_accessor :CreateTime, :Description, :ReleaseId, :Status, :StatusDescription, :AppShareAccessControl, :ChannelIdList, :CorpShareConfig, :PortalShareConfig, :A2AConfig
 
-        def initialize(createtime=nil, description=nil, releaseid=nil, status=nil, statusdescription=nil, appshareaccesscontrol=nil, channelidlist=nil, corpshareconfig=nil, portalshareconfig=nil)
+        def initialize(createtime=nil, description=nil, releaseid=nil, status=nil, statusdescription=nil, appshareaccesscontrol=nil, channelidlist=nil, corpshareconfig=nil, portalshareconfig=nil, a2aconfig=nil)
           @CreateTime = createtime
           @Description = description
           @ReleaseId = releaseid
@@ -16058,6 +16092,7 @@ module TencentCloud
           @ChannelIdList = channelidlist
           @CorpShareConfig = corpshareconfig
           @PortalShareConfig = portalshareconfig
+          @A2AConfig = a2aconfig
         end
 
         def deserialize(params)
@@ -16078,6 +16113,10 @@ module TencentCloud
           unless params['PortalShareConfig'].nil?
             @PortalShareConfig = PortalShareConfig.new
             @PortalShareConfig.deserialize(params['PortalShareConfig'])
+          end
+          unless params['A2AConfig'].nil?
+            @A2AConfig = A2AConfig.new
+            @A2AConfig.deserialize(params['A2AConfig'])
           end
         end
       end

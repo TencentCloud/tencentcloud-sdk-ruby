@@ -398,33 +398,40 @@ module TencentCloud
 
       # DeleteDataAgentSession请求参数结构体
       class DeleteDataAgentSessionRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param SessionId: 会话ID
+        # @param SessionId: <p>会话ID</p>
         # @type SessionId: String
-        # @param SessionIds: 批量删除 会话id 列表
+        # @param SessionIds: <p>批量删除 会话id 列表</p>
         # @type SessionIds: Array
+        # @param SurfaceContext: <p>上下文</p>
+        # @type SurfaceContext: :class:`Tencentcloud::Dataagent.v20250513.models.SurfaceContext`
 
-        attr_accessor :InstanceId, :SessionId, :SessionIds
+        attr_accessor :InstanceId, :SessionId, :SessionIds, :SurfaceContext
 
-        def initialize(instanceid=nil, sessionid=nil, sessionids=nil)
+        def initialize(instanceid=nil, sessionid=nil, sessionids=nil, surfacecontext=nil)
           @InstanceId = instanceid
           @SessionId = sessionid
           @SessionIds = sessionids
+          @SurfaceContext = surfacecontext
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
           @SessionId = params['SessionId']
           @SessionIds = params['SessionIds']
+          unless params['SurfaceContext'].nil?
+            @SurfaceContext = SurfaceContext.new
+            @SurfaceContext.deserialize(params['SurfaceContext'])
+          end
         end
       end
 
       # DeleteDataAgentSession返回参数结构体
       class DeleteDataAgentSessionResponse < TencentCloud::Common::AbstractModel
-        # @param SessionId: 删除的会话ID
+        # @param SessionId: <p>删除的会话ID</p>
         # @type SessionId: String
-        # @param SessionIds: 删除的会话ID列表
+        # @param SessionIds: <p>删除的会话ID列表</p>
         # @type SessionIds: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1461,14 +1468,17 @@ module TencentCloud
         # @type Offset: Integer
         # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
+        # @param SurfaceContext: <p>上下文</p>
+        # @type SurfaceContext: :class:`Tencentcloud::Dataagent.v20250513.models.SurfaceContext`
 
-        attr_accessor :SessionId, :Limit, :Offset, :InstanceId
+        attr_accessor :SessionId, :Limit, :Offset, :InstanceId, :SurfaceContext
 
-        def initialize(sessionid=nil, limit=nil, offset=nil, instanceid=nil)
+        def initialize(sessionid=nil, limit=nil, offset=nil, instanceid=nil, surfacecontext=nil)
           @SessionId = sessionid
           @Limit = limit
           @Offset = offset
           @InstanceId = instanceid
+          @SurfaceContext = surfacecontext
         end
 
         def deserialize(params)
@@ -1476,6 +1486,10 @@ module TencentCloud
           @Limit = params['Limit']
           @Offset = params['Offset']
           @InstanceId = params['InstanceId']
+          unless params['SurfaceContext'].nil?
+            @SurfaceContext = SurfaceContext.new
+            @SurfaceContext.deserialize(params['SurfaceContext'])
+          end
         end
       end
 
@@ -1491,17 +1505,20 @@ module TencentCloud
         # @type TotalCount: Integer
         # @param RunRecord: <p>运行中的聊天请求, 返回为json字符串</p>
         # @type RunRecord: String
+        # @param SessionTargetInfo: <p>会话归属信息</p>
+        # @type SessionTargetInfo: :class:`Tencentcloud::Dataagent.v20250513.models.SessionTargetInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :SubAccountUin, :SessionId, :RecordList, :TotalCount, :RunRecord, :RequestId
+        attr_accessor :SubAccountUin, :SessionId, :RecordList, :TotalCount, :RunRecord, :SessionTargetInfo, :RequestId
 
-        def initialize(subaccountuin=nil, sessionid=nil, recordlist=nil, totalcount=nil, runrecord=nil, requestid=nil)
+        def initialize(subaccountuin=nil, sessionid=nil, recordlist=nil, totalcount=nil, runrecord=nil, sessiontargetinfo=nil, requestid=nil)
           @SubAccountUin = subaccountuin
           @SessionId = sessionid
           @RecordList = recordlist
           @TotalCount = totalcount
           @RunRecord = runrecord
+          @SessionTargetInfo = sessiontargetinfo
           @RequestId = requestid
         end
 
@@ -1518,6 +1535,10 @@ module TencentCloud
           end
           @TotalCount = params['TotalCount']
           @RunRecord = params['RunRecord']
+          unless params['SessionTargetInfo'].nil?
+            @SessionTargetInfo = SessionTargetInfo.new
+            @SessionTargetInfo.deserialize(params['SessionTargetInfo'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1578,6 +1599,57 @@ module TencentCloud
         end
       end
 
+      # 会话的归属与保存状态
+      class SessionTargetInfo < TencentCloud::Common::AbstractModel
+        # @param TargetId: <p>targetID</p>
+        # @type TargetId: String
+        # @param TargetType: <p>targetType</p>
+        # @type TargetType: String
+        # @param TargetName: <p>target名称</p>
+        # @type TargetName: String
+        # @param Source: <p>资源名称</p>
+        # @type Source: String
+        # @param LastInteractionTime: <p>最后活跃时间</p><p>参数格式：2026-11-05 14:30:00</p>
+        # @type LastInteractionTime: String
+        # @param SurfaceContext: <p>上下文</p>
+        # @type SurfaceContext: :class:`Tencentcloud::Dataagent.v20250513.models.SurfaceContext`
+        # @param Saved: <p>是否保存</p>
+        # @type Saved: Boolean
+        # @param SavedAt: <p>保存时间</p>
+        # @type SavedAt: String
+        # @param Deleted: <p>是否删除</p>
+        # @type Deleted: Boolean
+
+        attr_accessor :TargetId, :TargetType, :TargetName, :Source, :LastInteractionTime, :SurfaceContext, :Saved, :SavedAt, :Deleted
+
+        def initialize(targetid=nil, targettype=nil, targetname=nil, source=nil, lastinteractiontime=nil, surfacecontext=nil, saved=nil, savedat=nil, deleted=nil)
+          @TargetId = targetid
+          @TargetType = targettype
+          @TargetName = targetname
+          @Source = source
+          @LastInteractionTime = lastinteractiontime
+          @SurfaceContext = surfacecontext
+          @Saved = saved
+          @SavedAt = savedat
+          @Deleted = deleted
+        end
+
+        def deserialize(params)
+          @TargetId = params['TargetId']
+          @TargetType = params['TargetType']
+          @TargetName = params['TargetName']
+          @Source = params['Source']
+          @LastInteractionTime = params['LastInteractionTime']
+          unless params['SurfaceContext'].nil?
+            @SurfaceContext = SurfaceContext.new
+            @SurfaceContext.deserialize(params['SurfaceContext'])
+          end
+          @Saved = params['Saved']
+          @SavedAt = params['SavedAt']
+          @Deleted = params['Deleted']
+        end
+      end
+
       # StopChatAI请求参数结构体
       class StopChatAIRequest < TencentCloud::Common::AbstractModel
         # @param SessionId: 会话ID
@@ -1615,6 +1687,22 @@ module TencentCloud
         def deserialize(params)
           @SessionId = params['SessionId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 前端宿主环境上下文
+      class SurfaceContext < TencentCloud::Common::AbstractModel
+        # @param Region: <p>地域</p>
+        # @type Region: String
+
+        attr_accessor :Region
+
+        def initialize(region=nil)
+          @Region = region
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
         end
       end
 

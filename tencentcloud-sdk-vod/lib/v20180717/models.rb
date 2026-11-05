@@ -7668,6 +7668,8 @@ module TencentCloud
       class CloneVoiceAsyncRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <p>点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</p>
         # @type SubAppId: String
+        # @param ModelName: <p>模型名，不填默认为MiniMax模型。</p> 枚举值： <ul><li>MiniMax</li><li>ElevenLabs</li></ul>
+        # @type ModelName: String
         # @param AudioData: <p>克隆音频base64编码。</p>
         # @type AudioData: String
         # @param AudioUrl: <p>克隆音频Url，AudioData为空时有效</p>
@@ -7676,17 +7678,18 @@ module TencentCloud
         # @type AudioFileId: String
         # @param LanguageBoost: <p>语言增强，如 "zh" "en" "auto"，默认 "auto"</p>
         # @type LanguageBoost: String
-        # @param ExtParam: <p>音色克隆拓展参数。<code>ExtParam</code> 支持的字段：</p><ul>  <li><code>text</code> (string)：试听合成文本，最大 <code>1000</code> 字符；非空时必须同时传 <code>tts_model</code>，克隆成功后返回试听音频 <code>DemoAudio</code>。</li>  <li><code>model</code> (string)：克隆模型，缺省 <code>minimax-voice-clone</code>。</li>  <li><code>tts_model</code> (string)：合成试听音频用的模型，可选 <code>minimax-speech-2.8-hd</code>、<code>minimax-speech-2.8-turbo</code>、<code>minimax-speech-2.6-hd</code>、<code>minimax-speech-2.6-turbo</code>、<code>minimax-speech-02-hd</code>、<code>minimax-speech-02-turbo</code>；<code>text</code> 非空时必填。</li>  <li><code>text_lang</code> (string)：试听文本语言。</li>  <li><code>voice_profile</code> (object)：音色画像，可选字段：    <ul>      <li><code>name</code> (string)：音色名称。</li>      <li><code>description</code> (string)：音色描述。</li>      <li><code>gender</code> (string)：性别，可选 <code>male</code> / <code>female</code> / <code>unknown</code>。</li>      <li><code>age</code> (string)：年龄段，可选 <code>child</code> / <code>teenager</code> / <code>youth</code> / <code>middle_aged</code> / <code>senior</code> / <code>unknown</code>。</li>      <li><code>languages</code> (string[])：支持语言，如 <code>["zh", "en"]</code>。</li>      <li><code>labels</code> (string[])：音色标签，如 <code>["磁性"]</code>。</li>      <li><code>scenes</code> (string[])：适用场景，如 <code>["解说"]</code>。</li>    </ul>  </li></ul>
+        # @param ExtParam: <p><strong>ExtParam</strong> JSON 字符串字段，用于指定各模型的高级音色参数。</p><hr><h3 id="Clone">通用参数</h3><ul><li>text（string）：试听文本，最大 1000 字符；传入后返回试听音频 DemoAudio</li><li>tts_model（string）：试听文本合成模型，text 非空时必填；按 ModelName 模型系列白名单校验</li><li>text_lang（string）：试听文本语言，如 zh</li><li>voice_profile.name（string）：音色名称</li><li>voice_profile.description（string）：音色描述</li><li>voice_profile.gender（string）：性别，可选 male、female、unknown</li><li>voice_profile.age（string）：年龄段，可选 child、teenager、youth、middle_aged、senior、unknown</li><li>voice_profile.languages（array of string）：语言，如 ["zh"]</li><li>voice_profile.labels（array of string）：标签，如 ["磁性"]</li><li>voice_profile.scenes（array of string）：场景，如 ["解说"]</li></ul><hr><h3 id="CloneElevenLabs">ElevenLabs</h3><ul><li>voice_name（string）：音色名称；未传时回退取 voice_profile.name，两者都缺时使用默认名称</li><li>description（string）：音色描述；未传时回退取 voice_profile.description</li><li>labels（map&lt;string,string&gt;）：音色标签，官方推荐键 language、accent、gender、age；最多 16 项，键值各不超过 256 字节</li><li>remove_background_noise（boolean）：是否用音频隔离模型去除背景噪声，默认 false；样本本身无噪声时开启可能降低质量</li></ul><hr>
         # @type ExtParam: String
         # @param SessionContext: <p>标识来源上下文，用于透传用户请求信息，在回调和任务流状态变更回调将返回该字段值，最长 1000 个字符。</p>
         # @type SessionContext: String
         # @param SessionId: <p>用于任务去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
 
-        attr_accessor :SubAppId, :AudioData, :AudioUrl, :AudioFileId, :LanguageBoost, :ExtParam, :SessionContext, :SessionId
+        attr_accessor :SubAppId, :ModelName, :AudioData, :AudioUrl, :AudioFileId, :LanguageBoost, :ExtParam, :SessionContext, :SessionId
 
-        def initialize(subappid=nil, audiodata=nil, audiourl=nil, audiofileid=nil, languageboost=nil, extparam=nil, sessioncontext=nil, sessionid=nil)
+        def initialize(subappid=nil, modelname=nil, audiodata=nil, audiourl=nil, audiofileid=nil, languageboost=nil, extparam=nil, sessioncontext=nil, sessionid=nil)
           @SubAppId = subappid
+          @ModelName = modelname
           @AudioData = audiodata
           @AudioUrl = audiourl
           @AudioFileId = audiofileid
@@ -7698,6 +7701,7 @@ module TencentCloud
 
         def deserialize(params)
           @SubAppId = params['SubAppId']
+          @ModelName = params['ModelName']
           @AudioData = params['AudioData']
           @AudioUrl = params['AudioUrl']
           @AudioFileId = params['AudioFileId']
@@ -7790,6 +7794,8 @@ module TencentCloud
       class CloneVoiceSyncRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <p>点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</p>
         # @type SubAppId: String
+        # @param ModelName: <p>模型名，不填默认为MiniMax模型。</p> 枚举值： <ul><li>MiniMax</li><li>ElevenLabs</li></ul>
+        # @type ModelName: String
         # @param AudioData: <p>克隆音频base64编码。</p>
         # @type AudioData: String
         # @param AudioUrl: <p>克隆音频Url，AudioData为空时有效</p>
@@ -7798,13 +7804,14 @@ module TencentCloud
         # @type AudioFileId: String
         # @param LanguageBoost: <p>语言增强，如 "zh" "en" "auto"，默认 "auto"</p>
         # @type LanguageBoost: String
-        # @param ExtParam: <p>同步音色克隆拓展参数。<code>ExtParam</code> 支持的字段：</p><ul>  <li><code>text</code> (string)：试听合成文本，最大 <code>1000</code> 字符；非空时必须同时传 <code>tts_model</code>，克隆成功后返回试听音频 <code>DemoAudio</code>。</li>  <li><code>model</code> (string)：克隆模型，缺省 <code>minimax-voice-clone</code>。</li>  <li><code>tts_model</code> (string)：合成试听音频用的模型，可选 <code>minimax-speech-2.8-hd</code>、<code>minimax-speech-2.8-turbo</code>、<code>minimax-speech-2.6-hd</code>、<code>minimax-speech-2.6-turbo</code>、<code>minimax-speech-02-hd</code>、<code>minimax-speech-02-turbo</code>；<code>text</code> 非空时必填。</li>  <li><code>text_lang</code> (string)：试听文本语言。</li>  <li><code>voice_profile</code> (object)：音色画像，可选字段：    <ul>      <li><code>name</code> (string)：音色名称。</li>      <li><code>description</code> (string)：音色描述。</li>      <li><code>gender</code> (string)：性别，可选 <code>male</code> / <code>female</code> / <code>unknown</code>。</li>      <li><code>age</code> (string)：年龄段，可选 <code>child</code> / <code>teenager</code> / <code>youth</code> / <code>middle_aged</code> / <code>senior</code> / <code>unknown</code>。</li>      <li><code>languages</code> (string[])：支持语言，如 <code>["zh", "en"]</code>。</li>      <li><code>labels</code> (string[])：音色标签，如 <code>["磁性"]</code>。</li>      <li><code>scenes</code> (string[])：适用场景，如 <code>["解说"]</code>。</li>    </ul>  </li></ul>
+        # @param ExtParam: <p><strong>ExtParam</strong> JSON 字符串字段，用于指定各模型的高级音色参数。</p><hr><h3 id="Clone">通用参数</h3><ul><li>text（string）：试听文本，最大 1000 字符；传入后返回试听音频 DemoAudio</li><li>tts_model（string）：试听文本合成模型，text 非空时必填；按 ModelName 模型系列白名单校验</li><li>text_lang（string）：试听文本语言，如 zh</li><li>voice_profile.name（string）：音色名称</li><li>voice_profile.description（string）：音色描述</li><li>voice_profile.gender（string）：性别，可选 male、female、unknown</li><li>voice_profile.age（string）：年龄段，可选 child、teenager、youth、middle_aged、senior、unknown</li><li>voice_profile.languages（array of string）：语言，如 ["zh"]</li><li>voice_profile.labels（array of string）：标签，如 ["磁性"]</li><li>voice_profile.scenes（array of string）：场景，如 ["解说"]</li></ul><hr><h3 id="CloneElevenLabs">ElevenLabs</h3><ul><li>voice_name（string）：音色名称；未传时回退取 voice_profile.name，两者都缺时使用默认名称</li><li>description（string）：音色描述；未传时回退取 voice_profile.description</li><li>labels（map&lt;string,string&gt;）：音色标签，官方推荐键 language、accent、gender、age；最多 16 项，键值各不超过 256 字节</li><li>remove_background_noise（boolean）：是否用音频隔离模型去除背景噪声，默认 false；样本本身无噪声时开启可能降低质量</li></ul><hr>
         # @type ExtParam: String
 
-        attr_accessor :SubAppId, :AudioData, :AudioUrl, :AudioFileId, :LanguageBoost, :ExtParam
+        attr_accessor :SubAppId, :ModelName, :AudioData, :AudioUrl, :AudioFileId, :LanguageBoost, :ExtParam
 
-        def initialize(subappid=nil, audiodata=nil, audiourl=nil, audiofileid=nil, languageboost=nil, extparam=nil)
+        def initialize(subappid=nil, modelname=nil, audiodata=nil, audiourl=nil, audiofileid=nil, languageboost=nil, extparam=nil)
           @SubAppId = subappid
+          @ModelName = modelname
           @AudioData = audiodata
           @AudioUrl = audiourl
           @AudioFileId = audiofileid
@@ -7814,6 +7821,7 @@ module TencentCloud
 
         def deserialize(params)
           @SubAppId = params['SubAppId']
+          @ModelName = params['ModelName']
           @AudioData = params['AudioData']
           @AudioUrl = params['AudioUrl']
           @AudioFileId = params['AudioFileId']
@@ -14322,18 +14330,22 @@ module TencentCloud
       class DeleteVoiceRequest < TencentCloud::Common::AbstractModel
         # @param VoiceId: <p>音色Id</p>
         # @type VoiceId: String
+        # @param ModelName: <p>模型名，不填默认为MiniMax模型。</p> 枚举值：<ul><li><p>MiniMax </p></li><li><p>ElevenLabs</p></li></ul>
+        # @type ModelName: String
         # @param SubAppId: <p>点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</p>
         # @type SubAppId: String
 
-        attr_accessor :VoiceId, :SubAppId
+        attr_accessor :VoiceId, :ModelName, :SubAppId
 
-        def initialize(voiceid=nil, subappid=nil)
+        def initialize(voiceid=nil, modelname=nil, subappid=nil)
           @VoiceId = voiceid
+          @ModelName = modelname
           @SubAppId = subappid
         end
 
         def deserialize(params)
           @VoiceId = params['VoiceId']
+          @ModelName = params['ModelName']
           @SubAppId = params['SubAppId']
         end
       end
@@ -18870,6 +18882,8 @@ module TencentCloud
       class DescribeVoicesRequest < TencentCloud::Common::AbstractModel
         # @param SubAppId: <p>点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</p>
         # @type SubAppId: String
+        # @param ModelName: <p>模型名，不填默认为MiniMax模型。</p>枚举值：<ul><li><p>MiniMax</p></li><li><p>ElevenLabs</p></li></ul>
+        # @type ModelName: String
         # @param VoiceId: <p>音色ID</p>
         # @type VoiceId: String
         # @param VoiceType: <p>音色类别</p><p>枚举值：</p><ul><li>system： 系统音色</li><li>clone： 克隆音色</li><li>design： 设计音色</li><li>all： 所有音色（默认）</li></ul>
@@ -18891,10 +18905,11 @@ module TencentCloud
         # @param ExtParam: <p>扩展参数，json字符串</p><p>其他筛选条件voiceName String 音色名，模糊匹配labels Array of String 标签，匹配包含这些标签的音色</p>
         # @type ExtParam: String
 
-        attr_accessor :SubAppId, :VoiceId, :VoiceType, :VoiceName, :Description, :Gender, :Age, :Languages, :Labels, :Scenes, :ExtParam
+        attr_accessor :SubAppId, :ModelName, :VoiceId, :VoiceType, :VoiceName, :Description, :Gender, :Age, :Languages, :Labels, :Scenes, :ExtParam
 
-        def initialize(subappid=nil, voiceid=nil, voicetype=nil, voicename=nil, description=nil, gender=nil, age=nil, languages=nil, labels=nil, scenes=nil, extparam=nil)
+        def initialize(subappid=nil, modelname=nil, voiceid=nil, voicetype=nil, voicename=nil, description=nil, gender=nil, age=nil, languages=nil, labels=nil, scenes=nil, extparam=nil)
           @SubAppId = subappid
+          @ModelName = modelname
           @VoiceId = voiceid
           @VoiceType = voicetype
           @VoiceName = voicename
@@ -18909,6 +18924,7 @@ module TencentCloud
 
         def deserialize(params)
           @SubAppId = params['SubAppId']
+          @ModelName = params['ModelName']
           @VoiceId = params['VoiceId']
           @VoiceType = params['VoiceType']
           @VoiceName = params['VoiceName']
@@ -18928,14 +18944,17 @@ module TencentCloud
         # @type Voices: Array
         # @param TotalCount: <p>可用音色总数</p>
         # @type TotalCount: Integer
+        # @param VoiceSlot: <p>可用音色槽位信息</p>
+        # @type VoiceSlot: :class:`Tencentcloud::Vod.v20180717.models.VoiceSlotInfo`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Voices, :TotalCount, :RequestId
+        attr_accessor :Voices, :TotalCount, :VoiceSlot, :RequestId
 
-        def initialize(voices=nil, totalcount=nil, requestid=nil)
+        def initialize(voices=nil, totalcount=nil, voiceslot=nil, requestid=nil)
           @Voices = voices
           @TotalCount = totalcount
+          @VoiceSlot = voiceslot
           @RequestId = requestid
         end
 
@@ -18949,6 +18968,10 @@ module TencentCloud
             end
           end
           @TotalCount = params['TotalCount']
+          unless params['VoiceSlot'].nil?
+            @VoiceSlot = VoiceSlotInfo.new
+            @VoiceSlot.deserialize(params['VoiceSlot'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -19153,22 +19176,25 @@ module TencentCloud
         # @type Prompt: String
         # @param SubAppId: <p>点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</p>
         # @type SubAppId: String
+        # @param ModelName: <p>模型名，不填默认为MiniMax模型。</p> 枚举值： <ul><li>MiniMax</li><li>ElevenLabs</li></ul>
+        # @type ModelName: String
         # @param VoiceSettings: <p>音色设置</p>
         # @type VoiceSettings: :class:`Tencentcloud::Vod.v20180717.models.VoiceSettings`
         # @param PreviewText: <p>试听合成文本，最大 500 字符</p>
         # @type PreviewText: String
-        # @param ExtParam: <p>扩展参数，json字符串</p>
+        # @param ExtParam: <p><strong>ExtParam</strong> JSON 字符串字段，用于指定各模型的高级设计参数。</p><hr><h3 id="ElevenLabs">ElevenLabs</h3><ul><li>model_id（string）：TTV 模型，可选 eleven_multilingual_ttv_v2（默认）、eleven_ttv_v3</li><li>voice_name（string）：音色名称，用于设计完成后正式创建音色</li><li>labels（map&lt;string,string&gt;）：音色标签，最多 16 项，键值各不超过 256 字节</li><li>auto_generate_text（boolean）：是否自动生成与描述匹配的试听文本，默认 false</li><li>loudness（float）：音量，取值范围 [-1, 1]，默认 0.5</li><li>seed（integer）：采样种子，取值范围 [0, 2147483647]</li><li>guidance_scale（float）：提示词遵循程度，取值范围 [0, 100]，默认 5</li><li>quality（float）：输出质量，取值范围 [-1, 1]，越高质量越好但多样性越低</li><li>should_enhance（boolean）：是否用 AI 扩写音色描述，默认 false</li><li>reference_audio_base64（string）：参考音频 base64，仅 eleven_ttv_v3 支持</li><li>prompt_strength（float）：提示词与参考音频权重，取值范围 [0, 1]，仅 eleven_ttv_v3 支持</li><li>audio_setting.format（string）：音频格式，可选 mp3、opus、alaw、pcm</li><li>audio_setting.sample_rate（integer）：采样率，与 format 组合受限</li><li>audio_setting.bitrate（integer）：比特率，需与 format、sample_rate 匹配</li></ul><hr>
         # @type ExtParam: String
         # @param SessionContext: <p>标识来源上下文，用于透传用户请求信息，在回调和任务流状态变更回调将返回该字段值，最长 1000 个字符。</p>
         # @type SessionContext: String
         # @param SessionId: <p>用于任务去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
 
-        attr_accessor :Prompt, :SubAppId, :VoiceSettings, :PreviewText, :ExtParam, :SessionContext, :SessionId
+        attr_accessor :Prompt, :SubAppId, :ModelName, :VoiceSettings, :PreviewText, :ExtParam, :SessionContext, :SessionId
 
-        def initialize(prompt=nil, subappid=nil, voicesettings=nil, previewtext=nil, extparam=nil, sessioncontext=nil, sessionid=nil)
+        def initialize(prompt=nil, subappid=nil, modelname=nil, voicesettings=nil, previewtext=nil, extparam=nil, sessioncontext=nil, sessionid=nil)
           @Prompt = prompt
           @SubAppId = subappid
+          @ModelName = modelname
           @VoiceSettings = voicesettings
           @PreviewText = previewtext
           @ExtParam = extparam
@@ -19179,6 +19205,7 @@ module TencentCloud
         def deserialize(params)
           @Prompt = params['Prompt']
           @SubAppId = params['SubAppId']
+          @ModelName = params['ModelName']
           unless params['VoiceSettings'].nil?
             @VoiceSettings = VoiceSettings.new
             @VoiceSettings.deserialize(params['VoiceSettings'])
@@ -38688,11 +38715,15 @@ module TencentCloud
         # @type Text: String
         # @param VoiceId: <p>音色ID</p>
         # @type VoiceId: String
+        # @param ModelName: <p>模型系列，区分大小写，默认 MiniMax。</p><p>枚举值：</p><ul><li>MiniMax</li><li>ElevenLabs</li></ul>
+        # @type ModelName: String
+        # @param ModelVersion: <p>模型版本，不填时使用该模型系列的默认版本。</p><p>各模型支持版本：</p><ul><li><p>MiniMax：minimax-speech-2.8-hd（默认）、minimax-speech-2.8-turbo、minimax-speech-2.6-hd、minimax-speech-2.6-turbo、minimax-speech-02-hd、minimax-speech-02-turbo</p></li><li><p>ElevenLabs：custom-model-ll-v3（默认）、custom-model-ll-mlv2、custom-model-ll-fv2.5、custom-model-ll-fv2、custom-model-ll-v4、custom-model-ll-v4tb</p></li></ul>
+        # @type ModelVersion: String
         # @param SubAppId: <p>点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</p>
         # @type SubAppId: String
         # @param LanguageBoost: <p>语言增强，如 "zh" "en" "auto"，默认 "auto"</p>
         # @type LanguageBoost: String
-        # @param ExtParam: <p>文本合成语音（异步）拓展参数。ExtParam 支持的字段：</p><ul><li>model (string)：合成模型，可选 minimax-speech-2.8-hd、minimax-speech-2.8-turbo、minimax-speech-2.6-hd、minimax-speech-2.6-turbo、minimax-speech-02-hd、minimax-speech-02-turbo；默认 minimax-speech-2.8-hd。</li><li>text_lang (string)：文本语言，如 zh / en；与入参 LanguageBoost 同义，同时传入时以 ExtParam 为准。</li><li>audio_setting (object)：音频输出与音色微调参数（注意：异步接口的语速、音量、音调、情绪均在 audio_setting 下，与同步接口的 voice_setting 不同），可选字段：<ul><li>speed (float)：语速，[0.5, 2.0]，默认 1.0。</li><li>vol (float)：音量，(0, 10]，默认 1.0。</li><li>pitch (int)：音调，[-12, 12]，默认 0。</li><li>emotion (string)：情绪，可选 happy / sad / angry / fearful / disgusted / surprised / calm / fluent / whisper。</li><li>sample_rate (int)：采样率，可选 8000 / 16000 / 22050 / 24000 / 32000 / 44100，默认 16000。</li><li>format (string)：音频格式，可选 mp3 / wav，默认 wav。</li><li>duration (float)：目标时长（秒）。</li><li>cut_silence (bool)：是否裁剪静音段。</li></ul></li></ul>
+        # @param ExtParam: <p><strong>ExtParam</strong> 是 JSON 字符串字段，用于指定各模型的高级合成参数。字段名中的 . 表示嵌套对象，如 req_params.audio_params.speech_rate，需按层级组成本地 JSON 对象后整体转义传入。未列出的字段不生效。</p><hr><h3 id="MiniMax">MiniMax</h3><ul><li>model（string）：合成模型，可选 minimax-speech-2.8-hd、minimax-speech-2.8-turbo、minimax-speech-2.6-hd、minimax-speech-2.6-turbo、minimax-speech-02-hd、minimax-speech-02-turbo，默认 minimax-speech-2.8-hd</li><li>voice_setting.speed（float）：语速，取值范围 [0.5, 2.0]，默认 1.0</li><li>voice_setting.vol（float）：音量，取值范围 (0, 10]，默认 1.0</li><li>voice_setting.pitch（integer）：音调，取值范围 [-12, 12]，默认 0</li><li>voice_setting.emotion（string）：情绪，可选 happy、sad、angry、fearful、disgusted、surprised、calm、fluent、whisper</li><li>audio_setting.format（string）：音频格式，可选 mp3、wav，默认 wav</li><li>audio_setting.sample_rate（integer）：采样率，可选 8000、16000、22050、24000、32000、44100，默认 16000</li><li>audio_setting.duration（float）：目标时长，单位秒</li><li>audio_setting.cut_silence（boolean）：是否裁剪静音段</li></ul><hr><h3 id="ElevenLabs">ElevenLabs</h3><ul><li>language_code（string）：语言代码（ISO 639-1），用于强制语种与文本归一化</li><li>previous_text（string）：上一段文本（衔接上下文）</li><li>next_text（string）：下一段文本</li><li>seed（integer）：确定性采样种子，范围 [0, 4294967295]</li><li>apply_text_normalization（string）：文本规范化，可选 auto、on、off</li><li>apply_language_text_normalization（boolean）：是否启用语种相关的文本规范化</li><li>voice_settings.stability（float）：稳定性，默认 0.5</li><li>voice_settings.similarity_boost（float）：音色相似度，默认 0.75</li><li>voice_settings.style（float）：风格夸张度，默认 0</li><li>voice_settings.use_speaker_boost（boolean）：是否增强音色相似度，默认 true</li><li>voice_settings.speed（float）：语速，取值范围 [0.5, 2.0]，默认 1.0</li><li>audio_setting.format（string）：音频格式，可选 mp3、opus、alaw、pcm</li><li>audio_setting.sample_rate（integer）：采样率，需与 format 匹配</li><li>audio_setting.bitrate（integer）：比特率，需与 format、sample_rate 匹配</li></ul><hr>
         # @type ExtParam: String
         # @param Output: <p>输出相关参数</p><p>可以指定输出形式等。默认输出音频url。</p>
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.TextToSpeechAsyncOutputOption`
@@ -38701,11 +38732,13 @@ module TencentCloud
         # @param SessionId: <p>用于任务去重的识别码，如果三天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。</p>
         # @type SessionId: String
 
-        attr_accessor :Text, :VoiceId, :SubAppId, :LanguageBoost, :ExtParam, :Output, :SessionContext, :SessionId
+        attr_accessor :Text, :VoiceId, :ModelName, :ModelVersion, :SubAppId, :LanguageBoost, :ExtParam, :Output, :SessionContext, :SessionId
 
-        def initialize(text=nil, voiceid=nil, subappid=nil, languageboost=nil, extparam=nil, output=nil, sessioncontext=nil, sessionid=nil)
+        def initialize(text=nil, voiceid=nil, modelname=nil, modelversion=nil, subappid=nil, languageboost=nil, extparam=nil, output=nil, sessioncontext=nil, sessionid=nil)
           @Text = text
           @VoiceId = voiceid
+          @ModelName = modelname
+          @ModelVersion = modelversion
           @SubAppId = subappid
           @LanguageBoost = languageboost
           @ExtParam = extparam
@@ -38717,6 +38750,8 @@ module TencentCloud
         def deserialize(params)
           @Text = params['Text']
           @VoiceId = params['VoiceId']
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
           @SubAppId = params['SubAppId']
           @LanguageBoost = params['LanguageBoost']
           @ExtParam = params['ExtParam']
@@ -38829,20 +38864,26 @@ module TencentCloud
         # @type Text: String
         # @param VoiceId: <p>音色Id，指定音色合成时填写，支持系统音色和设计、克隆音色。</p>
         # @type VoiceId: String
+        # @param ModelName: <p>模型系列，区分大小写，默认 MiniMax。</p><p>枚举值：</p><ul><li>MiniMax</li><li>ElevenLabs</li></ul>
+        # @type ModelName: String
+        # @param ModelVersion: <p>模型版本，不填时使用该模型系列的默认版本。</p><p>各模型支持版本：</p><ul><li><p>MiniMax：minimax-speech-2.8-hd（默认）、minimax-speech-2.8-turbo、minimax-speech-2.6-hd、minimax-speech-2.6-turbo、minimax-speech-02-hd、minimax-speech-02-turbo</p></li><li><p>ElevenLabs：custom-model-ll-v3（默认）、custom-model-ll-mlv2、custom-model-ll-fv2.5、custom-model-ll-fv2、custom-model-ll-v4、custom-model-ll-v4tb</p></li></ul>
+        # @type ModelVersion: String
         # @param SubAppId: <p>点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</p>
         # @type SubAppId: String
         # @param LanguageBoost: <p>语言增强，如 "zh" "en" "auto"，默认 "auto"</p>
         # @type LanguageBoost: String
         # @param Output: <p>输出相关参数</p><p>可以指定输出形式等。默认输出音频URL。</p>
         # @type Output: :class:`Tencentcloud::Vod.v20180717.models.TextToSpeechSyncOutputOption`
-        # @param ExtParam: <p>同步语音合成拓展参数。<code>ExtParam</code> 支持的字段：</p><ul>  <li><code>model</code> (string)：合成模型，可选 <code>minimax-speech-2.8-hd</code>、<code>minimax-speech-2.8-turbo</code>、<code>minimax-speech-2.6-hd</code>、<code>minimax-speech-2.6-turbo</code>、<code>minimax-speech-02-hd</code>、<code>minimax-speech-02-turbo</code>；默认 <code>minimax-speech-2.8-hd</code>。</li>  <li><code>voice_setting</code> (object)：音色微调，可选字段：    <ul>      <li><code>speed</code> (float)：语速，<code>[0.5, 2.0]</code>，默认 <code>1.0</code>。</li>      <li><code>vol</code> (float)：音量，<code>(0, 10]</code>，默认 <code>1.0</code>。</li>      <li><code>pitch</code> (int)：音调，<code>[-12, 12]</code>，默认 <code>0</code>。</li>      <li><code>emotion</code> (string)：情绪，可选 <code>happy</code> / <code>sad</code> / <code>angry</code> / <code>fearful</code> / <code>disgusted</code> / <code>surprised</code> / <code>calm</code> / <code>fluent</code> / <code>whisper</code>。</li>    </ul>  </li>  <li><code>audio_setting</code> (object)：音频输出参数，可选字段：    <ul>      <li><code>sample_rate</code> (int)：采样率，可选 <code>8000</code> / <code>16000</code> / <code>22050</code> / <code>24000</code> / <code>32000</code> / <code>44100</code>，默认 <code>16000</code>。</li>      <li><code>format</code> (string)：音频格式，可选 <code>mp3</code> / <code>wav</code>，默认 <code>wav</code>。</li>      <li><code>duration</code> (float)：目标时长（秒）。</li>      <li><code>cut_silence</code> (bool)：是否裁剪静音段。</li>    </ul>  </li></ul>
+        # @param ExtParam: <p><strong>ExtParam</strong> 是 JSON 字符串字段，用于指定各模型的高级合成参数。字段名中的 . 表示嵌套对象，如 req_params.audio_params.speech_rate，需按层级组成本地 JSON 对象后整体转义传入。未列出的字段不生效。</p><hr><h3 id="MiniMax">MiniMax</h3><ul><li>model（string）：合成模型，可选 minimax-speech-2.8-hd、minimax-speech-2.8-turbo、minimax-speech-2.6-hd、minimax-speech-2.6-turbo、minimax-speech-02-hd、minimax-speech-02-turbo，默认 minimax-speech-2.8-hd</li><li>voice_setting.speed（float）：语速，取值范围 [0.5, 2.0]，默认 1.0</li><li>voice_setting.vol（float）：音量，取值范围 (0, 10]，默认 1.0</li><li>voice_setting.pitch（integer）：音调，取值范围 [-12, 12]，默认 0</li><li>voice_setting.emotion（string）：情绪，可选 happy、sad、angry、fearful、disgusted、surprised、calm、fluent、whisper</li><li>audio_setting.format（string）：音频格式，可选 mp3、wav，默认 wav</li><li>audio_setting.sample_rate（integer）：采样率，可选 8000、16000、22050、24000、32000、44100，默认 16000</li><li>audio_setting.duration（float）：目标时长，单位秒</li><li>audio_setting.cut_silence（boolean）：是否裁剪静音段</li></ul><hr><h3 id="ElevenLabs">ElevenLabs</h3><ul><li>language_code（string）：语言代码（ISO 639-1），用于强制语种与文本归一化</li><li>previous_text（string）：上一段文本（衔接上下文）</li><li>next_text（string）：下一段文本</li><li>seed（integer）：确定性采样种子，范围 [0, 4294967295]</li><li>apply_text_normalization（string）：文本规范化，可选 auto、on、off</li><li>apply_language_text_normalization（boolean）：是否启用语种相关的文本规范化</li><li>voice_settings.stability（float）：稳定性，默认 0.5</li><li>voice_settings.similarity_boost（float）：音色相似度，默认 0.75</li><li>voice_settings.style（float）：风格夸张度，默认 0</li><li>voice_settings.use_speaker_boost（boolean）：是否增强音色相似度，默认 true</li><li>voice_settings.speed（float）：语速，取值范围 [0.5, 2.0]，默认 1.0</li><li>audio_setting.format（string）：音频格式，可选 mp3、opus、alaw、pcm</li><li>audio_setting.sample_rate（integer）：采样率，需与 format 匹配</li><li>audio_setting.bitrate（integer）：比特率，需与 format、sample_rate 匹配</li></ul><hr>
         # @type ExtParam: String
 
-        attr_accessor :Text, :VoiceId, :SubAppId, :LanguageBoost, :Output, :ExtParam
+        attr_accessor :Text, :VoiceId, :ModelName, :ModelVersion, :SubAppId, :LanguageBoost, :Output, :ExtParam
 
-        def initialize(text=nil, voiceid=nil, subappid=nil, languageboost=nil, output=nil, extparam=nil)
+        def initialize(text=nil, voiceid=nil, modelname=nil, modelversion=nil, subappid=nil, languageboost=nil, output=nil, extparam=nil)
           @Text = text
           @VoiceId = voiceid
+          @ModelName = modelname
+          @ModelVersion = modelversion
           @SubAppId = subappid
           @LanguageBoost = languageboost
           @Output = output
@@ -38852,6 +38893,8 @@ module TencentCloud
         def deserialize(params)
           @Text = params['Text']
           @VoiceId = params['VoiceId']
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
           @SubAppId = params['SubAppId']
           @LanguageBoost = params['LanguageBoost']
           unless params['Output'].nil?
@@ -39452,16 +39495,19 @@ module TencentCloud
         # @type VoiceId: String
         # @param VoiceFields: <p>更新音色字段</p>
         # @type VoiceFields: :class:`Tencentcloud::Vod.v20180717.models.VoiceUpdateFields`
+        # @param ModelName: <p>模型名，不填默认为MiniMax模型。</p> 枚举值： <ul><li>MiniMax </li><li>ElevenLabs</li></ul>
+        # @type ModelName: String
         # @param SubAppId: <p>点播应用 ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</p>
         # @type SubAppId: String
         # @param ExtParam: <p>扩展参数，json字符串</p>
         # @type ExtParam: String
 
-        attr_accessor :VoiceId, :VoiceFields, :SubAppId, :ExtParam
+        attr_accessor :VoiceId, :VoiceFields, :ModelName, :SubAppId, :ExtParam
 
-        def initialize(voiceid=nil, voicefields=nil, subappid=nil, extparam=nil)
+        def initialize(voiceid=nil, voicefields=nil, modelname=nil, subappid=nil, extparam=nil)
           @VoiceId = voiceid
           @VoiceFields = voicefields
+          @ModelName = modelname
           @SubAppId = subappid
           @ExtParam = extparam
         end
@@ -39472,6 +39518,7 @@ module TencentCloud
             @VoiceFields = VoiceUpdateFields.new
             @VoiceFields.deserialize(params['VoiceFields'])
           end
+          @ModelName = params['ModelName']
           @SubAppId = params['SubAppId']
           @ExtParam = params['ExtParam']
         end
@@ -40763,6 +40810,30 @@ module TencentCloud
           @Languages = params['Languages']
           @Labels = params['Labels']
           @Scenes = params['Scenes']
+        end
+      end
+
+      # 音色配额
+      class VoiceSlotInfo < TencentCloud::Common::AbstractModel
+        # @param Limit: <p>音色限制数量</p>
+        # @type Limit: Integer
+        # @param Remaining: <p>音色限制剩余数</p>
+        # @type Remaining: Integer
+        # @param Used: <p>音色限制已用数</p>
+        # @type Used: Integer
+
+        attr_accessor :Limit, :Remaining, :Used
+
+        def initialize(limit=nil, remaining=nil, used=nil)
+          @Limit = limit
+          @Remaining = remaining
+          @Used = used
+        end
+
+        def deserialize(params)
+          @Limit = params['Limit']
+          @Remaining = params['Remaining']
+          @Used = params['Used']
         end
       end
 

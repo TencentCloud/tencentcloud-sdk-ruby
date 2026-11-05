@@ -5882,7 +5882,7 @@ module TencentCloud
 
       # DescribeNodeSpec请求参数结构体
       class DescribeNodeSpecRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: <p>可用区Id，可以通过https://document.capi.woa.com/document/api/1605/76892查询相关信息</p>
+        # @param ZoneId: <p>可用区Id，可以通过<a href="https://cloud.tencent.com/document/product/1596/77929">可用区列表</a>查询相关信息</p>
         # @type ZoneId: Integer
         # @param CvmPayMode: <p>0,按量，1包年包月，99按量+包年包月，错填将不会展示费用信息</p>
         # @type CvmPayMode: Integer

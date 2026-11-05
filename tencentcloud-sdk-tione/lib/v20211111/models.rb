@@ -1409,10 +1409,14 @@ module TencentCloud
         # @type VolumeSourceGooseFS: :class:`Tencentcloud::Tione.v20211111.models.GooseFS`
         # @param Description: <p>描述</p>
         # @type Description: String
+        # @param ResourceSupplyAttribute: <p>资源供应属性</p>
+        # @type ResourceSupplyAttribute: :class:`Tencentcloud::Tione.v20211111.models.ResourceSupplyAttribute`
+        # @param Queues: <p>队列ID</p>
+        # @type Queues: Array
 
-        attr_accessor :Name, :ChargeType, :ResourceConf, :LogEnable, :RootAccess, :AutoStopping, :DirectInternetAccess, :TiProjectId, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSourceType, :VolumeSizeInGB, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS, :Description
+        attr_accessor :Name, :ChargeType, :ResourceConf, :LogEnable, :RootAccess, :AutoStopping, :DirectInternetAccess, :TiProjectId, :ResourceGroupId, :VpcId, :SubnetId, :VolumeSourceType, :VolumeSizeInGB, :VolumeSourceCFS, :LogConfig, :LifecycleScriptId, :DefaultCodeRepoId, :AdditionalCodeRepoIds, :AutomaticStopTime, :Tags, :DataConfigs, :ImageInfo, :ImageType, :SSHConfig, :VolumeSourceGooseFS, :Description, :ResourceSupplyAttribute, :Queues
 
-        def initialize(name=nil, chargetype=nil, resourceconf=nil, logenable=nil, rootaccess=nil, autostopping=nil, directinternetaccess=nil, tiprojectid=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesourcetype=nil, volumesizeingb=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil, description=nil)
+        def initialize(name=nil, chargetype=nil, resourceconf=nil, logenable=nil, rootaccess=nil, autostopping=nil, directinternetaccess=nil, tiprojectid=nil, resourcegroupid=nil, vpcid=nil, subnetid=nil, volumesourcetype=nil, volumesizeingb=nil, volumesourcecfs=nil, logconfig=nil, lifecyclescriptid=nil, defaultcoderepoid=nil, additionalcoderepoids=nil, automaticstoptime=nil, tags=nil, dataconfigs=nil, imageinfo=nil, imagetype=nil, sshconfig=nil, volumesourcegoosefs=nil, description=nil, resourcesupplyattribute=nil, queues=nil)
           @Name = name
           @ChargeType = chargetype
           @ResourceConf = resourceconf
@@ -1439,6 +1443,8 @@ module TencentCloud
           @SSHConfig = sshconfig
           @VolumeSourceGooseFS = volumesourcegoosefs
           @Description = description
+          @ResourceSupplyAttribute = resourcesupplyattribute
+          @Queues = queues
         end
 
         def deserialize(params)
@@ -1500,6 +1506,11 @@ module TencentCloud
             @VolumeSourceGooseFS.deserialize(params['VolumeSourceGooseFS'])
           end
           @Description = params['Description']
+          unless params['ResourceSupplyAttribute'].nil?
+            @ResourceSupplyAttribute = ResourceSupplyAttribute.new
+            @ResourceSupplyAttribute.deserialize(params['ResourceSupplyAttribute'])
+          end
+          @Queues = params['Queues']
         end
       end
 
@@ -12104,10 +12115,12 @@ module TencentCloud
         # @param ResourceSupplyAttribute: <p>资源供应属性（潮汐/竞价等供应模式），公有云场景用于指定机器来源类型。仅区分供应来源，计费/部署/伸缩仍按后付费处理（ChargeType 恒为 POSTPAID_BY_HOUR）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceSupplyAttribute: :class:`Tencentcloud::Tione.v20211111.models.ResourceSupplyAttribute`
+        # @param ResourceGroupSWType: <p>资源组类型（output only，查询时回显供前端区分资源组表单）。枚举值：NORMAL（托管资源组）/ SW（纳管资源组）。按量计费（ChargeType=POSTPAID_BY_HOUR）时为空；写入时仍以查询到的资源组实际类型为准，调用方无需传入</p>
+        # @type ResourceGroupSWType: String
 
-        attr_accessor :ChargeType, :ResourceGroupId, :ResourceGroupName, :Zone, :QueueId, :Priority, :ResourceSupplyAttribute
+        attr_accessor :ChargeType, :ResourceGroupId, :ResourceGroupName, :Zone, :QueueId, :Priority, :ResourceSupplyAttribute, :ResourceGroupSWType
 
-        def initialize(chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, zone=nil, queueid=nil, priority=nil, resourcesupplyattribute=nil)
+        def initialize(chargetype=nil, resourcegroupid=nil, resourcegroupname=nil, zone=nil, queueid=nil, priority=nil, resourcesupplyattribute=nil, resourcegroupswtype=nil)
           @ChargeType = chargetype
           @ResourceGroupId = resourcegroupid
           @ResourceGroupName = resourcegroupname
@@ -12115,6 +12128,7 @@ module TencentCloud
           @QueueId = queueid
           @Priority = priority
           @ResourceSupplyAttribute = resourcesupplyattribute
+          @ResourceGroupSWType = resourcegroupswtype
         end
 
         def deserialize(params)
@@ -12128,6 +12142,7 @@ module TencentCloud
             @ResourceSupplyAttribute = ResourceSupplyAttribute.new
             @ResourceSupplyAttribute.deserialize(params['ResourceSupplyAttribute'])
           end
+          @ResourceGroupSWType = params['ResourceGroupSWType']
         end
       end
 

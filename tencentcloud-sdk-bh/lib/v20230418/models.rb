@@ -1825,34 +1825,40 @@ module TencentCloud
 
       # CreateResource请求参数结构体
       class CreateResourceRequest < TencentCloud::Common::AbstractModel
-        # @param DeployRegion: 部署region
+        # @param DeployRegion: <p>部署region</p>
         # @type DeployRegion: String
-        # @param VpcId: 部署堡垒机的VpcId
+        # @param VpcId: <p>部署堡垒机的VpcId</p>
         # @type VpcId: String
-        # @param SubnetId: 部署堡垒机的SubnetId
+        # @param SubnetId: <p>部署堡垒机的SubnetId</p>
         # @type SubnetId: String
-        # @param ResourceEdition: 资源类型。取值:standard/pro
+        # @param ResourceEdition: <p>资源类型。取值:standard/pro</p>
         # @type ResourceEdition: String
-        # @param ResourceNode: 资源节点数
+        # @param ResourceNode: <p>资源节点数</p>
         # @type ResourceNode: Integer
-        # @param TimeUnit: 计费周期
+        # @param TimeUnit: <p>计费周期</p>
         # @type TimeUnit: String
-        # @param TimeSpan: 计费时长
+        # @param TimeSpan: <p>计费时长</p>
         # @type TimeSpan: Integer
-        # @param PayMode: 计费模式 1预付费
+        # @param PayMode: <p>计费模式 1预付费</p>
         # @type PayMode: Integer
-        # @param AutoRenewFlag: 自动续费
+        # @param AutoRenewFlag: <p>自动续费</p>
         # @type AutoRenewFlag: Integer
-        # @param DeployZone: 部署zone
+        # @param IOAResource: <p>零信任堡垒机功能包</p><p>枚举值：</p><ul><li>0： 不开通</li><li>1： 付费版（含 20 用户 / 10Mbps 带宽）</li></ul>
+        # @type IOAResource: Integer
+        # @param PackageIOAUserCount: <p>零信任用户扩展包，1 个 = 20 用户</p><p>取值范围：[0, 999]</p>
+        # @type PackageIOAUserCount: Integer
+        # @param PackageIOABandwidth: <p>零信任带宽扩展包，1 个 = 4Mbps</p><p>取值范围：[0, 509]</p>
+        # @type PackageIOABandwidth: Integer
+        # @param DeployZone: <p>部署zone</p>
         # @type DeployZone: String
-        # @param Trial: 0非试用版，1试用版
+        # @param Trial: <p>0非试用版，1试用版</p>
         # @type Trial: Integer
-        # @param ShareClb: 是否共享clb，0：不共享，1：共享
+        # @param ShareClb: <p>是否共享clb</p><p>枚举值：</p><ul><li>0： 不共享</li><li>1： 共享</li></ul><p>默认值：0</p><p>公有云传0</p>
         # @type ShareClb: Integer
 
-        attr_accessor :DeployRegion, :VpcId, :SubnetId, :ResourceEdition, :ResourceNode, :TimeUnit, :TimeSpan, :PayMode, :AutoRenewFlag, :DeployZone, :Trial, :ShareClb
+        attr_accessor :DeployRegion, :VpcId, :SubnetId, :ResourceEdition, :ResourceNode, :TimeUnit, :TimeSpan, :PayMode, :AutoRenewFlag, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth, :DeployZone, :Trial, :ShareClb
 
-        def initialize(deployregion=nil, vpcid=nil, subnetid=nil, resourceedition=nil, resourcenode=nil, timeunit=nil, timespan=nil, paymode=nil, autorenewflag=nil, deployzone=nil, trial=nil, shareclb=nil)
+        def initialize(deployregion=nil, vpcid=nil, subnetid=nil, resourceedition=nil, resourcenode=nil, timeunit=nil, timespan=nil, paymode=nil, autorenewflag=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil, deployzone=nil, trial=nil, shareclb=nil)
           @DeployRegion = deployregion
           @VpcId = vpcid
           @SubnetId = subnetid
@@ -1862,6 +1868,9 @@ module TencentCloud
           @TimeSpan = timespan
           @PayMode = paymode
           @AutoRenewFlag = autorenewflag
+          @IOAResource = ioaresource
+          @PackageIOAUserCount = packageioausercount
+          @PackageIOABandwidth = packageioabandwidth
           @DeployZone = deployzone
           @Trial = trial
           @ShareClb = shareclb
@@ -1877,6 +1886,9 @@ module TencentCloud
           @TimeSpan = params['TimeSpan']
           @PayMode = params['PayMode']
           @AutoRenewFlag = params['AutoRenewFlag']
+          @IOAResource = params['IOAResource']
+          @PackageIOAUserCount = params['PackageIOAUserCount']
+          @PackageIOABandwidth = params['PackageIOABandwidth']
           @DeployZone = params['DeployZone']
           @Trial = params['Trial']
           @ShareClb = params['ShareClb']
@@ -1885,7 +1897,7 @@ module TencentCloud
 
       # CreateResource返回参数结构体
       class CreateResourceResponse < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 实例Id
+        # @param ResourceId: <p>实例Id</p>
         # @type ResourceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6420,29 +6432,35 @@ module TencentCloud
 
       # ModifyResource请求参数结构体
       class ModifyResourceRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 需要开通服务的资源ID
+        # @param ResourceId: <p>需要开通服务的资源ID</p>
         # @type ResourceId: String
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # @type Status: String
-        # @param ResourceEdition: 实例版本
+        # @param ResourceEdition: <p>实例版本</p>
         # @type ResourceEdition: String
-        # @param ResourceNode: 资源节点数
+        # @param ResourceNode: <p>资源节点数</p>
         # @type ResourceNode: Integer
-        # @param AutoRenewFlag: 自动续费
+        # @param AutoRenewFlag: <p>自动续费</p>
         # @type AutoRenewFlag: Integer
-        # @param PackageBandwidth: 带宽扩展包个数(4M)
+        # @param PackageBandwidth: <p>带宽扩展包个数(4M)</p>
         # @type PackageBandwidth: Integer
-        # @param PackageNode: 授权点数扩展包个数(50点)
+        # @param PackageNode: <p>授权点数扩展包个数(50点)</p>
         # @type PackageNode: Integer
-        # @param LogDelivery: 日志投递
+        # @param LogDelivery: <p>日志投递</p>
         # @type LogDelivery: Integer
+        # @param IOAResource: <p>零信任堡垒机功能包</p><p>枚举值：</p><ul><li>0： 不开通</li><li>1： 付费版（含 20 用户 / 10Mbps 带宽）</li></ul><p>默认值：0</p>
+        # @type IOAResource: Integer
+        # @param PackageIOAUserCount: <p>零信任用户扩展包，1 个 = 20 用户</p><p>取值范围：[0, 999]</p>
+        # @type PackageIOAUserCount: Integer
+        # @param PackageIOABandwidth: <p>零信任带宽扩展包，1 个 = 4Mbps</p><p>取值范围：[0, 509]</p>
+        # @type PackageIOABandwidth: Integer
 
-        attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery
+        attr_accessor :ResourceId, :Status, :ResourceEdition, :ResourceNode, :AutoRenewFlag, :PackageBandwidth, :PackageNode, :LogDelivery, :IOAResource, :PackageIOAUserCount, :PackageIOABandwidth
         extend Gem::Deprecate
         deprecate :Status, :none, 2026, 11
         deprecate :Status=, :none, 2026, 11
 
-        def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil)
+        def initialize(resourceid=nil, status=nil, resourceedition=nil, resourcenode=nil, autorenewflag=nil, packagebandwidth=nil, packagenode=nil, logdelivery=nil, ioaresource=nil, packageioausercount=nil, packageioabandwidth=nil)
           @ResourceId = resourceid
           @Status = status
           @ResourceEdition = resourceedition
@@ -6451,6 +6469,9 @@ module TencentCloud
           @PackageBandwidth = packagebandwidth
           @PackageNode = packagenode
           @LogDelivery = logdelivery
+          @IOAResource = ioaresource
+          @PackageIOAUserCount = packageioausercount
+          @PackageIOABandwidth = packageioabandwidth
         end
 
         def deserialize(params)
@@ -6462,6 +6483,9 @@ module TencentCloud
           @PackageBandwidth = params['PackageBandwidth']
           @PackageNode = params['PackageNode']
           @LogDelivery = params['LogDelivery']
+          @IOAResource = params['IOAResource']
+          @PackageIOAUserCount = params['PackageIOAUserCount']
+          @PackageIOABandwidth = params['PackageIOABandwidth']
         end
       end
 

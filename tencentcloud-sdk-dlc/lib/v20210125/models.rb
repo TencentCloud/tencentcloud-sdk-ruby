@@ -121,10 +121,16 @@ module TencentCloud
         # @type AdvancedOptions: String
         # @param NetworkConfig: <p>NetworkConfig</p>
         # @type NetworkConfig: String
+        # @param LoraBindings: <p>可选：创建时一并挂载的 LoRA 模型版本（首次启动即生效）</p>
+        # @type LoraBindings: Array
+        # @param CodePackageOriginalName: <p>用户上传代码包的原始文件名（详情页「代码引用」回显用）</p>
+        # @type CodePackageOriginalName: String
+        # @param CodePackageUri: <p>代码包 URI（Git URL / COS URI）</p>
+        # @type CodePackageUri: String
 
-        attr_accessor :ServiceId, :DeploymentName, :Engine, :Replicas, :ResourcePartitionId, :ModelVersion, :HeadHighAvailabilityEnabled, :AdvancedParams, :Queue, :AutoscalingEnabled, :Image, :AdvancedOptions, :NetworkConfig
+        attr_accessor :ServiceId, :DeploymentName, :Engine, :Replicas, :ResourcePartitionId, :ModelVersion, :HeadHighAvailabilityEnabled, :AdvancedParams, :Queue, :AutoscalingEnabled, :Image, :AdvancedOptions, :NetworkConfig, :LoraBindings, :CodePackageOriginalName, :CodePackageUri
 
-        def initialize(serviceid=nil, deploymentname=nil, engine=nil, replicas=nil, resourcepartitionid=nil, modelversion=nil, headhighavailabilityenabled=nil, advancedparams=nil, queue=nil, autoscalingenabled=nil, image=nil, advancedoptions=nil, networkconfig=nil)
+        def initialize(serviceid=nil, deploymentname=nil, engine=nil, replicas=nil, resourcepartitionid=nil, modelversion=nil, headhighavailabilityenabled=nil, advancedparams=nil, queue=nil, autoscalingenabled=nil, image=nil, advancedoptions=nil, networkconfig=nil, lorabindings=nil, codepackageoriginalname=nil, codepackageuri=nil)
           @ServiceId = serviceid
           @DeploymentName = deploymentname
           @Engine = engine
@@ -138,6 +144,9 @@ module TencentCloud
           @Image = image
           @AdvancedOptions = advancedoptions
           @NetworkConfig = networkconfig
+          @LoraBindings = lorabindings
+          @CodePackageOriginalName = codepackageoriginalname
+          @CodePackageUri = codepackageuri
         end
 
         def deserialize(params)
@@ -154,6 +163,16 @@ module TencentCloud
           @Image = params['Image']
           @AdvancedOptions = params['AdvancedOptions']
           @NetworkConfig = params['NetworkConfig']
+          unless params['LoraBindings'].nil?
+            @LoraBindings = []
+            params['LoraBindings'].each do |i|
+              loraadapterbinding_tmp = LoraAdapterBinding.new
+              loraadapterbinding_tmp.deserialize(i)
+              @LoraBindings << loraadapterbinding_tmp
+            end
+          end
+          @CodePackageOriginalName = params['CodePackageOriginalName']
+          @CodePackageUri = params['CodePackageUri']
         end
       end
 
@@ -194,6 +213,15 @@ module TencentCloud
         # @param AutoscalingEnabled: <p>是否开启自动伸缩</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoscalingEnabled: Boolean
+        # @param MinReplicas: <p>最小副本数（自动伸缩时使用）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MinReplicas: Integer
+        # @param MaxReplicas: <p>最大副本数（自动伸缩时使用）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MaxReplicas: Integer
+        # @param AutoscalerOptions: <p>弹性伸缩配置（JSON 字符串）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AutoscalerOptions: String
         # @param ModelStorageConfig: <p>模型存储配置（Catalog JSON，记录模型 COS 挂载信息）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModelStorageConfig: String
@@ -212,6 +240,9 @@ module TencentCloud
         # @param NeutrinoServeId: <p>Neutrino Serve ID (RayService CR name)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NeutrinoServeId: String
+        # @param RayDashboardUrl: <p>Ray Dashboard 访问地址（通过 Ingress 代理，仅 Running 状态的部署有值）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RayDashboardUrl: String
         # @param ResourcePartitionId: <p>资源分区 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourcePartitionId: String
@@ -226,12 +257,18 @@ module TencentCloud
         # @type ResourcePartitionName: String
         # @param AdvancedOptions: <p>高级参数</p>
         # @type AdvancedOptions: String
+        # @param CodePackageUri: <p>用户代码包 URL</p>
+        # @type CodePackageUri: String
+        # @param CodePackageOriginalName: <p>用户上传代码包的原始文件名</p>
+        # @type CodePackageOriginalName: String
+        # @param LoraBindings: <p>部署当前挂载的 LoRA 模型版本列表。</p>
+        # @type LoraBindings: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DeploymentId, :Name, :ServiceId, :ModelVersion, :Status, :Engine, :Replicas, :AvailableReplicas, :ResourceConfig, :HeadHighAvailabilityEnabled, :AdvancedParams, :AutoscalingEnabled, :ModelStorageConfig, :AppId, :Uin, :CreateTime, :UpdateTime, :NeutrinoServeId, :ResourcePartitionId, :Queue, :SubAccountUin, :Image, :ResourcePartitionName, :AdvancedOptions, :RequestId
+        attr_accessor :DeploymentId, :Name, :ServiceId, :ModelVersion, :Status, :Engine, :Replicas, :AvailableReplicas, :ResourceConfig, :HeadHighAvailabilityEnabled, :AdvancedParams, :AutoscalingEnabled, :MinReplicas, :MaxReplicas, :AutoscalerOptions, :ModelStorageConfig, :AppId, :Uin, :CreateTime, :UpdateTime, :NeutrinoServeId, :RayDashboardUrl, :ResourcePartitionId, :Queue, :SubAccountUin, :Image, :ResourcePartitionName, :AdvancedOptions, :CodePackageUri, :CodePackageOriginalName, :LoraBindings, :RequestId
 
-        def initialize(deploymentid=nil, name=nil, serviceid=nil, modelversion=nil, status=nil, engine=nil, replicas=nil, availablereplicas=nil, resourceconfig=nil, headhighavailabilityenabled=nil, advancedparams=nil, autoscalingenabled=nil, modelstorageconfig=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, neutrinoserveid=nil, resourcepartitionid=nil, queue=nil, subaccountuin=nil, image=nil, resourcepartitionname=nil, advancedoptions=nil, requestid=nil)
+        def initialize(deploymentid=nil, name=nil, serviceid=nil, modelversion=nil, status=nil, engine=nil, replicas=nil, availablereplicas=nil, resourceconfig=nil, headhighavailabilityenabled=nil, advancedparams=nil, autoscalingenabled=nil, minreplicas=nil, maxreplicas=nil, autoscaleroptions=nil, modelstorageconfig=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, neutrinoserveid=nil, raydashboardurl=nil, resourcepartitionid=nil, queue=nil, subaccountuin=nil, image=nil, resourcepartitionname=nil, advancedoptions=nil, codepackageuri=nil, codepackageoriginalname=nil, lorabindings=nil, requestid=nil)
           @DeploymentId = deploymentid
           @Name = name
           @ServiceId = serviceid
@@ -244,18 +281,25 @@ module TencentCloud
           @HeadHighAvailabilityEnabled = headhighavailabilityenabled
           @AdvancedParams = advancedparams
           @AutoscalingEnabled = autoscalingenabled
+          @MinReplicas = minreplicas
+          @MaxReplicas = maxreplicas
+          @AutoscalerOptions = autoscaleroptions
           @ModelStorageConfig = modelstorageconfig
           @AppId = appid
           @Uin = uin
           @CreateTime = createtime
           @UpdateTime = updatetime
           @NeutrinoServeId = neutrinoserveid
+          @RayDashboardUrl = raydashboardurl
           @ResourcePartitionId = resourcepartitionid
           @Queue = queue
           @SubAccountUin = subaccountuin
           @Image = image
           @ResourcePartitionName = resourcepartitionname
           @AdvancedOptions = advancedoptions
+          @CodePackageUri = codepackageuri
+          @CodePackageOriginalName = codepackageoriginalname
+          @LoraBindings = lorabindings
           @RequestId = requestid
         end
 
@@ -272,18 +316,32 @@ module TencentCloud
           @HeadHighAvailabilityEnabled = params['HeadHighAvailabilityEnabled']
           @AdvancedParams = params['AdvancedParams']
           @AutoscalingEnabled = params['AutoscalingEnabled']
+          @MinReplicas = params['MinReplicas']
+          @MaxReplicas = params['MaxReplicas']
+          @AutoscalerOptions = params['AutoscalerOptions']
           @ModelStorageConfig = params['ModelStorageConfig']
           @AppId = params['AppId']
           @Uin = params['Uin']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @NeutrinoServeId = params['NeutrinoServeId']
+          @RayDashboardUrl = params['RayDashboardUrl']
           @ResourcePartitionId = params['ResourcePartitionId']
           @Queue = params['Queue']
           @SubAccountUin = params['SubAccountUin']
           @Image = params['Image']
           @ResourcePartitionName = params['ResourcePartitionName']
           @AdvancedOptions = params['AdvancedOptions']
+          @CodePackageUri = params['CodePackageUri']
+          @CodePackageOriginalName = params['CodePackageOriginalName']
+          unless params['LoraBindings'].nil?
+            @LoraBindings = []
+            params['LoraBindings'].each do |i|
+              loraitem_tmp = LoraItem.new
+              loraitem_tmp.deserialize(i)
+              @LoraBindings << loraitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3736,10 +3794,12 @@ module TencentCloud
         # @type BillingItem: String
         # @param Spec: <p>评测容器计费项规格倍数</p>
         # @type Spec: Integer
+        # @param ModelIdentifier: <p>评测路由模型（可选）：基座或 &quot;&lt;基座&gt;:&lt;LoRA Adapter 别名&gt;&quot;，不传默认压测基座</p>
+        # @type ModelIdentifier: String
 
-        attr_accessor :ServiceId, :TaskName, :InputTokens, :OutputTokens, :RequestsPerSecond, :MaxConcurrency, :TotalPrompts, :UseGateway, :DeploymentId, :ApiKeyId, :ResourcePartitionId, :Queue, :BillingItem, :Spec
+        attr_accessor :ServiceId, :TaskName, :InputTokens, :OutputTokens, :RequestsPerSecond, :MaxConcurrency, :TotalPrompts, :UseGateway, :DeploymentId, :ApiKeyId, :ResourcePartitionId, :Queue, :BillingItem, :Spec, :ModelIdentifier
 
-        def initialize(serviceid=nil, taskname=nil, inputtokens=nil, outputtokens=nil, requestspersecond=nil, maxconcurrency=nil, totalprompts=nil, usegateway=nil, deploymentid=nil, apikeyid=nil, resourcepartitionid=nil, queue=nil, billingitem=nil, spec=nil)
+        def initialize(serviceid=nil, taskname=nil, inputtokens=nil, outputtokens=nil, requestspersecond=nil, maxconcurrency=nil, totalprompts=nil, usegateway=nil, deploymentid=nil, apikeyid=nil, resourcepartitionid=nil, queue=nil, billingitem=nil, spec=nil, modelidentifier=nil)
           @ServiceId = serviceid
           @TaskName = taskname
           @InputTokens = inputtokens
@@ -3754,6 +3814,7 @@ module TencentCloud
           @Queue = queue
           @BillingItem = billingitem
           @Spec = spec
+          @ModelIdentifier = modelidentifier
         end
 
         def deserialize(params)
@@ -3771,6 +3832,7 @@ module TencentCloud
           @Queue = params['Queue']
           @BillingItem = params['BillingItem']
           @Spec = params['Spec']
+          @ModelIdentifier = params['ModelIdentifier']
         end
       end
 
@@ -3818,12 +3880,14 @@ module TencentCloud
         # @type DeploymentResources: Array
         # @param Resources: <p>评测容器自身使用的资源规格</p>
         # @type Resources: :class:`Tencentcloud::Dlc.v20210125.models.BenchmarkResourceInfo`
+        # @param ModelIdentifier: <p>&lt;基座&gt;:&lt;LoRA Adapter 别名&gt;</p>
+        # @type ModelIdentifier: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :TaskName, :ServiceId, :ServiceName, :Status, :InputTokens, :OutputTokens, :RequestsPerSecond, :MaxConcurrency, :TotalPrompts, :UseGateway, :DeploymentName, :ApiKeyId, :ApiKeyName, :Uin, :CreateTime, :UpdateTime, :AppId, :SubAccountUin, :DeploymentResources, :Resources, :RequestId
+        attr_accessor :TaskId, :TaskName, :ServiceId, :ServiceName, :Status, :InputTokens, :OutputTokens, :RequestsPerSecond, :MaxConcurrency, :TotalPrompts, :UseGateway, :DeploymentName, :ApiKeyId, :ApiKeyName, :Uin, :CreateTime, :UpdateTime, :AppId, :SubAccountUin, :DeploymentResources, :Resources, :ModelIdentifier, :RequestId
 
-        def initialize(taskid=nil, taskname=nil, serviceid=nil, servicename=nil, status=nil, inputtokens=nil, outputtokens=nil, requestspersecond=nil, maxconcurrency=nil, totalprompts=nil, usegateway=nil, deploymentname=nil, apikeyid=nil, apikeyname=nil, uin=nil, createtime=nil, updatetime=nil, appid=nil, subaccountuin=nil, deploymentresources=nil, resources=nil, requestid=nil)
+        def initialize(taskid=nil, taskname=nil, serviceid=nil, servicename=nil, status=nil, inputtokens=nil, outputtokens=nil, requestspersecond=nil, maxconcurrency=nil, totalprompts=nil, usegateway=nil, deploymentname=nil, apikeyid=nil, apikeyname=nil, uin=nil, createtime=nil, updatetime=nil, appid=nil, subaccountuin=nil, deploymentresources=nil, resources=nil, modelidentifier=nil, requestid=nil)
           @TaskId = taskid
           @TaskName = taskname
           @ServiceId = serviceid
@@ -3845,6 +3909,7 @@ module TencentCloud
           @SubAccountUin = subaccountuin
           @DeploymentResources = deploymentresources
           @Resources = resources
+          @ModelIdentifier = modelidentifier
           @RequestId = requestid
         end
 
@@ -3880,6 +3945,7 @@ module TencentCloud
             @Resources = BenchmarkResourceInfo.new
             @Resources.deserialize(params['Resources'])
           end
+          @ModelIdentifier = params['ModelIdentifier']
           @RequestId = params['RequestId']
         end
       end
@@ -4719,10 +4785,22 @@ module TencentCloud
         # @type GooseFSConfig: :class:`Tencentcloud::Dlc.v20210125.models.GooseFSConfig`
         # @param StorageType: <p>模型上传来源类型</p><p>枚举值：</p><ul><li>Local： 本地上传</li><li>COS： COS上传</li><li>CFS： CFS上传</li><li>CFSTurbo： CFSTurbo上传</li><li>GooseFS： GooseFS上传</li></ul>
         # @type StorageType: String
+        # @param ModelSource: <p>模型来源标识（如 train-checkpoint=训练 Checkpoint 注册；空=普通上传等无注册元信息链路）</p>
+        # @type ModelSource: String
+        # @param RegisterMeta: <p>注册元信息（携带即注册语义：storageUri 为训练产物根，零拷贝引用）</p>
+        # @type RegisterMeta: :class:`Tencentcloud::Dlc.v20210125.models.RegisterMeta`
+        # @param FileList: <p>产物文件树（可选，仅注册语义下有意义；结构同 GetModelFiles 响应 FileNode）</p>
+        # @type FileList: Array
+        # @param BaseModelUid: <p>LoRA 基座模型 UID（仅 ModelCategory=LoRA 时有值）</p>
+        # @type BaseModelUid: String
+        # @param BaseModelVersionUid: <p>LoRA 基座模型版本 UID（仅 ModelCategory=LoRA 且创建时指定了基座版本时有值）</p>
+        # @type BaseModelVersionUid: String
+        # @param ModelCategory: <p>模型类别：Base=普通（基座）模型；LoRA=LoRA Adapter 系列（各版本为 Adapter）</p>
+        # @type ModelCategory: String
 
-        attr_accessor :Name, :ModelType, :InitialVersion, :Provider, :Description, :ParameterSize, :Tags, :StorageUri, :UseCustomStorage, :Tasks, :ModelUid, :ResourceTags, :GooseFSConfig, :StorageType
+        attr_accessor :Name, :ModelType, :InitialVersion, :Provider, :Description, :ParameterSize, :Tags, :StorageUri, :UseCustomStorage, :Tasks, :ModelUid, :ResourceTags, :GooseFSConfig, :StorageType, :ModelSource, :RegisterMeta, :FileList, :BaseModelUid, :BaseModelVersionUid, :ModelCategory
 
-        def initialize(name=nil, modeltype=nil, initialversion=nil, provider=nil, description=nil, parametersize=nil, tags=nil, storageuri=nil, usecustomstorage=nil, tasks=nil, modeluid=nil, resourcetags=nil, goosefsconfig=nil, storagetype=nil)
+        def initialize(name=nil, modeltype=nil, initialversion=nil, provider=nil, description=nil, parametersize=nil, tags=nil, storageuri=nil, usecustomstorage=nil, tasks=nil, modeluid=nil, resourcetags=nil, goosefsconfig=nil, storagetype=nil, modelsource=nil, registermeta=nil, filelist=nil, basemodeluid=nil, basemodelversionuid=nil, modelcategory=nil)
           @Name = name
           @ModelType = modeltype
           @InitialVersion = initialversion
@@ -4737,6 +4815,12 @@ module TencentCloud
           @ResourceTags = resourcetags
           @GooseFSConfig = goosefsconfig
           @StorageType = storagetype
+          @ModelSource = modelsource
+          @RegisterMeta = registermeta
+          @FileList = filelist
+          @BaseModelUid = basemodeluid
+          @BaseModelVersionUid = basemodelversionuid
+          @ModelCategory = modelcategory
         end
 
         def deserialize(params)
@@ -4764,6 +4848,22 @@ module TencentCloud
             @GooseFSConfig.deserialize(params['GooseFSConfig'])
           end
           @StorageType = params['StorageType']
+          @ModelSource = params['ModelSource']
+          unless params['RegisterMeta'].nil?
+            @RegisterMeta = RegisterMeta.new
+            @RegisterMeta.deserialize(params['RegisterMeta'])
+          end
+          unless params['FileList'].nil?
+            @FileList = []
+            params['FileList'].each do |i|
+              filenode_tmp = FileNode.new
+              filenode_tmp.deserialize(i)
+              @FileList << filenode_tmp
+            end
+          end
+          @BaseModelUid = params['BaseModelUid']
+          @BaseModelVersionUid = params['BaseModelVersionUid']
+          @ModelCategory = params['ModelCategory']
         end
       end
 
@@ -4812,12 +4912,26 @@ module TencentCloud
         # @type SubAccountUin: String
         # @param ResourceTags: <p>系统标签列表（TagKey-TagValue）</p>
         # @type ResourceTags: Array
+        # @param ModelSource: <p>模型来源标识（如 train-checkpoint=训练 Checkpoint 注册；空=普通上传等无注册元信息链路）</p>
+        # @type ModelSource: String
+        # @param ModelCategory: <p>模型类别：Base=普通（基座）模型；LoRA=LoRA Adapter 系列（各版本为 Adapter）</p>
+        # @type ModelCategory: String
+        # @param BaseModelUid: <p>LoRA 基座模型 UID（仅 ModelCategory=LoRA 时有值）</p>
+        # @type BaseModelUid: String
+        # @param LatestVersionUid: <p>最新版本的全局唯一标识（VersionUid）。CreateInferenceModel 返回时即初始版本的 VersionUid</p>
+        # @type LatestVersionUid: String
+        # @param BaseModelVersionUid: <p>LoRA 基座模型版本 UID（仅 ModelCategory=LoRA 且创建时指定了基座版本时有值）</p>
+        # @type BaseModelVersionUid: String
+        # @param BaseModelName: <p>LoRA 基座模型名称（仅 ModelCategory=LoRA 且基座存在时有值；列表展示「基座模型及版本」用）</p>
+        # @type BaseModelName: String
+        # @param BaseModelVersion: <p>LoRA 基座模型版本号（如 v2；仅 ModelCategory=LoRA 且创建时指定了基座版本时有值）</p>
+        # @type BaseModelVersion: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :AppId, :CreateTime, :UpdateTime, :SubAccountUin, :ResourceTags, :RequestId
+        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :AppId, :CreateTime, :UpdateTime, :SubAccountUin, :ResourceTags, :ModelSource, :ModelCategory, :BaseModelUid, :LatestVersionUid, :BaseModelVersionUid, :BaseModelName, :BaseModelVersion, :RequestId
 
-        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, appid=nil, createtime=nil, updatetime=nil, subaccountuin=nil, resourcetags=nil, requestid=nil)
+        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, appid=nil, createtime=nil, updatetime=nil, subaccountuin=nil, resourcetags=nil, modelsource=nil, modelcategory=nil, basemodeluid=nil, latestversionuid=nil, basemodelversionuid=nil, basemodelname=nil, basemodelversion=nil, requestid=nil)
           @ModelId = modelid
           @ModelUid = modeluid
           @Name = name
@@ -4839,6 +4953,13 @@ module TencentCloud
           @UpdateTime = updatetime
           @SubAccountUin = subaccountuin
           @ResourceTags = resourcetags
+          @ModelSource = modelsource
+          @ModelCategory = modelcategory
+          @BaseModelUid = basemodeluid
+          @LatestVersionUid = latestversionuid
+          @BaseModelVersionUid = basemodelversionuid
+          @BaseModelName = basemodelname
+          @BaseModelVersion = basemodelversion
           @RequestId = requestid
         end
 
@@ -4871,6 +4992,13 @@ module TencentCloud
               @ResourceTags << tag_tmp
             end
           end
+          @ModelSource = params['ModelSource']
+          @ModelCategory = params['ModelCategory']
+          @BaseModelUid = params['BaseModelUid']
+          @LatestVersionUid = params['LatestVersionUid']
+          @BaseModelVersionUid = params['BaseModelVersionUid']
+          @BaseModelName = params['BaseModelName']
+          @BaseModelVersion = params['BaseModelVersion']
           @RequestId = params['RequestId']
         end
       end
@@ -4923,10 +5051,12 @@ module TencentCloud
         # @type RuntimeEnv: String
         # @param NetworkConfig: <p>用户网络配置 JSON 字符串（跨租户 ENI 注入）</p>
         # @type NetworkConfig: String
+        # @param LoraBindings: <p>可选：创建时一并挂载的 LoRA 模型版本（首次启动即生效）</p>
+        # @type LoraBindings: Array
 
-        attr_accessor :Name, :ModelUid, :Engine, :Replicas, :ResourcePartitionId, :Image, :ModelIdentifier, :Queue, :DeploymentName, :ModelVersion, :HeadHighAvailabilityEnabled, :AdvancedParams, :ImagePullPolicy, :AutoscalingEnabled, :MinReplicas, :MaxReplicas, :AutoscalerOptions, :ApiKeyIds, :AdvancedOptions, :ResourceTags, :IsCustom, :RuntimeEnv, :NetworkConfig
+        attr_accessor :Name, :ModelUid, :Engine, :Replicas, :ResourcePartitionId, :Image, :ModelIdentifier, :Queue, :DeploymentName, :ModelVersion, :HeadHighAvailabilityEnabled, :AdvancedParams, :ImagePullPolicy, :AutoscalingEnabled, :MinReplicas, :MaxReplicas, :AutoscalerOptions, :ApiKeyIds, :AdvancedOptions, :ResourceTags, :IsCustom, :RuntimeEnv, :NetworkConfig, :LoraBindings
 
-        def initialize(name=nil, modeluid=nil, engine=nil, replicas=nil, resourcepartitionid=nil, image=nil, modelidentifier=nil, queue=nil, deploymentname=nil, modelversion=nil, headhighavailabilityenabled=nil, advancedparams=nil, imagepullpolicy=nil, autoscalingenabled=nil, minreplicas=nil, maxreplicas=nil, autoscaleroptions=nil, apikeyids=nil, advancedoptions=nil, resourcetags=nil, iscustom=nil, runtimeenv=nil, networkconfig=nil)
+        def initialize(name=nil, modeluid=nil, engine=nil, replicas=nil, resourcepartitionid=nil, image=nil, modelidentifier=nil, queue=nil, deploymentname=nil, modelversion=nil, headhighavailabilityenabled=nil, advancedparams=nil, imagepullpolicy=nil, autoscalingenabled=nil, minreplicas=nil, maxreplicas=nil, autoscaleroptions=nil, apikeyids=nil, advancedoptions=nil, resourcetags=nil, iscustom=nil, runtimeenv=nil, networkconfig=nil, lorabindings=nil)
           @Name = name
           @ModelUid = modeluid
           @Engine = engine
@@ -4950,6 +5080,7 @@ module TencentCloud
           @IsCustom = iscustom
           @RuntimeEnv = runtimeenv
           @NetworkConfig = networkconfig
+          @LoraBindings = lorabindings
         end
 
         def deserialize(params)
@@ -4983,6 +5114,14 @@ module TencentCloud
           @IsCustom = params['IsCustom']
           @RuntimeEnv = params['RuntimeEnv']
           @NetworkConfig = params['NetworkConfig']
+          unless params['LoraBindings'].nil?
+            @LoraBindings = []
+            params['LoraBindings'].each do |i|
+              loraadapterbinding_tmp = LoraAdapterBinding.new
+              loraadapterbinding_tmp.deserialize(i)
+              @LoraBindings << loraadapterbinding_tmp
+            end
+          end
         end
       end
 
@@ -6133,12 +6272,16 @@ module TencentCloud
         # @type StorageMode: String
         # @param ResourceConfig: <p>MlFlow的资源配置</p>
         # @type ResourceConfig: :class:`Tencentcloud::Dlc.v20210125.models.MlFlowResourceConfig`
+        # @param ServerArgs: <p>启动参数（可选，单个字符串，如 &quot;--workers 4&quot;）；分词后追加在平台固定命令之后，下次 start 时生效。平台保留参数（--host/--port/--backend-store-uri 等）不允许指定；不传或空白为默认命令</p>
+        # @type ServerArgs: String
         # @param Tags: <p>标签列表（TagKey-TagValue），用于将 MLflow Server 与腾讯云标签系统中的标签绑定</p>
         # @type Tags: Array
+        # @param Description: <p>描述信息（可选，纯文本，不允许换行，最长 1024）；不传或空白为未填写</p>
+        # @type Description: String
 
-        attr_accessor :ServerName, :ResourcePartitionId, :Queue, :Image, :StorageConfig, :StorageMode, :ResourceConfig, :Tags
+        attr_accessor :ServerName, :ResourcePartitionId, :Queue, :Image, :StorageConfig, :StorageMode, :ResourceConfig, :ServerArgs, :Tags, :Description
 
-        def initialize(servername=nil, resourcepartitionid=nil, queue=nil, image=nil, storageconfig=nil, storagemode=nil, resourceconfig=nil, tags=nil)
+        def initialize(servername=nil, resourcepartitionid=nil, queue=nil, image=nil, storageconfig=nil, storagemode=nil, resourceconfig=nil, serverargs=nil, tags=nil, description=nil)
           @ServerName = servername
           @ResourcePartitionId = resourcepartitionid
           @Queue = queue
@@ -6146,7 +6289,9 @@ module TencentCloud
           @StorageConfig = storageconfig
           @StorageMode = storagemode
           @ResourceConfig = resourceconfig
+          @ServerArgs = serverargs
           @Tags = tags
+          @Description = description
         end
 
         def deserialize(params)
@@ -6160,6 +6305,7 @@ module TencentCloud
             @ResourceConfig = MlFlowResourceConfig.new
             @ResourceConfig.deserialize(params['ResourceConfig'])
           end
+          @ServerArgs = params['ServerArgs']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -6168,6 +6314,7 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @Description = params['Description']
         end
       end
 
@@ -6210,10 +6357,16 @@ module TencentCloud
         # @type GooseFSConfig: :class:`Tencentcloud::Dlc.v20210125.models.GooseFSConfig`
         # @param StorageType: <p>模型上传路径类型</p><p>枚举值：</p><ul><li>LOCAL： 本地上传</li><li>CFS： CFS上传</li><li>COS： COS上传</li><li>CFSTurbo： CFSTurbo上传</li><li>GooseFS： GooseFS上传</li></ul><p>选择cos、cfs、cfstrubo则必须要传storageuri，选择local时不能传递goosefsconfig</p>
         # @type StorageType: String
+        # @param ModelSource: <p>模型来源标识（可选；有 RegisterMeta 时必填；须与模型现有来源一致）</p>
+        # @type ModelSource: String
+        # @param RegisterMeta: <p>注册元信息（仅注册语义创建的版本有值，与创建请求 RegisterMeta 结构一致）</p>
+        # @type RegisterMeta: :class:`Tencentcloud::Dlc.v20210125.models.RegisterMeta`
+        # @param FileList: <p>产物文件树（可选，仅注册语义下有意义；结构同 GetModelFiles 响应 FileNode）</p>
+        # @type FileList: Array
 
-        attr_accessor :ModelUid, :ModelVersion, :Description, :StorageUri, :UseCustomStorage, :GooseFSConfig, :StorageType
+        attr_accessor :ModelUid, :ModelVersion, :Description, :StorageUri, :UseCustomStorage, :GooseFSConfig, :StorageType, :ModelSource, :RegisterMeta, :FileList
 
-        def initialize(modeluid=nil, modelversion=nil, description=nil, storageuri=nil, usecustomstorage=nil, goosefsconfig=nil, storagetype=nil)
+        def initialize(modeluid=nil, modelversion=nil, description=nil, storageuri=nil, usecustomstorage=nil, goosefsconfig=nil, storagetype=nil, modelsource=nil, registermeta=nil, filelist=nil)
           @ModelUid = modeluid
           @ModelVersion = modelversion
           @Description = description
@@ -6221,6 +6374,9 @@ module TencentCloud
           @UseCustomStorage = usecustomstorage
           @GooseFSConfig = goosefsconfig
           @StorageType = storagetype
+          @ModelSource = modelsource
+          @RegisterMeta = registermeta
+          @FileList = filelist
         end
 
         def deserialize(params)
@@ -6234,6 +6390,19 @@ module TencentCloud
             @GooseFSConfig.deserialize(params['GooseFSConfig'])
           end
           @StorageType = params['StorageType']
+          @ModelSource = params['ModelSource']
+          unless params['RegisterMeta'].nil?
+            @RegisterMeta = RegisterMeta.new
+            @RegisterMeta.deserialize(params['RegisterMeta'])
+          end
+          unless params['FileList'].nil?
+            @FileList = []
+            params['FileList'].each do |i|
+              filenode_tmp = FileNode.new
+              filenode_tmp.deserialize(i)
+              @FileList << filenode_tmp
+            end
+          end
         end
       end
 
@@ -6264,12 +6433,20 @@ module TencentCloud
         # @type Version: String
         # @param UseCustomStorage: <p>是否使用用户自带存储桶（true=用户自带桶，false=平台托管）</p>
         # @type UseCustomStorage: Boolean
+        # @param RegisterMeta: <p>注册元信息（仅注册语义创建的版本有值，与创建请求 RegisterMeta 结构一致）</p>
+        # @type RegisterMeta: :class:`Tencentcloud::Dlc.v20210125.models.RegisterMeta`
+        # @param VersionUid: <p>版本业务唯一标识；LoRA 模型版本挂载到部署时以此引用</p>
+        # @type VersionUid: String
+        # @param LoraMeta: <p>LoRA Adapter 元信息（仅 LoRA 模型版本有值，解析自 adapter_config.json）</p>
+        # @type LoraMeta: :class:`Tencentcloud::Dlc.v20210125.models.LoraVersionMeta`
+        # @param PoolImportStatus: <p>LoRA pool 异步导入状态（Importing/Ready/Failed；NULL=就绪），未就绪不能挂载</p>
+        # @type PoolImportStatus: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VersionId, :ModelId, :StorageUri, :Description, :CreateTime, :UpdateTime, :LinkedServices, :Version, :UseCustomStorage, :RequestId
+        attr_accessor :VersionId, :ModelId, :StorageUri, :Description, :CreateTime, :UpdateTime, :LinkedServices, :Version, :UseCustomStorage, :RegisterMeta, :VersionUid, :LoraMeta, :PoolImportStatus, :RequestId
 
-        def initialize(versionid=nil, modelid=nil, storageuri=nil, description=nil, createtime=nil, updatetime=nil, linkedservices=nil, version=nil, usecustomstorage=nil, requestid=nil)
+        def initialize(versionid=nil, modelid=nil, storageuri=nil, description=nil, createtime=nil, updatetime=nil, linkedservices=nil, version=nil, usecustomstorage=nil, registermeta=nil, versionuid=nil, lorameta=nil, poolimportstatus=nil, requestid=nil)
           @VersionId = versionid
           @ModelId = modelid
           @StorageUri = storageuri
@@ -6279,6 +6456,10 @@ module TencentCloud
           @LinkedServices = linkedservices
           @Version = version
           @UseCustomStorage = usecustomstorage
+          @RegisterMeta = registermeta
+          @VersionUid = versionuid
+          @LoraMeta = lorameta
+          @PoolImportStatus = poolimportstatus
           @RequestId = requestid
         end
 
@@ -6299,6 +6480,16 @@ module TencentCloud
           end
           @Version = params['Version']
           @UseCustomStorage = params['UseCustomStorage']
+          unless params['RegisterMeta'].nil?
+            @RegisterMeta = RegisterMeta.new
+            @RegisterMeta.deserialize(params['RegisterMeta'])
+          end
+          @VersionUid = params['VersionUid']
+          unless params['LoraMeta'].nil?
+            @LoraMeta = LoraVersionMeta.new
+            @LoraMeta.deserialize(params['LoraMeta'])
+          end
+          @PoolImportStatus = params['PoolImportStatus']
           @RequestId = params['RequestId']
         end
       end
@@ -17829,6 +18020,8 @@ module TencentCloud
         # @type StorageType: String
         # @param StoragePath: <p>存储路径（COS 桶路径或 CFS/GooseFSx 挂载路径）</p>
         # @type StoragePath: String
+        # @param ArtifactRootUri: <p>训练产物根的完整存储 URI（注册推理模型用，如 cos://bucket/path/、cfs://fs-id/path/）；作为 CreateInferenceModel / CreateModelVersion 的 StorageUri 传回（配合 UseCustomStorage=true）</p>
+        # @type ArtifactRootUri: String
         # @param Message: <p>错误或提示信息（仅在请求异常时有值）</p>
         # @type Message: String
         # @param SnapshotTimestamp: <p>快照时间戳（仅 CFS/GooseFSx 存储时有值）</p>
@@ -17836,14 +18029,15 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Items, :MountPath, :SubPath, :StorageType, :StoragePath, :Message, :SnapshotTimestamp, :RequestId
+        attr_accessor :Items, :MountPath, :SubPath, :StorageType, :StoragePath, :ArtifactRootUri, :Message, :SnapshotTimestamp, :RequestId
 
-        def initialize(items=nil, mountpath=nil, subpath=nil, storagetype=nil, storagepath=nil, message=nil, snapshottimestamp=nil, requestid=nil)
+        def initialize(items=nil, mountpath=nil, subpath=nil, storagetype=nil, storagepath=nil, artifactrooturi=nil, message=nil, snapshottimestamp=nil, requestid=nil)
           @Items = items
           @MountPath = mountpath
           @SubPath = subpath
           @StorageType = storagetype
           @StoragePath = storagepath
+          @ArtifactRootUri = artifactrooturi
           @Message = message
           @SnapshotTimestamp = snapshottimestamp
           @RequestId = requestid
@@ -17862,6 +18056,7 @@ module TencentCloud
           @SubPath = params['SubPath']
           @StorageType = params['StorageType']
           @StoragePath = params['StoragePath']
+          @ArtifactRootUri = params['ArtifactRootUri']
           @Message = params['Message']
           @SnapshotTimestamp = params['SnapshotTimestamp']
           @RequestId = params['RequestId']
@@ -20350,12 +20545,26 @@ module TencentCloud
         # @param ResourceTags: <p>系统标签列表（TagKey-TagValue）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
+        # @param ModelCategory: <p>模型类别：Base=普通（基座）模型；LoRA=LoRA Adapter 系列（各版本为 Adapter）</p>
+        # @type ModelCategory: String
+        # @param BaseModelUid: <p>LoRA 基座模型 UID（仅 ModelCategory=LoRA 时有值）</p>
+        # @type BaseModelUid: String
+        # @param LatestVersionUid: <p>最新版本的全局唯一标识（VersionUid）。CreateInferenceModel 返回时即初始版本的 VersionUid</p>
+        # @type LatestVersionUid: String
+        # @param BaseModelVersionUid: <p>LoRA 基座模型版本 UID（仅 ModelCategory=LoRA 且创建时指定了基座版本时有值）</p>
+        # @type BaseModelVersionUid: String
+        # @param BaseModelName: <p>LoRA 基座模型名称（仅 ModelCategory=LoRA 且基座存在时有值；列表展示「基座模型及版本」用）</p>
+        # @type BaseModelName: String
+        # @param BaseModelVersion: <p>LoRA 基座模型版本号（如 v2；仅 ModelCategory=LoRA 且创建时指定了基座版本时有值）</p>
+        # @type BaseModelVersion: String
+        # @param ModelSource: <p>模型来源标识（如 train-checkpoint=训练 Checkpoint 注册；空=普通上传等无注册元信息链路）</p>
+        # @type ModelSource: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :StorageRegion, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :SupportedEngines, :Uin, :AppId, :CreateTime, :UpdateTime, :SubAccountUin, :ResourceTags, :RequestId
+        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :StorageRegion, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :SupportedEngines, :Uin, :AppId, :CreateTime, :UpdateTime, :SubAccountUin, :ResourceTags, :ModelCategory, :BaseModelUid, :LatestVersionUid, :BaseModelVersionUid, :BaseModelName, :BaseModelVersion, :ModelSource, :RequestId
 
-        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, storageregion=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, supportedengines=nil, uin=nil, appid=nil, createtime=nil, updatetime=nil, subaccountuin=nil, resourcetags=nil, requestid=nil)
+        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, storageregion=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, supportedengines=nil, uin=nil, appid=nil, createtime=nil, updatetime=nil, subaccountuin=nil, resourcetags=nil, modelcategory=nil, basemodeluid=nil, latestversionuid=nil, basemodelversionuid=nil, basemodelname=nil, basemodelversion=nil, modelsource=nil, requestid=nil)
           @ModelId = modelid
           @ModelUid = modeluid
           @Name = name
@@ -20380,6 +20589,13 @@ module TencentCloud
           @UpdateTime = updatetime
           @SubAccountUin = subaccountuin
           @ResourceTags = resourcetags
+          @ModelCategory = modelcategory
+          @BaseModelUid = basemodeluid
+          @LatestVersionUid = latestversionuid
+          @BaseModelVersionUid = basemodelversionuid
+          @BaseModelName = basemodelname
+          @BaseModelVersion = basemodelversion
+          @ModelSource = modelsource
           @RequestId = requestid
         end
 
@@ -20415,6 +20631,13 @@ module TencentCloud
               @ResourceTags << tag_tmp
             end
           end
+          @ModelCategory = params['ModelCategory']
+          @BaseModelUid = params['BaseModelUid']
+          @LatestVersionUid = params['LatestVersionUid']
+          @BaseModelVersionUid = params['BaseModelVersionUid']
+          @BaseModelName = params['BaseModelName']
+          @BaseModelVersion = params['BaseModelVersion']
+          @ModelSource = params['ModelSource']
           @RequestId = params['RequestId']
         end
       end
@@ -23554,10 +23777,24 @@ module TencentCloud
         # @param ResourceTags: <p>系统标签列表（TagKey-TagValue）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
+        # @param ModelSource: <p>模型来源标识（如 train-checkpoint=训练 Checkpoint 注册；空=普通上传等无注册元信息链路）</p>
+        # @type ModelSource: String
+        # @param ModelCategory: <p>模型类别：Base=普通（基座）模型；LoRA=LoRA Adapter 系列（各版本为 Adapter）</p>
+        # @type ModelCategory: String
+        # @param BaseModelUid: <p>LoRA 基座模型 UID（仅 ModelCategory=LoRA 时有值）</p>
+        # @type BaseModelUid: String
+        # @param LatestVersionUid: <p>最新版本的全局唯一标识（VersionUid）。CreateInferenceModel 返回时即初始版本的 VersionUid</p>
+        # @type LatestVersionUid: String
+        # @param BaseModelVersionUid: <p>LoRA 基座模型版本 UID（仅 ModelCategory=LoRA 且创建时指定了基座版本时有值）</p>
+        # @type BaseModelVersionUid: String
+        # @param BaseModelName: <p>LoRA 基座模型名称（仅 ModelCategory=LoRA 且基座存在时有值；列表展示「基座模型及版本」用）</p>
+        # @type BaseModelName: String
+        # @param BaseModelVersion: <p>LoRA 基座模型版本号（如 v2；仅 ModelCategory=LoRA 且创建时指定了基座版本时有值）</p>
+        # @type BaseModelVersion: String
 
-        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :SupportedEngines, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :StorageRegion, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :AppId, :Uin, :CreateTime, :UpdateTime, :SubAccountUin, :ResourceTags
+        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :SupportedEngines, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :StorageRegion, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :AppId, :Uin, :CreateTime, :UpdateTime, :SubAccountUin, :ResourceTags, :ModelSource, :ModelCategory, :BaseModelUid, :LatestVersionUid, :BaseModelVersionUid, :BaseModelName, :BaseModelVersion
 
-        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, supportedengines=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, storageregion=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, subaccountuin=nil, resourcetags=nil)
+        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, supportedengines=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, storageregion=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, subaccountuin=nil, resourcetags=nil, modelsource=nil, modelcategory=nil, basemodeluid=nil, latestversionuid=nil, basemodelversionuid=nil, basemodelname=nil, basemodelversion=nil)
           @ModelId = modelid
           @ModelUid = modeluid
           @Name = name
@@ -23582,6 +23819,13 @@ module TencentCloud
           @UpdateTime = updatetime
           @SubAccountUin = subaccountuin
           @ResourceTags = resourcetags
+          @ModelSource = modelsource
+          @ModelCategory = modelcategory
+          @BaseModelUid = basemodeluid
+          @LatestVersionUid = latestversionuid
+          @BaseModelVersionUid = basemodelversionuid
+          @BaseModelName = basemodelname
+          @BaseModelVersion = basemodelversion
         end
 
         def deserialize(params)
@@ -23616,6 +23860,13 @@ module TencentCloud
               @ResourceTags << tag_tmp
             end
           end
+          @ModelSource = params['ModelSource']
+          @ModelCategory = params['ModelCategory']
+          @BaseModelUid = params['BaseModelUid']
+          @LatestVersionUid = params['LatestVersionUid']
+          @BaseModelVersionUid = params['BaseModelVersionUid']
+          @BaseModelName = params['BaseModelName']
+          @BaseModelVersion = params['BaseModelVersion']
         end
       end
 
@@ -28010,6 +28261,102 @@ module TencentCloud
         end
       end
 
+      # 创建 RayServe 推理服务时一并挂载的 LoRA 模型版本
+      class LoraAdapterBinding < TencentCloud::Common::AbstractModel
+        # @param ModelVersionUid: <p>LoRA 模型版本 UID（ListModelVersions 返回的 VersionUid；该模型须以部署基座为 BaseModelUid）</p>
+        # @type ModelVersionUid: String
+
+        attr_accessor :ModelVersionUid
+
+        def initialize(modelversionuid=nil)
+          @ModelVersionUid = modelversionuid
+        end
+
+        def deserialize(params)
+          @ModelVersionUid = params['ModelVersionUid']
+        end
+      end
+
+      # 单个 LoRA Adapter（LoRA 模型版本）绑定项.
+      class LoraItem < TencentCloud::Common::AbstractModel
+        # @param ModelVersionUid: <p>模型版本 UID</p>
+        # @type ModelVersionUid: String
+        # @param ModelUid: <p>模型 UID</p>
+        # @type ModelUid: String
+        # @param ModelName: <p>模型名称</p>
+        # @type ModelName: String
+        # @param Version: <p>模型版本</p>
+        # @type Version: String
+        # @param Alias: <p>别名</p>
+        # @type Alias: String
+        # @param AdapterRank: <p>Lora Rank</p>
+        # @type AdapterRank: Integer
+
+        attr_accessor :ModelVersionUid, :ModelUid, :ModelName, :Version, :Alias, :AdapterRank
+
+        def initialize(modelversionuid=nil, modeluid=nil, modelname=nil, version=nil, _alias=nil, adapterrank=nil)
+          @ModelVersionUid = modelversionuid
+          @ModelUid = modeluid
+          @ModelName = modelname
+          @Version = version
+          @Alias = _alias
+          @AdapterRank = adapterrank
+        end
+
+        def deserialize(params)
+          @ModelVersionUid = params['ModelVersionUid']
+          @ModelUid = params['ModelUid']
+          @ModelName = params['ModelName']
+          @Version = params['Version']
+          @Alias = params['Alias']
+          @AdapterRank = params['AdapterRank']
+        end
+      end
+
+      # LoRA Adapter 元信息
+      class LoraVersionMeta < TencentCloud::Common::AbstractModel
+        # @param Rank: <p>Lora Rank</p>
+        # @type Rank: Integer
+        # @param Alpha: <p>Lora Alpha</p>
+        # @type Alpha: Integer
+        # @param Dropout: <p>LoRA dropout</p>
+        # @type Dropout: Float
+        # @param TargetModules: <p>注入的目标模块</p>
+        # @type TargetModules: Array
+        # @param PEFTType: <p>PEFT 类型（如 LORA）</p>
+        # @type PEFTType: String
+        # @param TaskType: <p>任务类型（如 CAUSAL_LM）</p>
+        # @type TaskType: String
+        # @param BaseModelNameOrPath: <p>训练时声明的基座名称或路径（base_model_name_or_path）</p>
+        # @type BaseModelNameOrPath: String
+        # @param MaxRank: <p>最大 rank（含 rank_pattern 分模块 rank；仅当其大于 Rank 时返回）</p>
+        # @type MaxRank: Integer
+
+        attr_accessor :Rank, :Alpha, :Dropout, :TargetModules, :PEFTType, :TaskType, :BaseModelNameOrPath, :MaxRank
+
+        def initialize(rank=nil, alpha=nil, dropout=nil, targetmodules=nil, pefttype=nil, tasktype=nil, basemodelnameorpath=nil, maxrank=nil)
+          @Rank = rank
+          @Alpha = alpha
+          @Dropout = dropout
+          @TargetModules = targetmodules
+          @PEFTType = pefttype
+          @TaskType = tasktype
+          @BaseModelNameOrPath = basemodelnameorpath
+          @MaxRank = maxrank
+        end
+
+        def deserialize(params)
+          @Rank = params['Rank']
+          @Alpha = params['Alpha']
+          @Dropout = params['Dropout']
+          @TargetModules = params['TargetModules']
+          @PEFTType = params['PEFTType']
+          @TaskType = params['TaskType']
+          @BaseModelNameOrPath = params['BaseModelNameOrPath']
+          @MaxRank = params['MaxRank']
+        end
+      end
+
       # mcp 请求任务详情的返回
       class MCPTaskInfo < TencentCloud::Common::AbstractModel
         # @param Id: <p>任务 ID</p>
@@ -28442,10 +28789,18 @@ module TencentCloud
         # @type StorageConfig: String
         # @param StorageMode: <p>存储模式</p><p>枚举值：</p><ul><li>cos： cos 对象存储</li><li>cfs： cfs 文件系统存储</li></ul>
         # @type StorageMode: String
+        # @param ServerArgs: <p>启动参数（用户自定义；null = 默认命令，编辑弹窗预填用）</p>
+        # @type ServerArgs: String
+        # @param Description: <p>描述信息（纯文本；null = 未填写）</p>
+        # @type Description: String
         # @param AppId: <p>应用 ID</p>
         # @type AppId: Integer
         # @param Uin: <p>创建者 UIN</p>
         # @type Uin: String
+        # @param SubAccountUin: <p>创建人子账号 UIN（实际提交者，存量数据可能为空）</p>
+        # @type SubAccountUin: String
+        # @param SubAccountName: <p>创建人子账号名称（CAM 动态回填，非持久化；查询失败时为空）</p>
+        # @type SubAccountName: String
         # @param CreateTime: <p>创建时间（epoch 毫秒）</p><p>单位：毫秒</p>
         # @type CreateTime: Integer
         # @param UpdateTime: <p>更新时间（epoch 毫秒）</p><p>单位：毫秒</p>
@@ -28455,10 +28810,20 @@ module TencentCloud
         # @param Tags: <p>标签列表（TagKey-TagValue）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param LastProbeSuccessTime: <p>最近一次成功探测 Deployment 的时间（epoch millis，Neutrino 透传）；NULL=尚未成功探测过。</p>
+        # @type LastProbeSuccessTime: Integer
+        # @param ConsecutiveProbeFailures: <p>最近一次成功探测后的连续失败次数（&gt;0 表示当前 Status 可能过期）</p>
+        # @type ConsecutiveProbeFailures: Integer
+        # @param LastProbeError: <p>最近一次探测失败原因（Neutrino 透传，仅诊断展示）</p>
+        # @type LastProbeError: String
+        # @param TotalInstanceCount: <p>关联训练实例总数（ray-nexus 侧统计，仅 ListMlflowServers 返回；详情/监控请用 QueryMlFlowServerInstanceStats）</p>
+        # @type TotalInstanceCount: Integer
+        # @param RunningInstanceCount: <p>关联的运行中（RUNNING）训练实例数（仅 ListMlflowServers 返回；详情/监控请用 QueryMlflowServerInstanceStats）</p>
+        # @type RunningInstanceCount: Integer
 
-        attr_accessor :ServerId, :ServerName, :ResourcePartitionId, :ResourcePartitionName, :Queue, :TrackingUri, :UiUrl, :Status, :ErrorMessage, :Image, :StorageConfig, :StorageMode, :AppId, :Uin, :CreateTime, :UpdateTime, :ResourceConfig, :Tags
+        attr_accessor :ServerId, :ServerName, :ResourcePartitionId, :ResourcePartitionName, :Queue, :TrackingUri, :UiUrl, :Status, :ErrorMessage, :Image, :StorageConfig, :StorageMode, :ServerArgs, :Description, :AppId, :Uin, :SubAccountUin, :SubAccountName, :CreateTime, :UpdateTime, :ResourceConfig, :Tags, :LastProbeSuccessTime, :ConsecutiveProbeFailures, :LastProbeError, :TotalInstanceCount, :RunningInstanceCount
 
-        def initialize(serverid=nil, servername=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, trackinguri=nil, uiurl=nil, status=nil, errormessage=nil, image=nil, storageconfig=nil, storagemode=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, resourceconfig=nil, tags=nil)
+        def initialize(serverid=nil, servername=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, trackinguri=nil, uiurl=nil, status=nil, errormessage=nil, image=nil, storageconfig=nil, storagemode=nil, serverargs=nil, description=nil, appid=nil, uin=nil, subaccountuin=nil, subaccountname=nil, createtime=nil, updatetime=nil, resourceconfig=nil, tags=nil, lastprobesuccesstime=nil, consecutiveprobefailures=nil, lastprobeerror=nil, totalinstancecount=nil, runninginstancecount=nil)
           @ServerId = serverid
           @ServerName = servername
           @ResourcePartitionId = resourcepartitionid
@@ -28471,12 +28836,21 @@ module TencentCloud
           @Image = image
           @StorageConfig = storageconfig
           @StorageMode = storagemode
+          @ServerArgs = serverargs
+          @Description = description
           @AppId = appid
           @Uin = uin
+          @SubAccountUin = subaccountuin
+          @SubAccountName = subaccountname
           @CreateTime = createtime
           @UpdateTime = updatetime
           @ResourceConfig = resourceconfig
           @Tags = tags
+          @LastProbeSuccessTime = lastprobesuccesstime
+          @ConsecutiveProbeFailures = consecutiveprobefailures
+          @LastProbeError = lastprobeerror
+          @TotalInstanceCount = totalinstancecount
+          @RunningInstanceCount = runninginstancecount
         end
 
         def deserialize(params)
@@ -28492,8 +28866,12 @@ module TencentCloud
           @Image = params['Image']
           @StorageConfig = params['StorageConfig']
           @StorageMode = params['StorageMode']
+          @ServerArgs = params['ServerArgs']
+          @Description = params['Description']
           @AppId = params['AppId']
           @Uin = params['Uin']
+          @SubAccountUin = params['SubAccountUin']
+          @SubAccountName = params['SubAccountName']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
           @ResourceConfig = params['ResourceConfig']
@@ -28505,6 +28883,11 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @LastProbeSuccessTime = params['LastProbeSuccessTime']
+          @ConsecutiveProbeFailures = params['ConsecutiveProbeFailures']
+          @LastProbeError = params['LastProbeError']
+          @TotalInstanceCount = params['TotalInstanceCount']
+          @RunningInstanceCount = params['RunningInstanceCount']
         end
       end
 
@@ -32437,6 +32820,37 @@ module TencentCloud
         end
       end
 
+      # 注册元信息（携带即注册语义：storageUri 为训练产物根，零拷贝引用）
+      class RegisterMeta < TencentCloud::Common::AbstractModel
+        # @param CheckpointSubPath: <p>Checkpoint 子路径不能为空</p>
+        # @type CheckpointSubPath: String
+        # @param InstanceId: <p>来源训练实例标识（接入方自定义语义，可选）</p>
+        # @type InstanceId: String
+        # @param Extras: <p>接入方扩展键值列表（原样落库，平台不解释）</p>
+        # @type Extras: Array
+
+        attr_accessor :CheckpointSubPath, :InstanceId, :Extras
+
+        def initialize(checkpointsubpath=nil, instanceid=nil, extras=nil)
+          @CheckpointSubPath = checkpointsubpath
+          @InstanceId = instanceid
+          @Extras = extras
+        end
+
+        def deserialize(params)
+          @CheckpointSubPath = params['CheckpointSubPath']
+          @InstanceId = params['InstanceId']
+          unless params['Extras'].nil?
+            @Extras = []
+            params['Extras'].each do |i|
+              kvpair_tmp = KVPair.new
+              kvpair_tmp.deserialize(i)
+              @Extras << kvpair_tmp
+            end
+          end
+        end
+      end
+
       # RegisterThirdPartyAccessUser请求参数结构体
       class RegisterThirdPartyAccessUserRequest < TencentCloud::Common::AbstractModel
 
@@ -32632,12 +33046,14 @@ module TencentCloud
         # @type Resources: :class:`Tencentcloud::Dlc.v20210125.models.BenchmarkResourceInfo`
         # @param DeploymentResources: <p>与本次评测关联的部署及其资源规格</p>
         # @type DeploymentResources: Array
+        # @param ModelIdentifier: <p>评测路由模型（可选）：基座或 &quot;&lt;基座&gt;:&lt;LoRA Adapter 别名&gt;&quot;，不传默认压测基座</p>
+        # @type ModelIdentifier: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :TaskName, :ServiceId, :ServiceName, :Status, :InputTokens, :OutputTokens, :RequestsPerSecond, :MaxConcurrency, :TotalPrompts, :UseGateway, :DeploymentName, :ApiKeyId, :ApiKeyName, :Uin, :CreateTime, :UpdateTime, :AppId, :SubAccountUin, :Resources, :DeploymentResources, :RequestId
+        attr_accessor :TaskId, :TaskName, :ServiceId, :ServiceName, :Status, :InputTokens, :OutputTokens, :RequestsPerSecond, :MaxConcurrency, :TotalPrompts, :UseGateway, :DeploymentName, :ApiKeyId, :ApiKeyName, :Uin, :CreateTime, :UpdateTime, :AppId, :SubAccountUin, :Resources, :DeploymentResources, :ModelIdentifier, :RequestId
 
-        def initialize(taskid=nil, taskname=nil, serviceid=nil, servicename=nil, status=nil, inputtokens=nil, outputtokens=nil, requestspersecond=nil, maxconcurrency=nil, totalprompts=nil, usegateway=nil, deploymentname=nil, apikeyid=nil, apikeyname=nil, uin=nil, createtime=nil, updatetime=nil, appid=nil, subaccountuin=nil, resources=nil, deploymentresources=nil, requestid=nil)
+        def initialize(taskid=nil, taskname=nil, serviceid=nil, servicename=nil, status=nil, inputtokens=nil, outputtokens=nil, requestspersecond=nil, maxconcurrency=nil, totalprompts=nil, usegateway=nil, deploymentname=nil, apikeyid=nil, apikeyname=nil, uin=nil, createtime=nil, updatetime=nil, appid=nil, subaccountuin=nil, resources=nil, deploymentresources=nil, modelidentifier=nil, requestid=nil)
           @TaskId = taskid
           @TaskName = taskname
           @ServiceId = serviceid
@@ -32659,6 +33075,7 @@ module TencentCloud
           @SubAccountUin = subaccountuin
           @Resources = resources
           @DeploymentResources = deploymentresources
+          @ModelIdentifier = modelidentifier
           @RequestId = requestid
         end
 
@@ -32694,6 +33111,7 @@ module TencentCloud
               @DeploymentResources << deploymentresourceinfo_tmp
             end
           end
+          @ModelIdentifier = params['ModelIdentifier']
           @RequestId = params['RequestId']
         end
       end
@@ -33086,12 +33504,14 @@ module TencentCloud
         # @type Image: String
         # @param ResourcePartitionName: <p>资源分区名称</p>
         # @type ResourcePartitionName: String
+        # @param LoraBindings: <p>部署当前挂载的 LoRA 模型版本列表。</p>
+        # @type LoraBindings: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DeploymentId, :Name, :ServiceId, :ModelVersion, :Status, :Engine, :Replicas, :AvailableReplicas, :ResourceConfig, :AdvancedParams, :AutoscalingEnabled, :MinReplicas, :MaxReplicas, :ModelStorageConfig, :AppId, :Uin, :CreateTime, :UpdateTime, :NeutrinoServeId, :ResourcePartitionId, :Queue, :SubAccountUin, :HeadHighAvailabilityEnabled, :Image, :ResourcePartitionName, :RequestId
+        attr_accessor :DeploymentId, :Name, :ServiceId, :ModelVersion, :Status, :Engine, :Replicas, :AvailableReplicas, :ResourceConfig, :AdvancedParams, :AutoscalingEnabled, :MinReplicas, :MaxReplicas, :ModelStorageConfig, :AppId, :Uin, :CreateTime, :UpdateTime, :NeutrinoServeId, :ResourcePartitionId, :Queue, :SubAccountUin, :HeadHighAvailabilityEnabled, :Image, :ResourcePartitionName, :LoraBindings, :RequestId
 
-        def initialize(deploymentid=nil, name=nil, serviceid=nil, modelversion=nil, status=nil, engine=nil, replicas=nil, availablereplicas=nil, resourceconfig=nil, advancedparams=nil, autoscalingenabled=nil, minreplicas=nil, maxreplicas=nil, modelstorageconfig=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, neutrinoserveid=nil, resourcepartitionid=nil, queue=nil, subaccountuin=nil, headhighavailabilityenabled=nil, image=nil, resourcepartitionname=nil, requestid=nil)
+        def initialize(deploymentid=nil, name=nil, serviceid=nil, modelversion=nil, status=nil, engine=nil, replicas=nil, availablereplicas=nil, resourceconfig=nil, advancedparams=nil, autoscalingenabled=nil, minreplicas=nil, maxreplicas=nil, modelstorageconfig=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, neutrinoserveid=nil, resourcepartitionid=nil, queue=nil, subaccountuin=nil, headhighavailabilityenabled=nil, image=nil, resourcepartitionname=nil, lorabindings=nil, requestid=nil)
           @DeploymentId = deploymentid
           @Name = name
           @ServiceId = serviceid
@@ -33117,6 +33537,7 @@ module TencentCloud
           @HeadHighAvailabilityEnabled = headhighavailabilityenabled
           @Image = image
           @ResourcePartitionName = resourcepartitionname
+          @LoraBindings = lorabindings
           @RequestId = requestid
         end
 
@@ -33146,6 +33567,14 @@ module TencentCloud
           @HeadHighAvailabilityEnabled = params['HeadHighAvailabilityEnabled']
           @Image = params['Image']
           @ResourcePartitionName = params['ResourcePartitionName']
+          unless params['LoraBindings'].nil?
+            @LoraBindings = []
+            params['LoraBindings'].each do |i|
+              loraitem_tmp = LoraItem.new
+              loraitem_tmp.deserialize(i)
+              @LoraBindings << loraitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -33357,15 +33786,19 @@ module TencentCloud
       class ResumeTrainingJobInstanceRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>训练实例ID</p>
         # @type InstanceId: String
+        # @param ResumeCheckpointSubDir: <p>续训指定的源 checkpoint 子目录（相对源实例 checkpoint 根；空 = 自动选最新）</p>
+        # @type ResumeCheckpointSubDir: String
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :ResumeCheckpointSubDir
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, resumecheckpointsubdir=nil)
           @InstanceId = instanceid
+          @ResumeCheckpointSubDir = resumecheckpointsubdir
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @ResumeCheckpointSubDir = params['ResumeCheckpointSubDir']
         end
       end
 
@@ -35451,12 +35884,14 @@ module TencentCloud
         # @type DeploymentResources: Array
         # @param ErrorMessage: <p>发生错误时的错误信息</p>
         # @type ErrorMessage: String
+        # @param ModelIdentifier: <p>评测路由模型（可选）：基座或 &quot;&lt;基座&gt;:&lt;LoRA Adapter 别名&gt;&quot;，不传默认压测基座</p>
+        # @type ModelIdentifier: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :TaskName, :ServiceId, :ServiceName, :Status, :InputTokens, :OutputTokens, :RequestsPerSecond, :MaxConcurrency, :TotalPrompts, :UseGateway, :DeploymentName, :ApiKeyId, :ApiKeyName, :Uin, :CreateTime, :UpdateTime, :AppId, :SubAccountUin, :Resources, :DeploymentResources, :ErrorMessage, :RequestId
+        attr_accessor :TaskId, :TaskName, :ServiceId, :ServiceName, :Status, :InputTokens, :OutputTokens, :RequestsPerSecond, :MaxConcurrency, :TotalPrompts, :UseGateway, :DeploymentName, :ApiKeyId, :ApiKeyName, :Uin, :CreateTime, :UpdateTime, :AppId, :SubAccountUin, :Resources, :DeploymentResources, :ErrorMessage, :ModelIdentifier, :RequestId
 
-        def initialize(taskid=nil, taskname=nil, serviceid=nil, servicename=nil, status=nil, inputtokens=nil, outputtokens=nil, requestspersecond=nil, maxconcurrency=nil, totalprompts=nil, usegateway=nil, deploymentname=nil, apikeyid=nil, apikeyname=nil, uin=nil, createtime=nil, updatetime=nil, appid=nil, subaccountuin=nil, resources=nil, deploymentresources=nil, errormessage=nil, requestid=nil)
+        def initialize(taskid=nil, taskname=nil, serviceid=nil, servicename=nil, status=nil, inputtokens=nil, outputtokens=nil, requestspersecond=nil, maxconcurrency=nil, totalprompts=nil, usegateway=nil, deploymentname=nil, apikeyid=nil, apikeyname=nil, uin=nil, createtime=nil, updatetime=nil, appid=nil, subaccountuin=nil, resources=nil, deploymentresources=nil, errormessage=nil, modelidentifier=nil, requestid=nil)
           @TaskId = taskid
           @TaskName = taskname
           @ServiceId = serviceid
@@ -35479,6 +35914,7 @@ module TencentCloud
           @Resources = resources
           @DeploymentResources = deploymentresources
           @ErrorMessage = errormessage
+          @ModelIdentifier = modelidentifier
           @RequestId = requestid
         end
 
@@ -35515,6 +35951,7 @@ module TencentCloud
             end
           end
           @ErrorMessage = params['ErrorMessage']
+          @ModelIdentifier = params['ModelIdentifier']
           @RequestId = params['RequestId']
         end
       end
@@ -35609,12 +36046,14 @@ module TencentCloud
         # @type ImagePullPolicy: String
         # @param ResourcePartitionName: <p>资源分区名称</p>
         # @type ResourcePartitionName: String
+        # @param LoraBindings: <p>部署当前挂载的 LoRA 模型版本列表。</p>
+        # @type LoraBindings: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DeploymentId, :Name, :ServiceId, :ModelVersion, :Status, :Engine, :Replicas, :AvailableReplicas, :ResourceConfig, :AdvancedParams, :AutoscalingEnabled, :MinReplicas, :MaxReplicas, :ModelStorageConfig, :AppId, :Uin, :CreateTime, :UpdateTime, :ResourcePartitionId, :Queue, :SubAccountUin, :HeadHighAvailabilityEnabled, :Image, :ImagePullType, :ImagePullPolicy, :ResourcePartitionName, :RequestId
+        attr_accessor :DeploymentId, :Name, :ServiceId, :ModelVersion, :Status, :Engine, :Replicas, :AvailableReplicas, :ResourceConfig, :AdvancedParams, :AutoscalingEnabled, :MinReplicas, :MaxReplicas, :ModelStorageConfig, :AppId, :Uin, :CreateTime, :UpdateTime, :ResourcePartitionId, :Queue, :SubAccountUin, :HeadHighAvailabilityEnabled, :Image, :ImagePullType, :ImagePullPolicy, :ResourcePartitionName, :LoraBindings, :RequestId
 
-        def initialize(deploymentid=nil, name=nil, serviceid=nil, modelversion=nil, status=nil, engine=nil, replicas=nil, availablereplicas=nil, resourceconfig=nil, advancedparams=nil, autoscalingenabled=nil, minreplicas=nil, maxreplicas=nil, modelstorageconfig=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, resourcepartitionid=nil, queue=nil, subaccountuin=nil, headhighavailabilityenabled=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourcepartitionname=nil, requestid=nil)
+        def initialize(deploymentid=nil, name=nil, serviceid=nil, modelversion=nil, status=nil, engine=nil, replicas=nil, availablereplicas=nil, resourceconfig=nil, advancedparams=nil, autoscalingenabled=nil, minreplicas=nil, maxreplicas=nil, modelstorageconfig=nil, appid=nil, uin=nil, createtime=nil, updatetime=nil, resourcepartitionid=nil, queue=nil, subaccountuin=nil, headhighavailabilityenabled=nil, image=nil, imagepulltype=nil, imagepullpolicy=nil, resourcepartitionname=nil, lorabindings=nil, requestid=nil)
           @DeploymentId = deploymentid
           @Name = name
           @ServiceId = serviceid
@@ -35641,6 +36080,7 @@ module TencentCloud
           @ImagePullType = imagepulltype
           @ImagePullPolicy = imagepullpolicy
           @ResourcePartitionName = resourcepartitionname
+          @LoraBindings = lorabindings
           @RequestId = requestid
         end
 
@@ -35671,6 +36111,14 @@ module TencentCloud
           @ImagePullType = params['ImagePullType']
           @ImagePullPolicy = params['ImagePullPolicy']
           @ResourcePartitionName = params['ResourcePartitionName']
+          unless params['LoraBindings'].nil?
+            @LoraBindings = []
+            params['LoraBindings'].each do |i|
+              loraitem_tmp = LoraItem.new
+              loraitem_tmp.deserialize(i)
+              @LoraBindings << loraitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -38179,6 +38627,10 @@ module TencentCloud
         # @type HistoryUrl: String
         # @param Creator: <p>创建人</p>
         # @type Creator: String
+        # @param SubAccountUin: <p>子账号 UIN</p>
+        # @type SubAccountUin: String
+        # @param SubAccountName: <p>子账号名称</p>
+        # @type SubAccountName: String
         # @param CreateTime: <p>创建时间（毫秒时间戳）</p>
         # @type CreateTime: Integer
         # @param ResourcePartitionId: <p>资源分区 ID</p>
@@ -38225,10 +38677,14 @@ module TencentCloud
         # @type TuningParams: :class:`Tencentcloud::Dlc.v20210125.models.TrainingTuningParams`
         # @param ResumeTraining: <p>创建实例时的断点续训意图声明快照（仅详情返回）</p>
         # @type ResumeTraining: Boolean
+        # @param NetworkConfig: <p>自定义网络配置</p>
+        # @type NetworkConfig: String
+        # @param ResumeSourceInstanceId: <p>断点续训来源实例 ID（仅续训产生的实例有值，仅详情返回）</p>
+        # @type ResumeSourceInstanceId: String
 
-        attr_accessor :InstanceId, :SpecId, :SpecName, :Priority, :Status, :ErrorMessage, :JobCreateTime, :JobRunningTime, :HistoryUrl, :Creator, :CreateTime, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :RuntimeEnv, :Entrypoint, :Image, :ResourceConfig, :Catalog, :AdvancedOptions, :Kind, :CodePackageUrl, :MlFlowConfig, :CheckpointMountInfo, :Mode, :BaseModelUid, :BaseModelName, :Tags, :Datasets, :Checkpoint, :TuningParams, :ResumeTraining
+        attr_accessor :InstanceId, :SpecId, :SpecName, :Priority, :Status, :ErrorMessage, :JobCreateTime, :JobRunningTime, :HistoryUrl, :Creator, :SubAccountUin, :SubAccountName, :CreateTime, :ResourcePartitionId, :ResourcePartitionName, :Queue, :QueueAlias, :RuntimeEnv, :Entrypoint, :Image, :ResourceConfig, :Catalog, :AdvancedOptions, :Kind, :CodePackageUrl, :MlFlowConfig, :CheckpointMountInfo, :Mode, :BaseModelUid, :BaseModelName, :Tags, :Datasets, :Checkpoint, :TuningParams, :ResumeTraining, :NetworkConfig, :ResumeSourceInstanceId
 
-        def initialize(instanceid=nil, specid=nil, specname=nil, priority=nil, status=nil, errormessage=nil, jobcreatetime=nil, jobrunningtime=nil, historyurl=nil, creator=nil, createtime=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, runtimeenv=nil, entrypoint=nil, image=nil, resourceconfig=nil, catalog=nil, advancedoptions=nil, kind=nil, codepackageurl=nil, mlflowconfig=nil, checkpointmountinfo=nil, mode=nil, basemodeluid=nil, basemodelname=nil, tags=nil, datasets=nil, checkpoint=nil, tuningparams=nil, resumetraining=nil)
+        def initialize(instanceid=nil, specid=nil, specname=nil, priority=nil, status=nil, errormessage=nil, jobcreatetime=nil, jobrunningtime=nil, historyurl=nil, creator=nil, subaccountuin=nil, subaccountname=nil, createtime=nil, resourcepartitionid=nil, resourcepartitionname=nil, queue=nil, queuealias=nil, runtimeenv=nil, entrypoint=nil, image=nil, resourceconfig=nil, catalog=nil, advancedoptions=nil, kind=nil, codepackageurl=nil, mlflowconfig=nil, checkpointmountinfo=nil, mode=nil, basemodeluid=nil, basemodelname=nil, tags=nil, datasets=nil, checkpoint=nil, tuningparams=nil, resumetraining=nil, networkconfig=nil, resumesourceinstanceid=nil)
           @InstanceId = instanceid
           @SpecId = specid
           @SpecName = specname
@@ -38239,6 +38695,8 @@ module TencentCloud
           @JobRunningTime = jobrunningtime
           @HistoryUrl = historyurl
           @Creator = creator
+          @SubAccountUin = subaccountuin
+          @SubAccountName = subaccountname
           @CreateTime = createtime
           @ResourcePartitionId = resourcepartitionid
           @ResourcePartitionName = resourcepartitionname
@@ -38262,6 +38720,8 @@ module TencentCloud
           @Checkpoint = checkpoint
           @TuningParams = tuningparams
           @ResumeTraining = resumetraining
+          @NetworkConfig = networkconfig
+          @ResumeSourceInstanceId = resumesourceinstanceid
         end
 
         def deserialize(params)
@@ -38275,6 +38735,8 @@ module TencentCloud
           @JobRunningTime = params['JobRunningTime']
           @HistoryUrl = params['HistoryUrl']
           @Creator = params['Creator']
+          @SubAccountUin = params['SubAccountUin']
+          @SubAccountName = params['SubAccountName']
           @CreateTime = params['CreateTime']
           @ResourcePartitionId = params['ResourcePartitionId']
           @ResourcePartitionName = params['ResourcePartitionName']
@@ -38321,6 +38783,8 @@ module TencentCloud
             @TuningParams.deserialize(params['TuningParams'])
           end
           @ResumeTraining = params['ResumeTraining']
+          @NetworkConfig = params['NetworkConfig']
+          @ResumeSourceInstanceId = params['ResumeSourceInstanceId']
         end
       end
 
@@ -38660,10 +39124,26 @@ module TencentCloud
         # @type TensorModelParallelSize: Integer
         # @param GpuMemoryUtilization: <p>vLLM GPU memory utilization，默认 0.5</p>
         # @type GpuMemoryUtilization: Float
+        # @param PPOMaxTokenLenPerGpu: <p>Actor Token 上限 / GPU</p>
+        # @type PPOMaxTokenLenPerGpu: Integer
+        # @param LogProbMaxTokenLenPerGpu: <p>LogProb Token 上限 / GPU</p>
+        # @type LogProbMaxTokenLenPerGpu: Integer
+        # @param ActorParamOffload: <p>Actor 参数 Offload</p>
+        # @type ActorParamOffload: Boolean
+        # @param ActorOptimizerOffload: <p>优化器 Offload</p>
+        # @type ActorOptimizerOffload: Boolean
+        # @param RefParamOffload: <p>Ref 参数 Offload</p>
+        # @type RefParamOffload: Boolean
+        # @param PPOMicroBatchSizePerGpu: <p>Actor Micro Batch / GPU</p>
+        # @type PPOMicroBatchSizePerGpu: Integer
+        # @param RollOutLogProbMicroBatchSizePerGpu: <p>LogProb Micro Batch / GPU</p>
+        # @type RollOutLogProbMicroBatchSizePerGpu: Integer
+        # @param GRPORawOverrides: <p>直接追加为命令行 override，优先级最高</p>
+        # @type GRPORawOverrides: String
 
-        attr_accessor :FineTuneType, :LoraRank, :LoraAlpha, :LoraDropout, :LoraTarget, :TrainingMode, :Epochs, :LearningRate, :PerDeviceBatchSize, :GradientAccumulationSteps, :CutoffLen, :MaxSamples, :GradientCheckPointing, :LrScheduler, :WarmupRatio, :DPOBeta, :DPOLoss, :RewardFunctionCode, :RewardFunctionCosPath, :KLCoefficient, :NumSamplesPerPrompt, :MaxResponseLength, :RollOutTemperature, :RollOutBackend, :ClipRatio, :PPOMiniBatchSize, :PPOEpochs, :TrainBatchSize, :TensorModelParallelSize, :GpuMemoryUtilization
+        attr_accessor :FineTuneType, :LoraRank, :LoraAlpha, :LoraDropout, :LoraTarget, :TrainingMode, :Epochs, :LearningRate, :PerDeviceBatchSize, :GradientAccumulationSteps, :CutoffLen, :MaxSamples, :GradientCheckPointing, :LrScheduler, :WarmupRatio, :DPOBeta, :DPOLoss, :RewardFunctionCode, :RewardFunctionCosPath, :KLCoefficient, :NumSamplesPerPrompt, :MaxResponseLength, :RollOutTemperature, :RollOutBackend, :ClipRatio, :PPOMiniBatchSize, :PPOEpochs, :TrainBatchSize, :TensorModelParallelSize, :GpuMemoryUtilization, :PPOMaxTokenLenPerGpu, :LogProbMaxTokenLenPerGpu, :ActorParamOffload, :ActorOptimizerOffload, :RefParamOffload, :PPOMicroBatchSizePerGpu, :RollOutLogProbMicroBatchSizePerGpu, :GRPORawOverrides
 
-        def initialize(finetunetype=nil, lorarank=nil, loraalpha=nil, loradropout=nil, loratarget=nil, trainingmode=nil, epochs=nil, learningrate=nil, perdevicebatchsize=nil, gradientaccumulationsteps=nil, cutofflen=nil, maxsamples=nil, gradientcheckpointing=nil, lrscheduler=nil, warmupratio=nil, dpobeta=nil, dpoloss=nil, rewardfunctioncode=nil, rewardfunctioncospath=nil, klcoefficient=nil, numsamplesperprompt=nil, maxresponselength=nil, rollouttemperature=nil, rolloutbackend=nil, clipratio=nil, ppominibatchsize=nil, ppoepochs=nil, trainbatchsize=nil, tensormodelparallelsize=nil, gpumemoryutilization=nil)
+        def initialize(finetunetype=nil, lorarank=nil, loraalpha=nil, loradropout=nil, loratarget=nil, trainingmode=nil, epochs=nil, learningrate=nil, perdevicebatchsize=nil, gradientaccumulationsteps=nil, cutofflen=nil, maxsamples=nil, gradientcheckpointing=nil, lrscheduler=nil, warmupratio=nil, dpobeta=nil, dpoloss=nil, rewardfunctioncode=nil, rewardfunctioncospath=nil, klcoefficient=nil, numsamplesperprompt=nil, maxresponselength=nil, rollouttemperature=nil, rolloutbackend=nil, clipratio=nil, ppominibatchsize=nil, ppoepochs=nil, trainbatchsize=nil, tensormodelparallelsize=nil, gpumemoryutilization=nil, ppomaxtokenlenpergpu=nil, logprobmaxtokenlenpergpu=nil, actorparamoffload=nil, actoroptimizeroffload=nil, refparamoffload=nil, ppomicrobatchsizepergpu=nil, rolloutlogprobmicrobatchsizepergpu=nil, grporawoverrides=nil)
           @FineTuneType = finetunetype
           @LoraRank = lorarank
           @LoraAlpha = loraalpha
@@ -38694,6 +39174,14 @@ module TencentCloud
           @TrainBatchSize = trainbatchsize
           @TensorModelParallelSize = tensormodelparallelsize
           @GpuMemoryUtilization = gpumemoryutilization
+          @PPOMaxTokenLenPerGpu = ppomaxtokenlenpergpu
+          @LogProbMaxTokenLenPerGpu = logprobmaxtokenlenpergpu
+          @ActorParamOffload = actorparamoffload
+          @ActorOptimizerOffload = actoroptimizeroffload
+          @RefParamOffload = refparamoffload
+          @PPOMicroBatchSizePerGpu = ppomicrobatchsizepergpu
+          @RollOutLogProbMicroBatchSizePerGpu = rolloutlogprobmicrobatchsizepergpu
+          @GRPORawOverrides = grporawoverrides
         end
 
         def deserialize(params)
@@ -38727,6 +39215,14 @@ module TencentCloud
           @TrainBatchSize = params['TrainBatchSize']
           @TensorModelParallelSize = params['TensorModelParallelSize']
           @GpuMemoryUtilization = params['GpuMemoryUtilization']
+          @PPOMaxTokenLenPerGpu = params['PPOMaxTokenLenPerGpu']
+          @LogProbMaxTokenLenPerGpu = params['LogProbMaxTokenLenPerGpu']
+          @ActorParamOffload = params['ActorParamOffload']
+          @ActorOptimizerOffload = params['ActorOptimizerOffload']
+          @RefParamOffload = params['RefParamOffload']
+          @PPOMicroBatchSizePerGpu = params['PPOMicroBatchSizePerGpu']
+          @RollOutLogProbMicroBatchSizePerGpu = params['RollOutLogProbMicroBatchSizePerGpu']
+          @GRPORawOverrides = params['GRPORawOverrides']
         end
       end
 
@@ -39289,15 +39785,33 @@ module TencentCloud
         # @type Replicas: Integer
         # @param AutoscalingEnabled: <p>是否启用弹性伸缩</p>
         # @type AutoscalingEnabled: Boolean
+        # @param CodePackageUri: <p>代码包 URI（可选，未传时从 primary deployment 继承）</p>
+        # @type CodePackageUri: String
+        # @param CodePackageOriginalName: <p>代码包原始文件名（可选，详情页「代码引用」回显用，仅记录不参与业务逻辑）</p>
+        # @type CodePackageOriginalName: String
+        # @param CrOverrides: <p>CR / PodSpec overrides JSON（可选）</p>
+        # @type CrOverrides: String
+        # @param HeadHighAvailabilityEnabled: <p>Head 节点高可用开关（可选，不传或 true 为开启，仅 false 为关闭；与当前值不同会触发服务重建）</p>
+        # @type HeadHighAvailabilityEnabled: Boolean
+        # @param LoraBindings: <p>可选：创建时一并挂载的 LoRA 模型版本（首次启动即生效）</p>
+        # @type LoraBindings: Array
+        # @param RuntimeEnv: <p>ray runtime env 字段</p>
+        # @type RuntimeEnv: String
 
-        attr_accessor :DeploymentId, :ModelVersion, :Engine, :Replicas, :AutoscalingEnabled
+        attr_accessor :DeploymentId, :ModelVersion, :Engine, :Replicas, :AutoscalingEnabled, :CodePackageUri, :CodePackageOriginalName, :CrOverrides, :HeadHighAvailabilityEnabled, :LoraBindings, :RuntimeEnv
 
-        def initialize(deploymentid=nil, modelversion=nil, engine=nil, replicas=nil, autoscalingenabled=nil)
+        def initialize(deploymentid=nil, modelversion=nil, engine=nil, replicas=nil, autoscalingenabled=nil, codepackageuri=nil, codepackageoriginalname=nil, croverrides=nil, headhighavailabilityenabled=nil, lorabindings=nil, runtimeenv=nil)
           @DeploymentId = deploymentid
           @ModelVersion = modelversion
           @Engine = engine
           @Replicas = replicas
           @AutoscalingEnabled = autoscalingenabled
+          @CodePackageUri = codepackageuri
+          @CodePackageOriginalName = codepackageoriginalname
+          @CrOverrides = croverrides
+          @HeadHighAvailabilityEnabled = headhighavailabilityenabled
+          @LoraBindings = lorabindings
+          @RuntimeEnv = runtimeenv
         end
 
         def deserialize(params)
@@ -39306,6 +39820,19 @@ module TencentCloud
           @Engine = params['Engine']
           @Replicas = params['Replicas']
           @AutoscalingEnabled = params['AutoscalingEnabled']
+          @CodePackageUri = params['CodePackageUri']
+          @CodePackageOriginalName = params['CodePackageOriginalName']
+          @CrOverrides = params['CrOverrides']
+          @HeadHighAvailabilityEnabled = params['HeadHighAvailabilityEnabled']
+          unless params['LoraBindings'].nil?
+            @LoraBindings = []
+            params['LoraBindings'].each do |i|
+              loraadapterbinding_tmp = LoraAdapterBinding.new
+              loraadapterbinding_tmp.deserialize(i)
+              @LoraBindings << loraadapterbinding_tmp
+            end
+          end
+          @RuntimeEnv = params['RuntimeEnv']
         end
       end
 
@@ -39364,12 +39891,14 @@ module TencentCloud
         # @type ResourcePartitionName: String
         # @param AdvancedOptions: <p>高级参数</p>
         # @type AdvancedOptions: String
+        # @param LoraBindings: <p>部署当前挂载的 LoRA 模型版本列表。</p>
+        # @type LoraBindings: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :DeploymentId, :Name, :ServiceId, :ModelVersion, :Status, :Engine, :Replicas, :AvailableReplicas, :ResourceConfig, :AutoscalingEnabled, :ModelStorageConfig, :CreateTime, :UpdateTime, :ResourcePartitionId, :Queue, :HeadHighAvailabilityEnabled, :Image, :ResourcePartitionName, :AdvancedOptions, :RequestId
+        attr_accessor :DeploymentId, :Name, :ServiceId, :ModelVersion, :Status, :Engine, :Replicas, :AvailableReplicas, :ResourceConfig, :AutoscalingEnabled, :ModelStorageConfig, :CreateTime, :UpdateTime, :ResourcePartitionId, :Queue, :HeadHighAvailabilityEnabled, :Image, :ResourcePartitionName, :AdvancedOptions, :LoraBindings, :RequestId
 
-        def initialize(deploymentid=nil, name=nil, serviceid=nil, modelversion=nil, status=nil, engine=nil, replicas=nil, availablereplicas=nil, resourceconfig=nil, autoscalingenabled=nil, modelstorageconfig=nil, createtime=nil, updatetime=nil, resourcepartitionid=nil, queue=nil, headhighavailabilityenabled=nil, image=nil, resourcepartitionname=nil, advancedoptions=nil, requestid=nil)
+        def initialize(deploymentid=nil, name=nil, serviceid=nil, modelversion=nil, status=nil, engine=nil, replicas=nil, availablereplicas=nil, resourceconfig=nil, autoscalingenabled=nil, modelstorageconfig=nil, createtime=nil, updatetime=nil, resourcepartitionid=nil, queue=nil, headhighavailabilityenabled=nil, image=nil, resourcepartitionname=nil, advancedoptions=nil, lorabindings=nil, requestid=nil)
           @DeploymentId = deploymentid
           @Name = name
           @ServiceId = serviceid
@@ -39389,6 +39918,7 @@ module TencentCloud
           @Image = image
           @ResourcePartitionName = resourcepartitionname
           @AdvancedOptions = advancedoptions
+          @LoraBindings = lorabindings
           @RequestId = requestid
         end
 
@@ -39412,6 +39942,14 @@ module TencentCloud
           @Image = params['Image']
           @ResourcePartitionName = params['ResourcePartitionName']
           @AdvancedOptions = params['AdvancedOptions']
+          unless params['LoraBindings'].nil?
+            @LoraBindings = []
+            params['LoraBindings'].each do |i|
+              loraitem_tmp = LoraItem.new
+              loraitem_tmp.deserialize(i)
+              @LoraBindings << loraitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -39544,12 +40082,26 @@ module TencentCloud
         # @param ResourceTags: <p>系统标签列表（TagKey-TagValue）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceTags: Array
+        # @param ModelCategory: <p>模型类别：Base=普通（基座）模型；LoRA=LoRA Adapter 系列（各版本为 Adapter）</p>
+        # @type ModelCategory: String
+        # @param BaseModelUid: <p>LoRA 基座模型 UID（仅 ModelCategory=LoRA 时有值）</p>
+        # @type BaseModelUid: String
+        # @param LatestVersionUid: <p>最新版本的全局唯一标识（VersionUid）。CreateInferenceModel 返回时即初始版本的 VersionUid</p>
+        # @type LatestVersionUid: String
+        # @param BaseModelVersionUid: <p>LoRA 基座模型版本 UID（仅 ModelCategory=LoRA 且创建时指定了基座版本时有值）</p>
+        # @type BaseModelVersionUid: String
+        # @param BaseModelName: <p>LoRA 基座模型名称（仅 ModelCategory=LoRA 且基座存在时有值；列表展示「基座模型及版本」用）</p>
+        # @type BaseModelName: String
+        # @param BaseModelVersion: <p>LoRA 基座模型版本号（如 v2；仅 ModelCategory=LoRA 且创建时指定了基座版本时有值）</p>
+        # @type BaseModelVersion: String
+        # @param ModelSource: <p>模型来源标识（可选；有 RegisterMeta 时必填，须在平台值域登记表内）</p>
+        # @type ModelSource: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :AppId, :CreateTime, :UpdateTime, :SubAccountUin, :ResourceTags, :RequestId
+        attr_accessor :ModelId, :ModelUid, :Name, :Provider, :Description, :ModelType, :ParameterSize, :Tags, :LatestVersion, :VersionCount, :ServiceCount, :HasStorage, :HasCustomStorage, :StorageType, :BuiltIn, :Tasks, :AppId, :CreateTime, :UpdateTime, :SubAccountUin, :ResourceTags, :ModelCategory, :BaseModelUid, :LatestVersionUid, :BaseModelVersionUid, :BaseModelName, :BaseModelVersion, :ModelSource, :RequestId
 
-        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, appid=nil, createtime=nil, updatetime=nil, subaccountuin=nil, resourcetags=nil, requestid=nil)
+        def initialize(modelid=nil, modeluid=nil, name=nil, provider=nil, description=nil, modeltype=nil, parametersize=nil, tags=nil, latestversion=nil, versioncount=nil, servicecount=nil, hasstorage=nil, hascustomstorage=nil, storagetype=nil, builtin=nil, tasks=nil, appid=nil, createtime=nil, updatetime=nil, subaccountuin=nil, resourcetags=nil, modelcategory=nil, basemodeluid=nil, latestversionuid=nil, basemodelversionuid=nil, basemodelname=nil, basemodelversion=nil, modelsource=nil, requestid=nil)
           @ModelId = modelid
           @ModelUid = modeluid
           @Name = name
@@ -39571,6 +40123,13 @@ module TencentCloud
           @UpdateTime = updatetime
           @SubAccountUin = subaccountuin
           @ResourceTags = resourcetags
+          @ModelCategory = modelcategory
+          @BaseModelUid = basemodeluid
+          @LatestVersionUid = latestversionuid
+          @BaseModelVersionUid = basemodelversionuid
+          @BaseModelName = basemodelname
+          @BaseModelVersion = basemodelversion
+          @ModelSource = modelsource
           @RequestId = requestid
         end
 
@@ -39603,6 +40162,13 @@ module TencentCloud
               @ResourceTags << tag_tmp
             end
           end
+          @ModelCategory = params['ModelCategory']
+          @BaseModelUid = params['BaseModelUid']
+          @LatestVersionUid = params['LatestVersionUid']
+          @BaseModelVersionUid = params['BaseModelVersionUid']
+          @BaseModelName = params['BaseModelName']
+          @BaseModelVersion = params['BaseModelVersion']
+          @ModelSource = params['ModelSource']
           @RequestId = params['RequestId']
         end
       end

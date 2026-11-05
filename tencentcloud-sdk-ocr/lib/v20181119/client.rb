@@ -1402,6 +1402,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于查询企业基本信息。输入企业名称或统一社会信用代码，返回企业名称、统一社会信用代码、法定代表人、登记机关、经营期限、经营状态、经营范围、注册地址、主体类型、成立日期、核准日期、行政区划等企业登记信息。部分出参可能无法查得，具体以实际查询结果为准。
+
+        # @param request: Request instance for QueryEnterpriseBasicInfo.
+        # @type request: :class:`Tencentcloud::ocr::V20181119::QueryEnterpriseBasicInfoRequest`
+        # @rtype: :class:`Tencentcloud::ocr::V20181119::QueryEnterpriseBasicInfoResponse`
+        def QueryEnterpriseBasicInfo(request)
+          body = send_request('QueryEnterpriseBasicInfo', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = QueryEnterpriseBasicInfoResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 题目识别是教育的基础OCR识别能力。可支持扫描、拍照场景的单题题目识别。接口支持印刷体文本、手写体文本及公式的OCR识别和坐标返回，此外，接口还可对题目中的配图位置进行检测并返回坐标位置。适用于智能批改等场景的题目内容识别作为检索输入。
 
         # 默认接口请求频率限制：2次/秒。

@@ -2285,6 +2285,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询集群设置的serverless弹性配置
+
+        # @param request: Request instance for DescribeInstanceServerlessQuota.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceServerlessQuotaRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::DescribeInstanceServerlessQuotaResponse`
+        def DescribeInstanceServerlessQuota(request)
+          body = send_request('DescribeInstanceServerlessQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceServerlessQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 此接口（DescribeInstanceSlowQueries）用于查询实例慢日志详情。受到平台返回大小限制，当返回结果过大时，可能会对超过限制的内容进行截断。
 
         # @param request: Request instance for DescribeInstanceSlowQueries.
@@ -5511,6 +5535,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchClusterTablesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 将普通集群转换为Serverless集群
+
+        # @param request: Request instance for SetInstanceServerlessQuota.
+        # @type request: :class:`Tencentcloud::cynosdb::V20190107::SetInstanceServerlessQuotaRequest`
+        # @rtype: :class:`Tencentcloud::cynosdb::V20190107::SetInstanceServerlessQuotaResponse`
+        def SetInstanceServerlessQuota(request)
+          body = send_request('SetInstanceServerlessQuota', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetInstanceServerlessQuotaResponse.new
             model.deserialize(response['Response'])
             model
           else

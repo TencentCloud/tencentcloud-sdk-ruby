@@ -702,6 +702,30 @@ module TencentCloud
         end
       end
 
+      # 字符集与排序规则联动清单
+      class CharsetCollationItem < TencentCloud::Common::AbstractModel
+        # @param CharsetName: <p>字符集</p>
+        # @type CharsetName: String
+        # @param Collations: <p>排序规则</p>
+        # @type Collations: Array
+        # @param DefaultCollation: <p>默认的排序规则</p>
+        # @type DefaultCollation: String
+
+        attr_accessor :CharsetName, :Collations, :DefaultCollation
+
+        def initialize(charsetname=nil, collations=nil, defaultcollation=nil)
+          @CharsetName = charsetname
+          @Collations = collations
+          @DefaultCollation = defaultcollation
+        end
+
+        def deserialize(params)
+          @CharsetName = params['CharsetName']
+          @Collations = params['Collations']
+          @DefaultCollation = params['DefaultCollation']
+        end
+      end
+
       # 克隆实例对象
       class CloneInstanceModel < TencentCloud::Common::AbstractModel
         # @param CloneEndTime: 克隆任务结束时间
@@ -935,8 +959,6 @@ module TencentCloud
 
       # CreateDBInstances请求参数结构体
       class CreateDBInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Zone: <p>创建实例区域</p>
-        # @type Zone: String
         # @param VpcId: <p>字符型vpcid</p>
         # @type VpcId: String
         # @param SubnetId: <p>字符型subnetid</p>
@@ -951,6 +973,8 @@ module TencentCloud
         # @type Replications: Integer
         # @param InstanceCount: <p>创建实例个数，上限为10</p>
         # @type InstanceCount: Integer
+        # @param Zone: <p>创建实例区域</p>
+        # @type Zone: String
         # @param FullReplications: <p>全能型副本数量</p>
         # @type FullReplications: Integer
         # @param CreateVersion: <p>创建实例版本，默认使用当前最新版本</p>
@@ -1005,11 +1029,12 @@ module TencentCloud
         # @type EncryptionEnable: Integer
         # @param AutoScaleConfigs: <p>SVLS 实例的自动变配相关限制</p><p>入参限制：传入时 AutoScaleConfig 参数不再生效</p>
         # @type AutoScaleConfigs: Array
+        # @param PasswordComplexity: <p>密码复杂度</p>
+        # @type PasswordComplexity: :class:`Tencentcloud::Tdmysql.v20211122.models.PasswordComplexity`
 
-        attr_accessor :Zone, :VpcId, :SubnetId, :SpecCode, :Disk, :StorageNodeNum, :Replications, :InstanceCount, :FullReplications, :CreateVersion, :InstanceName, :ResourceTags, :InitParams, :TimeUnit, :TimeSpan, :StorageNodeCpu, :StorageNodeMem, :PayMode, :MCNum, :Vport, :Zones, :AutoVoucher, :VoucherIds, :InstanceType, :StorageType, :AZMode, :InstanceMode, :TemplateId, :SQLMode, :AutoScaleConfig, :SecurityGroupIds, :UserName, :Password, :EncryptionEnable, :AutoScaleConfigs
+        attr_accessor :VpcId, :SubnetId, :SpecCode, :Disk, :StorageNodeNum, :Replications, :InstanceCount, :Zone, :FullReplications, :CreateVersion, :InstanceName, :ResourceTags, :InitParams, :TimeUnit, :TimeSpan, :StorageNodeCpu, :StorageNodeMem, :PayMode, :MCNum, :Vport, :Zones, :AutoVoucher, :VoucherIds, :InstanceType, :StorageType, :AZMode, :InstanceMode, :TemplateId, :SQLMode, :AutoScaleConfig, :SecurityGroupIds, :UserName, :Password, :EncryptionEnable, :AutoScaleConfigs, :PasswordComplexity
 
-        def initialize(zone=nil, vpcid=nil, subnetid=nil, speccode=nil, disk=nil, storagenodenum=nil, replications=nil, instancecount=nil, fullreplications=nil, createversion=nil, instancename=nil, resourcetags=nil, initparams=nil, timeunit=nil, timespan=nil, storagenodecpu=nil, storagenodemem=nil, paymode=nil, mcnum=nil, vport=nil, zones=nil, autovoucher=nil, voucherids=nil, instancetype=nil, storagetype=nil, azmode=nil, instancemode=nil, templateid=nil, sqlmode=nil, autoscaleconfig=nil, securitygroupids=nil, username=nil, password=nil, encryptionenable=nil, autoscaleconfigs=nil)
-          @Zone = zone
+        def initialize(vpcid=nil, subnetid=nil, speccode=nil, disk=nil, storagenodenum=nil, replications=nil, instancecount=nil, zone=nil, fullreplications=nil, createversion=nil, instancename=nil, resourcetags=nil, initparams=nil, timeunit=nil, timespan=nil, storagenodecpu=nil, storagenodemem=nil, paymode=nil, mcnum=nil, vport=nil, zones=nil, autovoucher=nil, voucherids=nil, instancetype=nil, storagetype=nil, azmode=nil, instancemode=nil, templateid=nil, sqlmode=nil, autoscaleconfig=nil, securitygroupids=nil, username=nil, password=nil, encryptionenable=nil, autoscaleconfigs=nil, passwordcomplexity=nil)
           @VpcId = vpcid
           @SubnetId = subnetid
           @SpecCode = speccode
@@ -1017,6 +1042,7 @@ module TencentCloud
           @StorageNodeNum = storagenodenum
           @Replications = replications
           @InstanceCount = instancecount
+          @Zone = zone
           @FullReplications = fullreplications
           @CreateVersion = createversion
           @InstanceName = instancename
@@ -1044,10 +1070,10 @@ module TencentCloud
           @Password = password
           @EncryptionEnable = encryptionenable
           @AutoScaleConfigs = autoscaleconfigs
+          @PasswordComplexity = passwordcomplexity
         end
 
         def deserialize(params)
-          @Zone = params['Zone']
           @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
           @SpecCode = params['SpecCode']
@@ -1055,6 +1081,7 @@ module TencentCloud
           @StorageNodeNum = params['StorageNodeNum']
           @Replications = params['Replications']
           @InstanceCount = params['InstanceCount']
+          @Zone = params['Zone']
           @FullReplications = params['FullReplications']
           @CreateVersion = params['CreateVersion']
           @InstanceName = params['InstanceName']
@@ -1105,6 +1132,10 @@ module TencentCloud
               autoscalingconfig_tmp.deserialize(i)
               @AutoScaleConfigs << autoscalingconfig_tmp
             end
+          end
+          unless params['PasswordComplexity'].nil?
+            @PasswordComplexity = PasswordComplexity.new
+            @PasswordComplexity.deserialize(params['PasswordComplexity'])
           end
         end
       end
@@ -1727,16 +1758,27 @@ module TencentCloud
 
       # DescribeDBCharsets返回参数结构体
       class DescribeDBCharsetsResponse < TencentCloud::Common::AbstractModel
+        # @param CharsetCollations: <p>字符集与排序规则对应列表</p>
+        # @type CharsetCollations: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :CharsetCollations, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(charsetcollations=nil, requestid=nil)
+          @CharsetCollations = charsetcollations
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['CharsetCollations'].nil?
+            @CharsetCollations = []
+            params['CharsetCollations'].each do |i|
+              charsetcollationitem_tmp = CharsetCollationItem.new
+              charsetcollationitem_tmp.deserialize(i)
+              @CharsetCollations << charsetcollationitem_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1930,12 +1972,16 @@ module TencentCloud
         # @type EncryptionKmsRegion: String
         # @param AutoScaleConfigs: <p>serverless自动变配配置</p>
         # @type AutoScaleConfigs: Array
+        # @param SSLStatus: <p>SSL开启状态</p>
+        # @type SSLStatus: String
+        # @param Collation: <p>字符集的排序规则</p>
+        # @type Collation: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceName, :Zone, :VpcId, :SubnetId, :CreateVersion, :Vip, :Vport, :Status, :Disk, :StorageNodeNum, :InitParams, :ResourceTags, :CreateTime, :UpdateTime, :Replications, :FullReplications, :CharSet, :Node, :Region, :SpecCode, :InstanceId, :StatusDesc, :StorageNodeCpu, :StorageNodeMem, :RenewFlag, :PayMode, :ExpireAt, :IsolatedAt, :InstanceType, :StorageType, :Zones, :DiskUsage, :BinlogStatus, :AZMode, :StandbyFlag, :BinlogType, :TimingModifyInstanceFlag, :ColumnarNodeCpu, :ColumnarNodeMem, :ColumnarNodeNum, :ColumnarNodeDisk, :ColumnarNodeStorageType, :ColumnarNodeSpecCode, :ColumnarVip, :ColumnarVport, :IsSupportColumnar, :InstanceCategory, :SQLMode, :IsSwitchFullReplicationsEnable, :InstanceMode, :DumperVip, :DumperVport, :AutoScaleConfig, :TemplateId, :TemplateName, :AnalysisMode, :AnalysisRelationInfos, :AnalysisInstanceInfo, :MaintenanceWindow, :EncryptionEnable, :EncryptionKmsRegion, :AutoScaleConfigs, :RequestId
+        attr_accessor :InstanceName, :Zone, :VpcId, :SubnetId, :CreateVersion, :Vip, :Vport, :Status, :Disk, :StorageNodeNum, :InitParams, :ResourceTags, :CreateTime, :UpdateTime, :Replications, :FullReplications, :CharSet, :Node, :Region, :SpecCode, :InstanceId, :StatusDesc, :StorageNodeCpu, :StorageNodeMem, :RenewFlag, :PayMode, :ExpireAt, :IsolatedAt, :InstanceType, :StorageType, :Zones, :DiskUsage, :BinlogStatus, :AZMode, :StandbyFlag, :BinlogType, :TimingModifyInstanceFlag, :ColumnarNodeCpu, :ColumnarNodeMem, :ColumnarNodeNum, :ColumnarNodeDisk, :ColumnarNodeStorageType, :ColumnarNodeSpecCode, :ColumnarVip, :ColumnarVport, :IsSupportColumnar, :InstanceCategory, :SQLMode, :IsSwitchFullReplicationsEnable, :InstanceMode, :DumperVip, :DumperVport, :AutoScaleConfig, :TemplateId, :TemplateName, :AnalysisMode, :AnalysisRelationInfos, :AnalysisInstanceInfo, :MaintenanceWindow, :EncryptionEnable, :EncryptionKmsRegion, :AutoScaleConfigs, :SSLStatus, :Collation, :RequestId
 
-        def initialize(instancename=nil, zone=nil, vpcid=nil, subnetid=nil, createversion=nil, vip=nil, vport=nil, status=nil, disk=nil, storagenodenum=nil, initparams=nil, resourcetags=nil, createtime=nil, updatetime=nil, replications=nil, fullreplications=nil, charset=nil, node=nil, region=nil, speccode=nil, instanceid=nil, statusdesc=nil, storagenodecpu=nil, storagenodemem=nil, renewflag=nil, paymode=nil, expireat=nil, isolatedat=nil, instancetype=nil, storagetype=nil, zones=nil, diskusage=nil, binlogstatus=nil, azmode=nil, standbyflag=nil, binlogtype=nil, timingmodifyinstanceflag=nil, columnarnodecpu=nil, columnarnodemem=nil, columnarnodenum=nil, columnarnodedisk=nil, columnarnodestoragetype=nil, columnarnodespeccode=nil, columnarvip=nil, columnarvport=nil, issupportcolumnar=nil, instancecategory=nil, sqlmode=nil, isswitchfullreplicationsenable=nil, instancemode=nil, dumpervip=nil, dumpervport=nil, autoscaleconfig=nil, templateid=nil, templatename=nil, analysismode=nil, analysisrelationinfos=nil, analysisinstanceinfo=nil, maintenancewindow=nil, encryptionenable=nil, encryptionkmsregion=nil, autoscaleconfigs=nil, requestid=nil)
+        def initialize(instancename=nil, zone=nil, vpcid=nil, subnetid=nil, createversion=nil, vip=nil, vport=nil, status=nil, disk=nil, storagenodenum=nil, initparams=nil, resourcetags=nil, createtime=nil, updatetime=nil, replications=nil, fullreplications=nil, charset=nil, node=nil, region=nil, speccode=nil, instanceid=nil, statusdesc=nil, storagenodecpu=nil, storagenodemem=nil, renewflag=nil, paymode=nil, expireat=nil, isolatedat=nil, instancetype=nil, storagetype=nil, zones=nil, diskusage=nil, binlogstatus=nil, azmode=nil, standbyflag=nil, binlogtype=nil, timingmodifyinstanceflag=nil, columnarnodecpu=nil, columnarnodemem=nil, columnarnodenum=nil, columnarnodedisk=nil, columnarnodestoragetype=nil, columnarnodespeccode=nil, columnarvip=nil, columnarvport=nil, issupportcolumnar=nil, instancecategory=nil, sqlmode=nil, isswitchfullreplicationsenable=nil, instancemode=nil, dumpervip=nil, dumpervport=nil, autoscaleconfig=nil, templateid=nil, templatename=nil, analysismode=nil, analysisrelationinfos=nil, analysisinstanceinfo=nil, maintenancewindow=nil, encryptionenable=nil, encryptionkmsregion=nil, autoscaleconfigs=nil, sslstatus=nil, collation=nil, requestid=nil)
           @InstanceName = instancename
           @Zone = zone
           @VpcId = vpcid
@@ -1998,6 +2044,8 @@ module TencentCloud
           @EncryptionEnable = encryptionenable
           @EncryptionKmsRegion = encryptionkmsregion
           @AutoScaleConfigs = autoscaleconfigs
+          @SSLStatus = sslstatus
+          @Collation = collation
           @RequestId = requestid
         end
 
@@ -2108,6 +2156,8 @@ module TencentCloud
               @AutoScaleConfigs << autoscalingconfig_tmp
             end
           end
+          @SSLStatus = params['SSLStatus']
+          @Collation = params['Collation']
           @RequestId = params['RequestId']
         end
       end
@@ -3414,19 +3464,23 @@ module TencentCloud
         # @type IsExclusiveInstance: Integer
         # @param Zones: <p>可用区组合列表</p>
         # @type Zones: Array
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
 
-        attr_accessor :FullReplications, :IsExclusiveInstance, :Zones
+        attr_accessor :FullReplications, :IsExclusiveInstance, :Zones, :InstanceId
 
-        def initialize(fullreplications=nil, isexclusiveinstance=nil, zones=nil)
+        def initialize(fullreplications=nil, isexclusiveinstance=nil, zones=nil, instanceid=nil)
           @FullReplications = fullreplications
           @IsExclusiveInstance = isexclusiveinstance
           @Zones = zones
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
           @FullReplications = params['FullReplications']
           @IsExclusiveInstance = params['IsExclusiveInstance']
           @Zones = params['Zones']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -5192,19 +5246,60 @@ module TencentCloud
         end
       end
 
+      # 密码复杂度
+      class PasswordComplexity < TencentCloud::Common::AbstractModel
+        # @param Enable: <p>是否开启密码复杂度</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Enable: Boolean
+        # @param MixedCaseCount: <p>大写和小写字符的最小长度</p><p>取值范围：[1, 16]</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type MixedCaseCount: Integer
+        # @param NumberCount: <p>数字字符的最小长度</p><p>取值范围：[1, 16]</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type NumberCount: Integer
+        # @param SpecialCharCount: <p>特殊字符的最小长度</p><p>取值范围：[1, 16]</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpecialCharCount: Integer
+        # @param Length: <p>密码的最小长度</p><p>取值范围：[8, 64]</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Length: Integer
+
+        attr_accessor :Enable, :MixedCaseCount, :NumberCount, :SpecialCharCount, :Length
+
+        def initialize(enable=nil, mixedcasecount=nil, numbercount=nil, specialcharcount=nil, length=nil)
+          @Enable = enable
+          @MixedCaseCount = mixedcasecount
+          @NumberCount = numbercount
+          @SpecialCharCount = specialcharcount
+          @Length = length
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @MixedCaseCount = params['MixedCaseCount']
+          @NumberCount = params['NumberCount']
+          @SpecialCharCount = params['SpecialCharCount']
+          @Length = params['Length']
+        end
+      end
+
       # ResetDbaAdminPrivileges请求参数结构体
       class ResetDbaAdminPrivilegesRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>实例id</p>
         # @type InstanceId: String
+        # @param Host: <p>DbaAdmin的host</p>
+        # @type Host: String
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :Host
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, host=nil)
           @InstanceId = instanceid
+          @Host = host
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @Host = params['Host']
         end
       end
 
