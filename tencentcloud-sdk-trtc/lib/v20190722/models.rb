@@ -548,6 +548,65 @@ module TencentCloud
         end
       end
 
+      # BatchDeleteTRTCVoicePrint请求参数结构体
+      class BatchDeleteTRTCVoicePrintRequest < TencentCloud::Common::AbstractModel
+        # @param VoicePrintIds: 待批量删除的声纹 ID 列表，最多 50 个；请求内自动去重；按 (AppId, SdkAppId, VoicePrintId) 做数据隔离
+        # @type VoicePrintIds: Array
+        # @param SdkAppId: SdkappId
+        # @type SdkAppId: String
+
+        attr_accessor :VoicePrintIds, :SdkAppId
+
+        def initialize(voiceprintids=nil, sdkappid=nil)
+          @VoicePrintIds = voiceprintids
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @VoicePrintIds = params['VoicePrintIds']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # BatchDeleteTRTCVoicePrint返回参数结构体
+      class BatchDeleteTRTCVoicePrintResponse < TencentCloud::Common::AbstractModel
+        # @param SuccessCount: 成功删除的声纹数量（按数据库实际删除行数统计）
+        # @type SuccessCount: Integer
+        # @param FailCount: 失败的声纹数量（通常是因为声纹不存在）
+        # @type FailCount: Integer
+        # @param Results: 每个 VoicePrintId 的处理结果列表，元素为 VoicePrintBatchDeleteResult结构：{ VoiceprintId:string, ErrorCode:string, ErrorMessage:string }，成功项仅返回 VoiceprintId，失败项带 ErrorCode/ErrorMessage。
+        # @type Results: Array
+        # @param Message: 结果描述，成功时为 batch delete completed: X succeeded, Y failed
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :SuccessCount, :FailCount, :Results, :Message, :RequestId
+
+        def initialize(successcount=nil, failcount=nil, results=nil, message=nil, requestid=nil)
+          @SuccessCount = successcount
+          @FailCount = failcount
+          @Results = results
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @SuccessCount = params['SuccessCount']
+          @FailCount = params['FailCount']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              voiceprintbatchdeleteresult_tmp = VoicePrintBatchDeleteResult.new
+              voiceprintbatchdeleteresult_tmp.deserialize(i)
+              @Results << voiceprintbatchdeleteresult_tmp
+            end
+          end
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 腾讯云对象存储COS以及第三方云存储的账号信息
       class CloudModerationStorage < TencentCloud::Common::AbstractModel
         # @param Vendor: 腾讯云对象存储COS以及第三方云存储账号信息
@@ -756,6 +815,64 @@ module TencentCloud
         end
       end
 
+      # ControlVoiceConversation请求参数结构体
+      class ControlVoiceConversationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>TRTC的<a href="https://cloud.tencent.com/document/product/647/46351#sdkappid">SdkAppId</a>，和对话的房间所对应的SdkAppId相同。</p>
+        # @type SdkAppId: Integer
+        # @param TaskId: <p>对话任务的唯一Id，在启动对话成功后会返回。</p>
+        # @type TaskId: String
+        # @param Command: <p>控制指令。</p><p>枚举值：</p><ul><li>&quot;Interrupt&quot;： 强制打断</li><li>&quot;invokellm&quot;： 文本注入 LLM：向当前对话上下文注入一段文本，触发一轮 LLM 回复。<code>S2S</code>模式不支持该指令</li><li>invoketts： 文本注入TTS：向当前TTS注入文本，触发TTS播报。<code>S2S</code>模式不支持该指令</li></ul>
+        # @type Command: String
+        # @param InvokeLLM: <p>注入LLM的配置，<code>Command=invokellm</code> 时必填</p>
+        # @type InvokeLLM: :class:`Tencentcloud::Trtc.v20190722.models.VoiceConversationInvokeLLM`
+        # @param InvokeTTS: <p>注入TTS的配置，<code>Command=invoketts</code> 时必填</p>
+        # @type InvokeTTS: :class:`Tencentcloud::Trtc.v20190722.models.VoiceConversationInvokeTTS`
+
+        attr_accessor :SdkAppId, :TaskId, :Command, :InvokeLLM, :InvokeTTS
+
+        def initialize(sdkappid=nil, taskid=nil, command=nil, invokellm=nil, invoketts=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+          @Command = command
+          @InvokeLLM = invokellm
+          @InvokeTTS = invoketts
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+          @Command = params['Command']
+          unless params['InvokeLLM'].nil?
+            @InvokeLLM = VoiceConversationInvokeLLM.new
+            @InvokeLLM.deserialize(params['InvokeLLM'])
+          end
+          unless params['InvokeTTS'].nil?
+            @InvokeTTS = VoiceConversationInvokeTTS.new
+            @InvokeTTS.deserialize(params['InvokeTTS'])
+          end
+        end
+      end
+
+      # ControlVoiceConversation返回参数结构体
+      class ControlVoiceConversationResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>对话任务的唯一Id。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateAudioModerationSync请求参数结构体
       class CreateAudioModerationSyncRequest < TencentCloud::Common::AbstractModel
         # @param Sdkappid: <p>sdkappid app账号</p>
@@ -885,10 +1002,12 @@ module TencentCloud
         # @type RoomIdType: Integer
         # @param ResourceExpiredHour: <p>任务ID可以调用的时效性，从成功开启任务并获得TaskID后开始计算，超时后无法调用查询、更新和停止等接口，但是切片任务不会停止。 参数的单位是小时，默认24小时（1天），最大可设置72小时（3天），最小设置6小时。举例说明：如果不设置该参数，那么开始切片成功后，查询、更新和停止切片的调用时效为24个小时。</p>
         # @type ResourceExpiredHour: Integer
+        # @param Extra: <p>客户自定义扩展字段，服务端完全不解析，只做透传，在事件回调中原样返回</p><p>入参限制：总字符数≤4KB</p>
+        # @type Extra: String
 
-        attr_accessor :SdkAppId, :RoomId, :UserId, :ModerationParams, :UserSig, :ModerationStorageParams, :RoomIdType, :ResourceExpiredHour
+        attr_accessor :SdkAppId, :RoomId, :UserId, :ModerationParams, :UserSig, :ModerationStorageParams, :RoomIdType, :ResourceExpiredHour, :Extra
 
-        def initialize(sdkappid=nil, roomid=nil, userid=nil, moderationparams=nil, usersig=nil, moderationstorageparams=nil, roomidtype=nil, resourceexpiredhour=nil)
+        def initialize(sdkappid=nil, roomid=nil, userid=nil, moderationparams=nil, usersig=nil, moderationstorageparams=nil, roomidtype=nil, resourceexpiredhour=nil, extra=nil)
           @SdkAppId = sdkappid
           @RoomId = roomid
           @UserId = userid
@@ -897,6 +1016,7 @@ module TencentCloud
           @ModerationStorageParams = moderationstorageparams
           @RoomIdType = roomidtype
           @ResourceExpiredHour = resourceexpiredhour
+          @Extra = extra
         end
 
         def deserialize(params)
@@ -914,6 +1034,7 @@ module TencentCloud
           end
           @RoomIdType = params['RoomIdType']
           @ResourceExpiredHour = params['ResourceExpiredHour']
+          @Extra = params['Extra']
         end
       end
 
@@ -1371,6 +1492,103 @@ module TencentCloud
         end
       end
 
+      # CreateVoiceConversation请求参数结构体
+      class CreateVoiceConversationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>TRTC的<a href="https://cloud.tencent.com/document/product/647/46351#sdkappid">SdkAppId</a>，和对话的房间所对应的SdkAppId相同。</p>
+        # @type SdkAppId: Integer
+        # @param RoomId: <p>TRTC的<a href="https://cloud.tencent.com/document/product/647/46351#roomid">RoomId</a>，对话的TRTC房间所对应的RoomId。注：房间号类型默认为整型，若房间号类型为字符串，请通过RoomIdType指定。</p>
+        # @type RoomId: String
+        # @param RoomIdType: <p>房间信息RoomType，必须和对话的房间所对应的RoomId类型相同，0为整型房间号，1为字符串房间号。</p><p>枚举值：</p><ul><li>0： 数字房间号</li><li>1： 字符串房间号</li></ul><p>默认值：0</p>
+        # @type RoomIdType: Integer
+        # @param AgentConfig: <p>对话机器人相关配置。</p>
+        # @type AgentConfig: :class:`Tencentcloud::Trtc.v20190722.models.VoiceConversationConfig`
+        # @param ConversationMode: <p>对话链路模式：<code>Cascade</code>（默认，三段式）/ <code>S2S</code>（端到端语音大模型）。</p><p>枚举值：</p><ul><li>Cascade： 默认，三段式</li><li>S2S： 端到端语音大模型</li></ul><p>默认值：Cascade</p>
+        # @type ConversationMode: String
+        # @param S2SConfig: <p>端到端语音大模型配置。<strong>仅 <code>S2S</code> 模式必填</strong>；<code>Cascade</code> 模式忽略。</p>
+        # @type S2SConfig: :class:`Tencentcloud::Trtc.v20190722.models.VoiceConversationS2SConfig`
+        # @param STTConfig: <p>语音识别配置。<strong>仅 <code>Cascade</code> 模式必填</strong>；<code>S2S</code> 模式忽略。</p>
+        # @type STTConfig: :class:`Tencentcloud::Trtc.v20190722.models.VoiceConversationSTTConfig`
+        # @param LLMConfig: <p>大模型配置。<strong>仅 <code>Cascade</code> 模式必填</strong>；<code>S2S</code> 模式忽略。</p>
+        # @type LLMConfig: :class:`Tencentcloud::Trtc.v20190722.models.VoiceConversationLLMConfig`
+        # @param TTSConfig: <p>语音合成配置。<strong>仅 <code>Cascade</code> 模式必填</strong>；<code>S2S</code> 模式忽略。</p>
+        # @type TTSConfig: :class:`Tencentcloud::Trtc.v20190722.models.VoiceConversationTTSConfig`
+        # @param DialogConfig: <p>对话控制配置，<code>S2S</code> 模式不支持填写该参数。</p>
+        # @type DialogConfig: :class:`Tencentcloud::Trtc.v20190722.models.VoiceConversationDialogConfig`
+        # @param VisionConfig: <p>视觉理解配置，<code>S2S</code> 模式不支持填写该参数。</p>
+        # @type VisionConfig: :class:`Tencentcloud::Trtc.v20190722.models.VoiceConversationVisionConfig`
+
+        attr_accessor :SdkAppId, :RoomId, :RoomIdType, :AgentConfig, :ConversationMode, :S2SConfig, :STTConfig, :LLMConfig, :TTSConfig, :DialogConfig, :VisionConfig
+
+        def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, agentconfig=nil, conversationmode=nil, s2sconfig=nil, sttconfig=nil, llmconfig=nil, ttsconfig=nil, dialogconfig=nil, visionconfig=nil)
+          @SdkAppId = sdkappid
+          @RoomId = roomid
+          @RoomIdType = roomidtype
+          @AgentConfig = agentconfig
+          @ConversationMode = conversationmode
+          @S2SConfig = s2sconfig
+          @STTConfig = sttconfig
+          @LLMConfig = llmconfig
+          @TTSConfig = ttsconfig
+          @DialogConfig = dialogconfig
+          @VisionConfig = visionconfig
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @RoomId = params['RoomId']
+          @RoomIdType = params['RoomIdType']
+          unless params['AgentConfig'].nil?
+            @AgentConfig = VoiceConversationConfig.new
+            @AgentConfig.deserialize(params['AgentConfig'])
+          end
+          @ConversationMode = params['ConversationMode']
+          unless params['S2SConfig'].nil?
+            @S2SConfig = VoiceConversationS2SConfig.new
+            @S2SConfig.deserialize(params['S2SConfig'])
+          end
+          unless params['STTConfig'].nil?
+            @STTConfig = VoiceConversationSTTConfig.new
+            @STTConfig.deserialize(params['STTConfig'])
+          end
+          unless params['LLMConfig'].nil?
+            @LLMConfig = VoiceConversationLLMConfig.new
+            @LLMConfig.deserialize(params['LLMConfig'])
+          end
+          unless params['TTSConfig'].nil?
+            @TTSConfig = VoiceConversationTTSConfig.new
+            @TTSConfig.deserialize(params['TTSConfig'])
+          end
+          unless params['DialogConfig'].nil?
+            @DialogConfig = VoiceConversationDialogConfig.new
+            @DialogConfig.deserialize(params['DialogConfig'])
+          end
+          unless params['VisionConfig'].nil?
+            @VisionConfig = VoiceConversationVisionConfig.new
+            @VisionConfig.deserialize(params['VisionConfig'])
+          end
+        end
+      end
+
+      # CreateVoiceConversation返回参数结构体
+      class CreateVoiceConversationResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>用于唯一标识对话任务，由腾讯云服务端生成，后续查询、控制等请求都需要携带TaskID参数。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteCloudModeration请求参数结构体
       class DeleteCloudModerationRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: <p>TRTC的SDKAppId，和TRTC的房间所对应的SDKAppId相同。</p>
@@ -1639,6 +1857,90 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteTRTCVoicePrint请求参数结构体
+      class DeleteTRTCVoicePrintRequest < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 待删除的声纹 ID（由 RegisterTRTCVoicePrint返回）。删除为软删，按 (AppId, SdkAppId, VoicePrintId) 做数据隔离。
+        # @type VoicePrintId: String
+        # @param SdkAppId: SdkappId
+        # @type SdkAppId: String
+
+        attr_accessor :VoicePrintId, :SdkAppId
+
+        def initialize(voiceprintid=nil, sdkappid=nil)
+          @VoicePrintId = voiceprintid
+          @SdkAppId = sdkappid
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @SdkAppId = params['SdkAppId']
+        end
+      end
+
+      # DeleteTRTCVoicePrint返回参数结构体
+      class DeleteTRTCVoicePrintResponse < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 已删除的声纹 ID（回显，便于调用方核对）
+        # @type VoicePrintId: String
+        # @param Message: 结果描述，成功时为 voiceprint deleted successfully
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VoicePrintId, :Message, :RequestId
+
+        def initialize(voiceprintid=nil, message=nil, requestid=nil)
+          @VoicePrintId = voiceprintid
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteVoiceConversation请求参数结构体
+      class DeleteVoiceConversationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>TRTC的<a href="https://cloud.tencent.com/document/product/647/46351#sdkappid">SdkAppId</a>，和对话的房间所对应的SdkAppId相同。</p>
+        # @type SdkAppId: Integer
+        # @param TaskId: <p>对话任务的唯一Id，在启动对话成功后会返回。</p>
+        # @type TaskId: String
+
+        attr_accessor :SdkAppId, :TaskId
+
+        def initialize(sdkappid=nil, taskid=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DeleteVoiceConversation返回参数结构体
+      class DeleteVoiceConversationResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>对话任务的唯一Id。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -2898,60 +3200,6 @@ module TencentCloud
         end
       end
 
-      # DescribeTRTCMarketScaleMetricData请求参数结构体
-      class DescribeTRTCMarketScaleMetricDataRequest < TencentCloud::Common::AbstractModel
-        # @param SdkAppId: 用户SdkAppId
-        # @type SdkAppId: String
-        # @param StartTime: 查询开始时间，格式为YYYY-MM-DD。（查询时间范围根据监控仪表盘功能版本而定，【基础版】可查近30天，【进阶版】可查近60天）
-        # @type StartTime: String
-        # @param EndTime: 查询结束时间，格式为YYYY-MM-DD。
-        # @type EndTime: String
-        # @param Period: 返回数据的粒度，支持设为以下值：
-        # d：按天。此时返回查询时间范围内 UTC 时间为零点的数据。
-        # h：按小时。此时返回查询时间范围内 UTC 时间为整小时的数据。
-        # @type Period: String
-
-        attr_accessor :SdkAppId, :StartTime, :EndTime, :Period
-
-        def initialize(sdkappid=nil, starttime=nil, endtime=nil, period=nil)
-          @SdkAppId = sdkappid
-          @StartTime = starttime
-          @EndTime = endtime
-          @Period = period
-        end
-
-        def deserialize(params)
-          @SdkAppId = params['SdkAppId']
-          @StartTime = params['StartTime']
-          @EndTime = params['EndTime']
-          @Period = params['Period']
-        end
-      end
-
-      # DescribeTRTCMarketScaleMetricData返回参数结构体
-      class DescribeTRTCMarketScaleMetricDataResponse < TencentCloud::Common::AbstractModel
-        # @param Data: TRTC监控数据出参
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Data: :class:`Tencentcloud::Trtc.v20190722.models.TRTCDataResp`
-        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
-        # @type RequestId: String
-
-        attr_accessor :Data, :RequestId
-
-        def initialize(data=nil, requestid=nil)
-          @Data = data
-          @RequestId = requestid
-        end
-
-        def deserialize(params)
-          unless params['Data'].nil?
-            @Data = TRTCDataResp.new
-            @Data.deserialize(params['Data'])
-          end
-          @RequestId = params['RequestId']
-        end
-      end
-
       # DescribeTRTCRealTimeQualityData请求参数结构体
       class DescribeTRTCRealTimeQualityDataRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: 用户SdkAppId（如：1400xxxxxx）
@@ -3119,6 +3367,65 @@ module TencentCloud
             end
           end
           @TotalUsage = params['TotalUsage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTRTCVoicePrint请求参数结构体
+      class DescribeTRTCVoicePrintRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: SdkappId
+        # @type SdkAppId: String
+        # @param Offset: 分页起始偏移，0 或不传表示从第一条开始
+        # @type Offset: Integer
+        # @param Limit: 每页返回数量，默认 20，最大 100；超过最大值会被截断到 100
+        # @type Limit: Integer
+
+        attr_accessor :SdkAppId, :Offset, :Limit
+
+        def initialize(sdkappid=nil, offset=nil, limit=nil)
+          @SdkAppId = sdkappid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTRTCVoicePrint返回参数结构体
+      class DescribeTRTCVoicePrintResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 当前 (AppId, SdkAppId) 下的声纹总数（仅计活跃状态）
+        # @type TotalCount: Integer
+        # @param VoicePrintList: 声纹条目列表，元素为 TRTCVoicePrintItem 结构：{ VoicePrintId:string, SpeakerId:string, CreateTime:string(ISO8601), UpdateTime:string(ISO8601) }。
+        # @type VoicePrintList: Array
+        # @param Message: 结果描述，成功时为 query voiceprint list successfully
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :VoicePrintList, :Message, :RequestId
+
+        def initialize(totalcount=nil, voiceprintlist=nil, message=nil, requestid=nil)
+          @TotalCount = totalcount
+          @VoicePrintList = voiceprintlist
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['VoicePrintList'].nil?
+            @VoicePrintList = []
+            params['VoicePrintList'].each do |i|
+              trtcvoiceprintitem_tmp = TRTCVoicePrintItem.new
+              trtcvoiceprintitem_tmp.deserialize(i)
+              @VoicePrintList << trtcvoiceprintitem_tmp
+            end
+          end
+          @Message = params['Message']
           @RequestId = params['RequestId']
         end
       end
@@ -3403,7 +3710,7 @@ module TencentCloud
 
       # DescribeUserInfo请求参数结构体
       class DescribeUserInfoRequest < TencentCloud::Common::AbstractModel
-        # @param CommId: 通话 ID（唯一标识一次通话）： SdkAppId_RoomId（房间号）_ CreateTime（房间创建时间，unix时间戳，单位为s）例：1400xxxxxx_218695_1590065777。通过 DescribeRoomInfo（查询历史房间列表）接口获取（[查询历史房间列表](https://cloud.tencent.com/document/product/647/44050)）。
+        # @param CommId: 通话 ID（唯一标识一次通话）， 需通过 DescribeRoomInfo（查询历史房间列表）接口获取（[查询历史房间列表](https://cloud.tencent.com/document/product/647/44050)）。
         # @type CommId: String
         # @param StartTime: 查询开始时间，本地unix时间戳，单位为秒（如：1590065777）注意：最大支持查询14天内的数据
         # @type StartTime: Integer
@@ -3470,6 +3777,69 @@ module TencentCloud
               userinformation_tmp = UserInformation.new
               userinformation_tmp.deserialize(i)
               @UserList << userinformation_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeVoiceConversation请求参数结构体
+      class DescribeVoiceConversationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>TRTC的<a href="https://cloud.tencent.com/document/product/647/46351#sdkappid">SdkAppId</a>，和对话的房间所对应的SdkAppId相同。</p>
+        # @type SdkAppId: Integer
+        # @param TaskId: <p>对话任务的唯一Id，在启动对话成功后会返回。</p>
+        # @type TaskId: String
+        # @param DescribeType: <p>查询任务状态</p><p>枚举值：</p><ul><li>0： 不查询对话上下文历史</li><li>1： 查询对话上下文历史</li></ul><p>默认值：0</p>
+        # @type DescribeType: Integer
+
+        attr_accessor :SdkAppId, :TaskId, :DescribeType
+
+        def initialize(sdkappid=nil, taskid=nil, describetype=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+          @DescribeType = describetype
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+          @DescribeType = params['DescribeType']
+        end
+      end
+
+      # DescribeVoiceConversation返回参数结构体
+      class DescribeVoiceConversationResponse < TencentCloud::Common::AbstractModel
+        # @param StartTime: <p>任务启动时间</p><p>单位：毫秒</p>
+        # @type StartTime: Integer
+        # @param Status: <p>转录任务状态。</p><p>枚举值：</p><ul><li>Idle： 表示当前转录任务空闲中 </li><li>InProgress： 表示当前转录任务正在进行中</li><li>Exited： 表示当前转录任务正在退出的过程中</li></ul>
+        # @type Status: String
+        # @param TaskId: <p>转录任务的唯一Id。</p>
+        # @type TaskId: String
+        # @param HistoryContents: <p>历史对话信息。</p>
+        # @type HistoryContents: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :StartTime, :Status, :TaskId, :HistoryContents, :RequestId
+
+        def initialize(starttime=nil, status=nil, taskid=nil, historycontents=nil, requestid=nil)
+          @StartTime = starttime
+          @Status = status
+          @TaskId = taskid
+          @HistoryContents = historycontents
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @Status = params['Status']
+          @TaskId = params['TaskId']
+          unless params['HistoryContents'].nil?
+            @HistoryContents = []
+            params['HistoryContents'].each do |i|
+              voiceconversationhistorycontent_tmp = VoiceConversationHistoryContent.new
+              voiceconversationhistorycontent_tmp.deserialize(i)
+              @HistoryContents << voiceconversationhistorycontent_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -4072,6 +4442,26 @@ module TencentCloud
           @Content = params['Content']
           @Interrupt = params['Interrupt']
           @ExperimentalParams = params['ExperimentalParams']
+        end
+      end
+
+      # LLM自定义数据结构
+      class KeyValueItem < TencentCloud::Common::AbstractModel
+        # @param Key: <p>Key</p>
+        # @type Key: String
+        # @param Value: <p>Value</p>
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
         end
       end
 
@@ -4938,33 +5328,25 @@ module TencentCloud
 
       # 用户自定义混流布局参数列表。
       class MixLayout < TencentCloud::Common::AbstractModel
-        # @param Top: 画布上该画面左上角的 y 轴坐标，取值范围 [0, 1920]，不能超过画布的高。
+        # @param Top: <p>画布上该画面左上角的 y 轴坐标，取值范围 [0, 1920]，不能超过画布的高。</p>
         # @type Top: Integer
-        # @param Left: 画布上该画面左上角的 x 轴坐标，取值范围 [0, 1920]，不能超过画布的宽。
+        # @param Left: <p>画布上该画面左上角的 x 轴坐标，取值范围 [0, 1920]，不能超过画布的宽。</p>
         # @type Left: Integer
-        # @param Width: 画布上该画面宽度的相对值，取值范围 [0, 1920]，与Left相加不应超过画布的宽。
+        # @param Width: <p>画布上该画面宽度的相对值，取值范围 [0, 1920]，与Left相加不应超过画布的宽。</p>
         # @type Width: Integer
-        # @param Height: 画布上该画面高度的相对值，取值范围 [0, 1920]，与Top相加不应超过画布的高。
+        # @param Height: <p>画布上该画面高度的相对值，取值范围 [0, 1920]，与Top相加不应超过画布的高。</p>
         # @type Height: Integer
-        # @param UserId: 字符串内容为待显示在该画面的主播对应的UserId，如果不指定，会按照主播加入房间的顺序匹配。
+        # @param UserId: <p>字符串内容为待显示在该画面的主播对应的UserId，如果不指定，会按照主播加入房间的顺序匹配。</p>
         # @type UserId: String
-        # @param Alpha: 画布的透明度值，取值范围[0, 255]。0表示不透明，255表示全透明。默认值为0。
+        # @param Alpha: <p>画布的透明度值，取值范围[0, 255]。0表示不透明，255表示全透明。默认值为0。</p>
         # @type Alpha: Integer
-        # @param RenderMode: 0 ：拉伸模式，这个模式下整个视频内容会全部显示，并填满子画面，在源视频和目的视频宽高比不一致的时候，画面不会缺少内容，但是画面可能产生形变；
-
-        # 1 ：剪裁模式（默认），这个模式下会严格按照目的视频的宽高比对源视频剪裁之后再拉伸，并填满子画面画布，在源视频和目的视频宽高比不一致的时候，画面保持不变形，但是会被剪裁；
-
-        # 2 ：填黑模式，这个模式下会严格保持源视频的宽高比进行等比缩放，在源视频和目的视频宽高比不一致的时候，画面的上下侧边缘或者左右侧边缘会露出子画面画布的背景；
-
-        # 3 ：智能拉伸模式，这个模式类似剪裁模式，区别是在源视频和目的视频宽高比不一致的时候，限制了最大剪裁比例为画面的宽度或者高度的20%；
+        # @param RenderMode: <p>画布上该画面的渲染模式</p><p>枚举值：</p><ul><li>0： 拉伸模式，这个模式下整个视频内容会全部显示，并填满子画面，在源视频和目的视频宽高比不一致的时候，画面不会缺少内容，但是画面可能产生形变；</li><li>1： 剪裁模式（默认），这个模式下会严格按照目的视频的宽高比对源视频剪裁之后再拉伸，并填满子画面画布，在源视频和目的视频宽高比不一致的时候，画面保持不变形，但是会被剪裁；</li><li>2： 填黑模式，这个模式下会严格保持源视频的宽高比进行等比缩放，在源视频和目的视频宽高比不一致的时候，画面的上下侧边缘或者左右侧边缘会露出子画面画布的背景；</li><li>3： 智能拉伸模式，这个模式类似剪裁模式，区别是在源视频和目的视频宽高比不一致的时候，限制了最大剪裁比例为画面的宽度或者高度的20%；</li></ul>
         # @type RenderMode: Integer
-        # @param MediaId: 对应订阅流的主辅路标识：
-        # 0：主流（默认）；
-        # 1：辅流；
+        # @param MediaId: <p>对应订阅流的主辅路标识：<br>0：主流（默认）；<br>1：辅流；</p>
         # @type MediaId: Integer
-        # @param ImageLayer: 该画布的图层顺序, 这个值越小表示图层越靠后。默认值为0。
+        # @param ImageLayer: <p>该画布的图层顺序, 这个值越小表示图层越靠后。默认值为0。</p>
         # @type ImageLayer: Integer
-        # @param SubBackgroundImage: 图片的url地址， 只支持jpg, png, jpeg，图片分辨率限制不超过2K，图片大小限制不超过5MB。注意，url必须携带格式后缀，url内只支持特定的字符串, 范围是a-z A-Z 0-9 '-', '.', '_', '~', ':', '/', '?', '#', '[', ']' '@', '!', '&', '(', ')', '*', '+', ',', '%', '='
+        # @param SubBackgroundImage: <p>图片的url地址， 只支持jpg, png, jpeg，图片分辨率限制不超过2K，图片大小限制不超过5MB。注意，url必须携带格式后缀，url内只支持特定的字符串, 范围是a-z A-Z 0-9 &#39;-&#39;, &#39;.&#39;, &#39;_&#39;, &#39;~&#39;, &#39;:&#39;, &#39;/&#39;, &#39;?&#39;, &#39;#&#39;, &#39;[&#39;, &#39;]&#39; &#39;@&#39;, &#39;!&#39;, &#39;&amp;&#39;, &#39;(&#39;, &#39;)&#39;, &#39;*&#39;, &#39;+&#39;, &#39;,&#39;, &#39;%&#39;, &#39;=&#39;</p>
         # @type SubBackgroundImage: String
 
         attr_accessor :Top, :Left, :Width, :Height, :UserId, :Alpha, :RenderMode, :MediaId, :ImageLayer, :SubBackgroundImage
@@ -5512,6 +5894,71 @@ module TencentCloud
         end
       end
 
+      # ModifyVoiceConversation请求参数结构体
+      class ModifyVoiceConversationRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>TRTC的<a href="https://cloud.tencent.com/document/product/647/46351#sdkappid">SdkAppId</a>，和对话的房间所对应的SdkAppId相同。</p>
+        # @type SdkAppId: Integer
+        # @param TaskId: <p>对话任务的唯一Id，在启动对话成功后会返回。</p>
+        # @type TaskId: String
+        # @param SequenceNumber: <p>需要保证同一个任务，每次更新请求中的SequenceNumber递增，防止请求乱序。</p>
+        # @type SequenceNumber: Integer
+        # @param LLMConfig: <p>大模型配置。<strong>仅 <code>Cascade</code> 模式生效</strong>；<code>S2S</code> 模式报错。</p>
+        # @type LLMConfig: :class:`Tencentcloud::Trtc.v20190722.models.VoiceConversationLLMConfig`
+        # @param S2SConfig: <p>端到端语音大模型配置。仅 <strong><code>S2S</code> 模式</strong>生效；<code>Cascade</code> 报错。</p>
+        # @type S2SConfig: :class:`Tencentcloud::Trtc.v20190722.models.VoiceConversationS2SConfig`
+        # @param DialogConfig: <p>对话控制配置。<strong>仅 <code>Cascade</code> 模式生效</strong>。</p>
+        # @type DialogConfig: :class:`Tencentcloud::Trtc.v20190722.models.VoiceConversationDialogConfig`
+
+        attr_accessor :SdkAppId, :TaskId, :SequenceNumber, :LLMConfig, :S2SConfig, :DialogConfig
+
+        def initialize(sdkappid=nil, taskid=nil, sequencenumber=nil, llmconfig=nil, s2sconfig=nil, dialogconfig=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+          @SequenceNumber = sequencenumber
+          @LLMConfig = llmconfig
+          @S2SConfig = s2sconfig
+          @DialogConfig = dialogconfig
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+          @SequenceNumber = params['SequenceNumber']
+          unless params['LLMConfig'].nil?
+            @LLMConfig = VoiceConversationLLMConfig.new
+            @LLMConfig.deserialize(params['LLMConfig'])
+          end
+          unless params['S2SConfig'].nil?
+            @S2SConfig = VoiceConversationS2SConfig.new
+            @S2SConfig.deserialize(params['S2SConfig'])
+          end
+          unless params['DialogConfig'].nil?
+            @DialogConfig = VoiceConversationDialogConfig.new
+            @DialogConfig.deserialize(params['DialogConfig'])
+          end
+        end
+      end
+
+      # ModifyVoiceConversation返回参数结构体
+      class ModifyVoiceConversationResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 旁路转码时长的查询结果
       class OneSdkAppIdTranscodeTimeUsagesInfo < TencentCloud::Common::AbstractModel
         # @param SdkAppIdTranscodeTimeUsages: 旁路转码时长查询结果数组
@@ -5814,10 +6261,10 @@ module TencentCloud
 
         attr_accessor :Language, :AlternativeLanguage, :Model, :TranslationLanguage, :HotWordList, :VadSilenceTime, :VadLevel
         extend Gem::Deprecate
-        deprecate :Model, :none, 2026, 9
-        deprecate :Model=, :none, 2026, 9
-        deprecate :TranslationLanguage, :none, 2026, 9
-        deprecate :TranslationLanguage=, :none, 2026, 9
+        deprecate :Model, :none, 2026, 11
+        deprecate :Model=, :none, 2026, 11
+        deprecate :TranslationLanguage, :none, 2026, 11
+        deprecate :TranslationLanguage=, :none, 2026, 11
 
         def initialize(language=nil, alternativelanguage=nil, model=nil, translationlanguage=nil, hotwordlist=nil, vadsilencetime=nil, vadlevel=nil)
           @Language = language
@@ -5932,6 +6379,70 @@ module TencentCloud
           @Class2VideoTime = params['Class2VideoTime']
           @Class3VideoTime = params['Class3VideoTime']
           @AudioTime = params['AudioTime']
+        end
+      end
+
+      # RegisterTRTCVoicePrint请求参数结构体
+      class RegisterTRTCVoicePrintRequest < TencentCloud::Common::AbstractModel
+        # @param SpeakerId: 业务方自定义的说话人唯一标识，同一 (AppId, SdkAppId, SpeakerId) 重复调用会覆盖旧声纹（软删旧记录 + 新建一行，返回新的 VoicePrintId）
+        # @type SpeakerId: String
+        # @param Data: 音频数据的 Base64 字符串。要求：16kHz/16bit/单声道 PCM 或 WAV；Base64 解码后大小 ≤ 2MB；PCM 裸数据时长 10s ≤ 时长 ≤ 45s（WAV 去掉 header 后按相同标准校验）
+        # @type Data: String
+        # @param SdkAppId: SdkAppId
+        # @type SdkAppId: String
+        # @param AudioFormat: 音频格式，可选 pcm 或 wav，大小写不敏感，不传默认为 pcm
+        # @type AudioFormat: String
+
+        attr_accessor :SpeakerId, :Data, :SdkAppId, :AudioFormat
+
+        def initialize(speakerid=nil, data=nil, sdkappid=nil, audioformat=nil)
+          @SpeakerId = speakerid
+          @Data = data
+          @SdkAppId = sdkappid
+          @AudioFormat = audioformat
+        end
+
+        def deserialize(params)
+          @SpeakerId = params['SpeakerId']
+          @Data = params['Data']
+          @SdkAppId = params['SdkAppId']
+          @AudioFormat = params['AudioFormat']
+        end
+      end
+
+      # RegisterTRTCVoicePrint返回参数结构体
+      class RegisterTRTCVoicePrintResponse < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 本次注册生成的声纹 ID，后续 Update/Delete/Verify 均以此为准
+        # @type VoicePrintId: String
+        # @param SpeakerId: 回显的业务方 SpeakerId
+        # @type SpeakerId: String
+        # @param EffectiveAudioDuration: 本次注册音频中有效人声时长（秒）
+        # @type EffectiveAudioDuration: Float
+        # @param SNR: 音频信噪比（dB），由声纹服务端评估给出
+        # @type SNR: Float
+        # @param Message: 结果描述，成功时为 voiceprint enrolled successfully
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VoicePrintId, :SpeakerId, :EffectiveAudioDuration, :SNR, :Message, :RequestId
+
+        def initialize(voiceprintid=nil, speakerid=nil, effectiveaudioduration=nil, snr=nil, message=nil, requestid=nil)
+          @VoicePrintId = voiceprintid
+          @SpeakerId = speakerid
+          @EffectiveAudioDuration = effectiveaudioduration
+          @SNR = snr
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @SpeakerId = params['SpeakerId']
+          @EffectiveAudioDuration = params['EffectiveAudioDuration']
+          @SNR = params['SNR']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -6249,28 +6760,6 @@ module TencentCloud
           @VideoTimeHd = params['VideoTimeHd']
           @VideoTimeFhd = params['VideoTimeFhd']
           @Flux = params['Flux']
-        end
-      end
-
-      # SeriesInfo类型
-      class SeriesInfo < TencentCloud::Common::AbstractModel
-        # @param Columns: 数据列
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Columns: Array
-        # @param Values: 数据值
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Values: Array
-
-        attr_accessor :Columns, :Values
-
-        def initialize(columns=nil, values=nil)
-          @Columns = columns
-          @Values = values
-        end
-
-        def deserialize(params)
-          @Columns = params['Columns']
-          @Values = params['Values']
         end
       end
 
@@ -6996,12 +7485,12 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :RoomId, :RoomIdType, :UserId, :UserSig, :StreamUrl, :PrivateMapKey, :VideoEncodeParams, :AudioEncodeParams, :SourceUrl, :SeekSecond, :AutoPush, :RepeatNum, :MaxDuration, :Volume, :EnableProgress, :Tempo, :IdleTimeout
         extend Gem::Deprecate
-        deprecate :VideoEncodeParams, :none, 2026, 9
-        deprecate :VideoEncodeParams=, :none, 2026, 9
-        deprecate :AudioEncodeParams, :none, 2026, 9
-        deprecate :AudioEncodeParams=, :none, 2026, 9
-        deprecate :SourceUrl, :none, 2026, 9
-        deprecate :SourceUrl=, :none, 2026, 9
+        deprecate :VideoEncodeParams, :none, 2026, 11
+        deprecate :VideoEncodeParams=, :none, 2026, 11
+        deprecate :AudioEncodeParams, :none, 2026, 11
+        deprecate :AudioEncodeParams=, :none, 2026, 11
+        deprecate :SourceUrl, :none, 2026, 11
+        deprecate :SourceUrl=, :none, 2026, 11
 
         def initialize(sdkappid=nil, roomid=nil, roomidtype=nil, userid=nil, usersig=nil, streamurl=nil, privatemapkey=nil, videoencodeparams=nil, audioencodeparams=nil, sourceurl=nil, seeksecond=nil, autopush=nil, repeatnum=nil, maxduration=nil, volume=nil, enableprogress=nil, tempo=nil, idletimeout=nil)
           @SdkAppId = sdkappid
@@ -7526,40 +8015,6 @@ module TencentCloud
       end
 
       # TRTC数据大盘/实时监控 API接口数据出参
-      class TRTCDataResp < TencentCloud::Common::AbstractModel
-        # @param StatementID: StatementID值，监控仪表盘下固定为0。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type StatementID: Integer
-        # @param Series: 查询结果数据，以Columns-Values形式返回。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Series: Array
-        # @param Total: Total值，监控仪表盘功能下固定为1。
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type Total: Integer
-
-        attr_accessor :StatementID, :Series, :Total
-
-        def initialize(statementid=nil, series=nil, total=nil)
-          @StatementID = statementid
-          @Series = series
-          @Total = total
-        end
-
-        def deserialize(params)
-          @StatementID = params['StatementID']
-          unless params['Series'].nil?
-            @Series = []
-            params['Series'].each do |i|
-              seriesinfo_tmp = SeriesInfo.new
-              seriesinfo_tmp.deserialize(i)
-              @Series << seriesinfo_tmp
-            end
-          end
-          @Total = params['Total']
-        end
-      end
-
-      # TRTC数据大盘/实时监控 API接口数据出参
       class TRTCDataResult < TencentCloud::Common::AbstractModel
         # @param StatementID: StatementID值，监控仪表盘下固定为0。
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -7590,6 +8045,38 @@ module TencentCloud
             end
           end
           @Total = params['Total']
+        end
+      end
+
+      # VoicePrintList 接口出参 VoicePrintSet 的元素类型
+      class TRTCVoicePrintItem < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 声纹 ID，36 位 UUID（含连字符）。对 (AppId, SdkAppId) 维度内唯一。
+        # 示例值：59d83c76-8f4e-4a1b-9c2d-0e7f8a6b5c4d
+        # @type VoicePrintId: String
+        # @param SpeakerId: 业务方自定义的说话人标识，长度不超过 128 字节，由客户在注册声纹时传入。同一 SpeakerId 可对应多条声纹。
+        # 示例值：user_12345
+        # @type SpeakerId: String
+        # @param CreateTime: 声纹注册时间，ISO8601 格式，UTC 时区。
+        # 示例值：2025-04-24T10:20:30Z
+        # @type CreateTime: String
+        # @param UpdateTime: 声纹最近一次更新时间，ISO8601 格式，UTC 时区。未被更新过时等于 CreateTime。
+        # 示例值：2025-04-24T10:20:30Z
+        # @type UpdateTime: String
+
+        attr_accessor :VoicePrintId, :SpeakerId, :CreateTime, :UpdateTime
+
+        def initialize(voiceprintid=nil, speakerid=nil, createtime=nil, updatetime=nil)
+          @VoicePrintId = voiceprintid
+          @SpeakerId = speakerid
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @SpeakerId = params['SpeakerId']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -7832,8 +8319,8 @@ module TencentCloud
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language, :PronunciationDict, :AlignmentMode, :ExtraParams
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 9
-        deprecate :APIKey=, :none, 2026, 9
+        deprecate :APIKey, :none, 2026, 11
+        deprecate :APIKey=, :none, 2026, 11
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil, pronunciationdict=nil, alignmentmode=nil, extraparams=nil)
           @Text = text
@@ -7935,8 +8422,8 @@ module TencentCloud
 
         attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :APIKey, :Model, :Language, :PronunciationDict, :AlignmentMode, :ExtraParams
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 9
-        deprecate :APIKey=, :none, 2026, 9
+        deprecate :APIKey, :none, 2026, 11
+        deprecate :APIKey=, :none, 2026, 11
 
         def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, apikey=nil, model=nil, language=nil, pronunciationdict=nil, alignmentmode=nil, extraparams=nil)
           @Text = text
@@ -8091,10 +8578,10 @@ module TencentCloud
 
         attr_accessor :UserId, :UserSig, :IMAdminUserId, :IMAdminUserSig, :MaxIdleTime, :TranscriptionMode, :TargetUserId, :TargetUserIdList, :VoicePrint, :TurnDetection
         extend Gem::Deprecate
-        deprecate :IMAdminUserId, :none, 2026, 9
-        deprecate :IMAdminUserId=, :none, 2026, 9
-        deprecate :IMAdminUserSig, :none, 2026, 9
-        deprecate :IMAdminUserSig=, :none, 2026, 9
+        deprecate :IMAdminUserId, :none, 2026, 11
+        deprecate :IMAdminUserId=, :none, 2026, 11
+        deprecate :IMAdminUserSig, :none, 2026, 11
+        deprecate :IMAdminUserSig=, :none, 2026, 11
 
         def initialize(userid=nil, usersig=nil, imadminuserid=nil, imadminusersig=nil, maxidletime=nil, transcriptionmode=nil, targetuserid=nil, targetuseridlist=nil, voiceprint=nil, turndetection=nil)
           @UserId = userid
@@ -8131,7 +8618,7 @@ module TencentCloud
 
       # 转录用户信息
       class TranscriptionUserInfoParams < TencentCloud::Common::AbstractModel
-        # @param UserId: 用户ID。
+        # @param UserId: <p>用户ID。</p>
         # @type UserId: String
 
         attr_accessor :UserId
@@ -8555,6 +9042,66 @@ module TencentCloud
         end
       end
 
+      # UpdateTRTCVoicePrint请求参数结构体
+      class UpdateTRTCVoicePrintRequest < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 待更新的声纹 ID（由 RegisterTRTCVoicePrint 返回）。更新采用覆盖模式——只保留一条最新音频，VoicePrintId 保持不变。
+        # @type VoicePrintId: String
+        # @param Data: 新的音频数据的 Base64 字符串。要求与 RegisterTRTCVoicePrint一致：16kHz/16bit/单声道 PCM 或 WAV；Base64 解码后 ≤ 2MB；PCM 裸数据 10s ≤ 时长 ≤ 45s。
+        # @type Data: String
+        # @param SdkAppId: SdkAppId
+        # @type SdkAppId: String
+        # @param AudioFormat: 音频格式，可选 pcm 或 wav，大小写不敏感，不传默认为 pcm
+        # @type AudioFormat: String
+
+        attr_accessor :VoicePrintId, :Data, :SdkAppId, :AudioFormat
+
+        def initialize(voiceprintid=nil, data=nil, sdkappid=nil, audioformat=nil)
+          @VoicePrintId = voiceprintid
+          @Data = data
+          @SdkAppId = sdkappid
+          @AudioFormat = audioformat
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @Data = params['Data']
+          @SdkAppId = params['SdkAppId']
+          @AudioFormat = params['AudioFormat']
+        end
+      end
+
+      # UpdateTRTCVoicePrint返回参数结构体
+      class UpdateTRTCVoicePrintResponse < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 声纹 ID（更新前后保持不变）
+        # @type VoicePrintId: String
+        # @param EffectiveAudioDuration: 本次更新音频中有效人声时长（秒）
+        # @type EffectiveAudioDuration: Float
+        # @param SNR: 音频信噪比（dB），由声纹服务端评估给出
+        # @type SNR: Float
+        # @param Message: 结果描述，成功时为 voiceprint updated successfully
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VoicePrintId, :EffectiveAudioDuration, :SNR, :Message, :RequestId
+
+        def initialize(voiceprintid=nil, effectiveaudioduration=nil, snr=nil, message=nil, requestid=nil)
+          @VoicePrintId = voiceprintid
+          @EffectiveAudioDuration = effectiveaudioduration
+          @SNR = snr
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @EffectiveAudioDuration = params['EffectiveAudioDuration']
+          @SNR = params['SNR']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UpdateVoicePrint请求参数结构体
       class UpdateVoicePrintRequest < TencentCloud::Common::AbstractModel
         # @param VoicePrintId: 声纹信息ID
@@ -8687,6 +9234,70 @@ module TencentCloud
             @UserInfo.deserialize(params['UserInfo'])
           end
           @StreamType = params['StreamType']
+        end
+      end
+
+      # VerifyTRTCVoicePrint请求参数结构体
+      class VerifyTRTCVoicePrintRequest < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 待验证的目标声纹 ID（由 RegisterTRTCVoicePrint 返回）。按 (AppId, SdkAppId, VoicePrintId) 做数据隔离。
+        # @type VoicePrintId: String
+        # @param Data: 待验证音频数据的 Base64 字符串。要求：16kHz/16bit/单声道 PCM 或 WAV；Base64 解码后 ≤ 2MB；PCM 裸数据 10s ≤ 时长 ≤ 45s。
+        # @type Data: String
+        # @param SdkAppId: SdkAppId
+        # @type SdkAppId: String
+        # @param AudioFormat: 音频格式，可选 pcm 或 wav，大小写不敏感，不传默认为 pcm
+        # @type AudioFormat: String
+
+        attr_accessor :VoicePrintId, :Data, :SdkAppId, :AudioFormat
+
+        def initialize(voiceprintid=nil, data=nil, sdkappid=nil, audioformat=nil)
+          @VoicePrintId = voiceprintid
+          @Data = data
+          @SdkAppId = sdkappid
+          @AudioFormat = audioformat
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @Data = params['Data']
+          @SdkAppId = params['SdkAppId']
+          @AudioFormat = params['AudioFormat']
+        end
+      end
+
+      # VerifyTRTCVoicePrint返回参数结构体
+      class VerifyTRTCVoicePrintResponse < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: 被验证的目标声纹 ID
+        # @type VoicePrintId: String
+        # @param SpeakerId: 注册时写入的业务方 SpeakerId（以服务端记录为准）
+        # @type SpeakerId: String
+        # @param Score: 相似度分值（字符串形式，保留两位小数，范围约 0~100，越大越相似）
+        # @type Score: String
+        # @param Decision: 服务端阈值判决结果，0=不通过，1=通过（默认阈值 60 分，由服务端统一维护）
+        # @type Decision: Integer
+        # @param Message: 结果描述，成功时为 voiceprint verify success
+        # @type Message: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :VoicePrintId, :SpeakerId, :Score, :Decision, :Message, :RequestId
+
+        def initialize(voiceprintid=nil, speakerid=nil, score=nil, decision=nil, message=nil, requestid=nil)
+          @VoicePrintId = voiceprintid
+          @SpeakerId = speakerid
+          @Score = score
+          @Decision = decision
+          @Message = message
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @SpeakerId = params['SpeakerId']
+          @Score = params['Score']
+          @Decision = params['Decision']
+          @Message = params['Message']
+          @RequestId = params['RequestId']
         end
       end
 
@@ -8886,8 +9497,8 @@ module TencentCloud
 
         attr_accessor :SdkAppId, :VoiceName, :PromptAudio, :APIKey, :PromptText, :Model, :Language, :ExtraParams
         extend Gem::Deprecate
-        deprecate :APIKey, :none, 2026, 9
-        deprecate :APIKey=, :none, 2026, 9
+        deprecate :APIKey, :none, 2026, 11
+        deprecate :APIKey=, :none, 2026, 11
 
         def initialize(sdkappid=nil, voicename=nil, promptaudio=nil, apikey=nil, prompttext=nil, model=nil, language=nil, extraparams=nil)
           @SdkAppId = sdkappid
@@ -8932,6 +9543,403 @@ module TencentCloud
         end
       end
 
+      # AI对话的任务参数。
+      class VoiceConversationConfig < TencentCloud::Common::AbstractModel
+        # @param UserId: <p>对话服务在TRTC房间使用的<a href="https://cloud.tencent.com/document/product/647/46351#userid">UserId</a>，注意这个userId不能与其他TRTC或者对话服务等已经使用的UserId重复，建议可以把房间ID作为userId的标识的一部分。</p>
+        # @type UserId: String
+        # @param UserSig: <p>对话服务加入TRTC房间的用户签名，当前 UserId 对应的验证签名，相当于登录密码，具体计算方法请参考TRTC计算<a href="https://cloud.tencent.com/document/product/647/45910#UserSig">UserSig</a>的方案。</p>
+        # @type UserSig: String
+        # @param TargetUserId: <p>对话服务订阅的主播名，订阅指定真实用户的音频，只能填写一个订阅主播。</p>
+        # @type TargetUserId: Array
+        # @param TTSPushRoomParams: <p>回推机器人参数。</p>
+        # @type TTSPushRoomParams: :class:`Tencentcloud::Trtc.v20190722.models.TranscriptionUserInfoParams`
+        # @param MaxIdleTime: <p>参与对话的主播持续离开TRTC房间或切换成观众超过MaxIdleTime的时长，自动停止对话任务，单位：秒。默认值为 30 秒，该值需大于等于 5秒，且小于等于 86400秒(24小时)。</p><p>单位：秒</p>
+        # @type MaxIdleTime: Integer
+        # @param FilterBracketsContent: <p>用于过滤LLM返回内容，不播放括号中的内容。1：中文括号（）2：英文括号() 3：中文方括号【】4：英文方括号[] 5：英文花括号{} 。默认值为空，表示不进行过滤。 示例值：1取值范围：[1, 5]。S2S 模式不支持填写该参数。</p>
+        # @type FilterBracketsContent: Array
+        # @param SubtitleMode: <p>字幕显示模式。S2S 模式不支持填写该参数。</p><p>枚举值：</p><ul><li>0： 尽快显示</li><li>1： 句子级别实时显示</li></ul>
+        # @type SubtitleMode: Integer
+        # @param TurnDetectionMode: <p>控制新一轮对话的触发方式，默认为&quot;auto&quot;。S2S 模式不支持填写该参数。</p><p>枚举值：</p><ul><li>&quot;auto&quot;： 后台自动识别断句触发LLM(基于静音时长)</li></ul>
+        # @type TurnDetectionMode: String
+
+        attr_accessor :UserId, :UserSig, :TargetUserId, :TTSPushRoomParams, :MaxIdleTime, :FilterBracketsContent, :SubtitleMode, :TurnDetectionMode
+
+        def initialize(userid=nil, usersig=nil, targetuserid=nil, ttspushroomparams=nil, maxidletime=nil, filterbracketscontent=nil, subtitlemode=nil, turndetectionmode=nil)
+          @UserId = userid
+          @UserSig = usersig
+          @TargetUserId = targetuserid
+          @TTSPushRoomParams = ttspushroomparams
+          @MaxIdleTime = maxidletime
+          @FilterBracketsContent = filterbracketscontent
+          @SubtitleMode = subtitlemode
+          @TurnDetectionMode = turndetectionmode
+        end
+
+        def deserialize(params)
+          @UserId = params['UserId']
+          @UserSig = params['UserSig']
+          @TargetUserId = params['TargetUserId']
+          unless params['TTSPushRoomParams'].nil?
+            @TTSPushRoomParams = TranscriptionUserInfoParams.new
+            @TTSPushRoomParams.deserialize(params['TTSPushRoomParams'])
+          end
+          @MaxIdleTime = params['MaxIdleTime']
+          @FilterBracketsContent = params['FilterBracketsContent']
+          @SubtitleMode = params['SubtitleMode']
+          @TurnDetectionMode = params['TurnDetectionMode']
+        end
+      end
+
+      # AI对话相关配置。
+      class VoiceConversationDialogConfig < TencentCloud::Common::AbstractModel
+        # @param InterruptMode: <p>打断模式。</p><p>枚举值：</p><ul><li>0： 自动打断（ASR 出文本打断 TTS，配合InterruptSpeechDuration 使用，默认）</li><li>1： 手动打断（仅服务端/客户端接口 Interrupt 命令打断）</li><li>2： 关键词打断</li></ul>
+        # @type InterruptMode: Integer
+        # @param InterruptSpeechDuration: <p>自动打断的最小用户语音持续时长（毫秒），默认 200</p><p>单位：毫秒</p>
+        # @type InterruptSpeechDuration: Integer
+        # @param InterruptKeywords: <p>预设的关键词，关键词打断，适用于需要用户明确表达意图才能打断的场景。最多支持128个关键词，InterruptMode 为2时生效，</p>
+        # @type InterruptKeywords: Array
+        # @param SilenceFollowUp: <p>用户静音多久后 Bot 主动追问，范围 0~300，0 表示关闭（默认）。</p><p>单位：秒</p>
+        # @type SilenceFollowUp: Integer
+        # @param SilenceFollowUpText: <p>主动追问的文本。</p>
+        # @type SilenceFollowUpText: String
+        # @param WelcomeMessage: <p>主播首次进房主动播报的欢迎语，主播退房后再次进房也会播报。</p>
+        # @type WelcomeMessage: String
+
+        attr_accessor :InterruptMode, :InterruptSpeechDuration, :InterruptKeywords, :SilenceFollowUp, :SilenceFollowUpText, :WelcomeMessage
+
+        def initialize(interruptmode=nil, interruptspeechduration=nil, interruptkeywords=nil, silencefollowup=nil, silencefollowuptext=nil, welcomemessage=nil)
+          @InterruptMode = interruptmode
+          @InterruptSpeechDuration = interruptspeechduration
+          @InterruptKeywords = interruptkeywords
+          @SilenceFollowUp = silencefollowup
+          @SilenceFollowUpText = silencefollowuptext
+          @WelcomeMessage = welcomemessage
+        end
+
+        def deserialize(params)
+          @InterruptMode = params['InterruptMode']
+          @InterruptSpeechDuration = params['InterruptSpeechDuration']
+          @InterruptKeywords = params['InterruptKeywords']
+          @SilenceFollowUp = params['SilenceFollowUp']
+          @SilenceFollowUpText = params['SilenceFollowUpText']
+          @WelcomeMessage = params['WelcomeMessage']
+        end
+      end
+
+      # 历史对话内容。
+      class VoiceConversationHistoryContent < TencentCloud::Common::AbstractModel
+        # @param Role: <p>对话角色。</p>
+        # @type Role: String
+        # @param Content: <p>对话内容。</p>
+        # @type Content: String
+
+        attr_accessor :Role, :Content
+
+        def initialize(role=nil, content=nil)
+          @Role = role
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Content = params['Content']
+        end
+      end
+
+      # AI对话历史消息。
+      class VoiceConversationHistoryMessage < TencentCloud::Common::AbstractModel
+        # @param Role: <p>对话角色，如&quot;user&quot;、&quot;assistant&quot;、&quot;system&quot;等。</p>
+        # @type Role: String
+        # @param Content: <p>对话内容。</p>
+        # @type Content: String
+
+        attr_accessor :Role, :Content
+
+        def initialize(role=nil, content=nil)
+          @Role = role
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Content = params['Content']
+        end
+      end
+
+      # 调用服务端主动发起请求到LLM
+      class VoiceConversationInvokeLLM < TencentCloud::Common::AbstractModel
+        # @param Content: <p>注入的内容。</p>
+        # @type Content: String
+        # @param Priority: <p>优先级。如果不处于对话中则将注入的内容送给LLM，否则由优先级决定。</p><p>枚举值：</p><ul><li>0： 高优先级，打断当前对话，并清空等待队列将注入的内容送给LLM。</li><li>1： 中优先级，不会打断当前对话，清空等待队列将注入的内容排队。如果不处于对话中则将注入的内容排队。</li><li>2： 低优先级，丢弃注入的内容。</li></ul><p>默认值：0</p><p>InvokeLLM和InvokeTTS的任务队列是同一队列，最多支持一个Invoke事件排队。</p>
+        # @type Priority: Integer
+
+        attr_accessor :Content, :Priority
+
+        def initialize(content=nil, priority=nil)
+          @Content = content
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @Priority = params['Priority']
+        end
+      end
+
+      # 调用服务端主动发起请求到TTS
+      class VoiceConversationInvokeTTS < TencentCloud::Common::AbstractModel
+        # @param Content: <p>注入的内容。</p>
+        # @type Content: String
+        # @param Priority: <p>优先级。如果不处于对话中则将注入的内容送给TTS，否则由优先级决定。</p><p>枚举值：</p><ul><li>0： 高优先级，打断当前对话，并清空等待队列将注入的内容送给TTS。</li><li>1： 中优先级，不会打断当前对话，清空等待队列将注入的内容排队。如果不处于对话中则将注入的内容排队。</li><li>2： 低优先级，丢弃注入的内容。</li></ul><p>默认值：0</p><p>InvokeLLM和InvokeTTS的任务队列是同一队列，最多支持一个Invoke事件排队。</p>
+        # @type Priority: Integer
+
+        attr_accessor :Content, :Priority
+
+        def initialize(content=nil, priority=nil)
+          @Content = content
+          @Priority = priority
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @Priority = params['Priority']
+        end
+      end
+
+      # AI对话的LLM参数配置
+      class VoiceConversationLLMConfig < TencentCloud::Common::AbstractModel
+        # @param LLMType: <p>LLM 协议类型，如openai（OpenAI 兼容协议）。</p>
+        # @type LLMType: String
+        # @param Model: <p>模型名，如 gpt-4o-mini</p>
+        # @type Model: String
+        # @param APIUrl: <p>OpenAI 协议兼容的 endpoint。</p>
+        # @type APIUrl: String
+        # @param APIKey: <p>厂商 API Key。</p>
+        # @type APIKey: String
+        # @param SystemPrompt: <p>系统提示词。</p>
+        # @type SystemPrompt: String
+        # @param FailureMessage: <p>LLM 调用失败后，使用此文本生成 TTS音频。</p>
+        # @type FailureMessage: String
+        # @param MaxTokens: <p>单次回复最大 Token 数，0=不限制，默认值为0。注意：如果模型输出token数量大于设置的MaxTokens的值，会截断回复内容。</p>
+        # @type MaxTokens: Integer
+        # @param ThinkingMode: <p>是否开启思考模式（需结合提供厂商具体使用）。注意：开启思考模式会占用输出token数。</p>
+        # @type ThinkingMode: Boolean
+        # @param MaxHistory: <p>LLM 中缓存的对话轮次数量，范围 0~50。建议值[10, 30]。注意：指定轮次上下文的总 token 数不能超过 LLM 支持的上限。</p>
+        # @type MaxHistory: Integer
+        # @param MaxToolRound: <p>MCP 工具调用最大轮次，范围 0~50，默认 10。</p>
+        # @type MaxToolRound: Integer
+        # @param Timeout: <p>单次请求的超时事件（毫秒），范围 1000~60000，默认 10000。</p><p>单位：毫秒</p>
+        # @type Timeout: Integer
+        # @param Temperature: <p>采样温度，范围 0.0~2.0，默认 1.0。</p>
+        # @type Temperature: Float
+        # @param TopP: <p>采样概率，范围 0.0~1.0，默认 1.0。</p>
+        # @type TopP: Float
+        # @param McpServer: <p>Mcp Server参数。</p>
+        # @type McpServer: :class:`Tencentcloud::Trtc.v20190722.models.VoiceConversationMcpServer`
+        # @param CustomHeaders: <p>自定义 HTTP 请求头。</p>
+        # @type CustomHeaders: Array
+        # @param CustomFields: <p>各厂商独有的扩展参数（如 DeepSeek 的<code>reasoning_effort</code>、混元的 <code>enable_enhancement</code> 等）。</p>
+        # @type CustomFields: Array
+        # @param HistoryMessages: <p>初始历史消息，每项为 <code>{&quot;Role&quot;: &quot;user&quot;/&quot;assistant&quot;/&quot;system&quot;, &quot;Content&quot;: &quot;xxx&quot;}</code>这种格式。</p>
+        # @type HistoryMessages: Array
+
+        attr_accessor :LLMType, :Model, :APIUrl, :APIKey, :SystemPrompt, :FailureMessage, :MaxTokens, :ThinkingMode, :MaxHistory, :MaxToolRound, :Timeout, :Temperature, :TopP, :McpServer, :CustomHeaders, :CustomFields, :HistoryMessages
+
+        def initialize(llmtype=nil, model=nil, apiurl=nil, apikey=nil, systemprompt=nil, failuremessage=nil, maxtokens=nil, thinkingmode=nil, maxhistory=nil, maxtoolround=nil, timeout=nil, temperature=nil, topp=nil, mcpserver=nil, customheaders=nil, customfields=nil, historymessages=nil)
+          @LLMType = llmtype
+          @Model = model
+          @APIUrl = apiurl
+          @APIKey = apikey
+          @SystemPrompt = systemprompt
+          @FailureMessage = failuremessage
+          @MaxTokens = maxtokens
+          @ThinkingMode = thinkingmode
+          @MaxHistory = maxhistory
+          @MaxToolRound = maxtoolround
+          @Timeout = timeout
+          @Temperature = temperature
+          @TopP = topp
+          @McpServer = mcpserver
+          @CustomHeaders = customheaders
+          @CustomFields = customfields
+          @HistoryMessages = historymessages
+        end
+
+        def deserialize(params)
+          @LLMType = params['LLMType']
+          @Model = params['Model']
+          @APIUrl = params['APIUrl']
+          @APIKey = params['APIKey']
+          @SystemPrompt = params['SystemPrompt']
+          @FailureMessage = params['FailureMessage']
+          @MaxTokens = params['MaxTokens']
+          @ThinkingMode = params['ThinkingMode']
+          @MaxHistory = params['MaxHistory']
+          @MaxToolRound = params['MaxToolRound']
+          @Timeout = params['Timeout']
+          @Temperature = params['Temperature']
+          @TopP = params['TopP']
+          unless params['McpServer'].nil?
+            @McpServer = VoiceConversationMcpServer.new
+            @McpServer.deserialize(params['McpServer'])
+          end
+          unless params['CustomHeaders'].nil?
+            @CustomHeaders = []
+            params['CustomHeaders'].each do |i|
+              keyvalueitem_tmp = KeyValueItem.new
+              keyvalueitem_tmp.deserialize(i)
+              @CustomHeaders << keyvalueitem_tmp
+            end
+          end
+          unless params['CustomFields'].nil?
+            @CustomFields = []
+            params['CustomFields'].each do |i|
+              keyvalueitem_tmp = KeyValueItem.new
+              keyvalueitem_tmp.deserialize(i)
+              @CustomFields << keyvalueitem_tmp
+            end
+          end
+          unless params['HistoryMessages'].nil?
+            @HistoryMessages = []
+            params['HistoryMessages'].each do |i|
+              voiceconversationhistorymessage_tmp = VoiceConversationHistoryMessage.new
+              voiceconversationhistorymessage_tmp.deserialize(i)
+              @HistoryMessages << voiceconversationhistorymessage_tmp
+            end
+          end
+        end
+      end
+
+      # Mcp Sever参数。
+      class VoiceConversationMcpServer < TencentCloud::Common::AbstractModel
+        # @param Name: <p>mcp唯一标识符。</p>
+        # @type Name: String
+        # @param Url: <p>接入地址。</p>
+        # @type Url: String
+        # @param Timeout: <p>请求超时，单位ms，默认 5000。待确认范围。</p><p>单位：毫秒。</p>
+        # @type Timeout: Integer
+        # @param Headers: <p>自定义请求header，用于填写鉴权等信息。</p>
+        # @type Headers: Array
+        # @param ToolList: <p>工具使用白名单。</p>
+        # @type ToolList: Array
+
+        attr_accessor :Name, :Url, :Timeout, :Headers, :ToolList
+
+        def initialize(name=nil, url=nil, timeout=nil, headers=nil, toollist=nil)
+          @Name = name
+          @Url = url
+          @Timeout = timeout
+          @Headers = headers
+          @ToolList = toollist
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Url = params['Url']
+          @Timeout = params['Timeout']
+          unless params['Headers'].nil?
+            @Headers = []
+            params['Headers'].each do |i|
+              keyvalueitem_tmp = KeyValueItem.new
+              keyvalueitem_tmp.deserialize(i)
+              @Headers << keyvalueitem_tmp
+            end
+          end
+          @ToolList = params['ToolList']
+        end
+      end
+
+      # AI对话任务端到端语音大模型的配置参数。
+      class VoiceConversationS2SConfig < TencentCloud::Common::AbstractModel
+        # @param Provider: <p>S2S 厂商标识，例如&quot;tencent&quot;。</p>
+        # @type Provider: String
+        # @param Params: <p>厂商专属参数，JSON 序列化后的字符串。</p>
+        # @type Params: String
+        # @param WelcomeMessage: <p>主播首次进房主动播报的欢迎语，主播退房后再次进房也会播报。</p>
+        # @type WelcomeMessage: String
+
+        attr_accessor :Provider, :Params, :WelcomeMessage
+
+        def initialize(provider=nil, params=nil, welcomemessage=nil)
+          @Provider = provider
+          @Params = params
+          @WelcomeMessage = welcomemessage
+        end
+
+        def deserialize(params)
+          @Provider = params['Provider']
+          @Params = params['Params']
+          @WelcomeMessage = params['WelcomeMessage']
+        end
+      end
+
+      # AI对话任务的STT配置参数
+      class VoiceConversationSTTConfig < TencentCloud::Common::AbstractModel
+        # @param Provider: <p>ASR 提供方：trtc（腾讯自研）或第三方厂商名称（如 azure）。</p>
+        # @type Provider: String
+        # @param Params: <p>ASR厂商专属参数，填写JSON 序列化后的字符串。</p>
+        # @type Params: String
+
+        attr_accessor :Provider, :Params
+
+        def initialize(provider=nil, params=nil)
+          @Provider = provider
+          @Params = params
+        end
+
+        def deserialize(params)
+          @Provider = params['Provider']
+          @Params = params['Params']
+        end
+      end
+
+      # 对话任务的TTS配置。
+      class VoiceConversationTTSConfig < TencentCloud::Common::AbstractModel
+        # @param Provider: <p>TTS 提供厂商，例如trtc。</p>
+        # @type Provider: String
+        # @param Params: <p>厂商专属参数，JSON 序列化后的字符串。</p>
+        # @type Params: String
+
+        attr_accessor :Provider, :Params
+
+        def initialize(provider=nil, params=nil)
+          @Provider = provider
+          @Params = params
+        end
+
+        def deserialize(params)
+          @Provider = params['Provider']
+          @Params = params['Params']
+        end
+      end
+
+      # AI对话视觉理解相关的参数配置。
+      class VoiceConversationVisionConfig < TencentCloud::Common::AbstractModel
+        # @param Enable: <p>是否启用视觉理解。</p>
+        # @type Enable: Boolean
+        # @param StorageType: <p>存储类型。</p><p>枚举值：</p><ul><li>0： 不存储。</li><li>1： 指定云存储，这种情况下CloudStorage参数必填。</li></ul><p>默认值：0</p>
+        # @type StorageType: Integer
+        # @param CloudStorage: <p>第三方云存储归档配置。配置后，后台将从 SDK 收到的 I 帧自动上传至指定云存储桶进行持久化保存。</p>
+        # @type CloudStorage: :class:`Tencentcloud::Trtc.v20190722.models.CloudStorage`
+
+        attr_accessor :Enable, :StorageType, :CloudStorage
+
+        def initialize(enable=nil, storagetype=nil, cloudstorage=nil)
+          @Enable = enable
+          @StorageType = storagetype
+          @CloudStorage = cloudstorage
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @StorageType = params['StorageType']
+          unless params['CloudStorage'].nil?
+            @CloudStorage = CloudStorage.new
+            @CloudStorage.deserialize(params['CloudStorage'])
+          end
+        end
+      end
+
       # 声纹配置参数
       class VoicePrint < TencentCloud::Common::AbstractModel
         # @param Mode: 默认为0，表示不启用声纹。1表示启用声纹，此时需要填写voiceprint id。
@@ -8949,6 +9957,30 @@ module TencentCloud
         def deserialize(params)
           @Mode = params['Mode']
           @IdList = params['IdList']
+        end
+      end
+
+      # 批量删除逐项结果（VoicePrintBatchDelete 出参 Results 元素）
+      class VoicePrintBatchDeleteResult < TencentCloud::Common::AbstractModel
+        # @param VoicePrintId: <p>本项对应的声纹 ID。成功项与失败项均会返回。<br>示例值：59d83c76-8f4e-4a1b-9c2d-0e7f8a6b5c4d</p>
+        # @type VoicePrintId: String
+        # @param ErrorCode: <p>本项失败时的错误码，成功项为空。常见值：FailedOperation.VoicePrintNotFound（声纹不存在或已删除）、InvalidParameterValue.InvalidVoicePrintId（ID 格式非法）。<br>示例值：FailedOperation.VoicePrintNotFound</p>
+        # @type ErrorCode: String
+        # @param ErrorMessage: <p>本项失败时的错误描述，成功项为空。<br>示例值：voiceprint not found</p>
+        # @type ErrorMessage: String
+
+        attr_accessor :VoicePrintId, :ErrorCode, :ErrorMessage
+
+        def initialize(voiceprintid=nil, errorcode=nil, errormessage=nil)
+          @VoicePrintId = voiceprintid
+          @ErrorCode = errorcode
+          @ErrorMessage = errormessage
+        end
+
+        def deserialize(params)
+          @VoicePrintId = params['VoicePrintId']
+          @ErrorCode = params['ErrorCode']
+          @ErrorMessage = params['ErrorMessage']
         end
       end
 
