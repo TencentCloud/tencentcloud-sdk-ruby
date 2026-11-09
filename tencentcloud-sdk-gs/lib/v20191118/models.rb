@@ -523,6 +523,47 @@ module TencentCloud
         end
       end
 
+      # 安卓实例MCP Token
+      class AndroidInstanceMCPToken < TencentCloud::Common::AbstractModel
+        # @param TokenId: <p>内部 ID，格式 k_ + 16 位 hex</p>
+        # @type TokenId: String
+        # @param Role: <p>ROOT / USER（大小写敏感），默认 USER。ROOT 可访问该 AppId 下全部实例</p>
+        # @type Role: String
+        # @param TokenName: <p>备注名</p>
+        # @type TokenName: String
+        # @param AllowedInstanceIds: <p>USER 角色可访问的实例白名单</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowedInstanceIds: Array
+        # @param CreateTime: <p>创建时间</p><p>参数格式：ISO8601 字符串；</p>
+        # @type CreateTime: String
+        # @param ExpiresTime: <p>过期时间</p><p>参数格式：ISO8601 字符串；永不过期时为空串</p>
+        # @type ExpiresTime: String
+        # @param Status: <p>或 EXPIRED；EXPIRED 由 ExpiresTime 推导。已删除的不出现在列表里</p><p>枚举值：</p><ul><li>ACTIVE： 正常可用的</li><li>EXPIRED： 过期的</li></ul>
+        # @type Status: String
+
+        attr_accessor :TokenId, :Role, :TokenName, :AllowedInstanceIds, :CreateTime, :ExpiresTime, :Status
+
+        def initialize(tokenid=nil, role=nil, tokenname=nil, allowedinstanceids=nil, createtime=nil, expirestime=nil, status=nil)
+          @TokenId = tokenid
+          @Role = role
+          @TokenName = tokenname
+          @AllowedInstanceIds = allowedinstanceids
+          @CreateTime = createtime
+          @ExpiresTime = expirestime
+          @Status = status
+        end
+
+        def deserialize(params)
+          @TokenId = params['TokenId']
+          @Role = params['Role']
+          @TokenName = params['TokenName']
+          @AllowedInstanceIds = params['AllowedInstanceIds']
+          @CreateTime = params['CreateTime']
+          @ExpiresTime = params['ExpiresTime']
+          @Status = params['Status']
+        end
+      end
+
       # 安卓实例属性
       class AndroidInstanceProperty < TencentCloud::Common::AbstractModel
         # @param Key: 属性键
@@ -1197,27 +1238,52 @@ module TencentCloud
 
       # CreateAndroidInstanceMCPToken请求参数结构体
       class CreateAndroidInstanceMCPTokenRequest < TencentCloud::Common::AbstractModel
+        # @param Role: <p>ROOT / USER（大小写敏感），默认 USER。ROOT 可访问该 AppId 下全部实例</p><p>枚举值：</p><ul><li>ROOT： 可访问该 AppId 下全部实例</li><li>USER： 可访问本角色实例白名单内的实例</li></ul><p>默认值：USER</p>
+        # @type Role: String
+        # @param ExpireSeconds: <p>有效期（秒）；0 或不传表示永不过期（负值等同不过期）</p>
+        # @type ExpireSeconds: Integer
+        # @param TokenName: <p>备注名</p>
+        # @type TokenName: String
+        # @param AllowedInstanceIds: <p>USER 角色可访问的实例白名单</p>
+        # @type AllowedInstanceIds: Array
 
+        attr_accessor :Role, :ExpireSeconds, :TokenName, :AllowedInstanceIds
 
-        def initialize()
+        def initialize(role=nil, expireseconds=nil, tokenname=nil, allowedinstanceids=nil)
+          @Role = role
+          @ExpireSeconds = expireseconds
+          @TokenName = tokenname
+          @AllowedInstanceIds = allowedinstanceids
         end
 
         def deserialize(params)
+          @Role = params['Role']
+          @ExpireSeconds = params['ExpireSeconds']
+          @TokenName = params['TokenName']
+          @AllowedInstanceIds = params['AllowedInstanceIds']
         end
       end
 
       # CreateAndroidInstanceMCPToken返回参数结构体
       class CreateAndroidInstanceMCPTokenResponse < TencentCloud::Common::AbstractModel
+        # @param TokenId: <p>内部 ID，格式 k_ + 16 位 hex</p>
+        # @type TokenId: String
+        # @param Token: <p>明文 token，格式 mcpk_ + 48 位 hex。服务端只存 sha256，只返回这一次</p>
+        # @type Token: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TokenId, :Token, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(tokenid=nil, token=nil, requestid=nil)
+          @TokenId = tokenid
+          @Token = token
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TokenId = params['TokenId']
+          @Token = params['Token']
           @RequestId = params['RequestId']
         end
       end
@@ -1928,12 +1994,17 @@ module TencentCloud
 
       # DeleteAndroidInstanceMCPToken请求参数结构体
       class DeleteAndroidInstanceMCPTokenRequest < TencentCloud::Common::AbstractModel
+        # @param TokenId: <p>内部 ID，格式 k_ + 16 位 hex</p>
+        # @type TokenId: String
 
+        attr_accessor :TokenId
 
-        def initialize()
+        def initialize(tokenid=nil)
+          @TokenId = tokenid
         end
 
         def deserialize(params)
+          @TokenId = params['TokenId']
         end
       end
 
@@ -2266,27 +2337,52 @@ module TencentCloud
 
       # DescribeAndroidInstanceMCPTokens请求参数结构体
       class DescribeAndroidInstanceMCPTokensRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: <p>偏移量，默认为 0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>本次请求单次返回数据条数，用于分页控制</p><p>取值范围：[0, 100]</p><p>默认值：10</p>
+        # @type Limit: Integer
 
+        attr_accessor :Offset, :Limit
 
-        def initialize()
+        def initialize(offset=nil, limit=nil)
+          @Offset = offset
+          @Limit = limit
         end
 
         def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
         end
       end
 
       # DescribeAndroidInstanceMCPTokens返回参数结构体
       class DescribeAndroidInstanceMCPTokensResponse < TencentCloud::Common::AbstractModel
+        # @param Tokens: <p>Token列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tokens: Array
+        # @param TotalCount: <p>Token总数</p><p>单位：个</p>
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Tokens, :TotalCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(tokens=nil, totalcount=nil, requestid=nil)
+          @Tokens = tokens
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Tokens'].nil?
+            @Tokens = []
+            params['Tokens'].each do |i|
+              androidinstancemcptoken_tmp = AndroidInstanceMCPToken.new
+              androidinstancemcptoken_tmp.deserialize(i)
+              @Tokens << androidinstancemcptoken_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -3930,27 +4026,40 @@ module TencentCloud
 
       # RenewAndroidInstanceMCPToken请求参数结构体
       class RenewAndroidInstanceMCPTokenRequest < TencentCloud::Common::AbstractModel
+        # @param TokenId: <p>内部 ID，格式 k_ + 16 位 hex</p>
+        # @type TokenId: String
+        # @param ExpireSeconds: <p>有效期（秒），必须大于 0</p><p>单位：秒</p>
+        # @type ExpireSeconds: Integer
 
+        attr_accessor :TokenId, :ExpireSeconds
 
-        def initialize()
+        def initialize(tokenid=nil, expireseconds=nil)
+          @TokenId = tokenid
+          @ExpireSeconds = expireseconds
         end
 
         def deserialize(params)
+          @TokenId = params['TokenId']
+          @ExpireSeconds = params['ExpireSeconds']
         end
       end
 
       # RenewAndroidInstanceMCPToken返回参数结构体
       class RenewAndroidInstanceMCPTokenResponse < TencentCloud::Common::AbstractModel
+        # @param ExpiresTime: <p>过期时间，ISO8601 字符串；token 永不过期时为空串</p>
+        # @type ExpiresTime: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :ExpiresTime, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(expirestime=nil, requestid=nil)
+          @ExpiresTime = expirestime
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @ExpiresTime = params['ExpiresTime']
           @RequestId = params['RequestId']
         end
       end

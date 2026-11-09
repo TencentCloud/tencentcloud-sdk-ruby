@@ -2346,9 +2346,9 @@ module TencentCloud
       # &Filters.1.Values.1=POSTPAID_BY_HOUR
       # ```
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Name: 需要过滤的字段。
+        # @param Name: <p>需要过滤的字段。</p>
         # @type Name: String
-        # @param Values: 字段的过滤值。
+        # @param Values: <p>字段的过滤值。</p>
         # @type Values: Array
 
         attr_accessor :Name, :Values

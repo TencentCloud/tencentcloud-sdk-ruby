@@ -1722,7 +1722,7 @@ module TencentCloud
 
       # DescribeExtractDocAgentJob请求参数结构体
       class DescribeExtractDocAgentJobRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 任务唯一ID。由服务端生成。
+        # @param JobId: <p>任务唯一ID。由服务端生成。</p>
         # @type JobId: String
 
         attr_accessor :JobId
@@ -1738,30 +1738,33 @@ module TencentCloud
 
       # DescribeExtractDocAgentJob返回参数结构体
       class DescribeExtractDocAgentJobResponse < TencentCloud::Common::AbstractModel
-        # @param Angle: 图片旋转角度(角度制)，文本的水平方向为 0；顺时针为正，逆时针为负。
+        # @param Angle: <p>图片旋转角度(角度制)，文本的水平方向为 0；顺时针为正，逆时针为负。</p>
         # @type Angle: Float
-        # @param StructuralList: 配置结构化文本信息。
+        # @param StructuralList: <p>配置结构化文本信息。AgentType为0按照这个结构返回</p>
         # @type StructuralList: Array
-        # @param ErrorCode: 任务执行错误码。当任务状态不为 FAIL 时，该值为""。
+        # @param ErrorCode: <p>任务执行错误码。当任务状态不为 FAIL 时，该值为&quot;&quot;。</p>
         # @type ErrorCode: String
-        # @param ErrorMessage: 任务执行错误信息。当任务状态不为 FAIL 时，该值为""。
+        # @param ErrorMessage: <p>任务执行错误信息。当任务状态不为 FAIL 时，该值为&quot;&quot;。</p>
         # @type ErrorMessage: String
-        # @param JobStatus: 任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功
+        # @param JobStatus: <p>任务状态。WAIT：等待中，RUN：执行中，FAIL：任务失败，DONE：任务成功</p>
         # @type JobStatus: String
-        # @param ThoughtContent: 思考过程
+        # @param ThoughtContent: <p>思考过程</p>
         # @type ThoughtContent: String
+        # @param AgentResultJson: <p>定制的json结构字符串，主要用于快速定制输出的agent输出结构。推荐用于POC场景</p>
+        # @type AgentResultJson: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Angle, :StructuralList, :ErrorCode, :ErrorMessage, :JobStatus, :ThoughtContent, :RequestId
+        attr_accessor :Angle, :StructuralList, :ErrorCode, :ErrorMessage, :JobStatus, :ThoughtContent, :AgentResultJson, :RequestId
 
-        def initialize(angle=nil, structurallist=nil, errorcode=nil, errormessage=nil, jobstatus=nil, thoughtcontent=nil, requestid=nil)
+        def initialize(angle=nil, structurallist=nil, errorcode=nil, errormessage=nil, jobstatus=nil, thoughtcontent=nil, agentresultjson=nil, requestid=nil)
           @Angle = angle
           @StructuralList = structurallist
           @ErrorCode = errorcode
           @ErrorMessage = errormessage
           @JobStatus = jobstatus
           @ThoughtContent = thoughtcontent
+          @AgentResultJson = agentresultjson
           @RequestId = requestid
         end
 
@@ -1779,6 +1782,7 @@ module TencentCloud
           @ErrorMessage = params['ErrorMessage']
           @JobStatus = params['JobStatus']
           @ThoughtContent = params['ThoughtContent']
+          @AgentResultJson = params['AgentResultJson']
           @RequestId = params['RequestId']
         end
       end
@@ -11231,13 +11235,15 @@ module TencentCloud
         # @type FileEndPageNumber: Integer
         # @param ModelConfig: <p>model_hunyuan:选择混元底座视觉大模型精调抽取任务  model_youtu：选择优图底座多模态大模型精调抽取任务</p>
         # @type ModelConfig: String
+        # @param AgentType: <p>agent支持的类型枚举,不同类型输出结果不一样，默认为0</p><p>0:表示标准抽取Agent</p><p>1:表示合同协议分类+抽取+审核Agent</p>
+        # @type AgentType: Integer
 
-        attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :ItemNames, :EnableCoord, :FileStartPageNumber, :FileEndPageNumber, :ModelConfig
+        attr_accessor :ImageBase64, :ImageUrl, :PdfPageNumber, :ItemNames, :EnableCoord, :FileStartPageNumber, :FileEndPageNumber, :ModelConfig, :AgentType
         extend Gem::Deprecate
         deprecate :PdfPageNumber, :none, 2026, 11
         deprecate :PdfPageNumber=, :none, 2026, 11
 
-        def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, itemnames=nil, enablecoord=nil, filestartpagenumber=nil, fileendpagenumber=nil, modelconfig=nil)
+        def initialize(imagebase64=nil, imageurl=nil, pdfpagenumber=nil, itemnames=nil, enablecoord=nil, filestartpagenumber=nil, fileendpagenumber=nil, modelconfig=nil, agenttype=nil)
           @ImageBase64 = imagebase64
           @ImageUrl = imageurl
           @PdfPageNumber = pdfpagenumber
@@ -11246,6 +11252,7 @@ module TencentCloud
           @FileStartPageNumber = filestartpagenumber
           @FileEndPageNumber = fileendpagenumber
           @ModelConfig = modelconfig
+          @AgentType = agenttype
         end
 
         def deserialize(params)
@@ -11264,6 +11271,7 @@ module TencentCloud
           @FileStartPageNumber = params['FileStartPageNumber']
           @FileEndPageNumber = params['FileEndPageNumber']
           @ModelConfig = params['ModelConfig']
+          @AgentType = params['AgentType']
         end
       end
 

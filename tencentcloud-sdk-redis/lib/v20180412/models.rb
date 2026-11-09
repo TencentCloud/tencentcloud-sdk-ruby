@@ -1564,7 +1564,7 @@ module TencentCloud
 
       # DescribeAutoBackupConfig请求参数结构体
       class DescribeAutoBackupConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
+        # @param InstanceId: <p>指定实例 ID。例如：crs-xjhsdj****。请登录<a href="https://console.cloud.tencent.com/redis">Redis控制台</a>在实例列表复制实例 ID。</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1580,15 +1580,15 @@ module TencentCloud
 
       # DescribeAutoBackupConfig返回参数结构体
       class DescribeAutoBackupConfigResponse < TencentCloud::Common::AbstractModel
-        # @param AutoBackupType: 该参数因兼容性问题暂时保留，请忽略。
+        # @param AutoBackupType: <p>该参数因兼容性问题暂时保留，请忽略。</p>
         # @type AutoBackupType: Integer
-        # @param WeekDays: 备份周期，默认为每天自动备份，Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。
+        # @param WeekDays: <p>备份周期，默认为每天自动备份，Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。</p>
         # @type WeekDays: Array
-        # @param TimePeriod: 备份任务发起时间段。
+        # @param TimePeriod: <p>备份任务发起时间段。</p>
         # @type TimePeriod: String
-        # @param BackupStorageDays: 全量备份文件保存天数。默认为7天。如需保存更多天数，请[提交工单](https://console.cloud.tencent.com/workorder/category)申请。
+        # @param BackupStorageDays: <p>全量备份文件保存天数。默认为7天。如需保存更多天数，请<a href="https://console.cloud.tencent.com/workorder/category">提交工单</a>申请。</p>
         # @type BackupStorageDays: Integer
-        # @param BinlogStorageDays: 该参数不再使用，请忽略。
+        # @param BinlogStorageDays: <p>该参数不再使用，请忽略。</p>
         # @type BinlogStorageDays: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7064,15 +7064,15 @@ module TencentCloud
 
       # ModifyAutoBackupConfig请求参数结构体
       class ModifyAutoBackupConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
+        # @param InstanceId: <p>指定实例 ID。例如：crs-xjhsdj****。请登录<a href="https://console.cloud.tencent.com/redis">Redis控制台</a>在实例列表复制实例 ID。</p>
         # @type InstanceId: String
-        # @param WeekDays: 设置自动备份周期。可设置为Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。该参数暂不支持修改。
+        # @param WeekDays: <p>设置自动备份周期。可设置为Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。该参数暂不支持修改。</p>
         # @type WeekDays: Array
-        # @param TimePeriod: 备份时间段。可设置为每个整点。格式如：00:00-01:00, 01:00-02:00...... 23:00-00:00。
+        # @param TimePeriod: <p>备份时间段。可设置为每个整点。格式如：00:00-01:00, 01:00-02:00...... 23:00-00:00。</p>
         # @type TimePeriod: String
-        # @param AutoBackupType: 自动备份类型。目前仅能配置为：1 ，指定时备份。
+        # @param AutoBackupType: <p>自动备份类型。目前仅能配置为：1 ，指定时备份。</p>
         # @type AutoBackupType: Integer
-        # @param BackupStorageDays: 全量备份文件保存天数。 仅支持设置为 7，单位：天。如需更长天数，请[提交工单](https://console.cloud.tencent.com/workorder/category)申请。
+        # @param BackupStorageDays: <p>全量备份文件保存天数。 仅支持设置为 7，单位：天。如需更长天数，请<a href="https://console.cloud.tencent.com/workorder/category">提交工单</a>申请。</p>
         # @type BackupStorageDays: Integer
 
         attr_accessor :InstanceId, :WeekDays, :TimePeriod, :AutoBackupType, :BackupStorageDays
@@ -7096,13 +7096,13 @@ module TencentCloud
 
       # ModifyAutoBackupConfig返回参数结构体
       class ModifyAutoBackupConfigResponse < TencentCloud::Common::AbstractModel
-        # @param AutoBackupType: 自动备份类型。目前仅能配置为：1 ，指定时备份。
+        # @param AutoBackupType: <p>自动备份类型。目前仅能配置为：1 ，指定时备份。</p>
         # @type AutoBackupType: Integer
-        # @param WeekDays: 自动备份周期。取值为：Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。
+        # @param WeekDays: <p>自动备份周期。取值为：Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。</p>
         # @type WeekDays: Array
-        # @param TimePeriod: 自动定时备份时间段。格式如：00:00-01:00, 01:00-02:00...... 23:00-00:00。
+        # @param TimePeriod: <p>自动定时备份时间段。格式如：00:00-01:00, 01:00-02:00...... 23:00-00:00。</p>
         # @type TimePeriod: String
-        # @param BackupStorageDays: 全量备份文件保存天数,单位：天。
+        # @param BackupStorageDays: <p>全量备份文件保存天数,单位：天。</p>
         # @type BackupStorageDays: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7345,10 +7345,14 @@ module TencentCloud
         # @type NoAuth: Boolean
         # @param EncryptPassword: <p>是否启用密码加密传输。</p><ul><li>true：加密。</li><li>false：不加密（默认值）。</li></ul>
         # @type EncryptPassword: Boolean
+        # @param DisableCommands: <p>账号维度的禁用命令配置。</p><ul><li>默认值：[]（空数组，即不禁用任何命令）</li><li>入参限制：仅支持配置以下指定的数据库命令（支持多选）<br>flushall, flushdb, keys, hgetall, eval, evalsha, script, scan, psetex, set, hmset, hset, lpush, rpush, sadd, zadd, del, mget, mset, bitop, exists, msetnx, blpop, brpop, rpoplpush, brpoplpush, smove, sunion, sinter, sdiff, sunionstore, sinterstore, sdiffstore, zunionstore, zinterstore, pfmerge, pfcount, pfadd。</li></ul><p>默认值：&quot;&quot;</p>
+        # @type DisableCommands: Array
+        # @param ModifyDisableCommands: <p>是否修改账号维度的禁用命令配置。仅在需要更新禁用命令列表时传入。</p><ul><li>true：修改（将根据传入的新命令列表进行覆盖更新）。</li><li>false：不修改（默认值）。</li></ul>
+        # @type ModifyDisableCommands: Boolean
 
-        attr_accessor :InstanceId, :AccountName, :AccountPassword, :Remark, :ReadonlyPolicy, :Privilege, :NoAuth, :EncryptPassword
+        attr_accessor :InstanceId, :AccountName, :AccountPassword, :Remark, :ReadonlyPolicy, :Privilege, :NoAuth, :EncryptPassword, :DisableCommands, :ModifyDisableCommands
 
-        def initialize(instanceid=nil, accountname=nil, accountpassword=nil, remark=nil, readonlypolicy=nil, privilege=nil, noauth=nil, encryptpassword=nil)
+        def initialize(instanceid=nil, accountname=nil, accountpassword=nil, remark=nil, readonlypolicy=nil, privilege=nil, noauth=nil, encryptpassword=nil, disablecommands=nil, modifydisablecommands=nil)
           @InstanceId = instanceid
           @AccountName = accountname
           @AccountPassword = accountpassword
@@ -7357,6 +7361,8 @@ module TencentCloud
           @Privilege = privilege
           @NoAuth = noauth
           @EncryptPassword = encryptpassword
+          @DisableCommands = disablecommands
+          @ModifyDisableCommands = modifydisablecommands
         end
 
         def deserialize(params)
@@ -7368,6 +7374,8 @@ module TencentCloud
           @Privilege = params['Privilege']
           @NoAuth = params['NoAuth']
           @EncryptPassword = params['EncryptPassword']
+          @DisableCommands = params['DisableCommands']
+          @ModifyDisableCommands = params['ModifyDisableCommands']
         end
       end
 

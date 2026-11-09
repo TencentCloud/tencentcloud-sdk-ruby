@@ -2491,6 +2491,57 @@ module TencentCloud
         end
       end
 
+      # ModifyApiKeyBindings请求参数结构体
+      class ModifyApiKeyBindingsRequest < TencentCloud::Common::AbstractModel
+        # @param ApiKeyId: <p>API 密钥 ID。</p>
+        # @type ApiKeyId: String
+        # @param Platform: <p>平台类型。取值：maas。</p>
+        # @type Platform: String
+        # @param BindType: <p>绑定类型。取值：all（全部模型和接入点）、model_custom_endpoint_custom（自定义模型+自定义接入点）。</p><p>枚举值：</p><ul><li>model_custom_endpoint_custom： 自定义模型+自定义接入点</li></ul>
+        # @type BindType: String
+        # @param Bindings: <p>修改后的apikey的模型或服务绑定列表</p>
+        # @type Bindings: Array
+
+        attr_accessor :ApiKeyId, :Platform, :BindType, :Bindings
+
+        def initialize(apikeyid=nil, platform=nil, bindtype=nil, bindings=nil)
+          @ApiKeyId = apikeyid
+          @Platform = platform
+          @BindType = bindtype
+          @Bindings = bindings
+        end
+
+        def deserialize(params)
+          @ApiKeyId = params['ApiKeyId']
+          @Platform = params['Platform']
+          @BindType = params['BindType']
+          unless params['Bindings'].nil?
+            @Bindings = []
+            params['Bindings'].each do |i|
+              bindingitem_tmp = BindingItem.new
+              bindingitem_tmp.deserialize(i)
+              @Bindings << bindingitem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyApiKeyBindings返回参数结构体
+      class ModifyApiKeyBindingsResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyApiKeyInfo请求参数结构体
       class ModifyApiKeyInfoRequest < TencentCloud::Common::AbstractModel
         # @param ApiKeyId: <p>API 密钥 ID。</p>

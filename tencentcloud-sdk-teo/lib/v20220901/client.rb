@@ -3775,6 +3775,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口查询边缘函数分析的时序数据。请注意本接口查询数据有 10 分钟左右延迟，建议拉取当前时间 10 分钟以前的数据。
+
+        # @param request: Request instance for DescribeTimingFunctionAnalysisData.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeTimingFunctionAnalysisDataRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeTimingFunctionAnalysisDataResponse`
+        def DescribeTimingFunctionAnalysisData(request)
+          body = send_request('DescribeTimingFunctionAnalysisData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTimingFunctionAnalysisDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # <p>本接口（<code>DescribeTimingL4Data</code>）用于查询四层时序数据列表。</p>
 
         # @param request: Request instance for DescribeTimingL4Data.
@@ -3861,6 +3885,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeTimingL7OriginPullDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口用于查询边缘函数按照指定维度的 topN 数据。请注意本接口查询数据有 10 分钟左右延迟，建议拉取当前时间 10 分钟以前的数据。
+
+        # @param request: Request instance for DescribeTopFunctionAnalysisData.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeTopFunctionAnalysisDataRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeTopFunctionAnalysisDataResponse`
+        def DescribeTopFunctionAnalysisData(request)
+          body = send_request('DescribeTopFunctionAnalysisData', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTopFunctionAnalysisDataResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -3198,6 +3198,12 @@ module TencentCloud
 
       # 调用来源
       class CallSource < TencentCloud::Common::AbstractModel
+        # @param DeploymentUuid: <p>环境 UUID（来源于上报字段 channel_uuid）；公有云可为空，不能用 deployment_type 替代</p>
+        # @type DeploymentUuid: String
+        # @param SpaceId: <p>空间 ID</p>
+        # @type SpaceId: String
+        # @param SpaceName: <p>空间名称；空间不存在或查询失败时为空</p>
+        # @type SpaceName: String
         # @param SubjectId: <p>调用主体 ID，含义由 subject_type 决定（如 app_id、kb_id 等）</p>
         # @type SubjectId: String
         # @param SubjectName: <p>调用主体名称</p>
@@ -3205,15 +3211,21 @@ module TencentCloud
         # @param SubjectType: <p>调用主体类型：APP/KB/WIDGET/OPEN_CLAW/KB_RECALL_TEST/WORKBENCH/MODEL_API</p><table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>METRIC_SOURCE_TYPE_UNSPECIFIED</td><td>0</td><td></td></tr><tr><td>METRIC_SOURCE_TYPE_APP</td><td>1</td><td>应用开发</td></tr><tr><td>METRIC_SOURCE_TYPE_KB</td><td>2</td><td>知识库</td></tr><tr><td>METRIC_SOURCE_TYPE_WIDGET</td><td>3</td><td>Widget</td></tr><tr><td>METRIC_SOURCE_TYPE_OPEN_CLAW</td><td>4</td><td>ClawPro</td></tr><tr><td>METRIC_SOURCE_TYPE_KB_RECALL_TEST</td><td>5</td><td>知识库召回测试</td></tr><tr><td>METRIC_SOURCE_TYPE_WORKBENCH</td><td>6</td><td>智能工作台</td></tr><tr><td>METRIC_SOURCE_TYPE_MODEL_API</td><td>7</td><td>模型 API 调用</td></tr></tbody></table>
         # @type SubjectType: Integer
 
-        attr_accessor :SubjectId, :SubjectName, :SubjectType
+        attr_accessor :DeploymentUuid, :SpaceId, :SpaceName, :SubjectId, :SubjectName, :SubjectType
 
-        def initialize(subjectid=nil, subjectname=nil, subjecttype=nil)
+        def initialize(deploymentuuid=nil, spaceid=nil, spacename=nil, subjectid=nil, subjectname=nil, subjecttype=nil)
+          @DeploymentUuid = deploymentuuid
+          @SpaceId = spaceid
+          @SpaceName = spacename
           @SubjectId = subjectid
           @SubjectName = subjectname
           @SubjectType = subjecttype
         end
 
         def deserialize(params)
+          @DeploymentUuid = params['DeploymentUuid']
+          @SpaceId = params['SpaceId']
+          @SpaceName = params['SpaceName']
           @SubjectId = params['SubjectId']
           @SubjectName = params['SubjectName']
           @SubjectType = params['SubjectType']
@@ -8906,7 +8918,7 @@ module TencentCloud
 
       # DescribeMetricOverviewList请求参数结构体
       class DescribeMetricOverviewListRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceType: <p>看板域，必填，决定返回哪个域的 KPI 数据</p><table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>RESOURCE_TYPE_UNSPECIFIED</td><td>0</td><td></td></tr><tr><td>RESOURCE_TYPE_MODEL</td><td>1</td><td>模型用量</td></tr><tr><td>RESOURCE_TYPE_PLUGIN</td><td>2</td><td>插件用量</td></tr><tr><td>RESOURCE_TYPE_PLATFORM</td><td>3</td><td>平台功能用量</td></tr><tr><td>RESOURCE_TYPE_MODEL_CONCURRENCY</td><td>4</td><td>模型并发超限</td></tr><tr><td>RESOURCE_TYPE_KB_CAPACITY</td><td>5</td><td>知识库容量</td></tr><tr><td>RESOURCE_TYPE_USAGE_SUMMARY</td><td>6</td><td>用量汇总</td></tr><tr><td>RESOURCE_TYPE_RESOURCE_CONSUME</td><td>7</td><td>资源消耗（计费明细）</td></tr></tbody></table>
+        # @param ResourceType: <p>看板域，必填，决定返回哪个域的 KPI 数据</p><table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>RESOURCE_TYPE_UNSPECIFIED</td><td>0</td><td></td></tr><tr><td>RESOURCE_TYPE_MODEL</td><td>1</td><td>模型用量</td></tr><tr><td>RESOURCE_TYPE_PLUGIN</td><td>2</td><td>插件用量（预留，暂不支持）</td></tr><tr><td>RESOURCE_TYPE_PLATFORM</td><td>3</td><td>平台功能用量（预留，暂不支持）</td></tr><tr><td>RESOURCE_TYPE_MODEL_CONCURRENCY</td><td>4</td><td>模型并发超限（预留，暂不支持）</td></tr><tr><td>RESOURCE_TYPE_KB_CAPACITY</td><td>5</td><td>知识库容量（预留，暂不支持）</td></tr><tr><td>RESOURCE_TYPE_USAGE_SUMMARY</td><td>6</td><td>用量汇总（预留，暂不支持）</td></tr><tr><td>RESOURCE_TYPE_RESOURCE_CONSUME</td><td>7</td><td>资源消耗（计费明细）（预留，暂不支持）</td></tr></tbody></table>
         # @type ResourceType: Integer
         # @param TimeRange: <p>查询时间范围（Unix 秒）</p>
         # @type TimeRange: :class:`Tencentcloud::Adp.v20260520.models.TimeRange`
@@ -8914,14 +8926,17 @@ module TencentCloud
         # @type ViewScope: :class:`Tencentcloud::Adp.v20260520.models.ViewScope`
         # @param FilterList: <p>扩展过滤（resource_type=MODEL）。Filter 组合规则：多项 AND，同项 value_list OR。支持 Name：model_name（模型名）、user_id（用户ID）、space_id（空间ID）、resource_id/source_id（来源ID）、metric_source_type（METRIC_SOURCE_TYPE_* 枚举名或整数）</p>
         # @type FilterList: Array
+        # @param SpaceId: <p>空间 ID，用于服务端校验当前用户的空间权限；空间或应用视图需传入，企业视图可不传。VIEW_TYPE_SPACE 时应与 ViewScope.ScopeId 一致，VIEW_TYPE_APP 时须校验应用归属该空间；与 FilterList 的 space_id 同传须一致。服务端不得仅凭请求中的 SpaceId 授权</p>
+        # @type SpaceId: String
 
-        attr_accessor :ResourceType, :TimeRange, :ViewScope, :FilterList
+        attr_accessor :ResourceType, :TimeRange, :ViewScope, :FilterList, :SpaceId
 
-        def initialize(resourcetype=nil, timerange=nil, viewscope=nil, filterlist=nil)
+        def initialize(resourcetype=nil, timerange=nil, viewscope=nil, filterlist=nil, spaceid=nil)
           @ResourceType = resourcetype
           @TimeRange = timerange
           @ViewScope = viewscope
           @FilterList = filterlist
+          @SpaceId = spaceid
         end
 
         def deserialize(params)
@@ -8942,6 +8957,7 @@ module TencentCloud
               @FilterList << filter_tmp
             end
           end
+          @SpaceId = params['SpaceId']
         end
       end
 
@@ -10076,16 +10092,19 @@ module TencentCloud
         # @type PageNumber: Integer
         # @param PageSize: <p>每页数量，最大 100</p>
         # @type PageSize: Integer
+        # @param SpaceId: <p>空间 ID；空间或应用视图必传，由服务端校验空间权限</p>
+        # @type SpaceId: String
 
-        attr_accessor :ResourceType, :TimeRange, :ViewScope, :FilterList, :PageNumber, :PageSize
+        attr_accessor :ResourceType, :TimeRange, :ViewScope, :FilterList, :PageNumber, :PageSize, :SpaceId
 
-        def initialize(resourcetype=nil, timerange=nil, viewscope=nil, filterlist=nil, pagenumber=nil, pagesize=nil)
+        def initialize(resourcetype=nil, timerange=nil, viewscope=nil, filterlist=nil, pagenumber=nil, pagesize=nil, spaceid=nil)
           @ResourceType = resourcetype
           @TimeRange = timerange
           @ViewScope = viewscope
           @FilterList = filterlist
           @PageNumber = pagenumber
           @PageSize = pagesize
+          @SpaceId = spaceid
         end
 
         def deserialize(params)
@@ -10108,6 +10127,7 @@ module TencentCloud
           end
           @PageNumber = params['PageNumber']
           @PageSize = params['PageSize']
+          @SpaceId = params['SpaceId']
         end
       end
 
@@ -10156,16 +10176,19 @@ module TencentCloud
         # @type PageNumber: Integer
         # @param PageSize: <p>每页数量，最大 100</p>
         # @type PageSize: Integer
+        # @param SpaceId: <p>空间 ID，空间或应用视图必传；服务端据登录态校验空间权限</p>
+        # @type SpaceId: String
 
-        attr_accessor :ResourceType, :TimeRange, :ViewScope, :FilterList, :PageNumber, :PageSize
+        attr_accessor :ResourceType, :TimeRange, :ViewScope, :FilterList, :PageNumber, :PageSize, :SpaceId
 
-        def initialize(resourcetype=nil, timerange=nil, viewscope=nil, filterlist=nil, pagenumber=nil, pagesize=nil)
+        def initialize(resourcetype=nil, timerange=nil, viewscope=nil, filterlist=nil, pagenumber=nil, pagesize=nil, spaceid=nil)
           @ResourceType = resourcetype
           @TimeRange = timerange
           @ViewScope = viewscope
           @FilterList = filterlist
           @PageNumber = pagenumber
           @PageSize = pagesize
+          @SpaceId = spaceid
         end
 
         def deserialize(params)
@@ -10188,6 +10211,7 @@ module TencentCloud
           end
           @PageNumber = params['PageNumber']
           @PageSize = params['PageSize']
+          @SpaceId = params['SpaceId']
         end
       end
 
@@ -11117,6 +11141,42 @@ module TencentCloud
         def deserialize(params)
           @Enabled = params['Enabled']
           @PeriodHour = params['PeriodHour']
+        end
+      end
+
+      # 文档解析单次调用明细
+      class DocumentParseUsageDetail < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>应用 ID</p>
+        # @type AppId: String
+        # @param ConsumptionPu: <p>消耗资源数（PU）</p>
+        # @type ConsumptionPu: Float
+        # @param DocId: <p>文档 ID</p>
+        # @type DocId: String
+        # @param DocUsageMethod: <p>文档解析方式：离线文档解析、实时文档解析。上报值 OfflineUpload 对应离线文档解析；RealtimeUpload、RealTimeDocParse 对应实时文档解析</p>
+        # @type DocUsageMethod: String
+        # @param KbId: <p>知识库 ID</p>
+        # @type KbId: String
+        # @param ParsedPageCount: <p>解析页数</p>
+        # @type ParsedPageCount: String
+
+        attr_accessor :AppId, :ConsumptionPu, :DocId, :DocUsageMethod, :KbId, :ParsedPageCount
+
+        def initialize(appid=nil, consumptionpu=nil, docid=nil, docusagemethod=nil, kbid=nil, parsedpagecount=nil)
+          @AppId = appid
+          @ConsumptionPu = consumptionpu
+          @DocId = docid
+          @DocUsageMethod = docusagemethod
+          @KbId = kbid
+          @ParsedPageCount = parsedpagecount
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @ConsumptionPu = params['ConsumptionPu']
+          @DocId = params['DocId']
+          @DocUsageMethod = params['DocUsageMethod']
+          @KbId = params['KbId']
+          @ParsedPageCount = params['ParsedPageCount']
         end
       end
 
@@ -13275,29 +13335,38 @@ module TencentCloud
 
       # 模型调用明细
       class ModelUsageDetail < TencentCloud::Common::AbstractModel
+        # @param ApiKeyDisplay: <p>API Key 别名或脱敏值；禁止返回明文密钥</p>
+        # @type ApiKeyDisplay: String
+        # @param BillingType: <p>计费方式；非模型 API 或历史数据可为未指定；后付费不产生 PU</p>
+        # @type BillingType: Integer
         # @param CallType: <p>调用类型，来源于计费 scene_billing（与 filter.call_type 对应）</p>
         # @type CallType: String
+        # @param ConsumptionPU: <p>本次调用消耗 PU 量</p>
+        # @type ConsumptionPU: Float
         # @param IsDefaultKB: <p>是否默认知识库，仅ResourceType=5（知识库容量）业务下有意义</p>
         # @type IsDefaultKB: Boolean
         # @param ModelName: <p>模型名称</p>
         # @type ModelName: String
         # @param ResourceConsumptionList: <p>MODEL 域单次调用的消耗计量列表（权威字段）：按单位+label 分项列出每类计量。unit=TOKEN 时 label 区分 Token 子类别（input/output/avg_*/cache_*），label 为空表示 total_tokens；unit=PAGE_COUNT 表示模型消耗页数</p>
         # @type ResourceConsumptionList: Array
-        # @param ConsumptionPU: <p>本次调用消耗 PU 量</p>
-        # @type ConsumptionPU: Float
 
-        attr_accessor :CallType, :IsDefaultKB, :ModelName, :ResourceConsumptionList, :ConsumptionPU
+        attr_accessor :ApiKeyDisplay, :BillingType, :CallType, :ConsumptionPU, :IsDefaultKB, :ModelName, :ResourceConsumptionList
 
-        def initialize(calltype=nil, isdefaultkb=nil, modelname=nil, resourceconsumptionlist=nil, consumptionpu=nil)
+        def initialize(apikeydisplay=nil, billingtype=nil, calltype=nil, consumptionpu=nil, isdefaultkb=nil, modelname=nil, resourceconsumptionlist=nil)
+          @ApiKeyDisplay = apikeydisplay
+          @BillingType = billingtype
           @CallType = calltype
+          @ConsumptionPU = consumptionpu
           @IsDefaultKB = isdefaultkb
           @ModelName = modelname
           @ResourceConsumptionList = resourceconsumptionlist
-          @ConsumptionPU = consumptionpu
         end
 
         def deserialize(params)
+          @ApiKeyDisplay = params['ApiKeyDisplay']
+          @BillingType = params['BillingType']
           @CallType = params['CallType']
+          @ConsumptionPU = params['ConsumptionPU']
           @IsDefaultKB = params['IsDefaultKB']
           @ModelName = params['ModelName']
           unless params['ResourceConsumptionList'].nil?
@@ -13308,7 +13377,6 @@ module TencentCloud
               @ResourceConsumptionList << resourceconsumption_tmp
             end
           end
-          @ConsumptionPU = params['ConsumptionPU']
         end
       end
 
@@ -13316,27 +13384,28 @@ module TencentCloud
       class ModelUsageSummary < TencentCloud::Common::AbstractModel
         # @param CallCount: <p>调用次数（业务调用维度的顶层计数）</p>
         # @type CallCount: Float
+        # @param ConsumptionPU: <p>模型消耗 PU 总量（聚合维度内的 PU 消耗之和）</p>
+        # @type ConsumptionPU: Float
         # @param IsDefaultKB: <p>是否默认知识库</p>
         # @type IsDefaultKB: Boolean
         # @param ModelName: <p>模型名称，标识使用的 AI 模型</p>
         # @type ModelName: String
         # @param ResourceConsumptionList: <p>MODEL 域消耗计量列表（权威字段）：按单位+label 分项列出每类计量。unit=TOKEN 时 label 区分 Token 子类别（input/output/avg_*/cache_*），label 为空表示 total_tokens；unit=PAGE_COUNT 表示模型消耗页数</p>
         # @type ResourceConsumptionList: Array
-        # @param ConsumptionPU: <p>模型消耗 PU 总量（聚合维度内的 PU 消耗之和）</p>
-        # @type ConsumptionPU: Float
 
-        attr_accessor :CallCount, :IsDefaultKB, :ModelName, :ResourceConsumptionList, :ConsumptionPU
+        attr_accessor :CallCount, :ConsumptionPU, :IsDefaultKB, :ModelName, :ResourceConsumptionList
 
-        def initialize(callcount=nil, isdefaultkb=nil, modelname=nil, resourceconsumptionlist=nil, consumptionpu=nil)
+        def initialize(callcount=nil, consumptionpu=nil, isdefaultkb=nil, modelname=nil, resourceconsumptionlist=nil)
           @CallCount = callcount
+          @ConsumptionPU = consumptionpu
           @IsDefaultKB = isdefaultkb
           @ModelName = modelname
           @ResourceConsumptionList = resourceconsumptionlist
-          @ConsumptionPU = consumptionpu
         end
 
         def deserialize(params)
           @CallCount = params['CallCount']
+          @ConsumptionPU = params['ConsumptionPU']
           @IsDefaultKB = params['IsDefaultKB']
           @ModelName = params['ModelName']
           unless params['ResourceConsumptionList'].nil?
@@ -13347,7 +13416,6 @@ module TencentCloud
               @ResourceConsumptionList << resourceconsumption_tmp
             end
           end
-          @ConsumptionPU = params['ConsumptionPU']
         end
       end
 
@@ -15357,11 +15425,11 @@ module TencentCloud
 
       # 插件调用明细
       class PluginUsageDetail < TencentCloud::Common::AbstractModel
-        # @param PluginName: <p>插件名称</p>
+        # @param PluginName: <p>连接器与工具名称</p>
         # @type PluginName: String
-        # @param ResourceConsumptionList: <p>PLUGIN 域单次调用的消耗计量列表（权威字段）：按单位+label 分项列出每类计量。unit=TOKEN 时 label 区分 Token 子类别（input/output/avg_*），label 为空表示 total_tokens</p>
+        # @param ResourceConsumptionList: <p>插件单次调用计量：TOKEN 总量用 total_tokens（兼容空 Label），输入/输出用 input/output；其余消耗量按 Unit 区分，PU 的 Label 为 total_pu</p>
         # @type ResourceConsumptionList: Array
-        # @param ToolName: <p>插件工具名（tool_name）</p>
+        # @param ToolName: <p>工具名称</p>
         # @type ToolName: String
 
         attr_accessor :PluginName, :ResourceConsumptionList, :ToolName
@@ -18479,6 +18547,8 @@ module TencentCloud
       class UsageDetail < TencentCloud::Common::AbstractModel
         # @param CallSource: <p>调用来源</p>
         # @type CallSource: :class:`Tencentcloud::Adp.v20260520.models.CallSource`
+        # @param DocumentParse: <p>MODEL 类型的文档解析明细</p>
+        # @type DocumentParse: :class:`Tencentcloud::Adp.v20260520.models.DocumentParseUsageDetail`
         # @param DosageId: <p>计量 ID，用于对账/回溯</p>
         # @type DosageId: String
         # @param EventTime: <p>调用时间戳（Unix 秒）</p>
@@ -18492,10 +18562,11 @@ module TencentCloud
         # @param UserId: <p>用户 ID</p>
         # @type UserId: String
 
-        attr_accessor :CallSource, :DosageId, :EventTime, :Model, :Plugin, :TraceId, :UserId
+        attr_accessor :CallSource, :DocumentParse, :DosageId, :EventTime, :Model, :Plugin, :TraceId, :UserId
 
-        def initialize(callsource=nil, dosageid=nil, eventtime=nil, model=nil, plugin=nil, traceid=nil, userid=nil)
+        def initialize(callsource=nil, documentparse=nil, dosageid=nil, eventtime=nil, model=nil, plugin=nil, traceid=nil, userid=nil)
           @CallSource = callsource
+          @DocumentParse = documentparse
           @DosageId = dosageid
           @EventTime = eventtime
           @Model = model
@@ -18508,6 +18579,10 @@ module TencentCloud
           unless params['CallSource'].nil?
             @CallSource = CallSource.new
             @CallSource.deserialize(params['CallSource'])
+          end
+          unless params['DocumentParse'].nil?
+            @DocumentParse = DocumentParseUsageDetail.new
+            @DocumentParse.deserialize(params['DocumentParse'])
           end
           @DosageId = params['DosageId']
           @EventTime = params['EventTime']

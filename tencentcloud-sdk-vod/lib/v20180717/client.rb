@@ -6058,7 +6058,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建AIGC调用API的Token。创建后数据同步有延时，约30秒后可查询或删除。
+        # 更新 AIGC 调用 API 的 Token。更新后数据同步有延时，需要约30秒。
 
         # @param request: Request instance for UpdateAigcApiToken.
         # @type request: :class:`Tencentcloud::vod::V20180717::UpdateAigcApiTokenRequest`

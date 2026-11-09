@@ -712,6 +712,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新 API 密钥绑定。
+
+        # 更新 API 密钥的绑定关系和绑定类型。BindType 为 all 时 Bindings 必须为空，BindType含 custom 时 Bindings 为绑定列表。
+
+        # @param request: Request instance for ModifyApiKeyBindings.
+        # @type request: :class:`Tencentcloud::tokenhub::V20260322::ModifyApiKeyBindingsRequest`
+        # @rtype: :class:`Tencentcloud::tokenhub::V20260322::ModifyApiKeyBindingsResponse`
+        def ModifyApiKeyBindings(request)
+          body = send_request('ModifyApiKeyBindings', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyApiKeyBindingsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新 API 密钥信息。
 
         # 更新 API 密钥的备注信息、 IP 白名单和 Token 限额（修改限额推荐使用QuotaDesired参数）。所有可选参数不传表示不修改。

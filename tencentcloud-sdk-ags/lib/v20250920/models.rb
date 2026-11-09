@@ -2582,14 +2582,17 @@ module TencentCloud
         # @type ImageDigest: String
         # @param PreCacheImageId: <p>镜像预热ID，只能ID或三元组（Image、ImageDigest、ImageRegistrytype）二选一查询</p>
         # @type PreCacheImageId: String
+        # @param PreCacheType: <p>镜像预热类型</p><p>枚举值：</p><ul><li>image： 镜像预热</li><li>image_volume： 镜像卷预热</li></ul><p>默认值：image</p>
+        # @type PreCacheType: String
 
-        attr_accessor :Image, :ImageRegistryType, :ImageDigest, :PreCacheImageId
+        attr_accessor :Image, :ImageRegistryType, :ImageDigest, :PreCacheImageId, :PreCacheType
 
-        def initialize(image=nil, imageregistrytype=nil, imagedigest=nil, precacheimageid=nil)
+        def initialize(image=nil, imageregistrytype=nil, imagedigest=nil, precacheimageid=nil, precachetype=nil)
           @Image = image
           @ImageRegistryType = imageregistrytype
           @ImageDigest = imagedigest
           @PreCacheImageId = precacheimageid
+          @PreCacheType = precachetype
         end
 
         def deserialize(params)
@@ -2597,6 +2600,7 @@ module TencentCloud
           @ImageRegistryType = params['ImageRegistryType']
           @ImageDigest = params['ImageDigest']
           @PreCacheImageId = params['PreCacheImageId']
+          @PreCacheType = params['PreCacheType']
         end
       end
 
@@ -4728,19 +4732,23 @@ module TencentCloud
         # @param Storage: <p>自定义磁盘大小</p><p>枚举值：</p><ul><li>1Gi： 1Gi</li><li>5Gi： 5Gi</li><li>10Gi： 10Gi</li><li>20Gi： 20Gi</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Storage: String
+        # @param GPUResourceGroupId: <p>关联的GPU资源组ID</p>
+        # @type GPUResourceGroupId: String
 
-        attr_accessor :CPU, :Memory, :Storage
+        attr_accessor :CPU, :Memory, :Storage, :GPUResourceGroupId
 
-        def initialize(cpu=nil, memory=nil, storage=nil)
+        def initialize(cpu=nil, memory=nil, storage=nil, gpuresourcegroupid=nil)
           @CPU = cpu
           @Memory = memory
           @Storage = storage
+          @GPUResourceGroupId = gpuresourcegroupid
         end
 
         def deserialize(params)
           @CPU = params['CPU']
           @Memory = params['Memory']
           @Storage = params['Storage']
+          @GPUResourceGroupId = params['GPUResourceGroupId']
         end
       end
 
@@ -5227,10 +5235,12 @@ module TencentCloud
         # @type AuthMode: String
         # @param Metadata: <p>沙箱元数据</p>
         # @type Metadata: Array
+        # @param StartMode: <p>实例启动模式。DEFAULT：使用原有同步创建流程，为默认值；WAIT_UNTIL_HEALTHY：使用持久化后台创建流程，受理后可能返回 STARTING，需查询实例状态确认最终结果。</p>
+        # @type StartMode: String
 
-        attr_accessor :ToolId, :ToolName, :SourceInstanceId, :SnapshotId, :Timeout, :ClientToken, :MountOptions, :CustomConfiguration, :AuthMode, :Metadata
+        attr_accessor :ToolId, :ToolName, :SourceInstanceId, :SnapshotId, :Timeout, :ClientToken, :MountOptions, :CustomConfiguration, :AuthMode, :Metadata, :StartMode
 
-        def initialize(toolid=nil, toolname=nil, sourceinstanceid=nil, snapshotid=nil, timeout=nil, clienttoken=nil, mountoptions=nil, customconfiguration=nil, authmode=nil, metadata=nil)
+        def initialize(toolid=nil, toolname=nil, sourceinstanceid=nil, snapshotid=nil, timeout=nil, clienttoken=nil, mountoptions=nil, customconfiguration=nil, authmode=nil, metadata=nil, startmode=nil)
           @ToolId = toolid
           @ToolName = toolname
           @SourceInstanceId = sourceinstanceid
@@ -5241,6 +5251,7 @@ module TencentCloud
           @CustomConfiguration = customconfiguration
           @AuthMode = authmode
           @Metadata = metadata
+          @StartMode = startmode
         end
 
         def deserialize(params)
@@ -5271,6 +5282,7 @@ module TencentCloud
               @Metadata << metadatavar_tmp
             end
           end
+          @StartMode = params['StartMode']
         end
       end
 

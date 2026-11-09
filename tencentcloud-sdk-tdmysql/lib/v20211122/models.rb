@@ -4594,6 +4594,107 @@ module TencentCloud
         end
       end
 
+      # ModifyDBInstance请求参数结构体
+      class ModifyDBInstanceRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID</p>
+        # @type InstanceId: String
+        # @param DryRun: <p>是否仅做预检查，不实际执行变配。true: 仅返回变配计划和预检查结果；false: 实际执行变配（默认）</p>
+        # @type DryRun: Boolean
+        # @param HybridNodeCpu: <p>对等节点CPU核数，不传则保持当前值不变</p>
+        # @type HybridNodeCpu: Integer
+        # @param HybridNodeMem: <p>对等节点内存大小，单位GB，不传则保持当前值不变</p>
+        # @type HybridNodeMem: Integer
+        # @param HybridNodeNum: <p>对等节点数量，不传则保持当前值不变</p>
+        # @type HybridNodeNum: Integer
+        # @param Disk: <p>对等节点磁盘容量，单位GB，不传则保持当前值不变</p>
+        # @type Disk: Integer
+        # @param StorageType: <p>存储类型，可选值：CLOUD_HSSD（增强型SSD云硬盘）、CLOUD_TCS（本地盘）、CLOUD_BSSD（通用型SSD云硬盘），不传则保持当前值不变</p>
+        # @type StorageType: String
+        # @param SpecCode: <p>规格编码，如 4c8g、16c32g 等</p>
+        # @type SpecCode: String
+        # @param Zones: <p>目标可用区列表，不传则保持当前值不变</p>
+        # @type Zones: Array
+        # @param AZMode: <p>可用区模式，1: 单可用区，3: 多可用区主AZ模式</p>
+        # @type AZMode: Integer
+        # @param PrimaryAZ: <p>主可用区，AZMode传3时生效</p>
+        # @type PrimaryAZ: String
+        # @param FullReplications: <p>全功能型副本数，取值范围1-3</p>
+        # @type FullReplications: Integer
+
+        attr_accessor :InstanceId, :DryRun, :HybridNodeCpu, :HybridNodeMem, :HybridNodeNum, :Disk, :StorageType, :SpecCode, :Zones, :AZMode, :PrimaryAZ, :FullReplications
+
+        def initialize(instanceid=nil, dryrun=nil, hybridnodecpu=nil, hybridnodemem=nil, hybridnodenum=nil, disk=nil, storagetype=nil, speccode=nil, zones=nil, azmode=nil, primaryaz=nil, fullreplications=nil)
+          @InstanceId = instanceid
+          @DryRun = dryrun
+          @HybridNodeCpu = hybridnodecpu
+          @HybridNodeMem = hybridnodemem
+          @HybridNodeNum = hybridnodenum
+          @Disk = disk
+          @StorageType = storagetype
+          @SpecCode = speccode
+          @Zones = zones
+          @AZMode = azmode
+          @PrimaryAZ = primaryaz
+          @FullReplications = fullreplications
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @DryRun = params['DryRun']
+          @HybridNodeCpu = params['HybridNodeCpu']
+          @HybridNodeMem = params['HybridNodeMem']
+          @HybridNodeNum = params['HybridNodeNum']
+          @Disk = params['Disk']
+          @StorageType = params['StorageType']
+          @SpecCode = params['SpecCode']
+          @Zones = params['Zones']
+          @AZMode = params['AZMode']
+          @PrimaryAZ = params['PrimaryAZ']
+          @FullReplications = params['FullReplications']
+        end
+      end
+
+      # ModifyDBInstance返回参数结构体
+      class ModifyDBInstanceResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>异步任务ID，DryRun=false时返回。根据此ID可以调用查询任务接口获取任务状态</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FlowId: Integer
+        # @param DealName: <p>订单号，预付费场景下返回</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DealName: String
+        # @param IsInPlaceModification: <p>是否原地变配，DryRun=true时返回</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsInPlaceModification: Boolean
+        # @param IsMigrateModification: <p>是否迁移变配，DryRun=true时返回</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsMigrateModification: Boolean
+        # @param ModifyPlan: <p>变配计划描述，DryRun=true时返回，描述将执行的变配子流程编排</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ModifyPlan: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :DealName, :IsInPlaceModification, :IsMigrateModification, :ModifyPlan, :RequestId
+
+        def initialize(flowid=nil, dealname=nil, isinplacemodification=nil, ismigratemodification=nil, modifyplan=nil, requestid=nil)
+          @FlowId = flowid
+          @DealName = dealname
+          @IsInPlaceModification = isinplacemodification
+          @IsMigrateModification = ismigratemodification
+          @ModifyPlan = modifyplan
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @DealName = params['DealName']
+          @IsInPlaceModification = params['IsInPlaceModification']
+          @IsMigrateModification = params['IsMigrateModification']
+          @ModifyPlan = params['ModifyPlan']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyDBInstanceSecurityGroups请求参数结构体
       class ModifyDBInstanceSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例ID。

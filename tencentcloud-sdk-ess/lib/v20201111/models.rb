@@ -1592,22 +1592,28 @@ module TencentCloud
 
       # 合同审查个性化参数，用于控制页面的展示内容
       class ContractReviewWebUrlOption < TencentCloud::Common::AbstractModel
-        # @param DisableTemporaryStore: 禁用暂存。 默认 false，设置为 true 会隐藏界面上的临时保存按钮
+        # @param DisableTemporaryStore: <p>禁用暂存。 默认 false，设置为 true 会隐藏界面上的临时保存按钮</p>
         # @type DisableTemporaryStore: Boolean
-        # @param DisableExport: 禁用导出。默认 false，设置为 true 会隐藏界面上的导出按钮
+        # @param DisableExport: <p>禁用导出。默认 false，设置为 true 会隐藏界面上的导出按钮</p>
         # @type DisableExport: Boolean
-        # @param DisableReviewAgain: 禁用重新审查。默认 false，设置为 true 会隐藏界面上的重新审查按钮
+        # @param DisableReviewAgain: <p>禁用重新审查。默认 false，设置为 true 会隐藏界面上的重新审查按钮</p>
         # @type DisableReviewAgain: Boolean
-        # @param DisableWxQrcode: 禁用二维码分享。默认 false，设置为 true 会隐藏界面上的分享二维码
+        # @param DisableWxQrcode: <p>禁用二维码分享。默认 false，设置为 true 会隐藏界面上的分享二维码</p>
         # @type DisableWxQrcode: Boolean
+        # @param DisableIgnoreRisk: <p>禁用忽略风险。默认false，设置为true，会根据用户合同审查忽略风险权限点决定是否禁用忽略选项。</p>
+        # @type DisableIgnoreRisk: Boolean
+        # @param DisableRevisedRisk: <p>关闭原文修改。默认false，设置为true，根据用户合同审查修订操作权限点决定能否修改、一键修订原文。</p>
+        # @type DisableRevisedRisk: Boolean
 
-        attr_accessor :DisableTemporaryStore, :DisableExport, :DisableReviewAgain, :DisableWxQrcode
+        attr_accessor :DisableTemporaryStore, :DisableExport, :DisableReviewAgain, :DisableWxQrcode, :DisableIgnoreRisk, :DisableRevisedRisk
 
-        def initialize(disabletemporarystore=nil, disableexport=nil, disablereviewagain=nil, disablewxqrcode=nil)
+        def initialize(disabletemporarystore=nil, disableexport=nil, disablereviewagain=nil, disablewxqrcode=nil, disableignorerisk=nil, disablerevisedrisk=nil)
           @DisableTemporaryStore = disabletemporarystore
           @DisableExport = disableexport
           @DisableReviewAgain = disablereviewagain
           @DisableWxQrcode = disablewxqrcode
+          @DisableIgnoreRisk = disableignorerisk
+          @DisableRevisedRisk = disablerevisedrisk
         end
 
         def deserialize(params)
@@ -1615,6 +1621,8 @@ module TencentCloud
           @DisableExport = params['DisableExport']
           @DisableReviewAgain = params['DisableReviewAgain']
           @DisableWxQrcode = params['DisableWxQrcode']
+          @DisableIgnoreRisk = params['DisableIgnoreRisk']
+          @DisableRevisedRisk = params['DisableRevisedRisk']
         end
       end
 

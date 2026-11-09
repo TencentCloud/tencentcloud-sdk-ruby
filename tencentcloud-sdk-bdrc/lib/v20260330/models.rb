@@ -5593,22 +5593,34 @@ module TencentCloud
 
       # ModifyCopyPairAttribute请求参数结构体
       class ModifyCopyPairAttributeRequest < TencentCloud::Common::AbstractModel
-        # @param CopyPairId: <p>要修改属性的复制对id</p>
+        # @param CopyPairId: <p>要修改属性的复制对ID</p>
         # @type CopyPairId: String
-        # @param CopyPairType: <p>要修改的复制对类型，可选值：DISK、INSTANCE、CFS，默认 INSTANCE</p>
+        # @param CopyPairType: <p>要修改的复制对类型，可选值：INSTANCE。</p><p>枚举值：</p><ul><li>INSTANCE： CVM复制对</li></ul>
         # @type CopyPairType: String
         # @param CopyPairName: <p>修改复制对名称（长度最大支持 64 个字符）</p>
         # @type CopyPairName: String
         # @param InstanceType: <p>容灾端实例类型（仅容灾端CVM未创建时可修改）</p>
         # @type InstanceType: String
+        # @param PrivateIpAddress: <p>容灾端实例VPC IP（仅容灾端CVM未创建时可修改）</p>
+        # @type PrivateIpAddress: String
+        # @param UseDefaultPrivateIp: <p>是否使用默认IP，与PrivateIpAddress互斥，不能同时使用（仅容灾端CVM未创建时可修改）</p>
+        # @type UseDefaultPrivateIp: Boolean
+        # @param LoginSettings: <p>实例登录设置，需要修改的时候才传（仅容灾端CVM未创建时可修改）</p>
+        # @type LoginSettings: :class:`Tencentcloud::Bdrc.v20260330.models.LoginSettings`
+        # @param UseDefaultPassword: <p>是否自动生成密码，与LoginSettings互斥，不能同时使用（仅容灾端CVM未创建时可修改）</p>
+        # @type UseDefaultPassword: Boolean
 
-        attr_accessor :CopyPairId, :CopyPairType, :CopyPairName, :InstanceType
+        attr_accessor :CopyPairId, :CopyPairType, :CopyPairName, :InstanceType, :PrivateIpAddress, :UseDefaultPrivateIp, :LoginSettings, :UseDefaultPassword
 
-        def initialize(copypairid=nil, copypairtype=nil, copypairname=nil, instancetype=nil)
+        def initialize(copypairid=nil, copypairtype=nil, copypairname=nil, instancetype=nil, privateipaddress=nil, usedefaultprivateip=nil, loginsettings=nil, usedefaultpassword=nil)
           @CopyPairId = copypairid
           @CopyPairType = copypairtype
           @CopyPairName = copypairname
           @InstanceType = instancetype
+          @PrivateIpAddress = privateipaddress
+          @UseDefaultPrivateIp = usedefaultprivateip
+          @LoginSettings = loginsettings
+          @UseDefaultPassword = usedefaultpassword
         end
 
         def deserialize(params)
@@ -5616,6 +5628,13 @@ module TencentCloud
           @CopyPairType = params['CopyPairType']
           @CopyPairName = params['CopyPairName']
           @InstanceType = params['InstanceType']
+          @PrivateIpAddress = params['PrivateIpAddress']
+          @UseDefaultPrivateIp = params['UseDefaultPrivateIp']
+          unless params['LoginSettings'].nil?
+            @LoginSettings = LoginSettings.new
+            @LoginSettings.deserialize(params['LoginSettings'])
+          end
+          @UseDefaultPassword = params['UseDefaultPassword']
         end
       end
 
@@ -6664,31 +6683,35 @@ module TencentCloud
 
       # RunFailoverCopyPairs请求参数结构体
       class RunFailoverCopyPairsRequest < TencentCloud::Common::AbstractModel
-        # @param CopyPairIds: 复制对ID列表
+        # @param CopyPairIds: <p>复制对ID列表</p>
         # @type CopyPairIds: Array
-        # @param CopyPairType: 复制对类型，枚举值：DISK / INSTANCE / CFS。
+        # @param CopyPairType: <p>复制对类型，枚举值：INSTANCE。</p><p>枚举值：</p><ul><li>INSTANCE： CVM复制对</li></ul>
         # @type CopyPairType: String
-        # @param FailoverType: 切换类型，支持WAIT和NOW
+        # @param FailoverType: <p>切换类型，支持WAIT和NOW</p>
         # @type FailoverType: String
+        # @param StopSourceInstance: <p>故障切换成功后是否自动关机生产端实例，默认为true</p>
+        # @type StopSourceInstance: Boolean
 
-        attr_accessor :CopyPairIds, :CopyPairType, :FailoverType
+        attr_accessor :CopyPairIds, :CopyPairType, :FailoverType, :StopSourceInstance
 
-        def initialize(copypairids=nil, copypairtype=nil, failovertype=nil)
+        def initialize(copypairids=nil, copypairtype=nil, failovertype=nil, stopsourceinstance=nil)
           @CopyPairIds = copypairids
           @CopyPairType = copypairtype
           @FailoverType = failovertype
+          @StopSourceInstance = stopsourceinstance
         end
 
         def deserialize(params)
           @CopyPairIds = params['CopyPairIds']
           @CopyPairType = params['CopyPairType']
           @FailoverType = params['FailoverType']
+          @StopSourceInstance = params['StopSourceInstance']
         end
       end
 
       # RunFailoverCopyPairs返回参数结构体
       class RunFailoverCopyPairsResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 故障切换任务ID
+        # @param TaskId: <p>故障切换任务ID</p>
         # @type TaskId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

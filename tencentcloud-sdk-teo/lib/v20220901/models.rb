@@ -13184,6 +13184,84 @@ module TencentCloud
         end
       end
 
+      # DescribeTimingFunctionAnalysisData请求参数结构体
+      class DescribeTimingFunctionAnalysisDataRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneIds: <p>站点 ID 集合，至少填入1个站点 ID。</p>
+        # @type ZoneIds: Array
+        # @param StartTime: <p>开始时间。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间。查询时间范围（<code>EndTime</code> - <code>StartTime</code>）需小于等于 7 天。</p>
+        # @type EndTime: String
+        # @param MetricNames: <p>指标列表，取值有:</p><li>function_requestCount: 边缘函数请求数，为累计值；</li><li>function_cpuCostTime: 边缘函数执行的平均 CPU 耗时，单位为微秒；</li><li>function_wallClockTime: 边缘函数执行的平均墙上时钟耗时，单位为微秒。</li>
+        # @type MetricNames: Array
+        # @param Interval: <p>查询时间粒度，取值有：</p><li>min: 1分钟；</li><li>5min: 5分钟；</li><li>hour: 1小时；</li><li>day: 1天。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：2 小时范围内以 min 粒度查询，2 天范围内以 5min 粒度查询，7 天范围内以 hour 粒度查询，超过 7 天以 day 粒度查询。
+        # @type Interval: String
+        # @param Filters: <p>过滤条件，Filters.Value 的集合数量上限为20，详细的过滤条件 Key 值如下：</p><li>domain：按照子域名进行过滤，示例值： www.example.com。</li><li>function-name：按照边缘函数名称进行过滤，示例值： test051301-zone-2r2fdoxxxx-130000000。</li><li>function-result：按照边缘函数执行结果进行过滤。对应 Value 的可选项如下：<br>   success：成功；<br>   fail：失败。</li>
+        # @type Filters: Array
+        # @param Area: <p>数据归属地区，取值有：</p><li>overseas：全球（除中国大陆地区）数据；</li><li>mainland：中国大陆地区数据；</li><li>global：全球数据。</li>不填默认取值为 global。
+        # @type Area: String
+
+        attr_accessor :ZoneIds, :StartTime, :EndTime, :MetricNames, :Interval, :Filters, :Area
+
+        def initialize(zoneids=nil, starttime=nil, endtime=nil, metricnames=nil, interval=nil, filters=nil, area=nil)
+          @ZoneIds = zoneids
+          @StartTime = starttime
+          @EndTime = endtime
+          @MetricNames = metricnames
+          @Interval = interval
+          @Filters = filters
+          @Area = area
+        end
+
+        def deserialize(params)
+          @ZoneIds = params['ZoneIds']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MetricNames = params['MetricNames']
+          @Interval = params['Interval']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              querycondition_tmp = QueryCondition.new
+              querycondition_tmp.deserialize(i)
+              @Filters << querycondition_tmp
+            end
+          end
+          @Area = params['Area']
+        end
+      end
+
+      # DescribeTimingFunctionAnalysisData返回参数结构体
+      class DescribeTimingFunctionAnalysisDataResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>查询结果的总条数。</p>
+        # @type TotalCount: Integer
+        # @param Data: <p>时序数据列表。</p>
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              timingdatarecord_tmp = TimingDataRecord.new
+              timingdatarecord_tmp.deserialize(i)
+              @Data << timingdatarecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTimingL4Data请求参数结构体
       class DescribeTimingL4DataRequest < TencentCloud::Common::AbstractModel
         # @param StartTime: 开始时间。
@@ -13542,6 +13620,88 @@ module TencentCloud
               timingdatarecord_tmp = TimingDataRecord.new
               timingdatarecord_tmp.deserialize(i)
               @TimingDataRecords << timingdatarecord_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTopFunctionAnalysisData请求参数结构体
+      class DescribeTopFunctionAnalysisDataRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneIds: <p>站点 ID 集合，至少填入1个站点 ID。</p>
+        # @type ZoneIds: Array
+        # @param StartTime: <p>开始时间。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间。查询时间范围（<code>EndTime</code> - <code>StartTime</code>）需小于等于 7 天。</p>
+        # @type EndTime: String
+        # @param MetricName: <p>查询的指标，取值有：</p><li>function_requestCount_functionResult: 按照执行结果的维度统计边缘函数的请求数；</li><li>function_requestCount_functionName: 按照函数名称的维度统计边缘函数的请求数；</li><li>function_requestCount_domain: 按照域名的维度统计边缘函数的请求数。</li>
+        # @type MetricName: String
+        # @param Limit: <p>查询前多少个 top 数据，最大值为1000。不填默认为10，表示查询 top10 的数据。</p>
+        # @type Limit: Integer
+        # @param Filters: <p>过滤条件，Filters.Value 的集合数量上限为20，详细的过滤条件 Key 值如下：</p><li>domain：按照子域名进行过滤，示例值： www.example.com。</li><li>function-name：按照边缘函数名称进行过滤，示例值： test051301-zone-2r2fdoxxxx-130000000。</li><li>function-result：按照边缘函数执行结果进行过滤。对应 Value 的可选项如下：<br>   success：成功；<br>   fail：失败。</li>
+        # @type Filters: Array
+        # @param Interval: <p>查询时间粒度，取值有：</p><li>min: 1分钟；</li><li>5min: 5分钟；</li><li>hour: 1小时；</li><li>day: 1天。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：2 小时范围内以 min 粒度查询，2 天范围内以 5min 粒度查询，7 天范围内以 hour 粒度查询，超过 7 天以 day 粒度查询。
+        # @type Interval: String
+        # @param Area: <p>数据归属地区，取值有：</p><li>overseas：全球（除中国大陆地区）数据；</li><li>mainland：中国大陆地区数据；</li><li>global：全球数据。</li>不填默认取值为global。
+        # @type Area: String
+
+        attr_accessor :ZoneIds, :StartTime, :EndTime, :MetricName, :Limit, :Filters, :Interval, :Area
+
+        def initialize(zoneids=nil, starttime=nil, endtime=nil, metricname=nil, limit=nil, filters=nil, interval=nil, area=nil)
+          @ZoneIds = zoneids
+          @StartTime = starttime
+          @EndTime = endtime
+          @MetricName = metricname
+          @Limit = limit
+          @Filters = filters
+          @Interval = interval
+          @Area = area
+        end
+
+        def deserialize(params)
+          @ZoneIds = params['ZoneIds']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @MetricName = params['MetricName']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              querycondition_tmp = QueryCondition.new
+              querycondition_tmp.deserialize(i)
+              @Filters << querycondition_tmp
+            end
+          end
+          @Interval = params['Interval']
+          @Area = params['Area']
+        end
+      end
+
+      # DescribeTopFunctionAnalysisData返回参数结构体
+      class DescribeTopFunctionAnalysisDataResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>查询结果的总条数。</p>
+        # @type TotalCount: Integer
+        # @param Data: <p>按照 MetricName 指定统计维度的前 topN 数据列表。</p>
+        # @type Data: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Data, :RequestId
+
+        def initialize(totalcount=nil, data=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              topdatarecord_tmp = TopDataRecord.new
+              topdatarecord_tmp.deserialize(i)
+              @Data << topdatarecord_tmp
             end
           end
           @RequestId = params['RequestId']

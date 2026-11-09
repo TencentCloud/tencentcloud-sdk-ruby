@@ -5482,6 +5482,77 @@ module TencentCloud
         end
       end
 
+      # ListVLPlanResults请求参数结构体
+      class ListVLPlanResultsRequest < TencentCloud::Common::AbstractModel
+        # @param Start: <p>开始时间戳（秒），不早于 30 天前</p>
+        # @type Start: Integer
+        # @param End: <p>结束时间戳（秒），不超过当前时间，时间范围不超过 30 天</p>
+        # @type End: Integer
+        # @param VLPlanId: <p>分析计划 ID，不传则查询所有计划的结果</p>
+        # @type VLPlanId: String
+        # @param ChannelIds: <p>通道 ID 列表，支持多值（英文逗号分隔），不传则查询所有通道的结果</p>
+        # @type ChannelIds: Array
+        # @param PageNumber: <p>页码，默认 1</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数量，默认 20，最大 200</p>
+        # @type PageSize: Integer
+        # @param AnalysisMode: <p>分析模式</p><p>枚举值：</p><ul><li>image： 图片模式</li><li>video： 视频模式</li></ul>
+        # @type AnalysisMode: String
+
+        attr_accessor :Start, :End, :VLPlanId, :ChannelIds, :PageNumber, :PageSize, :AnalysisMode
+
+        def initialize(start=nil, _end=nil, vlplanid=nil, channelids=nil, pagenumber=nil, pagesize=nil, analysismode=nil)
+          @Start = start
+          @End = _end
+          @VLPlanId = vlplanid
+          @ChannelIds = channelids
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @AnalysisMode = analysismode
+        end
+
+        def deserialize(params)
+          @Start = params['Start']
+          @End = params['End']
+          @VLPlanId = params['VLPlanId']
+          @ChannelIds = params['ChannelIds']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @AnalysisMode = params['AnalysisMode']
+        end
+      end
+
+      # ListVLPlanResults返回参数结构体
+      class ListVLPlanResultsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>结果列表</p>
+        # @type Data: Array
+        # @param TotalCount: <p>总数量</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :TotalCount, :RequestId
+
+        def initialize(data=nil, totalcount=nil, requestid=nil)
+          @Data = data
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              vlplanresultinfo_tmp = VLPlanResultInfo.new
+              vlplanresultinfo_tmp.deserialize(i)
+              @Data << vlplanresultinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ListVLPlans请求参数结构体
       class ListVLPlansRequest < TencentCloud::Common::AbstractModel
         # @param Name: <p>计划名称，精确匹配</p>
@@ -7735,6 +7806,74 @@ module TencentCloud
           @Content = params['Content']
           @ImageUrl = params['ImageUrl']
           @ImageUrlExpire = params['ImageUrlExpire']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
+        end
+      end
+
+      # 视觉理解计划结果信息
+      class VLPlanResultInfo < TencentCloud::Common::AbstractModel
+        # @param VLPlanResultId: <p>分析结果 ID</p>
+        # @type VLPlanResultId: String
+        # @param VLPlanId: <p>所属分析计划 ID</p>
+        # @type VLPlanId: String
+        # @param VLPlanName: <p>计划名称</p>
+        # @type VLPlanName: String
+        # @param ChannelId: <p>通道 ID</p>
+        # @type ChannelId: String
+        # @param ChannelName: <p>通道名称</p>
+        # @type ChannelName: String
+        # @param AnalysisMode: <p>分析模式：image=图片模式，video=视频模式（预留）</p>
+        # @type AnalysisMode: String
+        # @param VLResultTimestamp: <p>分析时间戳（秒）</p>
+        # @type VLResultTimestamp: Integer
+        # @param SnapshotTimestamp: <p>截图时间戳</p>
+        # @type SnapshotTimestamp: Integer
+        # @param VideoStartTimestamp: <p>视频开始时间戳</p>
+        # @type VideoStartTimestamp: Integer
+        # @param VideoEndTimestamp: <p>视频结束时间戳</p>
+        # @type VideoEndTimestamp: Integer
+        # @param BilledFrameCount: <p>视频模式计费帧数</p>
+        # @type BilledFrameCount: Integer
+        # @param Content: <p>AI 分析结果内容（JSON 字符串）</p>
+        # @type Content: String
+        # @param CreatedAt: <p>创建时间，格式 2006-01-02 15:04:05</p>
+        # @type CreatedAt: String
+        # @param UpdatedAt: <p>更新时间，格式 2006-01-02 15:04:05</p>
+        # @type UpdatedAt: String
+
+        attr_accessor :VLPlanResultId, :VLPlanId, :VLPlanName, :ChannelId, :ChannelName, :AnalysisMode, :VLResultTimestamp, :SnapshotTimestamp, :VideoStartTimestamp, :VideoEndTimestamp, :BilledFrameCount, :Content, :CreatedAt, :UpdatedAt
+
+        def initialize(vlplanresultid=nil, vlplanid=nil, vlplanname=nil, channelid=nil, channelname=nil, analysismode=nil, vlresulttimestamp=nil, snapshottimestamp=nil, videostarttimestamp=nil, videoendtimestamp=nil, billedframecount=nil, content=nil, createdat=nil, updatedat=nil)
+          @VLPlanResultId = vlplanresultid
+          @VLPlanId = vlplanid
+          @VLPlanName = vlplanname
+          @ChannelId = channelid
+          @ChannelName = channelname
+          @AnalysisMode = analysismode
+          @VLResultTimestamp = vlresulttimestamp
+          @SnapshotTimestamp = snapshottimestamp
+          @VideoStartTimestamp = videostarttimestamp
+          @VideoEndTimestamp = videoendtimestamp
+          @BilledFrameCount = billedframecount
+          @Content = content
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
+        end
+
+        def deserialize(params)
+          @VLPlanResultId = params['VLPlanResultId']
+          @VLPlanId = params['VLPlanId']
+          @VLPlanName = params['VLPlanName']
+          @ChannelId = params['ChannelId']
+          @ChannelName = params['ChannelName']
+          @AnalysisMode = params['AnalysisMode']
+          @VLResultTimestamp = params['VLResultTimestamp']
+          @SnapshotTimestamp = params['SnapshotTimestamp']
+          @VideoStartTimestamp = params['VideoStartTimestamp']
+          @VideoEndTimestamp = params['VideoEndTimestamp']
+          @BilledFrameCount = params['BilledFrameCount']
+          @Content = params['Content']
           @CreatedAt = params['CreatedAt']
           @UpdatedAt = params['UpdatedAt']
         end

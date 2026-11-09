@@ -39447,27 +39447,27 @@ module TencentCloud
 
       # UpdateAigcApiToken请求参数结构体
       class UpdateAigcApiTokenRequest < TencentCloud::Common::AbstractModel
-        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
-        # @type SubAppId: Integer
         # @param ApiToken: <p>要更新Api Key</p>
         # @type ApiToken: String
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
+        # @type SubAppId: Integer
         # @param ActionType: <p>Merge（默认，对 ExtInfo JSON 按顶层 key 合并）、Overwrite（直接覆盖）</p>
         # @type ActionType: String
-        # @param ExtInfo: <p>token 的扩展信息</p>
+        # @param ExtInfo: <p>ip白名单和模型白名单在ExtInfo上，用json保存，分别字段是</p><p>（1）ip白名单<br>&quot;ip&quot;: {&quot;127.0.0.1&quot;:true}<br>不开启&quot;ip&quot;: {}<br>多组  {&quot;&#39;11.12.112.90&quot;:true,&quot;15.12.112.90&quot;:true}</p><p>（2）模型白名单<br>&quot;model&quot;: {&quot;deepseek-v4-pro&quot;:true}<br>不开启&quot;model&quot;: {}</p><p>（3）名称<br>&quot;name&quot;: &quot;test&quot;</p>
         # @type ExtInfo: String
 
-        attr_accessor :SubAppId, :ApiToken, :ActionType, :ExtInfo
+        attr_accessor :ApiToken, :SubAppId, :ActionType, :ExtInfo
 
-        def initialize(subappid=nil, apitoken=nil, actiontype=nil, extinfo=nil)
-          @SubAppId = subappid
+        def initialize(apitoken=nil, subappid=nil, actiontype=nil, extinfo=nil)
           @ApiToken = apitoken
+          @SubAppId = subappid
           @ActionType = actiontype
           @ExtInfo = extinfo
         end
 
         def deserialize(params)
-          @SubAppId = params['SubAppId']
           @ApiToken = params['ApiToken']
+          @SubAppId = params['SubAppId']
           @ActionType = params['ActionType']
           @ExtInfo = params['ExtInfo']
         end
