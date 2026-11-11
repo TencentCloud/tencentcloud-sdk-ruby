@@ -917,6 +917,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询会话任务运行状态（支持批量）
+
+        # @param request: Request instance for GetSessionStatus.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::GetSessionStatusRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::GetSessionStatusResponse`
+        def GetSessionStatus(request)
+          body = send_request('GetSessionStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = GetSessionStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询table详情
 
         # @param request: Request instance for GetTable.
@@ -1720,6 +1744,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ListWorkspacesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # databuddy 产物获取接口
+
+        # @param request: Request instance for ReadProductJson.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::ReadProductJsonRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::ReadProductJsonResponse`
+        def ReadProductJson(request)
+          body = send_request('ReadProductJson', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ReadProductJsonResponse.new
             model.deserialize(response['Response'])
             model
           else

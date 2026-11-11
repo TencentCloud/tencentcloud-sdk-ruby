@@ -1925,6 +1925,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定 SELECT SQL 在实例上的执行计划，常用于慢 SQL 分析、SQL 优化等场景。仅支持 SELECT 类语句
+
+        # @param request: Request instance for DescribeSqlExplainV2.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeSqlExplainV2Request`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeSqlExplainV2Response`
+        def DescribeSqlExplainV2(request)
+          body = send_request('DescribeSqlExplainV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeSqlExplainV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询实例SQL限流任务列表。
 
         # @param request: Request instance for DescribeSqlFilters.

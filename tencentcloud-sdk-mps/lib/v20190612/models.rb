@@ -6642,15 +6642,23 @@ module TencentCloud
         # @param AudioEnhanceEdit: <p>音频增强编辑。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioEnhanceEdit: :class:`Tencentcloud::Mps.v20190612.models.AudioEnhanceEditConfig`
+        # @param AudioSR: <p>音频超分配置。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AudioSR: :class:`Tencentcloud::Mps.v20190612.models.AudioSRConfig`
+        # @param SpatialAudio: <p>空间音频配置。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SpatialAudio: :class:`Tencentcloud::Mps.v20190612.models.SpatialAudioConfig`
 
-        attr_accessor :Denoise, :Separate, :VolumeBalance, :Beautify, :AudioEnhanceEdit
+        attr_accessor :Denoise, :Separate, :VolumeBalance, :Beautify, :AudioEnhanceEdit, :AudioSR, :SpatialAudio
 
-        def initialize(denoise=nil, separate=nil, volumebalance=nil, beautify=nil, audioenhanceedit=nil)
+        def initialize(denoise=nil, separate=nil, volumebalance=nil, beautify=nil, audioenhanceedit=nil, audiosr=nil, spatialaudio=nil)
           @Denoise = denoise
           @Separate = separate
           @VolumeBalance = volumebalance
           @Beautify = beautify
           @AudioEnhanceEdit = audioenhanceedit
+          @AudioSR = audiosr
+          @SpatialAudio = spatialaudio
         end
 
         def deserialize(params)
@@ -6674,6 +6682,14 @@ module TencentCloud
             @AudioEnhanceEdit = AudioEnhanceEditConfig.new
             @AudioEnhanceEdit.deserialize(params['AudioEnhanceEdit'])
           end
+          unless params['AudioSR'].nil?
+            @AudioSR = AudioSRConfig.new
+            @AudioSR.deserialize(params['AudioSR'])
+          end
+          unless params['SpatialAudio'].nil?
+            @SpatialAudio = SpatialAudioConfig.new
+            @SpatialAudio.deserialize(params['SpatialAudio'])
+          end
         end
       end
 
@@ -6694,6 +6710,31 @@ module TencentCloud
         def deserialize(params)
           @Switch = params['Switch']
           @Type = params['Type']
+        end
+      end
+
+      # 音频超分配置
+      class AudioSRConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>能力配置开关</p><p>枚举值：</p><ul><li>ON： 开启</li><li>OFF： 关闭</li></ul><p>默认值：OFF</p>
+        # @type Switch: String
+        # @param Type: <p>音频超分类型</p><p>枚举值：</p><ul><li>premium_hd： 臻品高清版</li><li>premium_master： 臻品母带版</li></ul><p>默认值：premium_hd</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+        # @param Value: <p>目标采样率</p><p>枚举值：</p><ul><li>44100： 44.1kHz</li><li>48000： 48kHz</li><li>64000： 64kHz</li><li>88200： 88.2kHz</li><li>96000： 96kHz</li><li>192000： 192kHz</li></ul><p>默认值：48000</p><p>其中 192kHz 仅臻品母带版才可以使用</p>
+        # @type Value: Integer
+
+        attr_accessor :Switch, :Type, :Value
+
+        def initialize(switch=nil, type=nil, value=nil)
+          @Switch = switch
+          @Type = type
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
+          @Value = params['Value']
         end
       end
 
@@ -7615,13 +7656,13 @@ module TencentCloud
 
       # 爆款复刻 AIGC 生视频相关参数
       class CloneViralAIGC < TencentCloud::Common::AbstractModel
-        # @param Duration: <p>视频时长</p><p>取值范围：[4, 15]</p>
+        # @param Duration: <p>视频时长</p><p>取值范围：[4, 30]</p><p>指定时取值范围随档位不同：flash 为 2-15, pro 为 4-30。</p>
         # @type Duration: Integer
-        # @param AspectRatio: <p>宽高比。旗舰版支持 16:9/4:3/1:1/3:4/9:16/21:9/adaptive，标准版支持16:9/1:1/9:16</p>
+        # @param AspectRatio: <p>宽高比。可选 9:16、16:9、3:4、4:3、1:1、21:9、adaptive（自适应参考视频，flash 档不支持）。</p>
         # @type AspectRatio: String
-        # @param Resolution: <p>分辨率。支持720p（默认）/1080p/2k/4k</p>
+        # @param Resolution: <p>分辨率。支持720p（默认）/1080p</p>
         # @type Resolution: String
-        # @param ModelTier: <p>模式。flagship（高级版，默认）、standard（标准版）、depthcrafter(深度提取)</p>
+        # @param ModelTier: <p>模式。可选 pro（专业版）、 flash（高级版，默认）</p>
         # @type ModelTier: String
         # @param DepthWithAudio: <p>深度估计结果是否含音频， 默认不含</p>
         # @type DepthWithAudio: Boolean
@@ -9671,7 +9712,7 @@ module TencentCloud
         # @type OutputImageCount: Integer
         # @param ExtraParameters: <p>用于传入模型要求的额外参数。</p>
         # @type ExtraParameters: :class:`Tencentcloud::Mps.v20190612.models.AigcImageExtraParam`
-        # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数，Json格式序列化成字符串。 </p><ol><li>Hunyuan 3.0，支持自由设置分辨率宽高，宽、高均在 [512, 2048] 像素范围内，宽高乘积 ≤ 1024x1024 像素。</li><li>Qwen 0925，支持自由设置分辨率宽高，合法总像素范围 [512x512=261632, 2048x2048=4194304]。</li></ol><p>示例： {"size":"1024x1024"}。</p>
+        # @param AdditionalParameters: <p>用于传入一些模型需要的特殊场景参数，Json格式序列化成字符串。 </p><ol><li>Hunyuan 3.0，支持自由设置分辨率宽高，宽、高均在 [512, 2048] 像素范围内，宽高乘积 ≤ 1024x1024 像素。</li><li>Qwen 0925，支持自由设置分辨率宽高，合法总像素范围 [512x512=261632, 2048x2048=4194304]。</li><li>Hunyuan 3.5-preivew, 支持多轮编辑，可通过携带previous_task_id的方式来继续编辑图片。</li></ol><p>示例： {"size":"1024x1024"}， {"previous_task_id":"4-AigcVideo-56349234"}。</p>
         # @type AdditionalParameters: String
         # @param StoreCosParam: <p>文件结果指定存储Cos桶信息。 注意：需开通Cos，创建并授权MPS_QcsRole角色。</p>
         # @type StoreCosParam: :class:`Tencentcloud::Mps.v20190612.models.AigcStoreCosParam`
@@ -10723,6 +10764,64 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateModelChatTask请求参数结构体
+      class CreateModelChatTaskRequest < TencentCloud::Common::AbstractModel
+        # @param Model: <p>模型标识</p>
+        # @type Model: String
+        # @param Messages: <p>对话消息数组</p>
+        # @type Messages: Array
+        # @param TaskNotifyConfig: <p>回调通知配置</p>
+        # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.ModelChatTaskNotifyConfig`
+
+        attr_accessor :Model, :Messages, :TaskNotifyConfig
+
+        def initialize(model=nil, messages=nil, tasknotifyconfig=nil)
+          @Model = model
+          @Messages = messages
+          @TaskNotifyConfig = tasknotifyconfig
+        end
+
+        def deserialize(params)
+          @Model = params['Model']
+          unless params['Messages'].nil?
+            @Messages = []
+            params['Messages'].each do |i|
+              modelchatmessageitem_tmp = ModelChatMessageItem.new
+              modelchatmessageitem_tmp.deserialize(i)
+              @Messages << modelchatmessageitem_tmp
+            end
+          end
+          unless params['TaskNotifyConfig'].nil?
+            @TaskNotifyConfig = ModelChatTaskNotifyConfig.new
+            @TaskNotifyConfig.deserialize(params['TaskNotifyConfig'])
+          end
+        end
+      end
+
+      # CreateModelChatTask返回参数结构体
+      class CreateModelChatTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Msg: <p>错误描述</p>
+        # @type Msg: String
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Msg, :TaskId, :RequestId
+
+        def initialize(msg=nil, taskid=nil, requestid=nil)
+          @Msg = msg
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Msg = params['Msg']
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
@@ -16078,6 +16177,80 @@ module TencentCloud
         end
       end
 
+      # DescribeModelChatTask请求参数结构体
+      class DescribeModelChatTaskRequest < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+
+        attr_accessor :TaskId
+
+        def initialize(taskid=nil)
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeModelChatTask返回参数结构体
+      class DescribeModelChatTaskResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID</p>
+        # @type TaskId: String
+        # @param Created: <p>响应生成时间</p>
+        # @type Created: Integer
+        # @param Msg: <p>错误描述</p>
+        # @type Msg: String
+        # @param Id: <p>响应 ID</p>
+        # @type Id: String
+        # @param Object: <p>响应对象类型标识</p>
+        # @type Object: String
+        # @param Model: <p>模型名称</p>
+        # @type Model: String
+        # @param Choices: <p>候选回复数组</p>
+        # @type Choices: Array
+        # @param Usage: <p>token 用量统计</p>
+        # @type Usage: :class:`Tencentcloud::Mps.v20190612.models.ModelChatCompletionUsage`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :Created, :Msg, :Id, :Object, :Model, :Choices, :Usage, :RequestId
+
+        def initialize(taskid=nil, created=nil, msg=nil, id=nil, object=nil, model=nil, choices=nil, usage=nil, requestid=nil)
+          @TaskId = taskid
+          @Created = created
+          @Msg = msg
+          @Id = id
+          @Object = object
+          @Model = model
+          @Choices = choices
+          @Usage = usage
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @Created = params['Created']
+          @Msg = params['Msg']
+          @Id = params['Id']
+          @Object = params['Object']
+          @Model = params['Model']
+          unless params['Choices'].nil?
+            @Choices = []
+            params['Choices'].each do |i|
+              modelchatcompletionchoice_tmp = ModelChatCompletionChoice.new
+              modelchatcompletionchoice_tmp.deserialize(i)
+              @Choices << modelchatcompletionchoice_tmp
+            end
+          end
+          unless params['Usage'].nil?
+            @Usage = ModelChatCompletionUsage.new
+            @Usage.deserialize(params['Usage'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 查询输出的配置信息。
       class DescribeOutput < TencentCloud::Common::AbstractModel
         # @param OutputId: <p>输出Id。</p>
@@ -21230,15 +21403,15 @@ module TencentCloud
 
       # ExtractBlindWatermark请求参数结构体
       class ExtractBlindWatermarkRequest < TencentCloud::Common::AbstractModel
-        # @param Type: 数字水印类型，可选值：<li>blind-basic：基础版权数字水印；</li><li>blind-abseq：ab序列版权数字水印；</li>
+        # @param Type: <p>数字水印类型，可选值：</p><li>blind-basic：基础版权数字水印；</li><li>blind-abseq：ab序列版权数字水印；</li><li>blind-vega：vega数字水印；</li>
         # @type Type: String
-        # @param InputInfo: 媒体处理的文件输入信息。
+        # @param InputInfo: <p>媒体处理的文件输入信息。</p>
         # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.MediaInputInfo`
-        # @param TaskNotifyConfig: 任务的事件通知信息，不填代表不获取事件通知。
+        # @param TaskNotifyConfig: <p>任务的事件通知信息，不填代表不获取事件通知。</p>
         # @type TaskNotifyConfig: :class:`Tencentcloud::Mps.v20190612.models.TaskNotifyConfig`
-        # @param ExtractBlindWatermarkConfig: 提取数字水印任务配置
+        # @param ExtractBlindWatermarkConfig: <p>提取数字水印任务配置</p>
         # @type ExtractBlindWatermarkConfig: :class:`Tencentcloud::Mps.v20190612.models.ExtractBlindWatermarkTaskConfig`
-        # @param ResourceId: 资源ID，需要保证对应资源是开启状态。默认为账号主资源ID。
+        # @param ResourceId: <p>资源ID，需要保证对应资源是开启状态。默认为账号主资源ID。</p>
         # @type ResourceId: String
 
         attr_accessor :Type, :InputInfo, :TaskNotifyConfig, :ExtractBlindWatermarkConfig, :ResourceId
@@ -21271,7 +21444,7 @@ module TencentCloud
 
       # ExtractBlindWatermark返回参数结构体
       class ExtractBlindWatermarkResponse < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务 ID。
+        # @param TaskId: <p>任务 ID。</p>
         # @type TaskId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -26538,41 +26711,44 @@ module TencentCloud
 
       # 点播文件视频流信息
       class MediaVideoStreamItem < TencentCloud::Common::AbstractModel
-        # @param Bitrate: 视频流的码率，单位：bps。
+        # @param Bitrate: <p>视频流的码率，单位：bps。</p>
         # @type Bitrate: Integer
-        # @param Height: 视频流的高度，单位：px。
+        # @param Height: <p>视频流的高度，单位：px。</p>
         # @type Height: Integer
-        # @param Width: 视频流的宽度，单位：px。
+        # @param Width: <p>视频流的宽度，单位：px。</p>
         # @type Width: Integer
-        # @param Codec: 视频流的编码格式，例如 h264。
+        # @param Codec: <p>视频流的编码格式，例如 h264。</p>
         # @type Codec: String
-        # @param Fps: 帧率，单位：hz。
+        # @param Fps: <p>帧率，单位：hz。</p>
         # @type Fps: Integer
-        # @param ColorPrimaries: 色彩空间。
+        # @param ColorPrimaries: <p>色彩空间。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColorPrimaries: String
-        # @param ColorSpace: 色彩空间。
+        # @param ColorSpace: <p>色彩空间。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColorSpace: String
-        # @param ColorTransfer: 色彩空间。
+        # @param ColorTransfer: <p>色彩空间。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ColorTransfer: String
-        # @param HdrType: HDR类型。
+        # @param HdrType: <p>HDR类型。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type HdrType: String
-        # @param Codecs: 视频Codecs。
+        # @param Codecs: <p>视频Codecs。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Codecs: String
-        # @param FpsNumerator: 帧率分子部分
+        # @param Duration: <p>视频时长。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Duration: Float
+        # @param FpsNumerator: <p>帧率分子部分</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FpsNumerator: Integer
-        # @param FpsDenominator: 帧率分母部分
+        # @param FpsDenominator: <p>帧率分母部分</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FpsDenominator: Integer
 
-        attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps, :ColorPrimaries, :ColorSpace, :ColorTransfer, :HdrType, :Codecs, :FpsNumerator, :FpsDenominator
+        attr_accessor :Bitrate, :Height, :Width, :Codec, :Fps, :ColorPrimaries, :ColorSpace, :ColorTransfer, :HdrType, :Codecs, :Duration, :FpsNumerator, :FpsDenominator
 
-        def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil, colorprimaries=nil, colorspace=nil, colortransfer=nil, hdrtype=nil, codecs=nil, fpsnumerator=nil, fpsdenominator=nil)
+        def initialize(bitrate=nil, height=nil, width=nil, codec=nil, fps=nil, colorprimaries=nil, colorspace=nil, colortransfer=nil, hdrtype=nil, codecs=nil, duration=nil, fpsnumerator=nil, fpsdenominator=nil)
           @Bitrate = bitrate
           @Height = height
           @Width = width
@@ -26583,6 +26759,7 @@ module TencentCloud
           @ColorTransfer = colortransfer
           @HdrType = hdrtype
           @Codecs = codecs
+          @Duration = duration
           @FpsNumerator = fpsnumerator
           @FpsDenominator = fpsdenominator
         end
@@ -26598,6 +26775,7 @@ module TencentCloud
           @ColorTransfer = params['ColorTransfer']
           @HdrType = params['HdrType']
           @Codecs = params['Codecs']
+          @Duration = params['Duration']
           @FpsNumerator = params['FpsNumerator']
           @FpsDenominator = params['FpsDenominator']
         end
@@ -26620,6 +26798,317 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 单条候选回复。
+      class ModelChatCompletionChoice < TencentCloud::Common::AbstractModel
+        # @param Index: <p>候选回复在候选数组中的索引</p>
+        # @type Index: Integer
+        # @param FinishReason: <p>结束原因</p>
+        # @type FinishReason: String
+        # @param Message: <p>模型回复消息体</p>
+        # @type Message: :class:`Tencentcloud::Mps.v20190612.models.ModelChatResponseMessage`
+
+        attr_accessor :Index, :FinishReason, :Message
+
+        def initialize(index=nil, finishreason=nil, message=nil)
+          @Index = index
+          @FinishReason = finishreason
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @FinishReason = params['FinishReason']
+          unless params['Message'].nil?
+            @Message = ModelChatResponseMessage.new
+            @Message.deserialize(params['Message'])
+          end
+        end
+      end
+
+      # 模型调用的 token 用量统计。
+      class ModelChatCompletionUsage < TencentCloud::Common::AbstractModel
+        # @param PromptTokens: <p>输入 token 数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PromptTokens: Integer
+        # @param CompletionTokens: <p>输出 token 数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CompletionTokens: Integer
+        # @param TotalTokens: <p>总 token 数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalTokens: Integer
+
+        attr_accessor :PromptTokens, :CompletionTokens, :TotalTokens
+
+        def initialize(prompttokens=nil, completiontokens=nil, totaltokens=nil)
+          @PromptTokens = prompttokens
+          @CompletionTokens = completiontokens
+          @TotalTokens = totaltokens
+        end
+
+        def deserialize(params)
+          @PromptTokens = params['PromptTokens']
+          @CompletionTokens = params['CompletionTokens']
+          @TotalTokens = params['TotalTokens']
+        end
+      end
+
+      # 消息内容片段。
+      class ModelChatContentPart < TencentCloud::Common::AbstractModel
+        # @param Type: <p>内容类型</p><p>枚举值：</p><ul><li>text： 文本内容</li><li>input_image： 图片输入</li><li>input_video： 视频输入</li><li>input_audio： 音频输入</li><li>input_file： 文件输入</li></ul>
+        # @type Type: String
+        # @param Text: <p>文本消息</p><p>Type=text 时必填</p>
+        # @type Text: String
+        # @param InputImage: <p>图片输入</p><p>Type=input_image 时必填</p>
+        # @type InputImage: :class:`Tencentcloud::Mps.v20190612.models.ModelChatInputImage`
+        # @param InputVideo: <p>视频输入</p><p>Type=input_video 时必填</p>
+        # @type InputVideo: :class:`Tencentcloud::Mps.v20190612.models.ModelChatInputVideo`
+        # @param InputAudio: <p>音频输入</p><p>Type=input_audio 时必填</p>
+        # @type InputAudio: :class:`Tencentcloud::Mps.v20190612.models.ModelChatInputAudio`
+        # @param InputFile: <p>文件输入</p><p>Type=input_file 时必填</p>
+        # @type InputFile: :class:`Tencentcloud::Mps.v20190612.models.ModelChatInputFile`
+
+        attr_accessor :Type, :Text, :InputImage, :InputVideo, :InputAudio, :InputFile
+
+        def initialize(type=nil, text=nil, inputimage=nil, inputvideo=nil, inputaudio=nil, inputfile=nil)
+          @Type = type
+          @Text = text
+          @InputImage = inputimage
+          @InputVideo = inputvideo
+          @InputAudio = inputaudio
+          @InputFile = inputfile
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @Text = params['Text']
+          unless params['InputImage'].nil?
+            @InputImage = ModelChatInputImage.new
+            @InputImage.deserialize(params['InputImage'])
+          end
+          unless params['InputVideo'].nil?
+            @InputVideo = ModelChatInputVideo.new
+            @InputVideo.deserialize(params['InputVideo'])
+          end
+          unless params['InputAudio'].nil?
+            @InputAudio = ModelChatInputAudio.new
+            @InputAudio.deserialize(params['InputAudio'])
+          end
+          unless params['InputFile'].nil?
+            @InputFile = ModelChatInputFile.new
+            @InputFile.deserialize(params['InputFile'])
+          end
+        end
+      end
+
+      # 多模态理解Base64输入
+      class ModelChatDataInputInfo < TencentCloud::Common::AbstractModel
+        # @param Data: <p>Base64输入</p>
+        # @type Data: String
+
+        attr_accessor :Data
+
+        def initialize(data=nil)
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Data = params['Data']
+        end
+      end
+
+      # 音频输入配置。
+      class ModelChatInputAudio < TencentCloud::Common::AbstractModel
+        # @param InputInfo: <p>媒体文件输入</p>
+        # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.ModelChatMediaInputInfo`
+        # @param Format: <p>音频格式</p>
+        # @type Format: String
+
+        attr_accessor :InputInfo, :Format
+
+        def initialize(inputinfo=nil, format=nil)
+          @InputInfo = inputinfo
+          @Format = format
+        end
+
+        def deserialize(params)
+          unless params['InputInfo'].nil?
+            @InputInfo = ModelChatMediaInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+          @Format = params['Format']
+        end
+      end
+
+      # 文件输入配置。
+      class ModelChatInputFile < TencentCloud::Common::AbstractModel
+        # @param InputInfo: <p>媒体文件输入</p>
+        # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.ModelChatMediaInputInfo`
+        # @param Filename: <p>文件名</p>
+        # @type Filename: String
+
+        attr_accessor :InputInfo, :Filename
+
+        def initialize(inputinfo=nil, filename=nil)
+          @InputInfo = inputinfo
+          @Filename = filename
+        end
+
+        def deserialize(params)
+          unless params['InputInfo'].nil?
+            @InputInfo = ModelChatMediaInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+          @Filename = params['Filename']
+        end
+      end
+
+      # 图片输入配置。
+      class ModelChatInputImage < TencentCloud::Common::AbstractModel
+        # @param InputInfo: <p>媒体文件输入</p>
+        # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.ModelChatMediaInputInfo`
+
+        attr_accessor :InputInfo
+
+        def initialize(inputinfo=nil)
+          @InputInfo = inputinfo
+        end
+
+        def deserialize(params)
+          unless params['InputInfo'].nil?
+            @InputInfo = ModelChatMediaInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+        end
+      end
+
+      # 视频输入配置。
+      class ModelChatInputVideo < TencentCloud::Common::AbstractModel
+        # @param InputInfo: <p>媒体文件输入</p>
+        # @type InputInfo: :class:`Tencentcloud::Mps.v20190612.models.ModelChatMediaInputInfo`
+
+        attr_accessor :InputInfo
+
+        def initialize(inputinfo=nil)
+          @InputInfo = inputinfo
+        end
+
+        def deserialize(params)
+          unless params['InputInfo'].nil?
+            @InputInfo = ModelChatMediaInputInfo.new
+            @InputInfo.deserialize(params['InputInfo'])
+          end
+        end
+      end
+
+      # 多模态理解媒体文件输入
+      class ModelChatMediaInputInfo < TencentCloud::Common::AbstractModel
+        # @param Type: <p>输入类型</p><p>枚举值：</p><ul><li>URL： Url输入</li><li>DATA： Base64输入</li></ul>
+        # @type Type: String
+        # @param UrlInputInfo: <p>URL输入配置</p>
+        # @type UrlInputInfo: :class:`Tencentcloud::Mps.v20190612.models.ModelChatUrlInputInfo`
+        # @param DataInputInfo: <p>Base64输入配置</p>
+        # @type DataInputInfo: :class:`Tencentcloud::Mps.v20190612.models.ModelChatDataInputInfo`
+
+        attr_accessor :Type, :UrlInputInfo, :DataInputInfo
+
+        def initialize(type=nil, urlinputinfo=nil, datainputinfo=nil)
+          @Type = type
+          @UrlInputInfo = urlinputinfo
+          @DataInputInfo = datainputinfo
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          unless params['UrlInputInfo'].nil?
+            @UrlInputInfo = ModelChatUrlInputInfo.new
+            @UrlInputInfo.deserialize(params['UrlInputInfo'])
+          end
+          unless params['DataInputInfo'].nil?
+            @DataInputInfo = ModelChatDataInputInfo.new
+            @DataInputInfo.deserialize(params['DataInputInfo'])
+          end
+        end
+      end
+
+      # 单条对话消息，定义对话中的角色与内容。
+      class ModelChatMessageItem < TencentCloud::Common::AbstractModel
+        # @param Role: <p>角色</p><p>枚举值：</p><ul><li>system： 系统消息</li><li>user： 用户消息</li><li>assistant： 模型消息</li></ul>
+        # @type Role: String
+        # @param Content: <p>输入内容</p>
+        # @type Content: Array
+
+        attr_accessor :Role, :Content
+
+        def initialize(role=nil, content=nil)
+          @Role = role
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          unless params['Content'].nil?
+            @Content = []
+            params['Content'].each do |i|
+              modelchatcontentpart_tmp = ModelChatContentPart.new
+              modelchatcontentpart_tmp.deserialize(i)
+              @Content << modelchatcontentpart_tmp
+            end
+          end
+        end
+      end
+
+      # 模型回复消息体。
+      class ModelChatResponseMessage < TencentCloud::Common::AbstractModel
+        # @param Role: <p>角色标识</p><p>枚举值：</p><ul><li>assistant： 模型消息</li><li>user： 用户消息</li><li>system： 系统消息</li></ul>
+        # @type Role: String
+        # @param Content: <p>模型生成的识别文本</p>
+        # @type Content: String
+
+        attr_accessor :Role, :Content
+
+        def initialize(role=nil, content=nil)
+          @Role = role
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @Content = params['Content']
+        end
+      end
+
+      # 多模态理解任务的事件通知配置。
+      class ModelChatTaskNotifyConfig < TencentCloud::Common::AbstractModel
+        # @param NotifyUrl: <p>回调 URL</p>
+        # @type NotifyUrl: String
+
+        attr_accessor :NotifyUrl
+
+        def initialize(notifyurl=nil)
+          @NotifyUrl = notifyurl
+        end
+
+        def deserialize(params)
+          @NotifyUrl = params['NotifyUrl']
+        end
+      end
+
+      # 多模态理解URL输入
+      class ModelChatUrlInputInfo < TencentCloud::Common::AbstractModel
+        # @param Url: <p>Url输入</p>
+        # @type Url: String
+
+        attr_accessor :Url
+
+        def initialize(url=nil)
+          @Url = url
+        end
+
+        def deserialize(params)
+          @Url = params['Url']
         end
       end
 
@@ -35115,6 +35604,27 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # 空间音频配置
+      class SpatialAudioConfig < TencentCloud::Common::AbstractModel
+        # @param Switch: <p>能力配置开关</p><p>枚举值：</p><ul><li>ON： 开启</li><li>OFF： 关闭</li></ul><p>默认值：OFF</p>
+        # @type Switch: String
+        # @param Type: <p>空间音频类型</p><p>枚举值：</p><ul><li>premium_immersive： 臻品全景声</li></ul><p>默认值：premium_immersive</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Type: String
+
+        attr_accessor :Switch, :Type
+
+        def initialize(switch=nil, type=nil)
+          @Switch = switch
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Switch = params['Switch']
+          @Type = params['Type']
         end
       end
 

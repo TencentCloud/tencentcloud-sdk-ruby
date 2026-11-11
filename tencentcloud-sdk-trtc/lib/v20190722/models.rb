@@ -5842,6 +5842,75 @@ module TencentCloud
         end
       end
 
+      # ModifyCloudTranscription请求参数结构体
+      class ModifyCloudTranscriptionRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>TRTC的SdkAppId，和转录的房间所对应的SdkAppId相同。</p>
+        # @type SdkAppId: Integer
+        # @param TaskId: <p>转录任务的唯一Id，在启动转录成功后会返回。</p>
+        # @type TaskId: String
+        # @param SequenceNumber: <p>客户保证同一个任务，每次更新请求中的SequenceNumber递增，防止请求乱序。</p>
+        # @type SequenceNumber: Integer
+        # @param SubscribeUserInfo: <p>转录订阅用户信息，包括白名单和黑名单。</p>
+        # @type SubscribeUserInfo: :class:`Tencentcloud::Trtc.v20190722.models.TranscriptionSubscribeParam`
+        # @param TranslationParam: <p>转录服务翻译使用的参数。</p>
+        # @type TranslationParam: :class:`Tencentcloud::Trtc.v20190722.models.TranslationParam`
+        # @param TTSParam: <p>转录服务TTS使用的参数。</p>
+        # @type TTSParam: Array
+
+        attr_accessor :SdkAppId, :TaskId, :SequenceNumber, :SubscribeUserInfo, :TranslationParam, :TTSParam
+
+        def initialize(sdkappid=nil, taskid=nil, sequencenumber=nil, subscribeuserinfo=nil, translationparam=nil, ttsparam=nil)
+          @SdkAppId = sdkappid
+          @TaskId = taskid
+          @SequenceNumber = sequencenumber
+          @SubscribeUserInfo = subscribeuserinfo
+          @TranslationParam = translationparam
+          @TTSParam = ttsparam
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @TaskId = params['TaskId']
+          @SequenceNumber = params['SequenceNumber']
+          unless params['SubscribeUserInfo'].nil?
+            @SubscribeUserInfo = TranscriptionSubscribeParam.new
+            @SubscribeUserInfo.deserialize(params['SubscribeUserInfo'])
+          end
+          unless params['TranslationParam'].nil?
+            @TranslationParam = TranslationParam.new
+            @TranslationParam.deserialize(params['TranslationParam'])
+          end
+          unless params['TTSParam'].nil?
+            @TTSParam = []
+            params['TTSParam'].each do |i|
+              ttsparam_tmp = TTSParam.new
+              ttsparam_tmp.deserialize(i)
+              @TTSParam << ttsparam_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyCloudTranscription返回参数结构体
+      class ModifyCloudTranscriptionResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>转录服务分配的任务 ID。任务 ID 是对一次转录生命周期过程的唯一标识，结束转录时会失去意义。</p>
+        # @type TaskId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyPicture请求参数结构体
       class ModifyPictureRequest < TencentCloud::Common::AbstractModel
         # @param PictureId: 图片id
@@ -8612,6 +8681,40 @@ module TencentCloud
           unless params['TurnDetection'].nil?
             @TurnDetection = TurnDetection.new
             @TurnDetection.deserialize(params['TurnDetection'])
+          end
+        end
+      end
+
+      # 转录服务订阅用户参数
+      class TranscriptionSubscribeParam < TencentCloud::Common::AbstractModel
+        # @param SubscribeList: <p>转录用户白名单，为空或不填表示转录所有主播音频，填具体值表示转录指定主播音频。 使用黑白名单时，同一个用户同时在黑白名单时，以黑名单为主。</p>
+        # @type SubscribeList: Array
+        # @param UnSubscribeList: <p>转录用户黑名单，为空或不填表示无黑名单，填具体值表示不转录指定主播音频。 同一个用户同时在黑白名单时，以黑名单为主。</p>
+        # @type UnSubscribeList: Array
+
+        attr_accessor :SubscribeList, :UnSubscribeList
+
+        def initialize(subscribelist=nil, unsubscribelist=nil)
+          @SubscribeList = subscribelist
+          @UnSubscribeList = unsubscribelist
+        end
+
+        def deserialize(params)
+          unless params['SubscribeList'].nil?
+            @SubscribeList = []
+            params['SubscribeList'].each do |i|
+              transcriptionuserinfoparams_tmp = TranscriptionUserInfoParams.new
+              transcriptionuserinfoparams_tmp.deserialize(i)
+              @SubscribeList << transcriptionuserinfoparams_tmp
+            end
+          end
+          unless params['UnSubscribeList'].nil?
+            @UnSubscribeList = []
+            params['UnSubscribeList'].each do |i|
+              transcriptionuserinfoparams_tmp = TranscriptionUserInfoParams.new
+              transcriptionuserinfoparams_tmp.deserialize(i)
+              @UnSubscribeList << transcriptionuserinfoparams_tmp
+            end
           end
         end
       end

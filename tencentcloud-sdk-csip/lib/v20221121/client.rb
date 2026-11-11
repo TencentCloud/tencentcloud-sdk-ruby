@@ -535,6 +535,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建资产基线风险导出任务
+
+        # @param request: Request instance for CreateAssetBaselineRiskExportJob.
+        # @type request: :class:`Tencentcloud::csip::V20221121::CreateAssetBaselineRiskExportJobRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::CreateAssetBaselineRiskExportJobResponse`
+        def CreateAssetBaselineRiskExportJob(request)
+          body = send_request('CreateAssetBaselineRiskExportJob', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAssetBaselineRiskExportJobResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建镜像资产中组件列表导出任务
 
         # @param request: Request instance for CreateAssetComponentListExportJob.
@@ -2865,6 +2889,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除基线忽略策略
+
+        # @param request: Request instance for DeleteBaselineIgnorePolicy.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DeleteBaselineIgnorePolicyRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DeleteBaselineIgnorePolicyResponse`
+        def DeleteBaselineIgnorePolicy(request)
+          body = send_request('DeleteBaselineIgnorePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteBaselineIgnorePolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 批量删除自定义基线策略。仅支持删除 PolicyType=SELF 的策略；删除后历史风险记录保留，但不再产生新结果。
 
         # @param request: Request instance for DeleteBaselineSelfDefinedPolicyList.
@@ -4725,6 +4773,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 获取资产风险列表
+
+        # @param request: Request instance for DescribeAssetBaselineRiskList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeAssetBaselineRiskListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeAssetBaselineRiskListResponse`
+        def DescribeAssetBaselineRiskList(request)
+          body = send_request('DescribeAssetBaselineRiskList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAssetBaselineRiskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询资产中组件列表
 
         # @param request: Request instance for DescribeAssetComponentList.
@@ -5311,6 +5383,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeBaselineFixRecordListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取基线忽略策略列表
+
+        # @param request: Request instance for DescribeBaselineIgnorePolicyList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeBaselineIgnorePolicyListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeBaselineIgnorePolicyListResponse`
+        def DescribeBaselineIgnorePolicyList(request)
+          body = send_request('DescribeBaselineIgnorePolicyList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeBaselineIgnorePolicyListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6468,6 +6564,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeClusterAssetsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取集群风险策略列表
+
+        # @param request: Request instance for DescribeClusterBaselineRiskPolicyList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeClusterBaselineRiskPolicyListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeClusterBaselineRiskPolicyListResponse`
+        def DescribeClusterBaselineRiskPolicyList(request)
+          body = send_request('DescribeClusterBaselineRiskPolicyList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeClusterBaselineRiskPolicyListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -7956,6 +8076,31 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDspmAccessTopologyIpsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询数据库访问拓扑（库级/表级）的概览卡片数据，包含来源IP数、访问账号数、被访问库数/表数、近7天与近30天访问次数。
+        # 数据由后台预聚合产生，查询侧无聚合开销；出参 LastCalcTime 为数据最后计算时间，可据此判断数据新鲜度。
+
+        # @param request: Request instance for DescribeDspmAccessTopologySummary.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeDspmAccessTopologySummaryRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeDspmAccessTopologySummaryResponse`
+        def DescribeDspmAccessTopologySummary(request)
+          body = send_request('DescribeDspmAccessTopologySummary', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeDspmAccessTopologySummaryResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -10130,6 +10275,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询主机漏洞风险事件列表，按风险记录维度返回漏洞基础信息、实例信息、风险状态和最近扫描时间。
+
+        # @param request: Request instance for DescribeHostVulRiskEventList.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeHostVulRiskEventListRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeHostVulRiskEventListResponse`
+        def DescribeHostVulRiskEventList(request)
+          body = send_request('DescribeHostVulRiskEventList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostVulRiskEventListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取主机漏洞风险列表
 
         # @param request: Request instance for DescribeHostVulRiskList.
@@ -10140,6 +10309,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeHostVulRiskListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询主机漏洞扫描状态，用于判断是否扫描过漏洞、首次漏洞扫描是否失败，以及首次扫描完成后的可修复漏洞状态。
+
+        # @param request: Request instance for DescribeHostVulScanStatus.
+        # @type request: :class:`Tencentcloud::csip::V20221121::DescribeHostVulScanStatusRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::DescribeHostVulScanStatusResponse`
+        def DescribeHostVulScanStatus(request)
+          body = send_request('DescribeHostVulScanStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeHostVulScanStatusResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -14774,6 +14967,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 修改基线忽略策略
+
+        # @param request: Request instance for ModifyBaselineIgnorePolicy.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyBaselineIgnorePolicyRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyBaselineIgnorePolicyResponse`
+        def ModifyBaselineIgnorePolicy(request)
+          body = send_request('ModifyBaselineIgnorePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyBaselineIgnorePolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 新建或编辑一条基线策略。Policy.ID 为 0 视为新建，非 0 视为编辑；新建/编辑时 Name 必填，CheckAssetType 与 Type 需符合 CheckAssetType / PolicyType 枚举。
 
         # @param request: Request instance for ModifyBaselinePolicy.
@@ -15024,6 +15241,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCSIPRaspLicenseUnBindsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改集群审计日志状态
+
+        # @param request: Request instance for ModifyClusterAuditLogStatus.
+        # @type request: :class:`Tencentcloud::csip::V20221121::ModifyClusterAuditLogStatusRequest`
+        # @rtype: :class:`Tencentcloud::csip::V20221121::ModifyClusterAuditLogStatusResponse`
+        def ModifyClusterAuditLogStatus(request)
+          body = send_request('ModifyClusterAuditLogStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyClusterAuditLogStatusResponse.new
             model.deserialize(response['Response'])
             model
           else

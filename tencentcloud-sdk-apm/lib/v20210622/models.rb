@@ -562,10 +562,19 @@ module TencentCloud
         # @type ResponseDurationWarningThreshold: Integer
         # @param UseDefaultFuseConfig: <p>是否使用探针默认熔断阈值</p>
         # @type UseDefaultFuseConfig: Boolean
+        # @param IsJNDIInjectionAnalysis: <p>是否开启JNDI注入检测</p>
+        # @type IsJNDIInjectionAnalysis: String
+        # @param IsJNIInjectionAnalysis: <p>是否开启JNI注入检测</p>
+        # @type IsJNIInjectionAnalysis: String
 
-        attr_accessor :InstanceKey, :ServiceName, :OperationNameFilter, :ExceptionFilter, :ErrorCodeFilter, :EventEnable, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :UrlExclude, :IsRelatedLog, :LogSource, :LogSet, :LogTopicID, :SnapshotEnable, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :AgentIgnoreOperation, :EnableSecurityConfig, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJndiInjectionAnalysis, :IsJniInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :AutoProfilingConfig, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold, :UseDefaultFuseConfig
+        attr_accessor :InstanceKey, :ServiceName, :OperationNameFilter, :ExceptionFilter, :ErrorCodeFilter, :EventEnable, :UrlConvergenceSwitch, :UrlConvergenceThreshold, :UrlConvergence, :UrlExclude, :IsRelatedLog, :LogSource, :LogSet, :LogTopicID, :SnapshotEnable, :SnapshotTimeout, :AgentEnable, :InstrumentList, :TraceSquash, :AgentIgnoreOperation, :EnableSecurityConfig, :IsSqlInjectionAnalysis, :IsInstrumentationVulnerabilityScan, :IsRemoteCommandExecutionAnalysis, :IsMemoryHijackingAnalysis, :IsDeleteAnyFileAnalysis, :IsReadAnyFileAnalysis, :IsUploadAnyFileAnalysis, :IsIncludeAnyFileAnalysis, :IsDirectoryTraversalAnalysis, :IsTemplateEngineInjectionAnalysis, :IsScriptEngineInjectionAnalysis, :IsExpressionInjectionAnalysis, :IsJndiInjectionAnalysis, :IsJniInjectionAnalysis, :IsWebshellBackdoorAnalysis, :IsDeserializationAnalysis, :EnableDashboardConfig, :IsRelatedDashboard, :DashboardTopicID, :DisableMemoryUsed, :DisableCpuUsed, :DbStatementParametersEnabled, :SlowSQLThresholds, :EnableDesensitizationRule, :DesensitizationRule, :AutoProfilingConfig, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold, :UseDefaultFuseConfig, :IsJNDIInjectionAnalysis, :IsJNIInjectionAnalysis
+        extend Gem::Deprecate
+        deprecate :IsJndiInjectionAnalysis, :none, 2026, 11
+        deprecate :IsJndiInjectionAnalysis=, :none, 2026, 11
+        deprecate :IsJniInjectionAnalysis, :none, 2026, 11
+        deprecate :IsJniInjectionAnalysis=, :none, 2026, 11
 
-        def initialize(instancekey=nil, servicename=nil, operationnamefilter=nil, exceptionfilter=nil, errorcodefilter=nil, eventenable=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, urlexclude=nil, isrelatedlog=nil, logsource=nil, logset=nil, logtopicid=nil, snapshotenable=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, agentignoreoperation=nil, enablesecurityconfig=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, autoprofilingconfig=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil, usedefaultfuseconfig=nil)
+        def initialize(instancekey=nil, servicename=nil, operationnamefilter=nil, exceptionfilter=nil, errorcodefilter=nil, eventenable=nil, urlconvergenceswitch=nil, urlconvergencethreshold=nil, urlconvergence=nil, urlexclude=nil, isrelatedlog=nil, logsource=nil, logset=nil, logtopicid=nil, snapshotenable=nil, snapshottimeout=nil, agentenable=nil, instrumentlist=nil, tracesquash=nil, agentignoreoperation=nil, enablesecurityconfig=nil, issqlinjectionanalysis=nil, isinstrumentationvulnerabilityscan=nil, isremotecommandexecutionanalysis=nil, ismemoryhijackinganalysis=nil, isdeleteanyfileanalysis=nil, isreadanyfileanalysis=nil, isuploadanyfileanalysis=nil, isincludeanyfileanalysis=nil, isdirectorytraversalanalysis=nil, istemplateengineinjectionanalysis=nil, isscriptengineinjectionanalysis=nil, isexpressioninjectionanalysis=nil, iswebshellbackdooranalysis=nil, isdeserializationanalysis=nil, enabledashboardconfig=nil, isrelateddashboard=nil, dashboardtopicid=nil, disablememoryused=nil, disablecpuused=nil, dbstatementparametersenabled=nil, slowsqlthresholds=nil, enabledesensitizationrule=nil, desensitizationrule=nil, autoprofilingconfig=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil, usedefaultfuseconfig=nil, isjndiinjectionanalysis=nil, isjniinjectionanalysis=nil)
           @InstanceKey = instancekey
           @ServiceName = servicename
           @OperationNameFilter = operationnamefilter
@@ -599,8 +608,6 @@ module TencentCloud
           @IsTemplateEngineInjectionAnalysis = istemplateengineinjectionanalysis
           @IsScriptEngineInjectionAnalysis = isscriptengineinjectionanalysis
           @IsExpressionInjectionAnalysis = isexpressioninjectionanalysis
-          @IsJndiInjectionAnalysis = isjndiinjectionanalysis
-          @IsJniInjectionAnalysis = isjniinjectionanalysis
           @IsWebshellBackdoorAnalysis = iswebshellbackdooranalysis
           @IsDeserializationAnalysis = isdeserializationanalysis
           @EnableDashboardConfig = enabledashboardconfig
@@ -617,6 +624,8 @@ module TencentCloud
           @ErrRateThreshold = errratethreshold
           @ResponseDurationWarningThreshold = responsedurationwarningthreshold
           @UseDefaultFuseConfig = usedefaultfuseconfig
+          @IsJNDIInjectionAnalysis = isjndiinjectionanalysis
+          @IsJNIInjectionAnalysis = isjniinjectionanalysis
         end
 
         def deserialize(params)
@@ -660,8 +669,6 @@ module TencentCloud
           @IsTemplateEngineInjectionAnalysis = params['IsTemplateEngineInjectionAnalysis']
           @IsScriptEngineInjectionAnalysis = params['IsScriptEngineInjectionAnalysis']
           @IsExpressionInjectionAnalysis = params['IsExpressionInjectionAnalysis']
-          @IsJndiInjectionAnalysis = params['IsJndiInjectionAnalysis']
-          @IsJniInjectionAnalysis = params['IsJniInjectionAnalysis']
           @IsWebshellBackdoorAnalysis = params['IsWebshellBackdoorAnalysis']
           @IsDeserializationAnalysis = params['IsDeserializationAnalysis']
           @EnableDashboardConfig = params['EnableDashboardConfig']
@@ -688,6 +695,8 @@ module TencentCloud
           @ErrRateThreshold = params['ErrRateThreshold']
           @ResponseDurationWarningThreshold = params['ResponseDurationWarningThreshold']
           @UseDefaultFuseConfig = params['UseDefaultFuseConfig']
+          @IsJNDIInjectionAnalysis = params['IsJNDIInjectionAnalysis']
+          @IsJNIInjectionAnalysis = params['IsJNIInjectionAnalysis']
         end
       end
 
@@ -1321,23 +1330,29 @@ module TencentCloud
 
       # CVM元数据
       class CVMMeta < TencentCloud::Common::AbstractModel
-        # @param Region: 地域
+        # @param Region: <p>地域</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Region: String
-        # @param InstanceID: 实例ID
+        # @param InstanceID: <p>业务系统ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceID: String
+        # @param InstanceId: <p>业务系统ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type InstanceId: String
 
-        attr_accessor :Region, :InstanceID
+        attr_accessor :Region, :InstanceID, :InstanceId
+        extend Gem::Deprecate
+        deprecate :InstanceID, :none, 2026, 11
+        deprecate :InstanceID=, :none, 2026, 11
 
         def initialize(region=nil, instanceid=nil)
           @Region = region
-          @InstanceID = instanceid
+          @InstanceId = instanceid
         end
 
         def deserialize(params)
           @Region = params['Region']
-          @InstanceID = params['InstanceID']
+          @InstanceId = params['InstanceId']
         end
       end
 
@@ -1349,6 +1364,9 @@ module TencentCloud
         # @type YAxis: Array
 
         attr_accessor :Series, :YAxis
+        extend Gem::Deprecate
+        deprecate :YAxis, :none, 2026, 11
+        deprecate :YAxis=, :none, 2026, 11
 
         def initialize(series=nil, yaxis=nil)
           @Series = series
@@ -4720,14 +4738,21 @@ module TencentCloud
         # @param ResponseDurationWarningThreshold: <p>响应时间预警阈值（ms），用于判断应用健康状态为&quot;黄色&quot;</p><p>单位：ms</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResponseDurationWarningThreshold: Integer
+        # @param AppId: <p>用户appid</p>
+        # @type AppId: String
+        # @param CreateUin: <p>主账号uin</p>
+        # @type CreateUin: String
 
-        attr_accessor :ServiceID, :InstanceKey, :AppID, :CreateUIN, :ServiceName, :ServiceDescription, :Region, :Tags, :InstanceName, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold
+        attr_accessor :ServiceID, :InstanceKey, :AppID, :CreateUIN, :ServiceName, :ServiceDescription, :Region, :Tags, :InstanceName, :EnableThresholdConfig, :ErrRateThreshold, :ResponseDurationWarningThreshold, :AppId, :CreateUin
+        extend Gem::Deprecate
+        deprecate :AppID, :none, 2026, 11
+        deprecate :AppID=, :none, 2026, 11
+        deprecate :CreateUIN, :none, 2026, 11
+        deprecate :CreateUIN=, :none, 2026, 11
 
-        def initialize(serviceid=nil, instancekey=nil, appid=nil, createuin=nil, servicename=nil, servicedescription=nil, region=nil, tags=nil, instancename=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil)
+        def initialize(serviceid=nil, instancekey=nil, servicename=nil, servicedescription=nil, region=nil, tags=nil, instancename=nil, enablethresholdconfig=nil, errratethreshold=nil, responsedurationwarningthreshold=nil, appid=nil, createuin=nil)
           @ServiceID = serviceid
           @InstanceKey = instancekey
-          @AppID = appid
-          @CreateUIN = createuin
           @ServiceName = servicename
           @ServiceDescription = servicedescription
           @Region = region
@@ -4736,13 +4761,13 @@ module TencentCloud
           @EnableThresholdConfig = enablethresholdconfig
           @ErrRateThreshold = errratethreshold
           @ResponseDurationWarningThreshold = responsedurationwarningthreshold
+          @AppId = appid
+          @CreateUin = createuin
         end
 
         def deserialize(params)
           @ServiceID = params['ServiceID']
           @InstanceKey = params['InstanceKey']
-          @AppID = params['AppID']
-          @CreateUIN = params['CreateUIN']
           @ServiceName = params['ServiceName']
           @ServiceDescription = params['ServiceDescription']
           @Region = params['Region']
@@ -4758,6 +4783,8 @@ module TencentCloud
           @EnableThresholdConfig = params['EnableThresholdConfig']
           @ErrRateThreshold = params['ErrRateThreshold']
           @ResponseDurationWarningThreshold = params['ResponseDurationWarningThreshold']
+          @AppId = params['AppId']
+          @CreateUin = params['CreateUin']
         end
       end
 
@@ -5230,67 +5257,72 @@ module TencentCloud
 
       # 拓扑图边节点
       class TopologyNode < TencentCloud::Common::AbstractModel
-        # @param ErrRate: 错误率
+        # @param ErrRate: <p>错误率</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ErrRate: Float
-        # @param Kind: 节点类型
+        # @param Kind: <p>节点类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Kind: String
-        # @param Name: 节点名
+        # @param Name: <p>节点名</p>
         # @type Name: String
-        # @param Weight: 节点权重
+        # @param Weight: <p>节点权重</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Weight: Float
-        # @param Color: 节点颜色
+        # @param Color: <p>节点颜色</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Color: String
-        # @param Duration: 响应时间
+        # @param Duration: <p>响应时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Duration: Float
-        # @param Qps: 吞吐量
+        # @param Qps: <p>吞吐量</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Qps: Float
-        # @param Type: 节点类型
+        # @param Type: <p>节点类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Type: String
-        # @param Id: 节点ID
+        # @param Id: <p>节点ID</p>
         # @type Id: String
-        # @param Size: 节点大小
+        # @param Size: <p>节点大小</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Size: String
-        # @param IsModule: 节点是否为组件类型
+        # @param IsModule: <p>节点是否为组件类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsModule: Boolean
-        # @param Position: 节点位置信息
+        # @param Position: <p>节点位置信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Position: :class:`Tencentcloud::Apm.v20210622.models.Position`
-        # @param Tags: 节点标签
+        # @param Tags: <p>节点标签</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
-        # @param CanDrillDown: 节点是否可以下钻
+        # @param CanDrillDown: <p>节点是否可以下钻</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CanDrillDown: Boolean
-        # @param Resource: 资源层信息
+        # @param Resource: <p>资源层信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Resource: :class:`Tencentcloud::Apm.v20210622.models.Resource`
-        # @param NodeView: 拓扑节点视图名字
+        # @param NodeView: <p>拓扑节点视图名字</p>
         # @type NodeView: String
-        # @param ConsumerDuration: MQ 消费者视角的响应时间 ms
+        # @param ConsumerDuration: <p>MQ 消费者视角的响应时间 ms</p>
         # @type ConsumerDuration: Float
-        # @param ConsumerErrRate: MQ 消费者视角的错误率 %
+        # @param ConsumerErrRate: <p>MQ 消费者视角的错误率 %</p>
         # @type ConsumerErrRate: Float
-        # @param ConsumerQps: MQ 消费者视角的吞吐量
+        # @param ConsumerQps: <p>MQ 消费者视角的吞吐量</p>
         # @type ConsumerQps: Float
-        # @param ServiceId: 应用 ID
+        # @param ServiceId: <p>应用 ID</p>
         # @type ServiceId: String
-        # @param ReqCnt: 调用次数
+        # @param ReqCnt: <p>调用次数</p>
         # @type ReqCnt: Integer
-        # @param ConsumerReqCnt: 消息队列消费者视角的调用次数
+        # @param ConsumerReqCnt: <p>消息队列消费者视角的调用次数</p>
         # @type ConsumerReqCnt: Integer
+        # @param ServiceID: <p>应用 ID</p>
+        # @type ServiceID: String
 
-        attr_accessor :ErrRate, :Kind, :Name, :Weight, :Color, :Duration, :Qps, :Type, :Id, :Size, :IsModule, :Position, :Tags, :CanDrillDown, :Resource, :NodeView, :ConsumerDuration, :ConsumerErrRate, :ConsumerQps, :ServiceId, :ReqCnt, :ConsumerReqCnt
+        attr_accessor :ErrRate, :Kind, :Name, :Weight, :Color, :Duration, :Qps, :Type, :Id, :Size, :IsModule, :Position, :Tags, :CanDrillDown, :Resource, :NodeView, :ConsumerDuration, :ConsumerErrRate, :ConsumerQps, :ServiceId, :ReqCnt, :ConsumerReqCnt, :ServiceID
+        extend Gem::Deprecate
+        deprecate :ServiceId, :none, 2026, 11
+        deprecate :ServiceId=, :none, 2026, 11
 
-        def initialize(errrate=nil, kind=nil, name=nil, weight=nil, color=nil, duration=nil, qps=nil, type=nil, id=nil, size=nil, ismodule=nil, position=nil, tags=nil, candrilldown=nil, resource=nil, nodeview=nil, consumerduration=nil, consumererrrate=nil, consumerqps=nil, serviceid=nil, reqcnt=nil, consumerreqcnt=nil)
+        def initialize(errrate=nil, kind=nil, name=nil, weight=nil, color=nil, duration=nil, qps=nil, type=nil, id=nil, size=nil, ismodule=nil, position=nil, tags=nil, candrilldown=nil, resource=nil, nodeview=nil, consumerduration=nil, consumererrrate=nil, consumerqps=nil, reqcnt=nil, consumerreqcnt=nil, serviceid=nil)
           @ErrRate = errrate
           @Kind = kind
           @Name = name
@@ -5310,9 +5342,9 @@ module TencentCloud
           @ConsumerDuration = consumerduration
           @ConsumerErrRate = consumererrrate
           @ConsumerQps = consumerqps
-          @ServiceId = serviceid
           @ReqCnt = reqcnt
           @ConsumerReqCnt = consumerreqcnt
+          @ServiceID = serviceid
         end
 
         def deserialize(params)
@@ -5348,9 +5380,9 @@ module TencentCloud
           @ConsumerDuration = params['ConsumerDuration']
           @ConsumerErrRate = params['ConsumerErrRate']
           @ConsumerQps = params['ConsumerQps']
-          @ServiceId = params['ServiceId']
           @ReqCnt = params['ReqCnt']
           @ConsumerReqCnt = params['ConsumerReqCnt']
+          @ServiceID = params['ServiceID']
         end
       end
 

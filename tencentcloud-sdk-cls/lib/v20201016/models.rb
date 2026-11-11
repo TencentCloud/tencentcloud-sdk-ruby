@@ -13965,17 +13965,21 @@ module TencentCloud
 
       # 键值索引自动配置，启用后自动将日志内的字段添加到键值索引中，包括日志中后续新增的字段。
       class DynamicIndex < TencentCloud::Common::AbstractModel
-        # @param Status: 键值索引自动配置开关
+        # @param Status: <p>键值索引自动配置开关</p>
         # @type Status: Boolean
+        # @param Tokenizer: <p>索引的分词符，其中的每个字符代表一个分词符；<br>仅支持英文符号、\n\t\r及转义符\；<br>注意：\n\t\r本身已被转义，直接使用双引号包裹即可作为入参，无需再次转义。使用API Explorer进行调试时请使用JSON参数输入方式，以避免\n\t\r被重复转义</p>
+        # @type Tokenizer: String
 
-        attr_accessor :Status
+        attr_accessor :Status, :Tokenizer
 
-        def initialize(status=nil)
+        def initialize(status=nil, tokenizer=nil)
           @Status = status
+          @Tokenizer = tokenizer
         end
 
         def deserialize(params)
           @Status = params['Status']
+          @Tokenizer = params['Tokenizer']
         end
       end
 

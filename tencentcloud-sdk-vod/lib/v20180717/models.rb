@@ -11694,7 +11694,7 @@ module TencentCloud
         # @type Comment: String
         # @param MediaProcessTask: <p>视频处理类型任务参数。</p>
         # @type MediaProcessTask: :class:`Tencentcloud::Vod.v20180717.models.MediaProcessTaskInput`
-        # @param AiContentReviewTask: <p>AI 内容审核类型任务参数 *。<br><font color="red">*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font></p>
+        # @param AiContentReviewTask: <p>AI 内容审核类型任务参数 *。<font color="red">*该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font></p>
         # @type AiContentReviewTask: :class:`Tencentcloud::Vod.v20180717.models.AiContentReviewTaskInput`
         # @param AiAnalysisTask: <p>AI 内容分析类型任务参数。</p>
         # @type AiAnalysisTask: :class:`Tencentcloud::Vod.v20180717.models.AiAnalysisTaskInput`

@@ -685,16 +685,16 @@ module TencentCloud
 
         attr_accessor :GoodsNum, :Memory, :Storage, :ClusterId, :Zone, :ProjectId, :Pid, :Machine, :VpcId, :SubnetId, :DbVersionId, :Manual, :DeviceNo, :SecurityGroupIds, :DcnInstanceId, :DcnRegion, :InstanceName, :ResourceTags, :Ipv6Flag, :InitParams, :NodeNum, :MasterHostId, :SlaveHostIds, :RollbackInstanceId, :RollbackTime, :DcnSyncMode
         extend Gem::Deprecate
-        deprecate :Zone, :none, 2026, 3
-        deprecate :Zone=, :none, 2026, 3
-        deprecate :Pid, :none, 2026, 3
-        deprecate :Pid=, :none, 2026, 3
-        deprecate :Machine, :none, 2026, 3
-        deprecate :Machine=, :none, 2026, 3
-        deprecate :Manual, :none, 2026, 3
-        deprecate :Manual=, :none, 2026, 3
-        deprecate :DeviceNo, :none, 2026, 3
-        deprecate :DeviceNo=, :none, 2026, 3
+        deprecate :Zone, :none, 2026, 11
+        deprecate :Zone=, :none, 2026, 11
+        deprecate :Pid, :none, 2026, 11
+        deprecate :Pid=, :none, 2026, 11
+        deprecate :Machine, :none, 2026, 11
+        deprecate :Machine=, :none, 2026, 11
+        deprecate :Manual, :none, 2026, 11
+        deprecate :Manual=, :none, 2026, 11
+        deprecate :DeviceNo, :none, 2026, 11
+        deprecate :DeviceNo=, :none, 2026, 11
 
         def initialize(goodsnum=nil, memory=nil, storage=nil, clusterid=nil, zone=nil, projectid=nil, pid=nil, machine=nil, vpcid=nil, subnetid=nil, dbversionid=nil, manual=nil, deviceno=nil, securitygroupids=nil, dcninstanceid=nil, dcnregion=nil, instancename=nil, resourcetags=nil, ipv6flag=nil, initparams=nil, nodenum=nil, masterhostid=nil, slavehostids=nil, rollbackinstanceid=nil, rollbacktime=nil, dcnsyncmode=nil)
           @GoodsNum = goodsnum
@@ -6261,30 +6261,34 @@ module TencentCloud
 
       # UpgradeDedicatedDBInstance请求参数结构体
       class UpgradeDedicatedDBInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 待升级的实例ID。形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例获得。
+        # @param InstanceId: <p>待升级的实例ID。形如：tdsql-ow728lmc，可以通过 DescribeDBInstances 查询实例获得。</p>
         # @type InstanceId: String
-        # @param Memory: 内存大小，单位：GB，可以通过 DescribeFenceDBInstanceSpecs
-        #  查询实例规格获得。
+        # @param Memory: <p>内存大小，单位：GB，可以通过 DescribeFenceDBInstanceSpecs<br> 查询实例规格获得。</p>
         # @type Memory: Integer
-        # @param Storage: 存储空间大小，单位：GB，可以通过 DescribeFenceDBInstanceSpecs
-        #  查询实例规格获得不同内存大小对应的磁盘规格下限和上限。
+        # @param Storage: <p>存储空间大小，单位：GB，可以通过 DescribeFenceDBInstanceSpecs<br> 查询实例规格获得不同内存大小对应的磁盘规格下限和上限。</p>
         # @type Storage: Integer
-        # @param SwitchAutoRetry: 错过切换时间窗口时，是否自动重试一次，0-否，1-是
+        # @param SwitchAutoRetry: <p>错过切换时间窗口时，是否自动重试一次，0-否，1-是</p>
         # @type SwitchAutoRetry: Integer
-        # @param SwitchStartTime: 切换时间窗口开始时间
+        # @param SwitchStartTime: <p>切换时间窗口开始时间</p>
         # @type SwitchStartTime: String
-        # @param SwitchEndTime: 切换时间窗口结束时间
+        # @param SwitchEndTime: <p>切换时间窗口结束时间</p>
         # @type SwitchEndTime: String
+        # @param MasterHostId: <p>主节点的机器id，类似svr-xxx</p>
+        # @type MasterHostId: String
+        # @param SlaveHostIds: <p>备节点的机器id组，类似[svr-xxx1, svr-xxx2]</p>
+        # @type SlaveHostIds: Array
 
-        attr_accessor :InstanceId, :Memory, :Storage, :SwitchAutoRetry, :SwitchStartTime, :SwitchEndTime
+        attr_accessor :InstanceId, :Memory, :Storage, :SwitchAutoRetry, :SwitchStartTime, :SwitchEndTime, :MasterHostId, :SlaveHostIds
 
-        def initialize(instanceid=nil, memory=nil, storage=nil, switchautoretry=nil, switchstarttime=nil, switchendtime=nil)
+        def initialize(instanceid=nil, memory=nil, storage=nil, switchautoretry=nil, switchstarttime=nil, switchendtime=nil, masterhostid=nil, slavehostids=nil)
           @InstanceId = instanceid
           @Memory = memory
           @Storage = storage
           @SwitchAutoRetry = switchautoretry
           @SwitchStartTime = switchstarttime
           @SwitchEndTime = switchendtime
+          @MasterHostId = masterhostid
+          @SlaveHostIds = slavehostids
         end
 
         def deserialize(params)
@@ -6294,12 +6298,14 @@ module TencentCloud
           @SwitchAutoRetry = params['SwitchAutoRetry']
           @SwitchStartTime = params['SwitchStartTime']
           @SwitchEndTime = params['SwitchEndTime']
+          @MasterHostId = params['MasterHostId']
+          @SlaveHostIds = params['SlaveHostIds']
         end
       end
 
       # UpgradeDedicatedDBInstance返回参数结构体
       class UpgradeDedicatedDBInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 异步流程Id
+        # @param FlowId: <p>异步流程Id</p>
         # @type FlowId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

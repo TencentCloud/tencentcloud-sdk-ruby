@@ -105,6 +105,34 @@ module TencentCloud
         end
       end
 
+      # 批量索引操作的逐项结果，用于 DeleteIndex（批量删除）和 ModifyIndexStatus（批量关闭/打开索引）的返回值。
+      class BatchIndexResult < TencentCloud::Common::AbstractModel
+        # @param IndexName: <p>索引名</p>
+        # @type IndexName: String
+        # @param Success: <p>该项是否成功</p>
+        # @type Success: Boolean
+        # @param ErrCode: <p>失败时的错误码，成功时不返回</p>
+        # @type ErrCode: Integer
+        # @param ErrMsg: <p>失败时的错误信息，成功时不返回</p>
+        # @type ErrMsg: String
+
+        attr_accessor :IndexName, :Success, :ErrCode, :ErrMsg
+
+        def initialize(indexname=nil, success=nil, errcode=nil, errmsg=nil)
+          @IndexName = indexname
+          @Success = success
+          @ErrCode = errcode
+          @ErrMsg = errmsg
+        end
+
+        def deserialize(params)
+          @IndexName = params['IndexName']
+          @Success = params['Success']
+          @ErrCode = params['ErrCode']
+          @ErrMsg = params['ErrMsg']
+        end
+      end
+
       # CheckMigrateIndexMetaData请求参数结构体
       class CheckMigrateIndexMetaDataRequest < TencentCloud::Common::AbstractModel
         # @param ServerlessId: 索引 id
@@ -1871,10 +1899,12 @@ module TencentCloud
         # @type BackingIndexName: String
         # @param IndexPhrase: <p>索引生命阶段</p>
         # @type IndexPhrase: String
+        # @param IndexNames: <p>索引列表</p>
+        # @type IndexNames: Array
 
-        attr_accessor :InstanceId, :IndexType, :IndexName, :Username, :Password, :BackingIndexName, :IndexPhrase
+        attr_accessor :InstanceId, :IndexType, :IndexName, :Username, :Password, :BackingIndexName, :IndexPhrase, :IndexNames
 
-        def initialize(instanceid=nil, indextype=nil, indexname=nil, username=nil, password=nil, backingindexname=nil, indexphrase=nil)
+        def initialize(instanceid=nil, indextype=nil, indexname=nil, username=nil, password=nil, backingindexname=nil, indexphrase=nil, indexnames=nil)
           @InstanceId = instanceid
           @IndexType = indextype
           @IndexName = indexname
@@ -1882,6 +1912,7 @@ module TencentCloud
           @Password = password
           @BackingIndexName = backingindexname
           @IndexPhrase = indexphrase
+          @IndexNames = indexnames
         end
 
         def deserialize(params)
@@ -1892,21 +1923,45 @@ module TencentCloud
           @Password = params['Password']
           @BackingIndexName = params['BackingIndexName']
           @IndexPhrase = params['IndexPhrase']
+          @IndexNames = params['IndexNames']
         end
       end
 
       # DeleteIndex返回参数结构体
       class DeleteIndexResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>索引数量</p>
+        # @type TotalCount: Integer
+        # @param SuccessCount: <p>成功数量</p>
+        # @type SuccessCount: Integer
+        # @param FailedCount: <p>失败数量</p>
+        # @type FailedCount: Integer
+        # @param Results: <p>无</p>
+        # @type Results: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TotalCount, :SuccessCount, :FailedCount, :Results, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(totalcount=nil, successcount=nil, failedcount=nil, results=nil, requestid=nil)
+          @TotalCount = totalcount
+          @SuccessCount = successcount
+          @FailedCount = failedcount
+          @Results = results
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @SuccessCount = params['SuccessCount']
+          @FailedCount = params['FailedCount']
+          unless params['Results'].nil?
+            @Results = []
+            params['Results'].each do |i|
+              batchindexresult_tmp = BatchIndexResult.new
+              batchindexresult_tmp.deserialize(i)
+              @Results << batchindexresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2592,30 +2647,32 @@ module TencentCloud
 
       # DescribeIndexList请求参数结构体
       class DescribeIndexListRequest < TencentCloud::Common::AbstractModel
-        # @param IndexType: 索引类型。auto：自治索引；normal：普通索引
+        # @param IndexType: <p>索引类型。auto：自治索引；normal：普通索引</p>
         # @type IndexType: String
-        # @param InstanceId: ES集群ID
+        # @param InstanceId: <p>ES集群ID</p>
         # @type InstanceId: String
-        # @param IndexName: 索引名，若填空则获取所有索引
+        # @param IndexName: <p>索引名，若填空则获取所有索引</p>
         # @type IndexName: String
-        # @param Username: 集群访问用户名
+        # @param Username: <p>集群访问用户名</p>
         # @type Username: String
-        # @param Password: 集群访问密码
+        # @param Password: <p>集群访问密码</p>
         # @type Password: String
-        # @param Offset: 分页起始位置
+        # @param Offset: <p>分页起始位置</p>
         # @type Offset: Integer
-        # @param Limit: 一页展示数量
+        # @param Limit: <p>一页展示数量</p>
         # @type Limit: Integer
-        # @param OrderBy: 排序字段，支持索引名：IndexName、索引存储量：IndexStorage、索引创建时间：IndexCreateTime
+        # @param OrderBy: <p>排序字段，支持索引名：IndexName、索引存储量：IndexStorage、索引创建时间：IndexCreateTime</p>
         # @type OrderBy: String
-        # @param IndexStatusList: 过滤索引状态
+        # @param IndexStatusList: <p>过滤索引状态</p>
         # @type IndexStatusList: Array
-        # @param Order: 排序顺序，支持asc、desc，默认为desc 数据格式"asc","desc"
+        # @param Order: <p>排序顺序，支持asc、desc，默认为desc 数据格式&quot;asc&quot;,&quot;desc&quot;</p>
         # @type Order: String
+        # @param FilterIndexNames: <p>索引名称过滤列表。仅返回列表中指定的索引，常用于事件中心跳转时筛选受影响的索引；不填返回全部索引。单次最多支持100个索引名称。</p>
+        # @type FilterIndexNames: Array
 
-        attr_accessor :IndexType, :InstanceId, :IndexName, :Username, :Password, :Offset, :Limit, :OrderBy, :IndexStatusList, :Order
+        attr_accessor :IndexType, :InstanceId, :IndexName, :Username, :Password, :Offset, :Limit, :OrderBy, :IndexStatusList, :Order, :FilterIndexNames
 
-        def initialize(indextype=nil, instanceid=nil, indexname=nil, username=nil, password=nil, offset=nil, limit=nil, orderby=nil, indexstatuslist=nil, order=nil)
+        def initialize(indextype=nil, instanceid=nil, indexname=nil, username=nil, password=nil, offset=nil, limit=nil, orderby=nil, indexstatuslist=nil, order=nil, filterindexnames=nil)
           @IndexType = indextype
           @InstanceId = instanceid
           @IndexName = indexname
@@ -2626,6 +2683,7 @@ module TencentCloud
           @OrderBy = orderby
           @IndexStatusList = indexstatuslist
           @Order = order
+          @FilterIndexNames = filterindexnames
         end
 
         def deserialize(params)
@@ -2639,15 +2697,16 @@ module TencentCloud
           @OrderBy = params['OrderBy']
           @IndexStatusList = params['IndexStatusList']
           @Order = params['Order']
+          @FilterIndexNames = params['FilterIndexNames']
         end
       end
 
       # DescribeIndexList返回参数结构体
       class DescribeIndexListResponse < TencentCloud::Common::AbstractModel
-        # @param IndexMetaFields: 索引元数据字段
+        # @param IndexMetaFields: <p>索引元数据字段</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexMetaFields: Array
-        # @param TotalCount: 查询总数
+        # @param TotalCount: <p>查询总数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -5057,10 +5116,12 @@ module TencentCloud
         # @type SubEventName: String
         # @param EventScope: <p>事件范围</p><p>枚举值：</p><ul><li>0： 实例级</li><li>1： 账号级</li></ul>
         # @type EventScope: Integer
+        # @param ExpandDetail: <p>展开详情</p>
+        # @type ExpandDetail: String
 
-        attr_accessor :EventType, :EventTaskId, :EventName, :EventImportance, :EventContent, :InstanceId, :InstanceName, :NodeId, :NodeRole, :EventStatus, :StartTime, :EndTime, :SubEventType, :SubEventName, :EventScope
+        attr_accessor :EventType, :EventTaskId, :EventName, :EventImportance, :EventContent, :InstanceId, :InstanceName, :NodeId, :NodeRole, :EventStatus, :StartTime, :EndTime, :SubEventType, :SubEventName, :EventScope, :ExpandDetail
 
-        def initialize(eventtype=nil, eventtaskid=nil, eventname=nil, eventimportance=nil, eventcontent=nil, instanceid=nil, instancename=nil, nodeid=nil, noderole=nil, eventstatus=nil, starttime=nil, endtime=nil, subeventtype=nil, subeventname=nil, eventscope=nil)
+        def initialize(eventtype=nil, eventtaskid=nil, eventname=nil, eventimportance=nil, eventcontent=nil, instanceid=nil, instancename=nil, nodeid=nil, noderole=nil, eventstatus=nil, starttime=nil, endtime=nil, subeventtype=nil, subeventname=nil, eventscope=nil, expanddetail=nil)
           @EventType = eventtype
           @EventTaskId = eventtaskid
           @EventName = eventname
@@ -5076,6 +5137,7 @@ module TencentCloud
           @SubEventType = subeventtype
           @SubEventName = subeventname
           @EventScope = eventscope
+          @ExpandDetail = expanddetail
         end
 
         def deserialize(params)
@@ -5094,6 +5156,7 @@ module TencentCloud
           @SubEventType = params['SubEventType']
           @SubEventName = params['SubEventName']
           @EventScope = params['EventScope']
+          @ExpandDetail = params['ExpandDetail']
         end
       end
 
@@ -5448,58 +5511,74 @@ module TencentCloud
 
       # 索引元数据字段
       class IndexMetaField < TencentCloud::Common::AbstractModel
-        # @param IndexType: 索引类型
+        # @param IndexType: <p>索引类型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexType: String
-        # @param IndexName: 索引名
+        # @param IndexName: <p>索引名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexName: String
-        # @param IndexMetaJson: 索引元数据JSON
+        # @param IndexMetaJson: <p>索引元数据JSON</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexMetaJson: String
-        # @param IndexStatus: 索引状态
+        # @param IndexStatus: <p>索引状态</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexStatus: String
-        # @param IndexStorage: 索引存储大小，单位Byte
+        # @param IndexStorage: <p>索引存储大小，单位Byte</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexStorage: Integer
-        # @param IndexCreateTime: 索引创建时间
+        # @param IndexCreateTime: <p>索引创建时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexCreateTime: String
-        # @param BackingIndices: 后备索引
+        # @param BackingIndices: <p>后备索引</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackingIndices: Array
-        # @param ClusterId: 索引所属集群ID
+        # @param ClusterId: <p>索引所属集群ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterId: String
-        # @param ClusterName: 索引所属集群名
+        # @param ClusterName: <p>索引所属集群名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterName: String
-        # @param ClusterVersion: 索引所属集群版本
+        # @param ClusterVersion: <p>索引所属集群版本</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterVersion: String
-        # @param IndexPolicyField: 索引生命周期字段
+        # @param IndexPolicyField: <p>索引生命周期字段</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexPolicyField: :class:`Tencentcloud::Es.v20180416.models.IndexPolicyField`
-        # @param IndexOptionsField: 索引自治字段
+        # @param IndexOptionsField: <p>索引自治字段</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexOptionsField: :class:`Tencentcloud::Es.v20180416.models.IndexOptionsField`
-        # @param IndexSettingsField: 索引配置字段
+        # @param IndexSettingsField: <p>索引配置字段</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexSettingsField: :class:`Tencentcloud::Es.v20180416.models.IndexSettingsField`
-        # @param IndexAliasesField: 索引别名字段
+        # @param IndexAliasesField: <p>索引别名字段</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexAliasesField: Array
-        # @param AppId: 索引所属集群APP ID
+        # @param AppId: <p>索引所属集群APP ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AppId: Integer
-        # @param IndexDocs: 索引文档数
+        # @param IndexDocs: <p>索引文档数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IndexDocs: Integer
+        # @param FieldCount: <p>当前字段数</p>
+        # @type FieldCount: Integer
+        # @param FieldLimit: <p>当前上限</p>
+        # @type FieldLimit: Integer
+        # @param FieldUsageRatio: <p>使用率</p>
+        # @type FieldUsageRatio: String
+        # @param OccupiedShards: <p>占用分片数</p>
+        # @type OccupiedShards: Integer
+        # @param IndexOpenStatus: <p>索引开启状态</p>
+        # @type IndexOpenStatus: String
+        # @param FieldLimitHardCap: <p>索引字段数硬上限</p>
+        # @type FieldLimitHardCap: Integer
+        # @param FieldLimitMin: <p>上限可调整最小值</p>
+        # @type FieldLimitMin: Integer
+        # @param FieldAutoAdjustRemaining: <p>剩余调整次数</p>
+        # @type FieldAutoAdjustRemaining: Integer
 
-        attr_accessor :IndexType, :IndexName, :IndexMetaJson, :IndexStatus, :IndexStorage, :IndexCreateTime, :BackingIndices, :ClusterId, :ClusterName, :ClusterVersion, :IndexPolicyField, :IndexOptionsField, :IndexSettingsField, :IndexAliasesField, :AppId, :IndexDocs
+        attr_accessor :IndexType, :IndexName, :IndexMetaJson, :IndexStatus, :IndexStorage, :IndexCreateTime, :BackingIndices, :ClusterId, :ClusterName, :ClusterVersion, :IndexPolicyField, :IndexOptionsField, :IndexSettingsField, :IndexAliasesField, :AppId, :IndexDocs, :FieldCount, :FieldLimit, :FieldUsageRatio, :OccupiedShards, :IndexOpenStatus, :FieldLimitHardCap, :FieldLimitMin, :FieldAutoAdjustRemaining
 
-        def initialize(indextype=nil, indexname=nil, indexmetajson=nil, indexstatus=nil, indexstorage=nil, indexcreatetime=nil, backingindices=nil, clusterid=nil, clustername=nil, clusterversion=nil, indexpolicyfield=nil, indexoptionsfield=nil, indexsettingsfield=nil, indexaliasesfield=nil, appid=nil, indexdocs=nil)
+        def initialize(indextype=nil, indexname=nil, indexmetajson=nil, indexstatus=nil, indexstorage=nil, indexcreatetime=nil, backingindices=nil, clusterid=nil, clustername=nil, clusterversion=nil, indexpolicyfield=nil, indexoptionsfield=nil, indexsettingsfield=nil, indexaliasesfield=nil, appid=nil, indexdocs=nil, fieldcount=nil, fieldlimit=nil, fieldusageratio=nil, occupiedshards=nil, indexopenstatus=nil, fieldlimithardcap=nil, fieldlimitmin=nil, fieldautoadjustremaining=nil)
           @IndexType = indextype
           @IndexName = indexname
           @IndexMetaJson = indexmetajson
@@ -5516,6 +5595,14 @@ module TencentCloud
           @IndexAliasesField = indexaliasesfield
           @AppId = appid
           @IndexDocs = indexdocs
+          @FieldCount = fieldcount
+          @FieldLimit = fieldlimit
+          @FieldUsageRatio = fieldusageratio
+          @OccupiedShards = occupiedshards
+          @IndexOpenStatus = indexopenstatus
+          @FieldLimitHardCap = fieldlimithardcap
+          @FieldLimitMin = fieldlimitmin
+          @FieldAutoAdjustRemaining = fieldautoadjustremaining
         end
 
         def deserialize(params)
@@ -5551,6 +5638,14 @@ module TencentCloud
           @IndexAliasesField = params['IndexAliasesField']
           @AppId = params['AppId']
           @IndexDocs = params['IndexDocs']
+          @FieldCount = params['FieldCount']
+          @FieldLimit = params['FieldLimit']
+          @FieldUsageRatio = params['FieldUsageRatio']
+          @OccupiedShards = params['OccupiedShards']
+          @IndexOpenStatus = params['IndexOpenStatus']
+          @FieldLimitHardCap = params['FieldLimitHardCap']
+          @FieldLimitMin = params['FieldLimitMin']
+          @FieldAutoAdjustRemaining = params['FieldAutoAdjustRemaining']
         end
       end
 
@@ -5662,28 +5757,36 @@ module TencentCloud
 
       # 索引配置字段
       class IndexSettingsField < TencentCloud::Common::AbstractModel
-        # @param NumberOfShards: 索引主分片数
+        # @param NumberOfShards: <p>索引主分片数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumberOfShards: String
-        # @param NumberOfReplicas: 索引副本分片数
+        # @param NumberOfReplicas: <p>索引副本分片数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumberOfReplicas: String
-        # @param RefreshInterval: 索引刷新频率
+        # @param RefreshInterval: <p>索引刷新频率</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RefreshInterval: String
+        # @param Dynamic: <p>动态字段识别开关</p>
+        # @type Dynamic: String
+        # @param TotalFieldsLimit: <p>索引字段数上限</p>
+        # @type TotalFieldsLimit: String
 
-        attr_accessor :NumberOfShards, :NumberOfReplicas, :RefreshInterval
+        attr_accessor :NumberOfShards, :NumberOfReplicas, :RefreshInterval, :Dynamic, :TotalFieldsLimit
 
-        def initialize(numberofshards=nil, numberofreplicas=nil, refreshinterval=nil)
+        def initialize(numberofshards=nil, numberofreplicas=nil, refreshinterval=nil, dynamic=nil, totalfieldslimit=nil)
           @NumberOfShards = numberofshards
           @NumberOfReplicas = numberofreplicas
           @RefreshInterval = refreshinterval
+          @Dynamic = dynamic
+          @TotalFieldsLimit = totalfieldslimit
         end
 
         def deserialize(params)
           @NumberOfShards = params['NumberOfShards']
           @NumberOfReplicas = params['NumberOfReplicas']
           @RefreshInterval = params['RefreshInterval']
+          @Dynamic = params['Dynamic']
+          @TotalFieldsLimit = params['TotalFieldsLimit']
         end
       end
 
@@ -10397,124 +10500,106 @@ module TencentCloud
 
       # UpdateInstance请求参数结构体
       class UpdateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例ID
+        # @param InstanceId: <p>实例ID</p>
         # @type InstanceId: String
-        # @param InstanceName: 实例名称（1-50 个英文、汉字、数字、连接线-或下划线_）
+        # @param InstanceName: <p>实例名称（1-50 个英文、汉字、数字、连接线-或下划线_）</p>
         # @type InstanceName: String
-        # @param NodeNum: 已废弃请使用NodeInfoList
-        # 节点个数（2-50个）
+        # @param NodeNum: <p>已废弃请使用NodeInfoList<br>节点个数（2-50个）</p>
         # @type NodeNum: Integer
-        # @param EsConfig: ES配置项（JSON格式字符串）
+        # @param EsConfig: <p>ES配置项（JSON格式字符串）</p>
         # @type EsConfig: String
-        # @param Password: 默认用户elastic的密码（8到16位，至少包括两项（[a-z,A-Z],[0-9]和[-!@#$%&^*+=_:;,.?]的特殊符号）
+        # @param Password: <p>默认用户elastic的密码（8到16位，至少包括两项（[a-z,A-Z],[0-9]和[-!@#$%&amp;^*+=_:;,.?]的特殊符号）</p>
         # @type Password: String
-        # @param EsAcl: 可视化组件（Kibana、Cerebro）的公网访问策略
+        # @param EsAcl: <p>可视化组件（Kibana、Cerebro）的公网访问策略</p>
         # @type EsAcl: :class:`Tencentcloud::Es.v20180416.models.EsAcl`
-        # @param DiskSize: 已废弃请使用NodeInfoList
-        # 磁盘大小（单位GB）
+        # @param DiskSize: <p>已废弃请使用NodeInfoList<br>磁盘大小（单位GB）</p>
         # @type DiskSize: Integer
-        # @param NodeType: 已废弃请使用NodeInfoList
-        # 节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # @param NodeType: <p>已废弃请使用NodeInfoList<br>节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li></p>
         # @type NodeType: String
-        # @param MasterNodeNum: 已废弃请使用NodeInfoList
-        # 专用主节点个数（只支持3个或5个）
+        # @param MasterNodeNum: <p>已废弃请使用NodeInfoList<br>专用主节点个数（只支持3个或5个）</p>
         # @type MasterNodeNum: Integer
-        # @param MasterNodeType: 已废弃请使用NodeInfoList
-        # 专用主节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li>
+        # @param MasterNodeType: <p>已废弃请使用NodeInfoList<br>专用主节点规格<li>ES.S1.SMALL2：1核2G</li><li>ES.S1.MEDIUM4：2核4G</li><li>ES.S1.MEDIUM8：2核8G</li><li>ES.S1.LARGE16：4核16G</li><li>ES.S1.2XLARGE32：8核32G</li><li>ES.S1.4XLARGE32：16核32G</li><li>ES.S1.4XLARGE64：16核64G</li></p>
         # @type MasterNodeType: String
-        # @param MasterNodeDiskSize: 已废弃请使用NodeInfoList
-        # 专用主节点磁盘大小（单位GB系统默认配置为50GB,暂不支持自定义）
+        # @param MasterNodeDiskSize: <p>已废弃请使用NodeInfoList<br>专用主节点磁盘大小（单位GB系统默认配置为50GB,暂不支持自定义）</p>
         # @type MasterNodeDiskSize: Integer
-        # @param ForceRestart: 更新配置时是否强制重启<li>true强制重启</li><li>false不强制重启</li>当前仅更新EsConfig时需要设置，默认值为false
+        # @param ForceRestart: <p>更新配置时是否强制重启<li>true强制重启</li><li>false不强制重启</li>当前仅更新EsConfig时需要设置，默认值为false</p>
         # @type ForceRestart: Boolean
-        # @param CosBackup: COS自动备份信息
+        # @param CosBackup: <p>COS自动备份信息</p>
         # @type CosBackup: :class:`Tencentcloud::Es.v20180416.models.CosBackup`
-        # @param NodeInfoList: 节点信息列表，可以只传递要更新的节点及其对应的规格信息。支持的操作包括<li>修改一种节点的个数</li><li>修改一种节点的节点规格及磁盘大小</li><li>增加一种节点类型（需要同时指定该节点的类型，个数，规格，磁盘等信息）</li>上述操作一次只能进行一种，且磁盘类型不支持修改
+        # @param NodeInfoList: <p>节点信息列表，可以只传递要更新的节点及其对应的规格信息。支持的操作包括<li>修改一种节点的个数</li><li>修改一种节点的节点规格及磁盘大小</li><li>增加一种节点类型（需要同时指定该节点的类型，个数，规格，磁盘等信息）</li>上述操作一次只能进行一种，且磁盘类型不支持修改</p>
         # @type NodeInfoList: Array
-        # @param PublicAccess: ES集群公网访问状态
-        # OPEN 开启
-        # CLOSE 关闭
+        # @param PublicAccess: <p>ES集群公网访问状态<br>OPEN 开启<br>CLOSE 关闭</p>
         # @type PublicAccess: String
-        # @param EsPublicAcl: 公网访问控制列表
+        # @param EsPublicAcl: <p>公网访问控制列表</p>
         # @type EsPublicAcl: :class:`Tencentcloud::Es.v20180416.models.EsPublicAcl`
-        # @param KibanaPublicAccess: Kibana公网访问状态
-        # OPEN 开启
-        # CLOSE 关闭
+        # @param KibanaPublicAccess: <p>Kibana公网访问状态<br>OPEN 开启<br>CLOSE 关闭</p>
         # @type KibanaPublicAccess: String
-        # @param KibanaPrivateAccess: Kibana内网访问状态
-        # OPEN 开启
-        # CLOSE 关闭
+        # @param KibanaPrivateAccess: <p>Kibana内网访问状态<br>OPEN 开启<br>CLOSE 关闭</p>
         # @type KibanaPrivateAccess: String
-        # @param BasicSecurityType: ES 6.8及以上版本基础版开启或关闭用户认证
+        # @param BasicSecurityType: <p>ES 6.8及以上版本基础版开启或关闭用户认证</p>
         # @type BasicSecurityType: Integer
-        # @param KibanaPrivatePort: Kibana内网端口
+        # @param KibanaPrivatePort: <p>Kibana内网端口</p>
         # @type KibanaPrivatePort: Integer
-        # @param ScaleType: 0: 蓝绿变更方式扩容，集群不重启 （默认） 1: 磁盘解挂载扩容，集群滚动重启
+        # @param ScaleType: <p>0: 蓝绿变更方式扩容，集群不重启 （默认） 1: 磁盘解挂载扩容，集群滚动重启</p>
         # @type ScaleType: Integer
-        # @param MultiZoneInfo: 多可用区部署
+        # @param MultiZoneInfo: <p>多可用区部署</p>
         # @type MultiZoneInfo: Array
-        # @param SceneType: 场景化模板类型 -1：不启用 1：通用 2：日志 3：搜索
+        # @param SceneType: <p>场景化模板类型 -1：不启用 1：通用 2：日志 3：搜索</p>
         # @type SceneType: Integer
-        # @param KibanaConfig: Kibana配置项（JSON格式字符串）
+        # @param KibanaConfig: <p>Kibana配置项（JSON格式字符串）</p>
         # @type KibanaConfig: String
-        # @param WebNodeTypeInfo: 可视化节点配置
+        # @param WebNodeTypeInfo: <p>可视化节点配置</p>
         # @type WebNodeTypeInfo: :class:`Tencentcloud::Es.v20180416.models.WebNodeTypeInfo`
-        # @param SwitchPrivateLink: 切换到新网络架构
+        # @param SwitchPrivateLink: <p>切换到新网络架构</p>
         # @type SwitchPrivateLink: String
-        # @param EnableCerebro: 启用Cerebro
+        # @param EnableCerebro: <p>启用Cerebro</p>
         # @type EnableCerebro: Boolean
-        # @param CerebroPublicAccess: Cerebro公网访问状态
-        # OPEN 开启
-        # CLOSE 关闭
+        # @param CerebroPublicAccess: <p>Cerebro公网访问状态<br>OPEN 开启<br>CLOSE 关闭</p>
         # @type CerebroPublicAccess: String
-        # @param CerebroPrivateAccess: Cerebro内网访问状态
-        # OPEN 开启
-        # CLOSE 关闭
+        # @param CerebroPrivateAccess: <p>Cerebro内网访问状态<br>OPEN 开启<br>CLOSE 关闭</p>
         # @type CerebroPrivateAccess: String
-        # @param EsConfigSet: 新增或修改的配置组信息
+        # @param EsConfigSet: <p>新增或修改的配置组信息</p>
         # @type EsConfigSet: :class:`Tencentcloud::Es.v20180416.models.EsConfigSetInfo`
-        # @param OperationDuration: 可维护时间段
+        # @param OperationDuration: <p>可维护时间段</p>
         # @type OperationDuration: :class:`Tencentcloud::Es.v20180416.models.OperationDurationUpdated`
-        # @param KibanaAlteringPublicAccess: 是否开启Alerting 外网告警输出：
-        # OPEN 开启
-        # CLOSE 关闭
+        # @param KibanaAlteringPublicAccess: <p>是否开启Alerting 外网告警输出：<br>OPEN 开启<br>CLOSE 关闭</p>
         # @type KibanaAlteringPublicAccess: String
-        # @param KibanaPrivateDomain: kibana内网自定义域名
+        # @param KibanaPrivateDomain: <p>kibana内网自定义域名</p>
         # @type KibanaPrivateDomain: String
-        # @param CerebroPrivateDomain: cerebro内网自定义域名
+        # @param CerebroPrivateDomain: <p>cerebro内网自定义域名</p>
         # @type CerebroPrivateDomain: String
-        # @param Protocol: 变更为https集群，默认是http
+        # @param Protocol: <p>变更为https集群，默认是http</p>
         # @type Protocol: String
-        # @param OutboundPublicAcls: 节点出站访问详细信息
+        # @param OutboundPublicAcls: <p>节点出站访问详细信息</p>
         # @type OutboundPublicAcls: Array
-        # @param OutboundPublicAccess: 节点出站访问操作
-        # OPEN 开启
-        # CLOSE 关闭
+        # @param OutboundPublicAccess: <p>节点出站访问操作<br>OPEN 开启<br>CLOSE 关闭</p>
         # @type OutboundPublicAccess: String
-        # @param CvmDelayOnlineTime: cvm延迟上架参数
+        # @param CvmDelayOnlineTime: <p>cvm延迟上架参数</p>
         # @type CvmDelayOnlineTime: Integer
-        # @param ShardAllocationConcurrents: 分片迁移并发数
+        # @param ShardAllocationConcurrents: <p>分片迁移并发数</p>
         # @type ShardAllocationConcurrents: Integer
-        # @param ShardAllocationBytes: 分片迁移并发速度
+        # @param ShardAllocationBytes: <p>分片迁移并发速度</p>
         # @type ShardAllocationBytes: Integer
-        # @param ReadWriteMode: 读写分离模式：-1-不开启，1-本地读写分离，2-远端读写分离
+        # @param ReadWriteMode: <p>读写分离模式：-1-不开启，1-本地读写分离，2-远端读写分离</p>
         # @type ReadWriteMode: Integer
-        # @param EnableScheduleRecoverGroup: 是否开启置放群组异步任务
+        # @param EnableScheduleRecoverGroup: <p>是否开启置放群组异步任务</p>
         # @type EnableScheduleRecoverGroup: Boolean
-        # @param EnableScheduleOperationDuration: 置放群组异步任务可维护时间段
+        # @param EnableScheduleOperationDuration: <p>置放群组异步任务可维护时间段</p>
         # @type EnableScheduleOperationDuration: :class:`Tencentcloud::Es.v20180416.models.EnableScheduleOperationDuration`
-        # @param EnableDestroyProtection: 开启集群保护：OPEN-开启，CLOSE-关闭
+        # @param EnableDestroyProtection: <p>开启集群保护：OPEN-开启，CLOSE-关闭</p>
         # @type EnableDestroyProtection: String
-        # @param AutoScaleDiskInfoList: 自动扩盘参数
+        # @param AutoScaleDiskInfoList: <p>自动扩盘参数</p>
         # @type AutoScaleDiskInfoList: Array
-        # @param AutoScaleDiskDeleteNodeTypeList: 自动扩盘删除参数
+        # @param AutoScaleDiskDeleteNodeTypeList: <p>自动扩盘删除参数</p>
         # @type AutoScaleDiskDeleteNodeTypeList: Array
-        # @param OtherConfig: 其他附加配置，jvm或者yml
+        # @param OtherConfig: <p>其他附加配置，jvm或者yml</p>
         # @type OtherConfig: :class:`Tencentcloud::Es.v20180416.models.OtherConfig`
+        # @param WaitGreen: <p>滚动升降配时是否等待集群恢复Green再滚动下一个节点</p>
+        # @type WaitGreen: String
 
-        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess, :KibanaPrivateDomain, :CerebroPrivateDomain, :Protocol, :OutboundPublicAcls, :OutboundPublicAccess, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :EnableDestroyProtection, :AutoScaleDiskInfoList, :AutoScaleDiskDeleteNodeTypeList, :OtherConfig
+        attr_accessor :InstanceId, :InstanceName, :NodeNum, :EsConfig, :Password, :EsAcl, :DiskSize, :NodeType, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ForceRestart, :CosBackup, :NodeInfoList, :PublicAccess, :EsPublicAcl, :KibanaPublicAccess, :KibanaPrivateAccess, :BasicSecurityType, :KibanaPrivatePort, :ScaleType, :MultiZoneInfo, :SceneType, :KibanaConfig, :WebNodeTypeInfo, :SwitchPrivateLink, :EnableCerebro, :CerebroPublicAccess, :CerebroPrivateAccess, :EsConfigSet, :OperationDuration, :KibanaAlteringPublicAccess, :KibanaPrivateDomain, :CerebroPrivateDomain, :Protocol, :OutboundPublicAcls, :OutboundPublicAccess, :CvmDelayOnlineTime, :ShardAllocationConcurrents, :ShardAllocationBytes, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :EnableDestroyProtection, :AutoScaleDiskInfoList, :AutoScaleDiskDeleteNodeTypeList, :OtherConfig, :WaitGreen
 
-        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil, kibanaprivatedomain=nil, cerebroprivatedomain=nil, protocol=nil, outboundpublicacls=nil, outboundpublicaccess=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, enabledestroyprotection=nil, autoscalediskinfolist=nil, autoscalediskdeletenodetypelist=nil, otherconfig=nil)
+        def initialize(instanceid=nil, instancename=nil, nodenum=nil, esconfig=nil, password=nil, esacl=nil, disksize=nil, nodetype=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, forcerestart=nil, cosbackup=nil, nodeinfolist=nil, publicaccess=nil, espublicacl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, basicsecuritytype=nil, kibanaprivateport=nil, scaletype=nil, multizoneinfo=nil, scenetype=nil, kibanaconfig=nil, webnodetypeinfo=nil, switchprivatelink=nil, enablecerebro=nil, cerebropublicaccess=nil, cerebroprivateaccess=nil, esconfigset=nil, operationduration=nil, kibanaalteringpublicaccess=nil, kibanaprivatedomain=nil, cerebroprivatedomain=nil, protocol=nil, outboundpublicacls=nil, outboundpublicaccess=nil, cvmdelayonlinetime=nil, shardallocationconcurrents=nil, shardallocationbytes=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, enabledestroyprotection=nil, autoscalediskinfolist=nil, autoscalediskdeletenodetypelist=nil, otherconfig=nil, waitgreen=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @NodeNum = nodenum
@@ -10562,6 +10647,7 @@ module TencentCloud
           @AutoScaleDiskInfoList = autoscalediskinfolist
           @AutoScaleDiskDeleteNodeTypeList = autoscalediskdeletenodetypelist
           @OtherConfig = otherconfig
+          @WaitGreen = waitgreen
         end
 
         def deserialize(params)
@@ -10664,12 +10750,13 @@ module TencentCloud
             @OtherConfig = OtherConfig.new
             @OtherConfig.deserialize(params['OtherConfig'])
           end
+          @WaitGreen = params['WaitGreen']
         end
       end
 
       # UpdateInstance返回参数结构体
       class UpdateInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param DealName: 订单号
+        # @param DealName: <p>订单号</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealName: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。

@@ -463,6 +463,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 调用该接口，用于创建数字人直播间。
+
+        # @param request: Request instance for CreateAvatarEditingLive.
+        # @type request: :class:`Tencentcloud::live::V20180801::CreateAvatarEditingLiveRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::CreateAvatarEditingLiveResponse`
+        def CreateAvatarEditingLive(request)
+          body = send_request('CreateAvatarEditingLive', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAvatarEditingLiveResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用来创建新的导播台
 
         # @param request: Request instance for CreateCaster.
@@ -2434,6 +2458,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeAuditTemplatesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，查询数字人直播间信息列表。
+
+        # @param request: Request instance for DescribeAvatarEditingLive.
+        # @type request: :class:`Tencentcloud::live::V20180801::DescribeAvatarEditingLiveRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::DescribeAvatarEditingLiveResponse`
+        def DescribeAvatarEditingLive(request)
+          body = send_request('DescribeAvatarEditingLive', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAvatarEditingLiveResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -6143,6 +6191,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 调用该接口，用于停止数字人直播间。
+
+        # @param request: Request instance for StopAvatarEditingLive.
+        # @type request: :class:`Tencentcloud::live::V20180801::StopAvatarEditingLiveRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::StopAvatarEditingLiveResponse`
+        def StopAvatarEditingLive(request)
+          body = send_request('StopAvatarEditingLive', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopAvatarEditingLiveResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用来停止导播台的主监输出。
         # 停止主监后，对应的推流到腾讯云直播源站和推流到其他第三方平台均将会停止。
 
@@ -6322,6 +6394,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopScreenshotTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 调用该接口，用于临时驱动数字人播报。
+
+        # @param request: Request instance for SwitchAvatarEditingScene.
+        # @type request: :class:`Tencentcloud::live::V20180801::SwitchAvatarEditingSceneRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::SwitchAvatarEditingSceneResponse`
+        def SwitchAvatarEditingScene(request)
+          body = send_request('SwitchAvatarEditingScene', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SwitchAvatarEditingSceneResponse.new
             model.deserialize(response['Response'])
             model
           else

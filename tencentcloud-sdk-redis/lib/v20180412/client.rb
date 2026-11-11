@@ -1421,6 +1421,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（DescribeModules）用于查询实例的扩展模块信息，包括模块的支持状态（是否支持）、启用状态（是否已启用）等信息。
+
+        # @param request: Request instance for DescribeModules.
+        # @type request: :class:`Tencentcloud::redis::V20180412::DescribeModulesRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::DescribeModulesResponse`
+        def DescribeModules(request)
+          body = send_request('DescribeModules', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeModulesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（DescribeParamTemplateInfo）用于查询参数模板详情。
 
         # @param request: Request instance for DescribeParamTemplateInfo.
@@ -2503,6 +2527,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（ModifyModule）用于修改实例扩展模块的启用状态。
+
+        # @param request: Request instance for ModifyModule.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ModifyModuleRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ModifyModuleResponse`
+        def ModifyModule(request)
+          body = send_request('ModifyModule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyModuleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 本接口（ModifyNetworkConfig）用于修改实例网络配置。
 
         # @param request: Request instance for ModifyNetworkConfig.
@@ -2561,6 +2609,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyReplicationGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifySSLEncryptionMode）用于更改SSL加密模式
+
+        # @param request: Request instance for ModifySSLEncryptionMode.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ModifySSLEncryptionModeRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ModifySSLEncryptionModeResponse`
+        def ModifySSLEncryptionMode(request)
+          body = send_request('ModifySSLEncryptionMode', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifySSLEncryptionModeResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyValkeyModule）用于修改Valkey实例扩展模块的启用状态。
+
+        # @param request: Request instance for ModifyValkeyModule.
+        # @type request: :class:`Tencentcloud::redis::V20180412::ModifyValkeyModuleRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::ModifyValkeyModuleResponse`
+        def ModifyValkeyModule(request)
+          body = send_request('ModifyValkeyModule', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyValkeyModuleResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -2849,6 +2945,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SwitchProxyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（UpdateSSLCert）用于更新SSL密钥信息。
+
+        # @param request: Request instance for UpdateSSLCert.
+        # @type request: :class:`Tencentcloud::redis::V20180412::UpdateSSLCertRequest`
+        # @rtype: :class:`Tencentcloud::redis::V20180412::UpdateSSLCertResponse`
+        def UpdateSSLCert(request)
+          body = send_request('UpdateSSLCert', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdateSSLCertResponse.new
             model.deserialize(response['Response'])
             model
           else

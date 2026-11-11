@@ -339,13 +339,13 @@ module TencentCloud
 
       # chc部署网络minos引导配置。
       class ChcDeployExtraConfig < TencentCloud::Common::AbstractModel
-        # @param MiniOsType: minos类型。是使用腾讯云的minios，还是客户自己的minios。
+        # @param MiniOsType: <p>MiniOS类型。是使用腾讯云的MiniOS，还是客户私有的MiniOS。</p><p>枚举值：</p><ul><li>public： 腾讯云的MiniOS。</li><li>private： 客户私有的MiniOS。</li></ul>
         # @type MiniOsType: String
-        # @param BootType: 服务器的架构和启动方式。取值为x86_legacy, arm_uefi。
+        # @param BootType: <p>服务器的架构和启动方式。</p><p>枚举值：</p><ul><li>x86_legacy： X86架构、Legacy启动模式。</li><li>x86_uefi： X86架构、UEFI启动模式。</li><li>arm_uefi： ARM架构，UEFI启动模式。</li></ul>
         # @type BootType: String
-        # @param BootFile: PXE使用的引导文件。默认为pxelinux.0。
+        # @param BootFile: <p>PXE使用的引导文件。默认为pxelinux.0。</p>
         # @type BootFile: String
-        # @param NextServerAddress: tftp服务器的ip地址。
+        # @param NextServerAddress: <p>TFTP服务器的IP地址。</p>
         # @type NextServerAddress: String
 
         attr_accessor :MiniOsType, :BootType, :BootFile, :NextServerAddress
@@ -582,28 +582,31 @@ module TencentCloud
 
       # ConfigureChcAssistVpc请求参数结构体
       class ConfigureChcAssistVpcRequest < TencentCloud::Common::AbstractModel
-        # @param ChcIds: CHC物理服务器的实例Id。
+        # @param ChcIds: <p>CHC物理服务器ID。</p>
         # @type ChcIds: Array
-        # @param BmcVirtualPrivateCloud: 带外网络信息。
+        # @param BmcVirtualPrivateCloud: <p>带外网络信息。</p>
         # @type BmcVirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
-        # @param BmcSecurityGroupIds: 带外网络的安全组列表
+        # @param BmcSecurityGroupIds: <p>带外网络的安全组列表。</p>
         # @type BmcSecurityGroupIds: Array
-        # @param DeployVirtualPrivateCloud: 部署网络信息。
+        # @param DeployVirtualPrivateCloud: <p>部署网络信息。</p>
         # @type DeployVirtualPrivateCloud: :class:`Tencentcloud::Cvm.v20170312.models.VirtualPrivateCloud`
-        # @param DeploySecurityGroupIds: 部署网络的安全组列表
+        # @param DeploySecurityGroupIds: <p>部署网络的安全组列表。</p>
         # @type DeploySecurityGroupIds: Array
-        # @param ChcDeployExtraConfig: 部署网络的附加参数，用于指定minios类型、bios引导模式等
+        # @param ChcDeployExtraConfig: <p>部署网络的附加参数，用于指定DHCP选项、bios引导模式等配置。</p>
         # @type ChcDeployExtraConfig: :class:`Tencentcloud::Cvm.v20170312.models.ChcDeployExtraConfig`
+        # @param SkipBmcCheck: <p>是否跳过带外检查。</p><p>默认值：false</p>
+        # @type SkipBmcCheck: Boolean
 
-        attr_accessor :ChcIds, :BmcVirtualPrivateCloud, :BmcSecurityGroupIds, :DeployVirtualPrivateCloud, :DeploySecurityGroupIds, :ChcDeployExtraConfig
+        attr_accessor :ChcIds, :BmcVirtualPrivateCloud, :BmcSecurityGroupIds, :DeployVirtualPrivateCloud, :DeploySecurityGroupIds, :ChcDeployExtraConfig, :SkipBmcCheck
 
-        def initialize(chcids=nil, bmcvirtualprivatecloud=nil, bmcsecuritygroupids=nil, deployvirtualprivatecloud=nil, deploysecuritygroupids=nil, chcdeployextraconfig=nil)
+        def initialize(chcids=nil, bmcvirtualprivatecloud=nil, bmcsecuritygroupids=nil, deployvirtualprivatecloud=nil, deploysecuritygroupids=nil, chcdeployextraconfig=nil, skipbmccheck=nil)
           @ChcIds = chcids
           @BmcVirtualPrivateCloud = bmcvirtualprivatecloud
           @BmcSecurityGroupIds = bmcsecuritygroupids
           @DeployVirtualPrivateCloud = deployvirtualprivatecloud
           @DeploySecurityGroupIds = deploysecuritygroupids
           @ChcDeployExtraConfig = chcdeployextraconfig
+          @SkipBmcCheck = skipbmccheck
         end
 
         def deserialize(params)
@@ -622,6 +625,7 @@ module TencentCloud
             @ChcDeployExtraConfig = ChcDeployExtraConfig.new
             @ChcDeployExtraConfig.deserialize(params['ChcDeployExtraConfig'])
           end
+          @SkipBmcCheck = params['SkipBmcCheck']
         end
       end
 

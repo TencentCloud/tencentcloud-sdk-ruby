@@ -4270,6 +4270,79 @@ module TencentCloud
         end
       end
 
+      # GetSessionStatus请求参数结构体
+      class GetSessionStatusRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间 ID</p>
+        # @type WorkspaceId: String
+        # @param Items: <p>待查询的会话列表（支持传多个，传一条即单条查询）</p>
+        # @type Items: Array
+
+        attr_accessor :WorkspaceId, :Items
+
+        def initialize(workspaceid=nil, items=nil)
+          @WorkspaceId = workspaceid
+          @Items = items
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              sessionstatusqueryitem_tmp = SessionStatusQueryItem.new
+              sessionstatusqueryitem_tmp.deserialize(i)
+              @Items << sessionstatusqueryitem_tmp
+            end
+          end
+        end
+      end
+
+      # GetSessionStatus返回参数结构体
+      class GetSessionStatusResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>返回结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.GetSessionStatusRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = GetSessionStatusRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询会话任务状态响应
+      class GetSessionStatusRsp < TencentCloud::Common::AbstractModel
+        # @param Items: 结果列表，与请求 Items 顺序一致
+        # @type Items: Array
+
+        attr_accessor :Items
+
+        def initialize(items=nil)
+          @Items = items
+        end
+
+        def deserialize(params)
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              sessionstatusitem_tmp = SessionStatusItem.new
+              sessionstatusitem_tmp.deserialize(i)
+              @Items << sessionstatusitem_tmp
+            end
+          end
+        end
+      end
+
       # GetTable请求参数结构体
       class GetTableRequest < TencentCloud::Common::AbstractModel
         # @param CatalogName: <p>数据目录名</p>
@@ -9080,6 +9153,90 @@ module TencentCloud
         end
       end
 
+      # ReadProductJson请求参数结构体
+      class ReadProductJsonRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间ID</p>
+        # @type WorkspaceId: String
+        # @param RuntimeId: <p>沙盒runtimeId</p>
+        # @type RuntimeId: String
+        # @param SessionId: <p>沙盒sessionId</p>
+        # @type SessionId: String
+
+        attr_accessor :WorkspaceId, :RuntimeId, :SessionId
+
+        def initialize(workspaceid=nil, runtimeid=nil, sessionid=nil)
+          @WorkspaceId = workspaceid
+          @RuntimeId = runtimeid
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          @RuntimeId = params['RuntimeId']
+          @SessionId = params['SessionId']
+        end
+      end
+
+      # ReadProductJson返回参数结构体
+      class ReadProductJsonResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>返回对象实体</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.ReadProductJsonRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ReadProductJsonRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # databuddy 产物json 响应
+      class ReadProductJsonRsp < TencentCloud::Common::AbstractModel
+        # @param Path: <p>文件路径</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Path: String
+        # @param Size: <p>文件大小</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Size: String
+        # @param Content: <p>文件内容</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Content: String
+        # @param ResultCode: <p>请求状态码 0-成功，其他-异常</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ResultCode: Integer
+        # @param Message: <p>返回结果提示信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Message: String
+
+        attr_accessor :Path, :Size, :Content, :ResultCode, :Message
+
+        def initialize(path=nil, size=nil, content=nil, resultcode=nil, message=nil)
+          @Path = path
+          @Size = size
+          @Content = content
+          @ResultCode = resultcode
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Path = params['Path']
+          @Size = params['Size']
+          @Content = params['Content']
+          @ResultCode = params['ResultCode']
+          @Message = params['Message']
+        end
+      end
+
       # RemoveConsoleUsers请求参数结构体
       class RemoveConsoleUsersRequest < TencentCloud::Common::AbstractModel
         # @param UserUins: <p>必填，待移除的用户 UIN 列表，单次最多10个</p>
@@ -10030,6 +10187,50 @@ module TencentCloud
           end
           @Aliases = params['Aliases']
           @CatalogSource = params['CatalogSource']
+        end
+      end
+
+      # 会话任务状态单条结果
+      class SessionStatusItem < TencentCloud::Common::AbstractModel
+        # @param SessionId: 对话 Session ID
+        # @type SessionId: String
+        # @param RuntimeId: 沙箱 Runtime ID
+        # @type RuntimeId: String
+        # @param TaskStatus: 任务运行状态: planning/working/pending/completed/failed
+        # @type TaskStatus: String
+
+        attr_accessor :SessionId, :RuntimeId, :TaskStatus
+
+        def initialize(sessionid=nil, runtimeid=nil, taskstatus=nil)
+          @SessionId = sessionid
+          @RuntimeId = runtimeid
+          @TaskStatus = taskstatus
+        end
+
+        def deserialize(params)
+          @SessionId = params['SessionId']
+          @RuntimeId = params['RuntimeId']
+          @TaskStatus = params['TaskStatus']
+        end
+      end
+
+      # 查询会话任务状态的单条查询项
+      class SessionStatusQueryItem < TencentCloud::Common::AbstractModel
+        # @param RuntimeId: 沙箱 Runtime ID
+        # @type RuntimeId: String
+        # @param SessionId: 对话 Session ID
+        # @type SessionId: String
+
+        attr_accessor :RuntimeId, :SessionId
+
+        def initialize(runtimeid=nil, sessionid=nil)
+          @RuntimeId = runtimeid
+          @SessionId = sessionid
+        end
+
+        def deserialize(params)
+          @RuntimeId = params['RuntimeId']
+          @SessionId = params['SessionId']
         end
       end
 

@@ -136,8 +136,8 @@ module TencentCloud
 
         attr_accessor :Type, :ApplicationVersionId, :Name, :Description, :Entrypoint, :CreateTime, :CreatorName, :CreatorId, :GitInfo, :GitSource, :CosSource
         extend Gem::Deprecate
-        deprecate :GitInfo, :none, 2026, 8
-        deprecate :GitInfo=, :none, 2026, 8
+        deprecate :GitInfo, :none, 2026, 11
+        deprecate :GitInfo=, :none, 2026, 11
 
         def initialize(type=nil, applicationversionid=nil, name=nil, description=nil, entrypoint=nil, createtime=nil, creatorname=nil, creatorid=nil, gitinfo=nil, gitsource=nil, cossource=nil)
           @Type = type
@@ -2011,38 +2011,44 @@ module TencentCloud
 
       # HPC集群
       class HPCCluster < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # @type Name: String
-        # @param Description: 描述
+        # @param Description: <p>描述</p>
         # @type Description: String
-        # @param Status: 状态
+        # @param Status: <p>状态</p>
         # @type Status: String
-        # @param Scheduler: 调度器
+        # @param Scheduler: <p>调度器</p>
         # @type Scheduler: String
-        # @param VPCId: VPC ID
+        # @param VPCId: <p>VPC ID</p>
         # @type VPCId: String
-        # @param NodeCount: 节点数量
+        # @param NodeCount: <p>节点数量</p>
         # @type NodeCount: Integer
-        # @param Tags: 标签
+        # @param Tags: <p>标签</p>
         # @type Tags: Array
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param Type: 集群类型
+        # @param Type: <p>集群类型</p>
         # @type Type: String
-        # @param OsName: 系统名称
+        # @param OsName: <p>系统名称</p>
         # @type OsName: String
-        # @param SchedulerVersion: 调度器版本
+        # @param SchedulerVersion: <p>调度器版本</p>
         # @type SchedulerVersion: String
-        # @param VPCCIDRBlock: 集群VPC CIDR
+        # @param VPCCIDRBlock: <p>集群VPC CIDR</p>
         # @type VPCCIDRBlock: String
-        # @param ConfirmDeadline: 集群确认交付截止日期
+        # @param ConfirmDeadline: <p>集群确认交付截止日期</p>
         # @type ConfirmDeadline: String
+        # @param StatusReason: <p>状态原因</p>
+        # @type StatusReason: String
+        # @param IsolateTime: <p>隔离时间</p>
+        # @type IsolateTime: String
+        # @param Message: <p>消息</p>
+        # @type Message: String
 
-        attr_accessor :ClusterId, :Name, :Description, :Status, :Scheduler, :VPCId, :NodeCount, :Tags, :CreateTime, :Type, :OsName, :SchedulerVersion, :VPCCIDRBlock, :ConfirmDeadline
+        attr_accessor :ClusterId, :Name, :Description, :Status, :Scheduler, :VPCId, :NodeCount, :Tags, :CreateTime, :Type, :OsName, :SchedulerVersion, :VPCCIDRBlock, :ConfirmDeadline, :StatusReason, :IsolateTime, :Message
 
-        def initialize(clusterid=nil, name=nil, description=nil, status=nil, scheduler=nil, vpcid=nil, nodecount=nil, tags=nil, createtime=nil, type=nil, osname=nil, schedulerversion=nil, vpccidrblock=nil, confirmdeadline=nil)
+        def initialize(clusterid=nil, name=nil, description=nil, status=nil, scheduler=nil, vpcid=nil, nodecount=nil, tags=nil, createtime=nil, type=nil, osname=nil, schedulerversion=nil, vpccidrblock=nil, confirmdeadline=nil, statusreason=nil, isolatetime=nil, message=nil)
           @ClusterId = clusterid
           @Name = name
           @Description = description
@@ -2057,6 +2063,9 @@ module TencentCloud
           @SchedulerVersion = schedulerversion
           @VPCCIDRBlock = vpccidrblock
           @ConfirmDeadline = confirmdeadline
+          @StatusReason = statusreason
+          @IsolateTime = isolatetime
+          @Message = message
         end
 
         def deserialize(params)
@@ -2081,6 +2090,9 @@ module TencentCloud
           @SchedulerVersion = params['SchedulerVersion']
           @VPCCIDRBlock = params['VPCCIDRBlock']
           @ConfirmDeadline = params['ConfirmDeadline']
+          @StatusReason = params['StatusReason']
+          @IsolateTime = params['IsolateTime']
+          @Message = params['Message']
         end
       end
 
@@ -2259,10 +2271,12 @@ module TencentCloud
         # @type QueueName: String
         # @param Status: <p>节点状态。取值范围：<br>IDLE 空闲<br>DOWN 节点下线<br>MIXED 节点部分使用<br>ALLOC  节点完全分配<br>DRAIN 排空，不接受新任务</p>
         # @type Status: String
+        # @param IsExistingNode: <p>是否存量节点</p>
+        # @type IsExistingNode: Boolean
 
-        attr_accessor :NodeId, :QueueId, :ClusterId, :Role, :Type, :Zone, :ImageId, :Instance, :Tags, :Name, :QueueName, :Status
+        attr_accessor :NodeId, :QueueId, :ClusterId, :Role, :Type, :Zone, :ImageId, :Instance, :Tags, :Name, :QueueName, :Status, :IsExistingNode
 
-        def initialize(nodeid=nil, queueid=nil, clusterid=nil, role=nil, type=nil, zone=nil, imageid=nil, instance=nil, tags=nil, name=nil, queuename=nil, status=nil)
+        def initialize(nodeid=nil, queueid=nil, clusterid=nil, role=nil, type=nil, zone=nil, imageid=nil, instance=nil, tags=nil, name=nil, queuename=nil, status=nil, isexistingnode=nil)
           @NodeId = nodeid
           @QueueId = queueid
           @ClusterId = clusterid
@@ -2275,6 +2289,7 @@ module TencentCloud
           @Name = name
           @QueueName = queuename
           @Status = status
+          @IsExistingNode = isexistingnode
         end
 
         def deserialize(params)
@@ -2300,6 +2315,7 @@ module TencentCloud
           @Name = params['Name']
           @QueueName = params['QueueName']
           @Status = params['Status']
+          @IsExistingNode = params['IsExistingNode']
         end
       end
 
@@ -2904,8 +2920,8 @@ module TencentCloud
 
         attr_accessor :RunUuid, :ProjectId, :ApplicationId, :RunGroupId, :EnvironmentId, :UserDefinedId, :TableId, :TableRowUuid, :Status, :Input, :Option, :ExecutionTime, :Cache, :ErrorMessage, :CreateTime, :UpdateTime
         extend Gem::Deprecate
-        deprecate :Option, :none, 2026, 8
-        deprecate :Option=, :none, 2026, 8
+        deprecate :Option, :none, 2026, 11
+        deprecate :Option=, :none, 2026, 11
 
         def initialize(runuuid=nil, projectid=nil, applicationid=nil, rungroupid=nil, environmentid=nil, userdefinedid=nil, tableid=nil, tablerowuuid=nil, status=nil, input=nil, option=nil, executiontime=nil, cache=nil, errormessage=nil, createtime=nil, updatetime=nil)
           @RunUuid = runuuid

@@ -6812,6 +6812,99 @@ module TencentCloud
         end
       end
 
+      # DescribeSqlExplainV2请求参数结构体
+      class DescribeSqlExplainV2Request < TencentCloud::Common::AbstractModel
+        # @param Product: <p>服务产品类型。取值：mysql（云数据库 MySQL）、cynosdb（TDSQL-C MySQL 版）、dcdb（TDSQL MySQL 版）、mariadb（TDSQL MariaDB 版）。</p>
+        # @type Product: String
+        # @param SqlText: <p>待分析的 SQL 语句。仅支持单条 SELECT 语句；若以 EXPLAIN 开头会自动剥离 EXPLAIN 前缀后分析。最大 4096 字符。</p>
+        # @type SqlText: String
+        # @param InstanceId: <p>实例 ID。MySQL: cdb-xxxxxxx，TDSQL-C: cynosdbmysql-ins-xxxxxxx，MariaDB: tdsql-xxxxx，TDSQL-MySQL： '集群id&amp;分片id',如果TDSQL-MySQL数据库类型同时传入了集群id则instanceId字段只需要传入分片id。最大 64 字符。与 ClusterId 至少需传入其一。</p>
+        # @type InstanceId: String
+        # @param Schema: <p>数据库名。可选；为空时按当前 SQL 上下文执行。最大 64 字符。</p>
+        # @type Schema: String
+        # @param ClusterId: <p>集群 ID。仅 TDSQL-MySQL时使用，与 InstanceId 至少需传入其一。最大 64 字符。</p>
+        # @type ClusterId: String
+        # @param Visual: <p>是否输出可视化执行树</p><p>默认值：false</p>
+        # @type Visual: Boolean
+
+        attr_accessor :Product, :SqlText, :InstanceId, :Schema, :ClusterId, :Visual
+
+        def initialize(product=nil, sqltext=nil, instanceid=nil, schema=nil, clusterid=nil, visual=nil)
+          @Product = product
+          @SqlText = sqltext
+          @InstanceId = instanceid
+          @Schema = schema
+          @ClusterId = clusterid
+          @Visual = visual
+        end
+
+        def deserialize(params)
+          @Product = params['Product']
+          @SqlText = params['SqlText']
+          @InstanceId = params['InstanceId']
+          @Schema = params['Schema']
+          @ClusterId = params['ClusterId']
+          @Visual = params['Visual']
+        end
+      end
+
+      # DescribeSqlExplainV2返回参数结构体
+      class DescribeSqlExplainV2Response < TencentCloud::Common::AbstractModel
+        # @param Schema: <p>数据库名，回显请求中的 Schema。</p>
+        # @type Schema: String
+        # @param SqlText: <p>SQL 文本，回显请求中的 SqlText。</p>
+        # @type SqlText: String
+        # @param Tables: <p>SQL 涉及的表名列表。</p>
+        # @type Tables: Array
+        # @param Explain: <p>执行计划详细信息。由数据库 EXPLAIN 输出透传，内容为 JSON 字符串，包含 Meta（列定义）与 Data（执行计划行）两部分；Format=JSON 时为 EXPLAIN FORMAT=JSON 的原始结果。</p>
+        # @type Explain: :class:`Tencentcloud::Dbbrain.v20210527.models.SqlExplainResultV2`
+        # @param FieldDesc: <p>执行计划字段说明列表。仅当请求 Visual=true 或走 SqlTemplateKey 路径时返回，用于前端展示字段中文释义。</p>
+        # @type FieldDesc: Array
+        # @param VisualExplain: <p>可视化执行计划树，当Visual=true时返回</p>
+        # @type VisualExplain: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Schema, :SqlText, :Tables, :Explain, :FieldDesc, :VisualExplain, :RequestId
+
+        def initialize(schema=nil, sqltext=nil, tables=nil, explain=nil, fielddesc=nil, visualexplain=nil, requestid=nil)
+          @Schema = schema
+          @SqlText = sqltext
+          @Tables = tables
+          @Explain = explain
+          @FieldDesc = fielddesc
+          @VisualExplain = visualexplain
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Schema = params['Schema']
+          @SqlText = params['SqlText']
+          unless params['Tables'].nil?
+            @Tables = []
+            params['Tables'].each do |i|
+              sqlexplaintablerefv2_tmp = SqlExplainTableRefV2.new
+              sqlexplaintablerefv2_tmp.deserialize(i)
+              @Tables << sqlexplaintablerefv2_tmp
+            end
+          end
+          unless params['Explain'].nil?
+            @Explain = SqlExplainResultV2.new
+            @Explain.deserialize(params['Explain'])
+          end
+          unless params['FieldDesc'].nil?
+            @FieldDesc = []
+            params['FieldDesc'].each do |i|
+              sqlexplainfielddescv2_tmp = SqlExplainFieldDescV2.new
+              sqlexplainfielddescv2_tmp.deserialize(i)
+              @FieldDesc << sqlexplainfielddescv2_tmp
+            end
+          end
+          @VisualExplain = params['VisualExplain']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeSqlFilters请求参数结构体
       class DescribeSqlFiltersRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID。可通过 [DescribeDiagDBInstances](https://cloud.tencent.com/document/api/1130/57798) 接口获取。
@@ -10554,6 +10647,84 @@ module TencentCloud
           @From = params['From']
           @To = params['To']
           @Ratio = params['Ratio']
+        end
+      end
+
+      # 执行计划字段说明项。提供 EXPLAIN / VisualExplain 输出中各字段的中文释义，便于前端在展示可视化执行计划时进行翻译。
+      class SqlExplainFieldDescV2 < TencentCloud::Common::AbstractModel
+        # @param Field: <p>字段英文名，与 Explain / VisualExplain 中出现的字段一致，例如 access_type、key、rows。</p>
+        # @type Field: String
+        # @param Desc: <p>字段中文释义。</p>
+        # @type Desc: String
+
+        attr_accessor :Field, :Desc
+
+        def initialize(field=nil, desc=nil)
+          @Field = field
+          @Desc = desc
+        end
+
+        def deserialize(params)
+          @Field = params['Field']
+          @Desc = params['Desc']
+        end
+      end
+
+      # EXPLAIN 输出结果。Names 为 EXPLAIN 列名顺序，Data 为按行展开的执行计划数据。
+      class SqlExplainResultV2 < TencentCloud::Common::AbstractModel
+        # @param Names: <p>EXPLAIN 列名顺序，与 Data 中每一行的字段一一对应。</p>
+        # @type Names: Array
+        # @param Data: <p>执行计划行列表。</p>
+        # @type Data: Array
+
+        attr_accessor :Names, :Data
+
+        def initialize(names=nil, data=nil)
+          @Names = names
+          @Data = data
+        end
+
+        def deserialize(params)
+          @Names = params['Names']
+          unless params['Data'].nil?
+            @Data = []
+            params['Data'].each do |i|
+              sqlexplainrowv2_tmp = SqlExplainRowV2.new
+              sqlexplainrowv2_tmp.deserialize(i)
+              @Data << sqlexplainrowv2_tmp
+            end
+          end
+        end
+      end
+
+      # EXPLAIN TRADITIONAL 格式的执行计划行（共 12 列），字段语义与 MySQL 原生 EXPLAIN 输出一致。
+      class SqlExplainRowV2 < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # SQL 涉及的表信息。包含库名与表名，用于在前端展示 SQL 涉及的表清单。
+      class SqlExplainTableRefV2 < TencentCloud::Common::AbstractModel
+        # @param TableName: <p>表名。</p>
+        # @type TableName: String
+        # @param TableSchema: <p>表所在的数据库名。</p>
+        # @type TableSchema: String
+
+        attr_accessor :TableName, :TableSchema
+
+        def initialize(tablename=nil, tableschema=nil)
+          @TableName = tablename
+          @TableSchema = tableschema
+        end
+
+        def deserialize(params)
+          @TableName = params['TableName']
+          @TableSchema = params['TableSchema']
         end
       end
 

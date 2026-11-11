@@ -2424,6 +2424,96 @@ module TencentCloud
         end
       end
 
+      # DescribeEventCenterEvents请求参数结构体
+      class DescribeEventCenterEventsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: <p>事件筛选条件，用于按事件来源、对象、类型、级别及工具等信息查询事件。</p><p>入参限制：最多支持 12 个筛选条件，同名筛选条件不可重复；每个条件支持 1～20 个值，每个值非空且不超过 256 字节。</p><p>支持的筛选字段：Source、ObjectType、ObjectId、EventType、EventLevel、Reason、EventId、ToolId、ToolType、Message。</p>
+        # @type Filters: Array
+        # @param StartTime: <p>查询开始时间，包含该时间点。</p><p>参数格式：RFC3339 格式，例如 2026-10-23T13:28:00Z。</p><p>入参限制：必须早于 EndTime，且不能早于当前时间前 7 天。</p><p>默认值：不传时默认为 EndTime 前 1 小时。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>查询结束时间，不包含该时间点。</p><p>参数格式：RFC3339 格式，例如 2026-10-23T14:28:00Z。</p><p>入参限制：必须晚于 StartTime，不应晚于当前时间。</p><p>默认值：不传时默认为当前时间。</p><p>查询范围为 [StartTime, EndTime)。</p>
+        # @type EndTime: String
+        # @param Offset: <p>分页偏移量。</p><p>取值范围：[0, 10000]</p><p>默认值：0</p><p>Raw 模式按去重后的事件分页，Aggregate 模式按聚合结果分页。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>单次返回的最大结果条数。</p><p>取值范围：[1, 100]</p><p>默认值：10</p>
+        # @type Limit: Integer
+        # @param Order: <p>事件结果的时间排序方向。</p><p>枚举值：</p><ul><li>Asc： 按时间升序排列，较早的事件在前。</li><li>Desc： 按时间降序排列，较新的事件在前。默认值。</li></ul><p>默认值：Desc</p><p>Raw 模式按事件发生时间排序；Aggregate 模式按聚合结果最近发生时间排序。</p>
+        # @type Order: String
+        # @param Mode: <p>事件查询模式。</p><p>枚举值：</p><ul><li>Raw： 明细模式，返回去重后的事件明细。默认值。</li><li>Aggregate： 聚合模式，返回聚合结果及事件数量、首次和最近发生时间；生命周期事件仍逐条展示。</li></ul><p>默认值：Raw</p><p>Raw 返回去重后的事件明细；Aggregate 返回聚合结果。</p>
+        # @type Mode: String
+
+        attr_accessor :Filters, :StartTime, :EndTime, :Offset, :Limit, :Order, :Mode
+
+        def initialize(filters=nil, starttime=nil, endtime=nil, offset=nil, limit=nil, order=nil, mode=nil)
+          @Filters = filters
+          @StartTime = starttime
+          @EndTime = endtime
+          @Offset = offset
+          @Limit = limit
+          @Order = order
+          @Mode = mode
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          @Order = params['Order']
+          @Mode = params['Mode']
+        end
+      end
+
+      # DescribeEventCenterEvents返回参数结构体
+      class DescribeEventCenterEventsResponse < TencentCloud::Common::AbstractModel
+        # @param Events: <p>本次查询返回的事件明细或聚合结果列表。无匹配结果时返回空数组。</p>
+        # @type Events: Array
+        # @param TotalCount: <p>符合查询条件的结果总数，不受 Offset 和 Limit 影响。Raw 模式为去重后的事件总数，Aggregate 模式为聚合结果总数。</p>
+        # @type TotalCount: Integer
+        # @param StartTime: <p>本次查询实际使用的开始时间，RFC3339 格式，包含该时间点。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>本次查询实际使用的结束时间，RFC3339 格式，不包含该时间点。</p>
+        # @type EndTime: String
+        # @param Mode: <p>本次查询实际使用的模式。</p><p>枚举值：</p><ul><li>Raw： 明细模式。</li><li>Aggregate： 聚合模式。</li></ul>
+        # @type Mode: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Events, :TotalCount, :StartTime, :EndTime, :Mode, :RequestId
+
+        def initialize(events=nil, totalcount=nil, starttime=nil, endtime=nil, mode=nil, requestid=nil)
+          @Events = events
+          @TotalCount = totalcount
+          @StartTime = starttime
+          @EndTime = endtime
+          @Mode = mode
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Events'].nil?
+            @Events = []
+            params['Events'].each do |i|
+              eventitem_tmp = EventItem.new
+              eventitem_tmp.deserialize(i)
+              @Events << eventitem_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Mode = params['Mode']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEvents请求参数结构体
       class DescribeEventsRequest < TencentCloud::Common::AbstractModel
         # @param SpaceId: <p>会话所属空间 ID。</p>
@@ -3769,6 +3859,70 @@ module TencentCloud
           @ErrorCode = params['ErrorCode']
           @ErrorMessage = params['ErrorMessage']
           @Timestamp = params['Timestamp']
+        end
+      end
+
+      # 用于描述事件中心中的一条事件记录，包含事件标识、所属资源、事件类型、级别、发生时间、原因及业务扩展信息。
+      class EventItem < TencentCloud::Common::AbstractModel
+        # @param EventId: <p>事件唯一标识，用于区分事件及识别重复投递。聚合模式下为该聚合结果代表事件的标识。</p>
+        # @type EventId: String
+        # @param Source: <p>事件来源。</p>
+        # @type Source: String
+        # @param ObjectType: <p>事件关联的对象类型。</p>
+        # @type ObjectType: String
+        # @param ObjectId: <p>事件关联的对象 ID。</p>
+        # @type ObjectId: String
+        # @param EventLevel: <p>事件级别。Normal 表示正常事件，Warning 表示告警事件。</p>
+        # @type EventLevel: String
+        # @param EventType: <p>事件类型。</p>
+        # @type EventType: String
+        # @param Reason: <p>事件原因标识，无原因信息时不返回。例如 Manual 表示通过停止接口主动停止，包括人工、脚本或 SDK 调用，不代表一定由人工操作。</p>
+        # @type Reason: String
+        # @param Message: <p>事件的说明文本。建议使用 EventType 和 Reason 判断事件类型及原因，不依赖说明文本进行业务判断。</p>
+        # @type Message: String
+        # @param Extensions: <p>事件扩展信息，以 JSON 字符串返回。当前 Sandbox 事件包含 ToolId、ToolType，以及可选的 ToolName。调用方需解析 JSON 字符串后读取扩展字段。</p>
+        # @type Extensions: String
+        # @param OccurredAt: <p>事件发生时间，RFC3339 格式。仅 Raw 模式返回。</p>
+        # @type OccurredAt: String
+        # @param Count: <p>当前查询范围内，该聚合结果包含的去重事件数。仅 Aggregate 模式返回。当前生命周期事件逐条展示，该值为 1。</p>
+        # @type Count: Integer
+        # @param FirstOccurredAt: <p>当前查询范围内，该聚合结果中最早的事件发生时间，RFC3339 格式。仅 Aggregate 模式返回，不代表该对象历史上的首次事件时间。</p>
+        # @type FirstOccurredAt: String
+        # @param LastOccurredAt: <p>当前查询范围内，该聚合结果中最近的事件发生时间，RFC3339 格式。仅 Aggregate 模式返回，不代表该对象此后不会再发生事件。</p>
+        # @type LastOccurredAt: String
+
+        attr_accessor :EventId, :Source, :ObjectType, :ObjectId, :EventLevel, :EventType, :Reason, :Message, :Extensions, :OccurredAt, :Count, :FirstOccurredAt, :LastOccurredAt
+
+        def initialize(eventid=nil, source=nil, objecttype=nil, objectid=nil, eventlevel=nil, eventtype=nil, reason=nil, message=nil, extensions=nil, occurredat=nil, count=nil, firstoccurredat=nil, lastoccurredat=nil)
+          @EventId = eventid
+          @Source = source
+          @ObjectType = objecttype
+          @ObjectId = objectid
+          @EventLevel = eventlevel
+          @EventType = eventtype
+          @Reason = reason
+          @Message = message
+          @Extensions = extensions
+          @OccurredAt = occurredat
+          @Count = count
+          @FirstOccurredAt = firstoccurredat
+          @LastOccurredAt = lastoccurredat
+        end
+
+        def deserialize(params)
+          @EventId = params['EventId']
+          @Source = params['Source']
+          @ObjectType = params['ObjectType']
+          @ObjectId = params['ObjectId']
+          @EventLevel = params['EventLevel']
+          @EventType = params['EventType']
+          @Reason = params['Reason']
+          @Message = params['Message']
+          @Extensions = params['Extensions']
+          @OccurredAt = params['OccurredAt']
+          @Count = params['Count']
+          @FirstOccurredAt = params['FirstOccurredAt']
+          @LastOccurredAt = params['LastOccurredAt']
         end
       end
 
@@ -5235,7 +5389,7 @@ module TencentCloud
         # @type AuthMode: String
         # @param Metadata: <p>沙箱元数据</p>
         # @type Metadata: Array
-        # @param StartMode: <p>实例启动模式。DEFAULT：使用原有同步创建流程，为默认值；WAIT_UNTIL_HEALTHY：使用持久化后台创建流程，受理后可能返回 STARTING，需查询实例状态确认最终结果。</p>
+        # @param StartMode: <p>实例启动模式。DEFAULT：使用原有同步创建流程，为默认值；WAIT_UNTIL_HEALTHY：使用持久化后台创建流程，受理后可能返回 STARTING，需查询实例状态确认最终结果，当前仅支持WAA沙箱和GPU沙箱。</p>
         # @type StartMode: String
 
         attr_accessor :ToolId, :ToolName, :SourceInstanceId, :SnapshotId, :Timeout, :ClientToken, :MountOptions, :CustomConfiguration, :AuthMode, :Metadata, :StartMode

@@ -369,51 +369,57 @@ module TencentCloud
 
       # 备份组详情
       class BackupGroup < TencentCloud::Common::AbstractModel
-        # @param BackupGroupId: 备份组ID。
+        # @param BackupGroupId: <p>备份组ID。</p>
         # @type BackupGroupId: String
-        # @param Percent: 备份组创建进度。
+        # @param Percent: <p>备份组创建进度。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Percent: Integer
-        # @param BackupBindDisk: 备份和云盘绑定关系
+        # @param BackupBindDisk: <p>备份和云盘绑定关系</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupBindDisk: Array
-        # @param BackupGroupName: 备份组名称。
+        # @param BackupGroupName: <p>备份组名称。</p>
         # @type BackupGroupName: String
-        # @param BackupGroupState: 备份组状态。NORMAL: 正常；CREATING: 创建中；ROLLBACKING: 回滚中
+        # @param BackupGroupState: <p>备份组状态。NORMAL: 正常；CREATING: 创建中；ROLLBACKING: 回滚中</p>
         # @type BackupGroupState: String
-        # @param ModifyTime: 修改时间
+        # @param ModifyTime: <p>修改时间</p>
         # @type ModifyTime: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param AppId: 用户AppId。
+        # @param AppId: <p>用户AppId。</p>
         # @type AppId: Integer
-        # @param IsPermanent: 是否为永久备份组。
+        # @param IsPermanent: <p>是否为永久备份组。</p>
         # @type IsPermanent: Boolean
-        # @param DeadlineTime: 备份组的到期时间。如果为永久备份组，则取值为null。
+        # @param DeadlineTime: <p>备份组的到期时间。如果为永久备份组，则取值为null。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DeadlineTime: String
-        # @param InstanceId: 创建备份组的实例ID。
+        # @param InstanceId: <p>创建备份组的实例ID。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceId: String
-        # @param InstanceDetails: 创建备份组时刻实例的详情。
+        # @param InstanceDetails: <p>创建备份组时刻实例的详情。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type InstanceDetails: String
-        # @param AccountName: 创建人名称。
+        # @param AccountName: <p>创建人名称。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountName: String
-        # @param AccountUin: 主账号uin。
+        # @param AccountUin: <p>主账号uin。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AccountUin: String
-        # @param SubAccountUin: 创建备份的子账号uin。
+        # @param SubAccountUin: <p>创建备份的子账号uin。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubAccountUin: String
-        # @param AutoBackupPolicyId: 创建当前备份的定期备份策略ID，为null则为手动创建的备份。
+        # @param AutoBackupPolicyId: <p>创建当前备份的定期备份策略ID，为null则为手动创建的备份。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AutoBackupPolicyId: String
+        # @param StartTime: <p>开始时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EndTime: String
 
-        attr_accessor :BackupGroupId, :Percent, :BackupBindDisk, :BackupGroupName, :BackupGroupState, :ModifyTime, :CreateTime, :AppId, :IsPermanent, :DeadlineTime, :InstanceId, :InstanceDetails, :AccountName, :AccountUin, :SubAccountUin, :AutoBackupPolicyId
+        attr_accessor :BackupGroupId, :Percent, :BackupBindDisk, :BackupGroupName, :BackupGroupState, :ModifyTime, :CreateTime, :AppId, :IsPermanent, :DeadlineTime, :InstanceId, :InstanceDetails, :AccountName, :AccountUin, :SubAccountUin, :AutoBackupPolicyId, :StartTime, :EndTime
 
-        def initialize(backupgroupid=nil, percent=nil, backupbinddisk=nil, backupgroupname=nil, backupgroupstate=nil, modifytime=nil, createtime=nil, appid=nil, ispermanent=nil, deadlinetime=nil, instanceid=nil, instancedetails=nil, accountname=nil, accountuin=nil, subaccountuin=nil, autobackuppolicyid=nil)
+        def initialize(backupgroupid=nil, percent=nil, backupbinddisk=nil, backupgroupname=nil, backupgroupstate=nil, modifytime=nil, createtime=nil, appid=nil, ispermanent=nil, deadlinetime=nil, instanceid=nil, instancedetails=nil, accountname=nil, accountuin=nil, subaccountuin=nil, autobackuppolicyid=nil, starttime=nil, endtime=nil)
           @BackupGroupId = backupgroupid
           @Percent = percent
           @BackupBindDisk = backupbinddisk
@@ -430,6 +436,8 @@ module TencentCloud
           @AccountUin = accountuin
           @SubAccountUin = subaccountuin
           @AutoBackupPolicyId = autobackuppolicyid
+          @StartTime = starttime
+          @EndTime = endtime
         end
 
         def deserialize(params)
@@ -456,6 +464,8 @@ module TencentCloud
           @AccountUin = params['AccountUin']
           @SubAccountUin = params['SubAccountUin']
           @AutoBackupPolicyId = params['AutoBackupPolicyId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
         end
       end
 
@@ -623,13 +633,19 @@ module TencentCloud
         # @param CloudResourceId: <p>云上资源ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CloudResourceId: String
-        # @param ProductType: <p>产品存储类型</p><p>枚举值：</p><ul><li>SD： 文件系统通用标准型存储</li><li>HP： 文件系统通用性能性存储</li><li>TB： 文件系统Turbo标准型存储</li><li>TP： 文件系统Turbo性能型存储</li><li>THP： 文件系统Turbo吞吐型存储</li></ul>
+        # @param ProductType: <p>产品存储类型。CFS 资源返回文件系统存储类型；非 CFS 资源无存储类型，返回资源类型标识。</p><p>枚举值：</p><ul><li>SD： 文件系统通用标准型存储</li><li>HP： 文件系统通用性能性存储</li><li>TB： 文件系统Turbo标准型存储</li><li>TP： 文件系统Turbo性能型存储</li><li>THP： 文件系统Turbo吞吐型存储</li><li>CVM_AGENT： CVM 资源（非 CFS 资源时返回）</li><li>COS_AGENT： COS 资源（非 CFS 资源时返回）</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductType: String
+        # @param BackupCompletedSize: <p>备份完成量</p><p>单位：MB</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupCompletedSize: Integer
+        # @param BackupCompletedSizeFormatted: <p>备份完成量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupCompletedSizeFormatted: String
 
-        attr_accessor :BackupId, :BackupName, :PlanId, :AspInstanceId, :ResourceId, :Status, :BackupPaths, :IncludeFileTypes, :ExcludePatterns, :ExcludeSystemDirectories, :VaultId, :ScannedFileCount, :ScannedSize, :ScannedSizeFormatted, :BackupFileCount, :BackupSize, :BackupSizeFormatted, :Progress, :JobId, :StartTime, :EndTime, :CreatedTime, :IsPermanent, :Deadline, :NonExistSourcePaths, :FailReason, :AppId, :ResourceType, :IsInventoryPending, :EnableObjectAcl, :EnableObjectTags, :CloudResourceId, :ProductType
+        attr_accessor :BackupId, :BackupName, :PlanId, :AspInstanceId, :ResourceId, :Status, :BackupPaths, :IncludeFileTypes, :ExcludePatterns, :ExcludeSystemDirectories, :VaultId, :ScannedFileCount, :ScannedSize, :ScannedSizeFormatted, :BackupFileCount, :BackupSize, :BackupSizeFormatted, :Progress, :JobId, :StartTime, :EndTime, :CreatedTime, :IsPermanent, :Deadline, :NonExistSourcePaths, :FailReason, :AppId, :ResourceType, :IsInventoryPending, :EnableObjectAcl, :EnableObjectTags, :CloudResourceId, :ProductType, :BackupCompletedSize, :BackupCompletedSizeFormatted
 
-        def initialize(backupid=nil, backupname=nil, planid=nil, aspinstanceid=nil, resourceid=nil, status=nil, backuppaths=nil, includefiletypes=nil, excludepatterns=nil, excludesystemdirectories=nil, vaultid=nil, scannedfilecount=nil, scannedsize=nil, scannedsizeformatted=nil, backupfilecount=nil, backupsize=nil, backupsizeformatted=nil, progress=nil, jobid=nil, starttime=nil, endtime=nil, createdtime=nil, ispermanent=nil, deadline=nil, nonexistsourcepaths=nil, failreason=nil, appid=nil, resourcetype=nil, isinventorypending=nil, enableobjectacl=nil, enableobjecttags=nil, cloudresourceid=nil, producttype=nil)
+        def initialize(backupid=nil, backupname=nil, planid=nil, aspinstanceid=nil, resourceid=nil, status=nil, backuppaths=nil, includefiletypes=nil, excludepatterns=nil, excludesystemdirectories=nil, vaultid=nil, scannedfilecount=nil, scannedsize=nil, scannedsizeformatted=nil, backupfilecount=nil, backupsize=nil, backupsizeformatted=nil, progress=nil, jobid=nil, starttime=nil, endtime=nil, createdtime=nil, ispermanent=nil, deadline=nil, nonexistsourcepaths=nil, failreason=nil, appid=nil, resourcetype=nil, isinventorypending=nil, enableobjectacl=nil, enableobjecttags=nil, cloudresourceid=nil, producttype=nil, backupcompletedsize=nil, backupcompletedsizeformatted=nil)
           @BackupId = backupid
           @BackupName = backupname
           @PlanId = planid
@@ -663,6 +679,8 @@ module TencentCloud
           @EnableObjectTags = enableobjecttags
           @CloudResourceId = cloudresourceid
           @ProductType = producttype
+          @BackupCompletedSize = backupcompletedsize
+          @BackupCompletedSizeFormatted = backupcompletedsizeformatted
         end
 
         def deserialize(params)
@@ -699,6 +717,8 @@ module TencentCloud
           @EnableObjectTags = params['EnableObjectTags']
           @CloudResourceId = params['CloudResourceId']
           @ProductType = params['ProductType']
+          @BackupCompletedSize = params['BackupCompletedSize']
+          @BackupCompletedSizeFormatted = params['BackupCompletedSizeFormatted']
         end
       end
 
@@ -5203,7 +5223,7 @@ module TencentCloud
 
       # 文件信息
       class FileInfo < TencentCloud::Common::AbstractModel
-        # @param Path: 文件名称
+        # @param Path: 完整路径：浏览路径 + "/" + 名称（浏览根目录时为 "/名称"）
         # @type Path: String
         # @param Size: 文件大小，单位是Bytes
         # @type Size: Integer
@@ -5998,7 +6018,7 @@ module TencentCloud
         # @param EnableObjectTags: <p>是否备份对象标签（仅COS备份支持）</p><p>枚举值：</p><ul><li>true： 是</li><li>false： 否</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnableObjectTags: Boolean
-        # @param ProductType: <p>产品存储类型</p><p>枚举值：</p><ul><li>SD： 文件系统通用标准型存储</li><li>HP： 文件系统通用性能性存储</li><li>TB： 文件系统Turbo标准型存储</li><li>TP： 文件系统Turbo性能型存储</li><li>THP： 文件系统Turbo吞吐型存储</li></ul>
+        # @param ProductType: <p>产品存储类型。CFS 资源返回文件系统存储类型；非 CFS 资源无存储类型，返回资源类型标识。</p><p>枚举值：</p><ul><li>SD： 文件系统通用标准型存储</li><li>HP： 文件系统通用性能性存储</li><li>TB： 文件系统Turbo标准型存储</li><li>TP： 文件系统Turbo性能型存储</li><li>THP： 文件系统Turbo吞吐型存储</li><li>CVM_AGENT： CVM 资源（非 CFS 资源时返回）</li><li>COS_AGENT： COS 资源（非 CFS 资源时返回）</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductType: String
 
@@ -6275,7 +6295,7 @@ module TencentCloud
         # @param BackupSize: <p>备份数据量，单位为字节</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type BackupSize: Integer
-        # @param ProductType: <p>产品存储类型</p><p>枚举值：</p><ul><li>SD： 文件系统通用标准型存储</li><li>HP： 文件系统通用性能性存储</li><li>TB： 文件系统Turbo标准型存储</li><li>TP： 文件系统Turbo性能型存储</li><li>THP： 文件系统Turbo吞吐型存储</li></ul>
+        # @param ProductType: <p>产品存储类型。CFS 资源返回文件系统存储类型；非 CFS 资源无存储类型，返回资源类型标识。</p><p>枚举值：</p><ul><li>SD： 文件系统通用标准型存储</li><li>HP： 文件系统通用性能性存储</li><li>TB： 文件系统Turbo标准型存储</li><li>TP： 文件系统Turbo性能型存储</li><li>THP： 文件系统Turbo吞吐型存储</li><li>CVM_AGENT： CVM 资源（非 CFS 资源时返回）</li><li>COS_AGENT： COS 资源（非 CFS 资源时返回）</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ProductType: String
 
@@ -6551,50 +6571,59 @@ module TencentCloud
 
       # 恢复任务信息
       class RestoreTask < TencentCloud::Common::AbstractModel
-        # @param TaskId: 恢复任务 ID
+        # @param TaskId: <p>恢复任务 ID</p>
         # @type TaskId: String
-        # @param BackupId: 关联备份点 ID
+        # @param BackupId: <p>关联备份点 ID</p>
         # @type BackupId: String
-        # @param ResourceId: 源实例 ID
+        # @param ResourceId: <p>源实例 ID</p>
         # @type ResourceId: String
-        # @param TargetResourceId: 目标实例 ID
+        # @param TargetResourceId: <p>目标实例 ID</p>
         # @type TargetResourceId: String
-        # @param RestorePaths: 恢复路径列表
+        # @param RestorePaths: <p>恢复路径列表</p>
         # @type RestorePaths: Array
-        # @param TargetLocation: 目标恢复位置
+        # @param TargetLocation: <p>目标恢复位置</p>
         # @type TargetLocation: String
-        # @param Status: 任务状态
+        # @param Status: <p>任务状态</p>
         # @type Status: String
-        # @param TotalFileCount: 需恢复文件总数
+        # @param TotalFileCount: <p>需恢复文件总数</p>
         # @type TotalFileCount: Integer
-        # @param TotalSize: 需恢复数据总量（字节）
+        # @param TotalSize: <p>需恢复数据总量（字节）</p>
         # @type TotalSize: Integer
-        # @param TotalSizeFormatted: 需恢复数据总量（格式化，如 "1.5 GB"）
+        # @param TotalSizeFormatted: <p>需恢复数据总量（格式化：1024 进制，保留两位小数，单位 B/KiB/MiB/GiB/TiB/PiB，如 &quot;1.50 GiB&quot;）</p>
         # @type TotalSizeFormatted: String
-        # @param RestoreFileCount: 已恢复文件数
+        # @param RestoreFileCount: <p>已恢复文件数</p>
         # @type RestoreFileCount: Integer
-        # @param RestoreSize: 已恢复数据量（字节）
+        # @param RestoreSize: <p>已恢复数据量（字节）</p>
         # @type RestoreSize: Integer
-        # @param RestoreSizeFormatted: 已恢复数据量（格式化）
+        # @param RestoreSizeFormatted: <p>已恢复数据量（格式化，口径同 TotalSizeFormatted，如 &quot;512.00 MiB&quot;）</p>
         # @type RestoreSizeFormatted: String
-        # @param Progress: 恢复进度（0-100）
+        # @param Progress: <p>恢复进度（0-100）</p>
         # @type Progress: Float
-        # @param JobId: 关联 Job ID
+        # @param JobId: <p>关联 Job ID</p>
         # @type JobId: String
-        # @param StartTime: 任务开始时间（ISO 格式）
+        # @param StartTime: <p>任务开始时间（ISO 格式）</p>
         # @type StartTime: String
-        # @param EndTime: 任务结束时间
+        # @param EndTime: <p>任务结束时间</p>
         # @type EndTime: String
-        # @param CreatedTime: 任务创建时间
+        # @param CreatedTime: <p>任务创建时间</p>
         # @type CreatedTime: String
-        # @param FailReason: 恢复任务失败原因
+        # @param FailReason: <p>恢复任务失败原因</p>
         # @type FailReason: String
-        # @param ConflictStrategy: 冲突处理策略：skip-跳过/overwrite-覆盖/newer-保留最新版本/if_changed-内容变化时覆盖
+        # @param ConflictStrategy: <p>冲突处理策略：skip-跳过/overwrite-覆盖/newer-保留最新版本/if_changed-内容变化时覆盖</p>
         # @type ConflictStrategy: String
+        # @param IsOriginalPath: <p>是否为原路径恢复</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IsOriginalPath: Boolean
+        # @param CloudResourceId: <p>源端腾讯云资源ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CloudResourceId: String
+        # @param TargetCloudResourceId: <p>目标端腾讯云资源ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TargetCloudResourceId: String
 
-        attr_accessor :TaskId, :BackupId, :ResourceId, :TargetResourceId, :RestorePaths, :TargetLocation, :Status, :TotalFileCount, :TotalSize, :TotalSizeFormatted, :RestoreFileCount, :RestoreSize, :RestoreSizeFormatted, :Progress, :JobId, :StartTime, :EndTime, :CreatedTime, :FailReason, :ConflictStrategy
+        attr_accessor :TaskId, :BackupId, :ResourceId, :TargetResourceId, :RestorePaths, :TargetLocation, :Status, :TotalFileCount, :TotalSize, :TotalSizeFormatted, :RestoreFileCount, :RestoreSize, :RestoreSizeFormatted, :Progress, :JobId, :StartTime, :EndTime, :CreatedTime, :FailReason, :ConflictStrategy, :IsOriginalPath, :CloudResourceId, :TargetCloudResourceId
 
-        def initialize(taskid=nil, backupid=nil, resourceid=nil, targetresourceid=nil, restorepaths=nil, targetlocation=nil, status=nil, totalfilecount=nil, totalsize=nil, totalsizeformatted=nil, restorefilecount=nil, restoresize=nil, restoresizeformatted=nil, progress=nil, jobid=nil, starttime=nil, endtime=nil, createdtime=nil, failreason=nil, conflictstrategy=nil)
+        def initialize(taskid=nil, backupid=nil, resourceid=nil, targetresourceid=nil, restorepaths=nil, targetlocation=nil, status=nil, totalfilecount=nil, totalsize=nil, totalsizeformatted=nil, restorefilecount=nil, restoresize=nil, restoresizeformatted=nil, progress=nil, jobid=nil, starttime=nil, endtime=nil, createdtime=nil, failreason=nil, conflictstrategy=nil, isoriginalpath=nil, cloudresourceid=nil, targetcloudresourceid=nil)
           @TaskId = taskid
           @BackupId = backupid
           @ResourceId = resourceid
@@ -6615,6 +6644,9 @@ module TencentCloud
           @CreatedTime = createdtime
           @FailReason = failreason
           @ConflictStrategy = conflictstrategy
+          @IsOriginalPath = isoriginalpath
+          @CloudResourceId = cloudresourceid
+          @TargetCloudResourceId = targetcloudresourceid
         end
 
         def deserialize(params)
@@ -6638,6 +6670,9 @@ module TencentCloud
           @CreatedTime = params['CreatedTime']
           @FailReason = params['FailReason']
           @ConflictStrategy = params['ConflictStrategy']
+          @IsOriginalPath = params['IsOriginalPath']
+          @CloudResourceId = params['CloudResourceId']
+          @TargetCloudResourceId = params['TargetCloudResourceId']
         end
       end
 

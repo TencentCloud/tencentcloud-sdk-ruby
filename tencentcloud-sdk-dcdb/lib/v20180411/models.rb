@@ -6923,10 +6923,14 @@ module TencentCloud
         # @type SwitchEndTime: String
         # @param SwitchInterval: <p>多个分片同时发起扩容，并发切换中的切换时间间隔，即当前分片切换开始时间和下一个分片的切换开始时间间隔，不传默认为1。</p><p>取值范围：[1, 180]</p><p>单位：秒</p>
         # @type SwitchInterval: Integer
+        # @param MasterHostId: <p>主节点所在机器，类似svr-xxx</p>
+        # @type MasterHostId: String
+        # @param SlaveHostIds: <p>备节点所在机器，类似[svr-xxx1,svr-xxx2]</p>
+        # @type SlaveHostIds: Array
 
-        attr_accessor :UpgradeType, :InstanceId, :AddShardConfig, :ExpandShardConfig, :SplitShardConfig, :SwitchAutoRetry, :SwitchStartTime, :SwitchEndTime, :SwitchInterval
+        attr_accessor :UpgradeType, :InstanceId, :AddShardConfig, :ExpandShardConfig, :SplitShardConfig, :SwitchAutoRetry, :SwitchStartTime, :SwitchEndTime, :SwitchInterval, :MasterHostId, :SlaveHostIds
 
-        def initialize(upgradetype=nil, instanceid=nil, addshardconfig=nil, expandshardconfig=nil, splitshardconfig=nil, switchautoretry=nil, switchstarttime=nil, switchendtime=nil, switchinterval=nil)
+        def initialize(upgradetype=nil, instanceid=nil, addshardconfig=nil, expandshardconfig=nil, splitshardconfig=nil, switchautoretry=nil, switchstarttime=nil, switchendtime=nil, switchinterval=nil, masterhostid=nil, slavehostids=nil)
           @UpgradeType = upgradetype
           @InstanceId = instanceid
           @AddShardConfig = addshardconfig
@@ -6936,6 +6940,8 @@ module TencentCloud
           @SwitchStartTime = switchstarttime
           @SwitchEndTime = switchendtime
           @SwitchInterval = switchinterval
+          @MasterHostId = masterhostid
+          @SlaveHostIds = slavehostids
         end
 
         def deserialize(params)
@@ -6957,6 +6963,8 @@ module TencentCloud
           @SwitchStartTime = params['SwitchStartTime']
           @SwitchEndTime = params['SwitchEndTime']
           @SwitchInterval = params['SwitchInterval']
+          @MasterHostId = params['MasterHostId']
+          @SlaveHostIds = params['SlaveHostIds']
         end
       end
 

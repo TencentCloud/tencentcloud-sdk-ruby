@@ -662,6 +662,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口用于查询当前账号在指定地域的事件列表，支持按事件来源、资源对象、事件类型、事件级别及时间范围等条件筛选，并支持分页和时间排序。默认查询最近 1 小时的事件，支持查询最近 7 天内的事件。
+
+        # @param request: Request instance for DescribeEventCenterEvents.
+        # @type request: :class:`Tencentcloud::ags::V20250920::DescribeEventCenterEventsRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::DescribeEventCenterEventsResponse`
+        def DescribeEventCenterEvents(request)
+          body = send_request('DescribeEventCenterEvents', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEventCenterEventsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询事件列表。
 
         # 查询指定会话的事件流，支持按作者和起始时间筛选。

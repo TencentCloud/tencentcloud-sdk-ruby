@@ -658,6 +658,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 提交异步多模态理解任务，返回 TaskId
+
+        # @param request: Request instance for CreateModelChatTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::CreateModelChatTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::CreateModelChatTaskResponse`
+        def CreateModelChatTask(request)
+          body = send_request('CreateModelChatTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateModelChatTaskResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 该接口用于创建素材样本，用于通过五官定位等技术，进行内容识别、内容不适宜等视频处理。
 
         # @param request: Request instance for CreatePersonSample.
@@ -2760,6 +2784,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeMediaMetaDataResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 按 TaskId 查询多模态理解任务结果
+
+        # @param request: Request instance for DescribeModelChatTask.
+        # @type request: :class:`Tencentcloud::mps::V20190612::DescribeModelChatTaskRequest`
+        # @rtype: :class:`Tencentcloud::mps::V20190612::DescribeModelChatTaskResponse`
+        def DescribeModelChatTask(request)
+          body = send_request('DescribeModelChatTask', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeModelChatTaskResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -3896,6 +3896,49 @@ module TencentCloud
         end
       end
 
+      # DescribeModules请求参数结构体
+      class DescribeModulesRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>指定实例 ID。例如：crs-xjhsdj****。请登录<a href="https://console.cloud.tencent.com/redis">Redis控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+
+        attr_accessor :InstanceId
+
+        def initialize(instanceid=nil)
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeModules返回参数结构体
+      class DescribeModulesResponse < TencentCloud::Common::AbstractModel
+        # @param Modules: <p>实例的扩展模块列表，包括模块的支持状态（是否支持）、启用状态（是否已启用）等信息。</p>
+        # @type Modules: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Modules, :RequestId
+
+        def initialize(modules=nil, requestid=nil)
+          @Modules = modules
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Modules'].nil?
+            @Modules = []
+            params['Modules'].each do |i|
+              module_tmp = Module.new
+              module_tmp.deserialize(i)
+              @Modules << module_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeParamTemplateInfo请求参数结构体
       class DescribeParamTemplateInfoRequest < TencentCloud::Common::AbstractModel
         # @param TemplateId: 指定查询的参数模板 ID。请通过接口[DescribeParamTemplates](https://cloud.tencent.com/document/product/239/58750)获取参数模板列表信息。
@@ -8028,6 +8071,54 @@ module TencentCloud
         end
       end
 
+      # ModifyModule请求参数结构体
+      class ModifyModuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 指定实例 ID。例如：crs-xjhsdj****。请登录[Redis控制台](https://console.cloud.tencent.com/redis)在实例列表复制实例 ID。
+        # @type InstanceId: String
+        # @param Name: 指定待修改的扩展模块。Redis 支持修改如下扩展模块的状态。
+        # - Bloom：指 RedisBloom 模块，可以高效地判断一个元素是否存在于集合中。
+        # - JSON：指 RedisJSON 模块，允许 Redis 原生支持 JSON 数据格式，方便存储和操作 JSON 对象。
+        # - Search：指 RediSearch 模块，提供全文搜索功能，可以对存储在 Redis 中的数据进行高效的搜索操作。
+        # - TimeSeries：指 RedisTimeSeries 模块，专门用于处理时间序列数据，适合存储和查询时间相关的数据。
+        # @type Name: String
+        # @param Status: 设置扩展模块的启用状态。仅支持设置为 ON，启用扩展模块。
+        # @type Status: String
+
+        attr_accessor :InstanceId, :Name, :Status
+
+        def initialize(instanceid=nil, name=nil, status=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @Status = status
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyModule返回参数结构体
+      class ModifyModuleResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: 任务ID。
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyNetworkConfig请求参数结构体
       class ModifyNetworkConfigRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 实例 ID，请登录[Redis控制台](https://console.cloud.tencent.com/redis/instance/list)在实例列表复制实例 ID。
@@ -8203,6 +8294,114 @@ module TencentCloud
 
         def deserialize(params)
           @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifySSLEncryptionMode请求参数结构体
+      class ModifySSLEncryptionModeRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>指定实例 ID。例如：crs-xjhsdj****。请登录<a href="https://console.cloud.tencent.com/redis">Redis控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+        # @param EncryptionMode: <p>目标加密模式</p><p>枚举值：</p><ul><li>required： 强制加密</li><li>flexible： 兼容模式</li></ul>
+        # @type EncryptionMode: String
+
+        attr_accessor :InstanceId, :EncryptionMode
+
+        def initialize(instanceid=nil, encryptionmode=nil)
+          @InstanceId = instanceid
+          @EncryptionMode = encryptionmode
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @EncryptionMode = params['EncryptionMode']
+        end
+      end
+
+      # ModifySSLEncryptionMode返回参数结构体
+      class ModifySSLEncryptionModeResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID。</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyValkeyModule请求参数结构体
+      class ModifyValkeyModuleRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>指定实例 ID。例如：crs-xjhsdj****。请登录<a href="https://console.cloud.tencent.com/redis">Redis控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+        # @param Name: <p>指定待修改的扩展模块。</p><p>枚举值：</p><ul><li>ValkeyBloom： 指 Bloom 模块，可以高效地判断一个元素是否存在于集合中</li><li>ValkeyJSON： 指 JSON 模块，允许 Redis 原生支持 JSON 数据格式，方便存储和操作 JSON 对象。</li><li>ValkeySearch： 指 Search 模块，提供全文搜索功能，可以对存储在 Redis 中的数据进行高效的搜索操作。</li></ul>
+        # @type Name: String
+        # @param Status: <p>设置扩展模块的启用状态。仅支持设置为 ON，启用扩展模块。</p>
+        # @type Status: String
+
+        attr_accessor :InstanceId, :Name, :Status
+
+        def initialize(instanceid=nil, name=nil, status=nil)
+          @InstanceId = instanceid
+          @Name = name
+          @Status = status
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Name = params['Name']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyValkeyModule返回参数结构体
+      class ModifyValkeyModuleResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID。</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # Redis 支持的扩展模块信息。
+      class Module < TencentCloud::Common::AbstractModel
+        # @param Name: <p>Redis 支持的扩展模块，包括 Bloom、JSON、Search 和 TimeSeries，可以为 Redis 提供额外的功能支持。</p><ul><li>Bloom：指 RedisBloom 模块，可以高效地判断一个元素是否存在于集合中。</li><li>JSON：指 RedisJSON 模块，允许 Redis 原生支持 JSON 数据格式，方便存储和操作 JSON 对象。</li><li>Search：指 RediSearch 模块，提供全文搜索功能，可以对存储在 Redis 中的数据进行高效的搜索操作。</li><li>TimeSeries：指 RedisTimeSeries 模块，专门用于处理时间序列数据，适合存储和查询时间相关的数据。</li><li>ValkeyBloom：指Valkey引擎的RedisBloom 模块，可以高效地判断一个元素是否存在于集合中。</li><li>ValkeyJSON：指Valkey引擎的RedisJSON 模块，允许 Redis 原生支持 JSON 数据格式，方便存储和操作 JSON 对象。</li><li>ValkeySearch：指Valkey引擎的RediSearch 模块，提供全文搜索功能，可以对存储在 Redis 中的数据进行高效的搜索操作。</li></ul>
+        # @type Name: String
+        # @param Status: <p>扩展模块的启用状态。</p><ul><li>ON：启用。</li><li>OFF：关闭。</li></ul>
+        # @type Status: String
+        # @param IsSupport: <p>实例是否支持参数 Name 对应的扩展模块。</p><ul><li>true：支持。</li><li>false：不支持。</li></ul>
+        # @type IsSupport: Boolean
+
+        attr_accessor :Name, :Status, :IsSupport
+
+        def initialize(name=nil, status=nil, issupport=nil)
+          @Name = name
+          @Status = status
+          @IsSupport = issupport
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Status = params['Status']
+          @IsSupport = params['IsSupport']
         end
       end
 
@@ -9897,6 +10096,81 @@ module TencentCloud
           @Description = params['Description']
           @Price = params['Price']
           @InstanceIds = params['InstanceIds']
+        end
+      end
+
+      # UpdateSSLCert请求参数结构体
+      class UpdateSSLCertRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>指定实例 ID。例如：crs-xjhsdj****。请登录<a href="https://console.cloud.tencent.com/redis">Redis控制台</a>在实例列表复制实例 ID。</p>
+        # @type InstanceId: String
+        # @param CertSource: <p>密钥类型。</p><p>枚举值：</p><ul><li>0： 腾讯云提供</li><li>1： 用户自定义KMS</li></ul>
+        # @type CertSource: Integer
+        # @param SwitchOption: <p>切换时间。（该参数废弃，不再生效）</p><p>枚举值：</p><ul><li>1： 维护时间窗操作：指开启SSL加密在设置的维护时间窗内执行。请通过接口DescribeMaintenanceWindow查询设置的维护时间窗时间段</li><li>2： 立即操作：操作将立即执行，无需等待维护时间窗。系统默认设置为立即操作。</li></ul>
+        # @type SwitchOption: Integer
+        # @param AddressType: <p>SSL地址类型。</p><p>枚举值：</p><ul><li>0： 不限。</li><li>1： 内网IPv4。</li><li>2： 内网IPv6。</li><li>3： 外网。</li><li>-1： 未指定。</li></ul>
+        # @type AddressType: Integer
+        # @param KmsKeyId: <p>KMS的密钥ID。（该参数废弃，不再生效）</p><p>参数格式：xxxxxxx-xxxx-xxxx-xxxx-xxxxxxx</p>
+        # @type KmsKeyId: String
+        # @param KmsRegion: <p>KMS地域信息。（该参数废弃，不再生效）</p><p>参数格式：ap-xxxx</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/573/34406#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8">KMS支持的地域列表</a></p>
+        # @type KmsRegion: String
+        # @param CertId: <p>SSL 证书服务的证书 ID，CertSource=1 时必填</p>
+        # @type CertId: String
+        # @param SSLMinVersion: <p>最低 TLS 版本</p><p>枚举值：</p><ul><li>TLSv1.0： TLSv1.0</li><li>TLSv1.1： TLSv1.1</li><li>TLSv1.2： TLSv1.2</li></ul>
+        # @type SSLMinVersion: String
+        # @param EncryptionMode: <p>目标加密模式</p><p>枚举值：</p><ul><li>required： 强制加密</li><li>flexible： 兼容模式</li></ul>
+        # @type EncryptionMode: String
+
+        attr_accessor :InstanceId, :CertSource, :SwitchOption, :AddressType, :KmsKeyId, :KmsRegion, :CertId, :SSLMinVersion, :EncryptionMode
+        extend Gem::Deprecate
+        deprecate :SwitchOption, :none, 2026, 11
+        deprecate :SwitchOption=, :none, 2026, 11
+        deprecate :KmsKeyId, :none, 2026, 11
+        deprecate :KmsKeyId=, :none, 2026, 11
+        deprecate :KmsRegion, :none, 2026, 11
+        deprecate :KmsRegion=, :none, 2026, 11
+
+        def initialize(instanceid=nil, certsource=nil, switchoption=nil, addresstype=nil, kmskeyid=nil, kmsregion=nil, certid=nil, sslminversion=nil, encryptionmode=nil)
+          @InstanceId = instanceid
+          @CertSource = certsource
+          @SwitchOption = switchoption
+          @AddressType = addresstype
+          @KmsKeyId = kmskeyid
+          @KmsRegion = kmsregion
+          @CertId = certid
+          @SSLMinVersion = sslminversion
+          @EncryptionMode = encryptionmode
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @CertSource = params['CertSource']
+          @SwitchOption = params['SwitchOption']
+          @AddressType = params['AddressType']
+          @KmsKeyId = params['KmsKeyId']
+          @KmsRegion = params['KmsRegion']
+          @CertId = params['CertId']
+          @SSLMinVersion = params['SSLMinVersion']
+          @EncryptionMode = params['EncryptionMode']
+        end
+      end
+
+      # UpdateSSLCert返回参数结构体
+      class UpdateSSLCertResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID。</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
         end
       end
 

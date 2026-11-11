@@ -3039,6 +3039,58 @@ module TencentCloud
         end
       end
 
+      # CreateAvatarEditingLive请求参数结构体
+      class CreateAvatarEditingLiveRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelId: <p>通道ID，这里是待编辑的直播流的源ID</p>
+        # @type ChannelId: String
+        # @param ImageUrl: <p>各种编辑场景的参考图</p>
+        # @type ImageUrl: String
+        # @param EditingType: <p>支持的编辑类型</p><p>枚举值：</p><ul><li>style_transfer： 整体风格迁移</li><li>virtual_tryon： 虚拟试穿</li><li>subject_replacement： 主体替换</li><li>background_replacement： 背景替换</li></ul><p>默认值：style_transfer</p>
+        # @type EditingType: String
+
+        attr_accessor :ChannelId, :ImageUrl, :EditingType
+
+        def initialize(channelid=nil, imageurl=nil, editingtype=nil)
+          @ChannelId = channelid
+          @ImageUrl = imageurl
+          @EditingType = editingtype
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @ImageUrl = params['ImageUrl']
+          @EditingType = params['EditingType']
+        end
+      end
+
+      # CreateAvatarEditingLive返回参数结构体
+      class CreateAvatarEditingLiveResponse < TencentCloud::Common::AbstractModel
+        # @param LiveId: <p>实时编辑会话ID</p>
+        # @type LiveId: String
+        # @param Status: <p>实时编辑会话的状态</p><p>枚举值：</p><ul><li>waiting： 等待中</li><li>on_live： 直播中</li><li>ending： 结束中</li><li>ended： 已结束</li><li>prepared： 准备中</li></ul>
+        # @type Status: String
+        # @param ChannelId: <p>通道ID，这里是待编辑的直播流的源ID</p>
+        # @type ChannelId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :LiveId, :Status, :ChannelId, :RequestId
+
+        def initialize(liveid=nil, status=nil, channelid=nil, requestid=nil)
+          @LiveId = liveid
+          @Status = status
+          @ChannelId = channelid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @LiveId = params['LiveId']
+          @Status = params['Status']
+          @ChannelId = params['ChannelId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCasterInputPushUrl请求参数结构体
       class CreateCasterInputPushUrlRequest < TencentCloud::Common::AbstractModel
         # @param CasterId: 导播台ID
@@ -7357,6 +7409,74 @@ module TencentCloud
               @AuditTemplates << audittemplate_tmp
             end
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAvatarEditingLive请求参数结构体
+      class DescribeAvatarEditingLiveRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelId: <p>通道ID，通常是待编辑的直播流的源ID</p>
+        # @type ChannelId: String
+
+        attr_accessor :ChannelId
+
+        def initialize(channelid=nil)
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # DescribeAvatarEditingLive返回参数结构体
+      class DescribeAvatarEditingLiveResponse < TencentCloud::Common::AbstractModel
+        # @param ChannelId: <p>通道ID，通常是待编辑的直播流的源ID</p>
+        # @type ChannelId: String
+        # @param LiveId: <p>实时编辑会话ID</p>
+        # @type LiveId: String
+        # @param Status: <p>实时编辑会话的状态</p><p>枚举值：</p><ul><li>waiting： 等待中</li><li>on_live： 直播中</li><li>ending： 结束中</li><li>ended： 已结束</li><li>prepared： 准备中</li><li>not_exist： 不存在</li></ul>
+        # @type Status: String
+        # @param Phase: <p>内部模块会话状态</p>
+        # @type Phase: String
+        # @param CallMode: <p>输出Mode</p>
+        # @type CallMode: String
+        # @param CreatedAt: <p>创建时间</p>
+        # @type CreatedAt: String
+        # @param StartTime: <p>开播时刻</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间，如果还没结束则该值为0</p>
+        # @type EndTime: String
+        # @param TraceId: <p>跟踪ID，用于查日志</p>
+        # @type TraceId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ChannelId, :LiveId, :Status, :Phase, :CallMode, :CreatedAt, :StartTime, :EndTime, :TraceId, :RequestId
+
+        def initialize(channelid=nil, liveid=nil, status=nil, phase=nil, callmode=nil, createdat=nil, starttime=nil, endtime=nil, traceid=nil, requestid=nil)
+          @ChannelId = channelid
+          @LiveId = liveid
+          @Status = status
+          @Phase = phase
+          @CallMode = callmode
+          @CreatedAt = createdat
+          @StartTime = starttime
+          @EndTime = endtime
+          @TraceId = traceid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @LiveId = params['LiveId']
+          @Status = params['Status']
+          @Phase = params['Phase']
+          @CallMode = params['CallMode']
+          @CreatedAt = params['CreatedAt']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @TraceId = params['TraceId']
           @RequestId = params['RequestId']
         end
       end
@@ -18863,6 +18983,46 @@ module TencentCloud
         end
       end
 
+      # StopAvatarEditingLive请求参数结构体
+      class StopAvatarEditingLiveRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelId: <p>通道ID，通常是待编辑的直播流的源ID</p>
+        # @type ChannelId: String
+
+        attr_accessor :ChannelId
+
+        def initialize(channelid=nil)
+          @ChannelId = channelid
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+        end
+      end
+
+      # StopAvatarEditingLive返回参数结构体
+      class StopAvatarEditingLiveResponse < TencentCloud::Common::AbstractModel
+        # @param ChannelId: <p>通道ID，通常是待编辑的直播流的源ID</p>
+        # @type ChannelId: String
+        # @param LiveId: <p>实时编辑会话ID</p>
+        # @type LiveId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ChannelId, :LiveId, :RequestId
+
+        def initialize(channelid=nil, liveid=nil, requestid=nil)
+          @ChannelId = channelid
+          @LiveId = liveid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @LiveId = params['LiveId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopCasterPgm请求参数结构体
       class StopCasterPgmRequest < TencentCloud::Common::AbstractModel
         # @param CasterId: 导播台ID。
@@ -19278,6 +19438,54 @@ module TencentCloud
           @AppName = params['AppName']
           @DomainName = params['DomainName']
           @PushToDelay = params['PushToDelay']
+        end
+      end
+
+      # SwitchAvatarEditingScene请求参数结构体
+      class SwitchAvatarEditingSceneRequest < TencentCloud::Common::AbstractModel
+        # @param ChannelId: <p>通道ID，通常是待编辑的直播流的源ID</p>
+        # @type ChannelId: String
+        # @param EditingType: <p>支持的编辑类型</p><p>枚举值：</p><ul><li>style_transfer： 整体风格迁移</li><li>virtual_tryon： 虚拟试穿</li><li>subject_replacement： 主体替换</li><li>background_replacement： 背景替换</li></ul>
+        # @type EditingType: String
+        # @param ImageUrl: <p>各种编辑场景的参考图</p>
+        # @type ImageUrl: String
+
+        attr_accessor :ChannelId, :EditingType, :ImageUrl
+
+        def initialize(channelid=nil, editingtype=nil, imageurl=nil)
+          @ChannelId = channelid
+          @EditingType = editingtype
+          @ImageUrl = imageurl
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @EditingType = params['EditingType']
+          @ImageUrl = params['ImageUrl']
+        end
+      end
+
+      # SwitchAvatarEditingScene返回参数结构体
+      class SwitchAvatarEditingSceneResponse < TencentCloud::Common::AbstractModel
+        # @param ChannelId: <p>通道ID，通常是待编辑的直播流的源ID</p>
+        # @type ChannelId: String
+        # @param LiveId: <p>实时编辑会话ID</p>
+        # @type LiveId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ChannelId, :LiveId, :RequestId
+
+        def initialize(channelid=nil, liveid=nil, requestid=nil)
+          @ChannelId = channelid
+          @LiveId = liveid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ChannelId = params['ChannelId']
+          @LiveId = params['LiveId']
+          @RequestId = params['RequestId']
         end
       end
 
