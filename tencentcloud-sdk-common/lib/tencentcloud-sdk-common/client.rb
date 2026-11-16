@@ -93,7 +93,7 @@ module TencentCloud
         else
           case content_type
           when JSON_CONTENT
-            req.data = JSON.generate(params, { 'ascii_only' => true, 'space' => ' ' })
+            req.data = JSON.generate(params, ascii_only: true, space: ' ')
           when MULTIPART_CONTENT
             binparas = options['binparas'] || []
             boundary = SecureRandom.hex
@@ -107,7 +107,7 @@ module TencentCloud
               else
                 body += "\r\n"
                 if v.is_a?(Array) || v.is_a?(Hash)
-                  v = JSON.generate(v, { 'ascii_only' => true, 'space' => ' ' })
+                  v = JSON.generate(v, ascii_only: true, space: ' ')
                   body += "Content-Type: application/json\r\n"
                 end
               end
