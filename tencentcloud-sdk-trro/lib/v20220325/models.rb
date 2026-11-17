@@ -288,16 +288,19 @@ module TencentCloud
         # @type OutputStorage: :class:`Tencentcloud::Trro.v20220325.models.OutputStorage`
         # @param CallbackInfo: <p>回调信息，配置后当任务下子处理项状态从处理中变为其他状态时，服务端会向回调地址发送请求（退避重试三次，不保证回调一定送达，需保证目标地址接收服务有效），建议接收方做好幂等处理。回调请求格式如下：<br><strong>请求头</strong></p><table><thead><tr><th>名称</th><th>值</th></tr></thead><tbody><tr><td>X-Annotation-Signature</td><td>hex(HMAC-SHA256(请求体原始字节, CallbackInfo.Secret))</td></tr></tbody></table><p><strong>请求体</strong>（application/json）</p><table><thead><tr><th>参数名</th><th>类型</th><th>必选</th><th>描述</th></tr></thead><tbody><tr><td>JobId</td><td>string</td><td>是</td><td>任务 ID</td></tr><tr><td>TaskId</td><td>string</td><td>是</td><td>处理项 ID</td></tr><tr><td>FileName</td><td>string</td><td>是</td><td>视频文件名</td></tr><tr><td>Status</td><td>int</td><td>是</td><td>触发本次回调的处理项状态：3 超时，4 异常，5 待确认，6 成功</td></tr><tr><td>StatusChangedAt</td><td>int</td><td>是</td><td>状态变更时间，Unix 时间戳（秒）</td></tr><tr><td>RawResult</td><td>string</td><td>否</td><td>当前生效的结果 JSON 原文：成功=标注产物；待确认=原始标注；确认后=确认版内容。超时/异常无内容</td></tr></tbody></table>
         # @type CallbackInfo: :class:`Tencentcloud::Trro.v20220325.models.CallbackInfo`
+        # @param ExtraSources: <p>伴生输入文件列表，全批共用一份。与主视频同桶同凭证，Path 相对每个处理项各自的主视频目录解析，支持 ${FileName} 占位符。最多 8 条；HTTP 源（InputType=2）不支持。</p>
+        # @type ExtraSources: Array
 
-        attr_accessor :InputStorage, :AnnotationType, :AnnotationContext, :ProcessParams, :OutputStorage, :CallbackInfo
+        attr_accessor :InputStorage, :AnnotationType, :AnnotationContext, :ProcessParams, :OutputStorage, :CallbackInfo, :ExtraSources
 
-        def initialize(inputstorage=nil, annotationtype=nil, annotationcontext=nil, processparams=nil, outputstorage=nil, callbackinfo=nil)
+        def initialize(inputstorage=nil, annotationtype=nil, annotationcontext=nil, processparams=nil, outputstorage=nil, callbackinfo=nil, extrasources=nil)
           @InputStorage = inputstorage
           @AnnotationType = annotationtype
           @AnnotationContext = annotationcontext
           @ProcessParams = processparams
           @OutputStorage = outputstorage
           @CallbackInfo = callbackinfo
+          @ExtraSources = extrasources
         end
 
         def deserialize(params)
@@ -321,6 +324,14 @@ module TencentCloud
           unless params['CallbackInfo'].nil?
             @CallbackInfo = CallbackInfo.new
             @CallbackInfo.deserialize(params['CallbackInfo'])
+          end
+          unless params['ExtraSources'].nil?
+            @ExtraSources = []
+            params['ExtraSources'].each do |i|
+              extrasourceinfo_tmp = ExtraSourceInfo.new
+              extrasourceinfo_tmp.deserialize(i)
+              @ExtraSources << extrasourceinfo_tmp
+            end
           end
         end
       end
@@ -518,10 +529,12 @@ module TencentCloud
         # @type OutputInfo: :class:`Tencentcloud::Trro.v20220325.models.OutputInfo`
         # @param CallbackInfo: <p>回调信息，配置后当处理项状态从处理中变为其他状态时，服务端会向回调地址发送请求（退避重试三次，不保证回调一定送达，需保证目标地址接收服务有效），建议接收方做好幂等处理。回调请求格式如下：<br><strong>请求头</strong></p><table><thead><tr><th>名称</th><th>值</th></tr></thead><tbody><tr><td>X-Annotation-Signature</td><td>hex(HMAC-SHA256(请求体原始字节, CallbackInfo.Secret))</td></tr></tbody></table><p><strong>请求体</strong>（application/json）</p><table><thead><tr><th>参数名</th><th>类型</th><th>必选</th><th>描述</th></tr></thead><tbody><tr><td>JobId</td><td>string</td><td>是</td><td>任务 ID</td></tr><tr><td>TaskId</td><td>string</td><td>是</td><td>处理项 ID</td></tr><tr><td>FileName</td><td>string</td><td>是</td><td>视频文件名</td></tr><tr><td>Status</td><td>int</td><td>是</td><td>触发本次回调的处理项状态：3 超时，4 异常，5 待确认，6 成功</td></tr><tr><td>StatusChangedAt</td><td>int</td><td>是</td><td>状态变更时间，Unix 时间戳（秒）</td></tr><tr><td>RawResult</td><td>string</td><td>否</td><td>当前生效的结果 JSON 原文：成功=标注产物；待确认=原始标注；确认后=确认版内容。超时/异常无内容</td></tr></tbody></table>
         # @type CallbackInfo: :class:`Tencentcloud::Trro.v20220325.models.CallbackInfo`
+        # @param ExtraSources: <p>伴生输入文件列表。与主视频同桶同凭证，每个元素包含 Name（文件引用名）与 Path（相对主视频所在目录的 COS 路径）。最多 8 条；HTTP 源（InputType=2）不支持。</p>
+        # @type ExtraSources: Array
 
-        attr_accessor :InputType, :AnnotationType, :S3SourceInfo, :HttpUrl, :AnnotationContext, :ProcessParams, :OutputInfo, :CallbackInfo
+        attr_accessor :InputType, :AnnotationType, :S3SourceInfo, :HttpUrl, :AnnotationContext, :ProcessParams, :OutputInfo, :CallbackInfo, :ExtraSources
 
-        def initialize(inputtype=nil, annotationtype=nil, s3sourceinfo=nil, httpurl=nil, annotationcontext=nil, processparams=nil, outputinfo=nil, callbackinfo=nil)
+        def initialize(inputtype=nil, annotationtype=nil, s3sourceinfo=nil, httpurl=nil, annotationcontext=nil, processparams=nil, outputinfo=nil, callbackinfo=nil, extrasources=nil)
           @InputType = inputtype
           @AnnotationType = annotationtype
           @S3SourceInfo = s3sourceinfo
@@ -530,6 +543,7 @@ module TencentCloud
           @ProcessParams = processparams
           @OutputInfo = outputinfo
           @CallbackInfo = callbackinfo
+          @ExtraSources = extrasources
         end
 
         def deserialize(params)
@@ -555,6 +569,14 @@ module TencentCloud
           unless params['CallbackInfo'].nil?
             @CallbackInfo = CallbackInfo.new
             @CallbackInfo.deserialize(params['CallbackInfo'])
+          end
+          unless params['ExtraSources'].nil?
+            @ExtraSources = []
+            params['ExtraSources'].each do |i|
+              extrasourceinfo_tmp = ExtraSourceInfo.new
+              extrasourceinfo_tmp.deserialize(i)
+              @ExtraSources << extrasourceinfo_tmp
+            end
           end
         end
       end
@@ -1702,6 +1724,26 @@ module TencentCloud
         end
       end
 
+      # 伴生输入文件登记（多输入）。与主视频同桶同凭证，Name 为文件引用名，Path 为相对主视频所在目录的 COS 路径。
+      class ExtraSourceInfo < TencentCloud::Common::AbstractModel
+        # @param Name: <p>伴生文件的引用名。只允许 [A-Za-z0-9._-] 路径段，可含子目录（深度 ≤3 层）；不能以 / 开头，不能包含 ..；同一请求内不重复</p>
+        # @type Name: String
+        # @param Path: <p>伴生文件相对主视频所在目录（含文件名）的 COS 相对路径。必须为相对路径（不能以 / 开头），长度 ≤128 字节，允许 ../ 上溯最多 2 层；批量接口支持 ${FileName} 占位符（替换为该处理项主视频文件名，不含扩展名</p>
+        # @type Path: String
+
+        attr_accessor :Name, :Path
+
+        def initialize(name=nil, path=nil)
+          @Name = name
+          @Path = path
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Path = params['Path']
+        end
+      end
+
       # GetDeviceLicense请求参数结构体
       class GetDeviceLicenseRequest < TencentCloud::Common::AbstractModel
         # @param ProjectId: 目标设备所属项目ID
@@ -2831,8 +2873,8 @@ module TencentCloud
 
         attr_accessor :DeviceType, :StartTime, :EndTime, :SessionId, :Rate, :Fps, :Lost, :NetworkLatency, :VideoLatency, :CpuUsed, :MemUsed, :TimeOffset, :ProjectId, :DeviceId, :Ver, :SdkMode, :DecodeCost, :RenderConst, :K100, :K150, :NACK, :BitRateEstimate, :Width, :Height, :EncodeCost, :CaptureCost, :RenderCost, :ConfigWidth, :ConfigHeight, :FrameDelta, :MaxFrameDelta, :TotalBitrateEstimate, :Lag100Duration, :Lag150Duration, :MultiMode, :MultiNet, :ControlLatency
         extend Gem::Deprecate
-        deprecate :RenderConst, :none, 2026, 10
-        deprecate :RenderConst=, :none, 2026, 10
+        deprecate :RenderConst, :none, 2026, 11
+        deprecate :RenderConst=, :none, 2026, 11
 
         def initialize(devicetype=nil, starttime=nil, endtime=nil, sessionid=nil, rate=nil, fps=nil, lost=nil, networklatency=nil, videolatency=nil, cpuused=nil, memused=nil, timeoffset=nil, projectid=nil, deviceid=nil, ver=nil, sdkmode=nil, decodecost=nil, renderconst=nil, k100=nil, k150=nil, nack=nil, bitrateestimate=nil, width=nil, height=nil, encodecost=nil, capturecost=nil, rendercost=nil, configwidth=nil, configheight=nil, framedelta=nil, maxframedelta=nil, totalbitrateestimate=nil, lag100duration=nil, lag150duration=nil, multimode=nil, multinet=nil, controllatency=nil)
           @DeviceType = devicetype

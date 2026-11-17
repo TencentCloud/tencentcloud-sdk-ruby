@@ -2505,6 +2505,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询AIGC白名单配置
+
+        # @param request: Request instance for DescribeAigcWhitelist.
+        # @type request: :class:`Tencentcloud::vod::V20180717::DescribeAigcWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::DescribeAigcWhitelistResponse`
+        def DescribeAigcWhitelist(request)
+          body = send_request('DescribeAigcWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAigcWhitelistResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # * 获得用户的所有分类信息。
 
         # @param request: Request instance for DescribeAllClass.
@@ -5854,6 +5878,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SearchMediaBySemanticsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改AIGC白名单设置
+
+        # @param request: Request instance for SetAigcWhitelist.
+        # @type request: :class:`Tencentcloud::vod::V20180717::SetAigcWhitelistRequest`
+        # @rtype: :class:`Tencentcloud::vod::V20180717::SetAigcWhitelistResponse`
+        def SetAigcWhitelist(request)
+          body = send_request('SetAigcWhitelist', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = SetAigcWhitelistResponse.new
             model.deserialize(response['Response'])
             model
           else

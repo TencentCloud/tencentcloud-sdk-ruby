@@ -6125,6 +6125,26 @@ module TencentCloud
         end
       end
 
+      # AIGC模型白名单
+      class AigcWhitelistModel < TencentCloud::Common::AbstractModel
+        # @param ModelName: <p>模型名称</p>
+        # @type ModelName: String
+        # @param ModelVersion: <p>模型版本</p>
+        # @type ModelVersion: String
+
+        attr_accessor :ModelName, :ModelVersion
+
+        def initialize(modelname=nil, modelversion=nil)
+          @ModelName = modelname
+          @ModelVersion = modelversion
+        end
+
+        def deserialize(params)
+          @ModelName = params['ModelName']
+          @ModelVersion = params['ModelVersion']
+        end
+      end
+
       # 转动图任务类型
       class AnimatedGraphicTaskInput < TencentCloud::Common::AbstractModel
         # @param Definition: 视频转动图模板 ID
@@ -15079,6 +15099,69 @@ module TencentCloud
             @AigcTextDetails = AigcTextDetail.new
             @AigcTextDetails.deserialize(params['AigcTextDetails'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAigcWhitelist请求参数结构体
+      class DescribeAigcWhitelistRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
+        # @type SubAppId: Integer
+        # @param AigcType: <p>AIGC任务类型</p><p>枚举值：</p><ul><li>Image： AIGC 生图任务</li><li>Video： AIGC 生视频任务</li></ul>
+        # @type AigcType: String
+
+        attr_accessor :SubAppId, :AigcType
+
+        def initialize(subappid=nil, aigctype=nil)
+          @SubAppId = subappid
+          @AigcType = aigctype
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @AigcType = params['AigcType']
+        end
+      end
+
+      # DescribeAigcWhitelist返回参数结构体
+      class DescribeAigcWhitelistResponse < TencentCloud::Common::AbstractModel
+        # @param AigcType: <p>AIGC任务类型</p><p>枚举值：</p><ul><li>Image： AIGC 生图任务</li><li>Video： AIGC 生视频任务</li></ul>
+        # @type AigcType: String
+        # @param ModelWhitelistSwitch: <p>模型白名单开关</p><p>枚举值：</p><ul><li>ON： 打开，只有允许调用ModelWhitelist中列出的模型</li><li>OFF： 关闭，允许调用所有模型</li></ul>
+        # @type ModelWhitelistSwitch: String
+        # @param ModelWhitelist: <p>模型白名单列表</p>
+        # @type ModelWhitelist: Array
+        # @param IpWhitelistSwitch: <p>IP白名单开关</p><p>枚举值：</p><ul><li>ON： 打开，只允许IpWhitelist中列出的IP段进行调用</li><li>OFF： 关闭，允许所有IP进行调用</li></ul>
+        # @type IpWhitelistSwitch: String
+        # @param IpWhitelist: <p>IP白名单的CIDR列表</p>
+        # @type IpWhitelist: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AigcType, :ModelWhitelistSwitch, :ModelWhitelist, :IpWhitelistSwitch, :IpWhitelist, :RequestId
+
+        def initialize(aigctype=nil, modelwhitelistswitch=nil, modelwhitelist=nil, ipwhitelistswitch=nil, ipwhitelist=nil, requestid=nil)
+          @AigcType = aigctype
+          @ModelWhitelistSwitch = modelwhitelistswitch
+          @ModelWhitelist = modelwhitelist
+          @IpWhitelistSwitch = ipwhitelistswitch
+          @IpWhitelist = ipwhitelist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @AigcType = params['AigcType']
+          @ModelWhitelistSwitch = params['ModelWhitelistSwitch']
+          unless params['ModelWhitelist'].nil?
+            @ModelWhitelist = []
+            params['ModelWhitelist'].each do |i|
+              aigcwhitelistmodel_tmp = AigcWhitelistModel.new
+              aigcwhitelistmodel_tmp.deserialize(i)
+              @ModelWhitelist << aigcwhitelistmodel_tmp
+            end
+          end
+          @IpWhitelistSwitch = params['IpWhitelistSwitch']
+          @IpWhitelist = params['IpWhitelist']
           @RequestId = params['RequestId']
         end
       end
@@ -36879,6 +36962,65 @@ module TencentCloud
         end
       end
 
+      # SetAigcWhitelist请求参数结构体
+      class SetAigcWhitelistRequest < TencentCloud::Common::AbstractModel
+        # @param SubAppId: <p><b>点播<a href="/document/product/266/14574">应用</a> ID。从2023年12月25日起开通点播的客户，如访问点播应用中的资源（无论是默认应用还是新创建的应用），必须将该字段填写为应用 ID。</b></p>
+        # @type SubAppId: Integer
+        # @param AigcType: <p>AIGC任务类型</p><p>枚举值：</p><ul><li>Image： AIGC 生图任务</li><li>Video： AIGC 生视频任务</li></ul>
+        # @type AigcType: String
+        # @param ModelWhitelistSwitch: <p>模型白名单开关</p><p>枚举值：</p><ul><li>ON： 打开，只有允许调用ModelWhitelist中列出的模型</li><li>OFF： 关闭，允许调用所有模型</li></ul>
+        # @type ModelWhitelistSwitch: String
+        # @param IpWhitelistSwitch: <p>IP白名单开关</p><p>枚举值：</p><ul><li>ON： 打开，只允许IpWhitelist中列出的IP段进行调用</li><li>OFF： 关闭，允许所有IP进行调用</li></ul>
+        # @type IpWhitelistSwitch: String
+        # @param ModelWhitelist: <p>模型白名单列表</p>
+        # @type ModelWhitelist: Array
+        # @param IpWhitelist: <p>IP白名单的CIDR列表</p>
+        # @type IpWhitelist: Array
+
+        attr_accessor :SubAppId, :AigcType, :ModelWhitelistSwitch, :IpWhitelistSwitch, :ModelWhitelist, :IpWhitelist
+
+        def initialize(subappid=nil, aigctype=nil, modelwhitelistswitch=nil, ipwhitelistswitch=nil, modelwhitelist=nil, ipwhitelist=nil)
+          @SubAppId = subappid
+          @AigcType = aigctype
+          @ModelWhitelistSwitch = modelwhitelistswitch
+          @IpWhitelistSwitch = ipwhitelistswitch
+          @ModelWhitelist = modelwhitelist
+          @IpWhitelist = ipwhitelist
+        end
+
+        def deserialize(params)
+          @SubAppId = params['SubAppId']
+          @AigcType = params['AigcType']
+          @ModelWhitelistSwitch = params['ModelWhitelistSwitch']
+          @IpWhitelistSwitch = params['IpWhitelistSwitch']
+          unless params['ModelWhitelist'].nil?
+            @ModelWhitelist = []
+            params['ModelWhitelist'].each do |i|
+              aigcwhitelistmodel_tmp = AigcWhitelistModel.new
+              aigcwhitelistmodel_tmp.deserialize(i)
+              @ModelWhitelist << aigcwhitelistmodel_tmp
+            end
+          end
+          @IpWhitelist = params['IpWhitelist']
+        end
+      end
+
+      # SetAigcWhitelist返回参数结构体
+      class SetAigcWhitelistResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # SetCLSPushTarget请求参数结构体
       class SetCLSPushTargetRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名。
@@ -37639,19 +37781,9 @@ module TencentCloud
 
       # 统计数据
       class StatDataItem < TencentCloud::Common::AbstractModel
-        # @param Time: 数据所在时间区间的开始时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。如：当时间粒度为天，2018-12-01T00:00:00+08:00，表示2018年12月1日（含）到2018年12月2日（不含）区间。
-        # <li>表示小时级别数据时，2019-08-22T00:00:00+08:00表示2019-08-22日0点到1点的统计数据。</li>
-        # <li>表示天级别数据时，2019-08-22T00:00:00+08:00表示2019-08-22日的统计数据。</li>
+        # @param Time: <p>数据所在时间区间的开始时间，使用 <a href="https://cloud.tencent.com/document/product/266/11732#I">ISO 日期格式</a>。如：当时间粒度为天，2018-12-01T00:00:00+08:00，表示2018年12月1日（含）到2018年12月2日（不含）区间。</p><li>表示小时级别数据时，2019-08-22T00:00:00+08:00表示2019-08-22日0点到1点的统计数据。</li><li>表示天级别数据时，2019-08-22T00:00:00+08:00表示2019-08-22日的统计数据。</li>
         # @type Time: String
-        # @param Value: 数据大小。
-        # <li>存储空间的数据，单位是字节。</li>
-        # <li>转码时长的数据，单位是秒。</li>
-        # <li>流量数据，单位是字节。</li>
-        # <li>带宽数据，单位是比特每秒。</li>
-        # <li>直播剪辑数据，单位是秒。</li>
-        # <li>轮播数据，单位是秒。</li>
-        # <li>子应用数量数据，单位是个。</li>
-        # <li>日志服务用量数据，单位是条。</li>
+        # @param Value: <p>数据大小。</p><li>存储空间的数据，单位是字节。</li><li>转码时长的数据，单位是秒。</li><li>流量数据，单位是字节。</li><li>带宽数据，单位是比特每秒。</li><li>直播剪辑数据，单位是秒。</li><li>轮播数据，单位是秒。</li><li>子应用数量数据，单位是个。</li><li>日志服务用量数据，单位是条。</li>
         # @type Value: Integer
 
         attr_accessor :Time, :Value

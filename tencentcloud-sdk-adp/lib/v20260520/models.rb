@@ -260,6 +260,57 @@ module TencentCloud
         end
       end
 
+      # Agent 内置工具详情
+      class AgentBuiltinTool < TencentCloud::Common::AbstractModel
+        # @param Config: <p>内置工具基础配置</p>
+        # @type Config: :class:`Tencentcloud::Adp.v20260520.models.AgentBuiltinToolConfig`
+        # @param DisplayName: <p>工具展示名称</p>
+        # @type DisplayName: String
+        # @param Description: <p>工具描述</p>
+        # @type Description: String
+        # @param BillingType: <p>计费标识</p><p>枚举值：</p><ul><li>0： 免费</li><li>1： 限时免费</li><li>2： 官方收费</li></ul>
+        # @type BillingType: Integer
+
+        attr_accessor :Config, :DisplayName, :Description, :BillingType
+
+        def initialize(config=nil, displayname=nil, description=nil, billingtype=nil)
+          @Config = config
+          @DisplayName = displayname
+          @Description = description
+          @BillingType = billingtype
+        end
+
+        def deserialize(params)
+          unless params['Config'].nil?
+            @Config = AgentBuiltinToolConfig.new
+            @Config.deserialize(params['Config'])
+          end
+          @DisplayName = params['DisplayName']
+          @Description = params['Description']
+          @BillingType = params['BillingType']
+        end
+      end
+
+      # Agent 内置工具配置
+      class AgentBuiltinToolConfig < TencentCloud::Common::AbstractModel
+        # @param Name: <p>工具名称</p>
+        # @type Name: String
+        # @param Disabled: <p>是否禁用该内置工具</p>
+        # @type Disabled: Boolean
+
+        attr_accessor :Name, :Disabled
+
+        def initialize(name=nil, disabled=nil)
+          @Name = name
+          @Disabled = disabled
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @Disabled = params['Disabled']
+        end
+      end
+
       # [数据结构定义] Agent协同配置
       class AgentCollaborationConfig < TencentCloud::Common::AbstractModel
         # @param AgentCollaborationMode: 协同方式。枚举值: 1:自由转交：Agent之间可自由传递任务, 2:工作流编排：基于预定义流程的协同, 3:Plan-and-Execute：规划与执行分离的协同模式
@@ -304,10 +355,21 @@ module TencentCloud
         # @type AdvancedConfig: :class:`Tencentcloud::Adp.v20260520.models.AgentAdvancedConfig`
         # @param ExternalToolList: <p>调用方执行的 Function Tool 列表</p><p>入参限制：仅在 C 端用户态 Agent 场景可用，B 端配置态 Agent 忽略该字段与</p>
         # @type ExternalToolList: Array
+        # @param ProviderType: <p>子 Agent 执行来源</p><p>枚举值：</p><ul><li>0： 应用内子 Agent</li><li>1： 引用已发布的应用</li></ul>
+        # @type ProviderType: Integer
+        # @param ReferenceAppId: <p>引用应用的ID</p>
+        # @type ReferenceAppId: String
+        # @param ReferenceAppStatus: <p>引用应用状态，ProviderType=1 时有效</p><p>枚举值：</p><ul><li>0： 来源应用可用</li><li>1： 来源应用不可用</li><li>2： 无权限</li><li>3： 嵌套引用: 来源应用线上生效配置中已含应用类子 Agent</li></ul>
+        # @type ReferenceAppStatus: Integer
+        # @param ReferenceApp: <p>引用应用详情，ProviderType=1 时返回</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ReferenceApp: :class:`Tencentcloud::Adp.v20260520.models.ReferenceAppDetail`
+        # @param BuiltinToolList: <p>内置工具列表</p>
+        # @type BuiltinToolList: Array
 
-        attr_accessor :AgentId, :Profile, :Instructions, :Model, :ToolList, :PluginList, :SkillList, :AdvancedConfig, :ExternalToolList
+        attr_accessor :AgentId, :Profile, :Instructions, :Model, :ToolList, :PluginList, :SkillList, :AdvancedConfig, :ExternalToolList, :ProviderType, :ReferenceAppId, :ReferenceAppStatus, :ReferenceApp, :BuiltinToolList
 
-        def initialize(agentid=nil, profile=nil, instructions=nil, model=nil, toollist=nil, pluginlist=nil, skilllist=nil, advancedconfig=nil, externaltoollist=nil)
+        def initialize(agentid=nil, profile=nil, instructions=nil, model=nil, toollist=nil, pluginlist=nil, skilllist=nil, advancedconfig=nil, externaltoollist=nil, providertype=nil, referenceappid=nil, referenceappstatus=nil, referenceapp=nil, builtintoollist=nil)
           @AgentId = agentid
           @Profile = profile
           @Instructions = instructions
@@ -317,6 +379,11 @@ module TencentCloud
           @SkillList = skilllist
           @AdvancedConfig = advancedconfig
           @ExternalToolList = externaltoollist
+          @ProviderType = providertype
+          @ReferenceAppId = referenceappid
+          @ReferenceAppStatus = referenceappstatus
+          @ReferenceApp = referenceapp
+          @BuiltinToolList = builtintoollist
         end
 
         def deserialize(params)
@@ -364,6 +431,21 @@ module TencentCloud
               agentexternaltoolconfig_tmp = AgentExternalToolConfig.new
               agentexternaltoolconfig_tmp.deserialize(i)
               @ExternalToolList << agentexternaltoolconfig_tmp
+            end
+          end
+          @ProviderType = params['ProviderType']
+          @ReferenceAppId = params['ReferenceAppId']
+          @ReferenceAppStatus = params['ReferenceAppStatus']
+          unless params['ReferenceApp'].nil?
+            @ReferenceApp = ReferenceAppDetail.new
+            @ReferenceApp.deserialize(params['ReferenceApp'])
+          end
+          unless params['BuiltinToolList'].nil?
+            @BuiltinToolList = []
+            params['BuiltinToolList'].each do |i|
+              agentbuiltintool_tmp = AgentBuiltinTool.new
+              agentbuiltintool_tmp.deserialize(i)
+              @BuiltinToolList << agentbuiltintool_tmp
             end
           end
         end
@@ -862,10 +944,16 @@ module TencentCloud
         # @type AdvancedConfig: :class:`Tencentcloud::Adp.v20260520.models.AgentAdvancedConfig`
         # @param ExternalToolList: <p>调用方执行的 Function Tool 列表</p><p>入参限制：仅在 C 端用户态 Agent 场景可用，B 端配置态 Agent  忽略该字段与</p>
         # @type ExternalToolList: Array
+        # @param ProviderType: <p>子 Agent执行来源</p><p>枚举值：</p><ul><li>0： 应用内子 Agent</li><li>1： 引用已发布的应用</li></ul>
+        # @type ProviderType: Integer
+        # @param ReferenceAppId: <p>引用应用的Id</p>
+        # @type ReferenceAppId: String
+        # @param BuiltinToolList: <p>内置工具信息</p>
+        # @type BuiltinToolList: Array
 
-        attr_accessor :Profile, :Instructions, :Model, :ToolList, :PluginList, :SkillList, :AdvancedConfig, :ExternalToolList
+        attr_accessor :Profile, :Instructions, :Model, :ToolList, :PluginList, :SkillList, :AdvancedConfig, :ExternalToolList, :ProviderType, :ReferenceAppId, :BuiltinToolList
 
-        def initialize(profile=nil, instructions=nil, model=nil, toollist=nil, pluginlist=nil, skilllist=nil, advancedconfig=nil, externaltoollist=nil)
+        def initialize(profile=nil, instructions=nil, model=nil, toollist=nil, pluginlist=nil, skilllist=nil, advancedconfig=nil, externaltoollist=nil, providertype=nil, referenceappid=nil, builtintoollist=nil)
           @Profile = profile
           @Instructions = instructions
           @Model = model
@@ -874,6 +962,9 @@ module TencentCloud
           @SkillList = skilllist
           @AdvancedConfig = advancedconfig
           @ExternalToolList = externaltoollist
+          @ProviderType = providertype
+          @ReferenceAppId = referenceappid
+          @BuiltinToolList = builtintoollist
         end
 
         def deserialize(params)
@@ -922,6 +1013,16 @@ module TencentCloud
               @ExternalToolList << agentexternaltoolconfig_tmp
             end
           end
+          @ProviderType = params['ProviderType']
+          @ReferenceAppId = params['ReferenceAppId']
+          unless params['BuiltinToolList'].nil?
+            @BuiltinToolList = []
+            params['BuiltinToolList'].each do |i|
+              agentbuiltintoolconfig_tmp = AgentBuiltinToolConfig.new
+              agentbuiltintoolconfig_tmp.deserialize(i)
+              @BuiltinToolList << agentbuiltintoolconfig_tmp
+            end
+          end
         end
       end
 
@@ -933,13 +1034,19 @@ module TencentCloud
         # @type Profile: :class:`Tencentcloud::Adp.v20260520.models.AgentProfile`
         # @param AdvancedConfig: <p>高级设置;scope=0 时返回</p>
         # @type AdvancedConfig: :class:`Tencentcloud::Adp.v20260520.models.AgentAdvancedConfig`
+        # @param ProviderType: <p>子 Agent 执行来源</p><p>枚举值：</p><ul><li>0： 应用内子 Agent</li><li>1： 引用已发布的应用</li></ul>
+        # @type ProviderType: Integer
+        # @param ReferenceAppStatus: <p>引用应用状态，ProviderType=1 时有效</p><p>枚举值：</p><ul><li>0： 来源应用可用</li><li>1： 来源应用不可用</li><li>2： 无权限</li><li>3： 嵌套引用: 来源应用线上生效配置中已含应用类子 Agent</li></ul>
+        # @type ReferenceAppStatus: Integer
 
-        attr_accessor :AgentId, :Profile, :AdvancedConfig
+        attr_accessor :AgentId, :Profile, :AdvancedConfig, :ProviderType, :ReferenceAppStatus
 
-        def initialize(agentid=nil, profile=nil, advancedconfig=nil)
+        def initialize(agentid=nil, profile=nil, advancedconfig=nil, providertype=nil, referenceappstatus=nil)
           @AgentId = agentid
           @Profile = profile
           @AdvancedConfig = advancedconfig
+          @ProviderType = providertype
+          @ReferenceAppStatus = referenceappstatus
         end
 
         def deserialize(params)
@@ -952,6 +1059,8 @@ module TencentCloud
             @AdvancedConfig = AgentAdvancedConfig.new
             @AdvancedConfig.deserialize(params['AdvancedConfig'])
           end
+          @ProviderType = params['ProviderType']
+          @ReferenceAppStatus = params['ReferenceAppStatus']
         end
       end
 
@@ -1242,31 +1351,29 @@ module TencentCloud
 
       # ApiKey鉴权配置
       class ApiKeyAuthConfig < TencentCloud::Common::AbstractModel
-        # @param KeyLocation: 密钥位置 HEADER/QUERY
-
-        # 枚举值:
-        # | uint | 描述 |
-        # | --- | --- |
-        # | 0 | Header鉴权 |
-        # | 1 | Query鉴权 |
+        # @param KeyLocation: <p>密钥位置 HEADER/QUERY</p><p>枚举值:<br>| uint | 描述 |<br>| --- | --- |<br>| 0 | Header鉴权 |<br>| 1 | Query鉴权 |</p>
         # @type KeyLocation: Integer
-        # @param KeyParamName: 密钥参数名
+        # @param KeyParamName: <p>密钥参数名</p>
         # @type KeyParamName: String
-        # @param KeyParamValue: 密钥参数值
+        # @param KeyParamValue: <p>密钥参数值</p>
         # @type KeyParamValue: String
+        # @param KeyValueUsage: <p>密钥值用途，未指定按允许工具调用处理</p><p>枚举值：</p><ul><li>1： 允许用于工具调用</li><li>2： 仅用于连接测试和获取工具列表</li></ul>
+        # @type KeyValueUsage: Integer
 
-        attr_accessor :KeyLocation, :KeyParamName, :KeyParamValue
+        attr_accessor :KeyLocation, :KeyParamName, :KeyParamValue, :KeyValueUsage
 
-        def initialize(keylocation=nil, keyparamname=nil, keyparamvalue=nil)
+        def initialize(keylocation=nil, keyparamname=nil, keyparamvalue=nil, keyvalueusage=nil)
           @KeyLocation = keylocation
           @KeyParamName = keyparamname
           @KeyParamValue = keyparamvalue
+          @KeyValueUsage = keyvalueusage
         end
 
         def deserialize(params)
           @KeyLocation = params['KeyLocation']
           @KeyParamName = params['KeyParamName']
           @KeyParamValue = params['KeyParamValue']
+          @KeyValueUsage = params['KeyValueUsage']
         end
       end
 
@@ -3148,6 +3255,30 @@ module TencentCloud
         end
       end
 
+      # 知识库容量信息
+      class ByteCapacity < TencentCloud::Common::AbstractModel
+        # @param MaxCapacity: <p>最大容量</p>
+        # @type MaxCapacity: String
+        # @param ExceededInvalidCapacity: <p>超量失效容量</p>
+        # @type ExceededInvalidCapacity: String
+        # @param UsedCapacity: <p>已使用容量</p>
+        # @type UsedCapacity: String
+
+        attr_accessor :MaxCapacity, :ExceededInvalidCapacity, :UsedCapacity
+
+        def initialize(maxcapacity=nil, exceededinvalidcapacity=nil, usedcapacity=nil)
+          @MaxCapacity = maxcapacity
+          @ExceededInvalidCapacity = exceededinvalidcapacity
+          @UsedCapacity = usedcapacity
+        end
+
+        def deserialize(params)
+          @MaxCapacity = params['MaxCapacity']
+          @ExceededInvalidCapacity = params['ExceededInvalidCapacity']
+          @UsedCapacity = params['UsedCapacity']
+        end
+      end
+
       # CallMCPTool请求参数结构体
       class CallMCPToolRequest < TencentCloud::Common::AbstractModel
         # @param PluginId: <p>能力边界：一次请求只能调该 plugin 上的工具</p>
@@ -3522,6 +3653,30 @@ module TencentCloud
           end
           @ShareGroupConversation = params['ShareGroupConversation']
           @IsDebug = params['IsDebug']
+        end
+      end
+
+      # 知识库容量信息
+      class CharacterSize < TencentCloud::Common::AbstractModel
+        # @param MaxCharSize: <p>最大字符数</p>
+        # @type MaxCharSize: String
+        # @param OverCharSize: <p>超量字符数</p>
+        # @type OverCharSize: String
+        # @param UsedCharSize: <p>已用字符数</p>
+        # @type UsedCharSize: String
+
+        attr_accessor :MaxCharSize, :OverCharSize, :UsedCharSize
+
+        def initialize(maxcharsize=nil, overcharsize=nil, usedcharsize=nil)
+          @MaxCharSize = maxcharsize
+          @OverCharSize = overcharsize
+          @UsedCharSize = usedcharsize
+        end
+
+        def deserialize(params)
+          @MaxCharSize = params['MaxCharSize']
+          @OverCharSize = params['OverCharSize']
+          @UsedCharSize = params['UsedCharSize']
         end
       end
 
@@ -4088,6 +4243,9 @@ module TencentCloud
         # @param EnterpriseCharts: <p>企业表单</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EnterpriseCharts: String
+        # @param File: <p>文件信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type File: :class:`Tencentcloud::Adp.v20260520.models.ConversationFileInfo`
         # @param OptionCardList: <p>选项卡列表</p>
         # @type OptionCardList: Array
         # @param OptionCards: <p>选项卡列表</p>
@@ -4095,6 +4253,9 @@ module TencentCloud
         # @param OptionMode: <p>选项卡模式 枚举值: 0-OPTION_MODE_SINGLE(单选), 1-OPTION_MODE_MULTI(多选)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type OptionMode: Integer
+        # @param Questionnaire: <p>问卷信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Questionnaire: :class:`Tencentcloud::Adp.v20260520.models.ConversationQuestionnaire`
         # @param QuoteInfoList: <p>引用角标信息列表</p>
         # @type QuoteInfoList: Array
         # @param QuoteInfos: <p>引用角标信息列表</p>
@@ -4110,6 +4271,12 @@ module TencentCloud
         # @type TaskList: Array
         # @param Tasks: <p>智能体任务列表</p>
         # @type Tasks: Array
+        # @param Widget: <p>Widget 信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Widget: :class:`Tencentcloud::Adp.v20260520.models.ConversationWidget`
+        # @param WidgetAction: <p>Widget 动作信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WidgetAction: :class:`Tencentcloud::Adp.v20260520.models.ConversationWidgetAction`
         # @param WorkflowInput: <p>工作流输入参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type WorkflowInput: String
@@ -4117,18 +4284,20 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type McpApp: :class:`Tencentcloud::Adp.v20260520.models.ConversationMcpApp`
 
-        attr_accessor :Text, :Type, :CustomParamList, :CustomParams, :CustomVariablesData, :EnterpriseCharts, :OptionCardList, :OptionCards, :OptionMode, :QuoteInfoList, :QuoteInfos, :ReferenceList, :References, :RelatedRecordId, :TaskList, :Tasks, :WorkflowInput, :McpApp
+        attr_accessor :Text, :Type, :CustomParamList, :CustomParams, :CustomVariablesData, :EnterpriseCharts, :File, :OptionCardList, :OptionCards, :OptionMode, :Questionnaire, :QuoteInfoList, :QuoteInfos, :ReferenceList, :References, :RelatedRecordId, :TaskList, :Tasks, :Widget, :WidgetAction, :WorkflowInput, :McpApp
 
-        def initialize(text=nil, type=nil, customparamlist=nil, customparams=nil, customvariablesdata=nil, enterprisecharts=nil, optioncardlist=nil, optioncards=nil, optionmode=nil, quoteinfolist=nil, quoteinfos=nil, referencelist=nil, references=nil, relatedrecordid=nil, tasklist=nil, tasks=nil, workflowinput=nil, mcpapp=nil)
+        def initialize(text=nil, type=nil, customparamlist=nil, customparams=nil, customvariablesdata=nil, enterprisecharts=nil, file=nil, optioncardlist=nil, optioncards=nil, optionmode=nil, questionnaire=nil, quoteinfolist=nil, quoteinfos=nil, referencelist=nil, references=nil, relatedrecordid=nil, tasklist=nil, tasks=nil, widget=nil, widgetaction=nil, workflowinput=nil, mcpapp=nil)
           @Text = text
           @Type = type
           @CustomParamList = customparamlist
           @CustomParams = customparams
           @CustomVariablesData = customvariablesdata
           @EnterpriseCharts = enterprisecharts
+          @File = file
           @OptionCardList = optioncardlist
           @OptionCards = optioncards
           @OptionMode = optionmode
+          @Questionnaire = questionnaire
           @QuoteInfoList = quoteinfolist
           @QuoteInfos = quoteinfos
           @ReferenceList = referencelist
@@ -4136,6 +4305,8 @@ module TencentCloud
           @RelatedRecordId = relatedrecordid
           @TaskList = tasklist
           @Tasks = tasks
+          @Widget = widget
+          @WidgetAction = widgetaction
           @WorkflowInput = workflowinput
           @McpApp = mcpapp
         end
@@ -4147,9 +4318,17 @@ module TencentCloud
           @CustomParams = params['CustomParams']
           @CustomVariablesData = params['CustomVariablesData']
           @EnterpriseCharts = params['EnterpriseCharts']
+          unless params['File'].nil?
+            @File = ConversationFileInfo.new
+            @File.deserialize(params['File'])
+          end
           @OptionCardList = params['OptionCardList']
           @OptionCards = params['OptionCards']
           @OptionMode = params['OptionMode']
+          unless params['Questionnaire'].nil?
+            @Questionnaire = ConversationQuestionnaire.new
+            @Questionnaire.deserialize(params['Questionnaire'])
+          end
           unless params['QuoteInfoList'].nil?
             @QuoteInfoList = []
             params['QuoteInfoList'].each do |i|
@@ -4198,6 +4377,14 @@ module TencentCloud
               conversationagenttask_tmp.deserialize(i)
               @Tasks << conversationagenttask_tmp
             end
+          end
+          unless params['Widget'].nil?
+            @Widget = ConversationWidget.new
+            @Widget.deserialize(params['Widget'])
+          end
+          unless params['WidgetAction'].nil?
+            @WidgetAction = ConversationWidgetAction.new
+            @WidgetAction.deserialize(params['WidgetAction'])
           end
           @WorkflowInput = params['WorkflowInput']
           unless params['McpApp'].nil?
@@ -4372,6 +4559,9 @@ module TencentCloud
       class ConversationMessage < TencentCloud::Common::AbstractModel
         # @param ConversationId: <p>会话 ID</p>
         # @type ConversationId: String
+        # @param ExtraInfo: <p>额外信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraInfo: :class:`Tencentcloud::Adp.v20260520.models.ConversationMessageExtraInfo`
         # @param Icon: <p>消息图标</p>
         # @type Icon: String
         # @param MessageId: <p>消息 ID</p>
@@ -4395,10 +4585,11 @@ module TencentCloud
         # @param Type: <p>类型</p>
         # @type Type: String
 
-        attr_accessor :ConversationId, :Icon, :MessageId, :Name, :RecordId, :Role, :Status, :StatusDesc, :Title, :ContentList, :Contents, :Type
+        attr_accessor :ConversationId, :ExtraInfo, :Icon, :MessageId, :Name, :RecordId, :Role, :Status, :StatusDesc, :Title, :ContentList, :Contents, :Type
 
-        def initialize(conversationid=nil, icon=nil, messageid=nil, name=nil, recordid=nil, role=nil, status=nil, statusdesc=nil, title=nil, contentlist=nil, contents=nil, type=nil)
+        def initialize(conversationid=nil, extrainfo=nil, icon=nil, messageid=nil, name=nil, recordid=nil, role=nil, status=nil, statusdesc=nil, title=nil, contentlist=nil, contents=nil, type=nil)
           @ConversationId = conversationid
+          @ExtraInfo = extrainfo
           @Icon = icon
           @MessageId = messageid
           @Name = name
@@ -4414,6 +4605,10 @@ module TencentCloud
 
         def deserialize(params)
           @ConversationId = params['ConversationId']
+          unless params['ExtraInfo'].nil?
+            @ExtraInfo = ConversationMessageExtraInfo.new
+            @ExtraInfo.deserialize(params['ExtraInfo'])
+          end
           @Icon = params['Icon']
           @MessageId = params['MessageId']
           @Name = params['Name']
@@ -4439,6 +4634,264 @@ module TencentCloud
             end
           end
           @Type = params['Type']
+        end
+      end
+
+      # MessageExtraInfo 消息扩展信息
+      class ConversationMessageExtraInfo < TencentCloud::Common::AbstractModel
+        # @param AgentIcon: <p>智能体图标</p>
+        # @type AgentIcon: String
+        # @param AgentName: <p>智能体名称</p>
+        # @type AgentName: String
+        # @param Elapsed: <p>消息处理耗时</p>
+        # @type Elapsed: String
+        # @param ParentMessageId: <p>父消息 ID</p>
+        # @type ParentMessageId: String
+        # @param RelatedRecordId: <p>关联记录 ID</p>
+        # @type RelatedRecordId: String
+        # @param StartTime: <p>消息处理开始时间戳（毫秒）</p>
+        # @type StartTime: String
+        # @param ToolIcon: <p>工具图标</p>
+        # @type ToolIcon: String
+        # @param ToolName: <p>工具名称</p>
+        # @type ToolName: String
+        # @param TraceId: <p>Trace ID</p>
+        # @type TraceId: String
+        # @param CanFeedback: <p>是否可以反馈</p>
+        # @type CanFeedback: Boolean
+        # @param CanRate: <p>是否可以点赞点踩</p>
+        # @type CanRate: Boolean
+        # @param EndTime: <p>消息处理开始时间戳（毫秒）</p>
+        # @type EndTime: String
+        # @param HasRead: <p>是否已读</p>
+        # @type HasRead: Boolean
+        # @param IsModelGenerated: <p>是否大模型生成</p>
+        # @type IsModelGenerated: Boolean
+        # @param ReasonList: <p>用户反馈标签列表</p>
+        # @type ReasonList: Array
+        # @param ReplyMethod: <p>回复方式</p>
+        # @type ReplyMethod: Integer
+        # @param Score: <p>用户打分</p>
+        # @type Score: Integer
+        # @param SubAgentRunId: <p>子 Agent 运行 Id</p>
+        # @type SubAgentRunId: String
+        # @param IsSubAgent: <p>是否是子 Agent 的消息</p>
+        # @type IsSubAgent: Boolean
+        # @param SubAgentThreadId: <p>子 Agent 线程 ID</p>
+        # @type SubAgentThreadId: String
+        # @param IsTeammate: <p>是否是 Agent Team 模式下的 teammate 成员</p>
+        # @type IsTeammate: Boolean
+        # @param TeammateName: <p>Agent Team 模式下的 teammate 名称</p>
+        # @type TeammateName: String
+        # @param WorkflowNodeName: <p>工作流节点名称</p>
+        # @type WorkflowNodeName: String
+
+        attr_accessor :AgentIcon, :AgentName, :Elapsed, :ParentMessageId, :RelatedRecordId, :StartTime, :ToolIcon, :ToolName, :TraceId, :CanFeedback, :CanRate, :EndTime, :HasRead, :IsModelGenerated, :ReasonList, :ReplyMethod, :Score, :SubAgentRunId, :IsSubAgent, :SubAgentThreadId, :IsTeammate, :TeammateName, :WorkflowNodeName
+
+        def initialize(agenticon=nil, agentname=nil, elapsed=nil, parentmessageid=nil, relatedrecordid=nil, starttime=nil, toolicon=nil, toolname=nil, traceid=nil, canfeedback=nil, canrate=nil, endtime=nil, hasread=nil, ismodelgenerated=nil, reasonlist=nil, replymethod=nil, score=nil, subagentrunid=nil, issubagent=nil, subagentthreadid=nil, isteammate=nil, teammatename=nil, workflownodename=nil)
+          @AgentIcon = agenticon
+          @AgentName = agentname
+          @Elapsed = elapsed
+          @ParentMessageId = parentmessageid
+          @RelatedRecordId = relatedrecordid
+          @StartTime = starttime
+          @ToolIcon = toolicon
+          @ToolName = toolname
+          @TraceId = traceid
+          @CanFeedback = canfeedback
+          @CanRate = canrate
+          @EndTime = endtime
+          @HasRead = hasread
+          @IsModelGenerated = ismodelgenerated
+          @ReasonList = reasonlist
+          @ReplyMethod = replymethod
+          @Score = score
+          @SubAgentRunId = subagentrunid
+          @IsSubAgent = issubagent
+          @SubAgentThreadId = subagentthreadid
+          @IsTeammate = isteammate
+          @TeammateName = teammatename
+          @WorkflowNodeName = workflownodename
+        end
+
+        def deserialize(params)
+          @AgentIcon = params['AgentIcon']
+          @AgentName = params['AgentName']
+          @Elapsed = params['Elapsed']
+          @ParentMessageId = params['ParentMessageId']
+          @RelatedRecordId = params['RelatedRecordId']
+          @StartTime = params['StartTime']
+          @ToolIcon = params['ToolIcon']
+          @ToolName = params['ToolName']
+          @TraceId = params['TraceId']
+          @CanFeedback = params['CanFeedback']
+          @CanRate = params['CanRate']
+          @EndTime = params['EndTime']
+          @HasRead = params['HasRead']
+          @IsModelGenerated = params['IsModelGenerated']
+          @ReasonList = params['ReasonList']
+          @ReplyMethod = params['ReplyMethod']
+          @Score = params['Score']
+          @SubAgentRunId = params['SubAgentRunId']
+          @IsSubAgent = params['IsSubAgent']
+          @SubAgentThreadId = params['SubAgentThreadId']
+          @IsTeammate = params['IsTeammate']
+          @TeammateName = params['TeammateName']
+          @WorkflowNodeName = params['WorkflowNodeName']
+        end
+      end
+
+      # Question 问卷问题信息
+      class ConversationQuestion < TencentCloud::Common::AbstractModel
+        # @param Index: <p>问题序号</p>
+        # @type Index: Integer
+        # @param Question: <p>问题内容</p>
+        # @type Question: String
+        # @param Required: <p>是否必答</p>
+        # @type Required: Boolean
+        # @param Type: <p>问题类型 枚举值: 0-QUESTION_TYPE_UNSPECIFIED(未指定), 1-QUESTION_TYPE_SINGLE(单选), 2-QUESTION_TYPE_MULTIPLE(多选)</p>
+        # @type Type: Integer
+        # @param OptionList: <p>选项列表</p>
+        # @type OptionList: Array
+        # @param Options: <p>选项列表</p>
+        # @type Options: Array
+
+        attr_accessor :Index, :Question, :Required, :Type, :OptionList, :Options
+
+        def initialize(index=nil, question=nil, required=nil, type=nil, optionlist=nil, options=nil)
+          @Index = index
+          @Question = question
+          @Required = required
+          @Type = type
+          @OptionList = optionlist
+          @Options = options
+        end
+
+        def deserialize(params)
+          @Index = params['Index']
+          @Question = params['Question']
+          @Required = params['Required']
+          @Type = params['Type']
+          unless params['OptionList'].nil?
+            @OptionList = []
+            params['OptionList'].each do |i|
+              conversationquestionoption_tmp = ConversationQuestionOption.new
+              conversationquestionoption_tmp.deserialize(i)
+              @OptionList << conversationquestionoption_tmp
+            end
+          end
+          unless params['Options'].nil?
+            @Options = []
+            params['Options'].each do |i|
+              conversationquestionoption_tmp = ConversationQuestionOption.new
+              conversationquestionoption_tmp.deserialize(i)
+              @Options << conversationquestionoption_tmp
+            end
+          end
+        end
+      end
+
+      # QuestionAnswer 问题答案信息
+      class ConversationQuestionAnswer < TencentCloud::Common::AbstractModel
+        # @param Question: <p>问题内容</p>
+        # @type Question: String
+        # @param SelectedLabelList: <p>已选择的选项标签列表</p>
+        # @type SelectedLabelList: Array
+        # @param SelectedLabels: <p>已选择的选项标签列表</p>
+        # @type SelectedLabels: Array
+
+        attr_accessor :Question, :SelectedLabelList, :SelectedLabels
+
+        def initialize(question=nil, selectedlabellist=nil, selectedlabels=nil)
+          @Question = question
+          @SelectedLabelList = selectedlabellist
+          @SelectedLabels = selectedlabels
+        end
+
+        def deserialize(params)
+          @Question = params['Question']
+          @SelectedLabelList = params['SelectedLabelList']
+          @SelectedLabels = params['SelectedLabels']
+        end
+      end
+
+      # QuestionOption 问题选项信息
+      class ConversationQuestionOption < TencentCloud::Common::AbstractModel
+        # @param Description: <p>选项描述</p>
+        # @type Description: String
+        # @param Label: <p>选项标签</p>
+        # @type Label: String
+
+        attr_accessor :Description, :Label
+
+        def initialize(description=nil, label=nil)
+          @Description = description
+          @Label = label
+        end
+
+        def deserialize(params)
+          @Description = params['Description']
+          @Label = params['Label']
+        end
+      end
+
+      # Questionnaire 问卷信息
+      class ConversationQuestionnaire < TencentCloud::Common::AbstractModel
+        # @param Title: <p>问卷标题</p>
+        # @type Title: String
+        # @param AnswerList: <p>答案列表</p>
+        # @type AnswerList: Array
+        # @param Answers: <p>答案列表</p>
+        # @type Answers: Array
+        # @param QuestionList: <p>问题列表</p>
+        # @type QuestionList: Array
+        # @param Questions: <p>问题列表</p>
+        # @type Questions: Array
+
+        attr_accessor :Title, :AnswerList, :Answers, :QuestionList, :Questions
+
+        def initialize(title=nil, answerlist=nil, answers=nil, questionlist=nil, questions=nil)
+          @Title = title
+          @AnswerList = answerlist
+          @Answers = answers
+          @QuestionList = questionlist
+          @Questions = questions
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          unless params['AnswerList'].nil?
+            @AnswerList = []
+            params['AnswerList'].each do |i|
+              conversationquestionanswer_tmp = ConversationQuestionAnswer.new
+              conversationquestionanswer_tmp.deserialize(i)
+              @AnswerList << conversationquestionanswer_tmp
+            end
+          end
+          unless params['Answers'].nil?
+            @Answers = []
+            params['Answers'].each do |i|
+              conversationquestionanswer_tmp = ConversationQuestionAnswer.new
+              conversationquestionanswer_tmp.deserialize(i)
+              @Answers << conversationquestionanswer_tmp
+            end
+          end
+          unless params['QuestionList'].nil?
+            @QuestionList = []
+            params['QuestionList'].each do |i|
+              conversationquestion_tmp = ConversationQuestion.new
+              conversationquestion_tmp.deserialize(i)
+              @QuestionList << conversationquestion_tmp
+            end
+          end
+          unless params['Questions'].nil?
+            @Questions = []
+            params['Questions'].each do |i|
+              conversationquestion_tmp = ConversationQuestion.new
+              conversationquestion_tmp.deserialize(i)
+              @Questions << conversationquestion_tmp
+            end
+          end
         end
       end
 
@@ -4665,6 +5118,34 @@ module TencentCloud
           @Position = params['Position']
           @State = params['State']
           @View = params['View']
+          @WidgetId = params['WidgetId']
+          @WidgetRunId = params['WidgetRunId']
+        end
+      end
+
+      # WidgetAction 组件交互动作信息
+      class ConversationWidgetAction < TencentCloud::Common::AbstractModel
+        # @param ActionType: <p>动作类型，非枚举类型，用户自定义</p>
+        # @type ActionType: String
+        # @param Payload: <p>动作载荷</p>
+        # @type Payload: String
+        # @param WidgetId: <p>组件 ID</p>
+        # @type WidgetId: String
+        # @param WidgetRunId: <p>组件运行 ID</p>
+        # @type WidgetRunId: String
+
+        attr_accessor :ActionType, :Payload, :WidgetId, :WidgetRunId
+
+        def initialize(actiontype=nil, payload=nil, widgetid=nil, widgetrunid=nil)
+          @ActionType = actiontype
+          @Payload = payload
+          @WidgetId = widgetid
+          @WidgetRunId = widgetrunid
+        end
+
+        def deserialize(params)
+          @ActionType = params['ActionType']
+          @Payload = params['Payload']
           @WidgetId = params['WidgetId']
           @WidgetRunId = params['WidgetRunId']
         end
@@ -11797,19 +12278,40 @@ module TencentCloud
         # @type OverCharSize: String
         # @param UsedCharSize: <p>已用字符数</p>
         # @type UsedCharSize: String
+        # @param CharacterSize: <p>字符数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CharacterSize: :class:`Tencentcloud::Adp.v20260520.models.CharacterSize`
+        # @param ByteCapacity: <p>容量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ByteCapacity: :class:`Tencentcloud::Adp.v20260520.models.ByteCapacity`
+        # @param CapacityStatus: <p>知识库容量状态</p><p>枚举值：</p><ul><li>1： 正常</li><li>2： 超量但可用（pu 抵扣）</li><li>3： 超量不可用</li></ul>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CapacityStatus: Integer
 
-        attr_accessor :MaxCharSize, :OverCharSize, :UsedCharSize
+        attr_accessor :MaxCharSize, :OverCharSize, :UsedCharSize, :CharacterSize, :ByteCapacity, :CapacityStatus
 
-        def initialize(maxcharsize=nil, overcharsize=nil, usedcharsize=nil)
+        def initialize(maxcharsize=nil, overcharsize=nil, usedcharsize=nil, charactersize=nil, bytecapacity=nil, capacitystatus=nil)
           @MaxCharSize = maxcharsize
           @OverCharSize = overcharsize
           @UsedCharSize = usedcharsize
+          @CharacterSize = charactersize
+          @ByteCapacity = bytecapacity
+          @CapacityStatus = capacitystatus
         end
 
         def deserialize(params)
           @MaxCharSize = params['MaxCharSize']
           @OverCharSize = params['OverCharSize']
           @UsedCharSize = params['UsedCharSize']
+          unless params['CharacterSize'].nil?
+            @CharacterSize = CharacterSize.new
+            @CharacterSize.deserialize(params['CharacterSize'])
+          end
+          unless params['ByteCapacity'].nil?
+            @ByteCapacity = ByteCapacity.new
+            @ByteCapacity.deserialize(params['ByteCapacity'])
+          end
+          @CapacityStatus = params['CapacityStatus']
         end
       end
 
@@ -14079,6 +14581,58 @@ module TencentCloud
         end
       end
 
+      # ModifyMessageRecordFeedback请求参数结构体
+      class ModifyMessageRecordFeedbackRequest < TencentCloud::Common::AbstractModel
+        # @param RecordId: <p>需要反馈的消息记录ID</p>
+        # @type RecordId: String
+        # @param AppKey: <p>消息记录所属应用的授权AppKey</p>
+        # @type AppKey: String
+        # @param Score: <p>反馈分值</p><p>枚举值：</p><ul><li>0： 取消点赞或点踩</li><li>1： 点赞</li><li>2： 点踩</li></ul>
+        # @type Score: Integer
+        # @param ReasonList: <p>反馈的原因列表</p>
+        # @type ReasonList: Array
+        # @param FeedbackContent: <p>反馈的补充内容</p>
+        # @type FeedbackContent: String
+        # @param AppId: <p>消息记录所属的应用ID</p>
+        # @type AppId: String
+
+        attr_accessor :RecordId, :AppKey, :Score, :ReasonList, :FeedbackContent, :AppId
+
+        def initialize(recordid=nil, appkey=nil, score=nil, reasonlist=nil, feedbackcontent=nil, appid=nil)
+          @RecordId = recordid
+          @AppKey = appkey
+          @Score = score
+          @ReasonList = reasonlist
+          @FeedbackContent = feedbackcontent
+          @AppId = appid
+        end
+
+        def deserialize(params)
+          @RecordId = params['RecordId']
+          @AppKey = params['AppKey']
+          @Score = params['Score']
+          @ReasonList = params['ReasonList']
+          @FeedbackContent = params['FeedbackContent']
+          @AppId = params['AppId']
+        end
+      end
+
+      # ModifyMessageRecordFeedback返回参数结构体
+      class ModifyMessageRecordFeedbackResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyMsgRecordCategory请求参数结构体
       class ModifyMsgRecordCategoryRequest < TencentCloud::Common::AbstractModel
         # @param AppId: <p>应用 ID</p>
@@ -16021,6 +16575,42 @@ module TencentCloud
         end
       end
 
+      # 引用的来源应用详情
+      class ReferenceAppDetail < TencentCloud::Common::AbstractModel
+        # @param Name: <p>来源应用当前名称</p>
+        # @type Name: String
+        # @param AppMode: <p>来源应用模式</p><p>枚举值：</p><ul><li>1： 标准模式</li><li>2： Multi-Agent模式</li><li>3： 单工作流模式</li><li>4： Claw模式</li></ul>
+        # @type AppMode: Integer
+        # @param MainAgentName: <p>主 Agent 名称</p>
+        # @type MainAgentName: String
+        # @param SubAgentNameList: <p>子 Agent 名称列表</p>
+        # @type SubAgentNameList: Array
+        # @param Creator: <p>来源应用创建人</p>
+        # @type Creator: String
+        # @param UpdateTime: <p>来源应用修改时间</p>
+        # @type UpdateTime: String
+
+        attr_accessor :Name, :AppMode, :MainAgentName, :SubAgentNameList, :Creator, :UpdateTime
+
+        def initialize(name=nil, appmode=nil, mainagentname=nil, subagentnamelist=nil, creator=nil, updatetime=nil)
+          @Name = name
+          @AppMode = appmode
+          @MainAgentName = mainagentname
+          @SubAgentNameList = subagentnamelist
+          @Creator = creator
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @AppMode = params['AppMode']
+          @MainAgentName = params['MainAgentName']
+          @SubAgentNameList = params['SubAgentNameList']
+          @Creator = params['Creator']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # [数据结构定义] 发布记录
       class ReleaseRecord < TencentCloud::Common::AbstractModel
         # @param CanExport: 是否可导出
@@ -16445,16 +17035,22 @@ module TencentCloud
         # @type KnowledgeUsage: Float
         # @param ResourceStatus: <p>资源包状态</p><p>枚举值：</p><ul><li>1： 正常</li><li>3： 已到期</li><li>4： 即将到期</li></ul>
         # @type ResourceStatus: Integer
+        # @param CloudDiskCapacity: <p>云盘容量</p><p>单位：GB</p>
+        # @type CloudDiskCapacity: Float
+        # @param CloudDiskUsage: <p>云盘用量</p><p>单位：GB</p>
+        # @type CloudDiskUsage: Float
 
-        attr_accessor :PackageType, :ResourceTotal, :ResourceUsage, :KnowledgeCapacity, :KnowledgeUsage, :ResourceStatus
+        attr_accessor :PackageType, :ResourceTotal, :ResourceUsage, :KnowledgeCapacity, :KnowledgeUsage, :ResourceStatus, :CloudDiskCapacity, :CloudDiskUsage
 
-        def initialize(packagetype=nil, resourcetotal=nil, resourceusage=nil, knowledgecapacity=nil, knowledgeusage=nil, resourcestatus=nil)
+        def initialize(packagetype=nil, resourcetotal=nil, resourceusage=nil, knowledgecapacity=nil, knowledgeusage=nil, resourcestatus=nil, clouddiskcapacity=nil, clouddiskusage=nil)
           @PackageType = packagetype
           @ResourceTotal = resourcetotal
           @ResourceUsage = resourceusage
           @KnowledgeCapacity = knowledgecapacity
           @KnowledgeUsage = knowledgeusage
           @ResourceStatus = resourcestatus
+          @CloudDiskCapacity = clouddiskcapacity
+          @CloudDiskUsage = clouddiskusage
         end
 
         def deserialize(params)
@@ -16464,6 +17060,8 @@ module TencentCloud
           @KnowledgeCapacity = params['KnowledgeCapacity']
           @KnowledgeUsage = params['KnowledgeUsage']
           @ResourceStatus = params['ResourceStatus']
+          @CloudDiskCapacity = params['CloudDiskCapacity']
+          @CloudDiskUsage = params['CloudDiskUsage']
         end
       end
 

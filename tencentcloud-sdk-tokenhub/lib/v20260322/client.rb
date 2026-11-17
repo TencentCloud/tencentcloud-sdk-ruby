@@ -674,6 +674,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询个人版套餐详情。
+
+        # 查询指定产品类型的个人版 Token Plan 套餐状态、额度及续费信息。
+
+        # @param request: Request instance for DescribeTokenPlanPersonalPackage.
+        # @type request: :class:`Tencentcloud::tokenhub::V20260322::DescribeTokenPlanPersonalPackageRequest`
+        # @rtype: :class:`Tencentcloud::tokenhub::V20260322::DescribeTokenPlanPersonalPackageResponse`
+        def DescribeTokenPlanPersonalPackage(request)
+          body = send_request('DescribeTokenPlanPersonalPackage', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTokenPlanPersonalPackageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询用量排行列表。
 
         # 指标族（MetricType）

@@ -5773,6 +5773,108 @@ module TencentCloud
         end
       end
 
+      # 截图结果列表信息
+      class ListVideoSnapshotResultData < TencentCloud::Common::AbstractModel
+        # @param List: <p>截图信息列表</p>
+        # @type List: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param PageNumber: <p>页码</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数目</p>
+        # @type PageSize: Integer
+
+        attr_accessor :List, :TotalCount, :PageNumber, :PageSize
+
+        def initialize(list=nil, totalcount=nil, pagenumber=nil, pagesize=nil)
+          @List = list
+          @TotalCount = totalcount
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          unless params['List'].nil?
+            @List = []
+            params['List'].each do |i|
+              videosnapshotinfo_tmp = VideoSnapshotInfo.new
+              videosnapshotinfo_tmp.deserialize(i)
+              @List << videosnapshotinfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListVideoSnapshotResult请求参数结构体
+      class ListVideoSnapshotResultRequest < TencentCloud::Common::AbstractModel
+        # @param BeginTime: <p>开始时间</p><p>单位：秒</p>
+        # @type BeginTime: Integer
+        # @param EndTime: <p>结束时间</p><p>单位：秒</p>
+        # @type EndTime: Integer
+        # @param ConfigId: <p>截图配置Id</p>
+        # @type ConfigId: String
+        # @param ChannelId: <p>通道Id</p>
+        # @type ChannelId: String
+        # @param Type: <p>截图类型</p><p>枚举值：</p><ul><li>1： 实时截帧</li><li>2： 低频截帧</li></ul>
+        # @type Type: Integer
+        # @param ImageUrlExpires: <p>图片URL有效期，单位：秒</p><p>取值范围：[60, 86400]</p><p>默认值：600</p>
+        # @type ImageUrlExpires: Integer
+        # @param PageNumber: <p>页码</p><p>默认值：1</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数目</p><p>取值范围：[1, 200]</p><p>默认值：20</p>
+        # @type PageSize: Integer
+
+        attr_accessor :BeginTime, :EndTime, :ConfigId, :ChannelId, :Type, :ImageUrlExpires, :PageNumber, :PageSize
+
+        def initialize(begintime=nil, endtime=nil, configid=nil, channelid=nil, type=nil, imageurlexpires=nil, pagenumber=nil, pagesize=nil)
+          @BeginTime = begintime
+          @EndTime = endtime
+          @ConfigId = configid
+          @ChannelId = channelid
+          @Type = type
+          @ImageUrlExpires = imageurlexpires
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          @BeginTime = params['BeginTime']
+          @EndTime = params['EndTime']
+          @ConfigId = params['ConfigId']
+          @ChannelId = params['ChannelId']
+          @Type = params['Type']
+          @ImageUrlExpires = params['ImageUrlExpires']
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+        end
+      end
+
+      # ListVideoSnapshotResult返回参数结构体
+      class ListVideoSnapshotResultResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>截图结果列表</p>
+        # @type Data: :class:`Tencentcloud::Iss.v20230517.models.ListVideoSnapshotResultData`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListVideoSnapshotResultData.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 获取截图模板详情列表
       class ListVideoSnapshotTemplateData < TencentCloud::Common::AbstractModel
         # @param TotalCount: <p>总数</p>
@@ -8152,6 +8254,58 @@ module TencentCloud
           @RelatedChannelCount = params['RelatedChannelCount']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+        end
+      end
+
+      # 视频截图信息
+      class VideoSnapshotInfo < TencentCloud::Common::AbstractModel
+        # @param ImageId: <p>图片Id</p>
+        # @type ImageId: String
+        # @param ConfigId: <p>截图配置Id</p>
+        # @type ConfigId: String
+        # @param ConfigName: <p>截图配置名称</p>
+        # @type ConfigName: String
+        # @param ChannelId: <p>通道Id</p>
+        # @type ChannelId: String
+        # @param ChannelName: <p>通道名称</p>
+        # @type ChannelName: String
+        # @param Type: <p>截图类型</p><p>枚举值：</p><ul><li>1： 实时截帧</li><li>2： 低频截帧</li></ul>
+        # @type Type: Integer
+        # @param ImageUrl: <p>图片Url</p>
+        # @type ImageUrl: String
+        # @param ImageUrlExpires: <p>图片Url有效期</p>
+        # @type ImageUrlExpires: Integer
+        # @param Timestamp: <p>截图时间点</p>
+        # @type Timestamp: Integer
+        # @param FileSize: <p>图片大小</p><p>单位：字节</p>
+        # @type FileSize: Integer
+
+        attr_accessor :ImageId, :ConfigId, :ConfigName, :ChannelId, :ChannelName, :Type, :ImageUrl, :ImageUrlExpires, :Timestamp, :FileSize
+
+        def initialize(imageid=nil, configid=nil, configname=nil, channelid=nil, channelname=nil, type=nil, imageurl=nil, imageurlexpires=nil, timestamp=nil, filesize=nil)
+          @ImageId = imageid
+          @ConfigId = configid
+          @ConfigName = configname
+          @ChannelId = channelid
+          @ChannelName = channelname
+          @Type = type
+          @ImageUrl = imageurl
+          @ImageUrlExpires = imageurlexpires
+          @Timestamp = timestamp
+          @FileSize = filesize
+        end
+
+        def deserialize(params)
+          @ImageId = params['ImageId']
+          @ConfigId = params['ConfigId']
+          @ConfigName = params['ConfigName']
+          @ChannelId = params['ChannelId']
+          @ChannelName = params['ChannelName']
+          @Type = params['Type']
+          @ImageUrl = params['ImageUrl']
+          @ImageUrlExpires = params['ImageUrlExpires']
+          @Timestamp = params['Timestamp']
+          @FileSize = params['FileSize']
         end
       end
 

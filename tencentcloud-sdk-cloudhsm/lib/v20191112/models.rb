@@ -1018,10 +1018,12 @@ module TencentCloud
         # @type ClusterId: String
         # @param ClusterRole: <p>集群角色，0-未加入集群 1-主 2-从</p>
         # @type ClusterRole: Integer
+        # @param SyncStatus: <p>同步状态</p>
+        # @type SyncStatus: String
 
-        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName, :CreateUin, :RenewFlag, :Tags, :Manufacturer, :AlarmStatus, :PqcStatus, :PqcFlag, :DeployEnv, :Version, :ClusterId, :ClusterRole
+        attr_accessor :ResourceId, :ResourceName, :Status, :Vip, :VpcId, :SubnetId, :Model, :VsmType, :RegionId, :ZoneId, :ExpireTime, :RegionName, :ZoneName, :SgList, :SubnetName, :Expired, :RemainSeconds, :VpcName, :CreateUin, :RenewFlag, :Tags, :Manufacturer, :AlarmStatus, :PqcStatus, :PqcFlag, :DeployEnv, :Version, :ClusterId, :ClusterRole, :SyncStatus
 
-        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, regionname=nil, zonename=nil, sglist=nil, subnetname=nil, expired=nil, remainseconds=nil, vpcname=nil, createuin=nil, renewflag=nil, tags=nil, manufacturer=nil, alarmstatus=nil, pqcstatus=nil, pqcflag=nil, deployenv=nil, version=nil, clusterid=nil, clusterrole=nil)
+        def initialize(resourceid=nil, resourcename=nil, status=nil, vip=nil, vpcid=nil, subnetid=nil, model=nil, vsmtype=nil, regionid=nil, zoneid=nil, expiretime=nil, regionname=nil, zonename=nil, sglist=nil, subnetname=nil, expired=nil, remainseconds=nil, vpcname=nil, createuin=nil, renewflag=nil, tags=nil, manufacturer=nil, alarmstatus=nil, pqcstatus=nil, pqcflag=nil, deployenv=nil, version=nil, clusterid=nil, clusterrole=nil, syncstatus=nil)
           @ResourceId = resourceid
           @ResourceName = resourcename
           @Status = status
@@ -1051,6 +1053,7 @@ module TencentCloud
           @Version = version
           @ClusterId = clusterid
           @ClusterRole = clusterrole
+          @SyncStatus = syncstatus
         end
 
         def deserialize(params)
@@ -1097,6 +1100,7 @@ module TencentCloud
           @Version = params['Version']
           @ClusterId = params['ClusterId']
           @ClusterRole = params['ClusterRole']
+          @SyncStatus = params['SyncStatus']
         end
       end
 

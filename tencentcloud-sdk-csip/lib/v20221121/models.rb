@@ -35637,27 +35637,33 @@ module TencentCloud
 
       # DescribeExposureTrend返回参数结构体
       class DescribeExposureTrendResponse < TencentCloud::Common::AbstractModel
-        # @param ExposeTrendList: 暴露周期趋势数量统计信息
+        # @param ExposeTrendList: <p>暴露周期趋势数量统计信息</p>
         # @type ExposeTrendList: Array
-        # @param ExposeIncrement: 暴露周期新增数量统计
+        # @param ExposeIncrement: <p>暴露周期新增数量统计</p>
         # @type ExposeIncrement: Integer
-        # @param OpenCount: 近1天（24h）完全开放数量
+        # @param OpenCount: <p>近1天（24h）完全开放数量</p>
         # @type OpenCount: Integer
-        # @param AclCount: 近1天（24h）受限访问数量
+        # @param AclCount: <p>近1天（24h）受限访问数量</p>
         # @type AclCount: Integer
-        # @param CloseCount: 近1天（24h）无法访问数量
+        # @param CloseCount: <p>近1天（24h）无法访问数量</p>
         # @type CloseCount: Integer
+        # @param ExposeTotalCount: <p>互联网边界总数</p>
+        # @type ExposeTotalCount: Integer
+        # @param ToGovernRiskCount: <p>待处理边界数量</p>
+        # @type ToGovernRiskCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ExposeTrendList, :ExposeIncrement, :OpenCount, :AclCount, :CloseCount, :RequestId
+        attr_accessor :ExposeTrendList, :ExposeIncrement, :OpenCount, :AclCount, :CloseCount, :ExposeTotalCount, :ToGovernRiskCount, :RequestId
 
-        def initialize(exposetrendlist=nil, exposeincrement=nil, opencount=nil, aclcount=nil, closecount=nil, requestid=nil)
+        def initialize(exposetrendlist=nil, exposeincrement=nil, opencount=nil, aclcount=nil, closecount=nil, exposetotalcount=nil, togovernriskcount=nil, requestid=nil)
           @ExposeTrendList = exposetrendlist
           @ExposeIncrement = exposeincrement
           @OpenCount = opencount
           @AclCount = aclcount
           @CloseCount = closecount
+          @ExposeTotalCount = exposetotalcount
+          @ToGovernRiskCount = togovernriskcount
           @RequestId = requestid
         end
 
@@ -35674,6 +35680,8 @@ module TencentCloud
           @OpenCount = params['OpenCount']
           @AclCount = params['AclCount']
           @CloseCount = params['CloseCount']
+          @ExposeTotalCount = params['ExposeTotalCount']
+          @ToGovernRiskCount = params['ToGovernRiskCount']
           @RequestId = params['RequestId']
         end
       end
@@ -58250,7 +58258,7 @@ module TencentCloud
 
       # 常用登录地（入参）
       class LoginWhitePlaceInput < TencentCloud::Common::AbstractModel
-        # @param CountryId: <p>国家ID，当前仅支持国内：1</p>
+        # @param CountryId: <p>国家ID，当前仅支持境内：1</p>
         # @type CountryId: Integer
         # @param ProvinceId: <p>省份ID；99999 表示全部省份</p>
         # @type ProvinceId: Integer
@@ -73611,10 +73619,12 @@ module TencentCloud
         # @type ShareFromAppID: Integer
         # @param ShareFromUser: <p>配额共享方账号</p>
         # @type ShareFromUser: String
+        # @param IsTrialOrder: <p>是否试用订单</p>
+        # @type IsTrialOrder: Integer
 
-        attr_accessor :AppID, :AccountType, :PayType, :TotalQuota, :CostQuota, :Providers, :QuotaFlushType, :QuotaFlushTime, :QuotaSource, :ShareFromAppID, :ShareFromUser
+        attr_accessor :AppID, :AccountType, :PayType, :TotalQuota, :CostQuota, :Providers, :QuotaFlushType, :QuotaFlushTime, :QuotaSource, :ShareFromAppID, :ShareFromUser, :IsTrialOrder
 
-        def initialize(appid=nil, accounttype=nil, paytype=nil, totalquota=nil, costquota=nil, providers=nil, quotaflushtype=nil, quotaflushtime=nil, quotasource=nil, sharefromappid=nil, sharefromuser=nil)
+        def initialize(appid=nil, accounttype=nil, paytype=nil, totalquota=nil, costquota=nil, providers=nil, quotaflushtype=nil, quotaflushtime=nil, quotasource=nil, sharefromappid=nil, sharefromuser=nil, istrialorder=nil)
           @AppID = appid
           @AccountType = accounttype
           @PayType = paytype
@@ -73626,6 +73636,7 @@ module TencentCloud
           @QuotaSource = quotasource
           @ShareFromAppID = sharefromappid
           @ShareFromUser = sharefromuser
+          @IsTrialOrder = istrialorder
         end
 
         def deserialize(params)
@@ -73640,6 +73651,7 @@ module TencentCloud
           @QuotaSource = params['QuotaSource']
           @ShareFromAppID = params['ShareFromAppID']
           @ShareFromUser = params['ShareFromUser']
+          @IsTrialOrder = params['IsTrialOrder']
         end
       end
 

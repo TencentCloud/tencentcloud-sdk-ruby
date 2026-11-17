@@ -473,6 +473,38 @@ module TencentCloud
         end
       end
 
+      # AutoML配置
+      class AutoMlConf < TencentCloud::Common::AbstractModel
+        # @param EvaluationMetric: 评估指标：acc/auc/f1/mse/mae/rmse
+        # @type EvaluationMetric: String
+        # @param SearchSpace: 搜索空间列表
+        # @type SearchSpace: Array
+        # @param MaxRuntimeMinutes: 最大运行时间（分钟），默认60
+        # @type MaxRuntimeMinutes: Integer
+        # @param MaxRunCount: 最大运行次数，默认100
+        # @type MaxRunCount: Integer
+        # @param MaxConcurrency: 最大运行并发，默认1，最大100
+        # @type MaxConcurrency: Integer
+
+        attr_accessor :EvaluationMetric, :SearchSpace, :MaxRuntimeMinutes, :MaxRunCount, :MaxConcurrency
+
+        def initialize(evaluationmetric=nil, searchspace=nil, maxruntimeminutes=nil, maxruncount=nil, maxconcurrency=nil)
+          @EvaluationMetric = evaluationmetric
+          @SearchSpace = searchspace
+          @MaxRuntimeMinutes = maxruntimeminutes
+          @MaxRunCount = maxruncount
+          @MaxConcurrency = maxconcurrency
+        end
+
+        def deserialize(params)
+          @EvaluationMetric = params['EvaluationMetric']
+          @SearchSpace = params['SearchSpace']
+          @MaxRuntimeMinutes = params['MaxRuntimeMinutes']
+          @MaxRunCount = params['MaxRunCount']
+          @MaxConcurrency = params['MaxConcurrency']
+        end
+      end
+
       # 分桶分区策略
       class BucketPartitioning < TencentCloud::Common::AbstractModel
         # @param FiledNames: 分桶字段
@@ -1117,6 +1149,106 @@ module TencentCloud
 
         def deserialize(params)
           @GroupId = params['GroupId']
+        end
+      end
+
+      # CreateExperiment请求参数结构体
+      class CreateExperimentRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间ID（必填），可通过 ListWorkspaces 接口获取</p>
+        # @type WorkspaceId: String
+        # @param Name: <p>实验名称（必填），同一工作空间内唯一</p>
+        # @type Name: String
+        # @param Type: <p>实验类型（必填），取值：MACHINE_LEARNING（机器学习）/ CLASSIFICATION（分类）/ REGRESSION（回归）/ FORECASTING（时间序列预测）/ AGENT（智能体）。传入其他值将返回 InvalidParameter.ExperimentTypeInvalid</p>
+        # @type Type: String
+        # @param Description: <p>实验描述（可选），建议长度不超过 1024 字符</p>
+        # @type Description: String
+        # @param StudioId: <p>Studio目录树文件夹节点ID，即实验所在的目录节点，可通过 ListFiles 接口获取</p>
+        # @type StudioId: String
+        # @param Tags: <p>实验标签列表（可选），key/value 均为字符串</p>
+        # @type Tags: Array
+        # @param AutoMlConf: <p>AutoML配置（可选，仅 Type 为 CLASSIFICATION/REGRESSION/FORECASTING 时需要），包含评估指标、搜索空间、最大运行时间/次数/并发等</p>
+        # @type AutoMlConf: :class:`Tencentcloud::Databuddy.v20260715.models.AutoMlConf`
+        # @param TrainingData: <p>训练数据配置（可选，仅 AutoML 类型实验需要），指定训练数据表（Catalog.Schema.Table 三段式）与目标标签列</p>
+        # @type TrainingData: :class:`Tencentcloud::Databuddy.v20260715.models.TrainingData`
+        # @param ResourceGroupId: <p>计算资源组ID（可选），指定实验运行所使用的计算资源，可通过 ListComputeResourceOptions 接口获取</p>
+        # @type ResourceGroupId: String
+
+        attr_accessor :WorkspaceId, :Name, :Type, :Description, :StudioId, :Tags, :AutoMlConf, :TrainingData, :ResourceGroupId
+
+        def initialize(workspaceid=nil, name=nil, type=nil, description=nil, studioid=nil, tags=nil, automlconf=nil, trainingdata=nil, resourcegroupid=nil)
+          @WorkspaceId = workspaceid
+          @Name = name
+          @Type = type
+          @Description = description
+          @StudioId = studioid
+          @Tags = tags
+          @AutoMlConf = automlconf
+          @TrainingData = trainingdata
+          @ResourceGroupId = resourcegroupid
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          @Name = params['Name']
+          @Type = params['Type']
+          @Description = params['Description']
+          @StudioId = params['StudioId']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              experimenttag_tmp = ExperimentTag.new
+              experimenttag_tmp.deserialize(i)
+              @Tags << experimenttag_tmp
+            end
+          end
+          unless params['AutoMlConf'].nil?
+            @AutoMlConf = AutoMlConf.new
+            @AutoMlConf.deserialize(params['AutoMlConf'])
+          end
+          unless params['TrainingData'].nil?
+            @TrainingData = TrainingData.new
+            @TrainingData.deserialize(params['TrainingData'])
+          end
+          @ResourceGroupId = params['ResourceGroupId']
+        end
+      end
+
+      # CreateExperiment返回参数结构体
+      class CreateExperimentResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>返回结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.CreateExperimentRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = CreateExperimentRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 创建实验响应
+      class CreateExperimentRsp < TencentCloud::Common::AbstractModel
+        # @param ExperimentId: 创建的实验ID
+        # @type ExperimentId: String
+
+        attr_accessor :ExperimentId
+
+        def initialize(experimentid=nil)
+          @ExperimentId = experimentid
+        end
+
+        def deserialize(params)
+          @ExperimentId = params['ExperimentId']
         end
       end
 
@@ -2964,6 +3096,54 @@ module TencentCloud
         end
       end
 
+      # 实验标签
+      class ExperimentTag < TencentCloud::Common::AbstractModel
+        # @param Key: 标签键
+        # @type Key: String
+        # @param Value: 标签值
+        # @type Value: String
+
+        attr_accessor :Key, :Value
+
+        def initialize(key=nil, value=nil)
+          @Key = key
+          @Value = value
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Value = params['Value']
+        end
+      end
+
+      # FeatureLookup
+      class FeatureLookup < TencentCloud::Common::AbstractModel
+        # @param TableName: 特征表全名
+        # @type TableName: String
+        # @param LookupKey: 关联键
+        # @type LookupKey: Array
+        # @param TimestampLookupKey: 时间戳关联键
+        # @type TimestampLookupKey: String
+        # @param FeatureNames: 特征列名列表
+        # @type FeatureNames: Array
+
+        attr_accessor :TableName, :LookupKey, :TimestampLookupKey, :FeatureNames
+
+        def initialize(tablename=nil, lookupkey=nil, timestamplookupkey=nil, featurenames=nil)
+          @TableName = tablename
+          @LookupKey = lookupkey
+          @TimestampLookupKey = timestamplookupkey
+          @FeatureNames = featurenames
+        end
+
+        def deserialize(params)
+          @TableName = params['TableName']
+          @LookupKey = params['LookupKey']
+          @TimestampLookupKey = params['TimestampLookupKey']
+          @FeatureNames = params['FeatureNames']
+        end
+      end
+
       # 特征表定义
       class FeatureTable < TencentCloud::Common::AbstractModel
         # @param Name: 表名称
@@ -3839,6 +4019,89 @@ module TencentCloud
             @Catalog = Catalog.new
             @Catalog.deserialize(params['Catalog'])
           end
+        end
+      end
+
+      # GetFileContent请求参数结构体
+      class GetFileContentRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间ID，必填，最大长度64</p>
+        # @type WorkspaceId: String
+        # @param FileId: <p>文件ID，FileId/FilePath 二选一，最大长度128；非空时优先生效</p>
+        # @type FileId: String
+
+        attr_accessor :WorkspaceId, :FileId
+
+        def initialize(workspaceid=nil, fileid=nil)
+          @WorkspaceId = workspaceid
+          @FileId = fileid
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+          @FileId = params['FileId']
+        end
+      end
+
+      # GetFileContent返回参数结构体
+      class GetFileContentResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>文件内容查询结果</p>
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.GetFileContentRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = GetFileContentRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 获取文件内容响应
+      class GetFileContentRsp < TencentCloud::Common::AbstractModel
+        # @param FileId: 文件ID；按 FilePath 查询时回显解析结果，便于调用方缓存
+        # @type FileId: String
+        # @param FileName: 文件名，不含路径
+        # @type FileName: String
+        # @param FilePath: 文件全路径
+        # @type FilePath: String
+        # @param FileType: 文件类型，参考 ListEntityTypeMetas 返回值为准
+        # @type FileType: String
+        # @param FileSize: 文件大小，字节
+        # @type FileSize: String
+        # @param Content: 文件内容，base64 编码
+        # @type Content: String
+        # @param ContentEncoding: 内容编码方式，当前固定 base64
+        # @type ContentEncoding: String
+
+        attr_accessor :FileId, :FileName, :FilePath, :FileType, :FileSize, :Content, :ContentEncoding
+
+        def initialize(fileid=nil, filename=nil, filepath=nil, filetype=nil, filesize=nil, content=nil, contentencoding=nil)
+          @FileId = fileid
+          @FileName = filename
+          @FilePath = filepath
+          @FileType = filetype
+          @FileSize = filesize
+          @Content = content
+          @ContentEncoding = contentencoding
+        end
+
+        def deserialize(params)
+          @FileId = params['FileId']
+          @FileName = params['FileName']
+          @FilePath = params['FilePath']
+          @FileType = params['FileType']
+          @FileSize = params['FileSize']
+          @Content = params['Content']
+          @ContentEncoding = params['ContentEncoding']
         end
       end
 
@@ -5759,6 +6022,30 @@ module TencentCloud
         end
       end
 
+      # 标签列信息
+      class Label < TencentCloud::Common::AbstractModel
+        # @param ColumnName: 列名
+        # @type ColumnName: String
+        # @param MissingValueImputation: 缺失值填充
+        # @type MissingValueImputation: String
+        # @param Format: 数据格式
+        # @type Format: String
+
+        attr_accessor :ColumnName, :MissingValueImputation, :Format
+
+        def initialize(columnname=nil, missingvalueimputation=nil, format=nil)
+          @ColumnName = columnname
+          @MissingValueImputation = missingvalueimputation
+          @Format = format
+        end
+
+        def deserialize(params)
+          @ColumnName = params['ColumnName']
+          @MissingValueImputation = params['MissingValueImputation']
+          @Format = params['Format']
+        end
+      end
+
       # 标签信息
       class LabelBrief < TencentCloud::Common::AbstractModel
         # @param LabelKey: 标签名称
@@ -5803,15 +6090,18 @@ module TencentCloud
         # @type Types: Array
         # @param CatalogSources: <p>数据目录来源筛选，取值参考CatalogSourceEnum(METALAKE/CONNECTION/SETATS)</p>
         # @type CatalogSources: Array
+        # @param ConnectionId: 数据源连接ID，可选。传入后仅返回该数据源下的 catalog/database；不传则不做过滤，返回全部数据。
+        # @type ConnectionId: String
 
-        attr_accessor :WorkspaceId, :MaxResults, :PageToken, :Types, :CatalogSources
+        attr_accessor :WorkspaceId, :MaxResults, :PageToken, :Types, :CatalogSources, :ConnectionId
 
-        def initialize(workspaceid=nil, maxresults=nil, pagetoken=nil, types=nil, catalogsources=nil)
+        def initialize(workspaceid=nil, maxresults=nil, pagetoken=nil, types=nil, catalogsources=nil, connectionid=nil)
           @WorkspaceId = workspaceid
           @MaxResults = maxresults
           @PageToken = pagetoken
           @Types = types
           @CatalogSources = catalogsources
+          @ConnectionId = connectionid
         end
 
         def deserialize(params)
@@ -5820,6 +6110,7 @@ module TencentCloud
           @PageToken = params['PageToken']
           @Types = params['Types']
           @CatalogSources = params['CatalogSources']
+          @ConnectionId = params['ConnectionId']
         end
       end
 
@@ -5892,10 +6183,12 @@ module TencentCloud
         # @type FetchOption: :class:`Tencentcloud::Databuddy.v20260715.models.FetchOption`
         # @param CatalogSources: 数据目录来源筛选（融合版新增字段），取值参考 CatalogSourceEnum。空数组或不传→只查tclake；["METALAKE"]→只查tclake；["CONNECTION"]→只查分析版ana_catalog；["METALAKE","CONNECTION"]→合并返回
         # @type CatalogSources: Array
+        # @param ConnectionId: 数据源连接ID，可选。传入后仅返回该数据源下的 catalog/database；不传则不做过滤，返回全部数据。
+        # @type ConnectionId: String
 
-        attr_accessor :WorkspaceId, :MaxResults, :PageToken, :Types, :CurrentWorkspaceOnly, :FetchOption, :CatalogSources
+        attr_accessor :WorkspaceId, :MaxResults, :PageToken, :Types, :CurrentWorkspaceOnly, :FetchOption, :CatalogSources, :ConnectionId
 
-        def initialize(workspaceid=nil, maxresults=nil, pagetoken=nil, types=nil, currentworkspaceonly=nil, fetchoption=nil, catalogsources=nil)
+        def initialize(workspaceid=nil, maxresults=nil, pagetoken=nil, types=nil, currentworkspaceonly=nil, fetchoption=nil, catalogsources=nil, connectionid=nil)
           @WorkspaceId = workspaceid
           @MaxResults = maxresults
           @PageToken = pagetoken
@@ -5903,6 +6196,7 @@ module TencentCloud
           @CurrentWorkspaceOnly = currentworkspaceonly
           @FetchOption = fetchoption
           @CatalogSources = catalogsources
+          @ConnectionId = connectionid
         end
 
         def deserialize(params)
@@ -5916,6 +6210,7 @@ module TencentCloud
             @FetchOption.deserialize(params['FetchOption'])
           end
           @CatalogSources = params['CatalogSources']
+          @ConnectionId = params['ConnectionId']
         end
       end
 
@@ -8607,15 +8902,19 @@ module TencentCloud
         # @param CatalogSource: 数据目录来源，取值参考 CatalogSourceEnum：METALAKE / CONNECTION / SETATS。ListMetaOwners 走新参数 Catalogs 查询时，按入参回填；走旧参数 FullNames 查询时，按请求顶层 CatalogSource 回填（默认 METALAKE）
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CatalogSource: String
+        # @param ConnectionId: 数据源连接ID，与入参 Catalogs[].ConnectionId 对应。CatalogSource=CONNECTION 时返回该连接ID，用于区分同名目录的归属；METALAKE / SETATS 来源为空。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectionId: String
 
-        attr_accessor :FullName, :OwnerType, :Owner, :OwnerName, :CatalogSource
+        attr_accessor :FullName, :OwnerType, :Owner, :OwnerName, :CatalogSource, :ConnectionId
 
-        def initialize(fullname=nil, ownertype=nil, owner=nil, ownername=nil, catalogsource=nil)
+        def initialize(fullname=nil, ownertype=nil, owner=nil, ownername=nil, catalogsource=nil, connectionid=nil)
           @FullName = fullname
           @OwnerType = ownertype
           @Owner = owner
           @OwnerName = ownername
           @CatalogSource = catalogsource
+          @ConnectionId = connectionid
         end
 
         def deserialize(params)
@@ -8624,6 +8923,7 @@ module TencentCloud
           @Owner = params['Owner']
           @OwnerName = params['OwnerName']
           @CatalogSource = params['CatalogSource']
+          @ConnectionId = params['ConnectionId']
         end
       end
 
@@ -8858,14 +9158,22 @@ module TencentCloud
         # @type CatalogSource: String
         # @param Status: <p>TCLAKE Catalog取值：（注册中0，待测试1，连接成功2，连接失败3，删除中4，已删除5）<br>SETATS Catalog取值：（Creating=30, Available=31, Deleted=32, Scaling=33, Isolated=34, Failed=35，未知=0）</p>
         # @type Status: String
+        # @param ConnectionId: 数据源连接ID（仅 CONNECTION 来源时返回）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectionId: String
+        # @param ConnectionName: 数据源连接名称（仅CatalogSource=CONNECTION）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ConnectionName: String
 
-        attr_accessor :Name, :Namespace, :CatalogSource, :Status
+        attr_accessor :Name, :Namespace, :CatalogSource, :Status, :ConnectionId, :ConnectionName
 
-        def initialize(name=nil, namespace=nil, catalogsource=nil, status=nil)
+        def initialize(name=nil, namespace=nil, catalogsource=nil, status=nil, connectionid=nil, connectionname=nil)
           @Name = name
           @Namespace = namespace
           @CatalogSource = catalogsource
           @Status = status
+          @ConnectionId = connectionid
+          @ConnectionName = connectionname
         end
 
         def deserialize(params)
@@ -8873,6 +9181,8 @@ module TencentCloud
           @Namespace = params['Namespace']
           @CatalogSource = params['CatalogSource']
           @Status = params['Status']
+          @ConnectionId = params['ConnectionId']
+          @ConnectionName = params['ConnectionName']
         end
       end
 
@@ -11052,6 +11362,97 @@ module TencentCloud
         def deserialize(params)
           @PropertyKey = params['PropertyKey']
           @PropertyValue = params['PropertyValue']
+        end
+      end
+
+      # 训练数据配置
+      class TrainingData < TencentCloud::Common::AbstractModel
+        # @param Catalog: Catalog名称
+        # @type Catalog: String
+        # @param Schema: Schema名称
+        # @type Schema: String
+        # @param Table: Table名称
+        # @type Table: String
+        # @param TargetLabel: 目标标签列
+        # @type TargetLabel: :class:`Tencentcloud::Databuddy.v20260715.models.Label`
+        # @param DiscardedLabels: 忽略的列
+        # @type DiscardedLabels: Array
+        # @param PredictionLabel: 预测列
+        # @type PredictionLabel: :class:`Tencentcloud::Databuddy.v20260715.models.Label`
+        # @param EvaluationInterval: 时间间隔单位
+        # @type EvaluationInterval: String
+        # @param ForecastHorizon: 时序步长
+        # @type ForecastHorizon: Integer
+        # @param StorageCatalog: 结果集Catalog名称
+        # @type StorageCatalog: String
+        # @param StorageSchema: 结果集Schema名称
+        # @type StorageSchema: String
+        # @param StorageTable: 结果集Table名称
+        # @type StorageTable: String
+        # @param SelectedLabels: 选中的列
+        # @type SelectedLabels: Array
+        # @param FeatureLookup: 特征查找配置
+        # @type FeatureLookup: Array
+
+        attr_accessor :Catalog, :Schema, :Table, :TargetLabel, :DiscardedLabels, :PredictionLabel, :EvaluationInterval, :ForecastHorizon, :StorageCatalog, :StorageSchema, :StorageTable, :SelectedLabels, :FeatureLookup
+
+        def initialize(catalog=nil, schema=nil, table=nil, targetlabel=nil, discardedlabels=nil, predictionlabel=nil, evaluationinterval=nil, forecasthorizon=nil, storagecatalog=nil, storageschema=nil, storagetable=nil, selectedlabels=nil, featurelookup=nil)
+          @Catalog = catalog
+          @Schema = schema
+          @Table = table
+          @TargetLabel = targetlabel
+          @DiscardedLabels = discardedlabels
+          @PredictionLabel = predictionlabel
+          @EvaluationInterval = evaluationinterval
+          @ForecastHorizon = forecasthorizon
+          @StorageCatalog = storagecatalog
+          @StorageSchema = storageschema
+          @StorageTable = storagetable
+          @SelectedLabels = selectedlabels
+          @FeatureLookup = featurelookup
+        end
+
+        def deserialize(params)
+          @Catalog = params['Catalog']
+          @Schema = params['Schema']
+          @Table = params['Table']
+          unless params['TargetLabel'].nil?
+            @TargetLabel = Label.new
+            @TargetLabel.deserialize(params['TargetLabel'])
+          end
+          unless params['DiscardedLabels'].nil?
+            @DiscardedLabels = []
+            params['DiscardedLabels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @DiscardedLabels << label_tmp
+            end
+          end
+          unless params['PredictionLabel'].nil?
+            @PredictionLabel = Label.new
+            @PredictionLabel.deserialize(params['PredictionLabel'])
+          end
+          @EvaluationInterval = params['EvaluationInterval']
+          @ForecastHorizon = params['ForecastHorizon']
+          @StorageCatalog = params['StorageCatalog']
+          @StorageSchema = params['StorageSchema']
+          @StorageTable = params['StorageTable']
+          unless params['SelectedLabels'].nil?
+            @SelectedLabels = []
+            params['SelectedLabels'].each do |i|
+              label_tmp = Label.new
+              label_tmp.deserialize(i)
+              @SelectedLabels << label_tmp
+            end
+          end
+          unless params['FeatureLookup'].nil?
+            @FeatureLookup = []
+            params['FeatureLookup'].each do |i|
+              featurelookup_tmp = FeatureLookup.new
+              featurelookup_tmp.deserialize(i)
+              @FeatureLookup << featurelookup_tmp
+            end
+          end
         end
       end
 

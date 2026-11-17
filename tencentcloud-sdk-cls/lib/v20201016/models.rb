@@ -5854,10 +5854,14 @@ module TencentCloud
         # @type ExtractRuleInfo: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
         # @param TaskType: <p>s3导入任务类型.</p><p>枚举值：</p><ul><li>1： 一次性导入任务</li><li>2： 持续性导入任务</li></ul><p>默认值：1</p>
         # @type TaskType: Integer
+        # @param SQSEnabled: <p>是否启用SQS。</p><p>默认值：false</p><p>仅允许 TaskType=2是为true。</p>
+        # @type SQSEnabled: Boolean
+        # @param SQSUrl: <p>SQS队列URL。SqsEnabled=true 时必填非空标准队列 URL；默认空字符串，不隐式开启 SQS，关闭时不生效。</p>
+        # @type SQSUrl: String
 
-        attr_accessor :TopicId, :Name, :Bucket, :S3Region, :AccessKeyId, :SecretAccessKey, :LogType, :Endpoint, :Prefix, :Compress, :ExtractRuleInfo, :TaskType
+        attr_accessor :TopicId, :Name, :Bucket, :S3Region, :AccessKeyId, :SecretAccessKey, :LogType, :Endpoint, :Prefix, :Compress, :ExtractRuleInfo, :TaskType, :SQSEnabled, :SQSUrl
 
-        def initialize(topicid=nil, name=nil, bucket=nil, s3region=nil, accesskeyid=nil, secretaccesskey=nil, logtype=nil, endpoint=nil, prefix=nil, compress=nil, extractruleinfo=nil, tasktype=nil)
+        def initialize(topicid=nil, name=nil, bucket=nil, s3region=nil, accesskeyid=nil, secretaccesskey=nil, logtype=nil, endpoint=nil, prefix=nil, compress=nil, extractruleinfo=nil, tasktype=nil, sqsenabled=nil, sqsurl=nil)
           @TopicId = topicid
           @Name = name
           @Bucket = bucket
@@ -5870,6 +5874,8 @@ module TencentCloud
           @Compress = compress
           @ExtractRuleInfo = extractruleinfo
           @TaskType = tasktype
+          @SQSEnabled = sqsenabled
+          @SQSUrl = sqsurl
         end
 
         def deserialize(params)
@@ -5888,6 +5894,8 @@ module TencentCloud
             @ExtractRuleInfo.deserialize(params['ExtractRuleInfo'])
           end
           @TaskType = params['TaskType']
+          @SQSEnabled = params['SQSEnabled']
+          @SQSUrl = params['SQSUrl']
         end
       end
 
@@ -7002,10 +7010,12 @@ module TencentCloud
         # @type DataTransformSqlDataSources: Array
         # @param EnvInfos: <p>环境变量</p>
         # @type EnvInfos: Array
+        # @param Describe: <p>前置加工任务源主题、目标主题说明</p>
+        # @type Describe: String
 
-        attr_accessor :Name, :TaskId, :EnableFlag, :Type, :SrcTopicId, :Status, :CreateTime, :UpdateTime, :LastEnableTime, :SrcTopicName, :LogsetId, :DstResources, :EtlContent, :BackupTopicID, :BackupGiveUpData, :HasServicesLog, :TaskDstCount, :DataTransformType, :KeepFailureLog, :FailureLogKey, :ProcessFromTimestamp, :ProcessToTimestamp, :DataTransformSqlDataSources, :EnvInfos
+        attr_accessor :Name, :TaskId, :EnableFlag, :Type, :SrcTopicId, :Status, :CreateTime, :UpdateTime, :LastEnableTime, :SrcTopicName, :LogsetId, :DstResources, :EtlContent, :BackupTopicID, :BackupGiveUpData, :HasServicesLog, :TaskDstCount, :DataTransformType, :KeepFailureLog, :FailureLogKey, :ProcessFromTimestamp, :ProcessToTimestamp, :DataTransformSqlDataSources, :EnvInfos, :Describe
 
-        def initialize(name=nil, taskid=nil, enableflag=nil, type=nil, srctopicid=nil, status=nil, createtime=nil, updatetime=nil, lastenabletime=nil, srctopicname=nil, logsetid=nil, dstresources=nil, etlcontent=nil, backuptopicid=nil, backupgiveupdata=nil, hasserviceslog=nil, taskdstcount=nil, datatransformtype=nil, keepfailurelog=nil, failurelogkey=nil, processfromtimestamp=nil, processtotimestamp=nil, datatransformsqldatasources=nil, envinfos=nil)
+        def initialize(name=nil, taskid=nil, enableflag=nil, type=nil, srctopicid=nil, status=nil, createtime=nil, updatetime=nil, lastenabletime=nil, srctopicname=nil, logsetid=nil, dstresources=nil, etlcontent=nil, backuptopicid=nil, backupgiveupdata=nil, hasserviceslog=nil, taskdstcount=nil, datatransformtype=nil, keepfailurelog=nil, failurelogkey=nil, processfromtimestamp=nil, processtotimestamp=nil, datatransformsqldatasources=nil, envinfos=nil, describe=nil)
           @Name = name
           @TaskId = taskid
           @EnableFlag = enableflag
@@ -7030,6 +7040,7 @@ module TencentCloud
           @ProcessToTimestamp = processtotimestamp
           @DataTransformSqlDataSources = datatransformsqldatasources
           @EnvInfos = envinfos
+          @Describe = describe
         end
 
         def deserialize(params)
@@ -7078,6 +7089,7 @@ module TencentCloud
               @EnvInfos << envinfo_tmp
             end
           end
+          @Describe = params['Describe']
         end
       end
 
@@ -19505,10 +19517,14 @@ module TencentCloud
         # @type Compress: String
         # @param ExtractRuleInfo: <p>提取规则，如果设置了ExtractRule，则必须设置LogType</p>
         # @type ExtractRuleInfo: :class:`Tencentcloud::Cls.v20201016.models.ExtractRuleInfo`
+        # @param SQSEnabled: <p>是否启用SQS。不传保持原配置； 开启开关仅对增量数据生效。</p>
+        # @type SQSEnabled: Boolean
+        # @param SQSUrl: <p>SQS队列URL。开启开关后仅对增量数据生效。</p>
+        # @type SQSUrl: String
 
-        attr_accessor :TaskId, :TopicId, :Name, :TaskType, :Enable, :Bucket, :S3Region, :AccessKeyId, :SecretAccessKey, :Endpoint, :LogType, :Prefix, :Compress, :ExtractRuleInfo
+        attr_accessor :TaskId, :TopicId, :Name, :TaskType, :Enable, :Bucket, :S3Region, :AccessKeyId, :SecretAccessKey, :Endpoint, :LogType, :Prefix, :Compress, :ExtractRuleInfo, :SQSEnabled, :SQSUrl
 
-        def initialize(taskid=nil, topicid=nil, name=nil, tasktype=nil, enable=nil, bucket=nil, s3region=nil, accesskeyid=nil, secretaccesskey=nil, endpoint=nil, logtype=nil, prefix=nil, compress=nil, extractruleinfo=nil)
+        def initialize(taskid=nil, topicid=nil, name=nil, tasktype=nil, enable=nil, bucket=nil, s3region=nil, accesskeyid=nil, secretaccesskey=nil, endpoint=nil, logtype=nil, prefix=nil, compress=nil, extractruleinfo=nil, sqsenabled=nil, sqsurl=nil)
           @TaskId = taskid
           @TopicId = topicid
           @Name = name
@@ -19523,6 +19539,8 @@ module TencentCloud
           @Prefix = prefix
           @Compress = compress
           @ExtractRuleInfo = extractruleinfo
+          @SQSEnabled = sqsenabled
+          @SQSUrl = sqsurl
         end
 
         def deserialize(params)
@@ -19543,6 +19561,8 @@ module TencentCloud
             @ExtractRuleInfo = ExtractRuleInfo.new
             @ExtractRuleInfo.deserialize(params['ExtractRuleInfo'])
           end
+          @SQSEnabled = params['SQSEnabled']
+          @SQSUrl = params['SQSUrl']
         end
       end
 
@@ -22229,10 +22249,14 @@ module TencentCloud
         # @type CreateTime: Integer
         # @param UpdateTime: <p>更新时间</p><p>单位：秒</p><p>秒级时间戳</p>
         # @type UpdateTime: Integer
+        # @param SQSEnabled: <p>是否启用SQS。</p>
+        # @type SQSEnabled: Boolean
+        # @param SQSUrl: <p>SQS队列URL。</p>
+        # @type SQSUrl: String
 
-        attr_accessor :TaskId, :TopicId, :LogsetId, :Name, :Bucket, :S3Region, :AccessKeyId, :Endpoint, :LogType, :Prefix, :Compress, :ExtractRule, :TaskType, :Metadata, :Status, :Enable, :Progress, :CreateTime, :UpdateTime
+        attr_accessor :TaskId, :TopicId, :LogsetId, :Name, :Bucket, :S3Region, :AccessKeyId, :Endpoint, :LogType, :Prefix, :Compress, :ExtractRule, :TaskType, :Metadata, :Status, :Enable, :Progress, :CreateTime, :UpdateTime, :SQSEnabled, :SQSUrl
 
-        def initialize(taskid=nil, topicid=nil, logsetid=nil, name=nil, bucket=nil, s3region=nil, accesskeyid=nil, endpoint=nil, logtype=nil, prefix=nil, compress=nil, extractrule=nil, tasktype=nil, metadata=nil, status=nil, enable=nil, progress=nil, createtime=nil, updatetime=nil)
+        def initialize(taskid=nil, topicid=nil, logsetid=nil, name=nil, bucket=nil, s3region=nil, accesskeyid=nil, endpoint=nil, logtype=nil, prefix=nil, compress=nil, extractrule=nil, tasktype=nil, metadata=nil, status=nil, enable=nil, progress=nil, createtime=nil, updatetime=nil, sqsenabled=nil, sqsurl=nil)
           @TaskId = taskid
           @TopicId = topicid
           @LogsetId = logsetid
@@ -22252,6 +22276,8 @@ module TencentCloud
           @Progress = progress
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @SQSEnabled = sqsenabled
+          @SQSUrl = sqsurl
         end
 
         def deserialize(params)
@@ -22277,6 +22303,8 @@ module TencentCloud
           @Progress = params['Progress']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @SQSEnabled = params['SQSEnabled']
+          @SQSUrl = params['SQSUrl']
         end
       end
 

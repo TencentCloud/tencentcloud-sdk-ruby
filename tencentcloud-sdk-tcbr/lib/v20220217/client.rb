@@ -389,6 +389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口 ModifyStableIPStatus 用于修改固定 IP 状态
+
+        # @param request: Request instance for ModifyStableIPStatus.
+        # @type request: :class:`Tencentcloud::tcbr::V20220217::ModifyStableIPStatusRequest`
+        # @rtype: :class:`Tencentcloud::tcbr::V20220217::ModifyStableIPStatusResponse`
+        def ModifyStableIPStatus(request)
+          body = send_request('ModifyStableIPStatus', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyStableIPStatusResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 操作发布单
 
         # @param request: Request instance for OperateServerManage.

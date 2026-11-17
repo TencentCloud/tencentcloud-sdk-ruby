@@ -77,8 +77,8 @@ module TencentCloud
 
         attr_accessor :BTime, :Count, :BeginTime
         extend Gem::Deprecate
-        deprecate :BTime, :none, 2026, 10
-        deprecate :BTime=, :none, 2026, 10
+        deprecate :BTime, :none, 2026, 11
+        deprecate :BTime=, :none, 2026, 11
 
         def initialize(btime=nil, count=nil, begintime=nil)
           @BTime = btime
@@ -485,7 +485,7 @@ module TencentCloud
       class AddAttackWhiteRuleRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param Status: 规则状态
+        # @param Status: 规则状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Rules: 匹配规则项列表
         # @type Rules: Array
@@ -590,10 +590,17 @@ module TencentCloud
         # @type ActionRatio: Integer
         # @param GroupIds: <p>绑定的防护组ID</p>
         # @type GroupIds: Array
+        # @param Preview: 自定义规则预览开关
+        # 枚举值：
+        # 0：关闭预览
+        # 1：开启预览
+        # 默认值：0
+        # 开启后仅记录规则命中并继续匹配后续规则，不执行本规则配置的防护动作。仅支持自定义规则，启用时动作灰度比例须为100；不支持精准白名单和小程序规则。仅支持CNAME接入或云原生清洗接入，启用预览前须开启规则。
+        # @type Preview: Integer
 
-        attr_accessor :Name, :ExpireTime, :SortId, :ActionType, :Redirect, :Bypass, :Remark, :EventId, :Domains, :Strategies, :JobType, :JobDateTime, :LogicalOp, :PageId, :ActionRatio, :GroupIds
+        attr_accessor :Name, :ExpireTime, :SortId, :ActionType, :Redirect, :Bypass, :Remark, :EventId, :Domains, :Strategies, :JobType, :JobDateTime, :LogicalOp, :PageId, :ActionRatio, :GroupIds, :Preview
 
-        def initialize(name=nil, expiretime=nil, sortid=nil, actiontype=nil, redirect=nil, bypass=nil, remark=nil, eventid=nil, domains=nil, strategies=nil, jobtype=nil, jobdatetime=nil, logicalop=nil, pageid=nil, actionratio=nil, groupids=nil)
+        def initialize(name=nil, expiretime=nil, sortid=nil, actiontype=nil, redirect=nil, bypass=nil, remark=nil, eventid=nil, domains=nil, strategies=nil, jobtype=nil, jobdatetime=nil, logicalop=nil, pageid=nil, actionratio=nil, groupids=nil, preview=nil)
           @Name = name
           @ExpireTime = expiretime
           @SortId = sortid
@@ -610,6 +617,7 @@ module TencentCloud
           @PageId = pageid
           @ActionRatio = actionratio
           @GroupIds = groupids
+          @Preview = preview
         end
 
         def deserialize(params)
@@ -639,6 +647,7 @@ module TencentCloud
           @PageId = params['PageId']
           @ActionRatio = params['ActionRatio']
           @GroupIds = params['GroupIds']
+          @Preview = params['Preview']
         end
       end
 
@@ -804,7 +813,7 @@ module TencentCloud
         # @type Source: String
         # @param Label: 规则标签，小程序规则用，标识是内置规则还是自定义规则
         # @type Label: String
-        # @param Status: 开关状态，小程序风控规则的时候传该值
+        # @param Status: 规则开关状态，0表示关闭，1表示开启，小程序风控规则传该值
         # @type Status: Integer
         # @param PageId: 拦截页面id
         # @type PageId: String
@@ -816,13 +825,20 @@ module TencentCloud
         # 取值范围：1-100
         # 默认值：100（全量生效）
         # @type ActionRatio: Integer
+        # @param Preview: 自定义规则预览开关
+        # 枚举值：
+        # 0：关闭预览
+        # 1：开启预览
+        # 默认值：0
+        # 开启后仅记录规则命中并继续匹配后续规则，不执行本规则配置的防护动作。仅支持自定义规则，启用时动作灰度比例须为100；不支持精准白名单和小程序规则。仅支持CNAME接入或云原生清洗接入，启用预览前须开启规则。
+        # @type Preview: Integer
 
-        attr_accessor :Name, :SortId, :Strategies, :Domain, :ActionType, :Redirect, :ExpireTime, :Edition, :Bypass, :EventId, :JobType, :JobDateTime, :Source, :Label, :Status, :PageId, :LogicalOp, :ActionRatio
+        attr_accessor :Name, :SortId, :Strategies, :Domain, :ActionType, :Redirect, :ExpireTime, :Edition, :Bypass, :EventId, :JobType, :JobDateTime, :Source, :Label, :Status, :PageId, :LogicalOp, :ActionRatio, :Preview
         extend Gem::Deprecate
-        deprecate :Bypass, :none, 2026, 10
-        deprecate :Bypass=, :none, 2026, 10
+        deprecate :Bypass, :none, 2026, 11
+        deprecate :Bypass=, :none, 2026, 11
 
-        def initialize(name=nil, sortid=nil, strategies=nil, domain=nil, actiontype=nil, redirect=nil, expiretime=nil, edition=nil, bypass=nil, eventid=nil, jobtype=nil, jobdatetime=nil, source=nil, label=nil, status=nil, pageid=nil, logicalop=nil, actionratio=nil)
+        def initialize(name=nil, sortid=nil, strategies=nil, domain=nil, actiontype=nil, redirect=nil, expiretime=nil, edition=nil, bypass=nil, eventid=nil, jobtype=nil, jobdatetime=nil, source=nil, label=nil, status=nil, pageid=nil, logicalop=nil, actionratio=nil, preview=nil)
           @Name = name
           @SortId = sortid
           @Strategies = strategies
@@ -841,6 +857,7 @@ module TencentCloud
           @PageId = pageid
           @LogicalOp = logicalop
           @ActionRatio = actionratio
+          @Preview = preview
         end
 
         def deserialize(params)
@@ -872,6 +889,7 @@ module TencentCloud
           @PageId = params['PageId']
           @LogicalOp = params['LogicalOp']
           @ActionRatio = params['ActionRatio']
+          @Preview = params['Preview']
         end
       end
 
@@ -1190,18 +1208,18 @@ module TencentCloud
 
         attr_accessor :Domain, :CertType, :IsCdn, :UpstreamType, :IsWebsocket, :LoadBalance, :Ports, :IsKeepAlive, :InstanceID, :HttpsRewrite, :IsHttp2, :ActiveCheck, :CipherTemplate, :Cert, :PrivateKey, :SSLId, :ResourceId, :IpHeaders, :UpstreamScheme, :HttpsUpstreamPort, :IsGray, :GrayAreas, :UpstreamDomain, :SrcList, :Edition, :Anycast, :Weights, :TLSVersion, :Ciphers, :ProxyConnectTimeout, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules, :UseCase, :Gzip, :Tags
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2026, 10
-        deprecate :ResourceId=, :none, 2026, 10
-        deprecate :HttpsUpstreamPort, :none, 2026, 10
-        deprecate :HttpsUpstreamPort=, :none, 2026, 10
-        deprecate :IsGray, :none, 2026, 10
-        deprecate :IsGray=, :none, 2026, 10
-        deprecate :GrayAreas, :none, 2026, 10
-        deprecate :GrayAreas=, :none, 2026, 10
-        deprecate :Edition, :none, 2026, 10
-        deprecate :Edition=, :none, 2026, 10
-        deprecate :Anycast, :none, 2026, 10
-        deprecate :Anycast=, :none, 2026, 10
+        deprecate :ResourceId, :none, 2026, 11
+        deprecate :ResourceId=, :none, 2026, 11
+        deprecate :HttpsUpstreamPort, :none, 2026, 11
+        deprecate :HttpsUpstreamPort=, :none, 2026, 11
+        deprecate :IsGray, :none, 2026, 11
+        deprecate :IsGray=, :none, 2026, 11
+        deprecate :GrayAreas, :none, 2026, 11
+        deprecate :GrayAreas=, :none, 2026, 11
+        deprecate :Edition, :none, 2026, 11
+        deprecate :Edition=, :none, 2026, 11
+        deprecate :Anycast, :none, 2026, 11
+        deprecate :Anycast=, :none, 2026, 11
 
         def initialize(domain=nil, certtype=nil, iscdn=nil, upstreamtype=nil, iswebsocket=nil, loadbalance=nil, ports=nil, iskeepalive=nil, instanceid=nil, httpsrewrite=nil, ishttp2=nil, activecheck=nil, ciphertemplate=nil, cert=nil, privatekey=nil, sslid=nil, resourceid=nil, ipheaders=nil, upstreamscheme=nil, httpsupstreamport=nil, isgray=nil, grayareas=nil, upstreamdomain=nil, srclist=nil, edition=nil, anycast=nil, weights=nil, tlsversion=nil, ciphers=nil, proxyconnecttimeout=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil, gzip=nil, tags=nil)
           @Domain = domain
@@ -2844,10 +2862,15 @@ module TencentCloud
         # @type ActionRatio: Integer
         # @param GroupIds: <p>防护对象组ID</p>
         # @type GroupIds: Array
+        # @param Preview: 自定义规则预览开关
+        # 枚举值：
+        # 0：关闭预览
+        # 1：开启预览
+        # @type Preview: Integer
 
-        attr_accessor :Id, :ActionType, :Bypass, :ExpireTime, :Name, :Redirect, :SortId, :Status, :Domains, :Remark, :Strategies, :EventId, :ValidStatus, :CreateTime, :UpdateTime, :JobType, :JobDateTime, :CronType, :Label, :PageId, :LogicalOp, :ActionRatio, :GroupIds
+        attr_accessor :Id, :ActionType, :Bypass, :ExpireTime, :Name, :Redirect, :SortId, :Status, :Domains, :Remark, :Strategies, :EventId, :ValidStatus, :CreateTime, :UpdateTime, :JobType, :JobDateTime, :CronType, :Label, :PageId, :LogicalOp, :ActionRatio, :GroupIds, :Preview
 
-        def initialize(id=nil, actiontype=nil, bypass=nil, expiretime=nil, name=nil, redirect=nil, sortid=nil, status=nil, domains=nil, remark=nil, strategies=nil, eventid=nil, validstatus=nil, createtime=nil, updatetime=nil, jobtype=nil, jobdatetime=nil, crontype=nil, label=nil, pageid=nil, logicalop=nil, actionratio=nil, groupids=nil)
+        def initialize(id=nil, actiontype=nil, bypass=nil, expiretime=nil, name=nil, redirect=nil, sortid=nil, status=nil, domains=nil, remark=nil, strategies=nil, eventid=nil, validstatus=nil, createtime=nil, updatetime=nil, jobtype=nil, jobdatetime=nil, crontype=nil, label=nil, pageid=nil, logicalop=nil, actionratio=nil, groupids=nil, preview=nil)
           @Id = id
           @ActionType = actiontype
           @Bypass = bypass
@@ -2871,6 +2894,7 @@ module TencentCloud
           @LogicalOp = logicalop
           @ActionRatio = actionratio
           @GroupIds = groupids
+          @Preview = preview
         end
 
         def deserialize(params)
@@ -2907,6 +2931,7 @@ module TencentCloud
           @LogicalOp = params['LogicalOp']
           @ActionRatio = params['ActionRatio']
           @GroupIds = params['GroupIds']
+          @Preview = params['Preview']
         end
       end
 
@@ -3076,10 +3101,10 @@ module TencentCloud
 
         attr_accessor :Id, :ActionType, :Ip, :Note, :Source, :TsVersion, :ValidTs, :Hosts, :RuleId, :IpList, :CreateTime, :JobType, :CronType, :JobDateTime, :ValidStatus, :GroupIds
         extend Gem::Deprecate
-        deprecate :Id, :none, 2026, 10
-        deprecate :Id=, :none, 2026, 10
-        deprecate :Ip, :none, 2026, 10
-        deprecate :Ip=, :none, 2026, 10
+        deprecate :Id, :none, 2026, 11
+        deprecate :Id=, :none, 2026, 11
+        deprecate :Ip, :none, 2026, 11
+        deprecate :Ip=, :none, 2026, 11
 
         def initialize(id=nil, actiontype=nil, ip=nil, note=nil, source=nil, tsversion=nil, validts=nil, hosts=nil, ruleid=nil, iplist=nil, createtime=nil, jobtype=nil, crontype=nil, jobdatetime=nil, validstatus=nil, groupids=nil)
           @Id = id
@@ -5091,7 +5116,7 @@ module TencentCloud
         # @type JobType: String
         # @param JobDateTime: 定时任务配置
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
-        # @param ActionType: 42为黑名单，40为白名单
+        # @param ActionType: IP黑白名单类型，40表示白名单，42表示黑名单
         # @type ActionType: Integer
         # @param GroupIds: 防护对象组ID列表，如果绑定的是防护对象组，和Domains参数二选一
         # @type GroupIds: Array
@@ -5484,7 +5509,7 @@ module TencentCloud
         # @type Domain: String
         # @param IpList: ip参数列表
         # @type IpList: Array
-        # @param ActionType: 42为黑名单，40为白名单
+        # @param ActionType: IP黑白名单类型，40表示白名单，42表示黑名单
         # @type ActionType: Integer
         # @param ValidTS: valid_ts为有效日期，值为秒级时间戳（（如1680570420代表2023-04-04 09:07:00））
         # @type ValidTS: Integer
@@ -5503,8 +5528,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2026, 10
-        deprecate :ValidTS=, :none, 2026, 10
+        deprecate :ValidTS, :none, 2026, 11
+        deprecate :ValidTS=, :none, 2026, 11
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -5862,10 +5887,14 @@ module TencentCloud
         # @type PathsOption: Array
         # @param Order: 限流执行顺序，0：默认情况，限流优先，1：安全防护优先
         # @type Order: Integer
+        # @param MatchConditions: 统一匹配条件列表，复用ACL自定义策略结构，条件数量上限10条。MatchConditions非空时引擎只走新字段
+        # @type MatchConditions: Array
+        # @param ConditionLogic: 条件间逻辑：and(默认)/or
+        # @type ConditionLogic: String
 
-        attr_accessor :Domain, :Name, :Priority, :Status, :LimitWindow, :LimitObject, :LimitStrategy, :LimitMethod, :LimitPaths, :LimitHeaders, :LimitHeaderName, :GetParamsName, :GetParamsValue, :PostParamsName, :PostParamsValue, :IpLocation, :RedirectInfo, :BlockPage, :ObjectSrc, :QuotaShare, :PathsOption, :Order
+        attr_accessor :Domain, :Name, :Priority, :Status, :LimitWindow, :LimitObject, :LimitStrategy, :LimitMethod, :LimitPaths, :LimitHeaders, :LimitHeaderName, :GetParamsName, :GetParamsValue, :PostParamsName, :PostParamsValue, :IpLocation, :RedirectInfo, :BlockPage, :ObjectSrc, :QuotaShare, :PathsOption, :Order, :MatchConditions, :ConditionLogic
 
-        def initialize(domain=nil, name=nil, priority=nil, status=nil, limitwindow=nil, limitobject=nil, limitstrategy=nil, limitmethod=nil, limitpaths=nil, limitheaders=nil, limitheadername=nil, getparamsname=nil, getparamsvalue=nil, postparamsname=nil, postparamsvalue=nil, iplocation=nil, redirectinfo=nil, blockpage=nil, objectsrc=nil, quotashare=nil, pathsoption=nil, order=nil)
+        def initialize(domain=nil, name=nil, priority=nil, status=nil, limitwindow=nil, limitobject=nil, limitstrategy=nil, limitmethod=nil, limitpaths=nil, limitheaders=nil, limitheadername=nil, getparamsname=nil, getparamsvalue=nil, postparamsname=nil, postparamsvalue=nil, iplocation=nil, redirectinfo=nil, blockpage=nil, objectsrc=nil, quotashare=nil, pathsoption=nil, order=nil, matchconditions=nil, conditionlogic=nil)
           @Domain = domain
           @Name = name
           @Priority = priority
@@ -5888,6 +5917,8 @@ module TencentCloud
           @QuotaShare = quotashare
           @PathsOption = pathsoption
           @Order = order
+          @MatchConditions = matchconditions
+          @ConditionLogic = conditionlogic
         end
 
         def deserialize(params)
@@ -5957,6 +5988,15 @@ module TencentCloud
             end
           end
           @Order = params['Order']
+          unless params['MatchConditions'].nil?
+            @MatchConditions = []
+            params['MatchConditions'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @MatchConditions << strategy_tmp
+            end
+          end
+          @ConditionLogic = params['ConditionLogic']
         end
       end
 
@@ -6715,7 +6755,7 @@ module TencentCloud
         # @type IsId: Boolean
         # @param DeleteAll: 是否删除对应的域名下的所有黑/白IP名单，true表示全部删除，false表示只删除指定ip名单
         # @type DeleteAll: Boolean
-        # @param SourceType: 用于按数据来源删除黑白名单记录，非必填，默认为custom。 custom（自定义），用户在控制台手动添加的黑白名单规则 cc（CC 防护	），由 CC 防护模块自动添加的 IP 黑白名单 bot（Bot 防护），由 Bot 防护模块自动添加的 IP 黑白名单 batch（批量域名防护），批量域名维度添加的黑白名单规则
+        # @param SourceType: 数据来源，'batch'表示批量黑白名单规则，空/不传表示单域名黑白名单规则
         # @type SourceType: String
         # @param ActionType: IP黑白名单类型，40为IP白名单，42为IP黑名单
         # @type ActionType: Integer
@@ -6773,7 +6813,7 @@ module TencentCloud
         # @type RuleIds: Array
         # @param DeleteAll: 是否删除对应的域名下的所有黑/白IP名单，true表示全部删除，false表示只删除指定IP名单，批量防护不支持
         # @type DeleteAll: Boolean
-        # @param SourceType: 用于按数据来源删除黑白名单记录，非必填，默认为custom。 custom（自定义），用户在控制台手动添加的黑白名单规则 cc（CC 防护	），由 CC 防护模块自动添加的 IP 黑白名单 bot（Bot 防护），由 Bot 防护模块自动添加的 IP 黑白名单 batch（批量域名防护），批量域名维度添加的黑白名单规则
+        # @param SourceType: 数据来源，'batch'表示批量黑白名单规则，空/不传表示单域名黑白名单规则
         # @type SourceType: String
         # @param ActionType: IP黑白名单类型，40为IP白名单，42为IP黑名单，在DeleteAll为true的时候必传此参数
         # @type ActionType: Integer
@@ -7258,8 +7298,8 @@ module TencentCloud
 
         attr_accessor :From, :To, :Query, :FieldName, :TopicId, :Sort, :Count
         extend Gem::Deprecate
-        deprecate :TopicId, :none, 2026, 10
-        deprecate :TopicId=, :none, 2026, 10
+        deprecate :TopicId, :none, 2026, 11
+        deprecate :TopicId=, :none, 2026, 11
 
         def initialize(from=nil, to=nil, query=nil, fieldname=nil, topicid=nil, sort=nil, count=nil)
           @From = from
@@ -9702,10 +9742,15 @@ module TencentCloud
         # @type LogicalOp: String
         # @param ActionRatio: 规则灰度的比例，默认是100，不灰度
         # @type ActionRatio: Integer
+        # @param Preview: 自定义规则预览开关
+        # 枚举值：
+        # 0：关闭预览
+        # 1：开启预览
+        # @type Preview: Integer
 
-        attr_accessor :ActionType, :Bypass, :CreateTime, :ExpireTime, :Name, :Redirect, :RuleId, :SortId, :Status, :Strategies, :EventId, :ModifyTime, :ValidStatus, :Source, :JobType, :JobDateTime, :CronType, :Label, :PageId, :Domain, :LogicalOp, :ActionRatio
+        attr_accessor :ActionType, :Bypass, :CreateTime, :ExpireTime, :Name, :Redirect, :RuleId, :SortId, :Status, :Strategies, :EventId, :ModifyTime, :ValidStatus, :Source, :JobType, :JobDateTime, :CronType, :Label, :PageId, :Domain, :LogicalOp, :ActionRatio, :Preview
 
-        def initialize(actiontype=nil, bypass=nil, createtime=nil, expiretime=nil, name=nil, redirect=nil, ruleid=nil, sortid=nil, status=nil, strategies=nil, eventid=nil, modifytime=nil, validstatus=nil, source=nil, jobtype=nil, jobdatetime=nil, crontype=nil, label=nil, pageid=nil, domain=nil, logicalop=nil, actionratio=nil)
+        def initialize(actiontype=nil, bypass=nil, createtime=nil, expiretime=nil, name=nil, redirect=nil, ruleid=nil, sortid=nil, status=nil, strategies=nil, eventid=nil, modifytime=nil, validstatus=nil, source=nil, jobtype=nil, jobdatetime=nil, crontype=nil, label=nil, pageid=nil, domain=nil, logicalop=nil, actionratio=nil, preview=nil)
           @ActionType = actiontype
           @Bypass = bypass
           @CreateTime = createtime
@@ -9728,6 +9773,7 @@ module TencentCloud
           @Domain = domain
           @LogicalOp = logicalop
           @ActionRatio = actionratio
+          @Preview = preview
         end
 
         def deserialize(params)
@@ -9763,6 +9809,7 @@ module TencentCloud
           @Domain = params['Domain']
           @LogicalOp = params['LogicalOp']
           @ActionRatio = params['ActionRatio']
+          @Preview = params['Preview']
         end
       end
 
@@ -10440,7 +10487,7 @@ module TencentCloud
         # @type Domain: String
         # @param InstanceID: 实例id
         # @type InstanceID: String
-        # @param AlbType: 流量来源
+        # @param AlbType: 流量来源类型，'clb'表示CLB负载均衡，'apisix'表示自建网关（含Kong），'tsegw'表示TSE云原生网关
         # @type AlbType: String
 
         attr_accessor :Domain, :InstanceID, :AlbType
@@ -10701,10 +10748,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :ActionType, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :OffSet, :Limit, :Source, :Sort, :Ip, :ValidStatus, :ValidTimeStampMin, :ValidTimeStampMax, :RuleId, :TimerType, :IpList
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2026, 10
-        deprecate :VtsMin=, :none, 2026, 10
-        deprecate :VtsMax, :none, 2026, 10
-        deprecate :VtsMax=, :none, 2026, 10
+        deprecate :VtsMin, :none, 2026, 11
+        deprecate :VtsMin=, :none, 2026, 11
+        deprecate :VtsMax, :none, 2026, 11
+        deprecate :VtsMax=, :none, 2026, 11
 
         def initialize(domain=nil, count=nil, actiontype=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, offset=nil, limit=nil, source=nil, sort=nil, ip=nil, validstatus=nil, validtimestampmin=nil, validtimestampmax=nil, ruleid=nil, timertype=nil, iplist=nil)
           @Domain = domain
@@ -10809,10 +10856,10 @@ module TencentCloud
 
         attr_accessor :Domain, :Count, :Category, :VtsMin, :VtsMax, :CtsMin, :CtsMax, :Skip, :Limit, :Name, :Sort, :Ip, :ValidTimeStampMin, :ValidTimeStampMax
         extend Gem::Deprecate
-        deprecate :VtsMin, :none, 2026, 10
-        deprecate :VtsMin=, :none, 2026, 10
-        deprecate :VtsMax, :none, 2026, 10
-        deprecate :VtsMax=, :none, 2026, 10
+        deprecate :VtsMin, :none, 2026, 11
+        deprecate :VtsMin=, :none, 2026, 11
+        deprecate :VtsMax, :none, 2026, 11
+        deprecate :VtsMax=, :none, 2026, 11
 
         def initialize(domain=nil, count=nil, category=nil, vtsmin=nil, vtsmax=nil, ctsmin=nil, ctsmax=nil, skip=nil, limit=nil, name=nil, sort=nil, ip=nil, validtimestampmin=nil, validtimestampmax=nil)
           @Domain = domain
@@ -10994,6 +11041,85 @@ module TencentCloud
           unless params['Data'].nil?
             @Data = LLMDetectResult.new
             @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeLLMHourBillDetail请求参数结构体
+      class DescribeLLMHourBillDetailRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # 参数格式：形如 waf_xxxxxxxx
+        # @type InstanceId: String
+        # @param Date: 查询日期，仅支持单日
+        # 参数格式：YYYY-MM-DD 或 YYYYMMDD
+        # @type Date: String
+
+        attr_accessor :InstanceId, :Date
+
+        def initialize(instanceid=nil, date=nil)
+          @InstanceId = instanceid
+          @Date = date
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Date = params['Date']
+        end
+      end
+
+      # DescribeLLMHourBillDetail返回参数结构体
+      class DescribeLLMHourBillDetailResponse < TencentCloud::Common::AbstractModel
+        # @param InstanceId: 实例ID
+        # @type InstanceId: String
+        # @param Date: 查询日期，归一化为YYYY-MM-DD格式
+        # @type Date: String
+        # @param EstimatedTotalFee: 当日账单预估总额（元，扣减免费额度后的净费用）
+        # @type EstimatedTotalFee: String
+        # @param ItemFees: 当日按计费项拆分的费用
+        # @type ItemFees: :class:`Tencentcloud::Waf.v20180125.models.LLMBillItemFee`
+        # @param HourlyTrend: 24小时账单趋势，固定24条，无数据补0
+        # @type HourlyTrend: Array
+        # @param HourlyDetail: 24小时账单明细，固定24条，无数据补0
+        # @type HourlyDetail: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :InstanceId, :Date, :EstimatedTotalFee, :ItemFees, :HourlyTrend, :HourlyDetail, :RequestId
+
+        def initialize(instanceid=nil, date=nil, estimatedtotalfee=nil, itemfees=nil, hourlytrend=nil, hourlydetail=nil, requestid=nil)
+          @InstanceId = instanceid
+          @Date = date
+          @EstimatedTotalFee = estimatedtotalfee
+          @ItemFees = itemfees
+          @HourlyTrend = hourlytrend
+          @HourlyDetail = hourlydetail
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Date = params['Date']
+          @EstimatedTotalFee = params['EstimatedTotalFee']
+          unless params['ItemFees'].nil?
+            @ItemFees = LLMBillItemFee.new
+            @ItemFees.deserialize(params['ItemFees'])
+          end
+          unless params['HourlyTrend'].nil?
+            @HourlyTrend = []
+            params['HourlyTrend'].each do |i|
+              llmhourbilltrenditem_tmp = LLMHourBillTrendItem.new
+              llmhourbilltrenditem_tmp.deserialize(i)
+              @HourlyTrend << llmhourbilltrenditem_tmp
+            end
+          end
+          unless params['HourlyDetail'].nil?
+            @HourlyDetail = []
+            params['HourlyDetail'].each do |i|
+              llmhourbilldetailitem_tmp = LLMHourBillDetailItem.new
+              llmhourbilldetailitem_tmp.deserialize(i)
+              @HourlyDetail << llmhourbilldetailitem_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -11268,6 +11394,53 @@ module TencentCloud
         end
       end
 
+      # DescribeLLMWafToolCallRules请求参数结构体
+      class DescribeLLMWafToolCallRulesRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>服务ID</p>
+        # @type ServiceId: String
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+
+        attr_accessor :ServiceId, :InstanceId
+
+        def initialize(serviceid=nil, instanceid=nil)
+          @ServiceId = serviceid
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # DescribeLLMWafToolCallRules返回参数结构体
+      class DescribeLLMWafToolCallRulesResponse < TencentCloud::Common::AbstractModel
+        # @param Categories: <p>类别列表</p>
+        # @type Categories: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Categories, :RequestId
+
+        def initialize(categories=nil, requestid=nil)
+          @Categories = categories
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Categories'].nil?
+            @Categories = []
+            params['Categories'].each do |i|
+              categorygroup_tmp = CategoryGroup.new
+              categorygroup_tmp.deserialize(i)
+              @Categories << categorygroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLogHistogram请求参数结构体
       class DescribeLogHistogramRequest < TencentCloud::Common::AbstractModel
         # @param From: 要查询的日志的起始时间，Unix时间戳，单位ms
@@ -11343,7 +11516,7 @@ module TencentCloud
 
       # DescribeModuleStatus请求参数结构体
       class DescribeModuleStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 要查询状态的域名
+        # @param Domain: <p>要查询状态的域名</p>
         # @type Domain: String
 
         attr_accessor :Domain
@@ -11359,34 +11532,37 @@ module TencentCloud
 
       # DescribeModuleStatus返回参数结构体
       class DescribeModuleStatusResponse < TencentCloud::Common::AbstractModel
-        # @param WebSecurity: WEB安全规则是否开启
+        # @param WebSecurity: <p>WEB安全规则是否开启</p>
         # @type WebSecurity: Integer
-        # @param AccessControl: 访问控制规则是否开启
+        # @param AccessControl: <p>访问控制规则是否开启</p>
         # @type AccessControl: Integer
-        # @param CcProtection: CC防护是否开启
+        # @param CcProtection: <p>CC防护是否开启</p>
         # @type CcProtection: Integer
-        # @param AntiTamper: 网页防篡改是否开启
+        # @param AntiTamper: <p>网页防篡改是否开启</p>
         # @type AntiTamper: Integer
-        # @param AntiLeakage: 信息防泄漏是否开启
+        # @param AntiLeakage: <p>信息防泄漏是否开启</p>
         # @type AntiLeakage: Integer
-        # @param ApiProtection: API安全是否开启
+        # @param ApiProtection: <p>API安全是否开启</p>
         # @type ApiProtection: Integer
-        # @param RateLimit: 限流模块开关
+        # @param ApiDetect: <p>API安全检测开关是否开启</p>
+        # @type ApiDetect: Integer
+        # @param RateLimit: <p>限流模块开关，0表示关闭，1表示开启</p>
         # @type RateLimit: Integer
-        # @param GzipAnalysis: gzip 开关
+        # @param GzipAnalysis: <p>gzip 开关</p>
         # @type GzipAnalysis: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :WebSecurity, :AccessControl, :CcProtection, :AntiTamper, :AntiLeakage, :ApiProtection, :RateLimit, :GzipAnalysis, :RequestId
+        attr_accessor :WebSecurity, :AccessControl, :CcProtection, :AntiTamper, :AntiLeakage, :ApiProtection, :ApiDetect, :RateLimit, :GzipAnalysis, :RequestId
 
-        def initialize(websecurity=nil, accesscontrol=nil, ccprotection=nil, antitamper=nil, antileakage=nil, apiprotection=nil, ratelimit=nil, gzipanalysis=nil, requestid=nil)
+        def initialize(websecurity=nil, accesscontrol=nil, ccprotection=nil, antitamper=nil, antileakage=nil, apiprotection=nil, apidetect=nil, ratelimit=nil, gzipanalysis=nil, requestid=nil)
           @WebSecurity = websecurity
           @AccessControl = accesscontrol
           @CcProtection = ccprotection
           @AntiTamper = antitamper
           @AntiLeakage = antileakage
           @ApiProtection = apiprotection
+          @ApiDetect = apidetect
           @RateLimit = ratelimit
           @GzipAnalysis = gzipanalysis
           @RequestId = requestid
@@ -11399,6 +11575,7 @@ module TencentCloud
           @AntiTamper = params['AntiTamper']
           @AntiLeakage = params['AntiLeakage']
           @ApiProtection = params['ApiProtection']
+          @ApiDetect = params['ApiDetect']
           @RateLimit = params['RateLimit']
           @GzipAnalysis = params['GzipAnalysis']
           @RequestId = params['RequestId']
@@ -11841,7 +12018,7 @@ module TencentCloud
       class DescribePolicyStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param Edition: clb-waf或者saas-waf
+        # @param Edition: clb-waf或者sparta-waf
         # @type Edition: String
 
         attr_accessor :Domain, :Edition
@@ -13937,8 +14114,8 @@ module TencentCloud
 
         attr_accessor :Domain, :DomainId, :InstanceId, :Edition, :InstanceName, :Cert, :CreateTime, :ModifyTime, :Engine, :HttpsRewrite, :HttpsUpstreamPort, :IsCdn, :IsGray, :IsHttp2, :IsWebsocket, :LoadBalance, :Mode, :PrivateKey, :SSLId, :UpstreamDomain, :UpstreamType, :SrcList, :Ports, :CertType, :UpstreamScheme, :Cls, :Cname, :DnssecCname, :IsKeepAlive, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyConnectTimeout, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :Weights, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :Level, :ProxyBuffer, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :Labels, :ProbeStatus, :UpstreamPolicy, :UpstreamRules, :UseCase, :Gzip, :State, :PrivateVipStatus, :TagInfos, :Ipv6Status
         extend Gem::Deprecate
-        deprecate :IsGray, :none, 2026, 10
-        deprecate :IsGray=, :none, 2026, 10
+        deprecate :IsGray, :none, 2026, 11
+        deprecate :IsGray=, :none, 2026, 11
 
         def initialize(domain=nil, domainid=nil, instanceid=nil, edition=nil, instancename=nil, cert=nil, createtime=nil, modifytime=nil, engine=nil, httpsrewrite=nil, httpsupstreamport=nil, iscdn=nil, isgray=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, mode=nil, privatekey=nil, sslid=nil, upstreamdomain=nil, upstreamtype=nil, srclist=nil, ports=nil, certtype=nil, upstreamscheme=nil, cls=nil, cname=nil, dnsseccname=nil, iskeepalive=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyconnecttimeout=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, weights=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, level=nil, proxybuffer=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, labels=nil, probestatus=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil, gzip=nil, state=nil, privatevipstatus=nil, taginfos=nil, ipv6status=nil)
           @Domain = domain
@@ -14433,6 +14610,8 @@ module TencentCloud
         # @type EnableHeaders: Integer
         # @param EnableBody: <p>1:开启 0:不开启</p>
         # @type EnableBody: Integer
+        # @param EnableAttackBody: <p>仅当该条访问日志命中攻击规则时，是否额外存储 attack_body 字段（取值与 body 字段相同）。1:开启 0/不填:不开启。与 EnableBody 完全独立，互不影响。仅在存储查询链路（DescribeAccessMeta/ModifyAccessPeriod）中生效，不影响 CLS/CKafka 自定义投递（CreatePostCLSFlow/CreatePostCKafkaFlow）配置。</p>
+        # @type EnableAttackBody: Integer
         # @param EnableBot: <p>1:开启 0:不开启</p>
         # @type EnableBot: Integer
         # @param EnableResponse: <p>响应方向body<br>1:开启 0:不开启</p>
@@ -14443,27 +14622,37 @@ module TencentCloud
         # @type EnableResponseLength: Integer
         # @param EnableResponseStatusLine: <p>是否投递 response_status_line（客户端可见 HTTP 状态行，如 HTTP/1.1 200 OK，超过1KB截断）。1:开启 0/不填:不开启。与 EnableResponse 完全独立，互不影响。拦截/未回源时也会有值，记录的是 WAF 返回给客户端的状态行。</p>
         # @type EnableResponseStatusLine: Integer
+        # @param LlmItem: <p>大模型安全防护详情字段，用;分割，仅对 SDK 访问日志生效。不传表示全部写入；传空字符串表示只写必填字段（uuid、appid、instance、timestamp、llm_service_id）。</p>
+        # @type LlmItem: String
+        # @param FilterPlusEnableHeaderFilter: <p>headers 字段中10个通用冗余子字段（accept/accept-encoding/accept-language/connection/content-type/cookie/host/referer/x-forwarded-for/user-agent）剔除开关。1:剔除 0/不填:不剔除。仅在CLS/CKafka自定义投递（CreatePostCLSFlow/CreatePostCKafkaFlow及对应Describe接口）中生效，不影响原有存储日志配置。</p>
+        # @type FilterPlusEnableHeaderFilter: Integer
 
-        attr_accessor :EnableHeaders, :EnableBody, :EnableBot, :EnableResponse, :EnableResponseHeaders, :EnableResponseLength, :EnableResponseStatusLine
+        attr_accessor :EnableHeaders, :EnableBody, :EnableAttackBody, :EnableBot, :EnableResponse, :EnableResponseHeaders, :EnableResponseLength, :EnableResponseStatusLine, :LlmItem, :FilterPlusEnableHeaderFilter
 
-        def initialize(enableheaders=nil, enablebody=nil, enablebot=nil, enableresponse=nil, enableresponseheaders=nil, enableresponselength=nil, enableresponsestatusline=nil)
+        def initialize(enableheaders=nil, enablebody=nil, enableattackbody=nil, enablebot=nil, enableresponse=nil, enableresponseheaders=nil, enableresponselength=nil, enableresponsestatusline=nil, llmitem=nil, filterplusenableheaderfilter=nil)
           @EnableHeaders = enableheaders
           @EnableBody = enablebody
+          @EnableAttackBody = enableattackbody
           @EnableBot = enablebot
           @EnableResponse = enableresponse
           @EnableResponseHeaders = enableresponseheaders
           @EnableResponseLength = enableresponselength
           @EnableResponseStatusLine = enableresponsestatusline
+          @LlmItem = llmitem
+          @FilterPlusEnableHeaderFilter = filterplusenableheaderfilter
         end
 
         def deserialize(params)
           @EnableHeaders = params['EnableHeaders']
           @EnableBody = params['EnableBody']
+          @EnableAttackBody = params['EnableAttackBody']
           @EnableBot = params['EnableBot']
           @EnableResponse = params['EnableResponse']
           @EnableResponseHeaders = params['EnableResponseHeaders']
           @EnableResponseLength = params['EnableResponseLength']
           @EnableResponseStatusLine = params['EnableResponseStatusLine']
+          @LlmItem = params['LlmItem']
+          @FilterPlusEnableHeaderFilter = params['FilterPlusEnableHeaderFilter']
         end
       end
 
@@ -15908,7 +16097,7 @@ module TencentCloud
         # @type DomainPkg: :class:`Tencentcloud::Waf.v20180125.models.DomainPackageNew`
         # @param AppId: <p>用户appid</p>
         # @type AppId: Integer
-        # @param Edition: <p>clb或saas</p>
+        # @param Edition: <p>实例接入类型</p><p>枚举值：<br>sparta-waf：SaaS型WAF实例<br>clb-waf：负载均衡型WAF实例<br>cdn-waf：CDN上的Web防护实例<br>cdc-clb-waf：CDC环境下负载均衡型WAF实例<br>llm-sdk-waf：大模型SDK WAF实例</p>
         # @type Edition: String
         # @param FraudPkg: <p>业务安全包</p>
         # @type FraudPkg: :class:`Tencentcloud::Waf.v20180125.models.FraudPkg`
@@ -16534,6 +16723,34 @@ module TencentCloud
         end
       end
 
+      # 大模型安全按小时账单分项费用
+      class LLMBillItemFee < TencentCloud::Common::AbstractModel
+        # @param PromptAttackFee: 提示词攻击防护费用（元）
+        # @type PromptAttackFee: String
+        # @param ContentTextFee: 内容合规检测（文本）费用（元）
+        # @type ContentTextFee: String
+        # @param ContentImageFee: 内容合规检测（图片）费用（元）
+        # @type ContentImageFee: String
+        # @param SensitiveDataFee: 敏感数据检测费用（元）
+        # @type SensitiveDataFee: String
+
+        attr_accessor :PromptAttackFee, :ContentTextFee, :ContentImageFee, :SensitiveDataFee
+
+        def initialize(promptattackfee=nil, contenttextfee=nil, contentimagefee=nil, sensitivedatafee=nil)
+          @PromptAttackFee = promptattackfee
+          @ContentTextFee = contenttextfee
+          @ContentImageFee = contentimagefee
+          @SensitiveDataFee = sensitivedatafee
+        end
+
+        def deserialize(params)
+          @PromptAttackFee = params['PromptAttackFee']
+          @ContentTextFee = params['ContentTextFee']
+          @ContentImageFee = params['ContentImageFee']
+          @SensitiveDataFee = params['SensitiveDataFee']
+        end
+      end
+
       # 大模型安全检测综合结果
       class LLMDetectResult < TencentCloud::Common::AbstractModel
         # @param SensitiveResult: <p>仅输出侧：涉敏信息</p>
@@ -16632,6 +16849,78 @@ module TencentCloud
             @UrlDetectResult = UrlDetectResult.new
             @UrlDetectResult.deserialize(params['UrlDetectResult'])
           end
+        end
+      end
+
+      # 大模型安全按小时账单明细行
+      class LLMHourBillDetailItem < TencentCloud::Common::AbstractModel
+        # @param TimeRange: 小时区间，如00:00-01:00
+        # @type TimeRange: String
+        # @param PromptAttackUsage: 提示词攻击防护计量值（token）
+        # @type PromptAttackUsage: Integer
+        # @param ContentTextUsage: 内容合规检测（文本）计量值（token）
+        # @type ContentTextUsage: Integer
+        # @param ContentImageUsage: 内容合规检测（图片）计量值（张）
+        # @type ContentImageUsage: Integer
+        # @param SensitiveDataUsage: 敏感数据检测计量值（token）
+        # @type SensitiveDataUsage: Integer
+        # @param PromptAttackFee: 该小时提示词攻击防护费用（元）
+        # @type PromptAttackFee: String
+        # @param ContentTextFee: 该小时内容合规检测（文本）费用（元）
+        # @type ContentTextFee: String
+        # @param ContentImageFee: 该小时内容合规检测（图片）费用（元）
+        # @type ContentImageFee: String
+        # @param SensitiveDataFee: 该小时敏感数据检测费用（元）
+        # @type SensitiveDataFee: String
+        # @param TotalFee: 该小时账单总额（元，净费用）
+        # @type TotalFee: String
+
+        attr_accessor :TimeRange, :PromptAttackUsage, :ContentTextUsage, :ContentImageUsage, :SensitiveDataUsage, :PromptAttackFee, :ContentTextFee, :ContentImageFee, :SensitiveDataFee, :TotalFee
+
+        def initialize(timerange=nil, promptattackusage=nil, contenttextusage=nil, contentimageusage=nil, sensitivedatausage=nil, promptattackfee=nil, contenttextfee=nil, contentimagefee=nil, sensitivedatafee=nil, totalfee=nil)
+          @TimeRange = timerange
+          @PromptAttackUsage = promptattackusage
+          @ContentTextUsage = contenttextusage
+          @ContentImageUsage = contentimageusage
+          @SensitiveDataUsage = sensitivedatausage
+          @PromptAttackFee = promptattackfee
+          @ContentTextFee = contenttextfee
+          @ContentImageFee = contentimagefee
+          @SensitiveDataFee = sensitivedatafee
+          @TotalFee = totalfee
+        end
+
+        def deserialize(params)
+          @TimeRange = params['TimeRange']
+          @PromptAttackUsage = params['PromptAttackUsage']
+          @ContentTextUsage = params['ContentTextUsage']
+          @ContentImageUsage = params['ContentImageUsage']
+          @SensitiveDataUsage = params['SensitiveDataUsage']
+          @PromptAttackFee = params['PromptAttackFee']
+          @ContentTextFee = params['ContentTextFee']
+          @ContentImageFee = params['ContentImageFee']
+          @SensitiveDataFee = params['SensitiveDataFee']
+          @TotalFee = params['TotalFee']
+        end
+      end
+
+      # 大模型安全按小时账单趋势数据点
+      class LLMHourBillTrendItem < TencentCloud::Common::AbstractModel
+        # @param Hour: 小时，取值00到23
+        # @type Hour: String
+        # @param Fee: 该小时账单总额（元，净费用）
+        # @type Fee: String
+
+        attr_accessor :Hour, :Fee
+
+        def initialize(hour=nil, fee=nil)
+          @Hour = hour
+          @Fee = fee
+        end
+
+        def deserialize(params)
+          @Hour = params['Hour']
+          @Fee = params['Fee']
         end
       end
 
@@ -17180,10 +17469,14 @@ module TencentCloud
         # @type PathsOption: Array
         # @param Order: 574新增需求，限流执行顺序，0：默认情况，限流优先，1：安全防护优先
         # @type Order: Integer
+        # @param MatchConditions: 统一匹配条件列表，复用ACL自定义策略结构，条件数量上限10条
+        # @type MatchConditions: Array
+        # @param ConditionLogic: 条件间逻辑：and(默认)/or
+        # @type ConditionLogic: String
 
-        attr_accessor :LimitRuleID, :Name, :Priority, :Status, :TsVersion, :LimitObject, :LimitMethod, :LimitPaths, :LimitHeaders, :LimitWindow, :LimitStrategy, :LimitHeaderName, :GetParamsName, :GetParamsValue, :PostParamsName, :PostParamsValue, :IpLocation, :RedirectInfo, :BlockPage, :ObjectSrc, :QuotaShare, :PathsOption, :Order
+        attr_accessor :LimitRuleID, :Name, :Priority, :Status, :TsVersion, :LimitObject, :LimitMethod, :LimitPaths, :LimitHeaders, :LimitWindow, :LimitStrategy, :LimitHeaderName, :GetParamsName, :GetParamsValue, :PostParamsName, :PostParamsValue, :IpLocation, :RedirectInfo, :BlockPage, :ObjectSrc, :QuotaShare, :PathsOption, :Order, :MatchConditions, :ConditionLogic
 
-        def initialize(limitruleid=nil, name=nil, priority=nil, status=nil, tsversion=nil, limitobject=nil, limitmethod=nil, limitpaths=nil, limitheaders=nil, limitwindow=nil, limitstrategy=nil, limitheadername=nil, getparamsname=nil, getparamsvalue=nil, postparamsname=nil, postparamsvalue=nil, iplocation=nil, redirectinfo=nil, blockpage=nil, objectsrc=nil, quotashare=nil, pathsoption=nil, order=nil)
+        def initialize(limitruleid=nil, name=nil, priority=nil, status=nil, tsversion=nil, limitobject=nil, limitmethod=nil, limitpaths=nil, limitheaders=nil, limitwindow=nil, limitstrategy=nil, limitheadername=nil, getparamsname=nil, getparamsvalue=nil, postparamsname=nil, postparamsvalue=nil, iplocation=nil, redirectinfo=nil, blockpage=nil, objectsrc=nil, quotashare=nil, pathsoption=nil, order=nil, matchconditions=nil, conditionlogic=nil)
           @LimitRuleID = limitruleid
           @Name = name
           @Priority = priority
@@ -17207,6 +17500,8 @@ module TencentCloud
           @QuotaShare = quotashare
           @PathsOption = pathsoption
           @Order = order
+          @MatchConditions = matchconditions
+          @ConditionLogic = conditionlogic
         end
 
         def deserialize(params)
@@ -17277,6 +17572,15 @@ module TencentCloud
             end
           end
           @Order = params['Order']
+          unless params['MatchConditions'].nil?
+            @MatchConditions = []
+            params['MatchConditions'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @MatchConditions << strategy_tmp
+            end
+          end
+          @ConditionLogic = params['ConditionLogic']
         end
       end
 
@@ -17936,7 +18240,7 @@ module TencentCloud
       class ModifyAntiFakeUrlStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domain: 域名
         # @type Domain: String
-        # @param Status: 状态
+        # @param Status: 防篡改规则状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Ids: Id列表
         # @type Ids: Array
@@ -17978,7 +18282,7 @@ module TencentCloud
         # @type Domain: String
         # @param RuleId: 规则
         # @type RuleId: Integer
-        # @param Status: 状态
+        # @param Status: 防信息泄露规则状态，0表示关闭，1表示开启
         # @type Status: Integer
 
         attr_accessor :Domain, :RuleId, :Status
@@ -18020,7 +18324,7 @@ module TencentCloud
         # @type Name: String
         # @param Domain: 域名
         # @type Domain: String
-        # @param ActionType: Action 值
+        # @param ActionType: 防信息泄露动作类型，取值0~4
         # @type ActionType: Integer
         # @param Strategies: 策略数组
         # @type Strategies: Array
@@ -18457,7 +18761,7 @@ module TencentCloud
         # @type RuleId: Integer
         # @param Domain: 域名
         # @type Domain: String
-        # @param Status: 规则状态
+        # @param Status: 规则状态，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Rules: 匹配规则项列表
         # @type Rules: Array
@@ -18562,13 +18866,20 @@ module TencentCloud
         # @type PageId: String
         # @param ActionRatio: 动作灰度的比例，1-100，默认是100
         # @type ActionRatio: Integer
+        # @param Preview: 自定义规则预览开关
+        # 枚举值：
+        # 0：关闭预览
+        # 1：开启预览
+        # 未传入时保留规则当前的预览设置
+        # 开启后仅记录规则命中并继续匹配后续规则，不执行本规则配置的防护动作。仅支持自定义规则，启用时动作灰度比例须为100；不支持精准白名单和小程序规则。仅支持CNAME接入或云原生清洗接入，启用预览前须开启规则。
+        # @type Preview: Integer
 
-        attr_accessor :Id, :Name, :ExpireTime, :SortId, :ActionType, :Redirect, :Remark, :EventId, :Strategies, :Bypass, :Domains, :JobType, :JobDateTime, :GroupIds, :LogicalOp, :PageId, :ActionRatio
+        attr_accessor :Id, :Name, :ExpireTime, :SortId, :ActionType, :Redirect, :Remark, :EventId, :Strategies, :Bypass, :Domains, :JobType, :JobDateTime, :GroupIds, :LogicalOp, :PageId, :ActionRatio, :Preview
         extend Gem::Deprecate
-        deprecate :Bypass, :none, 2026, 10
-        deprecate :Bypass=, :none, 2026, 10
+        deprecate :Bypass, :none, 2026, 11
+        deprecate :Bypass=, :none, 2026, 11
 
-        def initialize(id=nil, name=nil, expiretime=nil, sortid=nil, actiontype=nil, redirect=nil, remark=nil, eventid=nil, strategies=nil, bypass=nil, domains=nil, jobtype=nil, jobdatetime=nil, groupids=nil, logicalop=nil, pageid=nil, actionratio=nil)
+        def initialize(id=nil, name=nil, expiretime=nil, sortid=nil, actiontype=nil, redirect=nil, remark=nil, eventid=nil, strategies=nil, bypass=nil, domains=nil, jobtype=nil, jobdatetime=nil, groupids=nil, logicalop=nil, pageid=nil, actionratio=nil, preview=nil)
           @Id = id
           @Name = name
           @ExpireTime = expiretime
@@ -18586,6 +18897,7 @@ module TencentCloud
           @LogicalOp = logicalop
           @PageId = pageid
           @ActionRatio = actionratio
+          @Preview = preview
         end
 
         def deserialize(params)
@@ -18616,6 +18928,7 @@ module TencentCloud
           @LogicalOp = params['LogicalOp']
           @PageId = params['PageId']
           @ActionRatio = params['ActionRatio']
+          @Preview = params['Preview']
         end
       end
 
@@ -18803,7 +19116,7 @@ module TencentCloud
         # @type JobType: String
         # @param JobDateTime: 定时任务配置
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
-        # @param ActionType: 42为黑名单，40为白名单
+        # @param ActionType: IP黑白名单类型，40表示白名单，42表示黑名单
         # @type ActionType: Integer
         # @param GroupIds: 防护对象组ID列表，如果绑定的是防护对象组，和Domains参数二选一
         # @type GroupIds: Array
@@ -19040,7 +19353,7 @@ module TencentCloud
       class ModifyBotStatusRequest < TencentCloud::Common::AbstractModel
         # @param Category: 类别
         # @type Category: String
-        # @param Status: 状态
+        # @param Status: BOT模块开关状态，传入'0'表示关闭，'1'表示开启
         # @type Status: String
         # @param Domain: 域名
         # @type Domain: String
@@ -19143,7 +19456,7 @@ module TencentCloud
         # @type JobDateTime: :class:`Tencentcloud::Waf.v20180125.models.JobDateTime`
         # @param Source: 规则来源，判断是不是小程序的
         # @type Source: String
-        # @param Status: 开关状态，小程序风控规则的时候传该值
+        # @param Status: 规则开关状态，0表示关闭，1表示开启，小程序风控规则传该值
         # @type Status: Integer
         # @param PageId: 拦截页面id
         # @type PageId: String
@@ -19155,13 +19468,20 @@ module TencentCloud
         # 取值范围：1-100
         # 默认值：100（全量生效）
         # @type ActionRatio: Integer
+        # @param Preview: 自定义规则预览开关
+        # 枚举值：
+        # 0：关闭预览
+        # 1：开启预览
+        # 未传入时保留规则当前的预览设置
+        # 开启后仅记录规则命中并继续匹配后续规则，不执行本规则配置的防护动作。仅支持自定义规则，启用时动作灰度比例须为100；不支持精准白名单和小程序规则。仅支持CNAME接入或云原生清洗接入，启用预览前须开启规则。
+        # @type Preview: Integer
 
-        attr_accessor :Domain, :RuleId, :RuleName, :RuleAction, :Strategies, :Edition, :Redirect, :Bypass, :SortId, :ExpireTime, :JobType, :JobDateTime, :Source, :Status, :PageId, :LogicalOp, :ActionRatio
+        attr_accessor :Domain, :RuleId, :RuleName, :RuleAction, :Strategies, :Edition, :Redirect, :Bypass, :SortId, :ExpireTime, :JobType, :JobDateTime, :Source, :Status, :PageId, :LogicalOp, :ActionRatio, :Preview
         extend Gem::Deprecate
-        deprecate :Bypass, :none, 2026, 10
-        deprecate :Bypass=, :none, 2026, 10
+        deprecate :Bypass, :none, 2026, 11
+        deprecate :Bypass=, :none, 2026, 11
 
-        def initialize(domain=nil, ruleid=nil, rulename=nil, ruleaction=nil, strategies=nil, edition=nil, redirect=nil, bypass=nil, sortid=nil, expiretime=nil, jobtype=nil, jobdatetime=nil, source=nil, status=nil, pageid=nil, logicalop=nil, actionratio=nil)
+        def initialize(domain=nil, ruleid=nil, rulename=nil, ruleaction=nil, strategies=nil, edition=nil, redirect=nil, bypass=nil, sortid=nil, expiretime=nil, jobtype=nil, jobdatetime=nil, source=nil, status=nil, pageid=nil, logicalop=nil, actionratio=nil, preview=nil)
           @Domain = domain
           @RuleId = ruleid
           @RuleName = rulename
@@ -19179,6 +19499,7 @@ module TencentCloud
           @PageId = pageid
           @LogicalOp = logicalop
           @ActionRatio = actionratio
+          @Preview = preview
         end
 
         def deserialize(params)
@@ -19209,6 +19530,7 @@ module TencentCloud
           @PageId = params['PageId']
           @LogicalOp = params['LogicalOp']
           @ActionRatio = params['ActionRatio']
+          @Preview = params['Preview']
         end
       end
 
@@ -19573,7 +19895,7 @@ module TencentCloud
       class ModifyDomainsCLSStatusRequest < TencentCloud::Common::AbstractModel
         # @param Domains: 需要修改的域名列表
         # @type Domains: Array
-        # @param Status: 修改域名的访问日志开关为Status
+        # @param Status: CLS访问日志开关，0表示关闭，1表示开启
         # @type Status: Integer
 
         attr_accessor :Domains, :Status
@@ -20064,7 +20386,7 @@ module TencentCloud
         # @type Domain: String
         # @param IpList: ip参数列表
         # @type IpList: Array
-        # @param ActionType: 42为黑名单，40为白名单
+        # @param ActionType: IP黑白名单类型，40表示白名单，42表示黑名单
         # @type ActionType: Integer
         # @param RuleId: 规则ID
         # @type RuleId: Integer
@@ -20085,8 +20407,8 @@ module TencentCloud
 
         attr_accessor :Domain, :IpList, :ActionType, :RuleId, :ValidTS, :InstanceId, :Edition, :SourceType, :Note, :JobType, :JobDateTime
         extend Gem::Deprecate
-        deprecate :ValidTS, :none, 2026, 10
-        deprecate :ValidTS=, :none, 2026, 10
+        deprecate :ValidTS, :none, 2026, 11
+        deprecate :ValidTS=, :none, 2026, 11
 
         def initialize(domain=nil, iplist=nil, actiontype=nil, ruleid=nil, validts=nil, instanceid=nil, edition=nil, sourcetype=nil, note=nil, jobtype=nil, jobdatetime=nil)
           @Domain = domain
@@ -20349,6 +20671,50 @@ module TencentCloud
         end
       end
 
+      # ModifyLLMSdkAccess请求参数结构体
+      class ModifyLLMSdkAccessRequest < TencentCloud::Common::AbstractModel
+        # @param Name: 要接入的应用名称
+        # @type Name: String
+        # @param InstanceId: 实例id
+        # @type InstanceId: String
+        # @param Domain: serviceid
+        # @type Domain: String
+        # @param Remark: 备注
+        # @type Remark: String
+
+        attr_accessor :Name, :InstanceId, :Domain, :Remark
+
+        def initialize(name=nil, instanceid=nil, domain=nil, remark=nil)
+          @Name = name
+          @InstanceId = instanceid
+          @Domain = domain
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @InstanceId = params['InstanceId']
+          @Domain = params['Domain']
+          @Remark = params['Remark']
+        end
+      end
+
+      # ModifyLLMSdkAccess返回参数结构体
+      class ModifyLLMSdkAccessResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyLLMStatus请求参数结构体
       class ModifyLLMStatusRequest < TencentCloud::Common::AbstractModel
         # @param Status: <p>开关状态。true：开启，false：关闭。</p>
@@ -20399,10 +20765,10 @@ module TencentCloud
 
       # ModifyLLMWafDLPRule请求参数结构体
       class ModifyLLMWafDLPRuleRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: <p>服务ID</p>
-        # @type ServiceId: String
         # @param RuleIds: <p>要修改的规则id列表</p>
         # @type RuleIds: Array
+        # @param ServiceId: <p>SDK 模式传 ServiceId（与 Domain 二选一）</p>
+        # @type ServiceId: String
         # @param RuleAction: <p>动作</p>
         # @type RuleAction: String
         # @param Status: <p>开关</p>
@@ -20411,25 +20777,29 @@ module TencentCloud
         # @type InstanceId: String
         # @param Direction: <p>检测方向：1是入向，2是出向，3是入向和出向都检测</p>
         # @type Direction: Integer
+        # @param Domain: <p>域名模式传 Domain（与 ServiceId 二选一）</p>
+        # @type Domain: String
 
-        attr_accessor :ServiceId, :RuleIds, :RuleAction, :Status, :InstanceId, :Direction
+        attr_accessor :RuleIds, :ServiceId, :RuleAction, :Status, :InstanceId, :Direction, :Domain
 
-        def initialize(serviceid=nil, ruleids=nil, ruleaction=nil, status=nil, instanceid=nil, direction=nil)
-          @ServiceId = serviceid
+        def initialize(ruleids=nil, serviceid=nil, ruleaction=nil, status=nil, instanceid=nil, direction=nil, domain=nil)
           @RuleIds = ruleids
+          @ServiceId = serviceid
           @RuleAction = ruleaction
           @Status = status
           @InstanceId = instanceid
           @Direction = direction
+          @Domain = domain
         end
 
         def deserialize(params)
-          @ServiceId = params['ServiceId']
           @RuleIds = params['RuleIds']
+          @ServiceId = params['ServiceId']
           @RuleAction = params['RuleAction']
           @Status = params['Status']
           @InstanceId = params['InstanceId']
           @Direction = params['Direction']
+          @Domain = params['Domain']
         end
       end
 
@@ -20451,10 +20821,10 @@ module TencentCloud
 
       # ModifyLLMWafProtectRule请求参数结构体
       class ModifyLLMWafProtectRuleRequest < TencentCloud::Common::AbstractModel
-        # @param ServiceId: <p>服务ID</p>
-        # @type ServiceId: String
         # @param RuleIds: <p>要修改的规则id列表</p>
         # @type RuleIds: Array
+        # @param ServiceId: <p>SDK 模式传 ServiceId（与 Domain 二选一）</p>
+        # @type ServiceId: String
         # @param RuleAction: <p>规则动作</p>
         # @type RuleAction: String
         # @param Status: <p>开关</p>
@@ -20463,25 +20833,29 @@ module TencentCloud
         # @type InstanceId: String
         # @param Direction: <p>检测方向：1是入向，2是出向，3是入向和出向都检测</p>
         # @type Direction: Integer
+        # @param Domain: <p>域名模式传 Domain（与 ServiceId 二选一）</p>
+        # @type Domain: String
 
-        attr_accessor :ServiceId, :RuleIds, :RuleAction, :Status, :InstanceId, :Direction
+        attr_accessor :RuleIds, :ServiceId, :RuleAction, :Status, :InstanceId, :Direction, :Domain
 
-        def initialize(serviceid=nil, ruleids=nil, ruleaction=nil, status=nil, instanceid=nil, direction=nil)
-          @ServiceId = serviceid
+        def initialize(ruleids=nil, serviceid=nil, ruleaction=nil, status=nil, instanceid=nil, direction=nil, domain=nil)
           @RuleIds = ruleids
+          @ServiceId = serviceid
           @RuleAction = ruleaction
           @Status = status
           @InstanceId = instanceid
           @Direction = direction
+          @Domain = domain
         end
 
         def deserialize(params)
-          @ServiceId = params['ServiceId']
           @RuleIds = params['RuleIds']
+          @ServiceId = params['ServiceId']
           @RuleAction = params['RuleAction']
           @Status = params['Status']
           @InstanceId = params['InstanceId']
           @Direction = params['Direction']
+          @Domain = params['Domain']
         end
       end
 
@@ -20501,35 +20875,86 @@ module TencentCloud
         end
       end
 
+      # ModifyLLMWafToolCallRule请求参数结构体
+      class ModifyLLMWafToolCallRuleRequest < TencentCloud::Common::AbstractModel
+        # @param ServiceId: <p>服务ID</p>
+        # @type ServiceId: String
+        # @param RuleIds: <p>要修改的规则id列表</p>
+        # @type RuleIds: Array
+        # @param RuleAction: <p>规则动作</p>
+        # @type RuleAction: String
+        # @param Status: <p>开关</p>
+        # @type Status: Integer
+        # @param InstanceId: <p>实例id</p>
+        # @type InstanceId: String
+
+        attr_accessor :ServiceId, :RuleIds, :RuleAction, :Status, :InstanceId
+
+        def initialize(serviceid=nil, ruleids=nil, ruleaction=nil, status=nil, instanceid=nil)
+          @ServiceId = serviceid
+          @RuleIds = ruleids
+          @RuleAction = ruleaction
+          @Status = status
+          @InstanceId = instanceid
+        end
+
+        def deserialize(params)
+          @ServiceId = params['ServiceId']
+          @RuleIds = params['RuleIds']
+          @RuleAction = params['RuleAction']
+          @Status = params['Status']
+          @InstanceId = params['InstanceId']
+        end
+      end
+
+      # ModifyLLMWafToolCallRule返回参数结构体
+      class ModifyLLMWafToolCallRuleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyModuleStatus请求参数结构体
       class ModifyModuleStatusRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 需要设置的domain
+        # @param Domain: <p>需要设置的domain</p>
         # @type Domain: String
-        # @param WebSecurity: Web 安全模块开关，0或1
+        # @param WebSecurity: <p>Web 安全模块开关，0或1</p>
         # @type WebSecurity: Integer
-        # @param AccessControl: 访问控制模块开关，0或者1
+        # @param AccessControl: <p>访问控制模块开关，0或者1</p>
         # @type AccessControl: Integer
-        # @param CcProtection: CC模块开关，0或者1
+        # @param CcProtection: <p>CC模块开关，0或者1</p>
         # @type CcProtection: Integer
-        # @param ApiProtection: API安全模块开关，0或者1
+        # @param ApiProtection: <p>API安全模块开关，0或者1</p>
         # @type ApiProtection: Integer
-        # @param AntiTamper: 防篡改模块开关，0或者1
+        # @param ApiDetect: <p>API安全检测开关，0关闭1开启</p>
+        # @type ApiDetect: Integer
+        # @param AntiTamper: <p>防篡改模块开关，0或者1</p>
         # @type AntiTamper: Integer
-        # @param AntiLeakage: 防泄漏模块开关，0或者1
+        # @param AntiLeakage: <p>防泄漏模块开关，0或者1</p>
         # @type AntiLeakage: Integer
-        # @param RateLimit: 限流模块开关，0或1
+        # @param RateLimit: <p>限流模块开关，0或1</p>
         # @type RateLimit: Integer
-        # @param GzipAnalysis: gzip 开关
+        # @param GzipAnalysis: <p>gzip 开关</p>
         # @type GzipAnalysis: Integer
 
-        attr_accessor :Domain, :WebSecurity, :AccessControl, :CcProtection, :ApiProtection, :AntiTamper, :AntiLeakage, :RateLimit, :GzipAnalysis
+        attr_accessor :Domain, :WebSecurity, :AccessControl, :CcProtection, :ApiProtection, :ApiDetect, :AntiTamper, :AntiLeakage, :RateLimit, :GzipAnalysis
 
-        def initialize(domain=nil, websecurity=nil, accesscontrol=nil, ccprotection=nil, apiprotection=nil, antitamper=nil, antileakage=nil, ratelimit=nil, gzipanalysis=nil)
+        def initialize(domain=nil, websecurity=nil, accesscontrol=nil, ccprotection=nil, apiprotection=nil, apidetect=nil, antitamper=nil, antileakage=nil, ratelimit=nil, gzipanalysis=nil)
           @Domain = domain
           @WebSecurity = websecurity
           @AccessControl = accesscontrol
           @CcProtection = ccprotection
           @ApiProtection = apiprotection
+          @ApiDetect = apidetect
           @AntiTamper = antitamper
           @AntiLeakage = antileakage
           @RateLimit = ratelimit
@@ -20542,6 +20967,7 @@ module TencentCloud
           @AccessControl = params['AccessControl']
           @CcProtection = params['CcProtection']
           @ApiProtection = params['ApiProtection']
+          @ApiDetect = params['ApiDetect']
           @AntiTamper = params['AntiTamper']
           @AntiLeakage = params['AntiLeakage']
           @RateLimit = params['RateLimit']
@@ -21264,10 +21690,10 @@ module TencentCloud
 
         attr_accessor :Domain, :DomainId, :InstanceID, :CertType, :Cert, :PrivateKey, :SSLId, :IsCdn, :UpstreamScheme, :HttpsUpstreamPort, :HttpsRewrite, :UpstreamType, :UpstreamDomain, :SrcList, :IsHttp2, :IsWebsocket, :LoadBalance, :IsGray, :Edition, :Ports, :IsKeepAlive, :Anycast, :Weights, :ActiveCheck, :TLSVersion, :Ciphers, :CipherTemplate, :ProxyConnectTimeout, :ProxyReadTimeout, :ProxySendTimeout, :SniType, :SniHost, :IpHeaders, :XFFReset, :Note, :UpstreamHost, :ProxyBuffer, :ProbeStatus, :GmType, :GmCertType, :GmCert, :GmPrivateKey, :GmEncCert, :GmEncPrivateKey, :GmSSLId, :UpstreamPolicy, :UpstreamRules, :UseCase, :Gzip
         extend Gem::Deprecate
-        deprecate :IsGray, :none, 2026, 10
-        deprecate :IsGray=, :none, 2026, 10
-        deprecate :Anycast, :none, 2026, 10
-        deprecate :Anycast=, :none, 2026, 10
+        deprecate :IsGray, :none, 2026, 11
+        deprecate :IsGray=, :none, 2026, 11
+        deprecate :Anycast, :none, 2026, 11
+        deprecate :Anycast=, :none, 2026, 11
 
         def initialize(domain=nil, domainid=nil, instanceid=nil, certtype=nil, cert=nil, privatekey=nil, sslid=nil, iscdn=nil, upstreamscheme=nil, httpsupstreamport=nil, httpsrewrite=nil, upstreamtype=nil, upstreamdomain=nil, srclist=nil, ishttp2=nil, iswebsocket=nil, loadbalance=nil, isgray=nil, edition=nil, ports=nil, iskeepalive=nil, anycast=nil, weights=nil, activecheck=nil, tlsversion=nil, ciphers=nil, ciphertemplate=nil, proxyconnecttimeout=nil, proxyreadtimeout=nil, proxysendtimeout=nil, snitype=nil, snihost=nil, ipheaders=nil, xffreset=nil, note=nil, upstreamhost=nil, proxybuffer=nil, probestatus=nil, gmtype=nil, gmcerttype=nil, gmcert=nil, gmprivatekey=nil, gmenccert=nil, gmencprivatekey=nil, gmsslid=nil, upstreampolicy=nil, upstreamrules=nil, usecase=nil, gzip=nil)
           @Domain = domain
@@ -22329,23 +22755,23 @@ module TencentCloud
 
       # CKafka投递流
       class PostCLSFlowInfo < TencentCloud::Common::AbstractModel
-        # @param FlowId: 投递流唯一ID
+        # @param FlowId: <p>投递流唯一ID</p>
         # @type FlowId: Integer
-        # @param LogType: 1-访问日志 2-攻击日志
+        # @param LogType: <p>1-访问日志 2-攻击日志</p>
         # @type LogType: Integer
-        # @param Status: 状态 0-为关闭 1-为启用
+        # @param Status: <p>状态 0-为关闭 1-为启用</p>
         # @type Status: Integer
-        # @param CLSRegion: CLS所在区域
+        # @param CLSRegion: <p>CLS所在区域</p>
         # @type CLSRegion: String
-        # @param LogsetName: CLS日志集合名称
+        # @param LogsetName: <p>CLS日志集合名称</p>
         # @type LogsetName: String
-        # @param LogsetID: CLS日志集合ID
+        # @param LogsetID: <p>CLS日志集合ID</p>
         # @type LogsetID: String
-        # @param LogTopicName: CLS日志主题名称
+        # @param LogTopicName: <p>CLS日志主题名称</p>
         # @type LogTopicName: String
-        # @param LogTopicID: CLS日志集合ID
+        # @param LogTopicID: <p>CLS日志集合ID</p>
         # @type LogTopicID: String
-        # @param WriteConfig: 写配置
+        # @param WriteConfig: <p>写配置</p>
         # @type WriteConfig: :class:`Tencentcloud::Waf.v20180125.models.FieldWriteConfig`
 
         attr_accessor :FlowId, :LogType, :Status, :CLSRegion, :LogsetName, :LogsetID, :LogTopicName, :LogTopicID, :WriteConfig
@@ -23242,10 +23668,10 @@ module TencentCloud
 
         attr_accessor :Context, :ListOver, :Analysis, :ColNames, :Results, :AnalysisResults, :RequestId
         extend Gem::Deprecate
-        deprecate :ColNames, :none, 2026, 10
-        deprecate :ColNames=, :none, 2026, 10
-        deprecate :AnalysisResults, :none, 2026, 10
-        deprecate :AnalysisResults=, :none, 2026, 10
+        deprecate :ColNames, :none, 2026, 11
+        deprecate :ColNames=, :none, 2026, 11
+        deprecate :AnalysisResults, :none, 2026, 11
+        deprecate :AnalysisResults=, :none, 2026, 11
 
         def initialize(context=nil, listover=nil, analysis=nil, colnames=nil, results=nil, analysisresults=nil, requestid=nil)
           @Context = context
@@ -23935,7 +24361,7 @@ module TencentCloud
         # 		<tr>
         # 			<td>Referer（Referer）</td>
         # 			<td>不支持参数</td>
-        # 			<td>empty（内容为空）<br />nempty（内容不为空）<br />null（不存在）<br />nnull（存在）<br />eq（等于）<br />neq（不等于）<br />contains（包含）<br />ncontains（不包含）<br />belong_to（属于）<br />not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
+        # 			<td>empty（内容为空）<br />null（不存在）<br />nnull（存在）<br />eq（等于）<br />neq（不等于）<br />contains（包含）<br />ncontains（不包含）<br />belong_to（属于）<br />not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
         # 			<td>请输入内容,512个字符以内</td>
         # 		</tr>
         # 		<tr>
@@ -23947,7 +24373,7 @@ module TencentCloud
         # 		<tr>
         # 			<td>UserAgent（UserAgent）</td>
         # 			<td>不支持参数</td>
-        # 			<td>同匹配字段<font color="Red">Referer</font>逻辑符号</td>
+        # 			<td>empty（内容为空）<br />null（不存在）<br />nnull（存在）<br />eq（等于）<br />neq（不等于）<br />contains（包含）<br />ncontains（不包含）<br />belong_to（属于）<br />not_belong_to（不属于）<br />len_eq（长度等于）<br />len_gt（长度大于）<br />len_lt（长度小于）<br />strprefix（前缀匹配）<br />strsuffix（后缀匹配）<br />rematch（正则匹配）</td>
         # 			<td>请输入内容,512个字符以内</td>
         # 		</tr>
         # 		<tr>
@@ -24025,8 +24451,8 @@ module TencentCloud
         # 		<tr>
         # 			<td>CONTENT_LENGTH（Content-length）</td>
         # 			<td>不支持参数</td>
-        # 			<td>numeq（数值等于）<br />numneq（数值不等于）<br />numgt（数值大于）<br />numlt（数值小于）<br />numge（数值大于等于）<br />numle（数值小于等于）</td>
-        # 			<td>请输入0-9999999999999之间的整数</td>
+        # 			<td>numeq（数值等于）<br />numgt（数值大于）<br />numlt（数值小于）</td>
+        # 			<td>请输入0-999999999999之间的整数</td>
         # 		</tr>
         # 		<tr>
         # 			<td>IP_GEO（来源IP归属地）</td>
@@ -24843,10 +25269,14 @@ module TencentCloud
         # @type PathsOption: Array
         # @param Order: 限流执行顺序，0：默认情况，限流优先，1：安全防护优先
         # @type Order: Integer
+        # @param MatchConditions: 统一匹配条件列表，复用ACL自定义策略结构，条件数量上限10条。MatchConditions非空时引擎只走新字段
+        # @type MatchConditions: Array
+        # @param ConditionLogic: 条件间逻辑：and(默认)/or
+        # @type ConditionLogic: String
 
-        attr_accessor :Domain, :LimitRuleId, :Name, :Priority, :Status, :LimitObject, :LimitStrategy, :LimitHeaderName, :LimitMethod, :LimitPaths, :LimitHeaders, :LimitWindow, :GetParamsName, :GetParamsValue, :PostParamsName, :PostParamsValue, :IpLocation, :RedirectInfo, :BlockPage, :ObjectSrc, :QuotaShare, :PathsOption, :Order
+        attr_accessor :Domain, :LimitRuleId, :Name, :Priority, :Status, :LimitObject, :LimitStrategy, :LimitHeaderName, :LimitMethod, :LimitPaths, :LimitHeaders, :LimitWindow, :GetParamsName, :GetParamsValue, :PostParamsName, :PostParamsValue, :IpLocation, :RedirectInfo, :BlockPage, :ObjectSrc, :QuotaShare, :PathsOption, :Order, :MatchConditions, :ConditionLogic
 
-        def initialize(domain=nil, limitruleid=nil, name=nil, priority=nil, status=nil, limitobject=nil, limitstrategy=nil, limitheadername=nil, limitmethod=nil, limitpaths=nil, limitheaders=nil, limitwindow=nil, getparamsname=nil, getparamsvalue=nil, postparamsname=nil, postparamsvalue=nil, iplocation=nil, redirectinfo=nil, blockpage=nil, objectsrc=nil, quotashare=nil, pathsoption=nil, order=nil)
+        def initialize(domain=nil, limitruleid=nil, name=nil, priority=nil, status=nil, limitobject=nil, limitstrategy=nil, limitheadername=nil, limitmethod=nil, limitpaths=nil, limitheaders=nil, limitwindow=nil, getparamsname=nil, getparamsvalue=nil, postparamsname=nil, postparamsvalue=nil, iplocation=nil, redirectinfo=nil, blockpage=nil, objectsrc=nil, quotashare=nil, pathsoption=nil, order=nil, matchconditions=nil, conditionlogic=nil)
           @Domain = domain
           @LimitRuleId = limitruleid
           @Name = name
@@ -24870,6 +25300,8 @@ module TencentCloud
           @QuotaShare = quotashare
           @PathsOption = pathsoption
           @Order = order
+          @MatchConditions = matchconditions
+          @ConditionLogic = conditionlogic
         end
 
         def deserialize(params)
@@ -24940,6 +25372,15 @@ module TencentCloud
             end
           end
           @Order = params['Order']
+          unless params['MatchConditions'].nil?
+            @MatchConditions = []
+            params['MatchConditions'].each do |i|
+              strategy_tmp = Strategy.new
+              strategy_tmp.deserialize(i)
+              @MatchConditions << strategy_tmp
+            end
+          end
+          @ConditionLogic = params['ConditionLogic']
         end
       end
 
@@ -25071,7 +25512,7 @@ module TencentCloud
         # @type Domain: String
         # @param Name: 名称
         # @type Name: String
-        # @param Status: 状态
+        # @param Status: CC规则开关，0表示关闭，1表示开启
         # @type Status: Integer
         # @param Advance: 高级模式（是否使用Session检测），0表示不启用，1表示启用
         # @type Advance: String
@@ -25083,7 +25524,7 @@ module TencentCloud
         # @type ActionType: String
         # @param Priority: 优先级
         # @type Priority: Integer
-        # @param ValidTime: 动作有效时间
+        # @param ValidTime: 动作有效时间，单位：秒，取值范围60~604800（即1分钟~7天）
         # @type ValidTime: Integer
         # @param Url: 检测Url
         # @type Url: String
@@ -25093,7 +25534,7 @@ module TencentCloud
         # @type OptionsArr: String
         # @param Edition: waf版本，sparta-waf或者clb-waf
         # @type Edition: String
-        # @param Type: 操作类型
+        # @param Type: CC规则类型，0表示基础规则，1表示高级规则
         # @type Type: Integer
         # @param EventId: 添加规则的来源事件id
         # @type EventId: String

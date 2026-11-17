@@ -2376,9 +2376,9 @@ module TencentCloud
 
       # 服务元数据信息，如服务名
       class ServiceMetaData < TencentCloud::Common::AbstractModel
-        # @param ServiceName: 服务名称
+        # @param ServiceName: <p>服务名称</p>
         # @type ServiceName: String
-        # @param ServiceChargeType: <p>付费方式：POSTPAID_BY_HOUR 按量后付费，PREPAID_BY_MONTH 包年包月，SPOT 竞价售卖（竞价需先调用 BidSpotInferService 对套餐出价）</p>
+        # @param ServiceChargeType: <p>付费方式</p><p>枚举值：</p><ul><li>POSTPAID_BY_HOUR： 按量后付费</li><li>PREPAID_BY_MONTH： 包年包月</li><li>SPOT： 竞价售卖</li></ul>
         # @type ServiceChargeType: String
 
         attr_accessor :ServiceName, :ServiceChargeType

@@ -1380,6 +1380,32 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询云开发域名访问限制配置，返回指定环境下公网、VPC、办公网三种来源的当前访问策略
+        # （1）可以通过控制台调用查询域名访问控制。响应  Current 返回各来源（PUBLIC/VPC/WOA）当前生效的配置
+        # （2）不产生写副作用
+
+        # @param request: Request instance for DescribeEnvAccessControl.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::DescribeEnvAccessControlRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::DescribeEnvAccessControlResponse`
+        def DescribeEnvAccessControl(request)
+          body = send_request('DescribeEnvAccessControl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeEnvAccessControlResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询环境计费周期。
         # 云开发环境的资源点都是按月结算的，每个月都有一定的抵扣额度。
 
@@ -2518,6 +2544,34 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyEnvResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 云开发域名访问限制配置
+        # （1）影响指定环境下域名来源访问策略，包含公网与 VPC 白名单
+        # （2）关闭公网访问后，云开发提供的默认域名在公网访问场景下返回403
+        # （3）可以通过配置 VPC 白名单指定放通特定 VPC 来源的请求
+        # （4）可以通过云开发控制台调用修改访问配置，修改后可通过查询接口核对生效配置
+
+        # @param request: Request instance for ModifyEnvAccessControl.
+        # @type request: :class:`Tencentcloud::tcb::V20180608::ModifyEnvAccessControlRequest`
+        # @rtype: :class:`Tencentcloud::tcb::V20180608::ModifyEnvAccessControlResponse`
+        def ModifyEnvAccessControl(request)
+          body = send_request('ModifyEnvAccessControl', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyEnvAccessControlResponse.new
             model.deserialize(response['Response'])
             model
           else

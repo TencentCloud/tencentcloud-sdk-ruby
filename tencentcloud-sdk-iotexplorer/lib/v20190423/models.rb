@@ -116,8 +116,8 @@ module TencentCloud
 
         attr_accessor :PkgType, :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2026, 10
-        deprecate :MiniProgramAppId=, :none, 2026, 10
+        deprecate :MiniProgramAppId, :none, 2026, 11
+        deprecate :MiniProgramAppId=, :none, 2026, 11
 
         def initialize(pkgtype=nil, miniprogramappid=nil, devicelist=nil)
           @PkgType = pkgtype
@@ -152,8 +152,8 @@ module TencentCloud
 
         attr_accessor :DeviceList, :FailureList, :SuccessList, :RequestId
         extend Gem::Deprecate
-        deprecate :DeviceList, :none, 2026, 10
-        deprecate :DeviceList=, :none, 2026, 10
+        deprecate :DeviceList, :none, 2026, 11
+        deprecate :DeviceList=, :none, 2026, 11
 
         def initialize(devicelist=nil, failurelist=nil, successlist=nil, requestid=nil)
           @DeviceList = devicelist
@@ -6390,6 +6390,65 @@ module TencentCloud
         end
       end
 
+      # DescribeDeviceCloudStoragePackages请求参数结构体
+      class DescribeDeviceCloudStoragePackagesRequest < TencentCloud::Common::AbstractModel
+        # @param ProductId: <p>产品id</p>
+        # @type ProductId: String
+        # @param DeviceName: <p>设备名</p>
+        # @type DeviceName: String
+        # @param ChannelId: <p>通道id</p>
+        # @type ChannelId: Integer
+        # @param MediaType: <p>云存类别</p><p>枚举值：</p><ul><li>video： 视频云存</li><li>image： 图片云存</li></ul>
+        # @type MediaType: String
+
+        attr_accessor :ProductId, :DeviceName, :ChannelId, :MediaType
+
+        def initialize(productid=nil, devicename=nil, channelid=nil, mediatype=nil)
+          @ProductId = productid
+          @DeviceName = devicename
+          @ChannelId = channelid
+          @MediaType = mediatype
+        end
+
+        def deserialize(params)
+          @ProductId = params['ProductId']
+          @DeviceName = params['DeviceName']
+          @ChannelId = params['ChannelId']
+          @MediaType = params['MediaType']
+        end
+      end
+
+      # DescribeDeviceCloudStoragePackages返回参数结构体
+      class DescribeDeviceCloudStoragePackagesResponse < TencentCloud::Common::AbstractModel
+        # @param Packages: <p>套餐包相关数据</p>
+        # @type Packages: Array
+        # @param TotalCount: <p>套餐总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Packages, :TotalCount, :RequestId
+
+        def initialize(packages=nil, totalcount=nil, requestid=nil)
+          @Packages = packages
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Packages'].nil?
+            @Packages = []
+            params['Packages'].each do |i|
+              newcloudstoragepackage_tmp = NewCloudStoragePackage.new
+              newcloudstoragepackage_tmp.deserialize(i)
+              @Packages << newcloudstoragepackage_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeDeviceDataHistory请求参数结构体
       class DescribeDeviceDataHistoryRequest < TencentCloud::Common::AbstractModel
         # @param MinTime: 区间开始时间（Unix 时间戳，毫秒级）
@@ -9466,8 +9525,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ErrCode, :ErrMessage, :ExpireTime
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 10
-        deprecate :ModelId=, :none, 2026, 10
+        deprecate :ModelId, :none, 2026, 11
+        deprecate :ModelId=, :none, 2026, 11
 
         def initialize(modelid=nil, sn=nil, errcode=nil, errmessage=nil, expiretime=nil)
           @ModelId = modelid
@@ -11213,8 +11272,8 @@ module TencentCloud
 
         attr_accessor :MiniProgramAppId, :DeviceList
         extend Gem::Deprecate
-        deprecate :MiniProgramAppId, :none, 2026, 10
-        deprecate :MiniProgramAppId=, :none, 2026, 10
+        deprecate :MiniProgramAppId, :none, 2026, 11
+        deprecate :MiniProgramAppId=, :none, 2026, 11
 
         def initialize(miniprogramappid=nil, devicelist=nil)
           @MiniProgramAppId = miniprogramappid
@@ -14827,6 +14886,70 @@ module TencentCloud
         end
       end
 
+      # 新云存套餐相关参数
+      class NewCloudStoragePackage < TencentCloud::Common::AbstractModel
+        # @param ResourceId: <p>资源id</p>
+        # @type ResourceId: String
+        # @param MediaType: <p>媒体类型</p><p>枚举值：</p><ul><li>image： 图片套餐</li><li>video： 视频套餐</li></ul>
+        # @type MediaType: String
+        # @param RetentionDays: <p>存储天数</p><p>枚举值：</p><ul><li>3： 存储3天</li><li>7： 存储7天</li><li>15： 存储15天</li><li>30： 存储30天</li></ul>
+        # @type RetentionDays: Integer
+        # @param RecordingMode: <p>录制模式</p><p>枚举值：</p><ul><li>low_power：  2小时/日</li><li>event：  8小时/日</li><li>full_time：  24小时/日</li></ul>
+        # @type RecordingMode: String
+        # @param Bitrate: <p>码率</p><p>枚举值：</p><ul><li>0.5m： 0.5Mbps</li><li>1m： 1Mbps</li><li>1.5m： 1.5Mbps</li><li>2m： 2Mbps</li></ul>
+        # @type Bitrate: String
+        # @param StartTime: <p>开始时间</p>
+        # @type StartTime: Integer
+        # @param ExpireTime: <p>过期时间</p>
+        # @type ExpireTime: Integer
+        # @param Status: <p>套餐状态</p><p>枚举值：</p><ul><li>active： 生效中</li><li>queued： 排队中</li></ul>
+        # @type Status: String
+        # @param ReportEnabled: <p>启停状态</p><p>枚举值：</p><ul><li>0： 停用</li><li>1： 启用</li></ul>
+        # @type ReportEnabled: Integer
+        # @param OrderId: <p>订单id</p>
+        # @type OrderId: String
+        # @param BigDealId: <p>大订单号</p>
+        # @type BigDealId: String
+        # @param ValidityPeriod: <p>卡有效期类型</p><p>枚举值：</p><ul><li>monthly_card： 月卡</li><li>annual_card： 年卡</li></ul>
+        # @type ValidityPeriod: String
+        # @param ImageCapacity: <p>图片档位</p><p>枚举值：</p><ul><li>300： 300张/日</li><li>1000： 1000张/日</li></ul>
+        # @type ImageCapacity: String
+
+        attr_accessor :ResourceId, :MediaType, :RetentionDays, :RecordingMode, :Bitrate, :StartTime, :ExpireTime, :Status, :ReportEnabled, :OrderId, :BigDealId, :ValidityPeriod, :ImageCapacity
+
+        def initialize(resourceid=nil, mediatype=nil, retentiondays=nil, recordingmode=nil, bitrate=nil, starttime=nil, expiretime=nil, status=nil, reportenabled=nil, orderid=nil, bigdealid=nil, validityperiod=nil, imagecapacity=nil)
+          @ResourceId = resourceid
+          @MediaType = mediatype
+          @RetentionDays = retentiondays
+          @RecordingMode = recordingmode
+          @Bitrate = bitrate
+          @StartTime = starttime
+          @ExpireTime = expiretime
+          @Status = status
+          @ReportEnabled = reportenabled
+          @OrderId = orderid
+          @BigDealId = bigdealid
+          @ValidityPeriod = validityperiod
+          @ImageCapacity = imagecapacity
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @MediaType = params['MediaType']
+          @RetentionDays = params['RetentionDays']
+          @RecordingMode = params['RecordingMode']
+          @Bitrate = params['Bitrate']
+          @StartTime = params['StartTime']
+          @ExpireTime = params['ExpireTime']
+          @Status = params['Status']
+          @ReportEnabled = params['ReportEnabled']
+          @OrderId = params['OrderId']
+          @BigDealId = params['BigDealId']
+          @ValidityPeriod = params['ValidityPeriod']
+          @ImageCapacity = params['ImageCapacity']
+        end
+      end
+
       # OperateTWeSeeDirectUploadObject请求参数结构体
       class OperateTWeSeeDirectUploadObjectRequest < TencentCloud::Common::AbstractModel
         # @param COSURI: TWeSee 直传对象或目录的 COS URI
@@ -17916,8 +18039,8 @@ module TencentCloud
 
         attr_accessor :ModelId, :Sn, :ExpireTime, :PkgType
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 10
-        deprecate :ModelId=, :none, 2026, 10
+        deprecate :ModelId, :none, 2026, 11
+        deprecate :ModelId=, :none, 2026, 11
 
         def initialize(modelid=nil, sn=nil, expiretime=nil, pkgtype=nil)
           @ModelId = modelid
@@ -17947,10 +18070,10 @@ module TencentCloud
 
         attr_accessor :Sn, :ModelId, :ActiveNum
         extend Gem::Deprecate
-        deprecate :ModelId, :none, 2026, 10
-        deprecate :ModelId=, :none, 2026, 10
-        deprecate :ActiveNum, :none, 2026, 10
-        deprecate :ActiveNum=, :none, 2026, 10
+        deprecate :ModelId, :none, 2026, 11
+        deprecate :ModelId=, :none, 2026, 11
+        deprecate :ActiveNum, :none, 2026, 11
+        deprecate :ActiveNum=, :none, 2026, 11
 
         def initialize(sn=nil, modelid=nil, activenum=nil)
           @Sn = sn

@@ -315,10 +315,18 @@ module TencentCloud
         # @param ReceiverGroups: <p>该条通知实际执行的接收人/组明细。一条元素对应通知模板里的一条渠道发送规则</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ReceiverGroups: Array
+        # @param AlarmId: <p>发送时的告警历史 ID，用于从通知历史跳到对应告警历史。非分级告警与告警 ID 相同；分级告警为“告警 ID_发生时间的 32 进制_告警级别”。</p>
+        # @type AlarmId: String
+        # @param AlarmName: <p>发送时的告警内容，不含产品名前缀，按请求语言返回。用于列表「告警历史」的展示文案。</p>
+        # @type AlarmName: String
+        # @param AlarmStatus: <p>发送时的告警状态。控制台「告警状态」请使用 TriggerStatus。无数据、失效通知不返回该字段。</p><p>枚举值：</p><ul><li>ALARM： 未恢复</li><li>OK： 已恢复</li></ul>
+        # @type AlarmStatus: String
+        # @param NotifyType: <p>通知类型，无数据、失效通知不返回该字段。</p><p>枚举值：</p><ul><li>Recovery： 恢复</li><li>FirstTrigger： 首次触发</li><li>ContinueTrigger： 持续触发</li></ul>
+        # @type NotifyType: String
 
-        attr_accessor :NotifyId, :PolicyId, :SessionId, :NotifyTime, :TriggerTime, :TriggerLevel, :AlarmContent, :AlarmObject, :ChannelSet, :ChannelsReceivers, :PolicyName, :PromeInstanceID, :PromeInstanceRegion, :Notices, :TriggerStatus, :PromeConsoleURL, :Labels, :ReceiverGroups
+        attr_accessor :NotifyId, :PolicyId, :SessionId, :NotifyTime, :TriggerTime, :TriggerLevel, :AlarmContent, :AlarmObject, :ChannelSet, :ChannelsReceivers, :PolicyName, :PromeInstanceID, :PromeInstanceRegion, :Notices, :TriggerStatus, :PromeConsoleURL, :Labels, :ReceiverGroups, :AlarmId, :AlarmName, :AlarmStatus, :NotifyType
 
-        def initialize(notifyid=nil, policyid=nil, sessionid=nil, notifytime=nil, triggertime=nil, triggerlevel=nil, alarmcontent=nil, alarmobject=nil, channelset=nil, channelsreceivers=nil, policyname=nil, promeinstanceid=nil, promeinstanceregion=nil, notices=nil, triggerstatus=nil, promeconsoleurl=nil, labels=nil, receivergroups=nil)
+        def initialize(notifyid=nil, policyid=nil, sessionid=nil, notifytime=nil, triggertime=nil, triggerlevel=nil, alarmcontent=nil, alarmobject=nil, channelset=nil, channelsreceivers=nil, policyname=nil, promeinstanceid=nil, promeinstanceregion=nil, notices=nil, triggerstatus=nil, promeconsoleurl=nil, labels=nil, receivergroups=nil, alarmid=nil, alarmname=nil, alarmstatus=nil, notifytype=nil)
           @NotifyId = notifyid
           @PolicyId = policyid
           @SessionId = sessionid
@@ -337,6 +345,10 @@ module TencentCloud
           @PromeConsoleURL = promeconsoleurl
           @Labels = labels
           @ReceiverGroups = receivergroups
+          @AlarmId = alarmid
+          @AlarmName = alarmname
+          @AlarmStatus = alarmstatus
+          @NotifyType = notifytype
         end
 
         def deserialize(params)
@@ -386,6 +398,10 @@ module TencentCloud
               @ReceiverGroups << receivergroup_tmp
             end
           end
+          @AlarmId = params['AlarmId']
+          @AlarmName = params['AlarmName']
+          @AlarmStatus = params['AlarmStatus']
+          @NotifyType = params['NotifyType']
         end
       end
 
@@ -506,17 +522,29 @@ module TencentCloud
         # @param Content: <p>该渠道实际发送的消息正文，由 Ark 按写时捕获的内容还原</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Content: String
+        # @param DeliverStatus: <p>短信：SUCCESS / FAIL。电话：ANSWERED / UNANSWERED / ABNORMAL</p><p>枚举值：</p><ul><li>SUCCESS： 短信已送达</li><li>FAIL： 短信送达失败</li><li>ANSWERED： 电话已接听</li><li>UNANSWERED： 电话未接听</li><li>ABNORMAL： 电话拨打异常</li></ul>
+        # @type DeliverStatus: String
+        # @param DeliverTime: <p>原始时间字符串，不做时区转换。短信是收到时间；电话只在接听时有值</p><p>参数格式：短信为 YYYY-MM-DD hh:mm:ss，例如 2026-08-05 18:04:46。电话为 Unix 秒级时间戳的数字字符串，仅接听时有值，例如 1717824258。空字符串表示没有时间。</p>
+        # @type DeliverTime: String
+        # @param DeliverErrMsg: <p>短信回执的运营商错误码，原样透传。成功为 DELIVRD。失败为运营商原始码，如 EXPIRED、UNDELIV、MK:0001、MK:0012、24、29。电话为空。</p>
+        # @type DeliverErrMsg: String
 
-        attr_accessor :SubChannel, :Content
+        attr_accessor :SubChannel, :Content, :DeliverStatus, :DeliverTime, :DeliverErrMsg
 
-        def initialize(subchannel=nil, content=nil)
+        def initialize(subchannel=nil, content=nil, deliverstatus=nil, delivertime=nil, delivererrmsg=nil)
           @SubChannel = subchannel
           @Content = content
+          @DeliverStatus = deliverstatus
+          @DeliverTime = delivertime
+          @DeliverErrMsg = delivererrmsg
         end
 
         def deserialize(params)
           @SubChannel = params['SubChannel']
           @Content = params['Content']
+          @DeliverStatus = params['DeliverStatus']
+          @DeliverTime = params['DeliverTime']
+          @DeliverErrMsg = params['DeliverErrMsg']
         end
       end
 
@@ -3559,8 +3587,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :TotalPage, :CurrentPageNo, :IsEnd, :End
         extend Gem::Deprecate
-        deprecate :IsEnd, :none, 2026, 10
-        deprecate :IsEnd=, :none, 2026, 10
+        deprecate :IsEnd, :none, 2026, 11
+        deprecate :IsEnd=, :none, 2026, 11
 
         def initialize(totalcount=nil, totalpage=nil, currentpageno=nil, isend=nil, _end=nil)
           @TotalCount = totalcount

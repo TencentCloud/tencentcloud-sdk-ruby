@@ -383,15 +383,23 @@ module TencentCloud
         # @type KeyWordLibIdList: Array
         # @param ReplaceTextId: <p>替换词汇表id,  适用于热词和自学习场景也无法解决的极端case词组,  会对识别结果强制替换。具体可参考<a href="https://console.cloud.tencent.com/asr/replaceword">配置控制台</a>;强制替换功能可能会影响正常识别结果，请谨慎使用</p><p>注意：</p><ol><li>本功能配置完成后，预计在10分钟后生效</li></ol>
         # @type ReplaceTextId: String
-        # @param SpeakerRoles: <p>开启角色分离能力配合SpeakerDiarization: 3 使用。</p><p>ASR增值服务，<br>使用方式一：<strong>仅可传入一个声纹信息</strong>进行角色认证，仅支持16k_zh_en_2.0和16k_zh_en引擎。需传入SpeakerRoleInfo数据组，确定说话人的角色信息，涉及RoleAudioUrl和RoleName两个参数。 RoleAudioUrl：需要认证角色的声纹音频地址，建议30s内的纯净人声，最长不能超过45s。 RoleName：需要认证角色的名称，若匹配成功，会替换话者分离中的SpeakerID。<br>使用方式二：<strong>可传入一组声纹信息</strong>进行角色认证，仅支持16k_zh_en_meeting引擎。需传入SpeakerRoleInfo数据组，确定说话人的角色信息，涉及VoicePrintId和SpeakerNick两个参数。 VoicePrintId：需要认证角色的声纹ID（需提前进行<a href="https://cloud.tencent.com/document/product/1093/94483">说话人注册</a>），建议30s的纯净人声，最长不能超过45s，有效人声不得低于1s。 SpeakerNick：需要认证角色的名称，会替换话者分离中的SpeakerID，如不传则复用说话人注册时的名称。<br><strong>注意：声纹注册后5分钟生效</strong></p><p> 示例： &quot;{"EngineModelType":"16k_zh_en","ChannelNum":1,"ResTextFormat":1,"SourceType":0,"Url":"需要进行ASR识别的音频链接","SpeakerDiarization":3,"SpeakerRoles":[{"RoleAudioUrl":"需要认证角色的声纹音频地址","RoleName":"需要认证角色的名称"}]}&quot;</p>
+        # @param SpeakerRoles: <p>开启角色分离能力配合SpeakerDiarization: 3 使用。</p><p>此为ASR增值服务<br>使用方式一：<strong>仅可传入一个声纹信息</strong>进行角色认证，仅支持16k_zh_en_2.0和16k_zh_en引擎。需传入SpeakerRoleInfo数据组，确定说话人的角色信息，涉及RoleAudioUrl和RoleName两个参数。 RoleAudioUrl：需要认证角色的声纹音频地址，建议30s内的纯净人声，最长不能超过45s。 RoleName：需要认证角色的名称，若匹配成功，会替换话者分离中的SpeakerID。<br>使用方式二：<strong>可传入一组声纹信息</strong>进行角色认证，仅支持16k_zh_en_meeting引擎。需传入SpeakerRoleInfo数据组，确定说话人的角色信息，涉及VoicePrintId和SpeakerNick两个参数。 VoicePrintId：需要认证角色的声纹ID（需提前进行<a href="https://cloud.tencent.com/document/product/1093/94483">说话人注册</a>），建议30s的纯净人声，最长不能超过45s，有效人声不得低于1s。 SpeakerNick：需要认证角色的名称，会替换话者分离中的SpeakerID，如不传则复用说话人注册时的名称。<br><strong>注意：声纹注册后5分钟生效</strong></p><p> 示例： &quot;{"EngineModelType":"16k_zh_en","ChannelNum":1,"ResTextFormat":1,"SourceType":0,"Url":"需要进行ASR识别的音频链接","SpeakerDiarization":3,"SpeakerRoles":[{"RoleAudioUrl":"需要认证角色的声纹音频地址","RoleName":"需要认证角色的名称"}]}&quot;</p>
         # @type SpeakerRoles: Array
+        # @param ContextData: <p>上下文数据，支持文本输入，可输入历史对话上下文、关键词集合等。(支持引擎： 16k_zh_en_meeting)</p>
+        # @type ContextData: String
+        # @param SentenceStrategy: <p>分句策略：<br>0 - 默认分句，句子短。<br>1 - 段落分句，可将同一说话人连续转写结果中相邻几句聚合成一个小段落，句子更长，仅当ResTextFormat &gt; 0可配合使用。<br>默认值：0</p>
+        # @type SentenceStrategy: Integer
+        # @param EnableSpeakerContext: <p>是否开启断点续传能力，需配合说话人分离能力使用（SpeakerDiarization为1或3）：<br>0：关闭，<br>1：开启。(支持引擎： 16k_zh_en_meeting)<br>若开启断点续传能力，会返回说话人上下文SpeakerContextId（24h 有效），下一次识别时传入 SpeakerContextId，可以沿用本次识别保存的说话人信息，让两次识别中<strong>同一说话人的 SpeakerId 保持一致</strong>。</p>
+        # @type EnableSpeakerContext: Integer
+        # @param SpeakerContextId: <p>说话人上下文ID。传入后，本次话者分离说话人 ID 会与上次的话者分离任务保持一致。(支持引擎： 16k_zh_en_meeting)</p>
+        # @type SpeakerContextId: String
 
-        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList, :KeyWordLibIdList, :ReplaceTextId, :SpeakerRoles
+        attr_accessor :EngineModelType, :ChannelNum, :ResTextFormat, :SourceType, :Data, :DataLen, :Url, :CallbackUrl, :SpeakerDiarization, :SpeakerNumber, :HotwordId, :ReinforceHotword, :CustomizationId, :EmotionRecognition, :EmotionalEnergy, :ConvertNumMode, :FilterDirty, :FilterPunc, :FilterModal, :SentenceMaxLength, :Extra, :HotwordList, :KeyWordLibIdList, :ReplaceTextId, :SpeakerRoles, :ContextData, :SentenceStrategy, :EnableSpeakerContext, :SpeakerContextId
         extend Gem::Deprecate
         deprecate :ReinforceHotword, :none, 2026, 11
         deprecate :ReinforceHotword=, :none, 2026, 11
 
-        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil, keywordlibidlist=nil, replacetextid=nil, speakerroles=nil)
+        def initialize(enginemodeltype=nil, channelnum=nil, restextformat=nil, sourcetype=nil, data=nil, datalen=nil, url=nil, callbackurl=nil, speakerdiarization=nil, speakernumber=nil, hotwordid=nil, reinforcehotword=nil, customizationid=nil, emotionrecognition=nil, emotionalenergy=nil, convertnummode=nil, filterdirty=nil, filterpunc=nil, filtermodal=nil, sentencemaxlength=nil, extra=nil, hotwordlist=nil, keywordlibidlist=nil, replacetextid=nil, speakerroles=nil, contextdata=nil, sentencestrategy=nil, enablespeakercontext=nil, speakercontextid=nil)
           @EngineModelType = enginemodeltype
           @ChannelNum = channelnum
           @ResTextFormat = restextformat
@@ -417,6 +425,10 @@ module TencentCloud
           @KeyWordLibIdList = keywordlibidlist
           @ReplaceTextId = replacetextid
           @SpeakerRoles = speakerroles
+          @ContextData = contextdata
+          @SentenceStrategy = sentencestrategy
+          @EnableSpeakerContext = enablespeakercontext
+          @SpeakerContextId = speakercontextid
         end
 
         def deserialize(params)
@@ -452,6 +464,10 @@ module TencentCloud
               @SpeakerRoles << speakerroleinfo_tmp
             end
           end
+          @ContextData = params['ContextData']
+          @SentenceStrategy = params['SentenceStrategy']
+          @EnableSpeakerContext = params['EnableSpeakerContext']
+          @SpeakerContextId = params['SpeakerContextId']
         end
       end
 
@@ -1391,10 +1407,12 @@ module TencentCloud
         # @type LangType: String
         # @param SpeakerRoleName: <p>说话人角色名称</p>
         # @type SpeakerRoleName: String
+        # @param SpeakerVoicePrintId: <p>说话人的声纹 ID</p>
+        # @type SpeakerVoicePrintId: String
 
-        attr_accessor :FinalSentence, :SliceSentence, :WrittenText, :StartMs, :EndMs, :WordsNum, :Words, :SpeechSpeed, :SpeakerId, :EmotionalEnergy, :SilenceTime, :EmotionType, :KeyWordResults, :LangType, :SpeakerRoleName
+        attr_accessor :FinalSentence, :SliceSentence, :WrittenText, :StartMs, :EndMs, :WordsNum, :Words, :SpeechSpeed, :SpeakerId, :EmotionalEnergy, :SilenceTime, :EmotionType, :KeyWordResults, :LangType, :SpeakerRoleName, :SpeakerVoicePrintId
 
-        def initialize(finalsentence=nil, slicesentence=nil, writtentext=nil, startms=nil, endms=nil, wordsnum=nil, words=nil, speechspeed=nil, speakerid=nil, emotionalenergy=nil, silencetime=nil, emotiontype=nil, keywordresults=nil, langtype=nil, speakerrolename=nil)
+        def initialize(finalsentence=nil, slicesentence=nil, writtentext=nil, startms=nil, endms=nil, wordsnum=nil, words=nil, speechspeed=nil, speakerid=nil, emotionalenergy=nil, silencetime=nil, emotiontype=nil, keywordresults=nil, langtype=nil, speakerrolename=nil, speakervoiceprintid=nil)
           @FinalSentence = finalsentence
           @SliceSentence = slicesentence
           @WrittenText = writtentext
@@ -1410,6 +1428,7 @@ module TencentCloud
           @KeyWordResults = keywordresults
           @LangType = langtype
           @SpeakerRoleName = speakerrolename
+          @SpeakerVoicePrintId = speakervoiceprintid
         end
 
         def deserialize(params)
@@ -1442,6 +1461,7 @@ module TencentCloud
           end
           @LangType = params['LangType']
           @SpeakerRoleName = params['SpeakerRoleName']
+          @SpeakerVoicePrintId = params['SpeakerVoicePrintId']
         end
       end
 
@@ -1718,11 +1738,11 @@ module TencentCloud
       class SpeakerRoleInfo < TencentCloud::Common::AbstractModel
         # @param RoleAudioUrl: <p>音频url地址，建议不超过30秒，最大45秒（配合RoleName字段一起使用，仅限16k_zh_en、16k_zh_en_2.0引擎）</p>
         # @type RoleAudioUrl: String
-        # @param RoleName: <p>不超过30字节（配合RoleAudioUrl字段一起使用，仅限16k_zh_en、16k_zh_en_2.0引擎）</p>
+        # @param RoleName: <p>不超过32字节（配合RoleAudioUrl字段一起使用，仅限16k_zh_en、16k_zh_en_2.0引擎）</p>
         # @type RoleName: String
         # @param VoicePrintId: <p>声纹 ID（与SpeakerNick配合使用，仅限16k_zh_en_meeting引擎支持），注意：- 传入未注册或不属于本 AppId 的声纹 ID，该 ID 会被跳过（不报错，相当于没有传入这个说话人信息）</p>
         # @type VoicePrintId: String
-        # @param SpeakerNick: <p>角色昵称（与VoicePrintId配合使用，仅限16k_zh_en_meeting引擎支持），注意：- 传空字符串或者不传入则使用声纹注册时指定的角色名- 否则将覆盖声纹注册时指定的角色名- 角色名不超过 30 字节，仅支持字母、数字、下划线和中文。- 这里指定的角色名只影响本次识别，不影响声纹库中注册的角色名</p>
+        # @param SpeakerNick: <p>角色昵称（与VoicePrintId配合使用，仅限16k_zh_en_meeting引擎支持），注意：- 传空字符串或者不传入则使用声纹注册时指定的角色名- 否则将覆盖声纹注册时指定的角色名- 角色名不超过 32 字节。- 这里指定的角色名只影响本次识别，不影响声纹库中注册的角色名</p>
         # @type SpeakerNick: String
 
         attr_accessor :RoleAudioUrl, :RoleName, :VoicePrintId, :SpeakerNick
@@ -1761,28 +1781,30 @@ module TencentCloud
 
       # [获取录音识别结果的返回参数](https://cloud.tencent.com/document/product/1093/37822#3.-.E8.BE.93.E5.87.BA.E5.8F.82.E6.95.B0)
       class TaskStatus < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务标识。注意：TaskId数据类型为uint64。
+        # @param TaskId: <p>任务标识。注意：TaskId数据类型为uint64。</p>
         # @type TaskId: Integer
-        # @param Status: 任务状态码，0：任务等待，1：任务执行中，2：任务成功，3：任务失败。
+        # @param Status: <p>任务状态码，0：任务等待，1：任务执行中，2：任务成功，3：任务失败。</p>
         # @type Status: Integer
-        # @param StatusStr: 任务状态，waiting：任务等待，doing：任务执行中，success：任务成功，failed：任务失败。
+        # @param StatusStr: <p>任务状态，waiting：任务等待，doing：任务执行中，success：任务成功，failed：任务失败。</p>
         # @type StatusStr: String
-        # @param Result: 识别结果。
+        # @param Result: <p>识别结果。</p>
         # @type Result: String
-        # @param ErrorMsg: 失败原因说明。
+        # @param ErrorMsg: <p>失败原因说明。</p>
         # @type ErrorMsg: String
-        # @param ResultDetail: 识别结果详情，包含每个句子中的词时间偏移，一般用于生成字幕的场景。(录音识别请求中ResTextFormat=1时该字段不为空)
+        # @param ResultDetail: <p>识别结果详情，包含每个句子中的词时间偏移，一般用于生成字幕的场景。(录音识别请求中ResTextFormat=1时该字段不为空)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResultDetail: Array
-        # @param AudioDuration: 音频时长(秒)。
+        # @param AudioDuration: <p>音频时长(秒)。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AudioDuration: Float
-        # @param LlmResults: 大模型后处理结果
+        # @param LlmResults: <p>大模型后处理结果</p>
         # @type LlmResults: Array
+        # @param SpeakerContextId: <p>说话人上下文 ID</p>
+        # @type SpeakerContextId: String
 
-        attr_accessor :TaskId, :Status, :StatusStr, :Result, :ErrorMsg, :ResultDetail, :AudioDuration, :LlmResults
+        attr_accessor :TaskId, :Status, :StatusStr, :Result, :ErrorMsg, :ResultDetail, :AudioDuration, :LlmResults, :SpeakerContextId
 
-        def initialize(taskid=nil, status=nil, statusstr=nil, result=nil, errormsg=nil, resultdetail=nil, audioduration=nil, llmresults=nil)
+        def initialize(taskid=nil, status=nil, statusstr=nil, result=nil, errormsg=nil, resultdetail=nil, audioduration=nil, llmresults=nil, speakercontextid=nil)
           @TaskId = taskid
           @Status = status
           @StatusStr = statusstr
@@ -1791,6 +1813,7 @@ module TencentCloud
           @ResultDetail = resultdetail
           @AudioDuration = audioduration
           @LlmResults = llmresults
+          @SpeakerContextId = speakercontextid
         end
 
         def deserialize(params)
@@ -1816,6 +1839,7 @@ module TencentCloud
               @LlmResults << llmresult_tmp
             end
           end
+          @SpeakerContextId = params['SpeakerContextId']
         end
       end
 

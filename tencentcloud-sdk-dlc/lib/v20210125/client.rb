@@ -4258,6 +4258,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定资源分区的监控实时概览。指标命名规则 [queue_ 前缀]_<资源>_<K8s/Kueue 概念>[_business 后缀]：_business 后缀 = 计费口径（仅 ray-head/ray-worker 业务容器 limits，配额扣减与展示默认用）；无后缀 = K8s 实事口径（全部容器，对照排查用）。GPU 类指标按 GPU 卡型拆分多条 MetricValue（Labels.GpuType 区分）；gpu_limit_business 在 Prometheus 空集（无作业）时按分区配额卡型逐卡型补 value=0。分区维度额外含排队卡片指标（pending_workloads / admission_wait_seconds / top_queue_by_cpu 资源占用最高的队列，detail 表口径：按队列聚合活跃 Pod 的 cpu_limit 取 Top1，作业结束即归零，队列名见 Labels.QueueName（已截去 namespace 前缀与 -lq 后缀）；Kueue 预留口径对照见 top_queue_by_cpu_reserved）与按量月消耗卡片（postpay_month_consumed_total）。携带 QueueName 时切换为资源组维度，指标集双向隔离（详见 QueueName 参数说明）
+
+        # @param request: Request instance for DescribePartitionMonitorOverview.
+        # @type request: :class:`Tencentcloud::dlc::V20210125::DescribePartitionMonitorOverviewRequest`
+        # @rtype: :class:`Tencentcloud::dlc::V20210125::DescribePartitionMonitorOverviewResponse`
+        def DescribePartitionMonitorOverview(request)
+          body = send_request('DescribePartitionMonitorOverview', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePartitionMonitorOverviewResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询指定分区的所有队列列表
 
         # @param request: Request instance for DescribePartitionQueues.

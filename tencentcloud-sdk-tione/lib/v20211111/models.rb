@@ -654,22 +654,24 @@ module TencentCloud
       class CreateDataSourceRequest < TencentCloud::Common::AbstractModel
         # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
-        # @param Name: 数据源名称
+        # @param Name: <p>数据源名称</p>
         # @type Name: String
-        # @param Type: 数据源类型英文名
+        # @param Type: <p>数据源类型英文名</p>
         # @type Type: String
-        # @param Permission: 数据源权限，取值有RW RO
+        # @param Permission: <p>数据源权限，取值有RW RO</p>
         # @type Permission: String
-        # @param StorageId: 存储实例ID
+        # @param StorageId: <p>存储实例ID</p>
         # @type StorageId: String
-        # @param MountConfigure: 数据源挂载配置
+        # @param MountConfigure: <p>数据源挂载配置</p>
         # @type MountConfigure: :class:`Tencentcloud::Tione.v20211111.models.MountConfigureInfo`
-        # @param Tags: 标签配置
+        # @param Tags: <p>标签配置</p>
         # @type Tags: Array
+        # @param ContainerPath: <p>挂载数据源时默认填充的容器内路径</p>
+        # @type ContainerPath: String
 
-        attr_accessor :TiProjectId, :Name, :Type, :Permission, :StorageId, :MountConfigure, :Tags
+        attr_accessor :TiProjectId, :Name, :Type, :Permission, :StorageId, :MountConfigure, :Tags, :ContainerPath
 
-        def initialize(tiprojectid=nil, name=nil, type=nil, permission=nil, storageid=nil, mountconfigure=nil, tags=nil)
+        def initialize(tiprojectid=nil, name=nil, type=nil, permission=nil, storageid=nil, mountconfigure=nil, tags=nil, containerpath=nil)
           @TiProjectId = tiprojectid
           @Name = name
           @Type = type
@@ -677,6 +679,7 @@ module TencentCloud
           @StorageId = storageid
           @MountConfigure = mountconfigure
           @Tags = tags
+          @ContainerPath = containerpath
         end
 
         def deserialize(params)
@@ -697,12 +700,13 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
+          @ContainerPath = params['ContainerPath']
         end
       end
 
       # CreateDataSource返回参数结构体
       class CreateDataSourceResponse < TencentCloud::Common::AbstractModel
-        # @param Id: 数据源ID
+        # @param Id: <p>数据源ID</p>
         # @type Id: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1316,15 +1320,18 @@ module TencentCloud
         # @type Kernels: Array
         # @param RegisterToImageCenter: <p>是否保存到镜像中心</p>
         # @type RegisterToImageCenter: Boolean
+        # @param IgnoreUnfreezableProcesses: <p>是否忽略无法被冻结的进程</p>
+        # @type IgnoreUnfreezableProcesses: Boolean
 
-        attr_accessor :ImageInfo, :NotebookId, :TiProjectId, :Kernels, :RegisterToImageCenter
+        attr_accessor :ImageInfo, :NotebookId, :TiProjectId, :Kernels, :RegisterToImageCenter, :IgnoreUnfreezableProcesses
 
-        def initialize(imageinfo=nil, notebookid=nil, tiprojectid=nil, kernels=nil, registertoimagecenter=nil)
+        def initialize(imageinfo=nil, notebookid=nil, tiprojectid=nil, kernels=nil, registertoimagecenter=nil, ignoreunfreezableprocesses=nil)
           @ImageInfo = imageinfo
           @NotebookId = notebookid
           @TiProjectId = tiprojectid
           @Kernels = kernels
           @RegisterToImageCenter = registertoimagecenter
+          @IgnoreUnfreezableProcesses = ignoreunfreezableprocesses
         end
 
         def deserialize(params)
@@ -1336,6 +1343,7 @@ module TencentCloud
           @TiProjectId = params['TiProjectId']
           @Kernels = params['Kernels']
           @RegisterToImageCenter = params['RegisterToImageCenter']
+          @IgnoreUnfreezableProcesses = params['IgnoreUnfreezableProcesses']
         end
       end
 
@@ -1785,7 +1793,7 @@ module TencentCloud
 
       # CreateTrainingTask请求参数结构体
       class CreateTrainingTaskRequest < TencentCloud::Common::AbstractModel
-        # @param Name: <p>训练任务名称，不超过60个字符，仅支持中英文、数字、下划线&quot;_&quot;、短横&quot;-&quot;，只能以中英文、数字开头</p>
+        # @param Name: <p>训练任务名称，不超过256个字符，仅支持中英文、数字、下划线&quot;_&quot;、短横&quot;-&quot;，只能以中英文、数字开头</p>
         # @type Name: String
         # @param ChargeType: <p>计费模式，eg：PREPAID 包年包月（资源组）;<br>POSTPAID_BY_HOUR 按量计费</p>
         # @type ChargeType: String
@@ -1811,7 +1819,7 @@ module TencentCloud
         # @type StartCmdInfo: :class:`Tencentcloud::Tione.v20211111.models.StartCmdInfo`
         # @param TrainingMode: <p>训练模式，通过DescribeTrainingFrameworks接口查询，eg：PS_WORKER、DDP、MPI、HOROVOD</p>
         # @type TrainingMode: String
-        # @param DataConfigs: <p>数据配置，依赖DataSource字段，数量不超过10个</p>
+        # @param DataConfigs: <p>数据配置，数量不超过10个</p>
         # @type DataConfigs: Array
         # @param VpcId: <p>VPC Id</p>
         # @type VpcId: String
@@ -2064,10 +2072,10 @@ module TencentCloud
       class DataConfig < TencentCloud::Common::AbstractModel
         # @param MappingPath: <p>映射路径</p>
         # @type MappingPath: String
-        # @param DataSourceUsage: <p>存储用途<br>可选值为 BUILTIN_CODE, BUILTIN_DATA, BUILTIN_MODEL, USER_DATA, USER_CODE, USER_MODEL, OUTPUT, OTHER</p>
+        # @param DataSourceUsage: <p>存储用途，用于标识该数据配置中数据的使用场景。</p><p>枚举值：</p><ul><li>BUILTIN_CODE： 内置代码</li><li>BUILTIN_DATA： 内置数据</li><li>BUILTIN_MODEL： 内置模型</li><li>USER_DATA： 用户数据</li><li>USER_CODE： 用户代码</li><li>USER_MODEL： 用户模型</li><li>OUTPUT： 训练输出</li><li>DEFAULT： 其他</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceUsage: String
-        # @param DataSourceType: <p>DATASET、COS、CFS、CFSTurbo、GooseFSx、HDFS、WEDATA_HDFS</p>
+        # @param DataSourceType: <p>存储类型，各取值对应的数据结构见下方枚举值说明。</p><p>枚举值：</p><ul><li>DATASET： 数据集，填 DataSetSource</li><li>COS： COS 对象存储，填 COSSource；仅 Train 支持</li><li>COSFS： COS 挂载（COSFS），填 COSSource</li><li>CFS： CFS 文件存储，填 CFSSource</li><li>CFSTurbo： CFSTurbo 文件存储，填 CFSSource；兼容历史字段 CFSTurboSource；仅 Train 支持</li><li>GooseFS： GooseFS 实例，填 GooseFSSource</li><li>GooseFSx： GooseFSx 实例，填 GooseFSSource</li><li>HDFS： HDFS 存储，填 HDFSSource；仅 Train 支持</li><li>LOCAL_DISK： 本地磁盘，填 LocalDiskSource</li><li>HOST_PATH： 宿主机路径，填 HostPathSource</li><li>PUBLIC_DATA_SOURCE： 公有云数据源，填 PublicDataSource</li><li>CLOUD_PREMIUM： 高性能云硬盘（CBS），填 CBSSource，需指定 VolumeSizeInGB；仅 Notebook 支持</li><li>CLOUD_SSD： SSD 云硬盘（CBS），填 CBSSource，需指定 VolumeSizeInGB；仅 Notebook 支持</li><li>FREE： 免费云硬盘（CBS），填 CBSSource；仅 Notebook 支持</li><li>CFS_TURBO： CFSTurbo 文件存储，填 CFSSource；仅 Notebook 支持</li><li>BUILTIN_DATASET： 平台内置数据集，填 DataSetSource</li><li>PRELOAD_FILE： 预加载文件，填 PreloadFileSource</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataSourceType: String
         # @param DataSetSource: <p>来自数据集的数据</p>
@@ -2264,10 +2272,12 @@ module TencentCloud
         # @param ExtraConf: <p>额外配置,对应存储实例的额外配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtraConf: :class:`Tencentcloud::Tione.v20211111.models.StorageExtraConf`
+        # @param ContainerPath: <p>挂载数据源时默认填充的容器内路径</p>
+        # @type ContainerPath: String
 
-        attr_accessor :Id, :Name, :Creator, :CreatorName, :Type, :Permission, :StorageId, :StorageName, :MountConfigure, :CreateTime, :UpdateTime, :LimitMount, :Tags, :ExtraConf
+        attr_accessor :Id, :Name, :Creator, :CreatorName, :Type, :Permission, :StorageId, :StorageName, :MountConfigure, :CreateTime, :UpdateTime, :LimitMount, :Tags, :ExtraConf, :ContainerPath
 
-        def initialize(id=nil, name=nil, creator=nil, creatorname=nil, type=nil, permission=nil, storageid=nil, storagename=nil, mountconfigure=nil, createtime=nil, updatetime=nil, limitmount=nil, tags=nil, extraconf=nil)
+        def initialize(id=nil, name=nil, creator=nil, creatorname=nil, type=nil, permission=nil, storageid=nil, storagename=nil, mountconfigure=nil, createtime=nil, updatetime=nil, limitmount=nil, tags=nil, extraconf=nil, containerpath=nil)
           @Id = id
           @Name = name
           @Creator = creator
@@ -2282,6 +2292,7 @@ module TencentCloud
           @LimitMount = limitmount
           @Tags = tags
           @ExtraConf = extraconf
+          @ContainerPath = containerpath
         end
 
         def deserialize(params)
@@ -2312,6 +2323,7 @@ module TencentCloud
             @ExtraConf = StorageExtraConf.new
             @ExtraConf.deserialize(params['ExtraConf'])
           end
+          @ContainerPath = params['ContainerPath']
         end
       end
 
@@ -5847,11 +5859,11 @@ module TencentCloud
 
       # DescribeTrainingTask请求参数结构体
       class DescribeTrainingTaskRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 训练任务ID
+        # @param Id: <p>训练任务ID</p>
         # @type Id: String
         # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
-        # @param InstanceId: 训练任务实例ID
+        # @param InstanceId: <p>训练任务实例ID</p>
         # @type InstanceId: String
 
         attr_accessor :Id, :TiProjectId, :InstanceId
@@ -5871,7 +5883,7 @@ module TencentCloud
 
       # DescribeTrainingTask返回参数结构体
       class DescribeTrainingTaskResponse < TencentCloud::Common::AbstractModel
-        # @param TrainingTaskDetail: 训练任务详情
+        # @param TrainingTaskDetail: <p>训练任务详情</p>
         # @type TrainingTaskDetail: :class:`Tencentcloud::Tione.v20211111.models.TrainingTaskDetail`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6628,15 +6640,18 @@ module TencentCloud
         # @type NameSpace: String
         # @param MountOptions: <p>客户端的挂载参数，逗号分隔的参数名</p>
         # @type MountOptions: String
+        # @param FuseOptions: <p>GooseFS FUSE，支持用户自定义配置，输入格式为“空格”分隔的参数名</p>
+        # @type FuseOptions: String
 
-        attr_accessor :Id, :Type, :Path, :NameSpace, :MountOptions
+        attr_accessor :Id, :Type, :Path, :NameSpace, :MountOptions, :FuseOptions
 
-        def initialize(id=nil, type=nil, path=nil, namespace=nil, mountoptions=nil)
+        def initialize(id=nil, type=nil, path=nil, namespace=nil, mountoptions=nil, fuseoptions=nil)
           @Id = id
           @Type = type
           @Path = path
           @NameSpace = namespace
           @MountOptions = mountoptions
+          @FuseOptions = fuseoptions
         end
 
         def deserialize(params)
@@ -6645,6 +6660,7 @@ module TencentCloud
           @Path = params['Path']
           @NameSpace = params['NameSpace']
           @MountOptions = params['MountOptions']
+          @FuseOptions = params['FuseOptions']
         end
       end
 
@@ -9397,10 +9413,12 @@ module TencentCloud
         # @type Description: String
         # @param LatestOperatorInfo: <p>操作者信息</p>
         # @type LatestOperatorInfo: :class:`Tencentcloud::Tione.v20211111.models.OperatorInfo`
+        # @param ResourceGroupInstanceId: <p>预付费专用资源组</p>
+        # @type ResourceGroupInstanceId: String
 
-        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes, :SSHConfig, :VolumeSourceGooseFS, :SubUin, :SubUinName, :AppId, :ExposePortConfig, :Description, :LatestOperatorInfo
+        attr_accessor :Id, :Name, :ChargeType, :ResourceConf, :ResourceGroupId, :VolumeSizeInGB, :BillingInfos, :Tags, :CreateTime, :StartTime, :UpdateTime, :RuntimeInSeconds, :ChargeStatus, :Status, :FailureReason, :EndTime, :PodName, :InstanceTypeAlias, :ResourceGroupName, :AutoStopping, :AutomaticStopTime, :VolumeSourceType, :VolumeSourceCFS, :Message, :UserTypes, :SSHConfig, :VolumeSourceGooseFS, :SubUin, :SubUinName, :AppId, :ExposePortConfig, :Description, :LatestOperatorInfo, :ResourceGroupInstanceId
 
-        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil, sshconfig=nil, volumesourcegoosefs=nil, subuin=nil, subuinname=nil, appid=nil, exposeportconfig=nil, description=nil, latestoperatorinfo=nil)
+        def initialize(id=nil, name=nil, chargetype=nil, resourceconf=nil, resourcegroupid=nil, volumesizeingb=nil, billinginfos=nil, tags=nil, createtime=nil, starttime=nil, updatetime=nil, runtimeinseconds=nil, chargestatus=nil, status=nil, failurereason=nil, endtime=nil, podname=nil, instancetypealias=nil, resourcegroupname=nil, autostopping=nil, automaticstoptime=nil, volumesourcetype=nil, volumesourcecfs=nil, message=nil, usertypes=nil, sshconfig=nil, volumesourcegoosefs=nil, subuin=nil, subuinname=nil, appid=nil, exposeportconfig=nil, description=nil, latestoperatorinfo=nil, resourcegroupinstanceid=nil)
           @Id = id
           @Name = name
           @ChargeType = chargetype
@@ -9434,6 +9452,7 @@ module TencentCloud
           @ExposePortConfig = exposeportconfig
           @Description = description
           @LatestOperatorInfo = latestoperatorinfo
+          @ResourceGroupInstanceId = resourcegroupinstanceid
         end
 
         def deserialize(params)
@@ -9495,6 +9514,7 @@ module TencentCloud
             @LatestOperatorInfo = OperatorInfo.new
             @LatestOperatorInfo.deserialize(params['LatestOperatorInfo'])
           end
+          @ResourceGroupInstanceId = params['ResourceGroupInstanceId']
         end
       end
 
@@ -9765,25 +9785,25 @@ module TencentCloud
 
       # 任务建模Pod信息
       class PodInfo < TencentCloud::Common::AbstractModel
-        # @param Name: pod名
+        # @param Name: <p>pod名</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Name: String
-        # @param IP: pod的IP
+        # @param IP: <p>pod的IP</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IP: String
-        # @param Status: pod状态。eg：SUBMITTING提交中、PENDING排队中、RUNNING运行中、SUCCEEDED已完成、FAILED异常、TERMINATING停止中、TERMINATED已停止
+        # @param Status: <p>pod状态</p><p>枚举值：</p><ul><li>PENDING： 排队中</li><li>RUNNING： 运行中</li><li>SUCCEEDED： 已完成</li><li>FAILED： 异常</li><li>TERMINATING： 停止中</li><li>TERMINATED： 已停止</li><li>UNKNOWN： 未知</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Status: String
-        # @param StartTime: pod启动时间
+        # @param StartTime: <p>pod启动时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type StartTime: String
-        # @param EndTime: pod结束时间
+        # @param EndTime: <p>pod结束时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type EndTime: String
-        # @param ResourceConfigInfo: pod资源配置
+        # @param ResourceConfigInfo: <p>pod资源配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceConfigInfo: :class:`Tencentcloud::Tione.v20211111.models.ResourceConfigInfo`
-        # @param SubUin: Pod所属任务的SubUin信息
+        # @param SubUin: <p>Pod所属任务的SubUin信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SubUin: String
 
@@ -12009,7 +12029,7 @@ module TencentCloud
         # @type ResourceConfig: :class:`Tencentcloud::Tione.v20211111.models.SmartRouterResourceConfig`
         # @param Status: <p>组件状态：CREATING 创建中 / CREATE_FAILED 创建失败 / Normal 正常运行中 / Stopped 已停止 / Stopping 停止中 / Abnormal 异常 / Pending 启动中 / Waiting 就绪中</p>
         # @type Status: String
-        # @param ResourceSpec: <p>资源规格（查询时回显用户创建/修改时的资源选择）。公有云场景展示：ChargeType / Zone / ResourceSupplyAttribute；内网版场景展示：QueueId</p>
+        # @param ResourceSpec: <p>资源规格（查询时回显用户创建/修改时的资源选择）。公有云场景展示：ChargeType / Zone / ResourceSupplyAttribute / ResourceGroupSWType；内网版场景展示：QueueId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ResourceSpec: :class:`Tencentcloud::Tione.v20211111.models.SmartRouterResourceSpec`
         # @param BusinessStatus: <p>业务状态（组件级计费状态，Gateway/Scheduler 独立判定）：Billing 计费中 / Normal 正常（未计费或已停止计费）/ WhitelistUsing 白名单使用中（免计费）</p>
@@ -12899,7 +12919,7 @@ module TencentCloud
         # @type SubUinName: String
         # @param Region: <p>地域</p>
         # @type Region: String
-        # @param FrameworkName: <p>训练框架名称，eg：SPARK、PYSARK、TENSORFLOW、PYTORCH</p>
+        # @param FrameworkName: <p>训练框架名称，eg：SPARK、PYSPARK、TENSORFLOW、PYTORCH</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FrameworkName: String
         # @param FrameworkVersion: <p>训练框架版本</p>
@@ -12986,7 +13006,7 @@ module TencentCloud
         # @param Message: <p>任务信息</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Message: String
-        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>SUBMITTING： 排队中</li><li>STARTING： 启动中</li><li>RUNNING： 运行中</li><li>STOPPING： 停止中</li><li>STOPPED： 已停止</li><li>FAILED： 异常</li><li>SUCCEED： 已完成</li><li>SUBMIT_FAILED： 提交失败</li></ul>
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>SUBMITTING： 提交中</li><li>PENDING： 排队中</li><li>STARTING： 启动中</li><li>RUNNING： 运行中</li><li>STOPPING： 停止中</li><li>STOPPED： 已停止</li><li>SUCCEED： 已完成</li><li>FAILED： 异常</li><li>SUBMIT_FAILED： 提交失败</li></ul>
         # @type Status: String
         # @param CallbackUrl: <p>回调地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -13319,23 +13339,26 @@ module TencentCloud
       class UpdateDataSourceRequest < TencentCloud::Common::AbstractModel
         # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
         # @type TiProjectId: String
-        # @param Id: 数据源ID
+        # @param Id: <p>数据源ID</p>
         # @type Id: String
-        # @param Name: 数据源名称
+        # @param Name: <p>数据源名称</p>
         # @type Name: String
-        # @param Permission: 数据源权限，取值有RW RO
+        # @param Permission: <p>数据源权限，取值有RW RO</p>
         # @type Permission: String
-        # @param MountConfigure: 数据源挂载配置
+        # @param MountConfigure: <p>数据源挂载配置</p>
         # @type MountConfigure: :class:`Tencentcloud::Tione.v20211111.models.MountConfigureInfo`
+        # @param ContainerPath: <p>挂载数据源时默认填充的容器内路径</p>
+        # @type ContainerPath: String
 
-        attr_accessor :TiProjectId, :Id, :Name, :Permission, :MountConfigure
+        attr_accessor :TiProjectId, :Id, :Name, :Permission, :MountConfigure, :ContainerPath
 
-        def initialize(tiprojectid=nil, id=nil, name=nil, permission=nil, mountconfigure=nil)
+        def initialize(tiprojectid=nil, id=nil, name=nil, permission=nil, mountconfigure=nil, containerpath=nil)
           @TiProjectId = tiprojectid
           @Id = id
           @Name = name
           @Permission = permission
           @MountConfigure = mountconfigure
+          @ContainerPath = containerpath
         end
 
         def deserialize(params)
@@ -13347,6 +13370,7 @@ module TencentCloud
             @MountConfigure = MountConfigureInfo.new
             @MountConfigure.deserialize(params['MountConfigure'])
           end
+          @ContainerPath = params['ContainerPath']
         end
       end
 

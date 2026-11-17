@@ -8319,11 +8319,9 @@ module TencentCloud
 
       # DescribeSSLStatus请求参数结构体
       class DescribeSSLStatusRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
-        # 说明：实例 ID 和只读组 ID 两个参数选其一填写即可。若要查询双节点、三节点实例 SSL 开通情况，请填写实例 ID 参数进行查询。单节点（云盘）、云盘版实例不支持开启 SSL，因此不支持查询。
+        # @param InstanceId: <p>实例 ID。可通过 <a href="https://cloud.tencent.com/document/product/236/15872">DescribeDBInstances</a> 接口获取。<br>说明：实例 ID 和只读组 ID 两个参数选其一填写即可。若要查询双节点、三节点实例 SSL 开通情况，请填写实例 ID 参数进行查询。单节点（云盘）、云盘版实例不支持开启 SSL，因此不支持查询。</p>
         # @type InstanceId: String
-        # @param RoGroupId: 只读组 ID。可通过 [DescribeRoGroups](https://cloud.tencent.com/document/api/236/40939) 接口获取。
-        # 说明：实例 ID 和只读组 ID 两个参数选其一填写即可。若要查询只读实例或只读组 SSL 开通情况，请填写 RoGroupId 参数，并注意填写的都是只读组 ID。单节点（云盘）、云盘版实例不支持开启 SSL，因此不支持查询。
+        # @param RoGroupId: <p>只读组 ID。可通过 <a href="https://cloud.tencent.com/document/api/236/40939">DescribeRoGroups</a> 接口获取。<br>说明：实例 ID 和只读组 ID 两个参数选其一填写即可。若要查询只读实例或只读组 SSL 开通情况，请填写 RoGroupId 参数，并注意填写的都是只读组 ID。单节点（云盘）、云盘版实例不支持开启 SSL，因此不支持查询。</p>
         # @type RoGroupId: String
 
         attr_accessor :InstanceId, :RoGroupId
@@ -8341,9 +8339,9 @@ module TencentCloud
 
       # DescribeSSLStatus返回参数结构体
       class DescribeSSLStatusResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 是否开通 SSL 。ON 代表开通 ，OFF 代表未开通。
+        # @param Status: <p>是否开通 SSL 。ON 代表开通 ，OFF 代表未开通。</p>
         # @type Status: String
-        # @param Url: 证书下载链接。
+        # @param Url: <p>证书下载链接。</p>
         # @type Url: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12354,9 +12352,9 @@ module TencentCloud
 
       # OpenSSL请求参数结构体
       class OpenSSLRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。只读组 ID 为空时必填。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
+        # @param InstanceId: <p>实例 ID。只读组 ID 为空时必填。可通过 <a href="https://cloud.tencent.com/document/product/236/15872">DescribeDBInstances</a> 接口获取。</p>
         # @type InstanceId: String
-        # @param RoGroupId: 只读组 ID。实例 ID 为空时必填。可通过 [DescribeRoGroups](https://cloud.tencent.com/document/api/236/40939) 接口获取。
+        # @param RoGroupId: <p>只读组 ID。实例 ID 为空时必填。可通过 <a href="https://cloud.tencent.com/document/api/236/40939">DescribeRoGroups</a> 接口获取。</p>
         # @type RoGroupId: String
 
         attr_accessor :InstanceId, :RoGroupId
@@ -12374,7 +12372,7 @@ module TencentCloud
 
       # OpenSSL返回参数结构体
       class OpenSSLResponse < TencentCloud::Common::AbstractModel
-        # @param AsyncRequestId: 异步请求 ID。
+        # @param AsyncRequestId: <p>异步请求 ID。</p>
         # @type AsyncRequestId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

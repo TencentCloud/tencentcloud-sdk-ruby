@@ -7635,8 +7635,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2026, 10
-        deprecate :IsDemo=, :none, 2026, 10
+        deprecate :IsDemo, :none, 2026, 11
+        deprecate :IsDemo=, :none, 2026, 11
 
         def initialize(limit=nil, offset=nil, filters=nil, isdemo=nil)
           @Limit = limit
@@ -8716,8 +8716,8 @@ module TencentCloud
 
         attr_accessor :EndTime, :StartTime, :ID, :IsDemo, :IDList
         extend Gem::Deprecate
-        deprecate :IsDemo, :none, 2026, 10
-        deprecate :IsDemo=, :none, 2026, 10
+        deprecate :IsDemo, :none, 2026, 11
+        deprecate :IsDemo=, :none, 2026, 11
 
         def initialize(endtime=nil, starttime=nil, id=nil, isdemo=nil, idlist=nil)
           @EndTime = endtime
@@ -12028,12 +12028,12 @@ module TencentCloud
 
         attr_accessor :ChargeStatuses, :ChargeTypes, :Limit, :Offset, :AreaIds, :InstanceStatuses, :InstanceIds, :Filters, :IsDemo
         extend Gem::Deprecate
-        deprecate :InstanceStatuses, :none, 2026, 10
-        deprecate :InstanceStatuses=, :none, 2026, 10
-        deprecate :InstanceIds, :none, 2026, 10
-        deprecate :InstanceIds=, :none, 2026, 10
-        deprecate :IsDemo, :none, 2026, 10
-        deprecate :IsDemo=, :none, 2026, 10
+        deprecate :InstanceStatuses, :none, 2026, 11
+        deprecate :InstanceStatuses=, :none, 2026, 11
+        deprecate :InstanceIds, :none, 2026, 11
+        deprecate :InstanceIds=, :none, 2026, 11
+        deprecate :IsDemo, :none, 2026, 11
+        deprecate :IsDemo=, :none, 2026, 11
 
         def initialize(chargestatuses=nil, chargetypes=nil, limit=nil, offset=nil, areaids=nil, instancestatuses=nil, instanceids=nil, filters=nil, isdemo=nil)
           @ChargeStatuses = chargestatuses
@@ -12772,15 +12772,18 @@ module TencentCloud
         # @type FailCount: Integer
         # @param AvgDuration: <p>平均时延，单位毫秒</p>
         # @type AvgDuration: Float
+        # @param Datetime: <p>聚合桶时间。与旧字段 Time 同源，保留 Time 及其格式；按查询服务运行时区输出。</p><p>参数格式：RFC3339，带数值时区偏移，例如 2026-10-01T00:00:00+08:00。</p>
+        # @type Datetime: String
 
-        attr_accessor :Time, :ExecutionCount, :SuccessCount, :FailCount, :AvgDuration
+        attr_accessor :Time, :ExecutionCount, :SuccessCount, :FailCount, :AvgDuration, :Datetime
 
-        def initialize(time=nil, executioncount=nil, successcount=nil, failcount=nil, avgduration=nil)
+        def initialize(time=nil, executioncount=nil, successcount=nil, failcount=nil, avgduration=nil, datetime=nil)
           @Time = time
           @ExecutionCount = executioncount
           @SuccessCount = successcount
           @FailCount = failcount
           @AvgDuration = avgduration
+          @Datetime = datetime
         end
 
         def deserialize(params)
@@ -12789,6 +12792,7 @@ module TencentCloud
           @SuccessCount = params['SuccessCount']
           @FailCount = params['FailCount']
           @AvgDuration = params['AvgDuration']
+          @Datetime = params['Datetime']
         end
       end
 
@@ -16203,17 +16207,21 @@ module TencentCloud
         # @type Time: String
         # @param ReportVolume: <p>上报量</p>
         # @type ReportVolume: Integer
+        # @param Datetime: <p>聚合桶时间。与旧字段 Time 同源，保留 Time 及其格式；按查询服务运行时区输出。</p><p>参数格式：RFC3339，带数值时区偏移，例如 2026-10-01T00:00:00+08:00。</p>
+        # @type Datetime: String
 
-        attr_accessor :Time, :ReportVolume
+        attr_accessor :Time, :ReportVolume, :Datetime
 
-        def initialize(time=nil, reportvolume=nil)
+        def initialize(time=nil, reportvolume=nil, datetime=nil)
           @Time = time
           @ReportVolume = reportvolume
+          @Datetime = datetime
         end
 
         def deserialize(params)
           @Time = params['Time']
           @ReportVolume = params['ReportVolume']
+          @Datetime = params['Datetime']
         end
       end
 

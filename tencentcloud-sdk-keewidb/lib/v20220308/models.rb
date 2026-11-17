@@ -17,6 +17,42 @@
 module TencentCloud
   module Keewidb
     module V20220308
+      # 子账号信息
+      class Account < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例 ID。</p>
+        # @type InstanceId: String
+        # @param AccountName: <p>账号名称。</p>
+        # @type AccountName: String
+        # @param Remark: <p>账号描述信息。</p>
+        # @type Remark: String
+        # @param Privilege: <p>读写权限策略。</p><p>枚举值：</p><ul><li>r： 只读。</li><li>rw： 读写。</li></ul>
+        # @type Privilege: String
+        # @param ReadonlyPolicy: <p>只读路由策略。</p><p>枚举值：</p><ul><li>master： 主节点。</li><li>replication： 从节点。</li></ul>
+        # @type ReadonlyPolicy: Array
+        # @param Status: <p>子账号状态。</p><p>枚举值：</p><ul><li>1： 账号变更中。</li><li>2： 账号有效。</li><li>4： 账号已删除。</li></ul>
+        # @type Status: Integer
+
+        attr_accessor :InstanceId, :AccountName, :Remark, :Privilege, :ReadonlyPolicy, :Status
+
+        def initialize(instanceid=nil, accountname=nil, remark=nil, privilege=nil, readonlypolicy=nil, status=nil)
+          @InstanceId = instanceid
+          @AccountName = accountname
+          @Remark = remark
+          @Privilege = privilege
+          @ReadonlyPolicy = readonlypolicy
+          @Status = status
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @AccountName = params['AccountName']
+          @Remark = params['Remark']
+          @Privilege = params['Privilege']
+          @ReadonlyPolicy = params['ReadonlyPolicy']
+          @Status = params['Status']
+        end
+      end
+
       # AssociateSecurityGroups请求参数结构体
       class AssociateSecurityGroupsRequest < TencentCloud::Common::AbstractModel
         # @param Product: 数据库引擎名称：keewidb。
@@ -290,6 +326,62 @@ module TencentCloud
         end
       end
 
+      # CreateInstanceAccount请求参数结构体
+      class CreateInstanceAccountRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID。</p>
+        # @type InstanceId: String
+        # @param AccountName: <p>自定义的访问数据库的账号名称。</p><ul><li>仅由字母、数字、下划线、中划线组成。</li><li>长度不能大于32位。</li></ul>
+        # @type AccountName: String
+        # @param AccountPassword: <p>设置自定义账号的密码。密码复杂度要求如下：</p><ul><li>字符个数为[8,64]。</li><li>至少包含小写字母、大写字母、数字和字符 ()`~!@#$%^&amp;*-+=_|{}[]:;&lt;&gt;,.?/ 中的两种。</li><li>不能以&quot;/&quot;开头。</li></ul>
+        # @type AccountPassword: String
+        # @param ReadonlyPolicy: <p>指定账号的读请求路由分发至主节点或副本节点。未开启副本只读，不支持选择副本节点。 </p><p>枚举值：</p><ul><li>master： 主节点</li><li>replication： 副本节点</li></ul>
+        # @type ReadonlyPolicy: Array
+        # @param Privilege: <p>账户读写权限，支持选择只读与读写权限。</p><p>枚举值：</p><ul><li>rw： 读写</li><li>r： 只读</li></ul>
+        # @type Privilege: String
+        # @param Remark: <p>账号备注描述信息，长度为[0,64] 字节，支持中文。</p>
+        # @type Remark: String
+
+        attr_accessor :InstanceId, :AccountName, :AccountPassword, :ReadonlyPolicy, :Privilege, :Remark
+
+        def initialize(instanceid=nil, accountname=nil, accountpassword=nil, readonlypolicy=nil, privilege=nil, remark=nil)
+          @InstanceId = instanceid
+          @AccountName = accountname
+          @AccountPassword = accountpassword
+          @ReadonlyPolicy = readonlypolicy
+          @Privilege = privilege
+          @Remark = remark
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @AccountName = params['AccountName']
+          @AccountPassword = params['AccountPassword']
+          @ReadonlyPolicy = params['ReadonlyPolicy']
+          @Privilege = params['Privilege']
+          @Remark = params['Remark']
+        end
+      end
+
+      # CreateInstanceAccount返回参数结构体
+      class CreateInstanceAccountResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID。</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateInstances请求参数结构体
       class CreateInstancesRequest < TencentCloud::Common::AbstractModel
         # @param TypeId: <p>实例版本类型。</p><p>枚举值：</p><ul><li>11： 存储版标准架构。</li><li>12： 存储版集群架构。</li><li>13： 极速版标准架构。</li><li>14： 极速版集群架构。</li></ul>
@@ -425,8 +517,8 @@ module TencentCloud
 
         attr_accessor :DealId, :InstanceIds, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 10
-        deprecate :DealId=, :none, 2026, 10
+        deprecate :DealId, :none, 2026, 11
+        deprecate :DealId=, :none, 2026, 11
 
         def initialize(dealid=nil, instanceids=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -439,6 +531,46 @@ module TencentCloud
           @DealId = params['DealId']
           @InstanceIds = params['InstanceIds']
           @DealName = params['DealName']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteInstanceAccount请求参数结构体
+      class DeleteInstanceAccountRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID。</p>
+        # @type InstanceId: String
+        # @param AccountName: <p>指定需删除的账号名称。</p>
+        # @type AccountName: String
+
+        attr_accessor :InstanceId, :AccountName
+
+        def initialize(instanceid=nil, accountname=nil)
+          @InstanceId = instanceid
+          @AccountName = accountname
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @AccountName = params['AccountName']
+        end
+      end
+
+      # DeleteInstanceAccount返回参数结构体
+      class DeleteInstanceAccountResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID。</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -598,6 +730,61 @@ module TencentCloud
         end
       end
 
+      # DescribeInstanceAccount请求参数结构体
+      class DescribeInstanceAccountRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID。</p>
+        # @type InstanceId: String
+        # @param Limit: <p>分页大小。</p><p>取值范围：[1, 100]</p><p>默认值：20</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页偏移量。</p><p>默认值：0</p>
+        # @type Offset: Integer
+
+        attr_accessor :InstanceId, :Limit, :Offset
+
+        def initialize(instanceid=nil, limit=nil, offset=nil)
+          @InstanceId = instanceid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeInstanceAccount返回参数结构体
+      class DescribeInstanceAccountResponse < TencentCloud::Common::AbstractModel
+        # @param Accounts: <p>账号详细信息。</p>
+        # @type Accounts: Array
+        # @param TotalCount: <p>账号个数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Accounts, :TotalCount, :RequestId
+
+        def initialize(accounts=nil, totalcount=nil, requestid=nil)
+          @Accounts = accounts
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Accounts'].nil?
+            @Accounts = []
+            params['Accounts'].each do |i|
+              account_tmp = Account.new
+              account_tmp.deserialize(i)
+              @Accounts << account_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeInstanceBackups请求参数结构体
       class DescribeInstanceBackupsRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 待操作的实例ID，可通过 DescribeInstance 接口返回值中的 InstanceId 获取。
@@ -648,8 +835,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :BackupSet, :BackupRecord, :RequestId
         extend Gem::Deprecate
-        deprecate :BackupSet, :none, 2026, 10
-        deprecate :BackupSet=, :none, 2026, 10
+        deprecate :BackupSet, :none, 2026, 11
+        deprecate :BackupSet=, :none, 2026, 11
 
         def initialize(totalcount=nil, backupset=nil, backuprecord=nil, requestid=nil)
           @TotalCount = totalcount
@@ -752,8 +939,8 @@ module TencentCloud
 
         attr_accessor :DealIds, :DealName
         extend Gem::Deprecate
-        deprecate :DealIds, :none, 2026, 10
-        deprecate :DealIds=, :none, 2026, 10
+        deprecate :DealIds, :none, 2026, 11
+        deprecate :DealIds=, :none, 2026, 11
 
         def initialize(dealids=nil, dealname=nil)
           @DealIds = dealids
@@ -1124,8 +1311,8 @@ module TencentCloud
 
         attr_accessor :Limit, :Offset, :InstanceId, :OrderBy, :OrderType, :VpcIds, :SubnetIds, :ProjectIds, :SearchKey, :InstanceName, :UniqVpcIds, :UniqSubnetIds, :Status, :AutoRenew, :BillingMode, :Type, :SearchKeys, :TypeList, :MonitorVersion, :InstanceTags, :TagKeys, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceTags, :none, 2026, 10
-        deprecate :InstanceTags=, :none, 2026, 10
+        deprecate :InstanceTags, :none, 2026, 11
+        deprecate :InstanceTags=, :none, 2026, 11
 
         def initialize(limit=nil, offset=nil, instanceid=nil, orderby=nil, ordertype=nil, vpcids=nil, subnetids=nil, projectids=nil, searchkey=nil, instancename=nil, uniqvpcids=nil, uniqsubnetids=nil, status=nil, autorenew=nil, billingmode=nil, type=nil, searchkeys=nil, typelist=nil, monitorversion=nil, instancetags=nil, tagkeys=nil, taglist=nil)
           @Limit = limit
@@ -1689,8 +1876,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 10
-        deprecate :DealId=, :none, 2026, 10
+        deprecate :DealId, :none, 2026, 11
+        deprecate :DealId=, :none, 2026, 11
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -2430,8 +2617,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Bandwidth, :ClientLimit
         extend Gem::Deprecate
-        deprecate :Bandwidth, :none, 2026, 10
-        deprecate :Bandwidth=, :none, 2026, 10
+        deprecate :Bandwidth, :none, 2026, 11
+        deprecate :Bandwidth=, :none, 2026, 11
 
         def initialize(instanceid=nil, bandwidth=nil, clientlimit=nil)
           @InstanceId = instanceid
@@ -2502,6 +2689,62 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyInstanceAccount请求参数结构体
+      class ModifyInstanceAccountRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>实例ID。</p>
+        # @type InstanceId: String
+        # @param AccountName: <p>指定需修改的账号。</p><ul><li>root：指在创建 KeeWiDB 数据库实例时自动生成的账号。用户无法修改其读写权限，仅可修改其请求路由策略。</li><li>自定义的账号：用户在实例创建成功后手动创建的账号。用户可以随时修改其读写权限与请求路由策略。</li></ul>
+        # @type AccountName: String
+        # @param AccountPassword: <p>指定所修改账号访问的密码。</p>
+        # @type AccountPassword: String
+        # @param Remark: <p>账号描述信息</p>
+        # @type Remark: String
+        # @param ReadonlyPolicy: <p>指定所修改账号读写请求路由的策略。</p><p>枚举值：</p><ul><li>master： 表示读写请求路由至主节点。</li><li>replication： 表示读写请求路由至从节点。</li></ul>
+        # @type ReadonlyPolicy: Array
+        # @param Privilege: <p>指定所修改账号的读写权限。</p><p>枚举值：</p><ul><li>rw： 读写。</li><li>r： 只读。</li></ul>
+        # @type Privilege: String
+
+        attr_accessor :InstanceId, :AccountName, :AccountPassword, :Remark, :ReadonlyPolicy, :Privilege
+
+        def initialize(instanceid=nil, accountname=nil, accountpassword=nil, remark=nil, readonlypolicy=nil, privilege=nil)
+          @InstanceId = instanceid
+          @AccountName = accountname
+          @AccountPassword = accountpassword
+          @Remark = remark
+          @ReadonlyPolicy = readonlypolicy
+          @Privilege = privilege
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @AccountName = params['AccountName']
+          @AccountPassword = params['AccountPassword']
+          @Remark = params['Remark']
+          @ReadonlyPolicy = params['ReadonlyPolicy']
+          @Privilege = params['Privilege']
+        end
+      end
+
+      # ModifyInstanceAccount返回参数结构体
+      class ModifyInstanceAccountResponse < TencentCloud::Common::AbstractModel
+        # @param TaskId: <p>任务ID。</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TaskId, :RequestId
+
+        def initialize(taskid=nil, requestid=nil)
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TaskId = params['TaskId']
           @RequestId = params['RequestId']
         end
       end
@@ -2963,8 +3206,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 10
-        deprecate :DealId=, :none, 2026, 10
+        deprecate :DealId, :none, 2026, 11
+        deprecate :DealId=, :none, 2026, 11
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid
@@ -3376,8 +3619,8 @@ module TencentCloud
 
         attr_accessor :DealId, :DealName, :RequestId
         extend Gem::Deprecate
-        deprecate :DealId, :none, 2026, 10
-        deprecate :DealId=, :none, 2026, 10
+        deprecate :DealId, :none, 2026, 11
+        deprecate :DealId=, :none, 2026, 11
 
         def initialize(dealid=nil, dealname=nil, requestid=nil)
           @DealId = dealid

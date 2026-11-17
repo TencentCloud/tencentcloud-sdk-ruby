@@ -3771,7 +3771,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 修改云原生API网关实例Kong访问策略，支持白名单或者黑名单。
+        # 修改云原生API网关实例Kong访问策略，支持白名单或者黑名单。 支持 AccessControlSource=reference 引用实例基础配置，与自定义 CIDR 互斥。
 
         # @param request: Request instance for ModifyNetworkAccessStrategy.
         # @type request: :class:`Tencentcloud::tse::V20201207::ModifyNetworkAccessStrategyRequest`

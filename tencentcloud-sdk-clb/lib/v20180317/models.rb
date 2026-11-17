@@ -1164,24 +1164,23 @@ module TencentCloud
 
       # 证书信息
       class CertificateInput < TencentCloud::Common::AbstractModel
-        # @param SSLMode: 认证类型，UNIDIRECTIONAL：单向认证，MUTUAL：双向认证。
-        # 默认为 UNIDIRECTIONAL。
+        # @param SSLMode: <p>认证类型，取值：<code>UNIDIRECTIONAL</code>：单向认证；<code>MUTUAL</code>：双向认证。 此参数是否必填取决于调用场景： - 创建监听器或转发规则：需要通过 Certificate 配置证书时，此参数必填；复用已有域名证书的转发规则无需传入。 - 修改监听器或域名属性：通过 Certificate 更新证书时，此参数必填；不修改证书时，无需传入整个 Certificate。 - 批量替换证书（ReplaceCertForLoadBalancers）：此参数无需传入，接口仅替换证书，不修改认证类型。</p><p>枚举值：</p><ul><li>UNIDIRECTIONAL： 单向认证</li><li>MUTUAL： 双向认证</li></ul>
         # @type SSLMode: String
-        # @param SSLVerifyClient: 双向认证时，是否开启客户端认证，ON:开启，OPTIONAL:自适应，默认ON。
+        # @param SSLVerifyClient: <p>双向认证时，是否开启客户端认证，ON:开启，OPTIONAL:自适应，默认ON。</p>
         # @type SSLVerifyClient: String
-        # @param CertId: 服务端证书的 ID，如果不填写此项则必须上传证书，包括 CertContent（服务端证书内容），CertKey（服务端证书密钥），CertName（服务端证书名称）。
+        # @param CertId: <p>服务端证书的 ID，如果不填写此项则必须上传证书，包括 CertContent（服务端证书内容），CertKey（服务端证书密钥），CertName（服务端证书名称）。</p>
         # @type CertId: String
-        # @param CertCaId: 客户端证书的 ID，当监听器采用双向认证，即 SSLMode=MUTUAL 时，如果不填写此项则必须上传客户端证书，包括 CertCaContent，CertCaName。
+        # @param CertCaId: <p>客户端证书的 ID，当监听器采用双向认证，即 SSLMode=MUTUAL 时，如果不填写此项则必须上传客户端证书，包括 CertCaContent，CertCaName。</p>
         # @type CertCaId: String
-        # @param CertName: 上传服务端证书的名称，如果没有 CertId，则此项必传。
+        # @param CertName: <p>上传服务端证书的名称，如果没有 CertId，则此项必传。</p>
         # @type CertName: String
-        # @param CertKey: 上传服务端证书的 key，如果没有 CertId，则此项必传。
+        # @param CertKey: <p>上传服务端证书的 key，如果没有 CertId，则此项必传。</p>
         # @type CertKey: String
-        # @param CertContent: 上传服务端证书的内容，如果没有 CertId，则此项必传。
+        # @param CertContent: <p>上传服务端证书的内容，如果没有 CertId，则此项必传。</p>
         # @type CertContent: String
-        # @param CertCaName: 上传客户端 CA 证书的名称，如果 SSLMode=MUTUAL，如果没有 CertCaId，则此项必传。
+        # @param CertCaName: <p>上传客户端 CA 证书的名称，如果 SSLMode=MUTUAL，如果没有 CertCaId，则此项必传。</p>
         # @type CertCaName: String
-        # @param CertCaContent: 上传客户端证书的内容，如果 SSLMode=MUTUAL，如果没有 CertCaId，则此项必传。
+        # @param CertCaContent: <p>上传客户端证书的内容，如果 SSLMode=MUTUAL，如果没有 CertCaId，则此项必传。</p>
         # @type CertCaContent: String
 
         attr_accessor :SSLMode, :SSLVerifyClient, :CertId, :CertCaId, :CertName, :CertKey, :CertContent, :CertCaName, :CertCaContent
@@ -14957,7 +14956,7 @@ module TencentCloud
       class StickyConfig < TencentCloud::Common::AbstractModel
         # @param Enabled: <p>是否开启粘连路由</p>
         # @type Enabled: Boolean
-        # @param TimeoutSeconds: <p>会话粘性的超时时间（秒），取值范围 180–86400。创建时默认为 1800；修改时若不设置该字段，则保留原有值。</p><p>取值范围：[180, 21600]</p><p>单位：秒</p><p>默认值：1800</p>
+        # @param TimeoutSeconds: <p>会话粘性的超时时间（秒），取值范围 180–21600。创建时默认为 1800；修改时若不设置该字段，则保留原有值。</p><p>取值范围：[180, 21600]</p><p>单位：秒</p><p>默认值：1800</p>
         # @type TimeoutSeconds: Integer
 
         attr_accessor :Enabled, :TimeoutSeconds

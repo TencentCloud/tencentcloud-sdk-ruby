@@ -4624,6 +4624,33 @@ module TencentCloud
         end
       end
 
+      # DescribeEnvAccessControl请求参数结构体
+      class DescribeEnvAccessControlRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeEnvAccessControl返回参数结构体
+      class DescribeEnvAccessControlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeEnvAccountCircle请求参数结构体
       class DescribeEnvAccountCircleRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境ID
@@ -9524,6 +9551,33 @@ module TencentCloud
         end
       end
 
+      # ModifyEnvAccessControl请求参数结构体
+      class ModifyEnvAccessControlRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # ModifyEnvAccessControl返回参数结构体
+      class ModifyEnvAccessControlResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyEnvExtra请求参数结构体
       class ModifyEnvExtraRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: <p>环境ID</p>
@@ -9682,21 +9736,21 @@ module TencentCloud
 
       # ModifyLoginConfig请求参数结构体
       class ModifyLoginConfigRequest < TencentCloud::Common::AbstractModel
-        # @param EnvId: 环境 ID，用于指定需要修改登录策略的云开发环境。
+        # @param EnvId: <p>环境 ID，用于指定需要修改登录策略的云开发环境。</p>
         # @type EnvId: String
-        # @param PhoneNumberLogin: 手机号短信登录开关。设置为 true 开启手机号短信登录，允许用户使用手机号和短信验证码进行登录和注册；设置为 false 关闭手机号短信登录。
+        # @param PhoneNumberLogin: <p>手机号短信登录开关。设置为 true 开启手机号短信登录，允许用户使用手机号和短信验证码进行登录和注册；设置为 false 关闭手机号短信登录。</p>
         # @type PhoneNumberLogin: Boolean
-        # @param EmailLogin: 邮箱登录开关。设置为 true 开启邮箱登录，允许用户使用邮箱和密码进行登录和注册；设置为 false 关闭邮箱登录。
+        # @param EmailLogin: <p>邮箱登录开关。设置为 true 开启邮箱登录，允许用户使用邮箱和密码进行登录和注册；设置为 false 关闭邮箱登录。</p>
         # @type EmailLogin: Boolean
-        # @param UserNameLogin: 用户名密码登录开关。设置为 true 开启用户名密码登录，允许用户使用用户名和密码进行登录和注册；设置为 false 关闭用户名密码登录。
+        # @param UserNameLogin: <p>用户名密码登录开关。设置为 true 开启用户名密码登录，允许用户使用用户名和密码进行登录和注册；设置为 false 关闭用户名密码登录。</p>
         # @type UserNameLogin: Boolean
-        # @param AnonymousLogin: 匿名登录开关。设置为 true 开启匿名登录，允许用户无需注册即可以匿名身份访问应用；设置为 false 关闭匿名登录。
+        # @param AnonymousLogin: <p>匿名登录开关。设置为 true 开启匿名登录，允许用户无需注册即可以匿名身份访问应用；设置为 false 关闭匿名登录。</p>
         # @type AnonymousLogin: Boolean
-        # @param SmsVerificationConfig: 短信验证码发送配置，用于设置短信验证码的发送通道类型和日发送限额。不传则不修改当前配置。
+        # @param SmsVerificationConfig: <p>短信验证码发送配置，用于设置短信验证码的发送通道类型和日发送限额。不传则不修改当前配置。</p>
         # @type SmsVerificationConfig: :class:`Tencentcloud::Tcb.v20180608.models.VerificationConfig`
-        # @param MfaConfig: MFA 多因子认证登录配置，用于设置多因子认证开关及验证方式（短信、邮箱、TOTP、强制绑定手机号）。不传则不修改当前配置。
+        # @param MfaConfig: <p>MFA 多因子认证登录配置，用于设置多因子认证开关及验证方式（短信、邮箱、TOTP、强制绑定手机号）。不传则不修改当前配置。</p>
         # @type MfaConfig: :class:`Tencentcloud::Tcb.v20180608.models.MFALoginConfig`
-        # @param PwdUpdateStrategy: 密码更新策略配置，用于设置首次登录强制修改密码和定期强制修改密码策略。不传则不修改当前配置。
+        # @param PwdUpdateStrategy: <p>密码更新策略配置，用于设置首次登录强制修改密码和定期强制修改密码策略。不传则不修改当前配置。</p>
         # @type PwdUpdateStrategy: :class:`Tencentcloud::Tcb.v20180608.models.PasswordUpdateLoginConfig`
 
         attr_accessor :EnvId, :PhoneNumberLogin, :EmailLogin, :UserNameLogin, :AnonymousLogin, :SmsVerificationConfig, :MfaConfig, :PwdUpdateStrategy

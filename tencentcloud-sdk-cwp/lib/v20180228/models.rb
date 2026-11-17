@@ -18064,9 +18064,9 @@ module TencentCloud
 
       # DescribeMachines请求参数结构体
       class DescribeMachinesRequest < TencentCloud::Common::AbstractModel
-        # @param MachineType: <p>机器所属专区类型<br>CVM 云服务器<br>BM 黑石<br>ECM 边缘计算<br>LH 轻量应用服务器<br>Other 混合云专区</p>
+        # @param MachineType: <p>机器所属专区类型<br>CVM 云服务器<br>BM 黑石<br>ECM 边缘计算<br>LH 轻量应用服务器<br>Other 混合云专区<br>ALL 全部机器类型</p>
         # @type MachineType: String
-        # @param MachineRegion: <p>机器所属地域。如：ap-guangzhou，ap-shanghai，非腾讯云主机使用：ap-others</p>
+        # @param MachineRegion: <p>机器所属地域。如：ap-guangzhou，ap-shanghai，非腾讯云主机使用：ap-others ，全部地域使用：all-regions</p>
         # @type MachineRegion: String
         # @param Limit: <p>返回数量，默认为10，最大值为100。</p>
         # @type Limit: Integer

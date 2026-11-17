@@ -150,6 +150,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 本接口（CreateInstanceAccount）用于自定义访问实例的账号。
+
+        # @param request: Request instance for CreateInstanceAccount.
+        # @type request: :class:`Tencentcloud::keewidb::V20220308::CreateInstanceAccountRequest`
+        # @rtype: :class:`Tencentcloud::keewidb::V20220308::CreateInstanceAccountResponse`
+        def CreateInstanceAccount(request)
+          body = send_request('CreateInstanceAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateInstanceAccountResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建数据库实例
 
         # @param request: Request instance for CreateInstances.
@@ -160,6 +184,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = CreateInstancesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DeleteInstanceAccount）用于删除实例自定义账号。
+
+        # @param request: Request instance for DeleteInstanceAccount.
+        # @type request: :class:`Tencentcloud::keewidb::V20220308::DeleteInstanceAccountRequest`
+        # @rtype: :class:`Tencentcloud::keewidb::V20220308::DeleteInstanceAccountResponse`
+        def DeleteInstanceAccount(request)
+          body = send_request('DeleteInstanceAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteInstanceAccountResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -232,6 +280,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeDBSecurityGroupsResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（DescribeInstanceAccount）用于查看实例账号信息。
+
+        # @param request: Request instance for DescribeInstanceAccount.
+        # @type request: :class:`Tencentcloud::keewidb::V20220308::DescribeInstanceAccountRequest`
+        # @rtype: :class:`Tencentcloud::keewidb::V20220308::DescribeInstanceAccountResponse`
+        def DescribeInstanceAccount(request)
+          body = send_request('DescribeInstanceAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInstanceAccountResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -760,6 +832,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyInstanceResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 本接口（ModifyInstanceAccount）用于修改实例账号。
+
+        # @param request: Request instance for ModifyInstanceAccount.
+        # @type request: :class:`Tencentcloud::keewidb::V20220308::ModifyInstanceAccountRequest`
+        # @rtype: :class:`Tencentcloud::keewidb::V20220308::ModifyInstanceAccountResponse`
+        def ModifyInstanceAccount(request)
+          body = send_request('ModifyInstanceAccount', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyInstanceAccountResponse.new
             model.deserialize(response['Response'])
             model
           else

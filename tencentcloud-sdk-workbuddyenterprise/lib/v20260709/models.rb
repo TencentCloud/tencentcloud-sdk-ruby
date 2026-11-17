@@ -2534,16 +2534,28 @@ module TencentCloud
 
       # DescribeUserAccessToken返回参数结构体
       class DescribeUserAccessTokenResponse < TencentCloud::Common::AbstractModel
+        # @param AccessToken: <p>OneID 颁发的用户级访问凭证</p>
+        # @type AccessToken: String
+        # @param TokenType: <p>凭证类型，目前固定 Bearer</p>
+        # @type TokenType: String
+        # @param ExpiresIn: <p>凭证有效期，单位：秒</p>
+        # @type ExpiresIn: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :AccessToken, :TokenType, :ExpiresIn, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(accesstoken=nil, tokentype=nil, expiresin=nil, requestid=nil)
+          @AccessToken = accesstoken
+          @TokenType = tokentype
+          @ExpiresIn = expiresin
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @AccessToken = params['AccessToken']
+          @TokenType = params['TokenType']
+          @ExpiresIn = params['ExpiresIn']
           @RequestId = params['RequestId']
         end
       end

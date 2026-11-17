@@ -1708,10 +1708,12 @@ module TencentCloud
         # @type EncryptConn: String
         # @param SetId: <p>tdsql的分片id。如节点类型为set必填。</p>
         # @type SetId: String
+        # @param Shard: <p>MongoDB专用。分片标识（如&quot;shard01&quot;），仅NodeType=cluster时生效，用于区分分片集群中不同的mongod节点</p>
+        # @type Shard: String
 
-        attr_accessor :Role, :DbKernel, :Host, :Port, :User, :Password, :CvmInstanceId, :UniqVpnGwId, :UniqDcgId, :InstanceId, :CcnGwId, :VpcId, :SubnetId, :EngineVersion, :Account, :AccountRole, :AccountMode, :TmpSecretId, :TmpSecretKey, :TmpToken, :EncryptConn, :SetId
+        attr_accessor :Role, :DbKernel, :Host, :Port, :User, :Password, :CvmInstanceId, :UniqVpnGwId, :UniqDcgId, :InstanceId, :CcnGwId, :VpcId, :SubnetId, :EngineVersion, :Account, :AccountRole, :AccountMode, :TmpSecretId, :TmpSecretKey, :TmpToken, :EncryptConn, :SetId, :Shard
 
-        def initialize(role=nil, dbkernel=nil, host=nil, port=nil, user=nil, password=nil, cvminstanceid=nil, uniqvpngwid=nil, uniqdcgid=nil, instanceid=nil, ccngwid=nil, vpcid=nil, subnetid=nil, engineversion=nil, account=nil, accountrole=nil, accountmode=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, encryptconn=nil, setid=nil)
+        def initialize(role=nil, dbkernel=nil, host=nil, port=nil, user=nil, password=nil, cvminstanceid=nil, uniqvpngwid=nil, uniqdcgid=nil, instanceid=nil, ccngwid=nil, vpcid=nil, subnetid=nil, engineversion=nil, account=nil, accountrole=nil, accountmode=nil, tmpsecretid=nil, tmpsecretkey=nil, tmptoken=nil, encryptconn=nil, setid=nil, shard=nil)
           @Role = role
           @DbKernel = dbkernel
           @Host = host
@@ -1734,6 +1736,7 @@ module TencentCloud
           @TmpToken = tmptoken
           @EncryptConn = encryptconn
           @SetId = setid
+          @Shard = shard
         end
 
         def deserialize(params)
@@ -1759,6 +1762,7 @@ module TencentCloud
           @TmpToken = params['TmpToken']
           @EncryptConn = params['EncryptConn']
           @SetId = params['SetId']
+          @Shard = params['Shard']
         end
       end
 
@@ -5651,31 +5655,51 @@ module TencentCloud
         # @type DumpThread: Integer
         # @param DumpRps: <p>迁移全量导出的 Rps 限制、需要大于 0</p>
         # @type DumpRps: Integer
+        # @param DumpBps: <p>全量导出Bps，单位MB/s，MongoDB专用，上限80</p>
+        # @type DumpBps: Integer
         # @param LoadThread: <p>迁移任务全量导入线程数、有效值为 1-16</p>
         # @type LoadThread: Integer
         # @param SinkerThread: <p>迁移任务增量导入线程数、有效值为 1-128</p>
         # @type SinkerThread: Integer
         # @param LoadRps: <p>全量导入Rps限制</p>
         # @type LoadRps: Integer
+        # @param LoadBps: <p>导入BPS，单位MB/s。目前仅对redis生效，表示目标库单分片流量限制大小</p>
+        # @type LoadBps: Integer
+        # @param DstShardCount: <p>目标库分片数，目前仅对redis生效</p>
+        # @type DstShardCount: Integer
+        # @param SinkerRps: <p>增量导入Rps，MongoDB专用，上限30000</p>
+        # @type SinkerRps: Integer
+        # @param SinkerBps: <p>增量导入Bps，单位MB/s，MongoDB专用，上限120</p>
+        # @type SinkerBps: Integer
 
-        attr_accessor :JobId, :DumpThread, :DumpRps, :LoadThread, :SinkerThread, :LoadRps
+        attr_accessor :JobId, :DumpThread, :DumpRps, :DumpBps, :LoadThread, :SinkerThread, :LoadRps, :LoadBps, :DstShardCount, :SinkerRps, :SinkerBps
 
-        def initialize(jobid=nil, dumpthread=nil, dumprps=nil, loadthread=nil, sinkerthread=nil, loadrps=nil)
+        def initialize(jobid=nil, dumpthread=nil, dumprps=nil, dumpbps=nil, loadthread=nil, sinkerthread=nil, loadrps=nil, loadbps=nil, dstshardcount=nil, sinkerrps=nil, sinkerbps=nil)
           @JobId = jobid
           @DumpThread = dumpthread
           @DumpRps = dumprps
+          @DumpBps = dumpbps
           @LoadThread = loadthread
           @SinkerThread = sinkerthread
           @LoadRps = loadrps
+          @LoadBps = loadbps
+          @DstShardCount = dstshardcount
+          @SinkerRps = sinkerrps
+          @SinkerBps = sinkerbps
         end
 
         def deserialize(params)
           @JobId = params['JobId']
           @DumpThread = params['DumpThread']
           @DumpRps = params['DumpRps']
+          @DumpBps = params['DumpBps']
           @LoadThread = params['LoadThread']
           @SinkerThread = params['SinkerThread']
           @LoadRps = params['LoadRps']
+          @LoadBps = params['LoadBps']
+          @DstShardCount = params['DstShardCount']
+          @SinkerRps = params['SinkerRps']
+          @SinkerBps = params['SinkerBps']
         end
       end
 
@@ -6601,7 +6625,7 @@ module TencentCloud
       class RateLimit < TencentCloud::Common::AbstractModel
         # @param DumpThread: <p>全量导出线程数，如果不设置或设置为0则表示保持当前值，最大值为16</p>
         # @type DumpThread: Integer
-        # @param DumpRps: <p>全量导出Rps，如果不设置或设置为0则表示保持当前值，最大值为50000000</p>
+        # @param DumpRps: <p>全量导出Rps，如果不设置或设置为0则表示保持当前值，最大值为50000000。支持mysql系相关链路、mongodb链路。</p>
         # @type DumpRps: Integer
         # @param LoadThread: <p>全量导入线程数，如果不设置或设置为0则表示保持当前值，最大值为16</p>
         # @type LoadThread: Integer
@@ -6609,15 +6633,30 @@ module TencentCloud
         # @type LoadRps: Integer
         # @param SinkerThread: <p>增量导入线程数，如果不设置或设置为0则表示保持当前值，最大值为128</p>
         # @type SinkerThread: Integer
+        # @param LoadBps: <p>全量导入Bps（暂时只有redis产品生效），单位MB/s</p>
+        # @type LoadBps: Integer
+        # @param DstShardCount: <p>目标库分片数，目前暂时只有redis用</p>
+        # @type DstShardCount: Integer
+        # @param DumpBps: <p>全量导出Bps（pg链路及MongoDB链路使用。MongoDB上限80），单位MB/s</p>
+        # @type DumpBps: Integer
+        # @param SinkerRps: <p>增量导入RPS限制，MongoDB专用。上限30000</p>
+        # @type SinkerRps: Integer
+        # @param SinkerBps: <p>增量导入BPS限制，单位MB/s，MongoDB专用。上限120</p>
+        # @type SinkerBps: Integer
 
-        attr_accessor :DumpThread, :DumpRps, :LoadThread, :LoadRps, :SinkerThread
+        attr_accessor :DumpThread, :DumpRps, :LoadThread, :LoadRps, :SinkerThread, :LoadBps, :DstShardCount, :DumpBps, :SinkerRps, :SinkerBps
 
-        def initialize(dumpthread=nil, dumprps=nil, loadthread=nil, loadrps=nil, sinkerthread=nil)
+        def initialize(dumpthread=nil, dumprps=nil, loadthread=nil, loadrps=nil, sinkerthread=nil, loadbps=nil, dstshardcount=nil, dumpbps=nil, sinkerrps=nil, sinkerbps=nil)
           @DumpThread = dumpthread
           @DumpRps = dumprps
           @LoadThread = loadthread
           @LoadRps = loadrps
           @SinkerThread = sinkerthread
+          @LoadBps = loadbps
+          @DstShardCount = dstshardcount
+          @DumpBps = dumpbps
+          @SinkerRps = sinkerrps
+          @SinkerBps = sinkerbps
         end
 
         def deserialize(params)
@@ -6626,37 +6665,58 @@ module TencentCloud
           @LoadThread = params['LoadThread']
           @LoadRps = params['LoadRps']
           @SinkerThread = params['SinkerThread']
+          @LoadBps = params['LoadBps']
+          @DstShardCount = params['DstShardCount']
+          @DumpBps = params['DumpBps']
+          @SinkerRps = params['SinkerRps']
+          @SinkerBps = params['SinkerBps']
         end
       end
 
       # 迁移和同步任务限速的详细信息
       class RateLimitOption < TencentCloud::Common::AbstractModel
-        # @param CurrentDumpThread: 当前生效的全量导出线程数，配置任务时可调整该字段值，注意：如果不设置或设置为0则表示保持当前值，最大值为16
+        # @param CurrentDumpThread: <p>当前生效的全量导出线程数，配置任务时可调整该字段值，注意：如果不设置或设置为0则表示保持当前值，最大值为16</p>
         # @type CurrentDumpThread: Integer
-        # @param DefaultDumpThread: 默认的全量导出线程数，该字段仅在出参有意义
+        # @param DefaultDumpThread: <p>默认的全量导出线程数，该字段仅在出参有意义</p>
         # @type DefaultDumpThread: Integer
-        # @param CurrentDumpRps: 当前生效的全量导出Rps，配置任务时可调整该字段值，注意：如果不设置或设置为0则表示保持当前值，最大值为50000000
+        # @param CurrentDumpRps: <p>当前生效的全量导出Rps，配置任务时可调整该字段值，注意：如果不设置或设置为0则表示保持当前值，最大值为50000000</p>
         # @type CurrentDumpRps: Integer
-        # @param DefaultDumpRps: 默认的全量导出Rps，该字段仅在出参有意义
+        # @param DefaultDumpRps: <p>默认的全量导出Rps，该字段仅在出参有意义</p>
         # @type DefaultDumpRps: Integer
-        # @param CurrentLoadThread: 当前生效的全量导入线程数，配置任务时可调整该字段值，注意：如果不设置或设置为0则表示保持当前值，最大值为16
+        # @param CurrentLoadThread: <p>当前生效的全量导入线程数，配置任务时可调整该字段值，注意：如果不设置或设置为0则表示保持当前值，最大值为16</p>
         # @type CurrentLoadThread: Integer
-        # @param DefaultLoadThread: 默认的全量导入线程数，该字段仅在出参有意义
+        # @param DefaultLoadThread: <p>默认的全量导入线程数，该字段仅在出参有意义</p>
         # @type DefaultLoadThread: Integer
-        # @param CurrentLoadRps: 当前生效的全量导入Rps，配置任务时可调整该字段值，注意：如果不设置或设置为0则表示保持当前值，最大值为50000000
+        # @param CurrentLoadRps: <p>当前生效的全量导入Rps，配置任务时可调整该字段值，注意：如果不设置或设置为0则表示保持当前值，最大值为50000000</p>
         # @type CurrentLoadRps: Integer
-        # @param DefaultLoadRps: 默认的全量导入Rps，该字段仅在出参有意义
+        # @param DefaultLoadRps: <p>默认的全量导入Rps，该字段仅在出参有意义</p>
         # @type DefaultLoadRps: Integer
-        # @param CurrentSinkerThread: 当前生效的增量导入线程数，配置任务时可调整该字段值，注意：如果不设置或设置为0则表示保持当前值，最大值为128
+        # @param CurrentSinkerThread: <p>当前生效的增量导入线程数，配置任务时可调整该字段值，注意：如果不设置或设置为0则表示保持当前值，最大值为128</p>
         # @type CurrentSinkerThread: Integer
-        # @param DefaultSinkerThread: 默认的增量导入线程数，该字段仅在出参有意义
+        # @param DefaultSinkerThread: <p>默认的增量导入线程数，该字段仅在出参有意义</p>
         # @type DefaultSinkerThread: Integer
-        # @param HasUserSetRateLimit: enum:"no"/"yes"、no表示用户未设置过限速、yes表示设置过限速，该字段仅在出参有意义
+        # @param HasUserSetRateLimit: <p>enum:&quot;no&quot;/&quot;yes&quot;、no表示用户未设置过限速、yes表示设置过限速，该字段仅在出参有意义</p>
         # @type HasUserSetRateLimit: String
+        # @param DefaultDumpBps: <p>默认的全量导出BPS，目前仅支持mongodb链路，单位MB/s</p>
+        # @type DefaultDumpBps: Integer
+        # @param CurrentSinkerRps: <p>增量导入RPS，目前仅支持mongodb链路</p>
+        # @type CurrentSinkerRps: Integer
+        # @param DefaultSinkerRps: <p>默认的增量导入RPS，目前仅支持mongodb链路</p>
+        # @type DefaultSinkerRps: Integer
+        # @param CurrentLoadBps: <p>当前导入BPS，暂时只有redis在用，单位MB/s</p>
+        # @type CurrentLoadBps: Integer
+        # @param CurrentDstShardCount: <p>目标库分片数，暂时只有redis在用</p>
+        # @type CurrentDstShardCount: Integer
+        # @param CurrentDumpBps: <p>全量导出BPS，目前仅支持mongodb链路，单位MB/s</p>
+        # @type CurrentDumpBps: Integer
+        # @param CurrentSinkerBps: <p>增量导入BPS，目前仅支持mongodb链路，单位MB/s</p>
+        # @type CurrentSinkerBps: Integer
+        # @param DefaultSinkerBps: <p>默认的增量导入BPS，目前仅支持mongodb链路，单位MB/s</p>
+        # @type DefaultSinkerBps: Integer
 
-        attr_accessor :CurrentDumpThread, :DefaultDumpThread, :CurrentDumpRps, :DefaultDumpRps, :CurrentLoadThread, :DefaultLoadThread, :CurrentLoadRps, :DefaultLoadRps, :CurrentSinkerThread, :DefaultSinkerThread, :HasUserSetRateLimit
+        attr_accessor :CurrentDumpThread, :DefaultDumpThread, :CurrentDumpRps, :DefaultDumpRps, :CurrentLoadThread, :DefaultLoadThread, :CurrentLoadRps, :DefaultLoadRps, :CurrentSinkerThread, :DefaultSinkerThread, :HasUserSetRateLimit, :DefaultDumpBps, :CurrentSinkerRps, :DefaultSinkerRps, :CurrentLoadBps, :CurrentDstShardCount, :CurrentDumpBps, :CurrentSinkerBps, :DefaultSinkerBps
 
-        def initialize(currentdumpthread=nil, defaultdumpthread=nil, currentdumprps=nil, defaultdumprps=nil, currentloadthread=nil, defaultloadthread=nil, currentloadrps=nil, defaultloadrps=nil, currentsinkerthread=nil, defaultsinkerthread=nil, hasusersetratelimit=nil)
+        def initialize(currentdumpthread=nil, defaultdumpthread=nil, currentdumprps=nil, defaultdumprps=nil, currentloadthread=nil, defaultloadthread=nil, currentloadrps=nil, defaultloadrps=nil, currentsinkerthread=nil, defaultsinkerthread=nil, hasusersetratelimit=nil, defaultdumpbps=nil, currentsinkerrps=nil, defaultsinkerrps=nil, currentloadbps=nil, currentdstshardcount=nil, currentdumpbps=nil, currentsinkerbps=nil, defaultsinkerbps=nil)
           @CurrentDumpThread = currentdumpthread
           @DefaultDumpThread = defaultdumpthread
           @CurrentDumpRps = currentdumprps
@@ -6668,6 +6728,14 @@ module TencentCloud
           @CurrentSinkerThread = currentsinkerthread
           @DefaultSinkerThread = defaultsinkerthread
           @HasUserSetRateLimit = hasusersetratelimit
+          @DefaultDumpBps = defaultdumpbps
+          @CurrentSinkerRps = currentsinkerrps
+          @DefaultSinkerRps = defaultsinkerrps
+          @CurrentLoadBps = currentloadbps
+          @CurrentDstShardCount = currentdstshardcount
+          @CurrentDumpBps = currentdumpbps
+          @CurrentSinkerBps = currentsinkerbps
+          @DefaultSinkerBps = defaultsinkerbps
         end
 
         def deserialize(params)
@@ -6682,6 +6750,14 @@ module TencentCloud
           @CurrentSinkerThread = params['CurrentSinkerThread']
           @DefaultSinkerThread = params['DefaultSinkerThread']
           @HasUserSetRateLimit = params['HasUserSetRateLimit']
+          @DefaultDumpBps = params['DefaultDumpBps']
+          @CurrentSinkerRps = params['CurrentSinkerRps']
+          @DefaultSinkerRps = params['DefaultSinkerRps']
+          @CurrentLoadBps = params['CurrentLoadBps']
+          @CurrentDstShardCount = params['CurrentDstShardCount']
+          @CurrentDumpBps = params['CurrentDumpBps']
+          @CurrentSinkerBps = params['CurrentSinkerBps']
+          @DefaultSinkerBps = params['DefaultSinkerBps']
         end
       end
 

@@ -1679,6 +1679,102 @@ module TencentCloud
         end
       end
 
+      # DescribeTokenPlanPersonalPackage请求参数结构体
+      class DescribeTokenPlanPersonalPackageRequest < TencentCloud::Common::AbstractModel
+        # @param ProductType: <p>产品类型。取值：personal（个人版）、personal-hunyuan（个人版混元）。</p>
+        # @type ProductType: String
+
+        attr_accessor :ProductType
+
+        def initialize(producttype=nil)
+          @ProductType = producttype
+        end
+
+        def deserialize(params)
+          @ProductType = params['ProductType']
+        end
+      end
+
+      # DescribeTokenPlanPersonalPackage返回参数结构体
+      class DescribeTokenPlanPersonalPackageResponse < TencentCloud::Common::AbstractModel
+        # @param ProductType: <p>产品类型。</p>
+        # @type ProductType: String
+        # @param PackageStatus: <p>套餐状态。取值：active（生效中）、processing（处理中）、failed（创建失败）、isolated（隔离/欠费）、destroyed（已销毁）、used_up（额度用尽）、stopped（已停止）、unpurchased（未购买）。</p>
+        # @type PackageStatus: String
+        # @param ResourceId: <p>计费资源ID</p>
+        # @type ResourceId: String
+        # @param TotalCredits: <p>总额度。</p>
+        # @type TotalCredits: String
+        # @param TotalUsed: <p>已使用额度。</p>
+        # @type TotalUsed: String
+        # @param CycleCredits: <p>单周期额度。</p>
+        # @type CycleCredits: String
+        # @param TotalCycles: <p>总周期数。</p>
+        # @type TotalCycles: Integer
+        # @param CurrentCycle: <p>当前周期序号。</p>
+        # @type CurrentCycle: Integer
+        # @param RemainCycles: <p>剩余周期数。</p>
+        # @type RemainCycles: Integer
+        # @param StartTime: <p>套餐生效时间，ISO 8601 格式。</p>
+        # @type StartTime: String
+        # @param ExpireTime: <p>套餐过期时间，ISO 8601 格式。</p>
+        # @type ExpireTime: String
+        # @param PeriodEndDate: <p>当前周期到期日，ISO 8601 格式。</p>
+        # @type PeriodEndDate: String
+        # @param AutoRenewFlag: <p>自动续费标识。取值：0（未开启）、1（已开启）。</p>
+        # @type AutoRenewFlag: Integer
+        # @param OutputToken: <p>输出token数</p><p>单位：tokens</p>
+        # @type OutputToken: Integer
+        # @param InputToken: <p>输入token数</p><p>单位：token</p>
+        # @type InputToken: Integer
+        # @param CacheToken: <p>缓存命中token数</p><p>单位：token</p>
+        # @type CacheToken: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ProductType, :PackageStatus, :ResourceId, :TotalCredits, :TotalUsed, :CycleCredits, :TotalCycles, :CurrentCycle, :RemainCycles, :StartTime, :ExpireTime, :PeriodEndDate, :AutoRenewFlag, :OutputToken, :InputToken, :CacheToken, :RequestId
+
+        def initialize(producttype=nil, packagestatus=nil, resourceid=nil, totalcredits=nil, totalused=nil, cyclecredits=nil, totalcycles=nil, currentcycle=nil, remaincycles=nil, starttime=nil, expiretime=nil, periodenddate=nil, autorenewflag=nil, outputtoken=nil, inputtoken=nil, cachetoken=nil, requestid=nil)
+          @ProductType = producttype
+          @PackageStatus = packagestatus
+          @ResourceId = resourceid
+          @TotalCredits = totalcredits
+          @TotalUsed = totalused
+          @CycleCredits = cyclecredits
+          @TotalCycles = totalcycles
+          @CurrentCycle = currentcycle
+          @RemainCycles = remaincycles
+          @StartTime = starttime
+          @ExpireTime = expiretime
+          @PeriodEndDate = periodenddate
+          @AutoRenewFlag = autorenewflag
+          @OutputToken = outputtoken
+          @InputToken = inputtoken
+          @CacheToken = cachetoken
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ProductType = params['ProductType']
+          @PackageStatus = params['PackageStatus']
+          @ResourceId = params['ResourceId']
+          @TotalCredits = params['TotalCredits']
+          @TotalUsed = params['TotalUsed']
+          @CycleCredits = params['CycleCredits']
+          @TotalCycles = params['TotalCycles']
+          @CurrentCycle = params['CurrentCycle']
+          @RemainCycles = params['RemainCycles']
+          @StartTime = params['StartTime']
+          @ExpireTime = params['ExpireTime']
+          @PeriodEndDate = params['PeriodEndDate']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @OutputToken = params['OutputToken']
+          @InputToken = params['InputToken']
+          @CacheToken = params['CacheToken']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeTokenPlan请求参数结构体
       class DescribeTokenPlanRequest < TencentCloud::Common::AbstractModel
         # @param TeamId: 套餐 ID。可通过 DescribeTokenPlanList 接口获取。

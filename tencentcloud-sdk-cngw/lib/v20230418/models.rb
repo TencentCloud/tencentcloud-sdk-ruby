@@ -9530,13 +9530,20 @@ module TencentCloud
         # @type QueryStringParameters: Array
         # @param RouteSource: <p>路由来源</p>
         # @type RouteSource: String
+        # @param Tags: <p>用户绑定的业务标签（路由/服务标签分组能力，不含 Kong 内部 tag）。未绑定时字段为空数组或不返回。关联需求：路由/服务标签分组管理</p>
+        # @type Tags: Array
+        # @param Timeout: <p>超时时间，单位ms</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timeout: Integer
+        # @param TimeoutSource: <p>路由超时配置的来源。</p>
+        # @type TimeoutSource: String
 
-        attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters, :RouteSource
+        attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters, :RouteSource, :Tags, :Timeout, :TimeoutSource
         extend Gem::Deprecate
         deprecate :ForceHttps, :none, 2026, 11
         deprecate :ForceHttps=, :none, 2026, 11
 
-        def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil, routesource=nil)
+        def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil, routesource=nil, tags=nil, timeout=nil, timeoutsource=nil)
           @ID = id
           @Name = name
           @Methods = methods
@@ -9557,6 +9564,9 @@ module TencentCloud
           @RegexPriority = regexpriority
           @QueryStringParameters = querystringparameters
           @RouteSource = routesource
+          @Tags = tags
+          @Timeout = timeout
+          @TimeoutSource = timeoutsource
         end
 
         def deserialize(params)
@@ -9594,6 +9604,16 @@ module TencentCloud
             end
           end
           @RouteSource = params['RouteSource']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              kongusertagkv_tmp = KongUserTagKV.new
+              kongusertagkv_tmp.deserialize(i)
+              @Tags << kongusertagkv_tmp
+            end
+          end
+          @Timeout = params['Timeout']
+          @TimeoutSource = params['TimeoutSource']
         end
       end
 
@@ -9712,28 +9732,30 @@ module TencentCloud
 
       # Kong Upstream中的Target
       class KongTarget < TencentCloud::Common::AbstractModel
-        # @param Host: 目标主机地址
+        # @param Host: <p>目标主机地址</p>
         # @type Host: String
-        # @param Port: 端口
+        # @param Port: <p>端口</p>
         # @type Port: Integer
-        # @param Weight: 权重
+        # @param Weight: <p>权重</p>
         # @type Weight: Integer
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: <p>创建时间</p>
         # @type CreatedTime: String
-        # @param CvmInstanceId: CVM实例ID
+        # @param CvmInstanceId: <p>CVM实例ID</p>
         # @type CvmInstanceId: String
-        # @param CvmInstanceName: CVM实例名称
+        # @param CvmInstanceName: <p>CVM实例名称</p>
         # @type CvmInstanceName: String
-        # @param Health: 健康状态
+        # @param Health: <p>健康状态</p>
         # @type Health: String
-        # @param Source: Target的来源
+        # @param Id: <p>Target ID</p>
+        # @type Id: String
+        # @param Source: <p>Target的来源</p>
         # @type Source: String
-        # @param Tags: target标签
+        # @param Tags: <p>target标签</p>
         # @type Tags: Array
 
-        attr_accessor :Host, :Port, :Weight, :CreatedTime, :CvmInstanceId, :CvmInstanceName, :Health, :Source, :Tags
+        attr_accessor :Host, :Port, :Weight, :CreatedTime, :CvmInstanceId, :CvmInstanceName, :Health, :Id, :Source, :Tags
 
-        def initialize(host=nil, port=nil, weight=nil, createdtime=nil, cvminstanceid=nil, cvminstancename=nil, health=nil, source=nil, tags=nil)
+        def initialize(host=nil, port=nil, weight=nil, createdtime=nil, cvminstanceid=nil, cvminstancename=nil, health=nil, id=nil, source=nil, tags=nil)
           @Host = host
           @Port = port
           @Weight = weight
@@ -9741,6 +9763,7 @@ module TencentCloud
           @CvmInstanceId = cvminstanceid
           @CvmInstanceName = cvminstancename
           @Health = health
+          @Id = id
           @Source = source
           @Tags = tags
         end
@@ -9753,6 +9776,7 @@ module TencentCloud
           @CvmInstanceId = params['CvmInstanceId']
           @CvmInstanceName = params['CvmInstanceName']
           @Health = params['Health']
+          @Id = params['Id']
           @Source = params['Source']
           @Tags = params['Tags']
         end
@@ -9867,6 +9891,30 @@ module TencentCloud
               @Targets << kongtarget_tmp
             end
           end
+        end
+      end
+
+      # 用户业务标签的 KV 表示（路由/服务标签分组）
+      class KongUserTagKV < TencentCloud::Common::AbstractModel
+        # @param TagId: <p>标签 ID</p>
+        # @type TagId: Integer
+        # @param TagKey: <p>标签 Key</p>
+        # @type TagKey: String
+        # @param TagValue: <p>标签 Value</p>
+        # @type TagValue: String
+
+        attr_accessor :TagId, :TagKey, :TagValue
+
+        def initialize(tagid=nil, tagkey=nil, tagvalue=nil)
+          @TagId = tagid
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagId = params['TagId']
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

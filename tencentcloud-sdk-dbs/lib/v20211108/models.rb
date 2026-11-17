@@ -123,6 +123,91 @@ module TencentCloud
         end
       end
 
+      # 增量备份文件信息
+      class BackupFile < TencentCloud::Common::AbstractModel
+        # @param FileName: 文件名。
+        # @type FileName: String
+        # @param BackupSetId: 备份集 ID。
+        # @type BackupSetId: String
+        # @param Status: 文件状态。取值：
+        # - notReady：未就绪
+        # - backuping：备份中
+        # - finished：备份完成
+        # - failed：备份失败
+        # @type Status: String
+        # @param SourceInfo: 源库连接信息。云数据库实例为实例 ID，其余为 ip:port。
+        # @type SourceInfo: String
+        # @param StartTime: 开始时间。格式为 YYYY-MM-DD hh:mm:ss。
+        # @type StartTime: String
+        # @param EndTime: 结束时间。格式为 YYYY-MM-DD hh:mm:ss，备份集尚未结束时返回 0000-00-00 00:00:00。
+        # @type EndTime: String
+        # @param ExpireTime: 过期时间。格式为 YYYY-MM-DD hh:mm:ss。
+        # @type ExpireTime: String
+        # @param BackupSize: 文件大小，单位：字节。
+        # @type BackupSize: Integer
+        # @param BackupMethod: 备份方式。取值：logical（逻辑备份）。
+        # @type BackupMethod: String
+        # @param StorageType: 存储类型。取值：DBSStorage（内置存储）。
+        # @type StorageType: String
+        # @param RetentionType: 存储策略类型。取值：
+        # - standard：标准存储
+        # - tiered：分级存储
+        # @type RetentionType: String
+        # @param ResourceDetail: 备份集存储详情。
+        # @type ResourceDetail: :class:`Tencentcloud::Dbs.v20211108.models.ResourceDetail`
+        # @param BackupPool: 备份池。
+        # @type BackupPool: String
+        # @param AllowedActions: 当前状态下允许的操作。取值：download。
+        # @type AllowedActions: Array
+        # @param AllActions: 支持的全部操作。
+        # @type AllActions: Array
+        # @param LastModified: 文件最后修改时间。格式为 YYYY-MM-DD hh:mm:ss。
+        # @type LastModified: String
+
+        attr_accessor :FileName, :BackupSetId, :Status, :SourceInfo, :StartTime, :EndTime, :ExpireTime, :BackupSize, :BackupMethod, :StorageType, :RetentionType, :ResourceDetail, :BackupPool, :AllowedActions, :AllActions, :LastModified
+
+        def initialize(filename=nil, backupsetid=nil, status=nil, sourceinfo=nil, starttime=nil, endtime=nil, expiretime=nil, backupsize=nil, backupmethod=nil, storagetype=nil, retentiontype=nil, resourcedetail=nil, backuppool=nil, allowedactions=nil, allactions=nil, lastmodified=nil)
+          @FileName = filename
+          @BackupSetId = backupsetid
+          @Status = status
+          @SourceInfo = sourceinfo
+          @StartTime = starttime
+          @EndTime = endtime
+          @ExpireTime = expiretime
+          @BackupSize = backupsize
+          @BackupMethod = backupmethod
+          @StorageType = storagetype
+          @RetentionType = retentiontype
+          @ResourceDetail = resourcedetail
+          @BackupPool = backuppool
+          @AllowedActions = allowedactions
+          @AllActions = allactions
+          @LastModified = lastmodified
+        end
+
+        def deserialize(params)
+          @FileName = params['FileName']
+          @BackupSetId = params['BackupSetId']
+          @Status = params['Status']
+          @SourceInfo = params['SourceInfo']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ExpireTime = params['ExpireTime']
+          @BackupSize = params['BackupSize']
+          @BackupMethod = params['BackupMethod']
+          @StorageType = params['StorageType']
+          @RetentionType = params['RetentionType']
+          unless params['ResourceDetail'].nil?
+            @ResourceDetail = ResourceDetail.new
+            @ResourceDetail.deserialize(params['ResourceDetail'])
+          end
+          @BackupPool = params['BackupPool']
+          @AllowedActions = params['AllowedActions']
+          @AllActions = params['AllActions']
+          @LastModified = params['LastModified']
+        end
+      end
+
       # 备份对象
       class BackupObject < TencentCloud::Common::AbstractModel
         # @param ObjectMode: 备份对象类型，可能的取值为:
@@ -210,6 +295,28 @@ module TencentCloud
         # @param PeriodType: 全量备份频率。目前仅支持"Weekly" - 每星期
         # @type PeriodType: String
         # @param Day: 全量备份周期。取值范围为：["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]。
+        # @type Day: Array
+
+        attr_accessor :PeriodType, :Day
+
+        def initialize(periodtype=nil, day=nil)
+          @PeriodType = periodtype
+          @Day = day
+        end
+
+        def deserialize(params)
+          @PeriodType = params['PeriodType']
+          @Day = params['Day']
+        end
+      end
+
+      # 备份周期描述
+      class BackupPeriodItem < TencentCloud::Common::AbstractModel
+        # @param PeriodType: 全量备份频率。目前仅支持"Weekly" - 每星期
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PeriodType: String
+        # @param Day: 全量备份周期。取值范围为：["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"]。
+        # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Day: Array
 
         attr_accessor :PeriodType, :Day
@@ -338,6 +445,116 @@ module TencentCloud
         end
       end
 
+      # 备份计划付费信息
+      class BackupPlanPayInfo < TencentCloud::Common::AbstractModel
+        # @param InstanceClass: 实例规格。
+        # @type InstanceClass: String
+        # @param PayType: 付费方式。取值：
+        # - postPay：后付费
+        # - prePay：预付费
+        # @type PayType: String
+        # @param FreeSpace: 免费额度，单位：字节。取值为 -1 表示不限量。
+        # @type FreeSpace: Integer
+        # @param TotalChargeSpace: 本月计费空间，单位：字节。
+        # @type TotalChargeSpace: Integer
+        # @param FullChargeSpace: 全量计费空间，单位：字节。
+        # @type FullChargeSpace: Integer
+        # @param IncrementChargeSpace: 增量计费空间，单位：字节。
+        # @type IncrementChargeSpace: Integer
+        # @param FullBackupSetSize: 本月全量备份集大小，单位：字节。
+        # @type FullBackupSetSize: Integer
+        # @param IncrementBackupSetSize: 本月增量备份集大小，单位：字节。
+        # @type IncrementBackupSetSize: Integer
+        # @param CreateTime: 创建时间。格式为 YYYY-MM-DD HH:mm:ss，如 2024-01-01 00:00:00。
+        # @type CreateTime: String
+        # @param TimeRange: 统计周期，格式为“开始时间 - 结束时间”。
+        # @type TimeRange: String
+
+        attr_accessor :InstanceClass, :PayType, :FreeSpace, :TotalChargeSpace, :FullChargeSpace, :IncrementChargeSpace, :FullBackupSetSize, :IncrementBackupSetSize, :CreateTime, :TimeRange
+
+        def initialize(instanceclass=nil, paytype=nil, freespace=nil, totalchargespace=nil, fullchargespace=nil, incrementchargespace=nil, fullbackupsetsize=nil, incrementbackupsetsize=nil, createtime=nil, timerange=nil)
+          @InstanceClass = instanceclass
+          @PayType = paytype
+          @FreeSpace = freespace
+          @TotalChargeSpace = totalchargespace
+          @FullChargeSpace = fullchargespace
+          @IncrementChargeSpace = incrementchargespace
+          @FullBackupSetSize = fullbackupsetsize
+          @IncrementBackupSetSize = incrementbackupsetsize
+          @CreateTime = createtime
+          @TimeRange = timerange
+        end
+
+        def deserialize(params)
+          @InstanceClass = params['InstanceClass']
+          @PayType = params['PayType']
+          @FreeSpace = params['FreeSpace']
+          @TotalChargeSpace = params['TotalChargeSpace']
+          @FullChargeSpace = params['FullChargeSpace']
+          @IncrementChargeSpace = params['IncrementChargeSpace']
+          @FullBackupSetSize = params['FullBackupSetSize']
+          @IncrementBackupSetSize = params['IncrementBackupSetSize']
+          @CreateTime = params['CreateTime']
+          @TimeRange = params['TimeRange']
+        end
+      end
+
+      # 备份进度信息
+      class BackupProgress < TencentCloud::Common::AbstractModel
+        # @param FullBackupStatus: 全量备份状态。
+        # @type FullBackupStatus: String
+        # @param IncrementBackupStatus: 增量备份状态。
+        # @type IncrementBackupStatus: String
+        # @param LastBackupTime: 上次备份执行时间。格式为 YYYY-MM-DD HH:mm:ss，如 2024-01-01 00:00:00，尚未执行过备份时为空字符串。
+        # @type LastBackupTime: String
+        # @param NextBackupTime: 下次备份执行时间。格式为 YYYY-MM-DD HH:mm:ss，如 2024-01-01 00:00:00，尚未确定时为空字符串。
+        # @type NextBackupTime: String
+        # @param LastRestoreTime: 上次恢复时间。格式为 YYYY-MM-DD HH:mm:ss，如 2024-01-01 00:00:00，尚未执行过恢复时为空字符串。
+        # @type LastRestoreTime: String
+        # @param LastRestoreStatus: 上次恢复任务状态。
+        # @type LastRestoreStatus: String
+        # @param CurrentBackupJobStatus: 当前备份作业状态。
+        # @type CurrentBackupJobStatus: String
+
+        attr_accessor :FullBackupStatus, :IncrementBackupStatus, :LastBackupTime, :NextBackupTime, :LastRestoreTime, :LastRestoreStatus, :CurrentBackupJobStatus
+
+        def initialize(fullbackupstatus=nil, incrementbackupstatus=nil, lastbackuptime=nil, nextbackuptime=nil, lastrestoretime=nil, lastrestorestatus=nil, currentbackupjobstatus=nil)
+          @FullBackupStatus = fullbackupstatus
+          @IncrementBackupStatus = incrementbackupstatus
+          @LastBackupTime = lastbackuptime
+          @NextBackupTime = nextbackuptime
+          @LastRestoreTime = lastrestoretime
+          @LastRestoreStatus = lastrestorestatus
+          @CurrentBackupJobStatus = currentbackupjobstatus
+        end
+
+        def deserialize(params)
+          @FullBackupStatus = params['FullBackupStatus']
+          @IncrementBackupStatus = params['IncrementBackupStatus']
+          @LastBackupTime = params['LastBackupTime']
+          @NextBackupTime = params['NextBackupTime']
+          @LastRestoreTime = params['LastRestoreTime']
+          @LastRestoreStatus = params['LastRestoreStatus']
+          @CurrentBackupJobStatus = params['CurrentBackupJobStatus']
+        end
+      end
+
+      # 备份集加密信息
+      class BackupSetOption < TencentCloud::Common::AbstractModel
+        # @param Encryption: <p>存储加密方式。取值：<br>&quot;UnEncrypted&quot; - 非加密存储;<br>&quot;SSE-COS&quot; - 内置加密存储;<br>&quot;SSE-KMS&quot; - KMS 加密存储。</p>
+        # @type Encryption: String
+
+        attr_accessor :Encryption
+
+        def initialize(encryption=nil)
+          @Encryption = encryption
+        end
+
+        def deserialize(params)
+          @Encryption = params['Encryption']
+        end
+      end
+
       # 备份策略
       class BackupStrategy < TencentCloud::Common::AbstractModel
         # @param BackupStartTime: 全量备份开始时间。周期性的全量备份将在当天该时间开始。
@@ -375,6 +592,56 @@ module TencentCloud
           end
           unless params['BackupPeriod'].nil?
             @BackupPeriod = BackupPeriod.new
+            @BackupPeriod.deserialize(params['BackupPeriod'])
+          end
+          @BackupMethod = params['BackupMethod']
+          @StrategyType = params['StrategyType']
+          @EnableIncrement = params['EnableIncrement']
+        end
+      end
+
+      # 备份策略
+      class BackupStrategyItem < TencentCloud::Common::AbstractModel
+        # @param BackupStartTime: 全量备份开始时间。周期性的全量备份将在当天该时间开始，格式：HH:mm（24 小时制），如 02:00。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupStartTime: String
+        # @param StorageStrategy: 存储策略。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageStrategy: :class:`Tencentcloud::Dbs.v20211108.models.StorageStrategyItem`
+        # @param BackupPeriod: 备份周期。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupPeriod: :class:`Tencentcloud::Dbs.v20211108.models.BackupPeriodItem`
+        # @param BackupMethod: 备份方法。目前仅支持 "logical" - 逻辑备份。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupMethod: String
+        # @param StrategyType: 备份周期。支持的值包括：
+        # "period" - 周期性备份；
+        # "single" - 单次备份。
+        # 默认值为"period"。
+        # @type StrategyType: String
+        # @param EnableIncrement: 是否开启增量备份。可能的取值为["true", "false"]。默认值为"true"。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EnableIncrement: Boolean
+
+        attr_accessor :BackupStartTime, :StorageStrategy, :BackupPeriod, :BackupMethod, :StrategyType, :EnableIncrement
+
+        def initialize(backupstarttime=nil, storagestrategy=nil, backupperiod=nil, backupmethod=nil, strategytype=nil, enableincrement=nil)
+          @BackupStartTime = backupstarttime
+          @StorageStrategy = storagestrategy
+          @BackupPeriod = backupperiod
+          @BackupMethod = backupmethod
+          @StrategyType = strategytype
+          @EnableIncrement = enableincrement
+        end
+
+        def deserialize(params)
+          @BackupStartTime = params['BackupStartTime']
+          unless params['StorageStrategy'].nil?
+            @StorageStrategy = StorageStrategyItem.new
+            @StorageStrategy.deserialize(params['StorageStrategy'])
+          end
+          unless params['BackupPeriod'].nil?
+            @BackupPeriod = BackupPeriodItem.new
             @BackupPeriod.deserialize(params['BackupPeriod'])
           end
           @BackupMethod = params['BackupMethod']
@@ -638,6 +905,38 @@ module TencentCloud
         end
       end
 
+      # DeleteBackupPlan请求参数结构体
+      class DeleteBackupPlanRequest < TencentCloud::Common::AbstractModel
+        # @param BackupPlanId: 备份计划 ID。可通过 DescribeBackupPlans 接口获取。
+        # @type BackupPlanId: String
+
+        attr_accessor :BackupPlanId
+
+        def initialize(backupplanid=nil)
+          @BackupPlanId = backupplanid
+        end
+
+        def deserialize(params)
+          @BackupPlanId = params['BackupPlanId']
+        end
+      end
+
+      # DeleteBackupPlan返回参数结构体
+      class DeleteBackupPlanResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeBackupCheckJob请求参数结构体
       class DescribeBackupCheckJobRequest < TencentCloud::Common::AbstractModel
         # @param BackupPlanId: 备份计划 ID。
@@ -682,6 +981,182 @@ module TencentCloud
           @Progress = params['Progress']
           @CheckFlag = params['CheckFlag']
           @ErrMessage = params['ErrMessage']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeBackupPlanDetail请求参数结构体
+      class DescribeBackupPlanDetailRequest < TencentCloud::Common::AbstractModel
+        # @param BackupPlanId: <p>备份计划 ID。可通过 DescribeBackupPlans 接口获取。</p>
+        # @type BackupPlanId: String
+
+        attr_accessor :BackupPlanId
+
+        def initialize(backupplanid=nil)
+          @BackupPlanId = backupplanid
+        end
+
+        def deserialize(params)
+          @BackupPlanId = params['BackupPlanId']
+        end
+      end
+
+      # DescribeBackupPlanDetail返回参数结构体
+      class DescribeBackupPlanDetailResponse < TencentCloud::Common::AbstractModel
+        # @param Region: <p>地域。</p>
+        # @type Region: String
+        # @param BackupPlanId: <p>备份计划 ID。</p>
+        # @type BackupPlanId: String
+        # @param BackupPlanName: <p>备份计划名称。</p>
+        # @type BackupPlanName: String
+        # @param Status: <p>备份计划状态。取值：</p><ul><li>creating：创建中</li><li>notStarted：未启动</li><li>notConfigured：未配置</li><li>checkNotPass：校验未通过</li><li>checkPass：校验通过</li><li>checking：校验中</li><li>readyRun：待运行</li><li>running：运行中</li><li>fullBacking：全量备份中</li><li>paused：已暂停</li><li>isolating：隔离中</li><li>isolated：已隔离</li><li>offlining：下线中</li><li>offlined：已下线</li><li>completed：已完成</li></ul>
+        # @type Status: String
+        # @param SourceEndPoint: <p>源库连接信息列表。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SourceEndPoint: Array
+        # @param BackupObject: <p>备份对象信息。</p>
+        # @type BackupObject: :class:`Tencentcloud::Dbs.v20211108.models.BackupObject`
+        # @param BackupStrategy: <p>备份策略。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupStrategy: :class:`Tencentcloud::Dbs.v20211108.models.BackupStrategyItem`
+        # @param Progress: <p>备份进度信息。</p>
+        # @type Progress: :class:`Tencentcloud::Dbs.v20211108.models.BackupProgress`
+        # @param ErrorInfo: <p>错误异常信息。</p>
+        # @type ErrorInfo: :class:`Tencentcloud::Dbs.v20211108.models.ErrorInfo`
+        # @param CreateTime: <p>创建时间。格式为 YYYY-MM-DD HH:mm:ss，如 2024-01-01 00:00:00。</p>
+        # @type CreateTime: String
+        # @param ExpireTime: <p>到期时间。格式为 YYYY-MM-DD HH:mm:ss，如 2024-01-01 00:00:00，后付费计划无到期时间时为空字符串。</p>
+        # @type ExpireTime: String
+        # @param OfflineTime: <p>下线时间。格式为 YYYY-MM-DD HH:mm:ss，如 2024-01-01 00:00:00，尚未下线时为空字符串。</p>
+        # @type OfflineTime: String
+        # @param AutoRenewFlag: <p>自动续费标识。取值：</p><ul><li>0：不自动续费</li><li>1：自动续费</li></ul>
+        # @type AutoRenewFlag: Integer
+        # @param SourceInfo: <p>主节点连接信息。云数据库实例为实例 ID，云服务器自建为实例 ID:端口，其余为 ip:port。</p>
+        # @type SourceInfo: Array
+        # @param SetSourceInfo: <p>从节点连接信息，格式同 SourceInfo。</p>
+        # @type SetSourceInfo: Array
+        # @param Tags: <p>标签信息列表。未绑定标签时返回 null。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tags: Array
+        # @param LastBackupJobTime: <p>上次备份作业时间。格式为 YYYY-MM-DD HH:mm:ss，如 2024-01-01 00:00:00，尚未执行过备份作业时为空字符串。</p>
+        # @type LastBackupJobTime: String
+        # @param LastFullBackupJobStatus: <p>上次全量备份作业状态。</p>
+        # @type LastFullBackupJobStatus: String
+        # @param LastIncBackupJobStatus: <p>上次增量备份作业状态。</p>
+        # @type LastIncBackupJobStatus: String
+        # @param NextBackupJobTime: <p>下次备份作业时间。格式为 YYYY-MM-DD HH:mm:ss，如 2024-01-01 00:00:00，尚未确定时为空字符串。</p>
+        # @type NextBackupJobTime: String
+        # @param LastRestoreJobTime: <p>上次恢复作业时间。格式为 YYYY-MM-DD HH:mm:ss，如 2024-01-01 00:00:00，尚未执行过恢复作业时为空字符串。</p>
+        # @type LastRestoreJobTime: String
+        # @param LastRestoreJobStatus: <p>上次恢复作业状态。</p>
+        # @type LastRestoreJobStatus: String
+        # @param PayInfo: <p>付费信息。</p>
+        # @type PayInfo: :class:`Tencentcloud::Dbs.v20211108.models.BackupPlanPayInfo`
+        # @param UpperParallel: <p>全量备份并行数上限。</p>
+        # @type UpperParallel: Integer
+        # @param UpperBandwidth: <p>带宽上限，单位：MB/s。</p>
+        # @type UpperBandwidth: Integer
+        # @param AllowedActions: <p>当前状态下允许的操作。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AllowedActions: Array
+        # @param RestoreRange: <p>可恢复时间范围。</p>
+        # @type RestoreRange: :class:`Tencentcloud::Dbs.v20211108.models.RestoreRange`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Region, :BackupPlanId, :BackupPlanName, :Status, :SourceEndPoint, :BackupObject, :BackupStrategy, :Progress, :ErrorInfo, :CreateTime, :ExpireTime, :OfflineTime, :AutoRenewFlag, :SourceInfo, :SetSourceInfo, :Tags, :LastBackupJobTime, :LastFullBackupJobStatus, :LastIncBackupJobStatus, :NextBackupJobTime, :LastRestoreJobTime, :LastRestoreJobStatus, :PayInfo, :UpperParallel, :UpperBandwidth, :AllowedActions, :RestoreRange, :RequestId
+
+        def initialize(region=nil, backupplanid=nil, backupplanname=nil, status=nil, sourceendpoint=nil, backupobject=nil, backupstrategy=nil, progress=nil, errorinfo=nil, createtime=nil, expiretime=nil, offlinetime=nil, autorenewflag=nil, sourceinfo=nil, setsourceinfo=nil, tags=nil, lastbackupjobtime=nil, lastfullbackupjobstatus=nil, lastincbackupjobstatus=nil, nextbackupjobtime=nil, lastrestorejobtime=nil, lastrestorejobstatus=nil, payinfo=nil, upperparallel=nil, upperbandwidth=nil, allowedactions=nil, restorerange=nil, requestid=nil)
+          @Region = region
+          @BackupPlanId = backupplanid
+          @BackupPlanName = backupplanname
+          @Status = status
+          @SourceEndPoint = sourceendpoint
+          @BackupObject = backupobject
+          @BackupStrategy = backupstrategy
+          @Progress = progress
+          @ErrorInfo = errorinfo
+          @CreateTime = createtime
+          @ExpireTime = expiretime
+          @OfflineTime = offlinetime
+          @AutoRenewFlag = autorenewflag
+          @SourceInfo = sourceinfo
+          @SetSourceInfo = setsourceinfo
+          @Tags = tags
+          @LastBackupJobTime = lastbackupjobtime
+          @LastFullBackupJobStatus = lastfullbackupjobstatus
+          @LastIncBackupJobStatus = lastincbackupjobstatus
+          @NextBackupJobTime = nextbackupjobtime
+          @LastRestoreJobTime = lastrestorejobtime
+          @LastRestoreJobStatus = lastrestorejobstatus
+          @PayInfo = payinfo
+          @UpperParallel = upperparallel
+          @UpperBandwidth = upperbandwidth
+          @AllowedActions = allowedactions
+          @RestoreRange = restorerange
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Region = params['Region']
+          @BackupPlanId = params['BackupPlanId']
+          @BackupPlanName = params['BackupPlanName']
+          @Status = params['Status']
+          unless params['SourceEndPoint'].nil?
+            @SourceEndPoint = []
+            params['SourceEndPoint'].each do |i|
+              endpoint_tmp = Endpoint.new
+              endpoint_tmp.deserialize(i)
+              @SourceEndPoint << endpoint_tmp
+            end
+          end
+          unless params['BackupObject'].nil?
+            @BackupObject = BackupObject.new
+            @BackupObject.deserialize(params['BackupObject'])
+          end
+          unless params['BackupStrategy'].nil?
+            @BackupStrategy = BackupStrategyItem.new
+            @BackupStrategy.deserialize(params['BackupStrategy'])
+          end
+          unless params['Progress'].nil?
+            @Progress = BackupProgress.new
+            @Progress.deserialize(params['Progress'])
+          end
+          unless params['ErrorInfo'].nil?
+            @ErrorInfo = ErrorInfo.new
+            @ErrorInfo.deserialize(params['ErrorInfo'])
+          end
+          @CreateTime = params['CreateTime']
+          @ExpireTime = params['ExpireTime']
+          @OfflineTime = params['OfflineTime']
+          @AutoRenewFlag = params['AutoRenewFlag']
+          @SourceInfo = params['SourceInfo']
+          @SetSourceInfo = params['SetSourceInfo']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              taginfo_tmp = TagInfo.new
+              taginfo_tmp.deserialize(i)
+              @Tags << taginfo_tmp
+            end
+          end
+          @LastBackupJobTime = params['LastBackupJobTime']
+          @LastFullBackupJobStatus = params['LastFullBackupJobStatus']
+          @LastIncBackupJobStatus = params['LastIncBackupJobStatus']
+          @NextBackupJobTime = params['NextBackupJobTime']
+          @LastRestoreJobTime = params['LastRestoreJobTime']
+          @LastRestoreJobStatus = params['LastRestoreJobStatus']
+          unless params['PayInfo'].nil?
+            @PayInfo = BackupPlanPayInfo.new
+            @PayInfo.deserialize(params['PayInfo'])
+          end
+          @UpperParallel = params['UpperParallel']
+          @UpperBandwidth = params['UpperBandwidth']
+          @AllowedActions = params['AllowedActions']
+          unless params['RestoreRange'].nil?
+            @RestoreRange = RestoreRange.new
+            @RestoreRange.deserialize(params['RestoreRange'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -815,6 +1290,662 @@ module TencentCloud
         end
       end
 
+      # DescribeFullBackupSetDetail请求参数结构体
+      class DescribeFullBackupSetDetailRequest < TencentCloud::Common::AbstractModel
+        # @param BackupSetId: <p>全量备份集 ID。可通过 DescribeFullBackupSets 接口获取。</p>
+        # @type BackupSetId: String
+
+        attr_accessor :BackupSetId
+
+        def initialize(backupsetid=nil)
+          @BackupSetId = backupsetid
+        end
+
+        def deserialize(params)
+          @BackupSetId = params['BackupSetId']
+        end
+      end
+
+      # DescribeFullBackupSetDetail返回参数结构体
+      class DescribeFullBackupSetDetailResponse < TencentCloud::Common::AbstractModel
+        # @param BackupSet: <p>全量备份集详情。</p>
+        # @type BackupSet: :class:`Tencentcloud::Dbs.v20211108.models.FullBackupSetDetail`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :BackupSet, :RequestId
+
+        def initialize(backupset=nil, requestid=nil)
+          @BackupSet = backupset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['BackupSet'].nil?
+            @BackupSet = FullBackupSetDetail.new
+            @BackupSet.deserialize(params['BackupSet'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIncrementBackupSetFiles请求参数结构体
+      class DescribeIncrementBackupSetFilesRequest < TencentCloud::Common::AbstractModel
+        # @param BackupSetId: 增量备份集 ID。可通过 DescribeIncrementBackupSets 接口获取。
+        # @type BackupSetId: String
+        # @param Offset: 偏移量，默认为 0。
+        # @type Offset: Integer
+        # @param Limit: 返回数量，默认为 10。
+        # @type Limit: Integer
+
+        attr_accessor :BackupSetId, :Offset, :Limit
+
+        def initialize(backupsetid=nil, offset=nil, limit=nil)
+          @BackupSetId = backupsetid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @BackupSetId = params['BackupSetId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeIncrementBackupSetFiles返回参数结构体
+      class DescribeIncrementBackupSetFilesResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 文件总数。
+        # @type TotalCount: Integer
+        # @param BackupFiles: 增量备份文件列表。
+        # @type BackupFiles: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :BackupFiles, :RequestId
+
+        def initialize(totalcount=nil, backupfiles=nil, requestid=nil)
+          @TotalCount = totalcount
+          @BackupFiles = backupfiles
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['BackupFiles'].nil?
+            @BackupFiles = []
+            params['BackupFiles'].each do |i|
+              backupfile_tmp = BackupFile.new
+              backupfile_tmp.deserialize(i)
+              @BackupFiles << backupfile_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeIncrementBackupSets请求参数结构体
+      class DescribeIncrementBackupSetsRequest < TencentCloud::Common::AbstractModel
+        # @param BackupPlanId: 备份计划 ID。
+        # @type BackupPlanId: String
+        # @param BackupSetId: 过滤条件，备份集 ID。
+        # @type BackupSetId: String
+        # @param Limit: 分页参数。取值范围为(0, 100]，默认值为20。
+        # @type Limit: Integer
+        # @param Offset: 分页参数。默认值为0。
+        # @type Offset: Integer
+
+        attr_accessor :BackupPlanId, :BackupSetId, :Limit, :Offset
+
+        def initialize(backupplanid=nil, backupsetid=nil, limit=nil, offset=nil)
+          @BackupPlanId = backupplanid
+          @BackupSetId = backupsetid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @BackupPlanId = params['BackupPlanId']
+          @BackupSetId = params['BackupSetId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeIncrementBackupSets返回参数结构体
+      class DescribeIncrementBackupSetsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 增量备份集数量。
+        # @type TotalCount: Integer
+        # @param Items: 增量备份集信息。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              incrementbackup_tmp = IncrementBackup.new
+              incrementbackup_tmp.deserialize(i)
+              @Items << incrementbackup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DestroyBackupPlanByUser请求参数结构体
+      class DestroyBackupPlanByUserRequest < TencentCloud::Common::AbstractModel
+        # @param BackupPlanId: 备份计划 ID。可通过 DescribeBackupPlans 接口获取。
+        # @type BackupPlanId: String
+
+        attr_accessor :BackupPlanId
+
+        def initialize(backupplanid=nil)
+          @BackupPlanId = backupplanid
+        end
+
+        def deserialize(params)
+          @BackupPlanId = params['BackupPlanId']
+        end
+      end
+
+      # DestroyBackupPlanByUser返回参数结构体
+      class DestroyBackupPlanByUserResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 备份源实例详情
+      class Endpoint < TencentCloud::Common::AbstractModel
+        # @param Role: 节点角色。取值：
+        # "master" - 主节点;
+        # "slave" - 从节点。
+        # @type Role: String
+        # @param DatabaseType: 数据库类型。目前支持的值["mysql", "mariadb", "percona"]。注意，该值必须和备份计划的类型一致。
+        # @type DatabaseType: String
+        # @param AccessType: 实例接入类型，支持的值包括：
+        # "extranet" - 外网;
+        # "cvm" - cvm自建实例;
+        # "dcg" - 专线接入;
+        # "vpncloud" - 云vpn接入;
+        # "cdb" - 腾讯云数据库实例;
+        # "ccn" - 云联网接入。
+        # @type AccessType: String
+        # @param Ip: 实例 Ip。
+        # @type Ip: String
+        # @param Port: 实例端口号。
+        # @type Port: Integer
+        # @param UserName: 用户名。
+        # @type UserName: String
+        # @param Password: 登录密码。
+        # @type Password: String
+        # @param InstanceId: 云数据库实例ID，格式如：cdb-qcloudtest。
+        # @type InstanceId: String
+        # @param CvmInstanceId: CVM 实例ID，格式如：ins-olgl39y8，与云服务器控制台页面显示的实例ID相同。如果是CVM自建实例，需要填写该字段。
+        # @type CvmInstanceId: String
+        # @param UniqDcgId: 专线网关ID，格式如：dcg-0rxtqqxb。
+        # @type UniqDcgId: String
+        # @param UniqVpnGwId: VPN网关ID，格式如：vpngw-9ghexg7q。
+        # @type UniqVpnGwId: String
+        # @param VpcId: 私有网络ID，格式如：vpc-92jblxto。
+        # @type VpcId: String
+        # @param SubnetId: 子网ID，格式如：subnet-3paxmkdz。
+        # @type SubnetId: String
+        # @param CcnId: 云联网ID，如：ccn-afp6kltc。
+        # @type CcnId: String
+        # @param Region: 接入地域。
+        # @type Region: String
+        # @param Supplier: 服务提供商，支持的值包括["aliyun", "aws", "others"]。
+        # @type Supplier: String
+        # @param EngineVersion: 数据库版本，当实例为 RDS 或 AWS 实例时才有效，格式如：5.6或者5.7，默认为5.6。
+        # @type EngineVersion: String
+        # @param DBKernel: mariadb三引擎版本。
+        # @type DBKernel: String
+
+        attr_accessor :Role, :DatabaseType, :AccessType, :Ip, :Port, :UserName, :Password, :InstanceId, :CvmInstanceId, :UniqDcgId, :UniqVpnGwId, :VpcId, :SubnetId, :CcnId, :Region, :Supplier, :EngineVersion, :DBKernel
+
+        def initialize(role=nil, databasetype=nil, accesstype=nil, ip=nil, port=nil, username=nil, password=nil, instanceid=nil, cvminstanceid=nil, uniqdcgid=nil, uniqvpngwid=nil, vpcid=nil, subnetid=nil, ccnid=nil, region=nil, supplier=nil, engineversion=nil, dbkernel=nil)
+          @Role = role
+          @DatabaseType = databasetype
+          @AccessType = accesstype
+          @Ip = ip
+          @Port = port
+          @UserName = username
+          @Password = password
+          @InstanceId = instanceid
+          @CvmInstanceId = cvminstanceid
+          @UniqDcgId = uniqdcgid
+          @UniqVpnGwId = uniqvpngwid
+          @VpcId = vpcid
+          @SubnetId = subnetid
+          @CcnId = ccnid
+          @Region = region
+          @Supplier = supplier
+          @EngineVersion = engineversion
+          @DBKernel = dbkernel
+        end
+
+        def deserialize(params)
+          @Role = params['Role']
+          @DatabaseType = params['DatabaseType']
+          @AccessType = params['AccessType']
+          @Ip = params['Ip']
+          @Port = params['Port']
+          @UserName = params['UserName']
+          @Password = params['Password']
+          @InstanceId = params['InstanceId']
+          @CvmInstanceId = params['CvmInstanceId']
+          @UniqDcgId = params['UniqDcgId']
+          @UniqVpnGwId = params['UniqVpnGwId']
+          @VpcId = params['VpcId']
+          @SubnetId = params['SubnetId']
+          @CcnId = params['CcnId']
+          @Region = params['Region']
+          @Supplier = params['Supplier']
+          @EngineVersion = params['EngineVersion']
+          @DBKernel = params['DBKernel']
+        end
+      end
+
+      # 错误异常信息
+      class ErrorInfo < TencentCloud::Common::AbstractModel
+        # @param ErrorType: 错误类型。
+        # @type ErrorType: String
+        # @param ErrorMsg: 错误信息。
+        # @type ErrorMsg: String
+
+        attr_accessor :ErrorType, :ErrorMsg
+
+        def initialize(errortype=nil, errormsg=nil)
+          @ErrorType = errortype
+          @ErrorMsg = errormsg
+        end
+
+        def deserialize(params)
+          @ErrorType = params['ErrorType']
+          @ErrorMsg = params['ErrorMsg']
+        end
+      end
+
+      # 全量备份错误信息
+      class FullBackupErrorMessage < TencentCloud::Common::AbstractModel
+        # @param Title: 错误标题。
+        # @type Title: String
+        # @param Message: 错误详情。
+        # @type Message: String
+
+        attr_accessor :Title, :Message
+
+        def initialize(title=nil, message=nil)
+          @Title = title
+          @Message = message
+        end
+
+        def deserialize(params)
+          @Title = params['Title']
+          @Message = params['Message']
+        end
+      end
+
+      # 全量备份进度
+      class FullBackupProgress < TencentCloud::Common::AbstractModel
+        # @param SchemaProgress: 结构备份进度，取值范围为 0 - 100，单位：百分比。
+        # @type SchemaProgress: Integer
+        # @param DataProgress: 数据备份进度，取值范围为 0 - 100，单位：百分比。
+        # @type DataProgress: Integer
+
+        attr_accessor :SchemaProgress, :DataProgress
+
+        def initialize(schemaprogress=nil, dataprogress=nil)
+          @SchemaProgress = schemaprogress
+          @DataProgress = dataprogress
+        end
+
+        def deserialize(params)
+          @SchemaProgress = params['SchemaProgress']
+          @DataProgress = params['DataProgress']
+        end
+      end
+
+      # 全量备份集详情
+      class FullBackupSetDetail < TencentCloud::Common::AbstractModel
+        # @param BackupSetId: <p>备份集 ID。</p>
+        # @type BackupSetId: String
+        # @param SourceInfo: <p>源实例信息。</p>
+        # @type SourceInfo: String
+        # @param Status: <p>备份集状态。可能的取值为："running" - 运行中;"finished" - 已完成;"failed" - 已失败;"stopped" - 已终止。</p>
+        # @type Status: String
+        # @param StartTime: <p>创建时间。格式为 YYYY-MM-DD hh:mm:ss。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>结束时间。格式为 YYYY-MM-DD hh:mm:ss，备份集尚未结束时返回 0000-00-00 00:00:00。</p>
+        # @type EndTime: String
+        # @param ExpireTime: <p>过期时间。格式为 YYYY-MM-DD hh:mm:ss。</p>
+        # @type ExpireTime: String
+        # @param BackupSize: <p>备份集大小，单位为 Bytes。</p>
+        # @type BackupSize: Integer
+        # @param BackupMethod: <p>备份方式。可能的取值为："logical" - 逻辑备份；"physical" - 物理备份。</p>
+        # @type BackupMethod: String
+        # @param StorageType: <p>存储类型。目前仅支持 "DBSStorage"，即 DBS 内置存储。</p>
+        # @type StorageType: String
+        # @param BackupPool: <p>备份池类型。目前仅支持 "DefaultPool"，即默认存储池。</p>
+        # @type BackupPool: String
+        # @param RetentionType: <p>备份集存储类型。支持的取值范围为："standard" - 标准存储；"tiered" - 分级存储。</p>
+        # @type RetentionType: String
+        # @param ResourceDetail: <p>备份集存储状态详情。</p>
+        # @type ResourceDetail: :class:`Tencentcloud::Dbs.v20211108.models.ResourceDetail`
+        # @param SourceEndpoint: 备份源实例信息。
+        # @type SourceEndpoint: :class:`Tencentcloud::Dbs.v20211108.models.Endpoint`
+        # @param BackupObject: 备份对象。
+        # @type BackupObject: :class:`Tencentcloud::Dbs.v20211108.models.BackupObject`
+        # @param Progress: 备份进度。
+        # @type Progress: :class:`Tencentcloud::Dbs.v20211108.models.FullBackupProgress`
+        # @param ErrorMessage: 备份错误信息。备份失败时有值。
+        # @type ErrorMessage: :class:`Tencentcloud::Dbs.v20211108.models.FullBackupErrorMessage`
+        # @param BackupSetOption: 备份集加密信息。
+        # @type BackupSetOption: :class:`Tencentcloud::Dbs.v20211108.models.BackupSetOption`
+
+        attr_accessor :BackupSetId, :SourceInfo, :Status, :StartTime, :EndTime, :ExpireTime, :BackupSize, :BackupMethod, :StorageType, :BackupPool, :RetentionType, :ResourceDetail, :SourceEndpoint, :BackupObject, :Progress, :ErrorMessage, :BackupSetOption
+
+        def initialize(backupsetid=nil, sourceinfo=nil, status=nil, starttime=nil, endtime=nil, expiretime=nil, backupsize=nil, backupmethod=nil, storagetype=nil, backuppool=nil, retentiontype=nil, resourcedetail=nil, sourceendpoint=nil, backupobject=nil, progress=nil, errormessage=nil, backupsetoption=nil)
+          @BackupSetId = backupsetid
+          @SourceInfo = sourceinfo
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+          @ExpireTime = expiretime
+          @BackupSize = backupsize
+          @BackupMethod = backupmethod
+          @StorageType = storagetype
+          @BackupPool = backuppool
+          @RetentionType = retentiontype
+          @ResourceDetail = resourcedetail
+          @SourceEndpoint = sourceendpoint
+          @BackupObject = backupobject
+          @Progress = progress
+          @ErrorMessage = errormessage
+          @BackupSetOption = backupsetoption
+        end
+
+        def deserialize(params)
+          @BackupSetId = params['BackupSetId']
+          @SourceInfo = params['SourceInfo']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ExpireTime = params['ExpireTime']
+          @BackupSize = params['BackupSize']
+          @BackupMethod = params['BackupMethod']
+          @StorageType = params['StorageType']
+          @BackupPool = params['BackupPool']
+          @RetentionType = params['RetentionType']
+          unless params['ResourceDetail'].nil?
+            @ResourceDetail = ResourceDetail.new
+            @ResourceDetail.deserialize(params['ResourceDetail'])
+          end
+          unless params['SourceEndpoint'].nil?
+            @SourceEndpoint = Endpoint.new
+            @SourceEndpoint.deserialize(params['SourceEndpoint'])
+          end
+          unless params['BackupObject'].nil?
+            @BackupObject = BackupObject.new
+            @BackupObject.deserialize(params['BackupObject'])
+          end
+          unless params['Progress'].nil?
+            @Progress = FullBackupProgress.new
+            @Progress.deserialize(params['Progress'])
+          end
+          unless params['ErrorMessage'].nil?
+            @ErrorMessage = FullBackupErrorMessage.new
+            @ErrorMessage.deserialize(params['ErrorMessage'])
+          end
+          unless params['BackupSetOption'].nil?
+            @BackupSetOption = BackupSetOption.new
+            @BackupSetOption.deserialize(params['BackupSetOption'])
+          end
+        end
+      end
+
+      # 增量备份集信息
+      class IncrementBackup < TencentCloud::Common::AbstractModel
+        # @param BackupSetId: 备份集 ID。
+        # @type BackupSetId: String
+        # @param SourceInfo: 源实例信息。
+        # @type SourceInfo: String
+        # @param Status: 备份集状态。可能的取值为：
+        # "running" - 运行中;
+        # "finished" - 已完成;
+        # "failed" - 已失败;
+        # "stopped" - 已终止。
+        # @type Status: String
+        # @param StartTime: 开始时间。格式为 YYYY-MM-DD hh:mm:ss。
+        # @type StartTime: String
+        # @param EndTime: 结束时间。格式为 YYYY-MM-DD hh:mm:ss，备份集尚未结束时返回 0000-00-00 00:00:00。
+        # @type EndTime: String
+        # @param ExpireTime: 过期时间。格式为 YYYY-MM-DD hh:mm:ss，备份集尚未生成过期时间时返回空字符串。
+        # @type ExpireTime: String
+        # @param FileCount: 备份集文件个数。
+        # @type FileCount: Integer
+        # @param BackupMethod: 备份方式。可能的取值为：
+        # "logical" - 逻辑备份；
+        # "physical" - 物理备份。
+        # @type BackupMethod: String
+        # @param StorageType: 存储类型。目前仅支持 "DBSStorage"，即 DBS 内置存储。
+        # @type StorageType: String
+        # @param BackupPool: 备份池类型。目前仅支持 "DefaultPool"，即默认存储池。
+        # @type BackupPool: String
+        # @param RetentionType: 备份集存储类型。支持的取值范围为："standard" - 标准存储；"tiered" - 分级存储。
+        # @type RetentionType: String
+        # @param ResourceDetail: 备份集存储状态详情。
+        # @type ResourceDetail: :class:`Tencentcloud::Dbs.v20211108.models.ResourceItemDetail`
+
+        attr_accessor :BackupSetId, :SourceInfo, :Status, :StartTime, :EndTime, :ExpireTime, :FileCount, :BackupMethod, :StorageType, :BackupPool, :RetentionType, :ResourceDetail
+
+        def initialize(backupsetid=nil, sourceinfo=nil, status=nil, starttime=nil, endtime=nil, expiretime=nil, filecount=nil, backupmethod=nil, storagetype=nil, backuppool=nil, retentiontype=nil, resourcedetail=nil)
+          @BackupSetId = backupsetid
+          @SourceInfo = sourceinfo
+          @Status = status
+          @StartTime = starttime
+          @EndTime = endtime
+          @ExpireTime = expiretime
+          @FileCount = filecount
+          @BackupMethod = backupmethod
+          @StorageType = storagetype
+          @BackupPool = backuppool
+          @RetentionType = retentiontype
+          @ResourceDetail = resourcedetail
+        end
+
+        def deserialize(params)
+          @BackupSetId = params['BackupSetId']
+          @SourceInfo = params['SourceInfo']
+          @Status = params['Status']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @ExpireTime = params['ExpireTime']
+          @FileCount = params['FileCount']
+          @BackupMethod = params['BackupMethod']
+          @StorageType = params['StorageType']
+          @BackupPool = params['BackupPool']
+          @RetentionType = params['RetentionType']
+          unless params['ResourceDetail'].nil?
+            @ResourceDetail = ResourceItemDetail.new
+            @ResourceDetail.deserialize(params['ResourceDetail'])
+          end
+        end
+      end
+
+      # ModifyBackupPlanSourceInfo请求参数结构体
+      class ModifyBackupPlanSourceInfoRequest < TencentCloud::Common::AbstractModel
+        # @param BackupPlanId: 备份计划 ID。
+        # @type BackupPlanId: String
+        # @param SourceEndPoint: 新的备份源实例信息。
+        # @type SourceEndPoint: :class:`Tencentcloud::Dbs.v20211108.models.BackupEndpoint`
+        # @param BackupPlanName: 新的备份名称。
+        # @type BackupPlanName: String
+        # @param BackupObject: 新的备份对象信息。
+        # @type BackupObject: :class:`Tencentcloud::Dbs.v20211108.models.BackupObject`
+        # @param BackupNow: 是否立即启动新的备份任务。支持的取值为：1 - 立即启动；0 - 按备份策略配置的时间启动。
+        # @type BackupNow: Integer
+
+        attr_accessor :BackupPlanId, :SourceEndPoint, :BackupPlanName, :BackupObject, :BackupNow
+
+        def initialize(backupplanid=nil, sourceendpoint=nil, backupplanname=nil, backupobject=nil, backupnow=nil)
+          @BackupPlanId = backupplanid
+          @SourceEndPoint = sourceendpoint
+          @BackupPlanName = backupplanname
+          @BackupObject = backupobject
+          @BackupNow = backupnow
+        end
+
+        def deserialize(params)
+          @BackupPlanId = params['BackupPlanId']
+          unless params['SourceEndPoint'].nil?
+            @SourceEndPoint = BackupEndpoint.new
+            @SourceEndPoint.deserialize(params['SourceEndPoint'])
+          end
+          @BackupPlanName = params['BackupPlanName']
+          unless params['BackupObject'].nil?
+            @BackupObject = BackupObject.new
+            @BackupObject.deserialize(params['BackupObject'])
+          end
+          @BackupNow = params['BackupNow']
+        end
+      end
+
+      # ModifyBackupPlanSourceInfo返回参数结构体
+      class ModifyBackupPlanSourceInfoResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 备份集状态详情
+      class ResourceDetail < TencentCloud::Common::AbstractModel
+        # @param TieredType: <p>当前存储状态。可能的取值为："standard" - 标准存储；"lowFrequency" - 低频存储；"archive" - 归档存储；"deepArchive" - 深度归档存储；</p>
+        # @type TieredType: String
+        # @param StayTime: <p>存储时长。备份集已保留的时长，单位为小时。</p>
+        # @type StayTime: Float
+
+        attr_accessor :TieredType, :StayTime
+
+        def initialize(tieredtype=nil, staytime=nil)
+          @TieredType = tieredtype
+          @StayTime = staytime
+        end
+
+        def deserialize(params)
+          @TieredType = params['TieredType']
+          @StayTime = params['StayTime']
+        end
+      end
+
+      # 备份集状态详情
+      class ResourceItemDetail < TencentCloud::Common::AbstractModel
+        # @param TieredType: <p>当前存储状态。可能的取值为："standard" - 标准存储；"lowFrequency" - 低频存储；"archive" - 归档存储；"deepArchive" - 深度归档存储；</p>
+        # @type TieredType: String
+        # @param StayTime: <p>存储时长。备份集已保留的时长，单位为小时。</p>
+        # @type StayTime: Float
+
+        attr_accessor :TieredType, :StayTime
+
+        def initialize(tieredtype=nil, staytime=nil)
+          @TieredType = tieredtype
+          @StayTime = staytime
+        end
+
+        def deserialize(params)
+          @TieredType = params['TieredType']
+          @StayTime = params['StayTime']
+        end
+      end
+
+      # 可恢复时间范围
+      class RestoreRange < TencentCloud::Common::AbstractModel
+        # @param StartTime: 可恢复起始时间。格式为 YYYY-MM-DD HH:mm:ss，如 2024-01-01 00:00:00，无可恢复时间范围时为空字符串。
+        # @type StartTime: String
+        # @param EndTime: 可恢复结束时间。格式为 YYYY-MM-DD HH:mm:ss，如 2024-01-01 00:00:00，无可恢复时间范围时为空字符串。
+        # @type EndTime: String
+
+        attr_accessor :StartTime, :EndTime
+
+        def initialize(starttime=nil, endtime=nil)
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # ResumeBackupPlan请求参数结构体
+      class ResumeBackupPlanRequest < TencentCloud::Common::AbstractModel
+        # @param BackupPlanId: 备份计划 ID。可通过 DescribeBackupPlans 接口获取。
+        # @type BackupPlanId: String
+        # @param BackupNow: 恢复后是否立即发起一次备份。取值：
+        # - 0：不立即备份，默认值
+        # - 1：立即备份
+        # @type BackupNow: Integer
+
+        attr_accessor :BackupPlanId, :BackupNow
+
+        def initialize(backupplanid=nil, backupnow=nil)
+          @BackupPlanId = backupplanid
+          @BackupNow = backupnow
+        end
+
+        def deserialize(params)
+          @BackupPlanId = params['BackupPlanId']
+          @BackupNow = params['BackupNow']
+        end
+      end
+
+      # ResumeBackupPlan返回参数结构体
+      class ResumeBackupPlanResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StartBackupCheckJob请求参数结构体
       class StartBackupCheckJobRequest < TencentCloud::Common::AbstractModel
         # @param BackupPlanId: 备份计划 ID。
@@ -879,6 +2010,38 @@ module TencentCloud
         end
       end
 
+      # StopBackupPlan请求参数结构体
+      class StopBackupPlanRequest < TencentCloud::Common::AbstractModel
+        # @param BackupPlanId: 备份计划 ID。可通过 DescribeBackupPlans 接口获取。
+        # @type BackupPlanId: String
+
+        attr_accessor :BackupPlanId
+
+        def initialize(backupplanid=nil)
+          @BackupPlanId = backupplanid
+        end
+
+        def deserialize(params)
+          @BackupPlanId = params['BackupPlanId']
+        end
+      end
+
+      # StopBackupPlan返回参数结构体
+      class StopBackupPlanResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 备份存储策略。
       class StorageStrategy < TencentCloud::Common::AbstractModel
         # @param StorageType: 存储类型。目前仅支持 "system" - DBS 内置存储。默认值为 "system"。
@@ -903,6 +2066,111 @@ module TencentCloud
           @StorageType = params['StorageType']
           @Encryption = params['Encryption']
           @BackupRetentionPeriod = params['BackupRetentionPeriod']
+        end
+      end
+
+      # 备份存储策略。
+      class StorageStrategyItem < TencentCloud::Common::AbstractModel
+        # @param StorageType: 存储类型。目前仅支持 "system" - DBS 内置存储。默认值为 "system"。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type StorageType: String
+        # @param Encryption: 加密方式。可能的取值为：
+        # "UnEncrypted" - 非加密存储;
+        # "SSE-COS" - 内置加密存储;
+        # 当该参数用作入参时，默认值为 "UnEncrypted"。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Encryption: String
+        # @param BackupRetentionPeriod: 日志保留时间，单位为天。取值范围为[7, 3650]，默认值为 30。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type BackupRetentionPeriod: Integer
+        # @param FullStorageStrategy: 全量备份存储策略。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FullStorageStrategy: :class:`Tencentcloud::Dbs.v20211108.models.StorageStrategySingle`
+        # @param IncStorageStrategy: 增量备份存储策略。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type IncStorageStrategy: :class:`Tencentcloud::Dbs.v20211108.models.StorageStrategySingle`
+
+        attr_accessor :StorageType, :Encryption, :BackupRetentionPeriod, :FullStorageStrategy, :IncStorageStrategy
+
+        def initialize(storagetype=nil, encryption=nil, backupretentionperiod=nil, fullstoragestrategy=nil, incstoragestrategy=nil)
+          @StorageType = storagetype
+          @Encryption = encryption
+          @BackupRetentionPeriod = backupretentionperiod
+          @FullStorageStrategy = fullstoragestrategy
+          @IncStorageStrategy = incstoragestrategy
+        end
+
+        def deserialize(params)
+          @StorageType = params['StorageType']
+          @Encryption = params['Encryption']
+          @BackupRetentionPeriod = params['BackupRetentionPeriod']
+          unless params['FullStorageStrategy'].nil?
+            @FullStorageStrategy = StorageStrategySingle.new
+            @FullStorageStrategy.deserialize(params['FullStorageStrategy'])
+          end
+          unless params['IncStorageStrategy'].nil?
+            @IncStorageStrategy = StorageStrategySingle.new
+            @IncStorageStrategy.deserialize(params['IncStorageStrategy'])
+          end
+        end
+      end
+
+      # 存储策略
+      class StorageStrategySingle < TencentCloud::Common::AbstractModel
+        # @param RetentionType: 存储策略类型。取值：
+        # - standard：标准存储
+        # - tiered：分级存储
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetentionType: String
+        # @param RetentionPeriod: 备份保留天数，取值范围为 7 - 3650。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RetentionPeriod: Integer
+        # @param TieredStrategy: 分级存储策略。RetentionType 为 tiered 时有效。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TieredStrategy: :class:`Tencentcloud::Dbs.v20211108.models.StorageTieredStrategy`
+
+        attr_accessor :RetentionType, :RetentionPeriod, :TieredStrategy
+
+        def initialize(retentiontype=nil, retentionperiod=nil, tieredstrategy=nil)
+          @RetentionType = retentiontype
+          @RetentionPeriod = retentionperiod
+          @TieredStrategy = tieredstrategy
+        end
+
+        def deserialize(params)
+          @RetentionType = params['RetentionType']
+          @RetentionPeriod = params['RetentionPeriod']
+          unless params['TieredStrategy'].nil?
+            @TieredStrategy = StorageTieredStrategy.new
+            @TieredStrategy.deserialize(params['TieredStrategy'])
+          end
+        end
+      end
+
+      # 分级存储策略
+      class StorageTieredStrategy < TencentCloud::Common::AbstractModel
+        # @param DayToLowFrequency: 低频存储
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DayToLowFrequency: Integer
+        # @param DayToArchive: 归档存储
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DayToArchive: Integer
+        # @param DayToDeepArchive: 深度归档存储
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type DayToDeepArchive: Integer
+
+        attr_accessor :DayToLowFrequency, :DayToArchive, :DayToDeepArchive
+
+        def initialize(daytolowfrequency=nil, daytoarchive=nil, daytodeeparchive=nil)
+          @DayToLowFrequency = daytolowfrequency
+          @DayToArchive = daytoarchive
+          @DayToDeepArchive = daytodeeparchive
+        end
+
+        def deserialize(params)
+          @DayToLowFrequency = params['DayToLowFrequency']
+          @DayToArchive = params['DayToArchive']
+          @DayToDeepArchive = params['DayToDeepArchive']
         end
       end
 
@@ -932,6 +2200,26 @@ module TencentCloud
         # @type TagKey: String
         # @param TagValue: 标签值。
         # @type TagValue: Array
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
+        end
+      end
+
+      # 标签信息
+      class TagInfo < TencentCloud::Common::AbstractModel
+        # @param TagKey: 标签键。
+        # @type TagKey: String
+        # @param TagValue: 标签值。
+        # @type TagValue: String
 
         attr_accessor :TagKey, :TagValue
 

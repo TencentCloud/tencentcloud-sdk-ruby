@@ -287,6 +287,34 @@ module TencentCloud
         end
       end
 
+      # BlackListItem
+      class BlackListItem < TencentCloud::Common::AbstractModel
+        # @param ModelId: <p>黑名单条目 ID，客户创建条目时自定义，用于回溯是哪一条命中</p>
+        # @type ModelId: String
+        # @param ModelType: <p>条目类型。当前仅有 face（人脸）</p>
+        # @type ModelType: String
+        # @param FaceScore: <p>人脸相似度，字符串形式表示，保留 4 位小数，取值 0.0000–1.0000</p>
+        # @type FaceScore: String
+        # @param BackgroundScore: <p>背景相似度</p>
+        # @type BackgroundScore: String
+
+        attr_accessor :ModelId, :ModelType, :FaceScore, :BackgroundScore
+
+        def initialize(modelid=nil, modeltype=nil, facescore=nil, backgroundscore=nil)
+          @ModelId = modelid
+          @ModelType = modeltype
+          @FaceScore = facescore
+          @BackgroundScore = backgroundscore
+        end
+
+        def deserialize(params)
+          @ModelId = params['ModelId']
+          @ModelType = params['ModelType']
+          @FaceScore = params['FaceScore']
+          @BackgroundScore = params['BackgroundScore']
+        end
+      end
+
       # 计费详情
       class ChargeDetail < TencentCloud::Common::AbstractModel
         # @param ReqTime: 一比一时间时间戳，13位。
@@ -702,14 +730,17 @@ module TencentCloud
         # @type Encryption: :class:`Tencentcloud::Faceid.v20180301.models.Encryption`
         # @param EncryptedBody: <p>加密后的密文。</p><ul><li>加密前的数据格式如下:{&quot;FaceInput&quot;:&quot;AAAAA&quot;,&quot;FaceInputType&quot;:1}。</li></ul>
         # @type EncryptedBody: String
+        # @param ExtraRiskInfo: <p>一次性携带本次请求的风控上下文，即“是谁、在哪、从哪个 IP 发起”</p>
+        # @type ExtraRiskInfo: :class:`Tencentcloud::Faceid.v20180301.models.ExtraRiskInfo`
 
-        attr_accessor :FaceInput, :FaceInputType, :Encryption, :EncryptedBody
+        attr_accessor :FaceInput, :FaceInputType, :Encryption, :EncryptedBody, :ExtraRiskInfo
 
-        def initialize(faceinput=nil, faceinputtype=nil, encryption=nil, encryptedbody=nil)
+        def initialize(faceinput=nil, faceinputtype=nil, encryption=nil, encryptedbody=nil, extrariskinfo=nil)
           @FaceInput = faceinput
           @FaceInputType = faceinputtype
           @Encryption = encryption
           @EncryptedBody = encryptedbody
+          @ExtraRiskInfo = extrariskinfo
         end
 
         def deserialize(params)
@@ -720,6 +751,10 @@ module TencentCloud
             @Encryption.deserialize(params['Encryption'])
           end
           @EncryptedBody = params['EncryptedBody']
+          unless params['ExtraRiskInfo'].nil?
+            @ExtraRiskInfo = ExtraRiskInfo.new
+            @ExtraRiskInfo.deserialize(params['ExtraRiskInfo'])
+          end
         end
       end
 
@@ -731,15 +766,19 @@ module TencentCloud
         # @type AttackRiskDetailList: Array
         # @param ExtraInfo: <p>返回额外信息（包括命中模板的详细信息）。</p>
         # @type ExtraInfo: :class:`Tencentcloud::Faceid.v20180301.models.ExtraInfo`
+        # @param ExtraRiskResult: <p>附加风险结论的独立容器，回答“本次附加风险检查是否可信、有没有发现问题”。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtraRiskResult: :class:`Tencentcloud::Faceid.v20180301.models.ExtraRiskResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :AttackRiskLevel, :AttackRiskDetailList, :ExtraInfo, :RequestId
+        attr_accessor :AttackRiskLevel, :AttackRiskDetailList, :ExtraInfo, :ExtraRiskResult, :RequestId
 
-        def initialize(attackrisklevel=nil, attackriskdetaillist=nil, extrainfo=nil, requestid=nil)
+        def initialize(attackrisklevel=nil, attackriskdetaillist=nil, extrainfo=nil, extrariskresult=nil, requestid=nil)
           @AttackRiskLevel = attackrisklevel
           @AttackRiskDetailList = attackriskdetaillist
           @ExtraInfo = extrainfo
+          @ExtraRiskResult = extrariskresult
           @RequestId = requestid
         end
 
@@ -756,6 +795,10 @@ module TencentCloud
           unless params['ExtraInfo'].nil?
             @ExtraInfo = ExtraInfo.new
             @ExtraInfo.deserialize(params['ExtraInfo'])
+          end
+          unless params['ExtraRiskResult'].nil?
+            @ExtraRiskResult = ExtraRiskResult.new
+            @ExtraRiskResult.deserialize(params['ExtraRiskResult'])
           end
           @RequestId = params['RequestId']
         end
@@ -1394,6 +1437,76 @@ module TencentCloud
               retrievallivenessextrainfo_tmp = RetrievalLivenessExtraInfo.new
               retrievallivenessextrainfo_tmp.deserialize(i)
               @RetrievalLivenessExtraInfo << retrievallivenessextrainfo_tmp
+            end
+          end
+        end
+      end
+
+      # ExtraRiskInfo
+      class ExtraRiskInfo < TencentCloud::Common::AbstractModel
+        # @param PersonId: <p>客户业务域内稳定且唯一的人员标识，用于把同一人员的多次位置上报关联起来，判断是否存在异常位移。</p><p>入参限制：长度 ≤ 128 字符；不可含控制字符（ASCII &lt; 0x20 或 0x7F）；建议传脱敏标识，勿传明文身份证号/手机号</p>
+        # @type PersonId: String
+        # @param Latitude: <p>设备采集时的纬度，WGS84 十进制度    </p><p>入参限制：与 Longitude 必须成对出现；取值 [-90, 90]；须为有效数字，不接受 NaN/Inf；JSON 中按字符串传（如 &quot;22.5431&quot;）</p>
+        # @type Latitude: String
+        # @param Longitude: <p>设备采集时的经度，WGS84 十进制度    </p><p>入参限制：与 Latitude 必须成对出现；取值 [-180, 180]；其余同上</p>
+        # @type Longitude: String
+        # @param Ip: <p>设备采集时的公网出口 IP    </p><p>入参限制：长度 ≤ 64；须为可解析的 IPv4/IPv6；私网、回环、链路本地、组播地址视为不可定位</p>
+        # @type Ip: String
+
+        attr_accessor :PersonId, :Latitude, :Longitude, :Ip
+
+        def initialize(personid=nil, latitude=nil, longitude=nil, ip=nil)
+          @PersonId = personid
+          @Latitude = latitude
+          @Longitude = longitude
+          @Ip = ip
+        end
+
+        def deserialize(params)
+          @PersonId = params['PersonId']
+          @Latitude = params['Latitude']
+          @Longitude = params['Longitude']
+          @Ip = params['Ip']
+        end
+      end
+
+      # ExtraRiskResult
+      class ExtraRiskResult < TencentCloud::Common::AbstractModel
+        # @param Status: <p>本次附加检查的完成度，回答“这次结果可否采信”。</p><p>枚举值：</p><ul><li>Completed： 本次请求所需的检查均已给出结论（命中或通过）</li><li>Partial： 至少一项检查未能给出结论：依赖不可用、数据不足、入参不完整或非法。结果仅供参考，不代表安全</li></ul>
+        # @type Status: String
+        # @param RiskLevel: <p>附加风险等级，可能为空字符串</p><p>枚举值：</p><ul><li>High： 存在已生效的风险命中项（此时 RiskDetailList 非空）</li><li>Low： 检查已完成，且确认无命中</li><li>&quot;&quot;（空字符串）    ： 未识别：本次没有任何一项检查能给出结论，或检查未全部完成。既不代表有风险，也不代表安全</li></ul>
+        # @type RiskLevel: String
+        # @param BlackListResult: <p>命中的风险项列表，未命中时为空数组 []</p>
+        # @type BlackListResult: Array
+        # @param RiskDetailList: <p>人脸黑名单命中明细，未命中时为空数组 []</p>
+        # @type RiskDetailList: Array
+
+        attr_accessor :Status, :RiskLevel, :BlackListResult, :RiskDetailList
+
+        def initialize(status=nil, risklevel=nil, blacklistresult=nil, riskdetaillist=nil)
+          @Status = status
+          @RiskLevel = risklevel
+          @BlackListResult = blacklistresult
+          @RiskDetailList = riskdetaillist
+        end
+
+        def deserialize(params)
+          @Status = params['Status']
+          @RiskLevel = params['RiskLevel']
+          unless params['BlackListResult'].nil?
+            @BlackListResult = []
+            params['BlackListResult'].each do |i|
+              blacklistitem_tmp = BlackListItem.new
+              blacklistitem_tmp.deserialize(i)
+              @BlackListResult << blacklistitem_tmp
+            end
+          end
+          unless params['RiskDetailList'].nil?
+            @RiskDetailList = []
+            params['RiskDetailList'].each do |i|
+              riskdetailitem_tmp = RiskDetailItem.new
+              riskdetailitem_tmp.deserialize(i)
+              @RiskDetailList << riskdetailitem_tmp
             end
           end
         end
@@ -3881,6 +3994,22 @@ module TencentCloud
           @HitGroup = params['HitGroup']
           @SimilarityScore = params['SimilarityScore']
           @HitTemplate = params['HitTemplate']
+        end
+      end
+
+      # RiskDetailItem
+      class RiskDetailItem < TencentCloud::Common::AbstractModel
+        # @param Type: <p>风险项类型</p><p>枚举值：</p><ul><li>IpLocationMismatch： 上报坐标所在国家/地区与 IP 归属国家/地区不一致</li><li>AbnormalLocationChange： 同一人员短时间内发生物理上不可能的位移    </li><li>BlacklistHit： 命中客户自建人脸黑名单</li></ul>
+        # @type Type: String
+
+        attr_accessor :Type
+
+        def initialize(type=nil)
+          @Type = type
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
         end
       end
 

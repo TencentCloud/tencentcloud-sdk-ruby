@@ -2983,10 +2983,12 @@ module TencentCloud
         # @type Weight: Integer
         # @param IsDefaultWeight: 是否默认权重
         # @type IsDefaultWeight: Boolean
+        # @param NodeType: 节点类型
+        # @type NodeType: String
 
-        attr_accessor :NodeId, :NodeIp, :ZoneId, :Zone, :GroupId, :GroupName, :Status, :Weight, :IsDefaultWeight
+        attr_accessor :NodeId, :NodeIp, :ZoneId, :Zone, :GroupId, :GroupName, :Status, :Weight, :IsDefaultWeight, :NodeType
 
-        def initialize(nodeid=nil, nodeip=nil, zoneid=nil, zone=nil, groupid=nil, groupname=nil, status=nil, weight=nil, isdefaultweight=nil)
+        def initialize(nodeid=nil, nodeip=nil, zoneid=nil, zone=nil, groupid=nil, groupname=nil, status=nil, weight=nil, isdefaultweight=nil, nodetype=nil)
           @NodeId = nodeid
           @NodeIp = nodeip
           @ZoneId = zoneid
@@ -2996,6 +2998,7 @@ module TencentCloud
           @Status = status
           @Weight = weight
           @IsDefaultWeight = isdefaultweight
+          @NodeType = nodetype
         end
 
         def deserialize(params)
@@ -3008,6 +3011,7 @@ module TencentCloud
           @Status = params['Status']
           @Weight = params['Weight']
           @IsDefaultWeight = params['IsDefaultWeight']
+          @NodeType = params['NodeType']
         end
       end
 
@@ -4925,47 +4929,42 @@ module TencentCloud
 
       # CreateCloudNativeAPIGateway请求参数结构体
       class CreateCloudNativeAPIGatewayRequest < TencentCloud::Common::AbstractModel
-        # @param Name: 云原生API网关名字, 最多支持60个字符。
+        # @param Name: <p>云原生API网关名字, 最多支持60个字符。</p>
         # @type Name: String
-        # @param Type: 云原生API网关类型, 目前只支持kong。
+        # @param Type: <p>云原生API网关类型, 目前只支持kong。</p>
         # @type Type: String
-        # @param GatewayVersion: 云原生API网关版本。参考值：
-        # - 2.4.1
-        # - 2.5.1
+        # @param GatewayVersion: <p>云原生API网关版本。参考值：</p><ul><li>2.4.1</li><li>2.5.1</li></ul>
         # @type GatewayVersion: String
-        # @param NodeConfig: 云原生API网关节点配置。
+        # @param NodeConfig: <p>云原生API网关节点配置。</p>
         # @type NodeConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayNodeConfig`
-        # @param VpcConfig: 云原生API网关vpc配置。
+        # @param VpcConfig: <p>云原生API网关vpc配置。</p>
         # @type VpcConfig: :class:`Tencentcloud::Tse.v20201207.models.CloudNativeAPIGatewayVpcConfig`
-        # @param Description: 云原生API网关描述信息, 最多支持120个字符。
+        # @param Description: <p>云原生API网关描述信息, 最多支持120个字符。</p>
         # @type Description: String
-        # @param Tags: 标签列表
+        # @param Tags: <p>标签列表</p>
         # @type Tags: Array
-        # @param EnableCls: 是否开启 CLS 日志。默认值：fasle
+        # @param EnableCls: <p>是否开启 CLS 日志。默认值：fasle</p>
         # @type EnableCls: Boolean
-        # @param FeatureVersion: 产品版本。参考值：
-        # - TRIAL：开发版
-        # - STANDARD：标准版 （默认值）
-        # - PROFESSIONAL：专业版
+        # @param FeatureVersion: <p>产品版本</p><p>枚举值：</p><ul><li>STANDARD： 标准版</li><li>PROFESSIONAL： 专业版</li></ul>
         # @type FeatureVersion: String
-        # @param InternetMaxBandwidthOut: 公网出流量带宽，[1,2048]Mbps
+        # @param InternetMaxBandwidthOut: <p>公网出流量带宽，[1,2048]Mbps</p>
         # @type InternetMaxBandwidthOut: Integer
-        # @param EngineRegion: 实例实际的地域信息，默认值：ap-guangzhou
+        # @param EngineRegion: <p>实例实际的地域信息，默认值：ap-guangzhou</p>
         # @type EngineRegion: String
-        # @param IngressClassName: ingress Class名称
+        # @param IngressClassName: <p>ingress Class名称</p>
         # @type IngressClassName: String
-        # @param TradeType: 付费类型。参考值：
-        # 0：后付费（默认值）
-        # 1：预付费（接口暂不支持创建预付费实例）
+        # @param TradeType: <p>付费类型。参考值：<br>0：后付费（默认值）<br>1：预付费（接口暂不支持创建预付费实例）</p>
         # @type TradeType: Integer
-        # @param InternetConfig: 公网相关配置
+        # @param InternetConfig: <p>公网相关配置</p>
         # @type InternetConfig: :class:`Tencentcloud::Tse.v20201207.models.InternetConfig`
-        # @param PromId: 关联的prometheus ID
+        # @param PromId: <p>关联的prometheus ID</p>
         # @type PromId: String
+        # @param EnableHttpPort: <p>是否开启HTTP 80 端口的访问</p>
+        # @type EnableHttpPort: Boolean
 
-        attr_accessor :Name, :Type, :GatewayVersion, :NodeConfig, :VpcConfig, :Description, :Tags, :EnableCls, :FeatureVersion, :InternetMaxBandwidthOut, :EngineRegion, :IngressClassName, :TradeType, :InternetConfig, :PromId
+        attr_accessor :Name, :Type, :GatewayVersion, :NodeConfig, :VpcConfig, :Description, :Tags, :EnableCls, :FeatureVersion, :InternetMaxBandwidthOut, :EngineRegion, :IngressClassName, :TradeType, :InternetConfig, :PromId, :EnableHttpPort
 
-        def initialize(name=nil, type=nil, gatewayversion=nil, nodeconfig=nil, vpcconfig=nil, description=nil, tags=nil, enablecls=nil, featureversion=nil, internetmaxbandwidthout=nil, engineregion=nil, ingressclassname=nil, tradetype=nil, internetconfig=nil, promid=nil)
+        def initialize(name=nil, type=nil, gatewayversion=nil, nodeconfig=nil, vpcconfig=nil, description=nil, tags=nil, enablecls=nil, featureversion=nil, internetmaxbandwidthout=nil, engineregion=nil, ingressclassname=nil, tradetype=nil, internetconfig=nil, promid=nil, enablehttpport=nil)
           @Name = name
           @Type = type
           @GatewayVersion = gatewayversion
@@ -4981,6 +4980,7 @@ module TencentCloud
           @TradeType = tradetype
           @InternetConfig = internetconfig
           @PromId = promid
+          @EnableHttpPort = enablehttpport
         end
 
         def deserialize(params)
@@ -5015,12 +5015,13 @@ module TencentCloud
             @InternetConfig.deserialize(params['InternetConfig'])
           end
           @PromId = params['PromId']
+          @EnableHttpPort = params['EnableHttpPort']
         end
       end
 
       # CreateCloudNativeAPIGateway返回参数结构体
       class CreateCloudNativeAPIGatewayResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 创建云原生API网关实例响应结果。
+        # @param Result: <p>创建云原生API网关实例响应结果。</p>
         # @type Result: :class:`Tencentcloud::Tse.v20201207.models.CreateCloudNativeAPIGatewayResult`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5111,65 +5112,49 @@ module TencentCloud
 
       # CreateCloudNativeAPIGatewayRoute请求参数结构体
       class CreateCloudNativeAPIGatewayRouteRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 网关ID
+        # @param GatewayId: <p>网关ID</p>
         # @type GatewayId: String
-        # @param ServiceID: 所属服务的ID
+        # @param ServiceID: <p>所属服务的ID</p>
         # @type ServiceID: String
-        # @param RouteName: 路由的名字，实例级别唯一，可以不提供
+        # @param RouteName: <p>路由的名字，实例级别唯一，可以不提供</p>
         # @type RouteName: String
-        # @param Methods: 路由的方法，其中方法可选值：
-        # - GET
-        # - POST
-        # - DELETE
-        # - PUT
-        # - OPTIONS
-        # - PATCH
-        # - HEAD
-        # - ANY
-        # - TRACE
-        # - COPY
-        # - MOVE
-        # - PROPFIND
-        # - PROPPATCH
-        # - MKCOL
-        # - LOCK
-        # - UNLOCK
+        # @param Methods: <p>路由的方法，其中方法可选值：</p><ul><li>GET</li><li>POST</li><li>DELETE</li><li>PUT</li><li>OPTIONS</li><li>PATCH</li><li>HEAD</li><li>ANY</li><li>TRACE</li><li>COPY</li><li>MOVE</li><li>PROPFIND</li><li>PROPPATCH</li><li>MKCOL</li><li>LOCK</li><li>UNLOCK</li></ul>
         # @type Methods: Array
-        # @param Hosts: 路由的域名
+        # @param Hosts: <p>路由的域名</p>
         # @type Hosts: Array
-        # @param Paths: 路由的路径
+        # @param Paths: <p>路由的路径</p>
         # @type Paths: Array
-        # @param Protocols: 路由的协议，可选
-        # - https
-        # - http
+        # @param Protocols: <p>路由的协议，可选</p><ul><li>https</li><li>http</li></ul>
         # @type Protocols: Array
-        # @param PreserveHost: 转发到后端时是否保留Host
+        # @param PreserveHost: <p>转发到后端时是否保留Host</p>
         # @type PreserveHost: Boolean
-        # @param HttpsRedirectStatusCode: https重定向状态码
+        # @param HttpsRedirectStatusCode: <p>https重定向状态码</p>
         # @type HttpsRedirectStatusCode: Integer
-        # @param StripPath: 转发到后端时是否StripPath
+        # @param StripPath: <p>转发到后端时是否StripPath</p>
         # @type StripPath: Boolean
-        # @param ForceHttps: 是否开启强制HTTPS
+        # @param ForceHttps: <p>是否开启强制HTTPS</p>
         # @type ForceHttps: Boolean
-        # @param DestinationPorts: 四层匹配的目的端口
+        # @param DestinationPorts: <p>四层匹配的目的端口</p>
         # @type DestinationPorts: Array
-        # @param Headers: 路由的Headers
+        # @param Headers: <p>路由的Headers</p>
         # @type Headers: Array
-        # @param RequestBuffering: 是否缓存请求body，默认true
+        # @param RequestBuffering: <p>是否缓存请求body，默认true</p>
         # @type RequestBuffering: Boolean
-        # @param ResponseBuffering: 是否缓存响应body，默认true
+        # @param ResponseBuffering: <p>是否缓存响应body，默认true</p>
         # @type ResponseBuffering: Boolean
-        # @param RegexPriority: 正则优先级
+        # @param RegexPriority: <p>正则优先级</p>
         # @type RegexPriority: Integer
-        # @param QueryStringParameters: queryString参数
+        # @param QueryStringParameters: <p>queryString参数</p>
         # @type QueryStringParameters: Array
+        # @param Timeout: <p>路由级超时时间，单位ms</p>
+        # @type Timeout: Integer
 
-        attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
+        attr_accessor :GatewayId, :ServiceID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters, :Timeout
         extend Gem::Deprecate
         deprecate :ForceHttps, :none, 2026, 11
         deprecate :ForceHttps=, :none, 2026, 11
 
-        def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
+        def initialize(gatewayid=nil, serviceid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil, timeout=nil)
           @GatewayId = gatewayid
           @ServiceID = serviceid
           @RouteName = routename
@@ -5187,6 +5172,7 @@ module TencentCloud
           @ResponseBuffering = responsebuffering
           @RegexPriority = regexpriority
           @QueryStringParameters = querystringparameters
+          @Timeout = timeout
         end
 
         def deserialize(params)
@@ -5221,6 +5207,7 @@ module TencentCloud
               @QueryStringParameters << kvmapping_tmp
             end
           end
+          @Timeout = params['Timeout']
         end
       end
 
@@ -10860,10 +10847,12 @@ module TencentCloud
         # @type AvailableRollbackVersion: String
         # @param ForceHTTPSRedirect: <p>强制跳转HTTPS开关</p>
         # @type ForceHTTPSRedirect: Boolean
+        # @param PrivateIpAddresses: <p>内网IP地址列表</p>
+        # @type PrivateIpAddresses: Array
 
-        attr_accessor :GatewayId, :Status, :Name, :Type, :GatewayVersion, :NodeConfig, :VpcConfig, :Description, :CreateTime, :Tags, :EnableCls, :TradeType, :FeatureVersion, :InternetMaxBandwidthOut, :AutoRenewFlag, :CurDeadline, :IsolateTime, :EnableInternet, :EngineRegion, :IngressClassName, :InternetPayMode, :GatewayMinorVersion, :InstancePort, :LoadBalancerType, :PublicIpAddresses, :DeleteProtect, :AvailableVersions, :AvailableUpgradeVersions, :AvailableUpgrade, :AvailableRollbackVersion, :ForceHTTPSRedirect
+        attr_accessor :GatewayId, :Status, :Name, :Type, :GatewayVersion, :NodeConfig, :VpcConfig, :Description, :CreateTime, :Tags, :EnableCls, :TradeType, :FeatureVersion, :InternetMaxBandwidthOut, :AutoRenewFlag, :CurDeadline, :IsolateTime, :EnableInternet, :EngineRegion, :IngressClassName, :InternetPayMode, :GatewayMinorVersion, :InstancePort, :LoadBalancerType, :PublicIpAddresses, :DeleteProtect, :AvailableVersions, :AvailableUpgradeVersions, :AvailableUpgrade, :AvailableRollbackVersion, :ForceHTTPSRedirect, :PrivateIpAddresses
 
-        def initialize(gatewayid=nil, status=nil, name=nil, type=nil, gatewayversion=nil, nodeconfig=nil, vpcconfig=nil, description=nil, createtime=nil, tags=nil, enablecls=nil, tradetype=nil, featureversion=nil, internetmaxbandwidthout=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, enableinternet=nil, engineregion=nil, ingressclassname=nil, internetpaymode=nil, gatewayminorversion=nil, instanceport=nil, loadbalancertype=nil, publicipaddresses=nil, deleteprotect=nil, availableversions=nil, availableupgradeversions=nil, availableupgrade=nil, availablerollbackversion=nil, forcehttpsredirect=nil)
+        def initialize(gatewayid=nil, status=nil, name=nil, type=nil, gatewayversion=nil, nodeconfig=nil, vpcconfig=nil, description=nil, createtime=nil, tags=nil, enablecls=nil, tradetype=nil, featureversion=nil, internetmaxbandwidthout=nil, autorenewflag=nil, curdeadline=nil, isolatetime=nil, enableinternet=nil, engineregion=nil, ingressclassname=nil, internetpaymode=nil, gatewayminorversion=nil, instanceport=nil, loadbalancertype=nil, publicipaddresses=nil, deleteprotect=nil, availableversions=nil, availableupgradeversions=nil, availableupgrade=nil, availablerollbackversion=nil, forcehttpsredirect=nil, privateipaddresses=nil)
           @GatewayId = gatewayid
           @Status = status
           @Name = name
@@ -10895,6 +10884,7 @@ module TencentCloud
           @AvailableUpgrade = availableupgrade
           @AvailableRollbackVersion = availablerollbackversion
           @ForceHTTPSRedirect = forcehttpsredirect
+          @PrivateIpAddresses = privateipaddresses
         end
 
         def deserialize(params)
@@ -10945,6 +10935,7 @@ module TencentCloud
           @AvailableUpgrade = params['AvailableUpgrade']
           @AvailableRollbackVersion = params['AvailableRollbackVersion']
           @ForceHTTPSRedirect = params['ForceHTTPSRedirect']
+          @PrivateIpAddresses = params['PrivateIpAddresses']
         end
       end
 
@@ -11014,10 +11005,14 @@ module TencentCloud
         # @type OrderField: String
         # @param OrderType: <p>排序方式</p><p>枚举值：</p><ul><li>DESC： 降序</li><li>ASC： 升序</li></ul>
         # @type OrderType: String
+        # @param TagIds: <p>按标签 ID 过滤路由（AND 语义，需同时命中所有传入的 tag），最多 10 个。关联需求：路由/服务标签分组管理</p>
+        # @type TagIds: Array
+        # @param TagFilters: <p>按标签 K:V 过滤路由（AND 语义，前端下拉直传场景），最多 10 个。与 TagIds 同时传时取交集</p>
+        # @type TagFilters: Array
 
-        attr_accessor :GatewayId, :Limit, :Offset, :ServiceName, :RouteName, :Filters, :RouteTypes, :GrayRoutesFirst, :OrderField, :OrderType
+        attr_accessor :GatewayId, :Limit, :Offset, :ServiceName, :RouteName, :Filters, :RouteTypes, :GrayRoutesFirst, :OrderField, :OrderType, :TagIds, :TagFilters
 
-        def initialize(gatewayid=nil, limit=nil, offset=nil, servicename=nil, routename=nil, filters=nil, routetypes=nil, grayroutesfirst=nil, orderfield=nil, ordertype=nil)
+        def initialize(gatewayid=nil, limit=nil, offset=nil, servicename=nil, routename=nil, filters=nil, routetypes=nil, grayroutesfirst=nil, orderfield=nil, ordertype=nil, tagids=nil, tagfilters=nil)
           @GatewayId = gatewayid
           @Limit = limit
           @Offset = offset
@@ -11028,6 +11023,8 @@ module TencentCloud
           @GrayRoutesFirst = grayroutesfirst
           @OrderField = orderfield
           @OrderType = ordertype
+          @TagIds = tagids
+          @TagFilters = tagfilters
         end
 
         def deserialize(params)
@@ -11048,6 +11045,15 @@ module TencentCloud
           @GrayRoutesFirst = params['GrayRoutesFirst']
           @OrderField = params['OrderField']
           @OrderType = params['OrderType']
+          @TagIds = params['TagIds']
+          unless params['TagFilters'].nil?
+            @TagFilters = []
+            params['TagFilters'].each do |i|
+              tagkvfilter_tmp = TagKVFilter.new
+              tagkvfilter_tmp.deserialize(i)
+              @TagFilters << tagkvfilter_tmp
+            end
+          end
         end
       end
 
@@ -15507,13 +15513,20 @@ module TencentCloud
         # @type QueryStringParameters: Array
         # @param RouteSource: <p>路由来源</p>
         # @type RouteSource: String
+        # @param Tags: <p>用户绑定的业务标签（路由/服务标签分组能力，不含 Kong 内部 tag）。未绑定时字段为空数组或不返回。关联需求：路由/服务标签分组管理</p>
+        # @type Tags: Array
+        # @param Timeout: <p>超时时间</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Timeout: Integer
+        # @param TimeoutSource: <p>路由超时配置的来源。</p>
+        # @type TimeoutSource: String
 
-        attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters, :RouteSource
+        attr_accessor :ID, :Name, :Methods, :Paths, :Hosts, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :CreatedTime, :ForceHttps, :ServiceName, :ServiceID, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters, :RouteSource, :Tags, :Timeout, :TimeoutSource
         extend Gem::Deprecate
         deprecate :ForceHttps, :none, 2026, 11
         deprecate :ForceHttps=, :none, 2026, 11
 
-        def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil, routesource=nil)
+        def initialize(id=nil, name=nil, methods=nil, paths=nil, hosts=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, createdtime=nil, forcehttps=nil, servicename=nil, serviceid=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil, routesource=nil, tags=nil, timeout=nil, timeoutsource=nil)
           @ID = id
           @Name = name
           @Methods = methods
@@ -15534,6 +15547,9 @@ module TencentCloud
           @RegexPriority = regexpriority
           @QueryStringParameters = querystringparameters
           @RouteSource = routesource
+          @Tags = tags
+          @Timeout = timeout
+          @TimeoutSource = timeoutsource
         end
 
         def deserialize(params)
@@ -15571,6 +15587,16 @@ module TencentCloud
             end
           end
           @RouteSource = params['RouteSource']
+          unless params['Tags'].nil?
+            @Tags = []
+            params['Tags'].each do |i|
+              kongusertagkv_tmp = KongUserTagKV.new
+              kongusertagkv_tmp.deserialize(i)
+              @Tags << kongusertagkv_tmp
+            end
+          end
+          @Timeout = params['Timeout']
+          @TimeoutSource = params['TimeoutSource']
         end
       end
 
@@ -15856,36 +15882,39 @@ module TencentCloud
 
       # Kong Upstream中的Target
       class KongTarget < TencentCloud::Common::AbstractModel
-        # @param Host: Host
+        # @param Host: <p>Host</p>
         # @type Host: String
-        # @param Port: 端口
+        # @param Port: <p>端口</p>
         # @type Port: Integer
-        # @param Weight: 权重
+        # @param Weight: <p>权重</p>
         # @type Weight: Integer
-        # @param Health: 健康状态
-        # @type Health: String
-        # @param CreatedTime: 创建时间
+        # @param CreatedTime: <p>创建时间</p>
         # @type CreatedTime: String
-        # @param Source: Target的来源
-        # @type Source: String
-        # @param CvmInstanceId: CVM实例ID
+        # @param CvmInstanceId: <p>CVM实例ID</p>
         # @type CvmInstanceId: String
-        # @param CvmInstanceName: CVM实例名称
+        # @param CvmInstanceName: <p>CVM实例名称</p>
         # @type CvmInstanceName: String
-        # @param Tags: target标签
+        # @param Health: <p>健康状态</p>
+        # @type Health: String
+        # @param Id: <p>Target ID</p>
+        # @type Id: String
+        # @param Source: <p>Target的来源</p>
+        # @type Source: String
+        # @param Tags: <p>target标签</p>
         # @type Tags: Array
 
-        attr_accessor :Host, :Port, :Weight, :Health, :CreatedTime, :Source, :CvmInstanceId, :CvmInstanceName, :Tags
+        attr_accessor :Host, :Port, :Weight, :CreatedTime, :CvmInstanceId, :CvmInstanceName, :Health, :Id, :Source, :Tags
 
-        def initialize(host=nil, port=nil, weight=nil, health=nil, createdtime=nil, source=nil, cvminstanceid=nil, cvminstancename=nil, tags=nil)
+        def initialize(host=nil, port=nil, weight=nil, createdtime=nil, cvminstanceid=nil, cvminstancename=nil, health=nil, id=nil, source=nil, tags=nil)
           @Host = host
           @Port = port
           @Weight = weight
-          @Health = health
           @CreatedTime = createdtime
-          @Source = source
           @CvmInstanceId = cvminstanceid
           @CvmInstanceName = cvminstancename
+          @Health = health
+          @Id = id
+          @Source = source
           @Tags = tags
         end
 
@@ -15893,11 +15922,12 @@ module TencentCloud
           @Host = params['Host']
           @Port = params['Port']
           @Weight = params['Weight']
-          @Health = params['Health']
           @CreatedTime = params['CreatedTime']
-          @Source = params['Source']
           @CvmInstanceId = params['CvmInstanceId']
           @CvmInstanceName = params['CvmInstanceName']
+          @Health = params['Health']
+          @Id = params['Id']
+          @Source = params['Source']
           @Tags = params['Tags']
         end
       end
@@ -16065,6 +16095,30 @@ module TencentCloud
               @Target << kongtarget_tmp
             end
           end
+        end
+      end
+
+      # 用户业务标签的 KV 表示（路由/服务标签分组）
+      class KongUserTagKV < TencentCloud::Common::AbstractModel
+        # @param TagId: <p>标签 ID</p>
+        # @type TagId: Integer
+        # @param TagKey: <p>标签 Key</p>
+        # @type TagKey: String
+        # @param TagValue: <p>标签 Value</p>
+        # @type TagValue: String
+
+        attr_accessor :TagId, :TagKey, :TagValue
+
+        def initialize(tagid=nil, tagkey=nil, tagvalue=nil)
+          @TagId = tagid
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagId = params['TagId']
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 
@@ -17320,13 +17374,15 @@ module TencentCloud
         # @type RegexPriority: Integer
         # @param QueryStringParameters: <p>querysring参数</p>
         # @type QueryStringParameters: Array
+        # @param Timeout: <p>路由级超时时间，单位ms</p>
+        # @type Timeout: Integer
 
-        attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters
+        attr_accessor :GatewayId, :ServiceID, :RouteID, :RouteName, :Methods, :Hosts, :Paths, :Protocols, :PreserveHost, :HttpsRedirectStatusCode, :StripPath, :ForceHttps, :DestinationPorts, :Headers, :RequestBuffering, :ResponseBuffering, :RegexPriority, :QueryStringParameters, :Timeout
         extend Gem::Deprecate
         deprecate :ForceHttps, :none, 2026, 11
         deprecate :ForceHttps=, :none, 2026, 11
 
-        def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil)
+        def initialize(gatewayid=nil, serviceid=nil, routeid=nil, routename=nil, methods=nil, hosts=nil, paths=nil, protocols=nil, preservehost=nil, httpsredirectstatuscode=nil, strippath=nil, forcehttps=nil, destinationports=nil, headers=nil, requestbuffering=nil, responsebuffering=nil, regexpriority=nil, querystringparameters=nil, timeout=nil)
           @GatewayId = gatewayid
           @ServiceID = serviceid
           @RouteID = routeid
@@ -17345,6 +17401,7 @@ module TencentCloud
           @ResponseBuffering = responsebuffering
           @RegexPriority = regexpriority
           @QueryStringParameters = querystringparameters
+          @Timeout = timeout
         end
 
         def deserialize(params)
@@ -17380,6 +17437,7 @@ module TencentCloud
               @QueryStringParameters << kvmapping_tmp
             end
           end
+          @Timeout = params['Timeout']
         end
       end
 
@@ -18032,27 +18090,31 @@ module TencentCloud
 
       # ModifyNetworkAccessStrategy请求参数结构体
       class ModifyNetworkAccessStrategyRequest < TencentCloud::Common::AbstractModel
-        # @param GatewayId: 云原生API网关实例ID。
+        # @param GatewayId: <p>云原生API网关实例ID。</p>
         # @type GatewayId: String
-        # @param GroupId: 分组id
+        # @param GroupId: <p>分组id</p>
         # @type GroupId: String
-        # @param NetworkType: 网络类型：
-        # - Open 公网
-        # - Internal 内网	（暂不支持）
+        # @param NetworkType: <p>网络类型： </p><ul><li>Open 公网</li><li>Internal 内网    （暂不支持）</li></ul>
         # @type NetworkType: String
-        # @param Vip: ip地址
+        # @param Vip: <p>ip地址</p>
         # @type Vip: String
-        # @param AccessControl: 访问控制策略
+        # @param AccessControl: <p>访问控制策略</p>
         # @type AccessControl: :class:`Tencentcloud::Tse.v20201207.models.NetworkAccessControl`
+        # @param AccessControlSource: <p>GlobalConfig / Custom；不传默认 Custom</p>
+        # @type AccessControlSource: String
+        # @param GlobalConfigId: <p>全局配置ID</p>
+        # @type GlobalConfigId: String
 
-        attr_accessor :GatewayId, :GroupId, :NetworkType, :Vip, :AccessControl
+        attr_accessor :GatewayId, :GroupId, :NetworkType, :Vip, :AccessControl, :AccessControlSource, :GlobalConfigId
 
-        def initialize(gatewayid=nil, groupid=nil, networktype=nil, vip=nil, accesscontrol=nil)
+        def initialize(gatewayid=nil, groupid=nil, networktype=nil, vip=nil, accesscontrol=nil, accesscontrolsource=nil, globalconfigid=nil)
           @GatewayId = gatewayid
           @GroupId = groupid
           @NetworkType = networktype
           @Vip = vip
           @AccessControl = accesscontrol
+          @AccessControlSource = accesscontrolsource
+          @GlobalConfigId = globalconfigid
         end
 
         def deserialize(params)
@@ -18064,6 +18126,8 @@ module TencentCloud
             @AccessControl = NetworkAccessControl.new
             @AccessControl.deserialize(params['AccessControl'])
           end
+          @AccessControlSource = params['AccessControlSource']
+          @GlobalConfigId = params['GlobalConfigId']
         end
       end
 
@@ -19522,6 +19586,26 @@ module TencentCloud
         def deserialize(params)
           @GatewayId = params['GatewayId']
           @Services = params['Services']
+        end
+      end
+
+      # 按标签 K:V 过滤条件（关联需求：路由/服务标签分组管理）
+      class TagKVFilter < TencentCloud::Common::AbstractModel
+        # @param TagKey: <p>标签 Key，长度 1~64</p>
+        # @type TagKey: String
+        # @param TagValue: <p>标签 Value，长度 1~128</p>
+        # @type TagValue: String
+
+        attr_accessor :TagKey, :TagValue
+
+        def initialize(tagkey=nil, tagvalue=nil)
+          @TagKey = tagkey
+          @TagValue = tagvalue
+        end
+
+        def deserialize(params)
+          @TagKey = params['TagKey']
+          @TagValue = params['TagValue']
         end
       end
 

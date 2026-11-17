@@ -4297,10 +4297,12 @@ module TencentCloud
         # @param SnapshotTime: <p>实际快照时间，反映快照对应文件系统某个时刻的数据。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SnapshotTime: String
+        # @param FinishTime: <p>快照完成时间</p>
+        # @type FinishTime: String
 
-        attr_accessor :CreationTime, :SnapshotName, :SnapshotId, :Status, :RegionName, :FileSystemId, :Size, :AliveDay, :Percent, :AppId, :DeleteTime, :FsName, :Tags, :SnapshotType, :SnapshotTime
+        attr_accessor :CreationTime, :SnapshotName, :SnapshotId, :Status, :RegionName, :FileSystemId, :Size, :AliveDay, :Percent, :AppId, :DeleteTime, :FsName, :Tags, :SnapshotType, :SnapshotTime, :FinishTime
 
-        def initialize(creationtime=nil, snapshotname=nil, snapshotid=nil, status=nil, regionname=nil, filesystemid=nil, size=nil, aliveday=nil, percent=nil, appid=nil, deletetime=nil, fsname=nil, tags=nil, snapshottype=nil, snapshottime=nil)
+        def initialize(creationtime=nil, snapshotname=nil, snapshotid=nil, status=nil, regionname=nil, filesystemid=nil, size=nil, aliveday=nil, percent=nil, appid=nil, deletetime=nil, fsname=nil, tags=nil, snapshottype=nil, snapshottime=nil, finishtime=nil)
           @CreationTime = creationtime
           @SnapshotName = snapshotname
           @SnapshotId = snapshotid
@@ -4316,6 +4318,7 @@ module TencentCloud
           @Tags = tags
           @SnapshotType = snapshottype
           @SnapshotTime = snapshottime
+          @FinishTime = finishtime
         end
 
         def deserialize(params)
@@ -4341,6 +4344,7 @@ module TencentCloud
           end
           @SnapshotType = params['SnapshotType']
           @SnapshotTime = params['SnapshotTime']
+          @FinishTime = params['FinishTime']
         end
       end
 

@@ -12702,14 +12702,14 @@ module TencentCloud
 
         attr_accessor :AlarmNotifyPeriod, :AlarmNotifyType, :EventID, :RuleID, :MetricName, :Description
         extend Gem::Deprecate
-        deprecate :AlarmNotifyPeriod, :none, 2026, 10
-        deprecate :AlarmNotifyPeriod=, :none, 2026, 10
-        deprecate :AlarmNotifyType, :none, 2026, 10
-        deprecate :AlarmNotifyType=, :none, 2026, 10
-        deprecate :EventID, :none, 2026, 10
-        deprecate :EventID=, :none, 2026, 10
-        deprecate :RuleID, :none, 2026, 10
-        deprecate :RuleID=, :none, 2026, 10
+        deprecate :AlarmNotifyPeriod, :none, 2026, 11
+        deprecate :AlarmNotifyPeriod=, :none, 2026, 11
+        deprecate :AlarmNotifyType, :none, 2026, 11
+        deprecate :AlarmNotifyType=, :none, 2026, 11
+        deprecate :EventID, :none, 2026, 11
+        deprecate :EventID=, :none, 2026, 11
+        deprecate :RuleID, :none, 2026, 11
+        deprecate :RuleID=, :none, 2026, 11
 
         def initialize(alarmnotifyperiod=nil, alarmnotifytype=nil, eventid=nil, ruleid=nil, metricname=nil, description=nil)
           @AlarmNotifyPeriod = alarmnotifyperiod
@@ -13021,8 +13021,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ClusterType, :ClusterId, :ServiceMonitors, :PodMonitors, :RawJobs, :UpdateImage
         extend Gem::Deprecate
-        deprecate :UpdateImage, :none, 2026, 10
-        deprecate :UpdateImage=, :none, 2026, 10
+        deprecate :UpdateImage, :none, 2026, 11
+        deprecate :UpdateImage=, :none, 2026, 11
 
         def initialize(instanceid=nil, clustertype=nil, clusterid=nil, servicemonitors=nil, podmonitors=nil, rawjobs=nil, updateimage=nil)
           @InstanceId = instanceid
@@ -14528,12 +14528,14 @@ module TencentCloud
         # @type DropAll: Boolean
         # @param CollectAll: <p>是否采集全部指标</p><p>枚举值：</p><ul><li>false： 不采集</li><li>true： 采集</li></ul><p>默认值：false</p>
         # @type CollectAll: Boolean
+        # @param PrivateLinkIP: <p>私有连接的 IP</p>
+        # @type PrivateLinkIP: String
         # @param OpenDefaultRecord: <p>是否开启默认预聚合规则</p>
         # @type OpenDefaultRecord: Boolean
 
-        attr_accessor :Region, :ClusterType, :ClusterId, :EnableExternal, :InClusterPodConfig, :ExternalLabels, :NotInstallBasicScrape, :NotScrape, :DropAll, :CollectAll, :OpenDefaultRecord
+        attr_accessor :Region, :ClusterType, :ClusterId, :EnableExternal, :InClusterPodConfig, :ExternalLabels, :NotInstallBasicScrape, :NotScrape, :DropAll, :CollectAll, :PrivateLinkIP, :OpenDefaultRecord
 
-        def initialize(region=nil, clustertype=nil, clusterid=nil, enableexternal=nil, inclusterpodconfig=nil, externallabels=nil, notinstallbasicscrape=nil, notscrape=nil, dropall=nil, collectall=nil, opendefaultrecord=nil)
+        def initialize(region=nil, clustertype=nil, clusterid=nil, enableexternal=nil, inclusterpodconfig=nil, externallabels=nil, notinstallbasicscrape=nil, notscrape=nil, dropall=nil, collectall=nil, privatelinkip=nil, opendefaultrecord=nil)
           @Region = region
           @ClusterType = clustertype
           @ClusterId = clusterid
@@ -14544,6 +14546,7 @@ module TencentCloud
           @NotScrape = notscrape
           @DropAll = dropall
           @CollectAll = collectall
+          @PrivateLinkIP = privatelinkip
           @OpenDefaultRecord = opendefaultrecord
         end
 
@@ -14568,6 +14571,7 @@ module TencentCloud
           @NotScrape = params['NotScrape']
           @DropAll = params['DropAll']
           @CollectAll = params['CollectAll']
+          @PrivateLinkIP = params['PrivateLinkIP']
           @OpenDefaultRecord = params['OpenDefaultRecord']
         end
       end
@@ -16022,10 +16026,10 @@ module TencentCloud
 
         attr_accessor :URL, :URLRelabelConfig, :BasicAuth, :MaxBlockSize, :Label, :Headers, :RemoteWriteType
         extend Gem::Deprecate
-        deprecate :MaxBlockSize, :none, 2026, 10
-        deprecate :MaxBlockSize=, :none, 2026, 10
-        deprecate :Label, :none, 2026, 10
-        deprecate :Label=, :none, 2026, 10
+        deprecate :MaxBlockSize, :none, 2026, 11
+        deprecate :MaxBlockSize=, :none, 2026, 11
+        deprecate :Label, :none, 2026, 11
+        deprecate :Label=, :none, 2026, 11
 
         def initialize(url=nil, urlrelabelconfig=nil, basicauth=nil, maxblocksize=nil, label=nil, headers=nil, remotewritetype=nil)
           @URL = url

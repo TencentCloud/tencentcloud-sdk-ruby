@@ -501,6 +501,34 @@ module TencentCloud
         end
       end
 
+      # 通用文件来源。FILE 用于 Plugin 原始文件上传，SizeBytes 必填，SHA256 可选；VERSION 仅用于 UpdateRegistryRecord 复用同一 Record 的 READY 文件版本，仅填写 SourceVersionId。与其他来源互斥，不校验插件格式或语义。
+      class CloudFileSourceInput < TencentCloud::Common::AbstractModel
+        # @param Type: <p>通用文件来源类型，区分大小写。</p><p>枚举值：</p><ul><li>FILE： 创建 Plugin 文件版本，必须填写 SizeBytes，SHA256 可选；随后通过预签名 PUT 链接上传原始文件。</li><li>VERSION： 仅 UpdateRegistryRecord 支持，复用同一 Skill 或 Plugin Record 的 READY 文件版本，仅填写 SourceVersionId。</li></ul><p>Registry 不做 Plugin 文件内容格式或语义校验，由运行端解析加载。VERSION 不继承来源版本的 Metadata 和 SupportedHarnessVersions。</p>
+        # @type Type: String
+        # @param SizeBytes: <p>待上传 Plugin 文件的原始字节数。FILE 时必填，VERSION 时禁止填写。</p><p>取值范围：[1, 54525952]</p><p>单位：字节</p><p>上限 52 MiB，服务端校验实际上传文件的字节数；不推断文件格式。</p>
+        # @type SizeBytes: Integer
+        # @param SHA256: <p>期望的文件 SHA-256 摘要。FILE 时可选，VERSION 时禁止填写。</p><p>参数格式：64 位小写十六进制字符串。</p><p>提供时服务端计算实际文件摘要并比对；省略时仍计算摘要并在 READY 版本的 ContentSHA256 中返回。</p>
+        # @type SHA256: String
+        # @param SourceVersionId: <p>用于复用文件内容的来源 Version ID。</p><p>参数格式：rv- 前缀的 Version ID。</p><p>入参限制：VERSION 时必填，FILE 时禁止填写。只能在 UpdateRegistryRecord 中引用同一 Record 下未删除、内容 READY 且存在可用制品的 Skill 或 Plugin 文件版本。</p><p>只复用文件，不继承来源版本的 Metadata 和 SupportedHarnessVersions；不能跨 Record 或跨 Registry 复用。</p>
+        # @type SourceVersionId: String
+
+        attr_accessor :Type, :SizeBytes, :SHA256, :SourceVersionId
+
+        def initialize(type=nil, sizebytes=nil, sha256=nil, sourceversionid=nil)
+          @Type = type
+          @SizeBytes = sizebytes
+          @SHA256 = sha256
+          @SourceVersionId = sourceversionid
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @SizeBytes = params['SizeBytes']
+          @SHA256 = params['SHA256']
+          @SourceVersionId = params['SourceVersionId']
+        end
+      end
+
       # 通用过滤条件。Name 为字段名，Values 为字段候选值；字段间 AND、Values 内 OR。
       class CloudFilter < TencentCloud::Common::AbstractModel
         # @param Name: <p>过滤字段名。DescribeRegistryList 支持 <code>name</code> / <code>search</code>（模糊搜索）与 <code>archived</code> / <code>status</code>（true / false / all）；DescribeRegistryRecordList 支持 <code>name</code> / <code>search</code>（模糊）、<code>descriptor-type</code>、<code>lifecycle-status</code>（精确）。</p>
@@ -570,42 +598,42 @@ module TencentCloud
         # @param LifecycleStatus: <p>生命周期状态。ACTIVE：可用；DELETED：软删除墓碑，不再参与常规查询、下发或版本配额。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LifecycleStatus: String
-        # @param AppId: <p>所属租户 AppId。</p>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type AppId: Integer
-        # @param CreatorUin: <p>创建者主账号 UIN。</p>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreatorUin: String
-        # @param CreatorSubAccountUin: <p>创建者子账号 UIN；主账号直接创建时为空。</p>
-        # 注意：此字段可能返回 null，表示取不到有效值。
-        # @type CreatorSubAccountUin: String
         # @param CreateTime: <p>创建时间，ISO 8601 UTC。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CreateTime: String
         # @param UpdateTime: <p>最近一次更新时间。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UpdateTime: String
-        # @param VersionCount: <p>Record 下未删除 Version 数量。</p>
+        # @param AppId: <p>所属租户 AppId。</p><p>普通模式返回，MARKETPLACE 模式不返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AppId: Integer
+        # @param CreatorUin: <p>创建者主账号 UIN。</p><p>普通模式返回，MARKETPLACE 模式不返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorUin: String
+        # @param CreatorSubAccountUin: <p>创建者子账号 UIN；主账号直接创建时为空。</p><p>普通模式返回，MARKETPLACE 模式不返回。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreatorSubAccountUin: String
+        # @param VersionCount: <p>Record 下未删除 Version 数量。</p><p>MARKETPLACE 模式仅统计市场可读版本。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type VersionCount: Integer
-        # @param LabelSet: <p>Record 下所有 Label Name（含未绑定 Label），包括系统 Label（stable / latest）和自定义 Label。仅名称，不含 VersionId、更新时间或操作者。</p>
+        # @param LabelSet: <p>Record 下所有 Label Name（含未绑定 Label），包括系统 Label（stable / latest）和自定义 Label。仅名称，不含 VersionId、更新时间或操作者。</p><p>MARKETPLACE 模式仅统计市场可读版本。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LabelSet: Array
 
-        attr_accessor :RecordId, :RegistryId, :Name, :Description, :DescriptorType, :LifecycleStatus, :AppId, :CreatorUin, :CreatorSubAccountUin, :CreateTime, :UpdateTime, :VersionCount, :LabelSet
+        attr_accessor :RecordId, :RegistryId, :Name, :Description, :DescriptorType, :LifecycleStatus, :CreateTime, :UpdateTime, :AppId, :CreatorUin, :CreatorSubAccountUin, :VersionCount, :LabelSet
 
-        def initialize(recordid=nil, registryid=nil, name=nil, description=nil, descriptortype=nil, lifecyclestatus=nil, appid=nil, creatoruin=nil, creatorsubaccountuin=nil, createtime=nil, updatetime=nil, versioncount=nil, labelset=nil)
+        def initialize(recordid=nil, registryid=nil, name=nil, description=nil, descriptortype=nil, lifecyclestatus=nil, createtime=nil, updatetime=nil, appid=nil, creatoruin=nil, creatorsubaccountuin=nil, versioncount=nil, labelset=nil)
           @RecordId = recordid
           @RegistryId = registryid
           @Name = name
           @Description = description
           @DescriptorType = descriptortype
           @LifecycleStatus = lifecyclestatus
+          @CreateTime = createtime
+          @UpdateTime = updatetime
           @AppId = appid
           @CreatorUin = creatoruin
           @CreatorSubAccountUin = creatorsubaccountuin
-          @CreateTime = createtime
-          @UpdateTime = updatetime
           @VersionCount = versioncount
           @LabelSet = labelset
         end
@@ -617,11 +645,11 @@ module TencentCloud
           @Description = params['Description']
           @DescriptorType = params['DescriptorType']
           @LifecycleStatus = params['LifecycleStatus']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
           @AppId = params['AppId']
           @CreatorUin = params['CreatorUin']
           @CreatorSubAccountUin = params['CreatorSubAccountUin']
-          @CreateTime = params['CreateTime']
-          @UpdateTime = params['UpdateTime']
           @VersionCount = params['VersionCount']
           @LabelSet = params['LabelSet']
         end
@@ -1181,17 +1209,21 @@ module TencentCloud
         # @type Image: String
         # @param ImageRegistryType: <p>镜像仓库类型：<code>enterprise</code>、<code>personal</code>、<code>custom</code></p><p>枚举值：</p><ul><li>enterprise： tcr 企业容器镜像服务</li><li>personal： ccr 个人容器镜像服务</li></ul>
         # @type ImageRegistryType: String
+        # @param PreCacheType: <p>镜像预热类型</p><p>枚举值：</p><ul><li>image： 镜像预热</li><li>image_volume： 镜像卷预热</li></ul><p>默认值：image</p>
+        # @type PreCacheType: String
 
-        attr_accessor :Image, :ImageRegistryType
+        attr_accessor :Image, :ImageRegistryType, :PreCacheType
 
-        def initialize(image=nil, imageregistrytype=nil)
+        def initialize(image=nil, imageregistrytype=nil, precachetype=nil)
           @Image = image
           @ImageRegistryType = imageregistrytype
+          @PreCacheType = precachetype
         end
 
         def deserialize(params)
           @Image = params['Image']
           @ImageRegistryType = params['ImageRegistryType']
+          @PreCacheType = params['PreCacheType']
         end
       end
 
@@ -1233,7 +1265,7 @@ module TencentCloud
         # @type RegistryId: String
         # @param Name: <p>Record 名称，长度 1..255，同一租户、Registry 内按规范化 Name 唯一（大小写不敏感）；软删除后允许复用。</p>
         # @type Name: String
-        # @param DescriptorType: <p>协议描述符类型。MCP / A2A / AGUI / CUSTOM / AGENT_SKILLS。Record 创建后不可修改。</p>
+        # @param DescriptorType: <p>资产类型。取值包括 MCP、A2A、AGUI、CUSTOM、AGENT_SKILLS 和 PLUGIN。Record 创建后不可修改。PLUGIN 按通用文件资产保存，由运行端解析和加载。</p>
         # @type DescriptorType: String
         # @param Description: <p>Record 描述，最大 4096 字符，可选，默认空。</p>
         # @type Description: String
@@ -1247,10 +1279,16 @@ module TencentCloud
         # @type SkillSource: :class:`Tencentcloud::Ags.v20250920.models.CloudSkillSourceInput`
         # @param CustomDescriptors: <p>DescriptorType=CUSTOM 时必填，其他类型禁止。内容必须是 JSON object 字符串；服务端解析后写入 CloudRecordVersion.Descriptors，Version 的 SourceType 固定为 MANUAL、SourceConfig 固定为空对象。</p>
         # @type CustomDescriptors: String
+        # @param FileSource: <p>Plugin 通用文件来源。DescriptorType=PLUGIN 时必填，其他类型禁止。</p><p>入参限制：Create 仅支持 Type=FILE；声明 SizeBytes 为 1..54525952 字节，可选 SHA256 为 64 位小写十六进制摘要。</p><p>Registry 保存原始文件，不校验插件内容格式或语义；由运行端解析和加载。Skill 继续使用原 SkillSource。</p>
+        # @type FileSource: :class:`Tencentcloud::Ags.v20250920.models.CloudFileSourceInput`
+        # @param SupportedHarnessVersions: <p>本版本支持的 HarnessVersionReference 对象列表；每项包含 HarnessEngine 和 HarnessEngineVersion，原样使用 DescribeHarnessEngineList 返回的选项。</p><p>入参限制：两个字段均必填，各为 1 至 128 字符的精确值，区分大小写，不含空白、通配符或版本范围；最多 128 项，按引擎与版本二元组去重。不接受旧字符串数组、null、缺少字段或额外字段。</p><p>省略或空数组表示未声明，不继承前一版本，不代表支持所有 Harness。兼容性按同一对象的引擎与版本共同判断。修改兼容声明需创建新 Version，文件资产可通过 FileSource.Type=VERSION 复用制品。</p>
+        # @type SupportedHarnessVersions: Array
+        # @param Metadata: <p>版本元数据的 Name/Value 对象数组。</p><p>参数格式：每项仅包含必填的 Name、Value 两个字符串字段。Name 非空、小写且数组内唯一，不自动转换；重复 Name 即使 Value 相同也返回 InvalidParameter。Value 允许空字符串，保留大小写；不接受嵌套对象、数组或非字符串值。</p><p>默认值：空数组 []。创建新版本时省略或 [] 均为空，不继承；null、JSON 字符串和原生对象非法。响应按 Name 升序返回，旧 SQL NULL 归一为 []。服务内部使用 map[string]string，数据库 JSON 列保存对象。publisher 表示发布者展示名称；metadata.&lt;key&gt; 按完整小写名称精确筛选，规则不变。</p>
+        # @type Metadata: Array
 
-        attr_accessor :RegistryId, :Name, :DescriptorType, :Description, :VersionName, :MCPSource, :AgentSource, :SkillSource, :CustomDescriptors
+        attr_accessor :RegistryId, :Name, :DescriptorType, :Description, :VersionName, :MCPSource, :AgentSource, :SkillSource, :CustomDescriptors, :FileSource, :SupportedHarnessVersions, :Metadata
 
-        def initialize(registryid=nil, name=nil, descriptortype=nil, description=nil, versionname=nil, mcpsource=nil, agentsource=nil, skillsource=nil, customdescriptors=nil)
+        def initialize(registryid=nil, name=nil, descriptortype=nil, description=nil, versionname=nil, mcpsource=nil, agentsource=nil, skillsource=nil, customdescriptors=nil, filesource=nil, supportedharnessversions=nil, metadata=nil)
           @RegistryId = registryid
           @Name = name
           @DescriptorType = descriptortype
@@ -1260,6 +1298,9 @@ module TencentCloud
           @AgentSource = agentsource
           @SkillSource = skillsource
           @CustomDescriptors = customdescriptors
+          @FileSource = filesource
+          @SupportedHarnessVersions = supportedharnessversions
+          @Metadata = metadata
         end
 
         def deserialize(params)
@@ -1281,6 +1322,26 @@ module TencentCloud
             @SkillSource.deserialize(params['SkillSource'])
           end
           @CustomDescriptors = params['CustomDescriptors']
+          unless params['FileSource'].nil?
+            @FileSource = CloudFileSourceInput.new
+            @FileSource.deserialize(params['FileSource'])
+          end
+          unless params['SupportedHarnessVersions'].nil?
+            @SupportedHarnessVersions = []
+            params['SupportedHarnessVersions'].each do |i|
+              harnessversionreference_tmp = HarnessVersionReference.new
+              harnessversionreference_tmp.deserialize(i)
+              @SupportedHarnessVersions << harnessversionreference_tmp
+            end
+          end
+          unless params['Metadata'].nil?
+            @Metadata = []
+            params['Metadata'].each do |i|
+              metadataentry_tmp = MetadataEntry.new
+              metadataentry_tmp.deserialize(i)
+              @Metadata << metadataentry_tmp
+            end
+          end
         end
       end
 
@@ -1293,13 +1354,13 @@ module TencentCloud
         # @type Record: :class:`Tencentcloud::Ags.v20250920.models.CloudRecord`
         # @param Version: <p>本次创建的 Revision 1 Version 详情。</p>
         # @type Version: :class:`Tencentcloud::Ags.v20250920.models.CloudRecordVersion`
-        # @param UploadURL: <p>SkillSource.Type=TAR_PACKAGE 时返回：TAR 包上传预签名 URL。</p>
+        # @param UploadURL: <p>文件上传预签名 URL。使用文件上传方式创建 Skill 或 Plugin 版本时返回；Plugin 文件使用 application/octet-stream 上传。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type UploadURL: String
-        # @param ExpireTime: <p>SkillSource.Type=TAR_PACKAGE 时返回：UploadURL 过期时间，ISO 8601 UTC。</p>
+        # @param ExpireTime: <p>文件上传链接的过期时间，使用文件上传方式创建 Skill 或 Plugin 版本时返回。</p><p>参数格式：ISO 8601 UTC，例如 2026-10-21T15:30:08Z。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExpireTime: String
-        # @param ContentStatus: <p>SkillSource.Type=TAR_PACKAGE 时返回：Version 内容当前状态（UPLOADING 等）。</p>
+        # @param ContentStatus: <p>文件版本的内容状态，使用文件上传方式创建 Skill 或 Plugin 版本时返回。创建上传会话后通常为 UPLOADING；文件处理完成后为 READY，失败为 FAILED。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContentStatus: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -1932,6 +1993,38 @@ module TencentCloud
 
       # DeleteDeployment返回参数结构体
       class DeleteDeploymentResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteGPUResourceGroup请求参数结构体
+      class DeleteGPUResourceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceGroupId: 待删除的 GPU 资源组 ID，必填、非空，最多 64 字节。资源组必须属于当前租户，且已清空有效 GPU 实例、占用绑定和关联沙箱工具。
+        # @type ResourceGroupId: String
+
+        attr_accessor :ResourceGroupId
+
+        def initialize(resourcegroupid=nil)
+          @ResourceGroupId = resourcegroupid
+        end
+
+        def deserialize(params)
+          @ResourceGroupId = params['ResourceGroupId']
+        end
+      end
+
+      # DeleteGPUResourceGroup返回参数结构体
+      class DeleteGPUResourceGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2592,6 +2685,202 @@ module TencentCloud
         end
       end
 
+      # DescribeGPUResourceGroups请求参数结构体
+      class DescribeGPUResourceGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param Filters: 过滤条件，最多 10 项，Name 不可重复，每项 Values 为 1–10 个值。不同 Name 为 AND、同一 Values 为 OR。支持 resource-group-id（精确 ID）、resource-group-name（精确名称）、resource-group-name-like（普通文本子串，% 和 _ 不作为通配符）、gpu-type、gpu-num、cpu、memory。ID/GPUType 最多 64 字节，名称最多 128 字节；gpu-num 为正整数字符串，cpu/memory 为正数字符串，单位核/GiB。
+        # @type Filters: Array
+        # @param Offset: 分页偏移量，默认为 0，必须大于等于 0。
+        # @type Offset: Integer
+        # @param Limit: 每页条数，省略或传 0 时取 100；非零取值范围 1–500。
+        # @type Limit: Integer
+
+        attr_accessor :Filters, :Offset, :Limit
+
+        def initialize(filters=nil, offset=nil, limit=nil)
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeGPUResourceGroups返回参数结构体
+      class DescribeGPUResourceGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param ResourceGroups: 匹配的资源组列表；无匹配时为 []。
+        # @type ResourceGroups: Array
+        # @param TotalCount: 匹配的资源组总数，分页前计算。
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ResourceGroups, :TotalCount, :RequestId
+
+        def initialize(resourcegroups=nil, totalcount=nil, requestid=nil)
+          @ResourceGroups = resourcegroups
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['ResourceGroups'].nil?
+            @ResourceGroups = []
+            params['ResourceGroups'].each do |i|
+              gpuresourcegroup_tmp = GPUResourceGroup.new
+              gpuresourcegroup_tmp.deserialize(i)
+              @ResourceGroups << gpuresourcegroup_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGPUResourceSpecs请求参数结构体
+      class DescribeGPUResourceSpecsRequest < TencentCloud::Common::AbstractModel
+        # @param GPUType: <p>GPU 类型标识，例如 5090d；指定时必须同时提供 CPU、Memory、GPUNum。</p>
+        # @type GPUType: String
+        # @param CPU: <p>CPU 核数，必须为正数；与 GPUType、Memory、GPUNum 同时提供。</p>
+        # @type CPU: Integer
+        # @param Memory: <p>主机内存 GiB，必须为正数；与 GPUType、CPU、GPUNum 同时提供。</p>
+        # @type Memory: Integer
+        # @param GPUNum: <p>单台 GPU 卡数，必须为正整数；与 GPUType、CPU、Memory 同时提供。</p>
+        # @type GPUNum: Integer
+        # @param Offset: <p>分页偏移量，默认为 0，必须大于等于 0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>每页条数，省略或传 0 时取 100；非零取值范围 1–500。</p>
+        # @type Limit: Integer
+
+        attr_accessor :GPUType, :CPU, :Memory, :GPUNum, :Offset, :Limit
+
+        def initialize(gputype=nil, cpu=nil, memory=nil, gpunum=nil, offset=nil, limit=nil)
+          @GPUType = gputype
+          @CPU = cpu
+          @Memory = memory
+          @GPUNum = gpunum
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @GPUType = params['GPUType']
+          @CPU = params['CPU']
+          @Memory = params['Memory']
+          @GPUNum = params['GPUNum']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeGPUResourceSpecs返回参数结构体
+      class DescribeGPUResourceSpecsResponse < TencentCloud::Common::AbstractModel
+        # @param GPUResourceSpecSet: <p>可售规格与额度列表；无可售规格时为 []。</p>
+        # @type GPUResourceSpecSet: Array
+        # @param TotalCount: <p>筛选后、分页前的总数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GPUResourceSpecSet, :TotalCount, :RequestId
+
+        def initialize(gpuresourcespecset=nil, totalcount=nil, requestid=nil)
+          @GPUResourceSpecSet = gpuresourcespecset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['GPUResourceSpecSet'].nil?
+            @GPUResourceSpecSet = []
+            params['GPUResourceSpecSet'].each do |i|
+              gpuresourcespec_tmp = GPUResourceSpec.new
+              gpuresourcespec_tmp.deserialize(i)
+              @GPUResourceSpecSet << gpuresourcespec_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeGPUResources请求参数结构体
+      class DescribeGPUResourcesRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceGroupId: <p>按资源组 ID 过滤，可省略，最多 64 字节。</p>
+        # @type ResourceGroupId: String
+        # @param ResourceIds: <p>按GPU资源 ID 过滤，最多 500 个，每个为非空字符串且最多 64 字节；值之间为 OR，与其他条件为 AND。</p>
+        # @type ResourceIds: Array
+        # @param State: <p>按GPU状态过滤，可省略。大小写敏感：Delivering、Active、Isolated、Destroying。</p>
+        # @type State: String
+        # @param AllocationState: <p>按占用状态过滤，可省略。大小写敏感：Idle、Allocating、InUse、Returning、Unavailable。</p>
+        # @type AllocationState: String
+        # @param Offset: <p>分页偏移量，默认为 0，必须大于等于 0。</p>
+        # @type Offset: Integer
+        # @param Limit: <p>每页条数，省略或传 0 时取 100；非零取值范围 1–500。</p>
+        # @type Limit: Integer
+
+        attr_accessor :ResourceGroupId, :ResourceIds, :State, :AllocationState, :Offset, :Limit
+
+        def initialize(resourcegroupid=nil, resourceids=nil, state=nil, allocationstate=nil, offset=nil, limit=nil)
+          @ResourceGroupId = resourcegroupid
+          @ResourceIds = resourceids
+          @State = state
+          @AllocationState = allocationstate
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ResourceGroupId = params['ResourceGroupId']
+          @ResourceIds = params['ResourceIds']
+          @State = params['State']
+          @AllocationState = params['AllocationState']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeGPUResources返回参数结构体
+      class DescribeGPUResourcesResponse < TencentCloud::Common::AbstractModel
+        # @param Resources: <p>GPU 资源列表；每台一条，无匹配时为 []。</p>
+        # @type Resources: Array
+        # @param TotalCount: <p>筛选后、分页前的总数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Resources, :TotalCount, :RequestId
+
+        def initialize(resources=nil, totalcount=nil, requestid=nil)
+          @Resources = resources
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Resources'].nil?
+            @Resources = []
+            params['Resources'].each do |i|
+              gpuresource_tmp = GPUResource.new
+              gpuresource_tmp.deserialize(i)
+              @Resources << gpuresource_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribePreCacheImageList请求参数结构体
       class DescribePreCacheImageListRequest < TencentCloud::Common::AbstractModel
         # @param Filters: <p>查询过滤条件。支持 Image, ImageDigest, ImageRegistryType, Status, SourceType；不同 Filter 之间为 AND，同一 Filter 的 Values 之间为 OR。</p>
@@ -2970,7 +3259,7 @@ module TencentCloud
 
       # DescribeRegistryRecordList请求参数结构体
       class DescribeRegistryRecordListRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: <p>父 Registry ID。</p>
+        # @param RegistryId: <p>RegistryId 必填。大写常量 MARKETPLACE 表示服务端主 YAML marketplace.registry_ids 配置的工具市场；真实 reg-xxx 表示具体 Registry。省略、空字符串、null 或其他大小写均拒绝。市场读取要求已认证身份，只返回配置来源内未删除、已审批的可读版本，文件还须 READY 和有效制品；不回退私有目录。</p>
         # @type RegistryId: String
         # @param Offset: <p>分页起始偏移，默认 0。</p>
         # @type Offset: Integer
@@ -3036,7 +3325,7 @@ module TencentCloud
 
       # DescribeRegistryRecord请求参数结构体
       class DescribeRegistryRecordRequest < TencentCloud::Common::AbstractModel
-        # @param RegistryId: <p>父 Registry ID。</p>
+        # @param RegistryId: <p>RegistryId 必填。大写常量 MARKETPLACE 表示服务端主 YAML marketplace.registry_ids 配置的工具市场；真实 reg-xxx 表示具体 Registry。省略、空字符串、null 或其他大小写均拒绝。市场读取要求已认证身份，只返回配置来源内未删除、已审批的可读版本，文件还须 READY 和有效制品；不回退私有目录。</p>
         # @type RegistryId: String
         # @param RecordId: <p>Record ID。</p>
         # @type RecordId: String
@@ -3986,6 +4275,224 @@ module TencentCloud
         end
       end
 
+      # 已购买GPU资源详细信息
+      class GPUResource < TencentCloud::Common::AbstractModel
+        # @param ResourceId: <p>GPU 资源 ID，与沙箱 InstanceId、底层 VM ID 不同。</p>
+        # @type ResourceId: String
+        # @param ResourceGroupId: <p>所属 GPU 资源组 ID。</p>
+        # @type ResourceGroupId: String
+        # @param State: <p>GPU资源状态，大小写敏感：Delivering（准备中）、Active（已生效）、Isolated（已隔离）、Destroying（释放中）。不返回 Destroyed 和补偿完成的 Failed。</p>
+        # @type State: String
+        # @param AllocationState: <p>占用状态，大小写敏感：Idle（可领取）、Allocating（领取中）、InUse（使用中）、Returning（归还中）、Unavailable（暂不可用）。不能根据 InstanceId 是否存在判断是否空闲。</p>
+        # @type AllocationState: String
+        # @param InstanceId: <p>已绑定的最终 AGS 沙箱实例 ID；尚未绑定或未占用时可能不返回。</p>
+        # @type InstanceId: String
+        # @param ActiveAt: <p>生效时间，未生效时可能不返回。</p>
+        # @type ActiveAt: String
+        # @param ExpireAt: <p>到期时间，未生效时可能不返回。</p>
+        # @type ExpireAt: String
+        # @param RenewFlag: <p>续费标记：0 不自动续费，1 自动续费，2 不再续费。</p>
+        # @type RenewFlag: Integer
+        # @param StatusReason: <p>安全的状态原因标识；空串表示无额外原因，PhysicalUnavailable 表示物理状态不可用，BindingPending 表示绑定身份尚待确认。未知值应作状态确认中处理。</p>
+        # @type StatusReason: String
+
+        attr_accessor :ResourceId, :ResourceGroupId, :State, :AllocationState, :InstanceId, :ActiveAt, :ExpireAt, :RenewFlag, :StatusReason
+
+        def initialize(resourceid=nil, resourcegroupid=nil, state=nil, allocationstate=nil, instanceid=nil, activeat=nil, expireat=nil, renewflag=nil, statusreason=nil)
+          @ResourceId = resourceid
+          @ResourceGroupId = resourcegroupid
+          @State = state
+          @AllocationState = allocationstate
+          @InstanceId = instanceid
+          @ActiveAt = activeat
+          @ExpireAt = expireat
+          @RenewFlag = renewflag
+          @StatusReason = statusreason
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @ResourceGroupId = params['ResourceGroupId']
+          @State = params['State']
+          @AllocationState = params['AllocationState']
+          @InstanceId = params['InstanceId']
+          @ActiveAt = params['ActiveAt']
+          @ExpireAt = params['ExpireAt']
+          @RenewFlag = params['RenewFlag']
+          @StatusReason = params['StatusReason']
+        end
+      end
+
+      # GPU 资源组元数据及统计；资源组是管理集合，期限和续费标记逐台保存。
+      class GPUResourceGroup < TencentCloud::Common::AbstractModel
+        # @param ResourceGroupId: GPU 资源组 ID。
+        # @type ResourceGroupId: String
+        # @param Name: 资源组名称。
+        # @type Name: String
+        # @param Spec: 资源组固定规格；已下架规格的已购组仍可查询。
+        # @type Spec: :class:`Tencentcloud::Ags.v20250920.models.GPUResourceGroupSpec`
+        # @param Statistics: 当前资源统计。
+        # @type Statistics: :class:`Tencentcloud::Ags.v20250920.models.GPUResourceGroupStatistics`
+
+        attr_accessor :ResourceGroupId, :Name, :Spec, :Statistics
+
+        def initialize(resourcegroupid=nil, name=nil, spec=nil, statistics=nil)
+          @ResourceGroupId = resourcegroupid
+          @Name = name
+          @Spec = spec
+          @Statistics = statistics
+        end
+
+        def deserialize(params)
+          @ResourceGroupId = params['ResourceGroupId']
+          @Name = params['Name']
+          unless params['Spec'].nil?
+            @Spec = GPUResourceGroupSpec.new
+            @Spec.deserialize(params['Spec'])
+          end
+          unless params['Statistics'].nil?
+            @Statistics = GPUResourceGroupStatistics.new
+            @Statistics.deserialize(params['Statistics'])
+          end
+        end
+      end
+
+      # 已购买 GPU 资源组的固定规格及展示元数据。
+      class GPUResourceGroupSpec < TencentCloud::Common::AbstractModel
+        # @param GPUType: <p>GPU 类型标识，例如 5090d。</p>
+        # @type GPUType: String
+        # @param GPUTypeAlias: <p>GPU 类型展示名称；为空时使用 GPUType 展示。</p>
+        # @type GPUTypeAlias: String
+        # @param GPUMemoryGiB: <p>单台实例全部 GPU 的总显存，单位 GiB；不需要再乘 GPUNum。0 表示展示元数据未维护。</p>
+        # @type GPUMemoryGiB: Integer
+        # @param CPU: <p>单台实例 CPU 核数。</p>
+        # @type CPU: Integer
+        # @param Memory: <p>单台实例主机内存，单位 GiB；不是 GPU 显存。</p>
+        # @type Memory: Integer
+        # @param GPUNum: <p>单台实例的 GPU 卡数。</p>
+        # @type GPUNum: Integer
+
+        attr_accessor :GPUType, :GPUTypeAlias, :GPUMemoryGiB, :CPU, :Memory, :GPUNum
+
+        def initialize(gputype=nil, gputypealias=nil, gpumemorygib=nil, cpu=nil, memory=nil, gpunum=nil)
+          @GPUType = gputype
+          @GPUTypeAlias = gputypealias
+          @GPUMemoryGiB = gpumemorygib
+          @CPU = cpu
+          @Memory = memory
+          @GPUNum = gpunum
+        end
+
+        def deserialize(params)
+          @GPUType = params['GPUType']
+          @GPUTypeAlias = params['GPUTypeAlias']
+          @GPUMemoryGiB = params['GPUMemoryGiB']
+          @CPU = params['CPU']
+          @Memory = params['Memory']
+          @GPUNum = params['GPUNum']
+        end
+      end
+
+      # 组内当前资源统计。可用/占用是额外维度，不能与 StateCounts 相加。
+      class GPUResourceGroupStatistics < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>组内当前资源总数，单位台；不含已销毁和补偿完成的失败资源。</p>
+        # @type TotalCount: Integer
+        # @param AvailableCount: <p>Active、无占用且物理状态当前可领取的资源数量，单位台。</p>
+        # @type AvailableCount: Integer
+        # @param AllocatedCount: <p>仍被占用或绑定的资源数量，含领取中、使用中及归还未完成，单位台。</p>
+        # @type AllocatedCount: Integer
+        # @param StateCounts: <p>资源状态计数，四项之和等于本组 TotalCount。</p>
+        # @type StateCounts: :class:`Tencentcloud::Ags.v20250920.models.GPUResourceStateCount`
+
+        attr_accessor :TotalCount, :AvailableCount, :AllocatedCount, :StateCounts
+
+        def initialize(totalcount=nil, availablecount=nil, allocatedcount=nil, statecounts=nil)
+          @TotalCount = totalcount
+          @AvailableCount = availablecount
+          @AllocatedCount = allocatedcount
+          @StateCounts = statecounts
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          @AvailableCount = params['AvailableCount']
+          @AllocatedCount = params['AllocatedCount']
+          unless params['StateCounts'].nil?
+            @StateCounts = GPUResourceStateCount.new
+            @StateCounts.deserialize(params['StateCounts'])
+          end
+        end
+      end
+
+      # 当前地域可售 GPU 规格与当前租户可购买额度。
+      class GPUResourceSpec < TencentCloud::Common::AbstractModel
+        # @param GPUType: <p>GPU 类型标识，例如 5090d。</p>
+        # @type GPUType: String
+        # @param GPUTypeAlias: <p>GPU 类型展示名称；为空时使用 GPUType 展示。</p>
+        # @type GPUTypeAlias: String
+        # @param GPUMemoryGiB: <p>单台实例全部 GPU 的总显存，单位 GiB；不需要再乘 GPUNum。0 表示展示元数据未维护。</p>
+        # @type GPUMemoryGiB: Integer
+        # @param CPU: <p>单台实例 CPU 核数。</p>
+        # @type CPU: Integer
+        # @param Memory: <p>单台实例主机内存，单位 GiB；不是 GPU 显存。</p>
+        # @type Memory: Integer
+        # @param GPUNum: <p>单台实例的 GPU 卡数。</p>
+        # @type GPUNum: Integer
+        # @param AvailableCount: <p>当前可购买数量，单位台，不是卡数；0 表示确认无额度，null 表示额度未知。实际购买时仍会重新校验。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AvailableCount: Integer
+
+        attr_accessor :GPUType, :GPUTypeAlias, :GPUMemoryGiB, :CPU, :Memory, :GPUNum, :AvailableCount
+
+        def initialize(gputype=nil, gputypealias=nil, gpumemorygib=nil, cpu=nil, memory=nil, gpunum=nil, availablecount=nil)
+          @GPUType = gputype
+          @GPUTypeAlias = gputypealias
+          @GPUMemoryGiB = gpumemorygib
+          @CPU = cpu
+          @Memory = memory
+          @GPUNum = gpunum
+          @AvailableCount = availablecount
+        end
+
+        def deserialize(params)
+          @GPUType = params['GPUType']
+          @GPUTypeAlias = params['GPUTypeAlias']
+          @GPUMemoryGiB = params['GPUMemoryGiB']
+          @CPU = params['CPU']
+          @Memory = params['Memory']
+          @GPUNum = params['GPUNum']
+          @AvailableCount = params['AvailableCount']
+        end
+      end
+
+      # 资源状态计数；四项之和为组内 TotalCount，不含已销毁和补偿完成的失败资源。
+      class GPUResourceStateCount < TencentCloud::Common::AbstractModel
+        # @param Delivering: <p>准备中的资源数量，单位台。</p>
+        # @type Delivering: Integer
+        # @param Active: <p>已生效的资源数量，单位台；不等于当前可领取数量。</p>
+        # @type Active: Integer
+        # @param Isolated: <p>已隔离的资源数量，单位台。</p>
+        # @type Isolated: Integer
+        # @param Destroying: <p>正在释放的资源数量，单位台。</p>
+        # @type Destroying: Integer
+
+        attr_accessor :Delivering, :Active, :Isolated, :Destroying
+
+        def initialize(delivering=nil, active=nil, isolated=nil, destroying=nil)
+          @Delivering = delivering
+          @Active = active
+          @Isolated = isolated
+          @Destroying = destroying
+        end
+
+        def deserialize(params)
+          @Delivering = params['Delivering']
+          @Active = params['Active']
+          @Isolated = params['Isolated']
+          @Destroying = params['Destroying']
+        end
+      end
+
       # GetSkillPackageDownloadURL请求参数结构体
       class GetSkillPackageDownloadURLRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: <p>父 Registry ID。</p>
@@ -4362,6 +4869,42 @@ module TencentCloud
             @Deployment = Deployment.new
             @Deployment.deserialize(params['Deployment'])
           end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyGPUResourceGroup请求参数结构体
+      class ModifyGPUResourceGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ResourceGroupId: GPU 资源组 ID，必填、非空，最多 64 字节。
+        # @type ResourceGroupId: String
+        # @param Name: 新的资源组名称；去除首尾空白后不能为空，最多 128 字节，UTF-8 中文通常占 3 字节。
+        # @type Name: String
+
+        attr_accessor :ResourceGroupId, :Name
+
+        def initialize(resourcegroupid=nil, name=nil)
+          @ResourceGroupId = resourcegroupid
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ResourceGroupId = params['ResourceGroupId']
+          @Name = params['Name']
+        end
+      end
+
+      # ModifyGPUResourceGroup返回参数结构体
+      class ModifyGPUResourceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
           @RequestId = params['RequestId']
         end
       end
@@ -4806,15 +5349,18 @@ module TencentCloud
         # @type CPUCores: Float
         # @param MemoryGiB: <p>内存配额或当前用量</p><p>单位：GiB</p>
         # @type MemoryGiB: Float
+        # @param PreCacheImageConcurrency: <p>最大镜像预热并发处理数量</p><p>单位：个</p>
+        # @type PreCacheImageConcurrency: Integer
 
-        attr_accessor :SandboxTools, :SandboxInstances, :PausedInstances, :CPUCores, :MemoryGiB
+        attr_accessor :SandboxTools, :SandboxInstances, :PausedInstances, :CPUCores, :MemoryGiB, :PreCacheImageConcurrency
 
-        def initialize(sandboxtools=nil, sandboxinstances=nil, pausedinstances=nil, cpucores=nil, memorygib=nil)
+        def initialize(sandboxtools=nil, sandboxinstances=nil, pausedinstances=nil, cpucores=nil, memorygib=nil, precacheimageconcurrency=nil)
           @SandboxTools = sandboxtools
           @SandboxInstances = sandboxinstances
           @PausedInstances = pausedinstances
           @CPUCores = cpucores
           @MemoryGiB = memorygib
+          @PreCacheImageConcurrency = precacheimageconcurrency
         end
 
         def deserialize(params)
@@ -4823,6 +5369,7 @@ module TencentCloud
           @PausedInstances = params['PausedInstances']
           @CPUCores = params['CPUCores']
           @MemoryGiB = params['MemoryGiB']
+          @PreCacheImageConcurrency = params['PreCacheImageConcurrency']
         end
       end
 
@@ -5712,10 +6259,16 @@ module TencentCloud
         # @type CustomDescriptors: String
         # @param LabelMutations: <p>Record 更新模式：Label 变更列表，最多 32 条，同一次请求中 Label Name 不可重复。</p>
         # @type LabelMutations: Array
+        # @param FileSource: <p>Skill 或 Plugin 后续版本的文件来源。PLUGIN 可使用 FILE 上传新文件，或使用 VERSION 复用同一 Record 的 READY 制品；Skill 仅通过 VERSION 复用现有文件。与其他内容来源互斥。</p><p>VERSION 只提交 Type、SourceVersionId；Metadata 和 SupportedHarnessVersions 由本次请求单独声明，不继承来源版本。</p>
+        # @type FileSource: :class:`Tencentcloud::Ags.v20250920.models.CloudFileSourceInput`
+        # @param SupportedHarnessVersions: <p>资产版本支持的 Harness 引擎与具体版本列表。每个元素同时包含 HarnessEngine 和 HarnessEngineVersion，取值原样使用 DescribeHarnessEngineList 返回的选项。</p><p>入参限制：最多 128 个元素；两个字段均必填，长度 1～128，区分大小写，不允许空白、通配符或版本范围。按完整配对去重；不接受字符串数组或 null。</p><p>省略或空数组表示未声明兼容性，不表示兼容全部。仅随新 Version 写入，后续修改需创建新 Version。筛选时 supported_harness_engine 与 supported_harness_version 必须同时传入，并在同一元素中精确匹配。</p>
+        # @type SupportedHarnessVersions: Array
+        # @param Metadata: <p>版本元数据的 Name/Value 对象数组。</p><p>参数格式：每项仅包含必填的 Name、Value 两个字符串字段。Name 非空、小写且数组内唯一，不自动转换；重复 Name 即使 Value 相同也返回 InvalidParameter。Value 允许空字符串，保留大小写；不接受嵌套对象、数组或非字符串值。</p><p>默认值：空数组 []。创建新版本时省略或 [] 均为空，不继承；null、JSON 字符串和原生对象非法。响应按 Name 升序返回，旧 SQL NULL 归一为 []。服务内部使用 map[string]string，数据库 JSON 列保存对象。publisher 表示发布者展示名称；metadata.&lt;key&gt; 按完整小写名称精确筛选，规则不变。</p>
+        # @type Metadata: Array
 
-        attr_accessor :RegistryId, :RecordId, :Description, :VersionName, :ChangeLog, :MCPSource, :AgentSource, :SkillSource, :CustomDescriptors, :LabelMutations
+        attr_accessor :RegistryId, :RecordId, :Description, :VersionName, :ChangeLog, :MCPSource, :AgentSource, :SkillSource, :CustomDescriptors, :LabelMutations, :FileSource, :SupportedHarnessVersions, :Metadata
 
-        def initialize(registryid=nil, recordid=nil, description=nil, versionname=nil, changelog=nil, mcpsource=nil, agentsource=nil, skillsource=nil, customdescriptors=nil, labelmutations=nil)
+        def initialize(registryid=nil, recordid=nil, description=nil, versionname=nil, changelog=nil, mcpsource=nil, agentsource=nil, skillsource=nil, customdescriptors=nil, labelmutations=nil, filesource=nil, supportedharnessversions=nil, metadata=nil)
           @RegistryId = registryid
           @RecordId = recordid
           @Description = description
@@ -5726,6 +6279,9 @@ module TencentCloud
           @SkillSource = skillsource
           @CustomDescriptors = customdescriptors
           @LabelMutations = labelmutations
+          @FileSource = filesource
+          @SupportedHarnessVersions = supportedharnessversions
+          @Metadata = metadata
         end
 
         def deserialize(params)
@@ -5753,6 +6309,26 @@ module TencentCloud
               cloudrecordlabelmutation_tmp = CloudRecordLabelMutation.new
               cloudrecordlabelmutation_tmp.deserialize(i)
               @LabelMutations << cloudrecordlabelmutation_tmp
+            end
+          end
+          unless params['FileSource'].nil?
+            @FileSource = CloudFileSourceInput.new
+            @FileSource.deserialize(params['FileSource'])
+          end
+          unless params['SupportedHarnessVersions'].nil?
+            @SupportedHarnessVersions = []
+            params['SupportedHarnessVersions'].each do |i|
+              harnessversionreference_tmp = HarnessVersionReference.new
+              harnessversionreference_tmp.deserialize(i)
+              @SupportedHarnessVersions << harnessversionreference_tmp
+            end
+          end
+          unless params['Metadata'].nil?
+            @Metadata = []
+            params['Metadata'].each do |i|
+              metadataentry_tmp = MetadataEntry.new
+              metadataentry_tmp.deserialize(i)
+              @Metadata << metadataentry_tmp
             end
           end
         end

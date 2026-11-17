@@ -1435,7 +1435,7 @@ module TencentCloud
         # @type DiskIds: Array
         # @param BackupGroupName: 备份组的名称
         # @type BackupGroupName: String
-        # @param Deadline: 指定备份组到期时间，如果未传入该参数，默认为永久保留。
+        # @param Deadline: 指定备份组到期时间，ISO 8601 格式字符串，如 2026-01-01T00:00:00+08:00。如果未传入该参数，默认为永久保留。
         # @type Deadline: String
 
         attr_accessor :DiskIds, :BackupGroupName, :Deadline
@@ -1754,11 +1754,11 @@ module TencentCloud
 
       # CreateFileBackup请求参数结构体
       class CreateFileBackupRequest < TencentCloud::Common::AbstractModel
-        # @param ResourceId: <p>资源ID列表</p>
+        # @param ResourceId: <p>资源ID（单个）：CVM 场景传实例ID（ins-xxx），CFS 场景传文件系统ID（cfs-xxx），COS 场景传源桶名称。</p>
         # @type ResourceId: String
         # @param PlanId: <p>计划ID</p>
         # @type PlanId: String
-        # @param BackupPaths: <p>备份路径列表，1~20 个</p>
+        # @param BackupPaths: <p>备份路径列表，0~20 个。不传或传空数组时，CVM/CFS 默认 ["/"]（根目录），COS 默认整桶；COS 最多 1 个对象前缀。</p>
         # @type BackupPaths: Array
         # @param IncludeFileTypes: <p>包含文件类型，0~20 个</p>
         # @type IncludeFileTypes: Array
@@ -1770,7 +1770,7 @@ module TencentCloud
         # @type BackupStorageId: String
         # @param Deadline: <p>备份到期时间</p>
         # @type Deadline: String
-        # @param BackupName: <p>备份名称</p>
+        # @param BackupName: <p>备份名称，最长128个字符；不传或为空时系统自动生成</p>
         # @type BackupName: String
         # @param ResourceType: <p>资源类型</p><p>枚举值：</p><ul><li>CVM_AGENT： CVM文件备份</li><li>CFS_AGENT： 文件系统备份</li><li>COS_AGENT： COS备份</li></ul><p>默认值：CVM_AGENT</p>
         # @type ResourceType: String
@@ -3027,12 +3027,18 @@ module TencentCloud
         # @type CFSAgentBackupOverview: :class:`Tencentcloud::Bdrc.v20260330.models.FileBackupOverview`
         # @param COSAgentBackupOverview: <p>COS备份概览数据</p>
         # @type COSAgentBackupOverview: :class:`Tencentcloud::Bdrc.v20260330.models.FileBackupOverview`
+        # @param LocalCVMAgentBackupOverview: <p>非腾讯云虚拟机备份概览数据</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalCVMAgentBackupOverview: :class:`Tencentcloud::Bdrc.v20260330.models.FileBackupOverview`
+        # @param LocalCFSAgentBackupOverview: <p>非腾讯云文件存储备份概览数据</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalCFSAgentBackupOverview: :class:`Tencentcloud::Bdrc.v20260330.models.FileBackupOverview`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :InstanceBackupOverview, :FileBackupOverview, :BackupPolicyOverview, :BackupVaultOverview, :ProtectedResourceOverview, :CFSAgentBackupOverview, :COSAgentBackupOverview, :RequestId
+        attr_accessor :InstanceBackupOverview, :FileBackupOverview, :BackupPolicyOverview, :BackupVaultOverview, :ProtectedResourceOverview, :CFSAgentBackupOverview, :COSAgentBackupOverview, :LocalCVMAgentBackupOverview, :LocalCFSAgentBackupOverview, :RequestId
 
-        def initialize(instancebackupoverview=nil, filebackupoverview=nil, backuppolicyoverview=nil, backupvaultoverview=nil, protectedresourceoverview=nil, cfsagentbackupoverview=nil, cosagentbackupoverview=nil, requestid=nil)
+        def initialize(instancebackupoverview=nil, filebackupoverview=nil, backuppolicyoverview=nil, backupvaultoverview=nil, protectedresourceoverview=nil, cfsagentbackupoverview=nil, cosagentbackupoverview=nil, localcvmagentbackupoverview=nil, localcfsagentbackupoverview=nil, requestid=nil)
           @InstanceBackupOverview = instancebackupoverview
           @FileBackupOverview = filebackupoverview
           @BackupPolicyOverview = backuppolicyoverview
@@ -3040,6 +3046,8 @@ module TencentCloud
           @ProtectedResourceOverview = protectedresourceoverview
           @CFSAgentBackupOverview = cfsagentbackupoverview
           @COSAgentBackupOverview = cosagentbackupoverview
+          @LocalCVMAgentBackupOverview = localcvmagentbackupoverview
+          @LocalCFSAgentBackupOverview = localcfsagentbackupoverview
           @RequestId = requestid
         end
 
@@ -3071,6 +3079,14 @@ module TencentCloud
           unless params['COSAgentBackupOverview'].nil?
             @COSAgentBackupOverview = FileBackupOverview.new
             @COSAgentBackupOverview.deserialize(params['COSAgentBackupOverview'])
+          end
+          unless params['LocalCVMAgentBackupOverview'].nil?
+            @LocalCVMAgentBackupOverview = FileBackupOverview.new
+            @LocalCVMAgentBackupOverview.deserialize(params['LocalCVMAgentBackupOverview'])
+          end
+          unless params['LocalCFSAgentBackupOverview'].nil?
+            @LocalCFSAgentBackupOverview = FileBackupOverview.new
+            @LocalCFSAgentBackupOverview.deserialize(params['LocalCFSAgentBackupOverview'])
           end
           @RequestId = params['RequestId']
         end
@@ -6370,16 +6386,24 @@ module TencentCloud
         # @param COSAgent: <p>COS备份受保护统计</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type COSAgent: :class:`Tencentcloud::Bdrc.v20260330.models.ResourceProtectStat`
+        # @param LocalCVMAgent: <p>非腾讯云虚拟机备份受保护统计</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalCVMAgent: :class:`Tencentcloud::Bdrc.v20260330.models.ResourceProtectStat`
+        # @param LocalCFSAgent: <p>非腾讯云文件存储备份受保护统计</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LocalCFSAgent: :class:`Tencentcloud::Bdrc.v20260330.models.ResourceProtectStat`
 
-        attr_accessor :TotalProtectedCount, :TotalResourceCount, :Cvm, :CFS, :CFSAgent, :COSAgent
+        attr_accessor :TotalProtectedCount, :TotalResourceCount, :Cvm, :CFS, :CFSAgent, :COSAgent, :LocalCVMAgent, :LocalCFSAgent
 
-        def initialize(totalprotectedcount=nil, totalresourcecount=nil, cvm=nil, cfs=nil, cfsagent=nil, cosagent=nil)
+        def initialize(totalprotectedcount=nil, totalresourcecount=nil, cvm=nil, cfs=nil, cfsagent=nil, cosagent=nil, localcvmagent=nil, localcfsagent=nil)
           @TotalProtectedCount = totalprotectedcount
           @TotalResourceCount = totalresourcecount
           @Cvm = cvm
           @CFS = cfs
           @CFSAgent = cfsagent
           @COSAgent = cosagent
+          @LocalCVMAgent = localcvmagent
+          @LocalCFSAgent = localcfsagent
         end
 
         def deserialize(params)
@@ -6400,6 +6424,14 @@ module TencentCloud
           unless params['COSAgent'].nil?
             @COSAgent = ResourceProtectStat.new
             @COSAgent.deserialize(params['COSAgent'])
+          end
+          unless params['LocalCVMAgent'].nil?
+            @LocalCVMAgent = ResourceProtectStat.new
+            @LocalCVMAgent.deserialize(params['LocalCVMAgent'])
+          end
+          unless params['LocalCFSAgent'].nil?
+            @LocalCFSAgent = ResourceProtectStat.new
+            @LocalCFSAgent.deserialize(params['LocalCFSAgent'])
           end
         end
       end

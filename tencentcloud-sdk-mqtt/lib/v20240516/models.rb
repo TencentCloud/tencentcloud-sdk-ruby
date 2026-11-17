@@ -2767,8 +2767,8 @@ module TencentCloud
 
         attr_accessor :InstanceType, :InstanceId, :InstanceName, :TopicNum, :TopicNumLimit, :TpsLimit, :CreatedTime, :Remark, :InstanceStatus, :SkuCode, :MaxSubscriptionPerClient, :AuthorizationPolicyLimit, :ClientNumLimit, :DeviceCertificateProvisionType, :AutomaticActivation, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :X509Mode, :MaxCaNum, :RegistrationCode, :MaxSubscription, :AuthorizationPolicy, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :UseDefaultServerCert, :TrustedCaLimit, :ServerCertLimit, :TopicPrefixSlashLimit, :MessageRate, :TransportLayerSecurity, :MessageEnrichmentRuleLimit, :BlockRuleLimit, :DeleteProtect, :EventDialect, :HashMessagePolicy, :RequestId
         extend Gem::Deprecate
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 10
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 10
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 11
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 11
 
         def initialize(instancetype=nil, instanceid=nil, instancename=nil, topicnum=nil, topicnumlimit=nil, tpslimit=nil, createdtime=nil, remark=nil, instancestatus=nil, skucode=nil, maxsubscriptionperclient=nil, authorizationpolicylimit=nil, clientnumlimit=nil, devicecertificateprovisiontype=nil, automaticactivation=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, x509mode=nil, maxcanum=nil, registrationcode=nil, maxsubscription=nil, authorizationpolicy=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, usedefaultservercert=nil, trustedcalimit=nil, servercertlimit=nil, topicprefixslashlimit=nil, messagerate=nil, transportlayersecurity=nil, messageenrichmentrulelimit=nil, blockrulelimit=nil, deleteprotect=nil, eventdialect=nil, hashmessagepolicy=nil, requestid=nil)
           @InstanceType = instancetype
@@ -4400,8 +4400,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :InstanceName, :Version, :InstanceType, :InstanceStatus, :TopicNumLimit, :Remark, :TopicNum, :SkuCode, :TpsLimit, :CreateTime, :MaxSubscriptionPerClient, :ClientNumLimit, :RenewFlag, :PayMode, :ExpiryTime, :DestroyTime, :AuthorizationPolicyLimit, :MaxCaNum, :MaxSubscription, :SharedSubscriptionGroupLimit, :MaxTopicFilterPerSharedSubscriptionGroup, :AutoSubscriptionPolicyLimit, :MaxTopicFilterPerAutoSubscriptionPolicy, :DeleteProtect
         extend Gem::Deprecate
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 10
-        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 10
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup, :none, 2026, 11
+        deprecate :MaxTopicFilterPerSharedSubscriptionGroup=, :none, 2026, 11
 
         def initialize(instanceid=nil, instancename=nil, version=nil, instancetype=nil, instancestatus=nil, topicnumlimit=nil, remark=nil, topicnum=nil, skucode=nil, tpslimit=nil, createtime=nil, maxsubscriptionperclient=nil, clientnumlimit=nil, renewflag=nil, paymode=nil, expirytime=nil, destroytime=nil, authorizationpolicylimit=nil, maxcanum=nil, maxsubscription=nil, sharedsubscriptiongrouplimit=nil, maxtopicfilterpersharedsubscriptiongroup=nil, autosubscriptionpolicylimit=nil, maxtopicfilterperautosubscriptionpolicy=nil, deleteprotect=nil)
           @InstanceId = instanceid
@@ -4518,12 +4518,12 @@ module TencentCloud
 
         attr_accessor :MsgId, :Tags, :Keys, :ProducerAddr, :ProduceTime, :DeadLetterResendTimes, :DeadLetterResendSuccessTimes, :SubTopic, :Qos
         extend Gem::Deprecate
-        deprecate :DeadLetterResendTimes, :none, 2026, 10
-        deprecate :DeadLetterResendTimes=, :none, 2026, 10
-        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 10
-        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 10
-        deprecate :SubTopic, :none, 2026, 10
-        deprecate :SubTopic=, :none, 2026, 10
+        deprecate :DeadLetterResendTimes, :none, 2026, 11
+        deprecate :DeadLetterResendTimes=, :none, 2026, 11
+        deprecate :DeadLetterResendSuccessTimes, :none, 2026, 11
+        deprecate :DeadLetterResendSuccessTimes=, :none, 2026, 11
+        deprecate :SubTopic, :none, 2026, 11
+        deprecate :SubTopic=, :none, 2026, 11
 
         def initialize(msgid=nil, tags=nil, keys=nil, produceraddr=nil, producetime=nil, deadletterresendtimes=nil, deadletterresendsuccesstimes=nil, subtopic=nil, qos=nil)
           @MsgId = msgid
@@ -5228,8 +5228,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :Algorithm, :From, :Secret, :PublicKey, :Status, :Remark, :Text
         extend Gem::Deprecate
-        deprecate :Text, :none, 2026, 10
-        deprecate :Text=, :none, 2026, 10
+        deprecate :Text, :none, 2026, 11
+        deprecate :Text=, :none, 2026, 11
 
         def initialize(instanceid=nil, algorithm=nil, from=nil, secret=nil, publickey=nil, status=nil, remark=nil, text=nil)
           @InstanceId = instanceid
@@ -5652,17 +5652,15 @@ module TencentCloud
 
       # RegisterCaCertificate请求参数结构体
       class RegisterCaCertificateRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param CaCertificate: CA证书内容，自签CA可参考 [自定义 X.509 证书实现 “一机一证”](https://cloud.tencent.com/document/product/1778/114817) 签发自签CA
+        # @param CaCertificate: <p>CA证书内容</p>
         # @type CaCertificate: String
-        # @param VerificationCertificate: 验证证书内容，可参考 [自定义 X.509 证书实现 “一机一证”](https://cloud.tencent.com/document/product/1778/114817) 手动注册CA证书章节
+        # @param VerificationCertificate: <p>验证证书内容</p>
         # @type VerificationCertificate: String
-        # @param Format: 证书格式，不传默认PEM格式，当前仅支持PEM格式
+        # @param Format: <p>证书格式，不传默认PEM格式，当前仅支持PEM格式</p>
         # @type Format: String
-        # @param Status: 证书状态，不传默认ACTIVE状态
-        #     ACTIVE：激活
-        #     INACTIVE：未激活
+        # @param Status: <p>证书状态，不传默认ACTIVE状态<br>    ACTIVE：激活<br>    INACTIVE：未激活</p>
         # @type Status: String
 
         attr_accessor :InstanceId, :CaCertificate, :VerificationCertificate, :Format, :Status
@@ -5686,9 +5684,9 @@ module TencentCloud
 
       # RegisterCaCertificate返回参数结构体
       class RegisterCaCertificateResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: mqtt实例ID
+        # @param InstanceId: <p>mqtt实例ID</p>
         # @type InstanceId: String
-        # @param CaSn: ca 证书的序列号
+        # @param CaSn: <p>ca 证书的序列号</p>
         # @type CaSn: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
