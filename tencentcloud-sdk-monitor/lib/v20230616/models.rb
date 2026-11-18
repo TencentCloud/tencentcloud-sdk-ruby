@@ -1450,10 +1450,16 @@ module TencentCloud
         # @type PolicyId: String
         # @param NotifyId: <p>详情页展示所需id</p>
         # @type NotifyId: String
+        # @param ChannelNames: <p>通知渠道多选。按渠道过滤通知历史，多个取值之间为或关系。</p>
+        # @type ChannelNames: Array
+        # @param PolicyIds: <p>告警策略多选。按策略 ID 精确过滤通知历史，多个 ID 之间为或关系。</p>
+        # @type PolicyIds: Array
+        # @param NoticeIds: <p>字符串数组。每项为告警策略 ID，形如 policy- 开头。</p>
+        # @type NoticeIds: Array
 
-        attr_accessor :MonitorType, :QueryBaseTime, :QueryBeforeSeconds, :PageParams, :Namespace, :ModelName, :PolicyId, :NotifyId
+        attr_accessor :MonitorType, :QueryBaseTime, :QueryBeforeSeconds, :PageParams, :Namespace, :ModelName, :PolicyId, :NotifyId, :ChannelNames, :PolicyIds, :NoticeIds
 
-        def initialize(monitortype=nil, querybasetime=nil, querybeforeseconds=nil, pageparams=nil, namespace=nil, modelname=nil, policyid=nil, notifyid=nil)
+        def initialize(monitortype=nil, querybasetime=nil, querybeforeseconds=nil, pageparams=nil, namespace=nil, modelname=nil, policyid=nil, notifyid=nil, channelnames=nil, policyids=nil, noticeids=nil)
           @MonitorType = monitortype
           @QueryBaseTime = querybasetime
           @QueryBeforeSeconds = querybeforeseconds
@@ -1462,6 +1468,9 @@ module TencentCloud
           @ModelName = modelname
           @PolicyId = policyid
           @NotifyId = notifyid
+          @ChannelNames = channelnames
+          @PolicyIds = policyids
+          @NoticeIds = noticeids
         end
 
         def deserialize(params)
@@ -1476,6 +1485,9 @@ module TencentCloud
           @ModelName = params['ModelName']
           @PolicyId = params['PolicyId']
           @NotifyId = params['NotifyId']
+          @ChannelNames = params['ChannelNames']
+          @PolicyIds = params['PolicyIds']
+          @NoticeIds = params['NoticeIds']
         end
       end
 

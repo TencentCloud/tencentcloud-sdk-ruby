@@ -5320,10 +5320,12 @@ module TencentCloud
         # @type StorageOverUse: String
         # @param StorageAutoExpand: <p>自动扩容开启状态</p><p>枚举值：</p><ul><li>yes： 已开启</li><li>no： 关闭</li></ul><p>默认值：no</p>
         # @type StorageAutoExpand: String
+        # @param IsInInstantRollbackChain: <p>是否在秒级回档链路中</p>
+        # @type IsInInstantRollbackChain: Boolean
 
-        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages, :RenewFlag, :NetworkType, :SlaveZoneAttr, :CynosVersionTag, :GdnId, :GdnRole, :UsedArchiveStorage, :ArchiveStatus, :ArchiveProgress, :ClusterLevel, :IsOpenTDE, :RealZone, :StorageOverUse, :StorageAutoExpand
+        attr_accessor :ClusterId, :ClusterName, :Region, :Zone, :PhysicalZone, :Status, :StatusDesc, :ServerlessStatus, :StorageId, :Storage, :MaxStorageSize, :MinStorageSize, :StoragePayMode, :VpcName, :VpcId, :SubnetName, :SubnetId, :Charset, :CreateTime, :DbType, :DbMode, :DbVersion, :StorageLimit, :UsedStorage, :Vip, :Vport, :RoAddr, :Ability, :CynosVersion, :BusinessType, :HasSlaveZone, :IsFreeze, :Tasks, :MasterZone, :SlaveZones, :InstanceSet, :PayMode, :PeriodEndTime, :ProjectID, :ResourceTags, :ProxyStatus, :LogBin, :IsSkipTrade, :PitrType, :IsOpenPasswordComplexity, :NetworkStatus, :ResourcePackages, :RenewFlag, :NetworkType, :SlaveZoneAttr, :CynosVersionTag, :GdnId, :GdnRole, :UsedArchiveStorage, :ArchiveStatus, :ArchiveProgress, :ClusterLevel, :IsOpenTDE, :RealZone, :StorageOverUse, :StorageAutoExpand, :IsInInstantRollbackChain
 
-        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil, renewflag=nil, networktype=nil, slavezoneattr=nil, cynosversiontag=nil, gdnid=nil, gdnrole=nil, usedarchivestorage=nil, archivestatus=nil, archiveprogress=nil, clusterlevel=nil, isopentde=nil, realzone=nil, storageoveruse=nil, storageautoexpand=nil)
+        def initialize(clusterid=nil, clustername=nil, region=nil, zone=nil, physicalzone=nil, status=nil, statusdesc=nil, serverlessstatus=nil, storageid=nil, storage=nil, maxstoragesize=nil, minstoragesize=nil, storagepaymode=nil, vpcname=nil, vpcid=nil, subnetname=nil, subnetid=nil, charset=nil, createtime=nil, dbtype=nil, dbmode=nil, dbversion=nil, storagelimit=nil, usedstorage=nil, vip=nil, vport=nil, roaddr=nil, ability=nil, cynosversion=nil, businesstype=nil, hasslavezone=nil, isfreeze=nil, tasks=nil, masterzone=nil, slavezones=nil, instanceset=nil, paymode=nil, periodendtime=nil, projectid=nil, resourcetags=nil, proxystatus=nil, logbin=nil, isskiptrade=nil, pitrtype=nil, isopenpasswordcomplexity=nil, networkstatus=nil, resourcepackages=nil, renewflag=nil, networktype=nil, slavezoneattr=nil, cynosversiontag=nil, gdnid=nil, gdnrole=nil, usedarchivestorage=nil, archivestatus=nil, archiveprogress=nil, clusterlevel=nil, isopentde=nil, realzone=nil, storageoveruse=nil, storageautoexpand=nil, isininstantrollbackchain=nil)
           @ClusterId = clusterid
           @ClusterName = clustername
           @Region = region
@@ -5385,6 +5387,7 @@ module TencentCloud
           @RealZone = realzone
           @StorageOverUse = storageoveruse
           @StorageAutoExpand = storageautoexpand
+          @IsInInstantRollbackChain = isininstantrollbackchain
         end
 
         def deserialize(params)
@@ -5494,6 +5497,7 @@ module TencentCloud
           @RealZone = params['RealZone']
           @StorageOverUse = params['StorageOverUse']
           @StorageAutoExpand = params['StorageAutoExpand']
+          @IsInInstantRollbackChain = params['IsInInstantRollbackChain']
         end
       end
 

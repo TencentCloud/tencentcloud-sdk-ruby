@@ -1325,6 +1325,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询接口加密 RSA 公钥，前端用于加密敏感数据。
+
+        # @param request: Request instance for DescribeInterfaceEncryptKeyV2.
+        # @type request: :class:`Tencentcloud::dbbrain::V20210527::DescribeInterfaceEncryptKeyV2Request`
+        # @rtype: :class:`Tencentcloud::dbbrain::V20210527::DescribeInterfaceEncryptKeyV2Response`
+        def DescribeInterfaceEncryptKeyV2(request)
+          body = send_request('DescribeInterfaceEncryptKeyV2', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeInterfaceEncryptKeyV2Response.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。
 
         # @param request: Request instance for DescribeMailProfile.

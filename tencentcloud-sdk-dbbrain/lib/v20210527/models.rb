@@ -4871,7 +4871,7 @@ module TencentCloud
         # @type InstanceId: String
         # @param Time: <p>获取健康得分的时间，时间格式如：2019-09-10 12:13:14。</p>
         # @type Time: String
-        # @param Product: <p>服务产品类型，支持值包括： &quot;mysql&quot; - 云数据库 MySQL， &quot;cynosdb&quot; - 云数据库 TDSQL-C for MySQL，&quot;redis&quot; - 云数据库 Redis，默认为&quot;mysql&quot;。</p>
+        # @param Product: <p>服务产品类型，支持值包括：&quot;mysql&quot; - 云数据库 MySQL，&quot;cynosdb&quot; - 云数据库 TDSQL-C for MySQL，&quot;dcdb&quot; - 云数据库 TDSQL MySQL，&quot;mariadb&quot; - 云数据库 MariaDB，&quot;tdstore&quot; - 云数据库 TDSQL TDStore 版，&quot;mongodb&quot; - 云数据库 MongoDB，&quot;sqlserver&quot; - 云数据库 SQL Server，&quot;postgres&quot; - 云数据库 PostgreSQL，&quot;redis&quot; - 云数据库 Redis，默认为&quot;mysql&quot;。</p>
         # @type Product: String
 
         attr_accessor :InstanceId, :Time, :Product
@@ -5081,6 +5081,38 @@ module TencentCloud
           @Level = params['Level']
           @Optimized = params['Optimized']
           @OptimizedCount = params['OptimizedCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeInterfaceEncryptKeyV2请求参数结构体
+      class DescribeInterfaceEncryptKeyV2Request < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeInterfaceEncryptKeyV2返回参数结构体
+      class DescribeInterfaceEncryptKeyV2Response < TencentCloud::Common::AbstractModel
+        # @param PublicKey: <p>RSA 公钥，Base64 编码格式，用于前端加密敏感数据。</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PublicKey: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PublicKey, :RequestId
+
+        def initialize(publickey=nil, requestid=nil)
+          @PublicKey = publickey
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PublicKey = params['PublicKey']
           @RequestId = params['RequestId']
         end
       end

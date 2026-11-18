@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 为指定 CFS 文件系统创建一条数据自动删除策略
+
+        # @param request: Request instance for CreateAutoDeletePolicy.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::CreateAutoDeletePolicyRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::CreateAutoDeletePolicyResponse`
+        def CreateAutoDeletePolicy(request)
+          body = send_request('CreateAutoDeletePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateAutoDeletePolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建定期快照策略
 
         # @param request: Request instance for CreateAutoSnapshotPolicy.
@@ -365,6 +389,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除指定自动删除策略
+
+        # @param request: Request instance for DeleteAutoDeletePolicy.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DeleteAutoDeletePolicyRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DeleteAutoDeletePolicyResponse`
+        def DeleteAutoDeletePolicy(request)
+          body = send_request('DeleteAutoDeletePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteAutoDeletePolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 删除快照定期策略
 
         # @param request: Request instance for DeleteAutoSnapshotPolicy.
@@ -593,6 +641,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeleteUserQuotaResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询数据自动删除策略列表
+
+        # @param request: Request instance for DescribeAutoDeletePolicies.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::DescribeAutoDeletePoliciesRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::DescribeAutoDeletePoliciesResponse`
+        def DescribeAutoDeletePolicies(request)
+          body = send_request('DescribeAutoDeletePolicies', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAutoDeletePoliciesResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1076,6 +1148,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DoDirectoryOperationResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改自动删除策略名称或清理路径
+
+        # @param request: Request instance for ModifyAutoDeletePolicy.
+        # @type request: :class:`Tencentcloud::cfs::V20190719::ModifyAutoDeletePolicyRequest`
+        # @rtype: :class:`Tencentcloud::cfs::V20190719::ModifyAutoDeletePolicyResponse`
+        def ModifyAutoDeletePolicy(request)
+          body = send_request('ModifyAutoDeletePolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAutoDeletePolicyResponse.new
             model.deserialize(response['Response'])
             model
           else

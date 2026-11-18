@@ -5105,16 +5105,19 @@ module TencentCloud
         # @type Text: String
         # @param ReferenceType: <p><strong>仅当 ModelName 为 OG 时有效</strong>。图片类型。</p><p>枚举值：</p><ul><li>mask： 图片蒙版。</li></ul>
         # @type ReferenceType: String
+        # @param Id: <p>自定义 Id，一般用于在 Prompt 中引用参考图片。</p>
+        # @type Id: String
 
-        attr_accessor :Type, :FileId, :Url, :Base64, :Text, :ReferenceType
+        attr_accessor :Type, :FileId, :Url, :Base64, :Text, :ReferenceType, :Id
 
-        def initialize(type=nil, fileid=nil, url=nil, base64=nil, text=nil, referencetype=nil)
+        def initialize(type=nil, fileid=nil, url=nil, base64=nil, text=nil, referencetype=nil, id=nil)
           @Type = type
           @FileId = fileid
           @Url = url
           @Base64 = base64
           @Text = text
           @ReferenceType = referencetype
+          @Id = id
         end
 
         def deserialize(params)
@@ -5124,6 +5127,7 @@ module TencentCloud
           @Base64 = params['Base64']
           @Text = params['Text']
           @ReferenceType = params['ReferenceType']
+          @Id = params['Id']
         end
       end
 

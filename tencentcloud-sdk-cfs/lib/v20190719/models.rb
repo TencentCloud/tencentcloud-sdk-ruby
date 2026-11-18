@@ -72,6 +72,54 @@ module TencentCloud
         end
       end
 
+      # 自动删除策略配置信息
+      class AutoDeletePolicy < TencentCloud::Common::AbstractModel
+        # @param PolicyId: <p>策略 ID</p>
+        # @type PolicyId: String
+        # @param FileSystemId: <p>文件系统Id</p>
+        # @type FileSystemId: String
+        # @param PolicyName: <p>自动清理策略名称</p>
+        # @type PolicyName: String
+        # @param Paths: <p>待清理的路径</p>
+        # @type Paths: Array
+        # @param Status: <p>自动清理策略状态</p><p>枚举值：</p><ul><li>enabling： 启用中</li><li>enabled： 已启用</li><li>disabling： 禁用中</li><li>disabed： 已禁用</li><li>deleting： 删除中</li><li>failed： 失败</li><li>creating： 创建中</li><li>updating： 修改中</li></ul>
+        # @type Status: String
+        # @param CreateTime: <p>清理策略创建时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>策略更新时间</p><p>参数格式：YYYY-MM-DD hh:mm:ss</p>
+        # @type UpdateTime: String
+        # @param Region: <p>策略所属地域</p>
+        # @type Region: String
+        # @param ErrMsg: <p>错误信息</p>
+        # @type ErrMsg: String
+
+        attr_accessor :PolicyId, :FileSystemId, :PolicyName, :Paths, :Status, :CreateTime, :UpdateTime, :Region, :ErrMsg
+
+        def initialize(policyid=nil, filesystemid=nil, policyname=nil, paths=nil, status=nil, createtime=nil, updatetime=nil, region=nil, errmsg=nil)
+          @PolicyId = policyid
+          @FileSystemId = filesystemid
+          @PolicyName = policyname
+          @Paths = paths
+          @Status = status
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Region = region
+          @ErrMsg = errmsg
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
+          @FileSystemId = params['FileSystemId']
+          @PolicyName = params['PolicyName']
+          @Paths = params['Paths']
+          @Status = params['Status']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Region = params['Region']
+          @ErrMsg = params['ErrMsg']
+        end
+      end
+
       # 自动扩容规则
       class AutoScaleUpRule < TencentCloud::Common::AbstractModel
         # @param Status: 自动扩容策略开启，关闭
@@ -461,6 +509,50 @@ module TencentCloud
 
         def deserialize(params)
           @CertId = params['CertId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreateAutoDeletePolicy请求参数结构体
+      class CreateAutoDeletePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: <p>文件系统 ID</p>
+        # @type FileSystemId: String
+        # @param PolicyName: <p>自动清理策略名称</p>
+        # @type PolicyName: String
+        # @param Paths: <p>自动清理策略路径列表</p>
+        # @type Paths: Array
+
+        attr_accessor :FileSystemId, :PolicyName, :Paths
+
+        def initialize(filesystemid=nil, policyname=nil, paths=nil)
+          @FileSystemId = filesystemid
+          @PolicyName = policyname
+          @Paths = paths
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @PolicyName = params['PolicyName']
+          @Paths = params['Paths']
+        end
+      end
+
+      # CreateAutoDeletePolicy返回参数结构体
+      class CreateAutoDeletePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param PolicyId: <p>自动清理策略ID</p>
+        # @type PolicyId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PolicyId, :RequestId
+
+        def initialize(policyid=nil, requestid=nil)
+          @PolicyId = policyid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PolicyId = params['PolicyId']
           @RequestId = params['RequestId']
         end
       end
@@ -1437,6 +1529,42 @@ module TencentCloud
         end
       end
 
+      # DeleteAutoDeletePolicy请求参数结构体
+      class DeleteAutoDeletePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: <p>文件系统 ID</p>
+        # @type FileSystemId: String
+        # @param PolicyId: <p>自动清理策略ID</p>
+        # @type PolicyId: String
+
+        attr_accessor :FileSystemId, :PolicyId
+
+        def initialize(filesystemid=nil, policyid=nil)
+          @FileSystemId = filesystemid
+          @PolicyId = policyid
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @PolicyId = params['PolicyId']
+        end
+      end
+
+      # DeleteAutoDeletePolicy返回参数结构体
+      class DeleteAutoDeletePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DeleteAutoSnapshotPolicy请求参数结构体
       class DeleteAutoSnapshotPolicyRequest < TencentCloud::Common::AbstractModel
         # @param AutoSnapshotPolicyId: 快照策略ID，查询快照策略接口获取,[DescribeAutoSnapshotPolicies](https://cloud.tencent.com/document/api/582/80208)
@@ -1802,6 +1930,61 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeAutoDeletePolicies请求参数结构体
+      class DescribeAutoDeletePoliciesRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: <p>文件系统 ID</p>
+        # @type FileSystemId: String
+        # @param Offset: <p>分页偏移量</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页大小</p>
+        # @type Limit: Integer
+
+        attr_accessor :FileSystemId, :Offset, :Limit
+
+        def initialize(filesystemid=nil, offset=nil, limit=nil)
+          @FileSystemId = filesystemid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeAutoDeletePolicies返回参数结构体
+      class DescribeAutoDeletePoliciesResponse < TencentCloud::Common::AbstractModel
+        # @param Policies: <p>自动清理策略列表</p>
+        # @type Policies: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Policies, :TotalCount, :RequestId
+
+        def initialize(policies=nil, totalcount=nil, requestid=nil)
+          @Policies = policies
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Policies'].nil?
+            @Policies = []
+            params['Policies'].each do |i|
+              autodeletepolicy_tmp = AutoDeletePolicy.new
+              autodeletepolicy_tmp.deserialize(i)
+              @Policies << autodeletepolicy_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -3621,6 +3804,54 @@ module TencentCloud
           @BucketPath = params['BucketPath']
           @Direction = params['Direction']
           @SrcService = params['SrcService']
+        end
+      end
+
+      # ModifyAutoDeletePolicy请求参数结构体
+      class ModifyAutoDeletePolicyRequest < TencentCloud::Common::AbstractModel
+        # @param FileSystemId: <p>文件系统 ID</p>
+        # @type FileSystemId: String
+        # @param PolicyId: <p>自动清理策略 ID</p>
+        # @type PolicyId: String
+        # @param Paths: <p>自动清理路径列表</p>
+        # @type Paths: Array
+        # @param PolicyName: <p>自动清理策略名称</p>
+        # @type PolicyName: String
+        # @param Status: <p>策略状态</p><p>枚举值：</p><ul><li>enabled： 启用</li><li>disabled： 禁用</li></ul>
+        # @type Status: String
+
+        attr_accessor :FileSystemId, :PolicyId, :Paths, :PolicyName, :Status
+
+        def initialize(filesystemid=nil, policyid=nil, paths=nil, policyname=nil, status=nil)
+          @FileSystemId = filesystemid
+          @PolicyId = policyid
+          @Paths = paths
+          @PolicyName = policyname
+          @Status = status
+        end
+
+        def deserialize(params)
+          @FileSystemId = params['FileSystemId']
+          @PolicyId = params['PolicyId']
+          @Paths = params['Paths']
+          @PolicyName = params['PolicyName']
+          @Status = params['Status']
+        end
+      end
+
+      # ModifyAutoDeletePolicy返回参数结构体
+      class ModifyAutoDeletePolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
         end
       end
 

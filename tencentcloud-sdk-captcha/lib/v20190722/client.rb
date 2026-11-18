@@ -173,7 +173,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 核查验证码票据结果(小程序插件)
+        # 核查验证码票据结果(小程序插件），包含微信小程序和支付宝小程序。
 
         # @param request: Request instance for DescribeCaptchaMiniResult.
         # @type request: :class:`Tencentcloud::captcha::V20190722::DescribeCaptchaMiniResultRequest`

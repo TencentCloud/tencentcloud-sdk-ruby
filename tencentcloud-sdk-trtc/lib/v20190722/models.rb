@@ -4402,13 +4402,19 @@ module TencentCloud
         # @type Format: String
         # @param AgoraParam: <p>声网拉流进房参数</p>
         # @type AgoraParam: :class:`Tencentcloud::Trtc.v20190722.models.AgoraParam`
+        # @param NeteaseParam: <p>网易云信(NERTC)频道拉流参数</p>
+        # @type NeteaseParam: :class:`Tencentcloud::Trtc.v20190722.models.NeteaseParam`
+        # @param VolcParam: <p>火山(Volc)房间拉流参数</p>
+        # @type VolcParam: :class:`Tencentcloud::Trtc.v20190722.models.VolcParam`
 
-        attr_accessor :Url, :Format, :AgoraParam
+        attr_accessor :Url, :Format, :AgoraParam, :NeteaseParam, :VolcParam
 
-        def initialize(url=nil, format=nil, agoraparam=nil)
+        def initialize(url=nil, format=nil, agoraparam=nil, neteaseparam=nil, volcparam=nil)
           @Url = url
           @Format = format
           @AgoraParam = agoraparam
+          @NeteaseParam = neteaseparam
+          @VolcParam = volcparam
         end
 
         def deserialize(params)
@@ -4417,6 +4423,14 @@ module TencentCloud
           unless params['AgoraParam'].nil?
             @AgoraParam = AgoraParam.new
             @AgoraParam.deserialize(params['AgoraParam'])
+          end
+          unless params['NeteaseParam'].nil?
+            @NeteaseParam = NeteaseParam.new
+            @NeteaseParam.deserialize(params['NeteaseParam'])
+          end
+          unless params['VolcParam'].nil?
+            @VolcParam = VolcParam.new
+            @VolcParam.deserialize(params['VolcParam'])
           end
         end
       end
@@ -6025,6 +6039,34 @@ module TencentCloud
         def deserialize(params)
           @TaskId = params['TaskId']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 网易云信(NERTC)频道拉流参数。传入后表示从网易云信频道内拉流审核，此时可不填 Url。
+      class NeteaseParam < TencentCloud::Common::AbstractModel
+        # @param AppKey: <p>网易云信应用 AppKey</p><p>登陆云信侧控制台或联系云信获取</p>
+        # @type AppKey: String
+        # @param Channel: <p>频道名。</p><p>非空字符串,需要和生成token使用的Channel完全一致。</p>
+        # @type Channel: String
+        # @param Token: <p>用于拉流端进房安全签名</p><p>生成方式详见文档：https://doc.yunxin.163.com/nertc/server-apis/TcxNDAxMTI?platform=server#%E8%8E%B7%E5%8F%96-token，每次请求审核需要重新生成新的token。</p>
+        # @type Token: String
+        # @param Uid: <p>分配进房拉流的用户ID。</p><p>和生成Token时所用 Uid 完全一致。</p>
+        # @type Uid: Integer
+
+        attr_accessor :AppKey, :Channel, :Token, :Uid
+
+        def initialize(appkey=nil, channel=nil, token=nil, uid=nil)
+          @AppKey = appkey
+          @Channel = channel
+          @Token = token
+          @Uid = uid
+        end
+
+        def deserialize(params)
+          @AppKey = params['AppKey']
+          @Channel = params['Channel']
+          @Token = params['Token']
+          @Uid = params['Uid']
         end
       end
 
@@ -10128,6 +10170,42 @@ module TencentCloud
           @AudioFormat = params['AudioFormat']
           @AudioName = params['AudioName']
           @ReqTimestamp = params['ReqTimestamp']
+        end
+      end
+
+      # VolcParam 火山引擎(VolcEngineRTC / ByteRTC)房间拉流参数。
+      class VolcParam < TencentCloud::Common::AbstractModel
+        # @param AppId: <p>火山引擎 AppID。</p>
+        # @type AppId: String
+        # @param RoomId: <p>房间号。</p>
+        # @type RoomId: String
+        # @param Token: <p>进房 Token。</p><p>需要开启鉴权，生成 Token时，注意RoomId 、UserId 需要对应上。详见：https://www.volcengine.com/docs/6348/70121</p>
+        # @type Token: String
+        # @param UserId: <p>分配给拉流端的UserId。</p>
+        # @type UserId: String
+        # @param TrustedUserIdList: <p>订阅用户名单。</p><p>当前名单列表为空时，默认为全订阅；当名单列表有用户id,则只会订阅列表中用户。</p>
+        # @type TrustedUserIdList: String
+        # @param UntrustedUserIdList: <p>不订阅用户名单</p>
+        # @type UntrustedUserIdList: String
+
+        attr_accessor :AppId, :RoomId, :Token, :UserId, :TrustedUserIdList, :UntrustedUserIdList
+
+        def initialize(appid=nil, roomid=nil, token=nil, userid=nil, trusteduseridlist=nil, untrusteduseridlist=nil)
+          @AppId = appid
+          @RoomId = roomid
+          @Token = token
+          @UserId = userid
+          @TrustedUserIdList = trusteduseridlist
+          @UntrustedUserIdList = untrusteduseridlist
+        end
+
+        def deserialize(params)
+          @AppId = params['AppId']
+          @RoomId = params['RoomId']
+          @Token = params['Token']
+          @UserId = params['UserId']
+          @TrustedUserIdList = params['TrustedUserIdList']
+          @UntrustedUserIdList = params['UntrustedUserIdList']
         end
       end
 

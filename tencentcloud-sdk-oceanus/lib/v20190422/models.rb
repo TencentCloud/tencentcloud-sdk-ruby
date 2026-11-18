@@ -2818,26 +2818,30 @@ module TencentCloud
 
       # DescribeJobSubmissionLog请求参数结构体
       class DescribeJobSubmissionLogRequest < TencentCloud::Common::AbstractModel
-        # @param JobId: 作业ID，例如：cql-6v1jkxrn
+        # @param JobId: <p>作业ID，例如：cql-6v1jkxrn</p>
         # @type JobId: String
-        # @param StartTime: 起始时间，unix时间戳，毫秒级，例如：1611754219108
+        # @param StartTime: <p>起始时间，unix时间戳，毫秒级，例如：1611754219108</p>
         # @type StartTime: Integer
-        # @param EndTime: 结束时间，unix时间戳，毫秒级，例如：1611754219108
+        # @param EndTime: <p>结束时间，unix时间戳，毫秒级，例如：1611754219108</p>
         # @type EndTime: Integer
-        # @param RunningOrderId: 作业运行的实例ID, 例如：1,2,3。默认为0，表示未选中任何实例，搜索该时间段内最近的一个实例的日志
+        # @param RunningOrderId: <p>作业运行的实例ID, 例如：1,2,3。默认为0，表示未选中任何实例，搜索该时间段内最近的一个实例的日志</p>
         # @type RunningOrderId: Integer
-        # @param Keyword: 日志搜索的关键词，默认为空
+        # @param Keyword: <p>日志搜索的关键词，默认为空</p>
         # @type Keyword: String
-        # @param Cursor: 日志搜索的游标，可透传上次返回的值，默认为空
+        # @param Cursor: <p>日志搜索的游标，可透传上次返回的值，默认为空</p>
         # @type Cursor: String
-        # @param OrderType: 时间戳排序规则，asc - 升序，desc - 降序。默认为升序
+        # @param OrderType: <p>时间戳排序规则，asc - 升序，desc - 降序。默认为升序</p>
         # @type OrderType: String
-        # @param Limit: 搜索的日志条数上限值，最大为100
+        # @param Limit: <p>搜索的日志条数上限值，最大为100</p>
         # @type Limit: Integer
+        # @param Offset: <p>分页偏移</p>
+        # @type Offset: Integer
+        # @param Filters: <p>过滤</p>
+        # @type Filters: Array
 
-        attr_accessor :JobId, :StartTime, :EndTime, :RunningOrderId, :Keyword, :Cursor, :OrderType, :Limit
+        attr_accessor :JobId, :StartTime, :EndTime, :RunningOrderId, :Keyword, :Cursor, :OrderType, :Limit, :Offset, :Filters
 
-        def initialize(jobid=nil, starttime=nil, endtime=nil, runningorderid=nil, keyword=nil, cursor=nil, ordertype=nil, limit=nil)
+        def initialize(jobid=nil, starttime=nil, endtime=nil, runningorderid=nil, keyword=nil, cursor=nil, ordertype=nil, limit=nil, offset=nil, filters=nil)
           @JobId = jobid
           @StartTime = starttime
           @EndTime = endtime
@@ -2846,6 +2850,8 @@ module TencentCloud
           @Cursor = cursor
           @OrderType = ordertype
           @Limit = limit
+          @Offset = offset
+          @Filters = filters
         end
 
         def deserialize(params)
@@ -2857,39 +2863,51 @@ module TencentCloud
           @Cursor = params['Cursor']
           @OrderType = params['OrderType']
           @Limit = params['Limit']
+          @Offset = params['Offset']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
       # DescribeJobSubmissionLog返回参数结构体
       class DescribeJobSubmissionLogResponse < TencentCloud::Common::AbstractModel
-        # @param Cursor: 日志搜索的游标，需要搜索更多时透传这个值
+        # @param Cursor: <p>日志搜索的游标，需要搜索更多时透传这个值</p>
         # @type Cursor: String
-        # @param ListOver: 是否返回了所有的日志记录
+        # @param ListOver: <p>是否返回了所有的日志记录</p>
         # @type ListOver: Boolean
-        # @param JobRequestId: 作业启动的requestId
+        # @param JobRequestId: <p>作业启动的requestId</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobRequestId: String
-        # @param JobInstanceList: 该时间段内符合关键字的所有的作业实例列表
+        # @param JobInstanceList: <p>该时间段内符合关键字的所有的作业实例列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type JobInstanceList: Array
-        # @param LogList: 废弃，请使用LogContentList
+        # @param LogList: <p>废弃，请使用LogContentList</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogList: Array
-        # @param LogContentList: 日志列表
+        # @param LogContentList: <p>日志列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogContentList: Array
+        # @param Offset: <p>分页偏移</p>
+        # @type Offset: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Cursor, :ListOver, :JobRequestId, :JobInstanceList, :LogList, :LogContentList, :RequestId
+        attr_accessor :Cursor, :ListOver, :JobRequestId, :JobInstanceList, :LogList, :LogContentList, :Offset, :RequestId
 
-        def initialize(cursor=nil, listover=nil, jobrequestid=nil, jobinstancelist=nil, loglist=nil, logcontentlist=nil, requestid=nil)
+        def initialize(cursor=nil, listover=nil, jobrequestid=nil, jobinstancelist=nil, loglist=nil, logcontentlist=nil, offset=nil, requestid=nil)
           @Cursor = cursor
           @ListOver = listover
           @JobRequestId = jobrequestid
           @JobInstanceList = jobinstancelist
           @LogList = loglist
           @LogContentList = logcontentlist
+          @Offset = offset
           @RequestId = requestid
         end
 
@@ -2914,6 +2932,7 @@ module TencentCloud
               @LogContentList << logcontent_tmp
             end
           end
+          @Offset = params['Offset']
           @RequestId = params['RequestId']
         end
       end

@@ -153,6 +153,41 @@ module TencentCloud
         end
       end
 
+      # 域名访问来源配置
+      class AccessSourceSetting < TencentCloud::Common::AbstractModel
+        # @param SourceType: <p>来源类型</p><p>枚举值：</p><ul><li>PUBLIC： 公网请求</li><li>VPC： VPC 请求</li><li>WOA： 办公网请求</li></ul>
+        # @type SourceType: String
+        # @param Action: <p>来源请求状态</p><p>枚举值：</p><ul><li>OPEN： 放通</li><li>CLOSE： 拦截</li></ul>
+        # @type Action: String
+        # @param WOAAuth: <p>是否开启 WOA 鉴权</p><p>枚举值：</p><ul><li>FORCE_AUTH： 强制鉴权</li><li>NO_AUTH： 不鉴权</li></ul><p>默认值：NO_AUTH</p><p>仅 SourceType = WOA 且 Action= OPEN 时生效</p>
+        # @type WOAAuth: String
+        # @param AuthToken: <p>WOA 鉴权需要的 Token</p><p>仅 Source Type=WOA 且 WOAAuth = FORCE_AUTH 时必填</p>
+        # @type AuthToken: String
+        # @param VPCWhiteList: <p>VPC 白名单信息</p><p>仅 SourceType = VPC 时有效; 不传表示不修改</p>
+        # @type VPCWhiteList: :class:`Tencentcloud::Tcb.v20180608.models.VPCWhiteListConfig`
+
+        attr_accessor :SourceType, :Action, :WOAAuth, :AuthToken, :VPCWhiteList
+
+        def initialize(sourcetype=nil, action=nil, woaauth=nil, authtoken=nil, vpcwhitelist=nil)
+          @SourceType = sourcetype
+          @Action = action
+          @WOAAuth = woaauth
+          @AuthToken = authtoken
+          @VPCWhiteList = vpcwhitelist
+        end
+
+        def deserialize(params)
+          @SourceType = params['SourceType']
+          @Action = params['Action']
+          @WOAAuth = params['WOAAuth']
+          @AuthToken = params['AuthToken']
+          unless params['VPCWhiteList'].nil?
+            @VPCWhiteList = VPCWhiteListConfig.new
+            @VPCWhiteList.deserialize(params['VPCWhiteList'])
+          end
+        end
+      end
+
       # AddProvider请求参数结构体
       class AddProviderRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 云开发环境 ID，用于唯一标识当前操作所属的云开发环境。
@@ -4626,27 +4661,43 @@ module TencentCloud
 
       # DescribeEnvAccessControl请求参数结构体
       class DescribeEnvAccessControlRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境id</p>
+        # @type EnvId: String
 
+        attr_accessor :EnvId
 
-        def initialize()
+        def initialize(envid=nil)
+          @EnvId = envid
         end
 
         def deserialize(params)
+          @EnvId = params['EnvId']
         end
       end
 
       # DescribeEnvAccessControl返回参数结构体
       class DescribeEnvAccessControlResponse < TencentCloud::Common::AbstractModel
+        # @param Current: <p>修改之后，当前的生效的配置</p>
+        # @type Current: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Current, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(current=nil, requestid=nil)
+          @Current = current
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Current'].nil?
+            @Current = []
+            params['Current'].each do |i|
+              accesssourcesetting_tmp = AccessSourceSetting.new
+              accesssourcesetting_tmp.deserialize(i)
+              @Current << accesssourcesetting_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -9553,27 +9604,58 @@ module TencentCloud
 
       # ModifyEnvAccessControl请求参数结构体
       class ModifyEnvAccessControlRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境id</p>
+        # @type EnvId: String
+        # @param Sources: <p>本次要设置的来源集合</p><p>入参限制：SourceType = PUBLIC 时，标识操作公网开关<br>SourceType = VPC 时，通过配置 VPCWhiteList，开启/关闭 VPC 白名单<br>SourceType = WOA 时，通过配置 WOAAuth，开启/关闭鉴权校验，开启鉴权时，AuthToken 字段为填</p>
+        # @type Sources: Array
 
+        attr_accessor :EnvId, :Sources
 
-        def initialize()
+        def initialize(envid=nil, sources=nil)
+          @EnvId = envid
+          @Sources = sources
         end
 
         def deserialize(params)
+          @EnvId = params['EnvId']
+          unless params['Sources'].nil?
+            @Sources = []
+            params['Sources'].each do |i|
+              accesssourcesetting_tmp = AccessSourceSetting.new
+              accesssourcesetting_tmp.deserialize(i)
+              @Sources << accesssourcesetting_tmp
+            end
+          end
         end
       end
 
       # ModifyEnvAccessControl返回参数结构体
       class ModifyEnvAccessControlResponse < TencentCloud::Common::AbstractModel
+        # @param AffectedRows: <p>本次请求影响的权限数量</p>
+        # @type AffectedRows: Integer
+        # @param Current: <p>修改之后，当前的生效的配置</p><p>SourceType = PUBLIC 表示公网链路访问配置<br>SourceType = VPC 表示 VPC 链路访问配置<br>SourceType = WOA 表示办公网链路访问配置</p>
+        # @type Current: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :AffectedRows, :Current, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(affectedrows=nil, current=nil, requestid=nil)
+          @AffectedRows = affectedrows
+          @Current = current
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @AffectedRows = params['AffectedRows']
+          unless params['Current'].nil?
+            @Current = []
+            params['Current'].each do |i|
+              accesssourcesetting_tmp = AccessSourceSetting.new
+              accesssourcesetting_tmp.deserialize(i)
+              @Current << accesssourcesetting_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -12841,6 +12923,53 @@ module TencentCloud
           @Email = params['Email']
           @AvatarUrl = params['AvatarUrl']
           @Description = params['Description']
+        end
+      end
+
+      # VPC信息
+      class VPCInfo < TencentCloud::Common::AbstractModel
+        # @param UniqVpcId: <p>VPC 唯一 ID</p><p>参数格式：vpc-xxxxx</p>
+        # @type UniqVpcId: String
+        # @param Region: <p>VPC 所在地域</p><p>参数格式：ap-xxxx</p>
+        # @type Region: String
+
+        attr_accessor :UniqVpcId, :Region
+
+        def initialize(uniqvpcid=nil, region=nil)
+          @UniqVpcId = uniqvpcid
+          @Region = region
+        end
+
+        def deserialize(params)
+          @UniqVpcId = params['UniqVpcId']
+          @Region = params['Region']
+        end
+      end
+
+      # VPC 白名单列表配置
+      class VPCWhiteListConfig < TencentCloud::Common::AbstractModel
+        # @param Action: <p>VPC 白名单配置状态</p><p>枚举值：</p><ul><li>OPEN： 开启白名单，VPCs 必填，覆盖写入</li><li>CLOSE： 关闭白名单，VPCs 填入时，覆盖写入</li></ul>
+        # @type Action: String
+        # @param VPCs: <p>VPC 信息</p>
+        # @type VPCs: Array
+
+        attr_accessor :Action, :VPCs
+
+        def initialize(action=nil, vpcs=nil)
+          @Action = action
+          @VPCs = vpcs
+        end
+
+        def deserialize(params)
+          @Action = params['Action']
+          unless params['VPCs'].nil?
+            @VPCs = []
+            params['VPCs'].each do |i|
+              vpcinfo_tmp = VPCInfo.new
+              vpcinfo_tmp.deserialize(i)
+              @VPCs << vpcinfo_tmp
+            end
+          end
         end
       end
 
