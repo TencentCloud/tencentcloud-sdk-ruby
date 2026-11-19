@@ -1446,6 +1446,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 分页查询工作空间下的定时任务列表；支持按 SessionType、AnalysisSpaceId、TaskName 过滤。返回内容包含任务的完整详情，含 SkillIds 与 MCPIds。
+
+        # @param request: Request instance for ListScheduledTasks.
+        # @type request: :class:`Tencentcloud::databuddy::V20260715::ListScheduledTasksRequest`
+        # @rtype: :class:`Tencentcloud::databuddy::V20260715::ListScheduledTasksResponse`
+        def ListScheduledTasks(request)
+          body = send_request('ListScheduledTasks', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ListScheduledTasksResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 分页查询数据库名称列表
 
         # @param request: Request instance for ListSchemaNames.

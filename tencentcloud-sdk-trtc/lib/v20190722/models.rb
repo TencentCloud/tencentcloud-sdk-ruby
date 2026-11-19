@@ -2467,6 +2467,46 @@ module TencentCloud
         end
       end
 
+      # DescribeFinanceCloudRoomUsage请求参数结构体
+      class DescribeFinanceCloudRoomUsageRequest < TencentCloud::Common::AbstractModel
+        # @param SdkAppId: <p>与房间对应的 TRTC SdkAppId，必须是金融云应用。</p>
+        # @type SdkAppId: Integer
+        # @param StartTime: <p>查询开始时间，格式为 YYYY-MM-DD HH:MM，精确到分钟级。</p>
+        # @type StartTime: String
+        # @param EndTime: <p>查询结束时间，格式为 YYYY-MM-DD HH:MM，单次查询不超过 24 小时。</p>
+        # @type EndTime: String
+
+        attr_accessor :SdkAppId, :StartTime, :EndTime
+
+        def initialize(sdkappid=nil, starttime=nil, endtime=nil)
+          @SdkAppId = sdkappid
+          @StartTime = starttime
+          @EndTime = endtime
+        end
+
+        def deserialize(params)
+          @SdkAppId = params['SdkAppId']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+        end
+      end
+
+      # DescribeFinanceCloudRoomUsage返回参数结构体
+      class DescribeFinanceCloudRoomUsageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeLiveStreamModeration请求参数结构体
       class DescribeLiveStreamModerationRequest < TencentCloud::Common::AbstractModel
         # @param SdkAppId: <p>TRTC的SDKAppId，和录制的房间所对应的SDKAppId相同。</p>

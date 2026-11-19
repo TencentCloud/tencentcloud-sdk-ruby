@@ -7203,16 +7203,19 @@ module TencentCloud
         # @type PageRange: String
         # @param TaskType: <p>任务类型</p><p>枚举值：</p><ul><li>0： 文档解析</li><li>1： 图片OCR识别</li><li>2： 切片文字识别</li><li>3： 切片表格识别</li><li>4： 切片代码识别</li></ul><p>默认值：0</p>
         # @type TaskType: Integer
+        # @param EnableTableCellCoord: <p>是否输出单元格坐标。开启后，耗时会稍有增加。<br>默认值：false</p>
+        # @type EnableTableCellCoord: Boolean
 
-        attr_accessor :FileUrl, :FileType, :ResultType, :EnableSubImg, :PageRange, :TaskType
+        attr_accessor :FileUrl, :FileType, :ResultType, :EnableSubImg, :PageRange, :TaskType, :EnableTableCellCoord
 
-        def initialize(fileurl=nil, filetype=nil, resulttype=nil, enablesubimg=nil, pagerange=nil, tasktype=nil)
+        def initialize(fileurl=nil, filetype=nil, resulttype=nil, enablesubimg=nil, pagerange=nil, tasktype=nil, enabletablecellcoord=nil)
           @FileUrl = fileurl
           @FileType = filetype
           @ResultType = resulttype
           @EnableSubImg = enablesubimg
           @PageRange = pagerange
           @TaskType = tasktype
+          @EnableTableCellCoord = enabletablecellcoord
         end
 
         def deserialize(params)
@@ -7222,6 +7225,7 @@ module TencentCloud
           @EnableSubImg = params['EnableSubImg']
           @PageRange = params['PageRange']
           @TaskType = params['TaskType']
+          @EnableTableCellCoord = params['EnableTableCellCoord']
         end
       end
 
@@ -11535,10 +11539,12 @@ module TencentCloud
         # @type FileEndPageNumber: Integer
         # @param TaskType: <p>任务类型，默认为 0。取值：</p><ul><li>0：默认</li><li>1：Free OCR</li><li>2：OCR</li><li>3：表格识别</li><li>4：代码识别</li></ul>
         # @type TaskType: Integer
+        # @param EnableTableCellCoord: <p>是否输出单元格坐标。开启后，耗时会稍有增加。<br>默认值：false</p>
+        # @type EnableTableCellCoord: Boolean
 
-        attr_accessor :FileType, :FileUrl, :FileBase64, :ResultType, :EnableSubImg, :FileStartPageNumber, :FileEndPageNumber, :TaskType
+        attr_accessor :FileType, :FileUrl, :FileBase64, :ResultType, :EnableSubImg, :FileStartPageNumber, :FileEndPageNumber, :TaskType, :EnableTableCellCoord
 
-        def initialize(filetype=nil, fileurl=nil, filebase64=nil, resulttype=nil, enablesubimg=nil, filestartpagenumber=nil, fileendpagenumber=nil, tasktype=nil)
+        def initialize(filetype=nil, fileurl=nil, filebase64=nil, resulttype=nil, enablesubimg=nil, filestartpagenumber=nil, fileendpagenumber=nil, tasktype=nil, enabletablecellcoord=nil)
           @FileType = filetype
           @FileUrl = fileurl
           @FileBase64 = filebase64
@@ -11547,6 +11553,7 @@ module TencentCloud
           @FileStartPageNumber = filestartpagenumber
           @FileEndPageNumber = fileendpagenumber
           @TaskType = tasktype
+          @EnableTableCellCoord = enabletablecellcoord
         end
 
         def deserialize(params)
@@ -11558,6 +11565,7 @@ module TencentCloud
           @FileStartPageNumber = params['FileStartPageNumber']
           @FileEndPageNumber = params['FileEndPageNumber']
           @TaskType = params['TaskType']
+          @EnableTableCellCoord = params['EnableTableCellCoord']
         end
       end
 

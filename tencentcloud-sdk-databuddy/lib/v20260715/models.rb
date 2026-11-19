@@ -3272,10 +3272,12 @@ module TencentCloud
         # @type FetchTags: Boolean
         # @param FetchDimensions: <p>是否返回字段关联的字典维度信息，默认不传，不返回</p>
         # @type FetchDimensions: Boolean
+        # @param FetchTableFilesInfo: <p>是否获取tclake表的snapshots文件信息（文件大小、文件数量、最后修改时间）<br>各接口默认行为不同：</p><ul><li>GetTable：不传或未设置时默认获取（true），显式传 false 时跳过</li><li>GetTables：不传或未设置时默认不获取（false），显式传 true 时获取；获取会显著增加接口耗时</li></ul>
+        # @type FetchTableFilesInfo: Boolean
 
-        attr_accessor :FetchPermissions, :FetchFeatureTableDetail, :FilterPermissions, :FetchOwners, :FetchUserInfo, :FetchMask, :FetchTags, :FetchDimensions
+        attr_accessor :FetchPermissions, :FetchFeatureTableDetail, :FilterPermissions, :FetchOwners, :FetchUserInfo, :FetchMask, :FetchTags, :FetchDimensions, :FetchTableFilesInfo
 
-        def initialize(fetchpermissions=nil, fetchfeaturetabledetail=nil, filterpermissions=nil, fetchowners=nil, fetchuserinfo=nil, fetchmask=nil, fetchtags=nil, fetchdimensions=nil)
+        def initialize(fetchpermissions=nil, fetchfeaturetabledetail=nil, filterpermissions=nil, fetchowners=nil, fetchuserinfo=nil, fetchmask=nil, fetchtags=nil, fetchdimensions=nil, fetchtablefilesinfo=nil)
           @FetchPermissions = fetchpermissions
           @FetchFeatureTableDetail = fetchfeaturetabledetail
           @FilterPermissions = filterpermissions
@@ -3284,6 +3286,7 @@ module TencentCloud
           @FetchMask = fetchmask
           @FetchTags = fetchtags
           @FetchDimensions = fetchdimensions
+          @FetchTableFilesInfo = fetchtablefilesinfo
         end
 
         def deserialize(params)
@@ -3295,6 +3298,7 @@ module TencentCloud
           @FetchMask = params['FetchMask']
           @FetchTags = params['FetchTags']
           @FetchDimensions = params['FetchDimensions']
+          @FetchTableFilesInfo = params['FetchTableFilesInfo']
         end
       end
 
@@ -7178,6 +7182,85 @@ module TencentCloud
         end
       end
 
+      # ListScheduledTasks请求参数结构体
+      class ListScheduledTasksRequest < TencentCloud::Common::AbstractModel
+        # @param WorkspaceId: <p>工作空间 ID</p>
+        # @type WorkspaceId: String
+
+        attr_accessor :WorkspaceId
+
+        def initialize(workspaceid=nil)
+          @WorkspaceId = workspaceid
+        end
+
+        def deserialize(params)
+          @WorkspaceId = params['WorkspaceId']
+        end
+      end
+
+      # ListScheduledTasks返回参数结构体
+      class ListScheduledTasksResponse < TencentCloud::Common::AbstractModel
+        # @param Data: 定时任务列表分页结果
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Data: :class:`Tencentcloud::Databuddy.v20260715.models.ListScheduledTasksRsp`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Data, :RequestId
+
+        def initialize(data=nil, requestid=nil)
+          @Data = data
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ListScheduledTasksRsp.new
+            @Data.deserialize(params['Data'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # 定时任务列表分页结果
+      class ListScheduledTasksRsp < TencentCloud::Common::AbstractModel
+        # @param Tasks: <p>当前页任务列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Tasks: Array
+        # @param Total: <p>符合筛选条件的任务总数</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Total: Integer
+        # @param Page: <p>当前页码（从 1 开始）</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Page: Integer
+        # @param PageSize: <p>实际生效的每页数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PageSize: Integer
+
+        attr_accessor :Tasks, :Total, :Page, :PageSize
+
+        def initialize(tasks=nil, total=nil, page=nil, pagesize=nil)
+          @Tasks = tasks
+          @Total = total
+          @Page = page
+          @PageSize = pagesize
+        end
+
+        def deserialize(params)
+          unless params['Tasks'].nil?
+            @Tasks = []
+            params['Tasks'].each do |i|
+              scheduledtaskdetail_tmp = ScheduledTaskDetail.new
+              scheduledtaskdetail_tmp.deserialize(i)
+              @Tasks << scheduledtaskdetail_tmp
+            end
+          end
+          @Total = params['Total']
+          @Page = params['Page']
+          @PageSize = params['PageSize']
+        end
+      end
+
       # ListSchemaNames请求参数结构体
       class ListSchemaNamesRequest < TencentCloud::Common::AbstractModel
         # @param CatalogName: <p>数据目录名，必填</p>
@@ -10093,6 +10176,90 @@ module TencentCloud
           @LabelKey = params['LabelKey']
           @LabelValue = params['LabelValue']
           @Count = params['Count']
+        end
+      end
+
+      # 定时任务详情
+      class ScheduledTaskDetail < TencentCloud::Common::AbstractModel
+        # @param ScheduledTaskId: <p>定时任务唯一标识</p>
+        # @type ScheduledTaskId: String
+        # @param Name: <p>任务名称</p>
+        # @type Name: String
+        # @param Prompt: <p>任务提示词</p>
+        # @type Prompt: String
+        # @param Schedule: <p>六段 cron 表达式</p>
+        # @type Schedule: String
+        # @param Status: <p>任务状态：1=ACTIVE，2=PAUSED</p>
+        # @type Status: Integer
+        # @param SessionType: <p>会话类型：1=数据分析，2=数据工程</p>
+        # @type SessionType: Integer
+        # @param AnalysisSpaceId: <p>分析空间 ID</p>
+        # @type AnalysisSpaceId: String
+        # @param WorkspaceId: <p>工作空间 ID</p>
+        # @type WorkspaceId: String
+        # @param CreateUserUin: <p>创建人 UIN</p>
+        # @type CreateUserUin: String
+        # @param CreateTime: <p>创建时间，毫秒级 Unix 时间戳字符串</p>
+        # @type CreateTime: String
+        # @param ModifyTime: <p>最近修改时间，毫秒级 Unix 时间戳字符串</p>
+        # @type ModifyTime: String
+        # @param StartTime: <p>生效开始时间，上海时区本地零点的毫秒时间戳字符串；0 表示不传</p>
+        # @type StartTime: String
+        # @param EndTime: <p>生效结束时间，上海时区本地零点的毫秒时间戳字符串；0 表示不传</p>
+        # @type EndTime: String
+        # @param SkillIds: <p>技能 ID 列表</p>
+        # @type SkillIds: String
+        # @param ModelId: <p>模型 ID</p>
+        # @type ModelId: String
+        # @param ScheduleType: <p>调度类型：1=每天，2=间隔，3=单次</p>
+        # @type ScheduleType: Integer
+        # @param UpdateUserUin: <p>最近修改人 UIN</p>
+        # @type UpdateUserUin: String
+        # @param MCPIds: <p>mcpId列表（逗号分隔）</p>
+        # @type MCPIds: String
+
+        attr_accessor :ScheduledTaskId, :Name, :Prompt, :Schedule, :Status, :SessionType, :AnalysisSpaceId, :WorkspaceId, :CreateUserUin, :CreateTime, :ModifyTime, :StartTime, :EndTime, :SkillIds, :ModelId, :ScheduleType, :UpdateUserUin, :MCPIds
+
+        def initialize(scheduledtaskid=nil, name=nil, prompt=nil, schedule=nil, status=nil, sessiontype=nil, analysisspaceid=nil, workspaceid=nil, createuseruin=nil, createtime=nil, modifytime=nil, starttime=nil, endtime=nil, skillids=nil, modelid=nil, scheduletype=nil, updateuseruin=nil, mcpids=nil)
+          @ScheduledTaskId = scheduledtaskid
+          @Name = name
+          @Prompt = prompt
+          @Schedule = schedule
+          @Status = status
+          @SessionType = sessiontype
+          @AnalysisSpaceId = analysisspaceid
+          @WorkspaceId = workspaceid
+          @CreateUserUin = createuseruin
+          @CreateTime = createtime
+          @ModifyTime = modifytime
+          @StartTime = starttime
+          @EndTime = endtime
+          @SkillIds = skillids
+          @ModelId = modelid
+          @ScheduleType = scheduletype
+          @UpdateUserUin = updateuseruin
+          @MCPIds = mcpids
+        end
+
+        def deserialize(params)
+          @ScheduledTaskId = params['ScheduledTaskId']
+          @Name = params['Name']
+          @Prompt = params['Prompt']
+          @Schedule = params['Schedule']
+          @Status = params['Status']
+          @SessionType = params['SessionType']
+          @AnalysisSpaceId = params['AnalysisSpaceId']
+          @WorkspaceId = params['WorkspaceId']
+          @CreateUserUin = params['CreateUserUin']
+          @CreateTime = params['CreateTime']
+          @ModifyTime = params['ModifyTime']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @SkillIds = params['SkillIds']
+          @ModelId = params['ModelId']
+          @ScheduleType = params['ScheduleType']
+          @UpdateUserUin = params['UpdateUserUin']
+          @MCPIds = params['MCPIds']
         end
       end
 

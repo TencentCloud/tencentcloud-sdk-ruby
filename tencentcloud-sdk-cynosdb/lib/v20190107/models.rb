@@ -4721,6 +4721,57 @@ module TencentCloud
         end
       end
 
+      # CreateProxyEndPoints请求参数结构体
+      class CreateProxyEndPointsRequest < TencentCloud::Common::AbstractModel
+        # @param ClusterId: <p>集群 ID。</p>
+        # @type ClusterId: String
+        # @param ProxyEndPointItems: <p>proxyEndPoint的参数配置</p>
+        # @type ProxyEndPointItems: Array
+
+        attr_accessor :ClusterId, :ProxyEndPointItems
+
+        def initialize(clusterid=nil, proxyendpointitems=nil)
+          @ClusterId = clusterid
+          @ProxyEndPointItems = proxyendpointitems
+        end
+
+        def deserialize(params)
+          @ClusterId = params['ClusterId']
+          unless params['ProxyEndPointItems'].nil?
+            @ProxyEndPointItems = []
+            params['ProxyEndPointItems'].each do |i|
+              proxyendpointitem_tmp = ProxyEndPointItem.new
+              proxyendpointitem_tmp.deserialize(i)
+              @ProxyEndPointItems << proxyendpointitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreateProxyEndPoints返回参数结构体
+      class CreateProxyEndPointsResponse < TencentCloud::Common::AbstractModel
+        # @param FlowId: <p>异步流程 ID。</p>
+        # @type FlowId: Integer
+        # @param TaskId: <p>异步任务 ID。</p>
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :FlowId, :TaskId, :RequestId
+
+        def initialize(flowid=nil, taskid=nil, requestid=nil)
+          @FlowId = flowid
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @FlowId = params['FlowId']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateProxy请求参数结构体
       class CreateProxyRequest < TencentCloud::Common::AbstractModel
         # @param ClusterId: 集群ID
@@ -19761,6 +19812,93 @@ module TencentCloud
               @InstanceNameWeights << instancenameweight_tmp
             end
           end
+        end
+      end
+
+      # 批量proxy接入点配置
+      class ProxyEndPointItem < TencentCloud::Common::AbstractModel
+        # @param UniqueVpcId: <p>vpc id</p>
+        # @type UniqueVpcId: String
+        # @param UniqueSubnetId: <p>子网ID</p>
+        # @type UniqueSubnetId: String
+        # @param SecurityGroupIds: <p>安全组列表</p>
+        # @type SecurityGroupIds: Array
+        # @param WeightMode: <p>权重模式</p><p>枚举值：</p><ul><li>system： 系统分配</li><li>custom： 自定义</li></ul>
+        # @type WeightMode: String
+        # @param AutoAddRo: <p>是否自动添加只读实例</p><p>枚举值：</p><ul><li>yes： 是</li><li>no： 否</li></ul>
+        # @type AutoAddRo: String
+        # @param RwType: <p>读写类型</p><p>枚举值：</p><ul><li>READWRITE： 读写</li><li>READONLY： 只读</li></ul>
+        # @type RwType: String
+        # @param FailOver: <p>是否开启故障转移</p><p>枚举值：</p><ul><li>yes： 是</li><li>no： 否</li></ul>
+        # @type FailOver: String
+        # @param ConsistencyTimeOut: <p>一致性超时时间</p>
+        # @type ConsistencyTimeOut: Integer
+        # @param ConsistencyType: <p>一致性类型。</p><p>枚举值：</p><ul><li>eventual： 最终一致性</li><li>global： 全局一致性</li><li>session： 会话一致性</li></ul><p>仅当 RwType 参数值为 READWRITE 时，才支持设置此项。</p>
+        # @type ConsistencyType: String
+        # @param TransSplit: <p>是否开启事务拆分。</p><p>开启后，在一个事务中拆分读和写到不同的实例上去执行。</p>
+        # @type TransSplit: Boolean
+        # @param AccessMode: <p>接入模式</p><p>枚举值：</p><ul><li>nearby： 就近访问</li><li>balance： 均衡分配</li></ul>
+        # @type AccessMode: String
+        # @param InstanceWeights: <p>实例及权重</p>
+        # @type InstanceWeights: Array
+        # @param Description: <p>描述信息</p>
+        # @type Description: String
+        # @param LoadBalanceMode: <p>自动负载模式</p><p>枚举值：</p><ul><li>static： 静态</li><li>dynamic： 自适应</li></ul>
+        # @type LoadBalanceMode: String
+        # @param OpenConnectionPool: <p>是否开启连接池</p><p>枚举值：</p><ul><li>yes： 打开</li><li>no： 不打开</li></ul>
+        # @type OpenConnectionPool: String
+        # @param ConnectionPoolType: <p>连接池类型</p><p>枚举值：</p><ul><li>SessionConnectionPool： 会话级连接池</li><li>TransactionConnectionPool： 事物级连接池</li></ul>
+        # @type ConnectionPoolType: String
+        # @param ConnectionPoolTimeOut: <p>连接池阀值</p>
+        # @type ConnectionPoolTimeOut: Integer
+
+        attr_accessor :UniqueVpcId, :UniqueSubnetId, :SecurityGroupIds, :WeightMode, :AutoAddRo, :RwType, :FailOver, :ConsistencyTimeOut, :ConsistencyType, :TransSplit, :AccessMode, :InstanceWeights, :Description, :LoadBalanceMode, :OpenConnectionPool, :ConnectionPoolType, :ConnectionPoolTimeOut
+
+        def initialize(uniquevpcid=nil, uniquesubnetid=nil, securitygroupids=nil, weightmode=nil, autoaddro=nil, rwtype=nil, failover=nil, consistencytimeout=nil, consistencytype=nil, transsplit=nil, accessmode=nil, instanceweights=nil, description=nil, loadbalancemode=nil, openconnectionpool=nil, connectionpooltype=nil, connectionpooltimeout=nil)
+          @UniqueVpcId = uniquevpcid
+          @UniqueSubnetId = uniquesubnetid
+          @SecurityGroupIds = securitygroupids
+          @WeightMode = weightmode
+          @AutoAddRo = autoaddro
+          @RwType = rwtype
+          @FailOver = failover
+          @ConsistencyTimeOut = consistencytimeout
+          @ConsistencyType = consistencytype
+          @TransSplit = transsplit
+          @AccessMode = accessmode
+          @InstanceWeights = instanceweights
+          @Description = description
+          @LoadBalanceMode = loadbalancemode
+          @OpenConnectionPool = openconnectionpool
+          @ConnectionPoolType = connectionpooltype
+          @ConnectionPoolTimeOut = connectionpooltimeout
+        end
+
+        def deserialize(params)
+          @UniqueVpcId = params['UniqueVpcId']
+          @UniqueSubnetId = params['UniqueSubnetId']
+          @SecurityGroupIds = params['SecurityGroupIds']
+          @WeightMode = params['WeightMode']
+          @AutoAddRo = params['AutoAddRo']
+          @RwType = params['RwType']
+          @FailOver = params['FailOver']
+          @ConsistencyTimeOut = params['ConsistencyTimeOut']
+          @ConsistencyType = params['ConsistencyType']
+          @TransSplit = params['TransSplit']
+          @AccessMode = params['AccessMode']
+          unless params['InstanceWeights'].nil?
+            @InstanceWeights = []
+            params['InstanceWeights'].each do |i|
+              proxyinstanceweight_tmp = ProxyInstanceWeight.new
+              proxyinstanceweight_tmp.deserialize(i)
+              @InstanceWeights << proxyinstanceweight_tmp
+            end
+          end
+          @Description = params['Description']
+          @LoadBalanceMode = params['LoadBalanceMode']
+          @OpenConnectionPool = params['OpenConnectionPool']
+          @ConnectionPoolType = params['ConnectionPoolType']
+          @ConnectionPoolTimeOut = params['ConnectionPoolTimeOut']
         end
       end
 

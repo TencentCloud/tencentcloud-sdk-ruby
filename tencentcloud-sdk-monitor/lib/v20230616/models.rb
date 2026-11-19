@@ -4525,15 +4525,27 @@ module TencentCloud
       class TriggerAIWorkbenchTaskRequest < TencentCloud::Common::AbstractModel
         # @param TaskId: <p>任务 ID</p>
         # @type TaskId: String
+        # @param SessionId: <p>session会话ID</p>
+        # @type SessionId: String
+        # @param Content: <p>输入内容</p>
+        # @type Content: String
+        # @param IdempotencyKey: <p>幂等键，调用方保证同一事件重试时携带同一 key</p>
+        # @type IdempotencyKey: String
 
-        attr_accessor :TaskId
+        attr_accessor :TaskId, :SessionId, :Content, :IdempotencyKey
 
-        def initialize(taskid=nil)
+        def initialize(taskid=nil, sessionid=nil, content=nil, idempotencykey=nil)
           @TaskId = taskid
+          @SessionId = sessionid
+          @Content = content
+          @IdempotencyKey = idempotencykey
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @SessionId = params['SessionId']
+          @Content = params['Content']
+          @IdempotencyKey = params['IdempotencyKey']
         end
       end
 
@@ -4542,18 +4554,28 @@ module TencentCloud
         # @param ExecutionId: <p>执行 ID</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExecutionId: String
+        # @param SessionId: <p>会话 ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type SessionId: String
+        # @param RunId: <p>运行 ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type RunId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ExecutionId, :RequestId
+        attr_accessor :ExecutionId, :SessionId, :RunId, :RequestId
 
-        def initialize(executionid=nil, requestid=nil)
+        def initialize(executionid=nil, sessionid=nil, runid=nil, requestid=nil)
           @ExecutionId = executionid
+          @SessionId = sessionid
+          @RunId = runid
           @RequestId = requestid
         end
 
         def deserialize(params)
           @ExecutionId = params['ExecutionId']
+          @SessionId = params['SessionId']
+          @RunId = params['RunId']
           @RequestId = params['RequestId']
         end
       end

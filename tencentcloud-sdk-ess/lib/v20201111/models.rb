@@ -4628,13 +4628,15 @@ module TencentCloud
         # @type NeedFlowDraft: Boolean
         # @param CcInfoVisibility: <p>若指定了合同抄送人，此参数用来控制操作人能否在嵌入式页面看见或编辑（修改、增加、删除）抄送人信息。</p><p>枚举值：</p><ul><li>0： 不可见不可编辑</li><li>1： 可见不可编辑</li><li>2： 可见可编辑</li></ul><p>默认值：0</p>
         # @type CcInfoVisibility: Integer
+        # @param SignComponentLimits: <p><br>在调用<a href="https://qian.tencent.com/developers/companyApis/embedPages/CreatePrepareFlow">创建发起流程web页面</a>创建合同时,可通过此参数限制在界面上拖拽签署控件后，可选那几种印章类型或签名类型。</p><p>注：仅在<strong>嵌入式文件</strong>发起场景下生效。</p>
+        # @type SignComponentLimits: Array
 
-        attr_accessor :CanEditFlow, :CanEditFormField, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :SkipUploadFile, :ForbidEditFillComponent, :CustomCreateFlowDescription, :ForbidAddApprover, :ForbidEditApprover, :ForbidEditFlowProperties, :HideComponentTypes, :ShowComponentTypes, :ResultPageConfig, :SignComponentConfig, :ForbidEditWatermark, :HideOperationInstructions, :HideOperationSteps, :SelfName, :HideSignCodeAfterStart, :PreviewAfterStart, :SignAfterStart, :NeedFlowDraft, :CcInfoVisibility
+        attr_accessor :CanEditFlow, :CanEditFormField, :HideShowFlowName, :HideShowFlowType, :HideShowDeadline, :CanSkipAddApprover, :SkipUploadFile, :ForbidEditFillComponent, :CustomCreateFlowDescription, :ForbidAddApprover, :ForbidEditApprover, :ForbidEditFlowProperties, :HideComponentTypes, :ShowComponentTypes, :ResultPageConfig, :SignComponentConfig, :ForbidEditWatermark, :HideOperationInstructions, :HideOperationSteps, :SelfName, :HideSignCodeAfterStart, :PreviewAfterStart, :SignAfterStart, :NeedFlowDraft, :CcInfoVisibility, :SignComponentLimits
         extend Gem::Deprecate
         deprecate :HideOperationInstructions, :none, 2026, 11
         deprecate :HideOperationInstructions=, :none, 2026, 11
 
-        def initialize(caneditflow=nil, caneditformfield=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, skipuploadfile=nil, forbideditfillcomponent=nil, customcreateflowdescription=nil, forbidaddapprover=nil, forbideditapprover=nil, forbideditflowproperties=nil, hidecomponenttypes=nil, showcomponenttypes=nil, resultpageconfig=nil, signcomponentconfig=nil, forbideditwatermark=nil, hideoperationinstructions=nil, hideoperationsteps=nil, selfname=nil, hidesigncodeafterstart=nil, previewafterstart=nil, signafterstart=nil, needflowdraft=nil, ccinfovisibility=nil)
+        def initialize(caneditflow=nil, caneditformfield=nil, hideshowflowname=nil, hideshowflowtype=nil, hideshowdeadline=nil, canskipaddapprover=nil, skipuploadfile=nil, forbideditfillcomponent=nil, customcreateflowdescription=nil, forbidaddapprover=nil, forbideditapprover=nil, forbideditflowproperties=nil, hidecomponenttypes=nil, showcomponenttypes=nil, resultpageconfig=nil, signcomponentconfig=nil, forbideditwatermark=nil, hideoperationinstructions=nil, hideoperationsteps=nil, selfname=nil, hidesigncodeafterstart=nil, previewafterstart=nil, signafterstart=nil, needflowdraft=nil, ccinfovisibility=nil, signcomponentlimits=nil)
           @CanEditFlow = caneditflow
           @CanEditFormField = caneditformfield
           @HideShowFlowName = hideshowflowname
@@ -4660,6 +4662,7 @@ module TencentCloud
           @SignAfterStart = signafterstart
           @NeedFlowDraft = needflowdraft
           @CcInfoVisibility = ccinfovisibility
+          @SignComponentLimits = signcomponentlimits
         end
 
         def deserialize(params)
@@ -4698,6 +4701,14 @@ module TencentCloud
           @SignAfterStart = params['SignAfterStart']
           @NeedFlowDraft = params['NeedFlowDraft']
           @CcInfoVisibility = params['CcInfoVisibility']
+          unless params['SignComponentLimits'].nil?
+            @SignComponentLimits = []
+            params['SignComponentLimits'].each do |i|
+              embedsigncomponentlimit_tmp = EmbedSignComponentLimit.new
+              embedsigncomponentlimit_tmp.deserialize(i)
+              @SignComponentLimits << embedsigncomponentlimit_tmp
+            end
+          end
         end
       end
 
@@ -12081,6 +12092,26 @@ module TencentCloud
         end
       end
 
+      # 签署控件的类型和范围限制条件，用于控制**嵌入式文件**发起页面上，拖拽签署区时可使用的控件类型和具体的印章或签名方式。
+      class EmbedSignComponentLimit < TencentCloud::Common::AbstractModel
+        # @param ComponentType: <p>控件类型，支持以下类型</p><ul><li>SIGN_SEAL : 印章控件</li><li>SIGN_PAGING_SEAL : 骑缝章控件</li><li>SIGN_SIGNATURE : 用户签名控件</li><li>SIGN_PAGING_SIGNATURE : 用户签名骑缝控件</li></ul>
+        # @type ComponentType: String
+        # @param ComponentValue: <p>签署控件类型的值，用于限制签署时印章或者签名的选择范围</p><p>1.当 ComponentType 是 SIGN_SEAL 或者 SIGN_PAGING_SEAL 时，可指定印章类型。具体场景与规则说明如下：</p><p>指定印章类型:可传入以下枚举值来限制印章类型</p><ul><li> <b>OFFICIAL</b> :  企业公章</li><li> <b>CONTRACT</b> : 合同专用章</li><li> <b>FINANCE</b> : 财务专用章</li><li> <b>PERSONNEL</b> : 人事专用章</li><li> <b>OTHER</b> : 其他</li></ul><p>2.当ComponentType 是 SIGN_SIGNATURE 或者 SIGN_PAGING_SIGNATURE 时可传入以下类型（支持多个）</p><ul><li>HANDWRITE : 需要实时手写的手写签名</li><li>OCR_ESIGN : OCR印章（智慧手写签名）</li><li>IMG_ESIGN : 图片印章</li><li>ESIGN : 个人印章</li><li>SYSTEM_ESIGN : 系统印章</li></ul><br>
+        # @type ComponentValue: Array
+
+        attr_accessor :ComponentType, :ComponentValue
+
+        def initialize(componenttype=nil, componentvalue=nil)
+          @ComponentType = componenttype
+          @ComponentValue = componentvalue
+        end
+
+        def deserialize(params)
+          @ComponentType = params['ComponentType']
+          @ComponentValue = params['ComponentValue']
+        end
+      end
+
       # 个性化参数
       class EmbedUrlOption < TencentCloud::Common::AbstractModel
         # @param ShowFlowDetailComponent: 合同详情预览，允许展示控件信息
@@ -13570,10 +13601,14 @@ module TencentCloud
         # @type SignAfterStart: Boolean
         # @param PreviewAfterStart: <p>发起成功后是否预览合同 true-展示预览按钮 false-否(默认)</p>
         # @type PreviewAfterStart: Boolean
+        # @param SignComponentLimits: <p><br>在调用<a href="https://qian.tencent.com/developers/companyApis/embedPages/CreatePrepareFlowGroup">获取发起合同组嵌入链接</a>创建合同时,可通过此参数限制在界面上拖拽签署控件后，可选那几种印章类型或签名类型。</p><p>注：仅在<strong>嵌入式文件</strong>发起场景下生效。</p>
+        # @type SignComponentLimits: Array
+        # @param HideOperationSteps: <p>隐藏操作步骤: 具体的控件类型如下</p><ul><li>2 : 补充文件内容</li><li>4 : 发起前合同信息与设置确认</li></ul>注：仅对新版页面生效
+        # @type HideOperationSteps: Array
 
-        attr_accessor :ApproverVerifyType, :SelfOrganizationApproverNotifyType, :OtherApproverNotifyType, :FlowGroupNeedWorkflow, :NoEditFlowName, :NoEditFlowType, :NoEditDeadline, :SignComponentConfig, :ForbidEditWatermark, :HideSignCodeAfterStart, :SignAfterStart, :PreviewAfterStart
+        attr_accessor :ApproverVerifyType, :SelfOrganizationApproverNotifyType, :OtherApproverNotifyType, :FlowGroupNeedWorkflow, :NoEditFlowName, :NoEditFlowType, :NoEditDeadline, :SignComponentConfig, :ForbidEditWatermark, :HideSignCodeAfterStart, :SignAfterStart, :PreviewAfterStart, :SignComponentLimits, :HideOperationSteps
 
-        def initialize(approververifytype=nil, selforganizationapprovernotifytype=nil, otherapprovernotifytype=nil, flowgroupneedworkflow=nil, noeditflowname=nil, noeditflowtype=nil, noeditdeadline=nil, signcomponentconfig=nil, forbideditwatermark=nil, hidesigncodeafterstart=nil, signafterstart=nil, previewafterstart=nil)
+        def initialize(approververifytype=nil, selforganizationapprovernotifytype=nil, otherapprovernotifytype=nil, flowgroupneedworkflow=nil, noeditflowname=nil, noeditflowtype=nil, noeditdeadline=nil, signcomponentconfig=nil, forbideditwatermark=nil, hidesigncodeafterstart=nil, signafterstart=nil, previewafterstart=nil, signcomponentlimits=nil, hideoperationsteps=nil)
           @ApproverVerifyType = approververifytype
           @SelfOrganizationApproverNotifyType = selforganizationapprovernotifytype
           @OtherApproverNotifyType = otherapprovernotifytype
@@ -13586,6 +13621,8 @@ module TencentCloud
           @HideSignCodeAfterStart = hidesigncodeafterstart
           @SignAfterStart = signafterstart
           @PreviewAfterStart = previewafterstart
+          @SignComponentLimits = signcomponentlimits
+          @HideOperationSteps = hideoperationsteps
         end
 
         def deserialize(params)
@@ -13604,6 +13641,15 @@ module TencentCloud
           @HideSignCodeAfterStart = params['HideSignCodeAfterStart']
           @SignAfterStart = params['SignAfterStart']
           @PreviewAfterStart = params['PreviewAfterStart']
+          unless params['SignComponentLimits'].nil?
+            @SignComponentLimits = []
+            params['SignComponentLimits'].each do |i|
+              embedsigncomponentlimit_tmp = EmbedSignComponentLimit.new
+              embedsigncomponentlimit_tmp.deserialize(i)
+              @SignComponentLimits << embedsigncomponentlimit_tmp
+            end
+          end
+          @HideOperationSteps = params['HideOperationSteps']
         end
       end
 
