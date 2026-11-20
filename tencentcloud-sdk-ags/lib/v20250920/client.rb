@@ -200,6 +200,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建镜像预热自动清理策略
+
+        # @param request: Request instance for CreatePreCacheImageCleanupPolicy.
+        # @type request: :class:`Tencentcloud::ags::V20250920::CreatePreCacheImageCleanupPolicyRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::CreatePreCacheImageCleanupPolicyResponse`
+        def CreatePreCacheImageCleanupPolicy(request)
+          body = send_request('CreatePreCacheImageCleanupPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePreCacheImageCleanupPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建镜像预热任务
 
         # @param request: Request instance for CreatePreCacheImageTask.
@@ -454,6 +478,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeletePreCacheImageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除镜像预热自动卸载策略
+
+        # @param request: Request instance for DeletePreCacheImageCleanupPolicy.
+        # @type request: :class:`Tencentcloud::ags::V20250920::DeletePreCacheImageCleanupPolicyRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::DeletePreCacheImageCleanupPolicyResponse`
+        def DeletePreCacheImageCleanupPolicy(request)
+          body = send_request('DeletePreCacheImageCleanupPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePreCacheImageCleanupPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -794,6 +842,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeGPUResourcesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询镜像预热自动卸载策略
+
+        # @param request: Request instance for DescribePreCacheImageCleanupPolicyList.
+        # @type request: :class:`Tencentcloud::ags::V20250920::DescribePreCacheImageCleanupPolicyListRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::DescribePreCacheImageCleanupPolicyListResponse`
+        def DescribePreCacheImageCleanupPolicyList(request)
+          body = send_request('DescribePreCacheImageCleanupPolicyList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePreCacheImageCleanupPolicyListResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1519,6 +1591,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = SyncRegistryRecordResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 更新镜像预热自动卸载策略
+
+        # @param request: Request instance for UpdatePreCacheImageCleanupPolicy.
+        # @type request: :class:`Tencentcloud::ags::V20250920::UpdatePreCacheImageCleanupPolicyRequest`
+        # @rtype: :class:`Tencentcloud::ags::V20250920::UpdatePreCacheImageCleanupPolicyResponse`
+        def UpdatePreCacheImageCleanupPolicy(request)
+          body = send_request('UpdatePreCacheImageCleanupPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UpdatePreCacheImageCleanupPolicyResponse.new
             model.deserialize(response['Response'])
             model
           else

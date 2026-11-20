@@ -1203,6 +1203,61 @@ module TencentCloud
         end
       end
 
+      # CreatePreCacheImageCleanupPolicy请求参数结构体
+      class CreatePreCacheImageCleanupPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param Name: <p>策略名</p>
+        # @type Name: String
+        # @param IdleTTL: <p>闲置过期时间</p><p>参数格式：正数 m/h/d</p>
+        # @type IdleTTL: String
+        # @param RegistryHost: <p>镜像仓库地址</p><p>入参限制：精准匹配，不传或空串表示不限，最多 255 字符</p>
+        # @type RegistryHost: String
+        # @param RepoPattern: <p>镜像仓库名</p><p>入参限制：正则匹配，最多 256 字符，编译后指令数不超过 128，账号全部启用策略合计不超过 1280；不传或空串表示全部 Repo</p>
+        # @type RepoPattern: String
+        # @param Enabled: <p>策略启用配置</p><p>枚举值：</p><ul><li>true： 启用策略</li><li>false： 禁用策略</li></ul><p>默认值：true</p>
+        # @type Enabled: Boolean
+
+        attr_accessor :Name, :IdleTTL, :RegistryHost, :RepoPattern, :Enabled
+
+        def initialize(name=nil, idlettl=nil, registryhost=nil, repopattern=nil, enabled=nil)
+          @Name = name
+          @IdleTTL = idlettl
+          @RegistryHost = registryhost
+          @RepoPattern = repopattern
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @Name = params['Name']
+          @IdleTTL = params['IdleTTL']
+          @RegistryHost = params['RegistryHost']
+          @RepoPattern = params['RepoPattern']
+          @Enabled = params['Enabled']
+        end
+      end
+
+      # CreatePreCacheImageCleanupPolicy返回参数结构体
+      class CreatePreCacheImageCleanupPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param CleanupPolicy: <p>清理策略详情</p>
+        # @type CleanupPolicy: :class:`Tencentcloud::Ags.v20250920.models.PreCacheImageCleanupPolicy`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CleanupPolicy, :RequestId
+
+        def initialize(cleanuppolicy=nil, requestid=nil)
+          @CleanupPolicy = cleanuppolicy
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CleanupPolicy'].nil?
+            @CleanupPolicy = PreCacheImageCleanupPolicy.new
+            @CleanupPolicy.deserialize(params['CleanupPolicy'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreatePreCacheImageTask请求参数结构体
       class CreatePreCacheImageTaskRequest < TencentCloud::Common::AbstractModel
         # @param Image: <p>镜像地址。仅支持 repository:tag、repository@sha256:&lt;64 位摘要&gt; 或 repository:tag@sha256:&lt;64 位摘要&gt;。</p>
@@ -2025,6 +2080,38 @@ module TencentCloud
 
       # DeleteGPUResourceGroup返回参数结构体
       class DeleteGPUResourceGroupResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePreCacheImageCleanupPolicy请求参数结构体
+      class DeletePreCacheImageCleanupPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param CleanupPolicyId: <p>清理策略ID</p>
+        # @type CleanupPolicyId: String
+
+        attr_accessor :CleanupPolicyId
+
+        def initialize(cleanuppolicyid=nil)
+          @CleanupPolicyId = cleanuppolicyid
+        end
+
+        def deserialize(params)
+          @CleanupPolicyId = params['CleanupPolicyId']
+        end
+      end
+
+      # DeletePreCacheImageCleanupPolicy返回参数结构体
+      class DeletePreCacheImageCleanupPolicyResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -2874,6 +2961,72 @@ module TencentCloud
               gpuresource_tmp = GPUResource.new
               gpuresource_tmp.deserialize(i)
               @Resources << gpuresource_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePreCacheImageCleanupPolicyList请求参数结构体
+      class DescribePreCacheImageCleanupPolicyListRequest < TencentCloud::Common::AbstractModel
+        # @param CleanupPolicyIds: <p>策略 ID 列表</p><p>入参限制：最多 100 个，每个 1～64 字符；指定时 Offset、Limit、Filters 不生效，不存在或已删除的 ID 被忽略</p>
+        # @type CleanupPolicyIds: Array
+        # @param Filters: <p>过滤器</p><p>入参限制：Filter={Name:String,Values:String[]}；最多 10 个 Filter，每个 Filter 的 Name 和 Values 必填，Values 最多 10 个、每个最多 255 字符</p>
+        # @type Filters: Array
+        # @param Offset: <p>偏移值</p><p>默认值：0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>返回数量限制</p><p>取值范围：[1, 100]</p><p>默认值：20</p>
+        # @type Limit: Integer
+
+        attr_accessor :CleanupPolicyIds, :Filters, :Offset, :Limit
+
+        def initialize(cleanuppolicyids=nil, filters=nil, offset=nil, limit=nil)
+          @CleanupPolicyIds = cleanuppolicyids
+          @Filters = filters
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @CleanupPolicyIds = params['CleanupPolicyIds']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribePreCacheImageCleanupPolicyList返回参数结构体
+      class DescribePreCacheImageCleanupPolicyListResponse < TencentCloud::Common::AbstractModel
+        # @param CleanupPolicySet: <p>清理策略集合</p>
+        # @type CleanupPolicySet: Array
+        # @param TotalCount: <p>返回策略数</p><p>单位：个</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CleanupPolicySet, :TotalCount, :RequestId
+
+        def initialize(cleanuppolicyset=nil, totalcount=nil, requestid=nil)
+          @CleanupPolicySet = cleanuppolicyset
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CleanupPolicySet'].nil?
+            @CleanupPolicySet = []
+            params['CleanupPolicySet'].each do |i|
+              precacheimagecleanuppolicy_tmp = PreCacheImageCleanupPolicy.new
+              precacheimagecleanuppolicy_tmp.deserialize(i)
+              @CleanupPolicySet << precacheimagecleanuppolicy_tmp
             end
           end
           @TotalCount = params['TotalCount']
@@ -5201,6 +5354,50 @@ module TencentCloud
         end
       end
 
+      # 预热镜像自动清理策略
+      class PreCacheImageCleanupPolicy < TencentCloud::Common::AbstractModel
+        # @param CleanupPolicyId: <p>自动清理策略ID</p>
+        # @type CleanupPolicyId: String
+        # @param Name: <p>自动清理策略名</p>
+        # @type Name: String
+        # @param Enabled: <p>策略启用配置</p>
+        # @type Enabled: Boolean
+        # @param RegistryHost: <p>镜像仓库地址</p><p>精准匹配，空串表示不限域名</p>
+        # @type RegistryHost: String
+        # @param RepoPattern: <p>镜像仓库名</p><p>正则匹配，匹配 命名空间/仓库 完整路径，非锚定子串匹配，语法与 TCR 预热触发器一致；空串表示全部 Repo</p>
+        # @type RepoPattern: String
+        # @param IdleTTL: <p>闲置过期清理时间</p><p>规范化正数时长，例如 7d</p>
+        # @type IdleTTL: String
+        # @param CreateTime: <p>策略创建时间</p>
+        # @type CreateTime: String
+        # @param UpdateTime: <p>策略最近更新时间</p>
+        # @type UpdateTime: String
+
+        attr_accessor :CleanupPolicyId, :Name, :Enabled, :RegistryHost, :RepoPattern, :IdleTTL, :CreateTime, :UpdateTime
+
+        def initialize(cleanuppolicyid=nil, name=nil, enabled=nil, registryhost=nil, repopattern=nil, idlettl=nil, createtime=nil, updatetime=nil)
+          @CleanupPolicyId = cleanuppolicyid
+          @Name = name
+          @Enabled = enabled
+          @RegistryHost = registryhost
+          @RepoPattern = repopattern
+          @IdleTTL = idlettl
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @CleanupPolicyId = params['CleanupPolicyId']
+          @Name = params['Name']
+          @Enabled = params['Enabled']
+          @RegistryHost = params['RegistryHost']
+          @RepoPattern = params['RepoPattern']
+          @IdleTTL = params['IdleTTL']
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+        end
+      end
+
       # PreviewRegistryRecord请求参数结构体
       class PreviewRegistryRecordRequest < TencentCloud::Common::AbstractModel
         # @param RegistryId: <p>父 Registry ID。</p>
@@ -5936,12 +6133,14 @@ module TencentCloud
         # @type AuthMode: String
         # @param Metadata: <p>沙箱元数据</p>
         # @type Metadata: Array
+        # @param StorageMounts: <p>启动沙箱实例时追加挂载规则，仅支持 volume、cfs、cos、image</p>
+        # @type StorageMounts: Array
         # @param StartMode: <p>实例启动模式。DEFAULT：使用原有同步创建流程，为默认值；WAIT_UNTIL_HEALTHY：使用持久化后台创建流程，受理后可能返回 STARTING，需查询实例状态确认最终结果，当前仅支持WAA沙箱和GPU沙箱。</p>
         # @type StartMode: String
 
-        attr_accessor :ToolId, :ToolName, :SourceInstanceId, :SnapshotId, :Timeout, :ClientToken, :MountOptions, :CustomConfiguration, :AuthMode, :Metadata, :StartMode
+        attr_accessor :ToolId, :ToolName, :SourceInstanceId, :SnapshotId, :Timeout, :ClientToken, :MountOptions, :CustomConfiguration, :AuthMode, :Metadata, :StorageMounts, :StartMode
 
-        def initialize(toolid=nil, toolname=nil, sourceinstanceid=nil, snapshotid=nil, timeout=nil, clienttoken=nil, mountoptions=nil, customconfiguration=nil, authmode=nil, metadata=nil, startmode=nil)
+        def initialize(toolid=nil, toolname=nil, sourceinstanceid=nil, snapshotid=nil, timeout=nil, clienttoken=nil, mountoptions=nil, customconfiguration=nil, authmode=nil, metadata=nil, storagemounts=nil, startmode=nil)
           @ToolId = toolid
           @ToolName = toolname
           @SourceInstanceId = sourceinstanceid
@@ -5952,6 +6151,7 @@ module TencentCloud
           @CustomConfiguration = customconfiguration
           @AuthMode = authmode
           @Metadata = metadata
+          @StorageMounts = storagemounts
           @StartMode = startmode
         end
 
@@ -5981,6 +6181,14 @@ module TencentCloud
               metadatavar_tmp = MetadataVar.new
               metadatavar_tmp.deserialize(i)
               @Metadata << metadatavar_tmp
+            end
+          end
+          unless params['StorageMounts'].nil?
+            @StorageMounts = []
+            params['StorageMounts'].each do |i|
+              storagemount_tmp = StorageMount.new
+              storagemount_tmp.deserialize(i)
+              @StorageMounts << storagemount_tmp
             end
           end
           @StartMode = params['StartMode']
@@ -6234,6 +6442,65 @@ module TencentCloud
         def deserialize(params)
           @Key = params['Key']
           @Value = params['Value']
+        end
+      end
+
+      # UpdatePreCacheImageCleanupPolicy请求参数结构体
+      class UpdatePreCacheImageCleanupPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param CleanupPolicyId: <p>清理策略ID</p>
+        # @type CleanupPolicyId: String
+        # @param Name: <p>清理策略名</p>
+        # @type Name: String
+        # @param RegistryHost: <p>镜像仓库地址</p><p>入参限制：精准匹配，不传或空串表示不限，最多 255 字符</p>
+        # @type RegistryHost: String
+        # @param RepoPattern: <p>镜像仓库名</p><p>入参限制：正则匹配，最多 256 字符，编译后指令数不超过 128，账号全部启用策略合计不超过 1280。不传或空串表示全部 Repo。</p>
+        # @type RepoPattern: String
+        # @param IdleTTL: <p>闲置过期时间</p><p>参数格式：正数 m/h/d</p>
+        # @type IdleTTL: String
+        # @param Enabled: <p>策略启用配置</p><p>枚举值：</p><ul><li>true： 启用策略</li><li>false： 禁用策略</li></ul><p>默认值：true</p>
+        # @type Enabled: Boolean
+
+        attr_accessor :CleanupPolicyId, :Name, :RegistryHost, :RepoPattern, :IdleTTL, :Enabled
+
+        def initialize(cleanuppolicyid=nil, name=nil, registryhost=nil, repopattern=nil, idlettl=nil, enabled=nil)
+          @CleanupPolicyId = cleanuppolicyid
+          @Name = name
+          @RegistryHost = registryhost
+          @RepoPattern = repopattern
+          @IdleTTL = idlettl
+          @Enabled = enabled
+        end
+
+        def deserialize(params)
+          @CleanupPolicyId = params['CleanupPolicyId']
+          @Name = params['Name']
+          @RegistryHost = params['RegistryHost']
+          @RepoPattern = params['RepoPattern']
+          @IdleTTL = params['IdleTTL']
+          @Enabled = params['Enabled']
+        end
+      end
+
+      # UpdatePreCacheImageCleanupPolicy返回参数结构体
+      class UpdatePreCacheImageCleanupPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param CleanupPolicy: <p>清理策略详情</p>
+        # @type CleanupPolicy: :class:`Tencentcloud::Ags.v20250920.models.PreCacheImageCleanupPolicy`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CleanupPolicy, :RequestId
+
+        def initialize(cleanuppolicy=nil, requestid=nil)
+          @CleanupPolicy = cleanuppolicy
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CleanupPolicy'].nil?
+            @CleanupPolicy = PreCacheImageCleanupPolicy.new
+            @CleanupPolicy.deserialize(params['CleanupPolicy'])
+          end
+          @RequestId = params['RequestId']
         end
       end
 
