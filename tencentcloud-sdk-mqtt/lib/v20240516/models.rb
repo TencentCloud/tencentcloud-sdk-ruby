@@ -175,52 +175,44 @@ module TencentCloud
 
       # AuthorizationPolicyItem
       class AuthorizationPolicyItem < TencentCloud::Common::AbstractModel
-        # @param Id: 策略规则ID
+        # @param Id: <p>策略规则ID</p>
         # @type Id: Integer
-        # @param InstanceId: MQTT集群ID
+        # @param InstanceId: <p>MQTT集群ID</p>
         # @type InstanceId: String
-        # @param PolicyName: 策略规则名
+        # @param PolicyName: <p>策略规则名</p>
         # @type PolicyName: String
-        # @param Version: 规则语法版本，当前仅支持1，默认为1
+        # @param Version: <p>规则语法版本，当前仅支持1，默认为1</p>
         # @type Version: Integer
-        # @param Priority: 策略优先级，优先级ID越小表示策略越优先检查生效。可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
+        # @param Priority: <p>策略优先级，优先级ID越小表示策略越优先检查生效。可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。</p>
         # @type Priority: Integer
-        # @param Effect: 决策
-        # allow：允许符合该策略的设备的访问请求。
-        # deny：拒绝覆盖该策略的设备的访问请求。
-        # 可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
+        # @param Effect: <p>决策<br>allow：允许符合该策略的设备的访问请求。<br>deny：拒绝覆盖该策略的设备的访问请求。<br>可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。</p>
         # @type Effect: String
-        # @param Actions: 操作
-        # connect：连接
-        # pub：发布mqtt消息
-        # sub：订阅mqtt消息
-        # 可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
+        # @param Actions: <p>操作<br>connect：连接<br>pub：发布mqtt消息<br>sub：订阅mqtt消息<br>可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。</p>
         # @type Actions: String
-        # @param Resources: 资源，可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
+        # @param Resources: <p>资源，可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。</p>
         # @type Resources: String
-        # @param ClientId: 条件-连接设备ID，可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
+        # @param ClientId: <p>条件-连接设备ID，可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。</p>
         # @type ClientId: String
-        # @param Username: 条件-用户名，可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
+        # @param ResourceItems: <p>授权资源，支持函数表达式</p>
+        # @type ResourceItems: Array
+        # @param Username: <p>条件-用户名，可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。</p>
         # @type Username: String
-        # @param Ip: 条件-客户端IP地址，可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
+        # @param Ip: <p>条件-客户端IP地址，可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。</p>
         # @type Ip: String
-        # @param Qos: 条件-服务质量，可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
+        # @param Qos: <p>条件-服务质量，可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。</p>
         # @type Qos: String
-        # @param Retain: 条件-保留消息，可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
-        # 1：表示匹配retain消息
-        # 2：表示匹配非retain消息
-        # 3：表示匹配retain和非retain消息
+        # @param Retain: <p>条件-保留消息，可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。<br>1：表示匹配retain消息<br>2：表示匹配非retain消息<br>3：表示匹配retain和非retain消息</p>
         # @type Retain: Integer
-        # @param Remark: 备注，长度不超过128个字符。
+        # @param Remark: <p>备注，长度不超过128个字符。</p>
         # @type Remark: String
-        # @param CreatedTime: 创建时间。毫秒级时间戳 。
+        # @param CreatedTime: <p>创建时间。毫秒级时间戳 。</p>
         # @type CreatedTime: Integer
-        # @param UpdateTime: 更新时间。毫秒级时间戳 。
+        # @param UpdateTime: <p>更新时间。毫秒级时间戳 。</p>
         # @type UpdateTime: Integer
 
-        attr_accessor :Id, :InstanceId, :PolicyName, :Version, :Priority, :Effect, :Actions, :Resources, :ClientId, :Username, :Ip, :Qos, :Retain, :Remark, :CreatedTime, :UpdateTime
+        attr_accessor :Id, :InstanceId, :PolicyName, :Version, :Priority, :Effect, :Actions, :Resources, :ClientId, :ResourceItems, :Username, :Ip, :Qos, :Retain, :Remark, :CreatedTime, :UpdateTime
 
-        def initialize(id=nil, instanceid=nil, policyname=nil, version=nil, priority=nil, effect=nil, actions=nil, resources=nil, clientid=nil, username=nil, ip=nil, qos=nil, retain=nil, remark=nil, createdtime=nil, updatetime=nil)
+        def initialize(id=nil, instanceid=nil, policyname=nil, version=nil, priority=nil, effect=nil, actions=nil, resources=nil, clientid=nil, resourceitems=nil, username=nil, ip=nil, qos=nil, retain=nil, remark=nil, createdtime=nil, updatetime=nil)
           @Id = id
           @InstanceId = instanceid
           @PolicyName = policyname
@@ -230,6 +222,7 @@ module TencentCloud
           @Actions = actions
           @Resources = resources
           @ClientId = clientid
+          @ResourceItems = resourceitems
           @Username = username
           @Ip = ip
           @Qos = qos
@@ -249,6 +242,7 @@ module TencentCloud
           @Actions = params['Actions']
           @Resources = params['Resources']
           @ClientId = params['ClientId']
+          @ResourceItems = params['ResourceItems']
           @Username = params['Username']
           @Ip = params['Ip']
           @Qos = params['Qos']
@@ -413,49 +407,38 @@ module TencentCloud
 
       # CreateAuthorizationPolicy请求参数结构体
       class CreateAuthorizationPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param PolicyName: 策略名称，不能为空，3-64个字符，支持中文、字母、数字、“-”及“_”。
+        # @param PolicyName: <p>策略名称，不能为空，3-64个字符，支持中文、字母、数字、“-”及“_”。</p>
         # @type PolicyName: String
-        # @param PolicyVersion: 策略版本,默认为1，当前仅支持1
+        # @param PolicyVersion: <p>策略版本,默认为1，当前仅支持1</p>
         # @type PolicyVersion: Integer
-        # @param Priority: 策略优先级，越小越优先，不能重复，优先级ID越小表示策略越优先检查生效。可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
+        # @param Priority: <p>策略优先级，越小越优先，不能重复，优先级ID越小表示策略越优先检查生效。可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。</p>
         # @type Priority: Integer
-        # @param Effect: 决策：
-        # allow：允许符合该策略的设备的访问请求。
-        # deny：拒绝覆盖该策略的设备的访问请求。
-        # 可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
+        # @param Effect: <p>决策：<br>allow：允许符合该策略的设备的访问请求。<br>deny：拒绝覆盖该策略的设备的访问请求。<br>可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。</p>
         # @type Effect: String
-        # @param Actions: 操作,支持多选，多个操作用英文逗号隔开。可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
-        # connect：连接
-        # pub：发布
-        # sub：订阅
+        # @param Actions: <p>操作,支持多选，多个操作用英文逗号隔开。可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。<br>connect：连接<br>pub：发布<br>sub：订阅</p>
         # @type Actions: String
-        # @param Retain: 条件-保留消息，可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
-        # 1,匹配保留消息；
-        # 2,匹配非保留消息，
-        # 3.匹配保留和非保留消息
+        # @param Retain: <p>条件-保留消息，可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。<br>1,匹配保留消息；<br>2,匹配非保留消息，<br>3.匹配保留和非保留消息</p>
         # @type Retain: Integer
-        # @param Qos: 条件：服务质量
-        # 0：最多一次
-        # 1：最少一次
-        # 2：精确一次
-        # 可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
+        # @param Qos: <p>条件：服务质量<br>0：最多一次<br>1：最少一次<br>2：精确一次<br>可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。</p>
         # @type Qos: String
-        # @param Resources: 资源，需要匹配的订阅，支持配置多条匹配规则，多个用英文逗号隔开。可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
+        # @param Resources: <p>资源，需要匹配的订阅，支持配置多条匹配规则，多个用英文逗号隔开。可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。</p>
         # @type Resources: String
-        # @param Username: 条件-用户名
+        # @param Username: <p>条件-用户名</p>
         # @type Username: String
-        # @param ClientId: 条件：客户端ID，支持正则
+        # @param ClientId: <p>条件：客户端ID，支持正则</p>
         # @type ClientId: String
-        # @param Ip: 条件：客户端IP地址，支持IP或者CIDR，可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
+        # @param Ip: <p>条件：客户端IP地址，支持IP或者CIDR，可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。</p>
         # @type Ip: String
-        # @param Remark: 备注信息，最长 128 字符
+        # @param Remark: <p>备注信息，最长 128 字符</p>
         # @type Remark: String
+        # @param ResourceItems: <p>授权资源，支持函数表达式</p>
+        # @type ResourceItems: Array
 
-        attr_accessor :InstanceId, :PolicyName, :PolicyVersion, :Priority, :Effect, :Actions, :Retain, :Qos, :Resources, :Username, :ClientId, :Ip, :Remark
+        attr_accessor :InstanceId, :PolicyName, :PolicyVersion, :Priority, :Effect, :Actions, :Retain, :Qos, :Resources, :Username, :ClientId, :Ip, :Remark, :ResourceItems
 
-        def initialize(instanceid=nil, policyname=nil, policyversion=nil, priority=nil, effect=nil, actions=nil, retain=nil, qos=nil, resources=nil, username=nil, clientid=nil, ip=nil, remark=nil)
+        def initialize(instanceid=nil, policyname=nil, policyversion=nil, priority=nil, effect=nil, actions=nil, retain=nil, qos=nil, resources=nil, username=nil, clientid=nil, ip=nil, remark=nil, resourceitems=nil)
           @InstanceId = instanceid
           @PolicyName = policyname
           @PolicyVersion = policyversion
@@ -469,6 +452,7 @@ module TencentCloud
           @ClientId = clientid
           @Ip = ip
           @Remark = remark
+          @ResourceItems = resourceitems
         end
 
         def deserialize(params)
@@ -485,14 +469,15 @@ module TencentCloud
           @ClientId = params['ClientId']
           @Ip = params['Ip']
           @Remark = params['Remark']
+          @ResourceItems = params['ResourceItems']
         end
       end
 
       # CreateAuthorizationPolicy返回参数结构体
       class CreateAuthorizationPolicyResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 集群Id
+        # @param InstanceId: <p>集群Id</p>
         # @type InstanceId: String
-        # @param Id: 策略id
+        # @param Id: <p>策略id</p>
         # @type Id: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -1716,7 +1701,7 @@ module TencentCloud
 
       # DescribeAuthorizationPolicies请求参数结构体
       class DescribeAuthorizationPoliciesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -1732,7 +1717,7 @@ module TencentCloud
 
       # DescribeAuthorizationPolicies返回参数结构体
       class DescribeAuthorizationPoliciesResponse < TencentCloud::Common::AbstractModel
-        # @param Data: 规则
+        # @param Data: <p>规则</p>
         # @type Data: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4685,49 +4670,40 @@ module TencentCloud
 
       # ModifyAuthorizationPolicy请求参数结构体
       class ModifyAuthorizationPolicyRequest < TencentCloud::Common::AbstractModel
-        # @param Id: 授权策略ID，从 [查询授权策略](https://cloud.tencent.com/document/product/1778/111074) 接口获取
+        # @param Id: <p>授权策略ID，从 <a href="https://cloud.tencent.com/document/product/1778/111074">查询授权策略</a> 接口获取</p>
         # @type Id: Integer
-        # @param InstanceId: 腾讯云MQTT实例ID，从 [DescribeInstanceList](https://cloud.tencent.com/document/api/1778/111029)接口或控制台获得。
+        # @param InstanceId: <p>腾讯云MQTT实例ID，从 <a href="https://cloud.tencent.com/document/api/1778/111029">DescribeInstanceList</a>接口或控制台获得。</p>
         # @type InstanceId: String
-        # @param PolicyName: 策略名称，不能为空，3-64个字符，支持中文、字母、数字、“-”及“_”。
+        # @param PolicyName: <p>策略名称，不能为空，3-64个字符，支持中文、字母、数字、“-”及“_”。</p>
         # @type PolicyName: String
-        # @param PolicyVersion: 策略版本,默认为1，当前仅支持1
+        # @param PolicyVersion: <p>策略版本,默认为1，当前仅支持1</p>
         # @type PolicyVersion: Integer
-        # @param Priority: 策略优先级，越小越优先，不能重复
+        # @param Priority: <p>策略优先级，越小越优先，不能重复</p>
         # @type Priority: Integer
-        # @param Effect: 决策：
-        # allow 允许
-        # deny 拒绝
+        # @param Effect: <p>决策：<br>allow 允许<br>deny 拒绝</p>
         # @type Effect: String
-        # @param Actions: 操作,支持多选，多个操作用英文逗号隔开。可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
-        # connect：连接
-        # pub：发布
-        # sub：订阅
+        # @param Actions: <p>操作,支持多选，多个操作用英文逗号隔开。可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。<br>connect：连接<br>pub：发布<br>sub：订阅</p>
         # @type Actions: String
-        # @param Resources: 资源，需要匹配的订阅，支持配置多条匹配规则，多个用英文逗号隔开。可参考 [数据面授权策略说明](https://cloud.tencent.com/document/product/1778/109715)。
+        # @param Resources: <p>资源，需要匹配的订阅，支持配置多条匹配规则，多个用英文逗号隔开。可参考 <a href="https://cloud.tencent.com/document/product/1778/109715">数据面授权策略说明</a>。</p>
         # @type Resources: String
-        # @param Username: 条件-用户名
+        # @param Username: <p>条件-用户名</p>
         # @type Username: String
-        # @param Retain: 条件-保留消息
-        # 1,匹配保留消息；
-        # 2,匹配非保留消息，
-        # 3.匹配保留和非保留消息
+        # @param Retain: <p>条件-保留消息<br>1,匹配保留消息；<br>2,匹配非保留消息，<br>3.匹配保留和非保留消息</p>
         # @type Retain: Integer
-        # @param ClientId: 条件：客户端ID，支持正则
+        # @param ClientId: <p>条件：客户端ID，支持正则</p>
         # @type ClientId: String
-        # @param Ip: 条件：客户端IP地址，支持IP或者CIDR
+        # @param Ip: <p>条件：客户端IP地址，支持IP或者CIDR</p>
         # @type Ip: String
-        # @param Qos: 条件：服务质量
-        # 0：最多一次
-        # 1：最少一次
-        # 2：精确一次
+        # @param Qos: <p>条件：服务质量<br>0：最多一次<br>1：最少一次<br>2：精确一次</p>
         # @type Qos: String
-        # @param Remark: 备注信息，最长 128 字符
+        # @param Remark: <p>备注信息，最长 128 字符</p>
         # @type Remark: String
+        # @param ResourceItems: <p>授权资源列表，支持函数表达式</p>
+        # @type ResourceItems: Array
 
-        attr_accessor :Id, :InstanceId, :PolicyName, :PolicyVersion, :Priority, :Effect, :Actions, :Resources, :Username, :Retain, :ClientId, :Ip, :Qos, :Remark
+        attr_accessor :Id, :InstanceId, :PolicyName, :PolicyVersion, :Priority, :Effect, :Actions, :Resources, :Username, :Retain, :ClientId, :Ip, :Qos, :Remark, :ResourceItems
 
-        def initialize(id=nil, instanceid=nil, policyname=nil, policyversion=nil, priority=nil, effect=nil, actions=nil, resources=nil, username=nil, retain=nil, clientid=nil, ip=nil, qos=nil, remark=nil)
+        def initialize(id=nil, instanceid=nil, policyname=nil, policyversion=nil, priority=nil, effect=nil, actions=nil, resources=nil, username=nil, retain=nil, clientid=nil, ip=nil, qos=nil, remark=nil, resourceitems=nil)
           @Id = id
           @InstanceId = instanceid
           @PolicyName = policyname
@@ -4742,6 +4718,7 @@ module TencentCloud
           @Ip = ip
           @Qos = qos
           @Remark = remark
+          @ResourceItems = resourceitems
         end
 
         def deserialize(params)
@@ -4759,6 +4736,7 @@ module TencentCloud
           @Ip = params['Ip']
           @Qos = params['Qos']
           @Remark = params['Remark']
+          @ResourceItems = params['ResourceItems']
         end
       end
 

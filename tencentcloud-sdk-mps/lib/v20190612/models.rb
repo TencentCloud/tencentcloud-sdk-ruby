@@ -39853,10 +39853,14 @@ module TencentCloud
         # @type Scenes: Array
         # @param Engine: <p>音色所属引擎</p>
         # @type Engine: String
+        # @param CreatedAt: <p>音色创建时间</p>
+        # @type CreatedAt: String
+        # @param UpdatedAt: <p>音色信息更新时间</p>
+        # @type UpdatedAt: String
 
-        attr_accessor :VoiceId, :Name, :Description, :Category, :Gender, :Age, :Languages, :AudioUrl, :Labels, :Scenes, :Engine
+        attr_accessor :VoiceId, :Name, :Description, :Category, :Gender, :Age, :Languages, :AudioUrl, :Labels, :Scenes, :Engine, :CreatedAt, :UpdatedAt
 
-        def initialize(voiceid=nil, name=nil, description=nil, category=nil, gender=nil, age=nil, languages=nil, audiourl=nil, labels=nil, scenes=nil, engine=nil)
+        def initialize(voiceid=nil, name=nil, description=nil, category=nil, gender=nil, age=nil, languages=nil, audiourl=nil, labels=nil, scenes=nil, engine=nil, createdat=nil, updatedat=nil)
           @VoiceId = voiceid
           @Name = name
           @Description = description
@@ -39868,6 +39872,8 @@ module TencentCloud
           @Labels = labels
           @Scenes = scenes
           @Engine = engine
+          @CreatedAt = createdat
+          @UpdatedAt = updatedat
         end
 
         def deserialize(params)
@@ -39882,6 +39888,8 @@ module TencentCloud
           @Labels = params['Labels']
           @Scenes = params['Scenes']
           @Engine = params['Engine']
+          @CreatedAt = params['CreatedAt']
+          @UpdatedAt = params['UpdatedAt']
         end
       end
 

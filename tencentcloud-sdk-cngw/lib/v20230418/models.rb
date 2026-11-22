@@ -763,6 +763,30 @@ module TencentCloud
         end
       end
 
+      # IP 黑白名单配置。
+      class AIGWLLMIPRestrictionResult < TencentCloud::Common::AbstractModel
+        # @param Enable: <p>是否开启</p>
+        # @type Enable: Boolean
+        # @param RestrictionType: <p>限制类型</p><p>枚举值：</p><ul><li>whiteList： 白名单</li><li>blackList： 黑名单</li></ul>
+        # @type RestrictionType: String
+        # @param AddressList: <p>IP 或 CIDR 列表，每项须为合法 IP/CIDR（支持 IPv4/IPv6）</p>
+        # @type AddressList: Array
+
+        attr_accessor :Enable, :RestrictionType, :AddressList
+
+        def initialize(enable=nil, restrictiontype=nil, addresslist=nil)
+          @Enable = enable
+          @RestrictionType = restrictiontype
+          @AddressList = addresslist
+        end
+
+        def deserialize(params)
+          @Enable = params['Enable']
+          @RestrictionType = params['RestrictionType']
+          @AddressList = params['AddressList']
+        end
+      end
+
       # 模型服务二级路由配置
       class AIGWLLMModelServiceSubRoute < TencentCloud::Common::AbstractModel
         # @param SelectedTypes: <p>生效的路由算法类型：权重路由，模型名称路由、参数路由等Weighted/ModelName/Query (预留多个，暂时只能填写一个)</p>
@@ -7824,6 +7848,49 @@ module TencentCloud
         end
       end
 
+      # DescribeAIGWLLMModelAPIIPRestriction请求参数结构体
+      class DescribeAIGWLLMModelAPIIPRestrictionRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例id</p>
+        # @type GatewayId: String
+        # @param ModelAPIId: <p>模型API ID</p>
+        # @type ModelAPIId: String
+
+        attr_accessor :GatewayId, :ModelAPIId
+
+        def initialize(gatewayid=nil, modelapiid=nil)
+          @GatewayId = gatewayid
+          @ModelAPIId = modelapiid
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ModelAPIId = params['ModelAPIId']
+        end
+      end
+
+      # DescribeAIGWLLMModelAPIIPRestriction返回参数结构体
+      class DescribeAIGWLLMModelAPIIPRestrictionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>IP 黑白名单配置</p>
+        # @type Result: :class:`Tencentcloud::Cngw.v20230418.models.AIGWLLMIPRestrictionResult`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['Result'].nil?
+            @Result = AIGWLLMIPRestrictionResult.new
+            @Result.deserialize(params['Result'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeCNGWServicesWithRoutes请求参数结构体
       class DescribeCNGWServicesWithRoutesRequest < TencentCloud::Common::AbstractModel
         # @param GatewayId: <p>网关ID</p>
@@ -10139,6 +10206,58 @@ module TencentCloud
             end
           end
           @SyncStatus = params['SyncStatus']
+        end
+      end
+
+      # ModifyAIGWLLMModelAPIIPRestriction请求参数结构体
+      class ModifyAIGWLLMModelAPIIPRestrictionRequest < TencentCloud::Common::AbstractModel
+        # @param GatewayId: <p>网关实例id</p>
+        # @type GatewayId: String
+        # @param ModelAPIId: <p>模型 API ID</p>
+        # @type ModelAPIId: String
+        # @param Enable: <p>是否启用 IP 黑白名单</p>
+        # @type Enable: Boolean
+        # @param RestrictionType: <p>限制类型</p><p>枚举值：</p><ul><li>whiteList： 白名单</li><li>blackList： 黑名单</li></ul>
+        # @type RestrictionType: String
+        # @param AddressList: <p>IP 或 CIDR 列表，每项须为合法 IP/CIDR（支持 IPv4/IPv6），长度 [1,400]</p>
+        # @type AddressList: Array
+
+        attr_accessor :GatewayId, :ModelAPIId, :Enable, :RestrictionType, :AddressList
+
+        def initialize(gatewayid=nil, modelapiid=nil, enable=nil, restrictiontype=nil, addresslist=nil)
+          @GatewayId = gatewayid
+          @ModelAPIId = modelapiid
+          @Enable = enable
+          @RestrictionType = restrictiontype
+          @AddressList = addresslist
+        end
+
+        def deserialize(params)
+          @GatewayId = params['GatewayId']
+          @ModelAPIId = params['ModelAPIId']
+          @Enable = params['Enable']
+          @RestrictionType = params['RestrictionType']
+          @AddressList = params['AddressList']
+        end
+      end
+
+      # ModifyAIGWLLMModelAPIIPRestriction返回参数结构体
+      class ModifyAIGWLLMModelAPIIPRestrictionResponse < TencentCloud::Common::AbstractModel
+        # @param Result: <p>结果</p>
+        # @type Result: Boolean
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :RequestId
+
+        def initialize(result=nil, requestid=nil)
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @RequestId = params['RequestId']
         end
       end
 

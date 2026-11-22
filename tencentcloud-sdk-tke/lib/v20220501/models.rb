@@ -251,14 +251,16 @@ module TencentCloud
         # @type AutomationService: Boolean
         # @param Password: <p>原生节点池密码</p>
         # @type Password: String
+        # @param Registry: <p>原生节点池 containerd 镜像仓库定制（仅 containerd 生效）；非 containerd 节点池携带本字段会被消费侧忽略</p>
+        # @type Registry: :class:`Tencentcloud::Tke.v20220501.models.RegistryConfig`
         # @param CustomImage: <p>自定义镜像 ID</p>
         # @type CustomImage: String
-        # @param RuntimeVersion: 原生节点池 containerd 运行时纯版本号，例如 1.7.28 或 1.7.28-tke.3。未指定或为空时使用原有 GPE 默认版本。仅对新建节点生效。
+        # @param RuntimeVersion: <p>原生节点池 containerd 运行时纯版本号，例如 1.7.28 或 1.7.28-tke.3。未指定或为空时使用原有 GPE 默认版本。仅对新建节点生效。</p>
         # @type RuntimeVersion: String
 
-        attr_accessor :Scaling, :SubnetIds, :InstanceChargeType, :SystemDisk, :InstanceTypes, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargePrepaid, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :Replicas, :GPUConfigs, :InternetAccessible, :DataDisks, :QGPUEnable, :KeyIds, :MachineType, :AutomationService, :Password, :CustomImage, :RuntimeVersion
+        attr_accessor :Scaling, :SubnetIds, :InstanceChargeType, :SystemDisk, :InstanceTypes, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargePrepaid, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :Replicas, :GPUConfigs, :InternetAccessible, :DataDisks, :QGPUEnable, :KeyIds, :MachineType, :AutomationService, :Password, :Registry, :CustomImage, :RuntimeVersion
 
-        def initialize(scaling=nil, subnetids=nil, instancechargetype=nil, systemdisk=nil, instancetypes=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargeprepaid=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, replicas=nil, gpuconfigs=nil, internetaccessible=nil, datadisks=nil, qgpuenable=nil, keyids=nil, machinetype=nil, automationservice=nil, password=nil, customimage=nil, runtimeversion=nil)
+        def initialize(scaling=nil, subnetids=nil, instancechargetype=nil, systemdisk=nil, instancetypes=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargeprepaid=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, replicas=nil, gpuconfigs=nil, internetaccessible=nil, datadisks=nil, qgpuenable=nil, keyids=nil, machinetype=nil, automationservice=nil, password=nil, registry=nil, customimage=nil, runtimeversion=nil)
           @Scaling = scaling
           @SubnetIds = subnetids
           @InstanceChargeType = instancechargetype
@@ -284,6 +286,7 @@ module TencentCloud
           @MachineType = machinetype
           @AutomationService = automationservice
           @Password = password
+          @Registry = registry
           @CustomImage = customimage
           @RuntimeVersion = runtimeversion
         end
@@ -349,6 +352,10 @@ module TencentCloud
           @MachineType = params['MachineType']
           @AutomationService = params['AutomationService']
           @Password = params['Password']
+          unless params['Registry'].nil?
+            @Registry = RegistryConfig.new
+            @Registry.deserialize(params['Registry'])
+          end
           @CustomImage = params['CustomImage']
           @RuntimeVersion = params['RuntimeVersion']
         end
@@ -2855,6 +2862,57 @@ module TencentCloud
         end
       end
 
+      # containerd 镜像仓库定制（仅 containerd 1.6+ 生效）
+      class RegistryConfig < TencentCloud::Common::AbstractModel
+        # @param Mirrors: <p>镜像加速站点列表，按 registry 维度渲染独立的 hosts.toml</p>
+        # @type Mirrors: Array
+        # @param InsecureRegistries: <p>不安全镜像仓库（跳过证书校验）</p>
+        # @type InsecureRegistries: Array
+
+        attr_accessor :Mirrors, :InsecureRegistries
+
+        def initialize(mirrors=nil, insecureregistries=nil)
+          @Mirrors = mirrors
+          @InsecureRegistries = insecureregistries
+        end
+
+        def deserialize(params)
+          unless params['Mirrors'].nil?
+            @Mirrors = []
+            params['Mirrors'].each do |i|
+              registrymirror_tmp = RegistryMirror.new
+              registrymirror_tmp.deserialize(i)
+              @Mirrors << registrymirror_tmp
+            end
+          end
+          @InsecureRegistries = params['InsecureRegistries']
+        end
+      end
+
+      # containerd 镜像加速站点
+      class RegistryMirror < TencentCloud::Common::AbstractModel
+        # @param Registry: <p>源仓库，例如 docker.io / registry.k8s.io</p>
+        # @type Registry: String
+        # @param Endpoints: <p>镜像加速地址列表，按顺序写入 hosts.toml</p>
+        # @type Endpoints: Array
+        # @param OverridePath: <p>是否在 hosts.toml 中写入 override_path，为 true 时镜像 endpoints 路径不再追加 namespace 后缀</p>
+        # @type OverridePath: Boolean
+
+        attr_accessor :Registry, :Endpoints, :OverridePath
+
+        def initialize(registry=nil, endpoints=nil, overridepath=nil)
+          @Registry = registry
+          @Endpoints = endpoints
+          @OverridePath = overridepath
+        end
+
+        def deserialize(params)
+          @Registry = params['Registry']
+          @Endpoints = params['Endpoints']
+          @OverridePath = params['OverridePath']
+        end
+      end
+
       # 普通节点信息
       class RegularNodeInfo < TencentCloud::Common::AbstractModel
         # @param InstanceAdvancedSettings: 节点配置
@@ -3401,12 +3459,14 @@ module TencentCloud
         # @type AutomationService: Boolean
         # @param Password: <p>原生节点池密码</p>
         # @type Password: String
+        # @param Registry: <p>节点的 containerd 镜像仓库定制（仅 containerd 运行时生效）</p>
+        # @type Registry: :class:`Tencentcloud::Tke.v20220501.models.RegistryConfig`
         # @param CustomImage: <p>自定义镜像 ID</p>
         # @type CustomImage: String
 
-        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :UpdateExistedNode, :DataDisks, :UpdateMachineManagement, :KeyIds, :DeletePolicy, :GPUConfigs, :AutomationService, :Password, :CustomImage
+        attr_accessor :Scaling, :SubnetIds, :SecurityGroupIds, :UpgradeSettings, :AutoRepair, :InstanceChargeType, :InstanceChargePrepaid, :SystemDisk, :Management, :HealthCheckPolicyName, :HostNamePattern, :KubeletArgs, :Lifecycle, :RuntimeRootDir, :EnableAutoscaling, :InstanceTypes, :Replicas, :UpdateExistedNode, :DataDisks, :UpdateMachineManagement, :KeyIds, :DeletePolicy, :GPUConfigs, :AutomationService, :Password, :Registry, :CustomImage
 
-        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, updateexistednode=nil, datadisks=nil, updatemachinemanagement=nil, keyids=nil, deletepolicy=nil, gpuconfigs=nil, automationservice=nil, password=nil, customimage=nil)
+        def initialize(scaling=nil, subnetids=nil, securitygroupids=nil, upgradesettings=nil, autorepair=nil, instancechargetype=nil, instancechargeprepaid=nil, systemdisk=nil, management=nil, healthcheckpolicyname=nil, hostnamepattern=nil, kubeletargs=nil, lifecycle=nil, runtimerootdir=nil, enableautoscaling=nil, instancetypes=nil, replicas=nil, updateexistednode=nil, datadisks=nil, updatemachinemanagement=nil, keyids=nil, deletepolicy=nil, gpuconfigs=nil, automationservice=nil, password=nil, registry=nil, customimage=nil)
           @Scaling = scaling
           @SubnetIds = subnetids
           @SecurityGroupIds = securitygroupids
@@ -3432,6 +3492,7 @@ module TencentCloud
           @GPUConfigs = gpuconfigs
           @AutomationService = automationservice
           @Password = password
+          @Registry = registry
           @CustomImage = customimage
         end
 
@@ -3493,6 +3554,10 @@ module TencentCloud
           end
           @AutomationService = params['AutomationService']
           @Password = params['Password']
+          unless params['Registry'].nil?
+            @Registry = RegistryConfig.new
+            @Registry.deserialize(params['Registry'])
+          end
           @CustomImage = params['CustomImage']
         end
       end

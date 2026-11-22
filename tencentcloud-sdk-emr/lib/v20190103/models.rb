@@ -2802,51 +2802,60 @@ module TencentCloud
 
       # CreateSLInstance请求参数结构体
       class CreateSLInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceName: 实例名称。
-        # @type InstanceName: String
-        # @param PayMode: 实例计费模式，0表示后付费，即按量计费，1表示预付费，即包年包月。
-        # @type PayMode: Integer
-        # @param DiskType: 实例存储类型，CLOUD_HSSD表示性能云存储， CLOUD_BSSD表示标准云存储。
-        # @type DiskType: String
-        # @param DiskSize: 实例单节点磁盘容量，单位GB，单节点磁盘容量需大于等于100，小于等于250*CPU核心数，容量调整步长为100。
+        # @param DiskSize: <p>实例单节点磁盘容量，单位GB，单节点磁盘容量需大于等于100，小于等于250*CPU核心数，容量调整步长为100。</p>
         # @type DiskSize: Integer
-        # @param NodeType: 实例节点规格，可填写4C16G、8C32G、16C64G、32C128G，不区分大小写。
+        # @param DiskType: <p>实例存储类型，CLOUD_HSSD表示性能云存储， CLOUD_BSSD表示标准云存储。</p>
+        # @type DiskType: String
+        # @param InstanceName: <p>实例名称。</p>
+        # @type InstanceName: String
+        # @param NodeType: <p>实例节点规格，可填写4C16G、8C32G、16C64G、32C128G，不区分大小写。</p>
         # @type NodeType: String
-        # @param ZoneSettings: 实例可用区详细配置，当前支持多可用区，可用区数量只能为1或3，包含区域名称，VPC信息、节点数量，其中所有区域节点总数需大于等于3，小于等于50。
+        # @param PayMode: <p>实例计费模式，0表示后付费，即按量计费，1表示预付费，即包年包月。</p>
+        # @type PayMode: Integer
+        # @param ZoneSettings: <p>实例可用区详细配置，当前支持多可用区，可用区数量只能为1或3，包含区域名称，VPC信息、节点数量，其中所有区域节点总数需大于等于3，小于等于50。</p>
         # @type ZoneSettings: Array
-        # @param Tags: 实例要绑定的标签列表。
-        # @type Tags: Array
-        # @param PrePaySetting: 预付费参数
-        # @type PrePaySetting: :class:`Tencentcloud::Emr.v20190103.models.PrePaySetting`
-        # @param ClientToken: 唯一随机标识，时效性为5分钟，需要调用者指定 防止客户端重复创建资源，例如 a9a90aa6-****-****-****-fae360632808
+        # @param ClientToken: <p>唯一随机标识，时效性为5分钟，需要调用者指定 防止客户端重复创建资源，例如 a9a90aa6-<strong><strong>-</strong></strong>-****-fae360632808</p>
         # @type ClientToken: String
-        # @param DeploymentMode: 部署模式
+        # @param DeploymentMode: <p>部署模式</p>
         # @type DeploymentMode: String
-        # @param UserName: 服务用户名，对不需要用户名的服务不用传，8-16个字符，支持大写字母、小写字母、数字
+        # @param EnablePublicIP: <p>是否开启公网 IP 访问，默认 false。TCBase 开启后会创建并绑定 EIP；内网 CLB 绑定 EIP 后，CLB 安全组对来自 EIP 的流量不生效，对来自内网 CLB 的流量生效。</p>
+        # @type EnablePublicIP: Boolean
+        # @param PrePaySetting: <p>预付费参数</p>
+        # @type PrePaySetting: :class:`Tencentcloud::Emr.v20190103.models.PrePaySetting`
+        # @param SecurityGroupIds: <p>TCBase 实例 CLB 绑定的安全组 ID 列表，形如 sg-xxxxxxxx，可通过 DescribeSecurityGroups 获取。绑定后管控侧会尝试补充 TCP 80、5432、5433 入站放通规则。</p>
+        # @type SecurityGroupIds: Array
+        # @param Tags: <p>实例要绑定的标签列表。</p>
+        # @type Tags: Array
+        # @param TerminateProtection: <p>是否开启实例销毁保护，默认 false；true 表示开启，开启后不允许销毁实例。</p>
+        # @type TerminateProtection: Boolean
+        # @param UserName: <p>服务用户名，对不需要用户名的服务不用传，8-16个字符，支持大写字母、小写字母、数字</p>
         # @type UserName: String
 
-        attr_accessor :InstanceName, :PayMode, :DiskType, :DiskSize, :NodeType, :ZoneSettings, :Tags, :PrePaySetting, :ClientToken, :DeploymentMode, :UserName
+        attr_accessor :DiskSize, :DiskType, :InstanceName, :NodeType, :PayMode, :ZoneSettings, :ClientToken, :DeploymentMode, :EnablePublicIP, :PrePaySetting, :SecurityGroupIds, :Tags, :TerminateProtection, :UserName
 
-        def initialize(instancename=nil, paymode=nil, disktype=nil, disksize=nil, nodetype=nil, zonesettings=nil, tags=nil, prepaysetting=nil, clienttoken=nil, deploymentmode=nil, username=nil)
-          @InstanceName = instancename
-          @PayMode = paymode
-          @DiskType = disktype
+        def initialize(disksize=nil, disktype=nil, instancename=nil, nodetype=nil, paymode=nil, zonesettings=nil, clienttoken=nil, deploymentmode=nil, enablepublicip=nil, prepaysetting=nil, securitygroupids=nil, tags=nil, terminateprotection=nil, username=nil)
           @DiskSize = disksize
+          @DiskType = disktype
+          @InstanceName = instancename
           @NodeType = nodetype
+          @PayMode = paymode
           @ZoneSettings = zonesettings
-          @Tags = tags
-          @PrePaySetting = prepaysetting
           @ClientToken = clienttoken
           @DeploymentMode = deploymentmode
+          @EnablePublicIP = enablepublicip
+          @PrePaySetting = prepaysetting
+          @SecurityGroupIds = securitygroupids
+          @Tags = tags
+          @TerminateProtection = terminateprotection
           @UserName = username
         end
 
         def deserialize(params)
-          @InstanceName = params['InstanceName']
-          @PayMode = params['PayMode']
-          @DiskType = params['DiskType']
           @DiskSize = params['DiskSize']
+          @DiskType = params['DiskType']
+          @InstanceName = params['InstanceName']
           @NodeType = params['NodeType']
+          @PayMode = params['PayMode']
           unless params['ZoneSettings'].nil?
             @ZoneSettings = []
             params['ZoneSettings'].each do |i|
@@ -2855,6 +2864,14 @@ module TencentCloud
               @ZoneSettings << zonesetting_tmp
             end
           end
+          @ClientToken = params['ClientToken']
+          @DeploymentMode = params['DeploymentMode']
+          @EnablePublicIP = params['EnablePublicIP']
+          unless params['PrePaySetting'].nil?
+            @PrePaySetting = PrePaySetting.new
+            @PrePaySetting.deserialize(params['PrePaySetting'])
+          end
+          @SecurityGroupIds = params['SecurityGroupIds']
           unless params['Tags'].nil?
             @Tags = []
             params['Tags'].each do |i|
@@ -2863,19 +2880,14 @@ module TencentCloud
               @Tags << tag_tmp
             end
           end
-          unless params['PrePaySetting'].nil?
-            @PrePaySetting = PrePaySetting.new
-            @PrePaySetting.deserialize(params['PrePaySetting'])
-          end
-          @ClientToken = params['ClientToken']
-          @DeploymentMode = params['DeploymentMode']
+          @TerminateProtection = params['TerminateProtection']
           @UserName = params['UserName']
         end
       end
 
       # CreateSLInstance返回参数结构体
       class CreateSLInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例唯一标识符（字符串表示）
+        # @param InstanceId: <p>实例唯一标识符（字符串表示）</p>
         # @type InstanceId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14303,25 +14315,25 @@ module TencentCloud
 
       # Serverless HBase 预付费设置
       class PrePaySetting < TencentCloud::Common::AbstractModel
+        # @param AutoRenewFlag: 自动续费标记，0：表示通知即将过期，但不自动续费 1：表示通知即将过期，而且自动续费 2：表示不通知即将过期，也不自动续费
+        # @type AutoRenewFlag: Integer
         # @param Period: 时间
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Period: :class:`Tencentcloud::Emr.v20190103.models.Period`
-        # @param AutoRenewFlag: 自动续费标记，0：表示通知即将过期，但不自动续费 1：表示通知即将过期，而且自动续费 2：表示不通知即将过期，也不自动续费
-        # @type AutoRenewFlag: Integer
 
-        attr_accessor :Period, :AutoRenewFlag
+        attr_accessor :AutoRenewFlag, :Period
 
-        def initialize(period=nil, autorenewflag=nil)
-          @Period = period
+        def initialize(autorenewflag=nil, period=nil)
           @AutoRenewFlag = autorenewflag
+          @Period = period
         end
 
         def deserialize(params)
+          @AutoRenewFlag = params['AutoRenewFlag']
           unless params['Period'].nil?
             @Period = Period.new
             @Period.deserialize(params['Period'])
           end
-          @AutoRenewFlag = params['AutoRenewFlag']
         end
       end
 
@@ -17783,21 +17795,21 @@ module TencentCloud
 
       # VPC 参数
       class VPCSettings < TencentCloud::Common::AbstractModel
-        # @param VpcId: VPC ID
-        # @type VpcId: String
         # @param SubnetId: Subnet ID
         # @type SubnetId: String
+        # @param VpcId: VPC ID
+        # @type VpcId: String
 
-        attr_accessor :VpcId, :SubnetId
+        attr_accessor :SubnetId, :VpcId
 
-        def initialize(vpcid=nil, subnetid=nil)
-          @VpcId = vpcid
+        def initialize(subnetid=nil, vpcid=nil)
           @SubnetId = subnetid
+          @VpcId = vpcid
         end
 
         def deserialize(params)
-          @VpcId = params['VpcId']
           @SubnetId = params['SubnetId']
+          @VpcId = params['VpcId']
         end
       end
 
@@ -18231,28 +18243,28 @@ module TencentCloud
 
       # 可用区配置描述。
       class ZoneSetting < TencentCloud::Common::AbstractModel
-        # @param Zone: 可用区名称
-        # @type Zone: String
-        # @param VPCSettings: 可用区VPC和子网
-        # @type VPCSettings: :class:`Tencentcloud::Emr.v20190103.models.VPCSettings`
         # @param NodeNum: 可用区节点数量
         # @type NodeNum: Integer
+        # @param VPCSettings: 可用区VPC和子网
+        # @type VPCSettings: :class:`Tencentcloud::Emr.v20190103.models.VPCSettings`
+        # @param Zone: 可用区名称
+        # @type Zone: String
 
-        attr_accessor :Zone, :VPCSettings, :NodeNum
+        attr_accessor :NodeNum, :VPCSettings, :Zone
 
-        def initialize(zone=nil, vpcsettings=nil, nodenum=nil)
-          @Zone = zone
-          @VPCSettings = vpcsettings
+        def initialize(nodenum=nil, vpcsettings=nil, zone=nil)
           @NodeNum = nodenum
+          @VPCSettings = vpcsettings
+          @Zone = zone
         end
 
         def deserialize(params)
-          @Zone = params['Zone']
+          @NodeNum = params['NodeNum']
           unless params['VPCSettings'].nil?
             @VPCSettings = VPCSettings.new
             @VPCSettings.deserialize(params['VPCSettings'])
           end
-          @NodeNum = params['NodeNum']
+          @Zone = params['Zone']
         end
       end
 

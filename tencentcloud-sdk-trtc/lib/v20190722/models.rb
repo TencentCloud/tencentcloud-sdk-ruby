@@ -9679,13 +9679,15 @@ module TencentCloud
         # @type Language: String
         # @param ExtraParams: <p>拓展参数</p>
         # @type ExtraParams: String
+        # @param PreviewText: <p>试听文本</p>
+        # @type PreviewText: String
 
-        attr_accessor :SdkAppId, :VoiceName, :PromptAudio, :APIKey, :PromptText, :Model, :Language, :ExtraParams
+        attr_accessor :SdkAppId, :VoiceName, :PromptAudio, :APIKey, :PromptText, :Model, :Language, :ExtraParams, :PreviewText
         extend Gem::Deprecate
         deprecate :APIKey, :none, 2026, 11
         deprecate :APIKey=, :none, 2026, 11
 
-        def initialize(sdkappid=nil, voicename=nil, promptaudio=nil, apikey=nil, prompttext=nil, model=nil, language=nil, extraparams=nil)
+        def initialize(sdkappid=nil, voicename=nil, promptaudio=nil, apikey=nil, prompttext=nil, model=nil, language=nil, extraparams=nil, previewtext=nil)
           @SdkAppId = sdkappid
           @VoiceName = voicename
           @PromptAudio = promptaudio
@@ -9694,6 +9696,7 @@ module TencentCloud
           @Model = model
           @Language = language
           @ExtraParams = extraparams
+          @PreviewText = previewtext
         end
 
         def deserialize(params)
@@ -9705,6 +9708,7 @@ module TencentCloud
           @Model = params['Model']
           @Language = params['Language']
           @ExtraParams = params['ExtraParams']
+          @PreviewText = params['PreviewText']
         end
       end
 
@@ -9712,18 +9716,22 @@ module TencentCloud
       class VoiceCloneResponse < TencentCloud::Common::AbstractModel
         # @param VoiceId: <p>克隆出的音色ID，可以用此id进行语音合成</p>
         # @type VoiceId: String
+        # @param PreviewUrl: <p>试听音频url,请于24小时内尽快下载</p>
+        # @type PreviewUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :VoiceId, :RequestId
+        attr_accessor :VoiceId, :PreviewUrl, :RequestId
 
-        def initialize(voiceid=nil, requestid=nil)
+        def initialize(voiceid=nil, previewurl=nil, requestid=nil)
           @VoiceId = voiceid
+          @PreviewUrl = previewurl
           @RequestId = requestid
         end
 
         def deserialize(params)
           @VoiceId = params['VoiceId']
+          @PreviewUrl = params['PreviewUrl']
           @RequestId = params['RequestId']
         end
       end

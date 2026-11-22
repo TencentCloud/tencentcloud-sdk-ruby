@@ -3401,8 +3401,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :AlarmRegularName, :TaskId, :Id, :TaskType, :MonitorType
         extend Gem::Deprecate
-        deprecate :TaskId, :none, 2026, 10
-        deprecate :TaskId=, :none, 2026, 10
+        deprecate :TaskId, :none, 2026, 11
+        deprecate :TaskId=, :none, 2026, 11
 
         def initialize(projectid=nil, alarmregularname=nil, taskid=nil, id=nil, tasktype=nil, monitortype=nil)
           @ProjectId = projectid
@@ -11900,12 +11900,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Category, :PageNumber, :PageSize, :EventName, :EventType, :EventSubType, :EventBroadcastType, :Status, :CreationTimeStart, :CreationTimeEnd, :EventTriggeredTimeStart, :EventTriggeredTimeEnd, :LogTimeStart, :LogTimeEnd, :Dimension, :TimeToLive, :SortItem, :SortType, :ConsumeCount
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2026, 10
-        deprecate :EventType=, :none, 2026, 10
-        deprecate :EventBroadcastType, :none, 2026, 10
-        deprecate :EventBroadcastType=, :none, 2026, 10
-        deprecate :Status, :none, 2026, 10
-        deprecate :Status=, :none, 2026, 10
+        deprecate :EventType, :none, 2026, 11
+        deprecate :EventType=, :none, 2026, 11
+        deprecate :EventBroadcastType, :none, 2026, 11
+        deprecate :EventBroadcastType=, :none, 2026, 11
+        deprecate :Status, :none, 2026, 11
+        deprecate :Status=, :none, 2026, 11
 
         def initialize(projectid=nil, category=nil, pagenumber=nil, pagesize=nil, eventname=nil, eventtype=nil, eventsubtype=nil, eventbroadcasttype=nil, status=nil, creationtimestart=nil, creationtimeend=nil, eventtriggeredtimestart=nil, eventtriggeredtimeend=nil, logtimestart=nil, logtimeend=nil, dimension=nil, timetolive=nil, sortitem=nil, sorttype=nil, consumecount=nil)
           @ProjectId = projectid
@@ -20198,8 +20198,8 @@ module TencentCloud
 
         attr_accessor :DimType, :Count, :QualityDim
         extend Gem::Deprecate
-        deprecate :DimType, :none, 2026, 10
-        deprecate :DimType=, :none, 2026, 10
+        deprecate :DimType, :none, 2026, 11
+        deprecate :DimType=, :none, 2026, 11
 
         def initialize(dimtype=nil, count=nil, qualitydim=nil)
           @DimType = dimtype
@@ -25053,41 +25053,47 @@ module TencentCloud
 
       # 实例日志信息详情
       class InstanceLogInfoOpsDto < TencentCloud::Common::AbstractModel
-        # @param LogInfo: 实例运行日志
+        # @param LogInfo: <p>实例运行日志</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LogInfo: String
-        # @param YarnLogInfo: 实例运行提交的yarn日志地址
+        # @param YarnLogInfo: <p>实例运行提交的yarn日志地址</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type YarnLogInfo: Array
-        # @param DataLogInfo: 实例运行产生的datax日志
+        # @param DataLogInfo: <p>实例运行产生的datax日志</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DataLogInfo: String
-        # @param ThirdTaskRunLogInfo: 第三方任务运行日志
+        # @param ThirdTaskRunLogInfo: <p>第三方任务运行日志</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThirdTaskRunLogInfo: String
-        # @param ThirdTaskLogUrlDesc: 第三方任务日志链接描述
+        # @param ThirdTaskLogUrlDesc: <p>第三方任务日志链接描述</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThirdTaskLogUrlDesc: String
-        # @param LineCount: 日志行数
+        # @param LineCount: <p>日志行数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type LineCount: Integer
-        # @param ExtInfo: 统一执行平台日志分页查询参数
+        # @param ExtInfo: <p>统一执行平台日志分页查询参数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ExtInfo: String
-        # @param IsEnd: 日志分页查询，是否最后一页
+        # @param IsEnd: <p>日志分页查询，是否最后一页</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IsEnd: Boolean
-        # @param FileSize: 文件大小
+        # @param FileSize: <p>文件大小</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileSize: String
-        # @param MatchedBrokerIp: 日志匹配节点信息
+        # @param MatchedBrokerIp: <p>日志匹配节点信息</p>
         # @type MatchedBrokerIp: String
-        # @param ExecutionExtendedProps: 执行平台通用协议
+        # @param ExecutionExtendedProps: <p>执行平台通用协议</p>
         # @type ExecutionExtendedProps: Array
+        # @param LogDiagnosisRules: <p>日志诊断规则</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LogDiagnosisRules: :class:`Tencentcloud::Wedata.v20210820.models.LogDiagnosisRules`
 
-        attr_accessor :LogInfo, :YarnLogInfo, :DataLogInfo, :ThirdTaskRunLogInfo, :ThirdTaskLogUrlDesc, :LineCount, :ExtInfo, :IsEnd, :FileSize, :MatchedBrokerIp, :ExecutionExtendedProps
+        attr_accessor :LogInfo, :YarnLogInfo, :DataLogInfo, :ThirdTaskRunLogInfo, :ThirdTaskLogUrlDesc, :LineCount, :ExtInfo, :IsEnd, :FileSize, :MatchedBrokerIp, :ExecutionExtendedProps, :LogDiagnosisRules
+        extend Gem::Deprecate
+        deprecate :LogDiagnosisRules, :none, 2026, 11
+        deprecate :LogDiagnosisRules=, :none, 2026, 11
 
-        def initialize(loginfo=nil, yarnloginfo=nil, dataloginfo=nil, thirdtaskrunloginfo=nil, thirdtasklogurldesc=nil, linecount=nil, extinfo=nil, isend=nil, filesize=nil, matchedbrokerip=nil, executionextendedprops=nil)
+        def initialize(loginfo=nil, yarnloginfo=nil, dataloginfo=nil, thirdtaskrunloginfo=nil, thirdtasklogurldesc=nil, linecount=nil, extinfo=nil, isend=nil, filesize=nil, matchedbrokerip=nil, executionextendedprops=nil, logdiagnosisrules=nil)
           @LogInfo = loginfo
           @YarnLogInfo = yarnloginfo
           @DataLogInfo = dataloginfo
@@ -25099,6 +25105,7 @@ module TencentCloud
           @FileSize = filesize
           @MatchedBrokerIp = matchedbrokerip
           @ExecutionExtendedProps = executionextendedprops
+          @LogDiagnosisRules = logdiagnosisrules
         end
 
         def deserialize(params)
@@ -25119,6 +25126,10 @@ module TencentCloud
               pairdto_tmp.deserialize(i)
               @ExecutionExtendedProps << pairdto_tmp
             end
+          end
+          unless params['LogDiagnosisRules'].nil?
+            @LogDiagnosisRules = LogDiagnosisRules.new
+            @LogDiagnosisRules.deserialize(params['LogDiagnosisRules'])
           end
         end
       end
@@ -28061,6 +28072,98 @@ module TencentCloud
         end
       end
 
+      # LogDiagnosisRules
+      class LogDiagnosisRules < TencentCloud::Common::AbstractModel
+        # @param Id: <p>id</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Id: Integer
+        # @param ErrorCode: <p>errorCode</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorCode: Integer
+        # @param CreateTime: <p>createTime</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type CreateTime: String
+        # @param LastUpdate: <p>lastUpdate</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LastUpdate: String
+        # @param Owner: <p>owner</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Owner: String
+        # @param ErrorTitle: <p>异常概要</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorTitle: String
+        # @param ErrorMessage: <p>异常关键字</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorMessage: String
+        # @param ErrorReason: <p>异常原因</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorReason: String
+        # @param ErrorSolution: <p>解决办法</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorSolution: String
+        # @param ErrorOrder: <p>展示顺序</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorOrder: String
+        # @param ErrorExample: <p>例子</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorExample: String
+        # @param ExtToolsUrl: <p>扩展说明</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ExtToolsUrl: String
+        # @param ErrorLevel: <p>异常级别</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorLevel: String
+        # @param ErrorTypeAggregation: <p>异常类型：用户/系统</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorTypeAggregation: String
+        # @param ErrorSystem: <p>异常系统类型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorSystem: String
+        # @param ErrorLogSystem: <p>异常日志来源</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type ErrorLogSystem: String
+
+        attr_accessor :Id, :ErrorCode, :CreateTime, :LastUpdate, :Owner, :ErrorTitle, :ErrorMessage, :ErrorReason, :ErrorSolution, :ErrorOrder, :ErrorExample, :ExtToolsUrl, :ErrorLevel, :ErrorTypeAggregation, :ErrorSystem, :ErrorLogSystem
+
+        def initialize(id=nil, errorcode=nil, createtime=nil, lastupdate=nil, owner=nil, errortitle=nil, errormessage=nil, errorreason=nil, errorsolution=nil, errororder=nil, errorexample=nil, exttoolsurl=nil, errorlevel=nil, errortypeaggregation=nil, errorsystem=nil, errorlogsystem=nil)
+          @Id = id
+          @ErrorCode = errorcode
+          @CreateTime = createtime
+          @LastUpdate = lastupdate
+          @Owner = owner
+          @ErrorTitle = errortitle
+          @ErrorMessage = errormessage
+          @ErrorReason = errorreason
+          @ErrorSolution = errorsolution
+          @ErrorOrder = errororder
+          @ErrorExample = errorexample
+          @ExtToolsUrl = exttoolsurl
+          @ErrorLevel = errorlevel
+          @ErrorTypeAggregation = errortypeaggregation
+          @ErrorSystem = errorsystem
+          @ErrorLogSystem = errorlogsystem
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @ErrorCode = params['ErrorCode']
+          @CreateTime = params['CreateTime']
+          @LastUpdate = params['LastUpdate']
+          @Owner = params['Owner']
+          @ErrorTitle = params['ErrorTitle']
+          @ErrorMessage = params['ErrorMessage']
+          @ErrorReason = params['ErrorReason']
+          @ErrorSolution = params['ErrorSolution']
+          @ErrorOrder = params['ErrorOrder']
+          @ErrorExample = params['ErrorExample']
+          @ExtToolsUrl = params['ExtToolsUrl']
+          @ErrorLevel = params['ErrorLevel']
+          @ErrorTypeAggregation = params['ErrorTypeAggregation']
+          @ErrorSystem = params['ErrorSystem']
+          @ErrorLogSystem = params['ErrorLogSystem']
+        end
+      end
+
       # MQPackageVO
       class MQPackageVO < TencentCloud::Common::AbstractModel
         # @param Type: ckafka消息队列
@@ -30033,8 +30136,8 @@ module TencentCloud
 
         attr_accessor :ProjectId, :TaskId, :DelayTime, :StartupTime, :SelfDepend, :StartTime, :EndTime, :TaskAction, :CycleType, :CycleStep, :CrontabExpression, :ExecutionStartTime, :ExecutionEndTime, :TaskName, :RetryWait, :TryLimit, :Retriable, :RunPriority, :TaskExt, :ResourceGroup, :YarnQueue, :BrokerIp, :InCharge, :Notes, :TaskParamInfos, :SourceServer, :TargetServer, :DependencyWorkflow, :DependencyConfigDTOs, :ExecutionTTL, :ScriptChange, :InChargeIds
         extend Gem::Deprecate
-        deprecate :InCharge, :none, 2026, 10
-        deprecate :InCharge=, :none, 2026, 10
+        deprecate :InCharge, :none, 2026, 11
+        deprecate :InCharge=, :none, 2026, 11
 
         def initialize(projectid=nil, taskid=nil, delaytime=nil, startuptime=nil, selfdepend=nil, starttime=nil, endtime=nil, taskaction=nil, cycletype=nil, cyclestep=nil, crontabexpression=nil, executionstarttime=nil, executionendtime=nil, taskname=nil, retrywait=nil, trylimit=nil, retriable=nil, runpriority=nil, taskext=nil, resourcegroup=nil, yarnqueue=nil, brokerip=nil, incharge=nil, notes=nil, taskparaminfos=nil, sourceserver=nil, targetserver=nil, dependencyworkflow=nil, dependencyconfigdtos=nil, executionttl=nil, scriptchange=nil, inchargeids=nil)
           @ProjectId = projectid
@@ -32825,12 +32928,12 @@ module TencentCloud
 
         attr_accessor :ProjectId, :Name, :EventSubType, :TimeToLive, :TimeUnit, :Owner, :Description, :EventType, :EventBroadcastType, :DimensionFormat, :ValidConsumeCount
         extend Gem::Deprecate
-        deprecate :EventType, :none, 2026, 10
-        deprecate :EventType=, :none, 2026, 10
-        deprecate :EventBroadcastType, :none, 2026, 10
-        deprecate :EventBroadcastType=, :none, 2026, 10
-        deprecate :DimensionFormat, :none, 2026, 10
-        deprecate :DimensionFormat=, :none, 2026, 10
+        deprecate :EventType, :none, 2026, 11
+        deprecate :EventType=, :none, 2026, 11
+        deprecate :EventBroadcastType, :none, 2026, 11
+        deprecate :EventBroadcastType=, :none, 2026, 11
+        deprecate :DimensionFormat, :none, 2026, 11
+        deprecate :DimensionFormat=, :none, 2026, 11
 
         def initialize(projectid=nil, name=nil, eventsubtype=nil, timetolive=nil, timeunit=nil, owner=nil, description=nil, eventtype=nil, eventbroadcasttype=nil, dimensionformat=nil, validconsumecount=nil)
           @ProjectId = projectid

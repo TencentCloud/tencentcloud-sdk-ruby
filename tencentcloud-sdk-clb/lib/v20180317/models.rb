@@ -8197,7 +8197,7 @@ module TencentCloud
         end
       end
 
-      # video配置。
+      # image配置。
       class ImageConfig < TencentCloud::Common::AbstractModel
         # @param RoutingStrategy: <p>模型内路由策略</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
@@ -8208,7 +8208,7 @@ module TencentCloud
         # @param NumRetries: <p>同一模型请求重试次数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NumRetries: Integer
-        # @param WaitSeconds: <p>同步超时时间</p><p>取值范围：[0, 60]</p><p>单位：秒</p>
+        # @param WaitSeconds: <p>同步超时时间</p><p>取值范围：[0, 300]</p><p>单位：秒</p><p>默认值：15</p>
         # @type WaitSeconds: Integer
 
         attr_accessor :RoutingStrategy, :RoutingStrategyArgs, :NumRetries, :WaitSeconds

@@ -866,6 +866,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询指定模型 API 的 IP 黑白名单配置。
+
+        # @param request: Request instance for DescribeAIGWLLMModelAPIIPRestriction.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::DescribeAIGWLLMModelAPIIPRestrictionRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::DescribeAIGWLLMModelAPIIPRestrictionResponse`
+        def DescribeAIGWLLMModelAPIIPRestriction(request)
+          body = send_request('DescribeAIGWLLMModelAPIIPRestriction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeAIGWLLMModelAPIIPRestrictionResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询云原生网关服务和路由列表
 
         # @param request: Request instance for DescribeCNGWServicesWithRoutes.
@@ -1590,6 +1614,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyAIGWCustomGuardrailPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建或整体覆盖指定模型 API 的 IP 黑白名单配置。PUT 覆盖语义（每次以请求值为最终态）。
+
+        # @param request: Request instance for ModifyAIGWLLMModelAPIIPRestriction.
+        # @type request: :class:`Tencentcloud::cngw::V20230418::ModifyAIGWLLMModelAPIIPRestrictionRequest`
+        # @rtype: :class:`Tencentcloud::cngw::V20230418::ModifyAIGWLLMModelAPIIPRestrictionResponse`
+        def ModifyAIGWLLMModelAPIIPRestriction(request)
+          body = send_request('ModifyAIGWLLMModelAPIIPRestriction', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyAIGWLLMModelAPIIPRestrictionResponse.new
             model.deserialize(response['Response'])
             model
           else

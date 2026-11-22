@@ -1837,8 +1837,8 @@ module TencentCloud
 
         attr_accessor :TaskName, :TaskType, :SourceResource, :TargetResource, :TransformParam, :PrivateLinkParam, :SchemaId, :TransformsParam, :TaskId, :Tags, :Description
         extend Gem::Deprecate
-        deprecate :PrivateLinkParam, :none, 2026, 10
-        deprecate :PrivateLinkParam=, :none, 2026, 10
+        deprecate :PrivateLinkParam, :none, 2026, 11
+        deprecate :PrivateLinkParam=, :none, 2026, 11
 
         def initialize(taskname=nil, tasktype=nil, sourceresource=nil, targetresource=nil, transformparam=nil, privatelinkparam=nil, schemaid=nil, transformsparam=nil, taskid=nil, tags=nil, description=nil)
           @TaskName = taskname
@@ -1936,7 +1936,7 @@ module TencentCloud
 
       # CreateDatahubTopic请求参数结构体
       class CreateDatahubTopicRequest < TencentCloud::Common::AbstractModel
-        # @param Name: <p>名称，是一个不超过 128 个字符的字符串，必须以“AppId-”为首字符，剩余部分可以包含字母、数字和横划线(-)，可通过接口DescribeAppInfo获取。</p>
+        # @param Name: <p>名称，字符串长度不超过 128 个字符。必须以当前用户的实际 AppId 和连字符（-）开头，其余部分仅支持字母、数字和连字符（-）。AppId 可通过 GetUserAppId 接口获取。</p>
         # @type Name: String
         # @param PartitionNum: <p>Partition个数，最大值为500，大于0</p>
         # @type PartitionNum: Integer
@@ -2230,8 +2230,8 @@ module TencentCloud
 
         attr_accessor :ReturnCode, :ReturnMessage, :Data, :DeleteRouteTimestamp
         extend Gem::Deprecate
-        deprecate :DeleteRouteTimestamp, :none, 2026, 10
-        deprecate :DeleteRouteTimestamp=, :none, 2026, 10
+        deprecate :DeleteRouteTimestamp, :none, 2026, 11
+        deprecate :DeleteRouteTimestamp=, :none, 2026, 11
 
         def initialize(returncode=nil, returnmessage=nil, data=nil, deleteroutetimestamp=nil)
           @ReturnCode = returncode
@@ -4272,8 +4272,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :ResourceType, :ResourceName, :Offset, :Limit, :SearchWord
         extend Gem::Deprecate
-        deprecate :SearchWord, :none, 2026, 10
-        deprecate :SearchWord=, :none, 2026, 10
+        deprecate :SearchWord, :none, 2026, 11
+        deprecate :SearchWord=, :none, 2026, 11
 
         def initialize(instanceid=nil, resourcetype=nil, resourcename=nil, offset=nil, limit=nil, searchword=nil)
           @InstanceId = instanceid
@@ -5811,8 +5811,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :Filters, :InstanceIds, :InstanceIdList, :TagList
         extend Gem::Deprecate
-        deprecate :InstanceIds, :none, 2026, 10
-        deprecate :InstanceIds=, :none, 2026, 10
+        deprecate :InstanceIds, :none, 2026, 11
+        deprecate :InstanceIds=, :none, 2026, 11
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, filters=nil, instanceids=nil, instanceidlist=nil, taglist=nil)
           @InstanceId = instanceid
@@ -5897,8 +5897,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :SearchWord, :Status, :Offset, :Limit, :TagKey, :VpcId
         extend Gem::Deprecate
-        deprecate :TagKey, :none, 2026, 10
-        deprecate :TagKey=, :none, 2026, 10
+        deprecate :TagKey, :none, 2026, 11
+        deprecate :TagKey=, :none, 2026, 11
 
         def initialize(instanceid=nil, searchword=nil, status=nil, offset=nil, limit=nil, tagkey=nil, vpcid=nil)
           @InstanceId = instanceid
@@ -9879,7 +9879,7 @@ module TencentCloud
       class ModifyAclRuleRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: <p>ckafka集群实例Id</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40835">DescribeInstances</a></p>
         # @type InstanceId: String
-        # @param RuleName: <p>ACL规则名</p>
+        # @param RuleName: <p>ACL规则名</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/89217">DescribeAclRule</a></p>
         # @type RuleName: String
         # @param IsApplied: <p>修改预设规则时传入,是否应用到新增的Topic</p><p>枚举值：</p><ul><li>0： 不允许应用到新增的topic</li><li>1： 允许应用到新增的topic</li></ul><p>默认值：0</p>
         # @type IsApplied: Integer
@@ -10302,8 +10302,8 @@ module TencentCloud
 
         attr_accessor :InstanceId, :MsgRetentionTime, :InstanceName, :Config, :DynamicRetentionConfig, :RebalanceTime, :PublicNetwork, :DynamicDiskConfig, :MaxMessageByte, :UncleanLeaderElectionEnable, :DeleteProtectionEnable, :RetentionBytes, :AdminSecurity, :TransactionalIdExpirationMs
         extend Gem::Deprecate
-        deprecate :DynamicDiskConfig, :none, 2026, 10
-        deprecate :DynamicDiskConfig=, :none, 2026, 10
+        deprecate :DynamicDiskConfig, :none, 2026, 11
+        deprecate :DynamicDiskConfig=, :none, 2026, 11
 
         def initialize(instanceid=nil, msgretentiontime=nil, instancename=nil, config=nil, dynamicretentionconfig=nil, rebalancetime=nil, publicnetwork=nil, dynamicdiskconfig=nil, maxmessagebyte=nil, uncleanleaderelectionenable=nil, deleteprotectionenable=nil, retentionbytes=nil, adminsecurity=nil, transactionalidexpirationms=nil)
           @InstanceId = instanceid
@@ -13734,8 +13734,8 @@ module TencentCloud
 
         attr_accessor :ZoneId, :IsInternalApp, :AppId, :Flag, :ZoneName, :ZoneStatus, :Exflag, :SoldOut, :SalesInfo, :ExtraFlag
         extend Gem::Deprecate
-        deprecate :Exflag, :none, 2026, 10
-        deprecate :Exflag=, :none, 2026, 10
+        deprecate :Exflag, :none, 2026, 11
+        deprecate :Exflag=, :none, 2026, 11
 
         def initialize(zoneid=nil, isinternalapp=nil, appid=nil, flag=nil, zonename=nil, zonestatus=nil, exflag=nil, soldout=nil, salesinfo=nil, extraflag=nil)
           @ZoneId = zoneid
