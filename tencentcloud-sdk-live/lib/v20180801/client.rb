@@ -6191,6 +6191,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 使用该接口启动直播字幕。
+
+        # @param request: Request instance for StartLiveSubtitle.
+        # @type request: :class:`Tencentcloud::live::V20180801::StartLiveSubtitleRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::StartLiveSubtitleResponse`
+        def StartLiveSubtitle(request)
+          body = send_request('StartLiveSubtitle', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StartLiveSubtitleResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 调用该接口，用于停止数字人直播间。
 
         # @param request: Request instance for StopAvatarEditingLive.
@@ -6346,6 +6370,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = StopLiveStreamMonitorResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 使用该接口将停止直播字幕。
+
+        # @param request: Request instance for StopLiveSubtitle.
+        # @type request: :class:`Tencentcloud::live::V20180801::StopLiveSubtitleRequest`
+        # @rtype: :class:`Tencentcloud::live::V20180801::StopLiveSubtitleResponse`
+        def StopLiveSubtitle(request)
+          body = send_request('StopLiveSubtitle', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = StopLiveSubtitleResponse.new
             model.deserialize(response['Response'])
             model
           else

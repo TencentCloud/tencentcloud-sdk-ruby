@@ -682,17 +682,21 @@ module TencentCloud
         # @type AgentId: String
         # @param VersionId: <p>指定版本 ID（可选）。非空且合法时固定使用该版本，跳过 routing_config 权重挑选；指定版本需归属同一 Agent 且未被废弃</p>
         # @type VersionId: String
+        # @param MetricEntry: <p>会话创建来源，仅用于监控统计，不参与鉴权。</p><p>page 表示页面端，adk 表示 ADK/API；不传或无法识别时统计为 unknown。</p>
+        # @type MetricEntry: String
 
-        attr_accessor :AgentId, :VersionId
+        attr_accessor :AgentId, :VersionId, :MetricEntry
 
-        def initialize(agentid=nil, versionid=nil)
+        def initialize(agentid=nil, versionid=nil, metricentry=nil)
           @AgentId = agentid
           @VersionId = versionid
+          @MetricEntry = metricentry
         end
 
         def deserialize(params)
           @AgentId = params['AgentId']
           @VersionId = params['VersionId']
+          @MetricEntry = params['MetricEntry']
         end
       end
 
@@ -1067,27 +1071,40 @@ module TencentCloud
 
       # DeleteSessionArtifactList请求参数结构体
       class DeleteSessionArtifactListRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: <p>会话ID</p>
+        # @type SessionId: String
+        # @param ArtifactIds: <p>需要删除的物料ID集合</p>
+        # @type ArtifactIds: Array
 
+        attr_accessor :SessionId, :ArtifactIds
 
-        def initialize()
+        def initialize(sessionid=nil, artifactids=nil)
+          @SessionId = sessionid
+          @ArtifactIds = artifactids
         end
 
         def deserialize(params)
+          @SessionId = params['SessionId']
+          @ArtifactIds = params['ArtifactIds']
         end
       end
 
       # DeleteSessionArtifactList返回参数结构体
       class DeleteSessionArtifactListResponse < TencentCloud::Common::AbstractModel
+        # @param DeletedCount: <p>删除的物料数量</p>
+        # @type DeletedCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :DeletedCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(deletedcount=nil, requestid=nil)
+          @DeletedCount = deletedcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @DeletedCount = params['DeletedCount']
           @RequestId = params['RequestId']
         end
       end
@@ -2387,54 +2404,122 @@ module TencentCloud
 
       # DescribeSessionArtifactDownloadUrl请求参数结构体
       class DescribeSessionArtifactDownloadUrlRequest < TencentCloud::Common::AbstractModel
+        # @param ArtifactId: <p>物料ID</p>
+        # @type ArtifactId: String
+        # @param ExpiredSeconds: <p>产物过期时间</p><p>单位：s</p>
+        # @type ExpiredSeconds: Integer
 
+        attr_accessor :ArtifactId, :ExpiredSeconds
 
-        def initialize()
+        def initialize(artifactid=nil, expiredseconds=nil)
+          @ArtifactId = artifactid
+          @ExpiredSeconds = expiredseconds
         end
 
         def deserialize(params)
+          @ArtifactId = params['ArtifactId']
+          @ExpiredSeconds = params['ExpiredSeconds']
         end
       end
 
       # DescribeSessionArtifactDownloadUrl返回参数结构体
       class DescribeSessionArtifactDownloadUrlResponse < TencentCloud::Common::AbstractModel
+        # @param DownloadUrl: <p>产物下载地址</p>
+        # @type DownloadUrl: String
+        # @param ExpiredTime: <p>产物过期时间</p>
+        # @type ExpiredTime: String
+        # @param FileName: <p>产物对应文件名</p>
+        # @type FileName: String
+        # @param FileSizeBytes: <p>产物文件大小</p>
+        # @type FileSizeBytes: Integer
+        # @param FileSha256: <p>文件摘要</p>
+        # @type FileSha256: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :DownloadUrl, :ExpiredTime, :FileName, :FileSizeBytes, :FileSha256, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(downloadurl=nil, expiredtime=nil, filename=nil, filesizebytes=nil, filesha256=nil, requestid=nil)
+          @DownloadUrl = downloadurl
+          @ExpiredTime = expiredtime
+          @FileName = filename
+          @FileSizeBytes = filesizebytes
+          @FileSha256 = filesha256
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @DownloadUrl = params['DownloadUrl']
+          @ExpiredTime = params['ExpiredTime']
+          @FileName = params['FileName']
+          @FileSizeBytes = params['FileSizeBytes']
+          @FileSha256 = params['FileSha256']
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeSessionArtifactList请求参数结构体
       class DescribeSessionArtifactListRequest < TencentCloud::Common::AbstractModel
+        # @param SessionId: <p>会话ID</p>
+        # @type SessionId: String
+        # @param Offset: <p>偏移量，从 0 开始，默认 0（按 ID 批量查询时忽略）</p>
+        # @type Offset: Integer
+        # @param Limit: <p>每页数量，默认 20，最大 200（按 ID 批量查询时忽略）</p>
+        # @type Limit: Integer
+        # @param Filters: <p>标准过滤条件：ArtifactId（精确，多值 OR，携带即按 ID 批量查询，忽略分页）/ Keyword（模糊）</p>
+        # @type Filters: Array
 
+        attr_accessor :SessionId, :Offset, :Limit, :Filters
 
-        def initialize()
+        def initialize(sessionid=nil, offset=nil, limit=nil, filters=nil)
+          @SessionId = sessionid
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
         end
 
         def deserialize(params)
+          @SessionId = params['SessionId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
       # DescribeSessionArtifactList返回参数结构体
       class DescribeSessionArtifactListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>符合条件的物料总数（按 ID 批量时为实际命中数）</p>
+        # @type TotalCount: Integer
+        # @param ArtifactSet: <p>返回的物料集合</p>
+        # @type ArtifactSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TotalCount, :ArtifactSet, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(totalcount=nil, artifactset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @ArtifactSet = artifactset
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['ArtifactSet'].nil?
+            @ArtifactSet = []
+            params['ArtifactSet'].each do |i|
+              sessionartifactdetail_tmp = SessionArtifactDetail.new
+              sessionartifactdetail_tmp.deserialize(i)
+              @ArtifactSet << sessionartifactdetail_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3600,6 +3685,62 @@ module TencentCloud
             @AgentConfig = AgentConfig.new
             @AgentConfig.deserialize(params['AgentConfig'])
           end
+        end
+      end
+
+      # 会话物料结构
+      class SessionArtifactDetail < TencentCloud::Common::AbstractModel
+        # @param ArtifactId: <p>物料ID</p>
+        # @type ArtifactId: String
+        # @param SessionId: <p>会话ID</p>
+        # @type SessionId: String
+        # @param AgentId: <p>AgentID</p>
+        # @type AgentId: String
+        # @param FileName: <p>文件名</p>
+        # @type FileName: String
+        # @param FilePath: <p>文件沙箱内路径</p>
+        # @type FilePath: String
+        # @param FileSizeBytes: <p>文件字节数</p>
+        # @type FileSizeBytes: Integer
+        # @param FileSha256: <p>文件摘要值(Sha256)</p>
+        # @type FileSha256: String
+        # @param Status: <p>物料状态</p><p>枚举值：</p><ul><li>PENDING： 处理中</li><li>READY： 准备完毕</li><li>FAILED： 失败</li></ul>
+        # @type Status: String
+        # @param CreatedTime: <p>创建时间</p><p>参数格式：RFC3339 UTC</p>
+        # @type CreatedTime: String
+        # @param UploadedTime: <p>更新时间</p><p>参数格式：RFC3339 UTC</p>
+        # @type UploadedTime: String
+        # @param ExpiredTime: <p>过期时间</p><p>参数格式：RFC3339 UTC</p>
+        # @type ExpiredTime: String
+
+        attr_accessor :ArtifactId, :SessionId, :AgentId, :FileName, :FilePath, :FileSizeBytes, :FileSha256, :Status, :CreatedTime, :UploadedTime, :ExpiredTime
+
+        def initialize(artifactid=nil, sessionid=nil, agentid=nil, filename=nil, filepath=nil, filesizebytes=nil, filesha256=nil, status=nil, createdtime=nil, uploadedtime=nil, expiredtime=nil)
+          @ArtifactId = artifactid
+          @SessionId = sessionid
+          @AgentId = agentid
+          @FileName = filename
+          @FilePath = filepath
+          @FileSizeBytes = filesizebytes
+          @FileSha256 = filesha256
+          @Status = status
+          @CreatedTime = createdtime
+          @UploadedTime = uploadedtime
+          @ExpiredTime = expiredtime
+        end
+
+        def deserialize(params)
+          @ArtifactId = params['ArtifactId']
+          @SessionId = params['SessionId']
+          @AgentId = params['AgentId']
+          @FileName = params['FileName']
+          @FilePath = params['FilePath']
+          @FileSizeBytes = params['FileSizeBytes']
+          @FileSha256 = params['FileSha256']
+          @Status = params['Status']
+          @CreatedTime = params['CreatedTime']
+          @UploadedTime = params['UploadedTime']
+          @ExpiredTime = params['ExpiredTime']
         end
       end
 

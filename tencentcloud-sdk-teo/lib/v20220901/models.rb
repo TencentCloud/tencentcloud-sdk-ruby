@@ -4384,6 +4384,80 @@ module TencentCloud
         end
       end
 
+      # CreateCustomGroup请求参数结构体
+      class CreateCustomGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param GroupName: <p>自定义组名称。</p>
+        # @type GroupName: String
+        # @param GroupType: <p>自定义组类型。创建后不可修改，不同类型的自定义组支持的条目类型不同。</p><p>枚举值：</p><ul><li>TLSFingerprint： TLS 指纹组，支持 JA3、JA4 类型的条目</li><li>UA： UA 组，支持 UA 类型的条目</li><li>Referer： Referer 组，支持 Referer 类型的条目</li></ul>
+        # @type GroupType: String
+        # @param GroupItems: <p>自定义组条目列表。</p>
+        # @type GroupItems: Array
+
+        attr_accessor :ZoneId, :GroupName, :GroupType, :GroupItems
+
+        def initialize(zoneid=nil, groupname=nil, grouptype=nil, groupitems=nil)
+          @ZoneId = zoneid
+          @GroupName = groupname
+          @GroupType = grouptype
+          @GroupItems = groupitems
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupName = params['GroupName']
+          @GroupType = params['GroupType']
+          unless params['GroupItems'].nil?
+            @GroupItems = []
+            params['GroupItems'].each do |i|
+              customgroupitem_tmp = CustomGroupItem.new
+              customgroupitem_tmp.deserialize(i)
+              @GroupItems << customgroupitem_tmp
+            end
+          end
+        end
+      end
+
+      # CreateCustomGroup返回参数结构体
+      class CreateCustomGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupId: <p>自定义组唯一标识 ID。</p>
+        # @type GroupId: String
+        # @param GroupName: <p>自定义组名称。</p>
+        # @type GroupName: String
+        # @param GroupType: <p>自定义组类型。</p><p>枚举值：</p><ul><li>TLSFingerprint： TLS 指纹组</li><li>UA： UA 组</li><li>Referer： Referer 组</li></ul>
+        # @type GroupType: String
+        # @param GroupItems: <p>自定义组条目列表。</p>
+        # @type GroupItems: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupId, :GroupName, :GroupType, :GroupItems, :RequestId
+
+        def initialize(groupid=nil, groupname=nil, grouptype=nil, groupitems=nil, requestid=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @GroupType = grouptype
+          @GroupItems = groupitems
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @GroupType = params['GroupType']
+          unless params['GroupItems'].nil?
+            @GroupItems = []
+            params['GroupItems'].each do |i|
+              customgroupitem_tmp = CustomGroupItem.new
+              customgroupitem_tmp.deserialize(i)
+              @GroupItems << customgroupitem_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
       # CreateCustomizeErrorPage请求参数结构体
       class CreateCustomizeErrorPageRequest < TencentCloud::Common::AbstractModel
         # @param ZoneId: <p>站点 ID。</p>
@@ -6674,6 +6748,109 @@ module TencentCloud
         end
       end
 
+      # 安全自定义组用于集中管理一组可复用的安全匹配条目，例如可以将多个 JA3/JA4 TLS 指纹保存为一个 TLS 指纹组，并在安全规则中直接引用该组，从而避免在多条规则中重复维护相同的指纹列表。
+      class CustomGroup < TencentCloud::Common::AbstractModel
+        # @param GroupId: <p>自定义组的唯一标识 ID。</p>
+        # @type GroupId: String
+        # @param GroupName: <p>自定义组名称。</p>
+        # @type GroupName: String
+        # @param GroupType: <p>自定义组类型。</p><p>枚举值：</p><ul><li>TLSFingerprint： TLS 指纹组</li><li>UA： UA 组</li><li>Referer： Referer 组</li></ul>
+        # @type GroupType: String
+        # @param GroupItems: <p>自定义组条目列表。</p>
+        # @type GroupItems: Array
+        # @param GroupItemTotalCount: <p>自定义组条目总数量。</p>
+        # @type GroupItemTotalCount: Integer
+        # @param RefCount: <p>自定义组被引用的次数。</p>
+        # @type RefCount: Integer
+
+        attr_accessor :GroupId, :GroupName, :GroupType, :GroupItems, :GroupItemTotalCount, :RefCount
+
+        def initialize(groupid=nil, groupname=nil, grouptype=nil, groupitems=nil, groupitemtotalcount=nil, refcount=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @GroupType = grouptype
+          @GroupItems = groupitems
+          @GroupItemTotalCount = groupitemtotalcount
+          @RefCount = refcount
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @GroupType = params['GroupType']
+          unless params['GroupItems'].nil?
+            @GroupItems = []
+            params['GroupItems'].each do |i|
+              customgroupitem_tmp = CustomGroupItem.new
+              customgroupitem_tmp.deserialize(i)
+              @GroupItems << customgroupitem_tmp
+            end
+          end
+          @GroupItemTotalCount = params['GroupItemTotalCount']
+          @RefCount = params['RefCount']
+        end
+      end
+
+      # 自定义组条目。
+      class CustomGroupItem < TencentCloud::Common::AbstractModel
+        # @param Content: <p>条目内容。</p>
+        # @type Content: String
+        # @param ItemType: <p>条目类型。</p><p>枚举值：</p><ul><li>JA3： JA3 指纹，仅当所属组 GroupType 为 TLSFingerprint 时可用</li><li>JA4： JA4 指纹，仅当所属组 GroupType 为 TLSFingerprint 时可用</li><li>UA： UA 值，仅当所属组 GroupType 为 UA 时可用</li><li>Referer： Referer 值，仅当所属组 GroupType 为 Referer 时可用</li></ul>
+        # @type ItemType: String
+
+        attr_accessor :Content, :ItemType
+
+        def initialize(content=nil, itemtype=nil)
+          @Content = content
+          @ItemType = itemtype
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @ItemType = params['ItemType']
+        end
+      end
+
+      # 引用自定义组的安全模块
+      class CustomGroupReference < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param EntityType: <p>实体类型。</p><p>枚举值：</p><ul><li>WebSec.ZonePolicy： 站点级防护策略</li><li>WebSec.HostPolicy： 域名级防护策略</li><li>WebSec.Template： 策略模板</li><li>WebSec.APIResource： API 资源</li><li>WebSec.JSInjectionRule： 注入规则</li><li>DDoS.L4Proxy： 四层代理 DDoS 防护</li><li>DDoS.L3Transit： 三层代播 DDoS 防护</li></ul>
+        # @type EntityType: String
+        # @param EntityId: <p>实体标识，根据 EntityType 不同代表不同的含义：</p><ul><li>WebSec.ZonePolicy：站点 ID</li><li>WebSec.HostPolicy：域名</li><li>WebSec.Template：模板 ID</li><li>WebSec.APIResource：API 资源 ID</li><li>WebSec.JSInjectionRule：JavaScript 注入规则 ID</li><li>DDoS.L4Proxy：实例 ID</li><li>DDoS.L3Transit：实例 ID</li></ul>
+        # @type EntityId: String
+        # @param EntityName: <p>实体标识，根据 EntityType 不同代表不同的含义：</p><ul><li>WebSec.ZonePolicy：空</li><li>WebSec.HostPolicy：空</li><li>WebSec.Template：模板名称</li><li>WebSec.APIResource：API 资源名称</li><li>WebSec.JSInjectionRule：JavaScript 注入规则名称</li><li>DDoS.L4Proxy：空</li><li>DDoS.L3Transit：空</li></ul>
+        # @type EntityName: String
+        # @param SubEntityType: <p>子实体类型。</p><p>枚举值：</p><ul><li>WebSec.ExceptionRule： 防护例外规则</li><li>WebSec.BasicAccessRule： 基础访问管控</li><li>WebSec.PreciseMatchRule： 精确匹配规则</li><li>WebSec.RateLimitRule： 精准速率限制</li><li>WebSec.BotCustomRule： 高级 Bot 管理 - 自定义规则</li><li>DDoS.L4Proxy.IpAccessControl： 四层代理 DDoS 防护 - IP 黑白名单</li><li>DDoS.L3Transit.IpAccessControl： 三层代播 DDoS 防护 - IP 黑白名单</li></ul>
+        # @type SubEntityType: String
+        # @param SubEntityId: <p>子实体标识，根据 SubEntityType 不同代表不同的含义：</p><ul><li>WebSec.ExceptionRule：规则 ID</li><li>WebSec.BasicAccessRule：规则 ID</li><li>WebSec.PreciseMatchRule：规则 ID</li><li>WebSec.RateLimitRule：规则 ID</li><li>WebSec.BotCustomRule：规则 ID</li><li>DDoS.L4Proxy.IpAccessControl：空</li><li>DDoS.L3Transit.IpAccessControl：空</li></ul><p>EntityType 与 SubEntityType 为对应关系，不同的 EntityType 支持不同的 SubEntityType。<br>WebSec.ZonePolicy，WebSec.HostPolicy 和 WebSec.Template 支持如下 SubEntityType：</p><ul><li>WebSec.ExceptionRule</li><li>WebSec.BasicAccessRule</li><li>WebSec.PreciseMatchRule</li><li>WebSec.RateLimitRule</li><li>WebSec.BotCustomRule</li></ul>DDoS.L4Proxy 支持如下 SubEntityType：<ul><li>DDoS.L4Proxy.IpAccessControl</li></ul>DDoS.L3Transit 支持如下 SubEntityType：<ul><li>DDoS.L3Transit.IpAccessControl</li></ul>
+        # @type SubEntityId: String
+        # @param SubEntityName: <p>子实体名称，根据 SubEntityType 不同代表不同的含义：</p><ul><li>WebSec.ExceptionRule：规则名称</li><li>WebSec.BasicAccessRule：规则名称</li><li>WebSec.PreciseMatchRule：规则名称</li><li>WebSec.RateLimitRule：规则名称</li><li>WebSec.BotCustomRule：规则名称</li><li>DDoS.L4Proxy.IpAccessControl：空</li><li>DDoS.L3Transit.IpAccessControl：空</li></ul>
+        # @type SubEntityName: String
+
+        attr_accessor :ZoneId, :EntityType, :EntityId, :EntityName, :SubEntityType, :SubEntityId, :SubEntityName
+
+        def initialize(zoneid=nil, entitytype=nil, entityid=nil, entityname=nil, subentitytype=nil, subentityid=nil, subentityname=nil)
+          @ZoneId = zoneid
+          @EntityType = entitytype
+          @EntityId = entityid
+          @EntityName = entityname
+          @SubEntityType = subentitytype
+          @SubEntityId = subentityid
+          @SubEntityName = subentityname
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @EntityType = params['EntityType']
+          @EntityId = params['EntityId']
+          @EntityName = params['EntityName']
+          @SubEntityType = params['SubEntityType']
+          @SubEntityId = params['SubEntityId']
+          @SubEntityName = params['SubEntityName']
+        end
+      end
+
       # Web 防护功能下的自定义规则。
       class CustomRule < TencentCloud::Common::AbstractModel
         # @param Name: <p>自定义规则的名称。</p>
@@ -7433,6 +7610,42 @@ module TencentCloud
 
       # DeleteCustomErrorPage返回参数结构体
       class DeleteCustomErrorPageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeleteCustomGroup请求参数结构体
+      class DeleteCustomGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param GroupId: <p>自定义组唯一标识 ID。</p>
+        # @type GroupId: String
+
+        attr_accessor :ZoneId, :GroupId
+
+        def initialize(zoneid=nil, groupid=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+        end
+      end
+
+      # DeleteCustomGroup返回参数结构体
+      class DeleteCustomGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9271,6 +9484,199 @@ module TencentCloud
               customerrorpage_tmp = CustomErrorPage.new
               customerrorpage_tmp.deserialize(i)
               @ErrorPages << customerrorpage_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomGroupReferences请求参数结构体
+      class DescribeCustomGroupReferencesRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param GroupId: <p>自定义组 ID。</p>
+        # @type GroupId: String
+        # @param Offset: <p>分页偏移量。</p><p>默认值：0</p>
+        # @type Offset: Integer
+        # @param Limit: <p>分页查询引用自定义组的配置条数。</p><p>取值范围：[1, 200]</p><p>默认值：20</p>
+        # @type Limit: Integer
+
+        attr_accessor :ZoneId, :GroupId, :Offset, :Limit
+
+        def initialize(zoneid=nil, groupid=nil, offset=nil, limit=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeCustomGroupReferences返回参数结构体
+      class DescribeCustomGroupReferencesResponse < TencentCloud::Common::AbstractModel
+        # @param References: <p>引用对应自定义组的配置信息。</p>
+        # @type References: Array
+        # @param TotalCount: <p>查询结果总数。</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :References, :TotalCount, :RequestId
+
+        def initialize(references=nil, totalcount=nil, requestid=nil)
+          @References = references
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['References'].nil?
+            @References = []
+            params['References'].each do |i|
+              customgroupreference_tmp = CustomGroupReference.new
+              customgroupreference_tmp.deserialize(i)
+              @References << customgroupreference_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomGroup请求参数结构体
+      class DescribeCustomGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param GroupId: <p>自定义组唯一标识 ID。</p>
+        # @type GroupId: String
+        # @param Limit: <p>GroupItems 分页查询限制数目。</p><p>取值范围：[1, 50000]</p><p>默认值：500</p>
+        # @type Limit: Integer
+        # @param Offset: <p>GroupItems 分页查询偏移量。</p><p>默认值：0</p>
+        # @type Offset: Integer
+
+        attr_accessor :ZoneId, :GroupId, :Limit, :Offset
+
+        def initialize(zoneid=nil, groupid=nil, limit=nil, offset=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeCustomGroup返回参数结构体
+      class DescribeCustomGroupResponse < TencentCloud::Common::AbstractModel
+        # @param GroupId: <p>自定义组唯一标识 ID。</p>
+        # @type GroupId: String
+        # @param GroupName: <p>自定义组名称。</p>
+        # @type GroupName: String
+        # @param GroupType: <p>自定义组类型。</p><p>枚举值：</p><ul><li>TLSFingerprint： TLS 指纹组</li><li>UA： UA 组</li><li>Referer： Referer 组</li></ul>
+        # @type GroupType: String
+        # @param GroupItems: <p>自定义组条目列表。</p>
+        # @type GroupItems: Array
+        # @param GroupItemTotalCount: <p>自定义组条目总数量。</p>
+        # @type GroupItemTotalCount: Integer
+        # @param RefCount: <p>自定义组被引用的次数。</p>
+        # @type RefCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupId, :GroupName, :GroupType, :GroupItems, :GroupItemTotalCount, :RefCount, :RequestId
+
+        def initialize(groupid=nil, groupname=nil, grouptype=nil, groupitems=nil, groupitemtotalcount=nil, refcount=nil, requestid=nil)
+          @GroupId = groupid
+          @GroupName = groupname
+          @GroupType = grouptype
+          @GroupItems = groupitems
+          @GroupItemTotalCount = groupitemtotalcount
+          @RefCount = refcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @GroupType = params['GroupType']
+          unless params['GroupItems'].nil?
+            @GroupItems = []
+            params['GroupItems'].each do |i|
+              customgroupitem_tmp = CustomGroupItem.new
+              customgroupitem_tmp.deserialize(i)
+              @GroupItems << customgroupitem_tmp
+            end
+          end
+          @GroupItemTotalCount = params['GroupItemTotalCount']
+          @RefCount = params['RefCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCustomGroups请求参数结构体
+      class DescribeCustomGroupsRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param GroupTypes: <p>自定义组类型列表。不传则查询所有类型的列表。</p>
+        # @type GroupTypes: Array
+        # @param Limit: <p>分页查询限制数目。</p><p>取值范围：[1, 100]</p><p>默认值：10</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页查询偏移量。</p><p>默认值：0</p>
+        # @type Offset: Integer
+
+        attr_accessor :ZoneId, :GroupTypes, :Limit, :Offset
+
+        def initialize(zoneid=nil, grouptypes=nil, limit=nil, offset=nil)
+          @ZoneId = zoneid
+          @GroupTypes = grouptypes
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupTypes = params['GroupTypes']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeCustomGroups返回参数结构体
+      class DescribeCustomGroupsResponse < TencentCloud::Common::AbstractModel
+        # @param GroupTotalCount: <p>满足类型列表条件的自定义组总数量。</p>
+        # @type GroupTotalCount: Integer
+        # @param CustomGroups: <p>满足类型列表条件的自定义组列表。</p>
+        # @type CustomGroups: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :GroupTotalCount, :CustomGroups, :RequestId
+
+        def initialize(grouptotalcount=nil, customgroups=nil, requestid=nil)
+          @GroupTotalCount = grouptotalcount
+          @CustomGroups = customgroups
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @GroupTotalCount = params['GroupTotalCount']
+          unless params['CustomGroups'].nil?
+            @CustomGroups = []
+            params['CustomGroups'].each do |i|
+              customgroup_tmp = CustomGroup.new
+              customgroup_tmp.deserialize(i)
+              @CustomGroups << customgroup_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -19941,6 +20347,61 @@ module TencentCloud
 
       # ModifyCustomErrorPage返回参数结构体
       class ModifyCustomErrorPageResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyCustomGroup请求参数结构体
+      class ModifyCustomGroupRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>站点 ID。</p>
+        # @type ZoneId: String
+        # @param GroupId: <p>自定义组唯一标识 ID。</p>
+        # @type GroupId: String
+        # @param GroupName: <p>自定义组名称。该字段不填时则保留原值。</p>
+        # @type GroupName: String
+        # @param GroupItemOperation: <p>指定本次对 GroupItems 的更新方式。</p><p>枚举值：</p><ul><li>Replace： 使用 GroupItems 全量替换原有条目列表</li><li>Append： 追加 GroupItems 到组条目列表中</li><li>Remove： 从原有条目列表中移除与 GroupItems 中 Content 和 ItemType 均相同的条目。若指定条目不存在，则忽略该条目</li></ul><p>默认值：Replace</p>
+        # @type GroupItemOperation: String
+        # @param GroupItems: <p>自定义组条目列表。该字段不填时则保留原值。</p>
+        # @type GroupItems: Array
+
+        attr_accessor :ZoneId, :GroupId, :GroupName, :GroupItemOperation, :GroupItems
+
+        def initialize(zoneid=nil, groupid=nil, groupname=nil, groupitemoperation=nil, groupitems=nil)
+          @ZoneId = zoneid
+          @GroupId = groupid
+          @GroupName = groupname
+          @GroupItemOperation = groupitemoperation
+          @GroupItems = groupitems
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @GroupId = params['GroupId']
+          @GroupName = params['GroupName']
+          @GroupItemOperation = params['GroupItemOperation']
+          unless params['GroupItems'].nil?
+            @GroupItems = []
+            params['GroupItems'].each do |i|
+              customgroupitem_tmp = CustomGroupItem.new
+              customgroupitem_tmp.deserialize(i)
+              @GroupItems << customgroupitem_tmp
+            end
+          end
+        end
+      end
+
+      # ModifyCustomGroup返回参数结构体
+      class ModifyCustomGroupResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

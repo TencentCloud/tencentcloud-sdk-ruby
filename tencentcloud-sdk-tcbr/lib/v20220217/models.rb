@@ -996,6 +996,50 @@ module TencentCloud
         end
       end
 
+      # DescribeStableIPTask请求参数结构体
+      class DescribeStableIPTaskRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: 环境 ID
+        # @type EnvId: String
+        # @param TaskId: 任务 ID
+        # @type TaskId: Integer
+
+        attr_accessor :EnvId, :TaskId
+
+        def initialize(envid=nil, taskid=nil)
+          @EnvId = envid
+          @TaskId = taskid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+          @TaskId = params['TaskId']
+        end
+      end
+
+      # DescribeStableIPTask返回参数结构体
+      class DescribeStableIPTaskResponse < TencentCloud::Common::AbstractModel
+        # @param Result: success | failed | running
+        # @type Result: String
+        # @param TaskId: 任务 ID
+        # @type TaskId: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Result, :TaskId, :RequestId
+
+        def initialize(result=nil, taskid=nil, requestid=nil)
+          @Result = result
+          @TaskId = taskid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Result = params['Result']
+          @TaskId = params['TaskId']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeVersionDetail请求参数结构体
       class DescribeVersionDetailRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: <p>环境Id</p>

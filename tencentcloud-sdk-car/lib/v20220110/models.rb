@@ -67,27 +67,48 @@ module TencentCloud
 
       # CreateMCPToken请求参数结构体
       class CreateMCPTokenRequest < TencentCloud::Common::AbstractModel
+        # @param ExpireSeconds: <p>Token 过期时间</p><p>取值范围：[0, 2592000]</p><p>单位：秒</p><p>默认值：86400</p><p>不填的话，默认为 1 天超时；过期时间为当前时间 + 超时时间</p>
+        # @type ExpireSeconds: Integer
+        # @param TokenName: <p>Token 名称（注释）</p><p>参数格式：只支持：中英文、数字、连字符 &quot;-&quot; 的组合</p><p>长度不得超过 16 个字符</p>
+        # @type TokenName: String
+        # @param UserId: <p>用户 Id</p><p>参数格式：只支持：字母（A-Za-z）、数字（0-9）、下划线（_）的组合</p><p>固定使用这个 UserId  来操作云渲染并发资源，长度不能超过 64 个字符</p>
+        # @type UserId: String
 
+        attr_accessor :ExpireSeconds, :TokenName, :UserId
 
-        def initialize()
+        def initialize(expireseconds=nil, tokenname=nil, userid=nil)
+          @ExpireSeconds = expireseconds
+          @TokenName = tokenname
+          @UserId = userid
         end
 
         def deserialize(params)
+          @ExpireSeconds = params['ExpireSeconds']
+          @TokenName = params['TokenName']
+          @UserId = params['UserId']
         end
       end
 
       # CreateMCPToken返回参数结构体
       class CreateMCPTokenResponse < TencentCloud::Common::AbstractModel
+        # @param TokenId: <p>TokenId</p>
+        # @type TokenId: String
+        # @param Token: <p>MCP Token </p><p>当前值请妥善保存，后续需要使用该 Token 和 MCP Server 进行通信操作，丢失后无法再查看</p>
+        # @type Token: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :TokenId, :Token, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(tokenid=nil, token=nil, requestid=nil)
+          @TokenId = tokenid
+          @Token = token
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @TokenId = params['TokenId']
+          @Token = params['Token']
           @RequestId = params['RequestId']
         end
       end
@@ -210,27 +231,62 @@ module TencentCloud
 
       # DescribeMCPTokens请求参数结构体
       class DescribeMCPTokensRequest < TencentCloud::Common::AbstractModel
+        # @param Offset: <p>偏移量</p>
+        # @type Offset: Integer
+        # @param Limit: <p>单页数量</p><p>取值范围：[0, 200]</p><p>默认值：20</p><p>如果传入 0 会使用默认值</p>
+        # @type Limit: Integer
+        # @param Filters: <p>过滤器列表</p><p>只支持 TokenId 和 TokenName 过滤，Filters 数量不能超过 10、每个 Filter 的 Values 个数不能超过 20、单个 Value 长度不能超过 64 个字符、不允许同名 Filter 出现</p>
+        # @type Filters: Array
 
+        attr_accessor :Offset, :Limit, :Filters
 
-        def initialize()
+        def initialize(offset=nil, limit=nil, filters=nil)
+          @Offset = offset
+          @Limit = limit
+          @Filters = filters
         end
 
         def deserialize(params)
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
         end
       end
 
       # DescribeMCPTokens返回参数结构体
       class DescribeMCPTokensResponse < TencentCloud::Common::AbstractModel
+        # @param Tokens: <p>Token 列表</p>
+        # @type Tokens: Array
+        # @param TotalCount: <p>Token 数量</p><p>单位：个</p>
+        # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Tokens, :TotalCount, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(tokens=nil, totalcount=nil, requestid=nil)
+          @Tokens = tokens
+          @TotalCount = totalcount
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Tokens'].nil?
+            @Tokens = []
+            params['Tokens'].each do |i|
+              mcptokeninfo_tmp = MCPTokenInfo.new
+              mcptokeninfo_tmp.deserialize(i)
+              @Tokens << mcptokeninfo_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
           @RequestId = params['RequestId']
         end
       end
@@ -267,14 +323,83 @@ module TencentCloud
         end
       end
 
-      # RenewMCPToken请求参数结构体
-      class RenewMCPTokenRequest < TencentCloud::Common::AbstractModel
+      # 查询过滤条件
+      class Filter < TencentCloud::Common::AbstractModel
+        # @param Name: 过滤字段名（ApplicationId 应用Id、ApplicationName 应用名称、ApplicationRunStatus 运行状态、ApplicationUpdateStatus 更新状态）
+        # @type Name: String
+        # @param Values: 过滤值集合（当过滤 Name 为 ApplicationRunStatus 时，Values 取值为 [ApplicationDeleting 应用删除中、ApplicationCreateFail 应用创建失败、ApplicationCreating 应用创建中、ApplicationRunning 正常运行、ApplicationNoConfigured 主执行程序路径未配置 ]。当过滤 Name 为 ApplicationUpdateStatus 时，Values 取值 [ApplicationUpdateCreating 版本创建中、ApplicationUpdateCreateFail 版本创建失败、ApplicationUpdateNoReleased 版本待发布、ApplicationUpdateReleased 版本发布完成、ApplicationUpdateNormal 无]）
+        # @type Values: Array
 
+        attr_accessor :Name, :Values
 
-        def initialize()
+        def initialize(name=nil, values=nil)
+          @Name = name
+          @Values = values
         end
 
         def deserialize(params)
+          @Name = params['Name']
+          @Values = params['Values']
+        end
+      end
+
+      # MCP Token 信息
+      class MCPTokenInfo < TencentCloud::Common::AbstractModel
+        # @param TokenId: <p>TokenId</p><p>用于管理 Token 数据，可用来延长对应 Token 有效时间</p>
+        # @type TokenId: String
+        # @param TokenName: <p>Token 名称（注释）</p>
+        # @type TokenName: String
+        # @param UserId: <p>用户 Id</p><p>固定使用这个 UserId  来操作云渲染并发资源（为空不限制）</p>
+        # @type UserId: String
+        # @param Scopes: <p>权限范围</p><p>默认值：[&quot;*&quot;]</p><p>用于指定操作权限，默认拥有全部权限</p>
+        # @type Scopes: Array
+        # @param Status: <p>Token 状态</p><p>枚举值：</p><ul><li>ACTIVE： 正常状态，未被吊销。不代表还在有效期内</li><li>REVOKED： 已被吊销，永久失效</li></ul><p>默认值：ACTIVE</p>
+        # @type Status: String
+        # @param CreatedTime: <p>Token 创建时间</p>
+        # @type CreatedTime: String
+        # @param ExpiresTime: <p>Token 过期时间</p>
+        # @type ExpiresTime: String
+
+        attr_accessor :TokenId, :TokenName, :UserId, :Scopes, :Status, :CreatedTime, :ExpiresTime
+
+        def initialize(tokenid=nil, tokenname=nil, userid=nil, scopes=nil, status=nil, createdtime=nil, expirestime=nil)
+          @TokenId = tokenid
+          @TokenName = tokenname
+          @UserId = userid
+          @Scopes = scopes
+          @Status = status
+          @CreatedTime = createdtime
+          @ExpiresTime = expirestime
+        end
+
+        def deserialize(params)
+          @TokenId = params['TokenId']
+          @TokenName = params['TokenName']
+          @UserId = params['UserId']
+          @Scopes = params['Scopes']
+          @Status = params['Status']
+          @CreatedTime = params['CreatedTime']
+          @ExpiresTime = params['ExpiresTime']
+        end
+      end
+
+      # RenewMCPToken请求参数结构体
+      class RenewMCPTokenRequest < TencentCloud::Common::AbstractModel
+        # @param TokenId: <p>TokenId</p>
+        # @type TokenId: String
+        # @param ExpireSeconds: <p>Token 过期时间</p><p>取值范围：[0, 2592000]</p><p>默认值：86400</p><p>单位 秒、不填的话，默认为 1 天；新的超时时间为，当前时刻 + ExpireSeconds</p>
+        # @type ExpireSeconds: Integer
+
+        attr_accessor :TokenId, :ExpireSeconds
+
+        def initialize(tokenid=nil, expireseconds=nil)
+          @TokenId = tokenid
+          @ExpireSeconds = expireseconds
+        end
+
+        def deserialize(params)
+          @TokenId = params['TokenId']
+          @ExpireSeconds = params['ExpireSeconds']
         end
       end
 

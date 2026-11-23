@@ -18983,6 +18983,50 @@ module TencentCloud
         end
       end
 
+      # StartLiveSubtitle请求参数结构体
+      class StartLiveSubtitleRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
+        # @type AppName: String
+        # @param PushDomainName: 您的推流域名。
+        # @type PushDomainName: String
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param Operator: 操作人备注信息。
+        # @type Operator: String
+
+        attr_accessor :AppName, :PushDomainName, :StreamName, :Operator
+
+        def initialize(appname=nil, pushdomainname=nil, streamname=nil, operator=nil)
+          @AppName = appname
+          @PushDomainName = pushdomainname
+          @StreamName = streamname
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @PushDomainName = params['PushDomainName']
+          @StreamName = params['StreamName']
+          @Operator = params['Operator']
+        end
+      end
+
+      # StartLiveSubtitle返回参数结构体
+      class StartLiveSubtitleResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # StopAvatarEditingLive请求参数结构体
       class StopAvatarEditingLiveRequest < TencentCloud::Common::AbstractModel
         # @param ChannelId: <p>通道ID，通常是待编辑的直播流的源ID</p>
@@ -19221,6 +19265,50 @@ module TencentCloud
 
       # StopLiveStreamMonitor返回参数结构体
       class StopLiveStreamMonitorResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # StopLiveSubtitle请求参数结构体
+      class StopLiveSubtitleRequest < TencentCloud::Common::AbstractModel
+        # @param AppName: 推流路径，与推流和播放地址中的AppName保持一致，默认为 live。
+        # @type AppName: String
+        # @param PushDomainName: 您的推流域名。
+        # @type PushDomainName: String
+        # @param StreamName: 流名称。
+        # @type StreamName: String
+        # @param Operator: 操作人备注信息。
+        # @type Operator: String
+
+        attr_accessor :AppName, :PushDomainName, :StreamName, :Operator
+
+        def initialize(appname=nil, pushdomainname=nil, streamname=nil, operator=nil)
+          @AppName = appname
+          @PushDomainName = pushdomainname
+          @StreamName = streamname
+          @Operator = operator
+        end
+
+        def deserialize(params)
+          @AppName = params['AppName']
+          @PushDomainName = params['PushDomainName']
+          @StreamName = params['StreamName']
+          @Operator = params['Operator']
+        end
+      end
+
+      # StopLiveSubtitle返回参数结构体
+      class StopLiveSubtitleResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 

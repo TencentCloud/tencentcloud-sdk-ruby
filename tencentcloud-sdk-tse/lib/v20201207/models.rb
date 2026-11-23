@@ -3446,43 +3446,43 @@ module TencentCloud
 
       # 配置文件
       class ConfigFile < TencentCloud::Common::AbstractModel
-        # @param Id: 配置文件id
+        # @param Id: <p>配置文件id</p>
         # @type Id: Integer
-        # @param Name: 配置文件名称
+        # @param Name: <p>配置文件名称</p>
         # @type Name: String
-        # @param Namespace: 配置文件命名空间
+        # @param Namespace: <p>配置文件命名空间</p>
         # @type Namespace: String
-        # @param Group: 配置文件组
+        # @param Group: <p>配置文件组</p>
         # @type Group: String
-        # @param Content: 配置文件内容
+        # @param Content: <p>配置文件内容</p>
         # @type Content: String
-        # @param Format: 配置文件格式
+        # @param Format: <p>配置文件格式</p>
         # @type Format: String
-        # @param Comment: 配置文件注释
+        # @param Comment: <p>配置文件注释</p>
         # @type Comment: String
-        # @param Status: 配置文件状态
+        # @param Status: <p>配置文件状态</p>
         # @type Status: String
-        # @param Tags: 配置文件标签数组
+        # @param Tags: <p>配置文件标签数组</p>
         # @type Tags: Array
-        # @param CreateTime: 配置文件创建时间
+        # @param CreateTime: <p>配置文件创建时间</p>
         # @type CreateTime: String
-        # @param CreateBy: 配置文件创建者
+        # @param CreateBy: <p>配置文件创建者</p>
         # @type CreateBy: String
-        # @param ModifyTime: 配置文件修改时间
+        # @param ModifyTime: <p>配置文件修改时间</p>
         # @type ModifyTime: String
-        # @param ModifyBy: 配置文件修改者
+        # @param ModifyBy: <p>配置文件修改者</p>
         # @type ModifyBy: String
-        # @param ReleaseTime: 配置文件发布时间
+        # @param ReleaseTime: <p>配置文件发布时间</p>
         # @type ReleaseTime: String
-        # @param ReleaseBy: 配置文件发布者
+        # @param ReleaseBy: <p>配置文件发布者</p>
         # @type ReleaseBy: String
-        # @param ConfigFileSupportedClient: 配置文件类型
+        # @param ConfigFileSupportedClient: <p>配置文件类型</p>
         # @type ConfigFileSupportedClient: Integer
-        # @param ConfigFilePersistent: 配置文件持久化
+        # @param ConfigFilePersistent: <p>配置文件持久化</p>
         # @type ConfigFilePersistent: :class:`Tencentcloud::Tse.v20201207.models.ConfigFilePersistent`
-        # @param Encrypted: 是否开启加密算法
+        # @param Encrypted: <p>是否开启加密算法</p>
         # @type Encrypted: Boolean
-        # @param EncryptAlgo: 加密算法
+        # @param EncryptAlgo: <p>加密算法</p>
         # @type EncryptAlgo: String
 
         attr_accessor :Id, :Name, :Namespace, :Group, :Content, :Format, :Comment, :Status, :Tags, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseTime, :ReleaseBy, :ConfigFileSupportedClient, :ConfigFilePersistent, :Encrypted, :EncryptAlgo
@@ -3876,45 +3876,45 @@ module TencentCloud
 
       # 配置文件发布历史
       class ConfigFileReleaseHistory < TencentCloud::Common::AbstractModel
-        # @param Id: 配置文件发布历史记录id
+        # @param Id: <p>配置文件发布历史记录id</p>
         # @type Id: Integer
-        # @param Name: 配置文件发布历史名称
+        # @param Name: <p>配置文件发布历史名称</p>
         # @type Name: String
-        # @param Namespace: 配置文件发布历史命名空间
+        # @param Namespace: <p>配置文件发布历史命名空间</p>
         # @type Namespace: String
-        # @param Group: 配置文件发布历史组
+        # @param Group: <p>配置文件发布历史组</p>
         # @type Group: String
-        # @param FileName: 配置文件发布历史名称
+        # @param FileName: <p>配置文件发布历史名称</p>
         # @type FileName: String
-        # @param Content: 配置文件发布历史内容
+        # @param Content: <p>配置文件发布历史内容</p>
         # @type Content: String
-        # @param Format: 配置文件发布历史格式
+        # @param Format: <p>配置文件发布历史格式</p>
         # @type Format: String
-        # @param Comment: 配置文件发布历史注释
+        # @param Comment: <p>配置文件发布历史注释</p>
         # @type Comment: String
-        # @param Md5: 配置文件发布历史Md5
+        # @param Md5: <p>配置文件发布历史Md5</p>
         # @type Md5: String
-        # @param Type: 配置文件发布历史类型
+        # @param Type: <p>配置文件发布历史类型</p>
         # @type Type: String
-        # @param Status: 配置文件发布历史状态
+        # @param Status: <p>配置文件发布历史状态</p>
         # @type Status: String
-        # @param Tags: 配置文件发布历史标签组
+        # @param Tags: <p>配置文件发布历史标签组</p>
         # @type Tags: Array
-        # @param CreateTime: 配置文件发布创建时间
+        # @param CreateTime: <p>配置文件发布创建时间</p>
         # @type CreateTime: String
-        # @param CreateBy: 配置文件发布创建者
+        # @param CreateBy: <p>配置文件发布创建者</p>
         # @type CreateBy: String
-        # @param ModifyTime: 配置文件发布修改时间
+        # @param ModifyTime: <p>配置文件发布修改时间</p>
         # @type ModifyTime: String
-        # @param ModifyBy: 配置文件发布修改者
+        # @param ModifyBy: <p>配置文件发布修改者</p>
         # @type ModifyBy: String
-        # @param ReleaseDescription: 发布描述
+        # @param ReleaseDescription: <p>发布描述</p>
         # @type ReleaseDescription: String
-        # @param ReleaseReason: 原因，用于失败时原因展示
+        # @param ReleaseReason: <p>原因，用于失败时原因展示</p>
         # @type ReleaseReason: String
-        # @param ConfigFileSupportedClient: 配置文件类型
+        # @param ConfigFileSupportedClient: <p>配置文件类型</p>
         # @type ConfigFileSupportedClient: Integer
-        # @param ConfigFilePersistent: 配置文件持久化
+        # @param ConfigFilePersistent: <p>配置文件持久化</p>
         # @type ConfigFilePersistent: :class:`Tencentcloud::Tse.v20201207.models.ConfigFilePersistent`
 
         attr_accessor :Id, :Name, :Namespace, :Group, :FileName, :Content, :Format, :Comment, :Md5, :Type, :Status, :Tags, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy, :ReleaseDescription, :ReleaseReason, :ConfigFileSupportedClient, :ConfigFilePersistent
@@ -3998,23 +3998,23 @@ module TencentCloud
 
       # 配置文件模板
       class ConfigFileTemplate < TencentCloud::Common::AbstractModel
-        # @param Id: 配置文件模板id
+        # @param Id: <p>配置文件模板id</p>
         # @type Id: Integer
-        # @param Name: 配置文件模板名称
+        # @param Name: <p>配置文件模板名称</p>
         # @type Name: String
-        # @param Content: 配置文件模板内容
+        # @param Content: <p>配置文件模板内容</p>
         # @type Content: String
-        # @param Format: 配置文件模板格式
+        # @param Format: <p>配置文件模板格式</p>
         # @type Format: String
-        # @param Comment: 配置文件模板注释
+        # @param Comment: <p>配置文件模板注释</p>
         # @type Comment: String
-        # @param CreateTime: 配置文件模板创建时间
+        # @param CreateTime: <p>配置文件模板创建时间</p>
         # @type CreateTime: String
-        # @param CreateBy: 配置文件模板创建者
+        # @param CreateBy: <p>配置文件模板创建者</p>
         # @type CreateBy: String
-        # @param ModifyTime: 配置文件模板修改时间
+        # @param ModifyTime: <p>配置文件模板修改时间</p>
         # @type ModifyTime: String
-        # @param ModifyBy: 配置文件模板修改者
+        # @param ModifyBy: <p>配置文件模板修改者</p>
         # @type ModifyBy: String
 
         attr_accessor :Id, :Name, :Content, :Format, :Comment, :CreateTime, :CreateBy, :ModifyTime, :ModifyBy
@@ -5915,9 +5915,9 @@ module TencentCloud
 
       # CreateGovernanceInstances请求参数结构体
       class CreateGovernanceInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: tse实例id。
+        # @param InstanceId: <p>tse实例id。</p>
         # @type InstanceId: String
-        # @param GovernanceInstances: 服务实例信息。
+        # @param GovernanceInstances: <p>服务实例信息。</p>
         # @type GovernanceInstances: Array
 
         attr_accessor :InstanceId, :GovernanceInstances
@@ -5942,7 +5942,7 @@ module TencentCloud
 
       # CreateGovernanceInstances返回参数结构体
       class CreateGovernanceInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 创建是否成功。
+        # @param Result: <p>创建是否成功。</p>
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11582,21 +11582,21 @@ module TencentCloud
 
       # DescribeConfigFileReleaseHistories请求参数结构体
       class DescribeConfigFileReleaseHistoriesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: TSE实例id
+        # @param InstanceId: <p>TSE实例id</p>
         # @type InstanceId: String
-        # @param Namespace: 命名空间
+        # @param Namespace: <p>命名空间</p>
         # @type Namespace: String
-        # @param Group: 组
+        # @param Group: <p>组</p>
         # @type Group: String
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # @type Name: String
-        # @param EndId: 发布历史记录id，用于分页优化，一般指定 EndId，就不用指定 Offset，否则分页可能不连续
+        # @param EndId: <p>发布历史记录id，用于分页优化，一般指定 EndId，就不用指定 Offset，否则分页可能不连续</p>
         # @type EndId: Integer
-        # @param ConfigFileId: 配置文件ID
+        # @param ConfigFileId: <p>配置文件ID</p>
         # @type ConfigFileId: String
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
 
         attr_accessor :InstanceId, :Namespace, :Group, :Name, :EndId, :ConfigFileId, :Limit, :Offset
@@ -11626,9 +11626,9 @@ module TencentCloud
 
       # DescribeConfigFileReleaseHistories返回参数结构体
       class DescribeConfigFileReleaseHistoriesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 数据总数量
+        # @param TotalCount: <p>数据总数量</p>
         # @type TotalCount: Integer
-        # @param ConfigFileReleaseHistories: 配置文件发布历史列表
+        # @param ConfigFileReleaseHistories: <p>配置文件发布历史列表</p>
         # @type ConfigFileReleaseHistories: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12165,29 +12165,29 @@ module TencentCloud
 
       # DescribeGovernanceInstances请求参数结构体
       class DescribeGovernanceInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param Service: 实例所在的服务名。
+        # @param Service: <p>实例所在的服务名。</p>
         # @type Service: String
-        # @param Namespace: 实例所在命名空间名。
+        # @param Namespace: <p>实例所在命名空间名。</p>
         # @type Namespace: String
-        # @param InstanceId: tse实例id。
+        # @param InstanceId: <p>tse实例id。</p>
         # @type InstanceId: String
-        # @param Host: 根据实例ip过滤，多个ip使用英文逗号分隔。
+        # @param Host: <p>根据实例ip过滤，多个ip使用英文逗号分隔。</p>
         # @type Host: String
-        # @param InstanceVersion: 根据实例版本过滤。
+        # @param InstanceVersion: <p>根据实例版本过滤。</p>
         # @type InstanceVersion: String
-        # @param Protocol: 根据实例协议过滤。
+        # @param Protocol: <p>根据实例协议过滤。</p>
         # @type Protocol: String
-        # @param HealthStatus: 根据实例健康状态过滤。false：表示不健康，true：表示健康。
+        # @param HealthStatus: <p>根据实例健康状态过滤。false：表示不健康，true：表示健康。</p>
         # @type HealthStatus: Boolean
-        # @param Isolate: 根据实例隔离状态过滤。false：表示非隔离，true：表示隔离中。
+        # @param Isolate: <p>根据实例隔离状态过滤。false：表示非隔离，true：表示隔离中。</p>
         # @type Isolate: Boolean
-        # @param Metadatas: 根据元数据信息过滤。目前只支持一组元数据键值，若传了多个键值对，只会以第一个过滤。
+        # @param Metadatas: <p>根据元数据信息过滤。目前只支持一组元数据键值，若传了多个键值对，只会以第一个过滤。</p>
         # @type Metadatas: Array
-        # @param Offset: 偏移量，默认为0。
+        # @param Offset: <p>偏移量，默认为0。</p>
         # @type Offset: Integer
-        # @param Limit: 返回数量，默认为20，最大值为100。
+        # @param Limit: <p>返回数量，默认为20，最大值为100。</p>
         # @type Limit: Integer
-        # @param Location: 地域
+        # @param Location: <p>地域</p>
         # @type Location: :class:`Tencentcloud::Tse.v20201207.models.Location`
 
         attr_accessor :Service, :Namespace, :InstanceId, :Host, :InstanceVersion, :Protocol, :HealthStatus, :Isolate, :Metadatas, :Offset, :Limit, :Location
@@ -12235,11 +12235,11 @@ module TencentCloud
 
       # DescribeGovernanceInstances返回参数结构体
       class DescribeGovernanceInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 服务实例总数量。
+        # @param TotalCount: <p>服务实例总数量。</p>
         # @type TotalCount: Integer
-        # @param Content: 服务里实例列表。
+        # @param Content: <p>服务里实例列表。</p>
         # @type Content: Array
-        # @param Location: 地域
+        # @param Location: <p>地域</p>
         # @type Location: :class:`Tencentcloud::Tse.v20201207.models.Location`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14684,37 +14684,37 @@ module TencentCloud
 
       # 治理中心命名空间
       class GovernanceNamespace < TencentCloud::Common::AbstractModel
-        # @param Name: 命名空间名称。
+        # @param Name: <p>命名空间名称。</p>
         # @type Name: String
-        # @param Comment: 命名空间描述信息。
+        # @param Comment: <p>命名空间描述信息。</p>
         # @type Comment: String
-        # @param CreateTime: 创建时间。
+        # @param CreateTime: <p>创建时间。</p>
         # @type CreateTime: String
-        # @param ModifyTime: 修改时间。
+        # @param ModifyTime: <p>修改时间。</p>
         # @type ModifyTime: String
-        # @param TotalServiceCount: 命名空间下总服务数据量
+        # @param TotalServiceCount: <p>命名空间下总服务数据量</p>
         # @type TotalServiceCount: Integer
-        # @param TotalHealthInstanceCount: 命名空间下总健康实例数量
+        # @param TotalHealthInstanceCount: <p>命名空间下总健康实例数量</p>
         # @type TotalHealthInstanceCount: Integer
-        # @param TotalInstanceCount: 命名空间下总实例数量
+        # @param TotalInstanceCount: <p>命名空间下总实例数量</p>
         # @type TotalInstanceCount: Integer
-        # @param Id: 命名空间ID
+        # @param Id: <p>命名空间ID</p>
         # @type Id: String
-        # @param Editable: 是否可以编辑
+        # @param Editable: <p>是否可以编辑</p>
         # @type Editable: Boolean
-        # @param UserIds: 可以操作此命名空间的用户ID列表
+        # @param UserIds: <p>可以操作此命名空间的用户ID列表</p>
         # @type UserIds: Array
-        # @param GroupIds: 可以操作此命名空间的用户组ID列表
+        # @param GroupIds: <p>可以操作此命名空间的用户组ID列表</p>
         # @type GroupIds: Array
-        # @param RemoveUserIds: 移除可以操作此命名空间的用户ID列表
+        # @param RemoveUserIds: <p>移除可以操作此命名空间的用户ID列表</p>
         # @type RemoveUserIds: Array
-        # @param RemoveGroupIds: 移除可以操作此命名空间的用户组ID列表
+        # @param RemoveGroupIds: <p>移除可以操作此命名空间的用户组ID列表</p>
         # @type RemoveGroupIds: Array
-        # @param ServiceExportTo: 该命名空间下的服务对哪些命名空间可见
+        # @param ServiceExportTo: <p>该命名空间下的服务对哪些命名空间可见</p>
         # @type ServiceExportTo: Array
-        # @param SyncToGlobalRegistry: 是否开启同步到全局注册中心
+        # @param SyncToGlobalRegistry: <p>是否开启同步到全局注册中心</p>
         # @type SyncToGlobalRegistry: Boolean
-        # @param Metadatas: 元数据
+        # @param Metadatas: <p>元数据</p>
         # @type Metadatas: Array
 
         attr_accessor :Name, :Comment, :CreateTime, :ModifyTime, :TotalServiceCount, :TotalHealthInstanceCount, :TotalInstanceCount, :Id, :Editable, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ServiceExportTo, :SyncToGlobalRegistry, :Metadatas
@@ -14767,24 +14767,21 @@ module TencentCloud
 
       # 治理中心命名空间输入参数
       class GovernanceNamespaceInput < TencentCloud::Common::AbstractModel
-        # @param Name: 命名空间名。
+        # @param Name: <p>命名空间名。</p>
         # @type Name: String
-        # @param Comment: 描述信息。
+        # @param Comment: <p>描述信息。</p>
         # @type Comment: String
-        # @param UserIds: 新增的可以操作此命名空间的用户ID列表
+        # @param UserIds: <p>新增的可以操作此命名空间的用户ID列表</p>
         # @type UserIds: Array
-        # @param GroupIds: 新增的可以操作此命名空间的用户组ID列表
+        # @param GroupIds: <p>新增的可以操作此命名空间的用户组ID列表</p>
         # @type GroupIds: Array
-        # @param RemoveUserIds: 移除可以操作此命名空间的用户ID列表
+        # @param RemoveUserIds: <p>移除可以操作此命名空间的用户ID列表</p>
         # @type RemoveUserIds: Array
-        # @param RemoveGroupIds: 移除可以操作此命名空间的用户组ID列表
+        # @param RemoveGroupIds: <p>移除可以操作此命名空间的用户组ID列表</p>
         # @type RemoveGroupIds: Array
-        # @param ServiceExportTo: 该命名空间下的服务对哪些命名空间下可见，
-        # 1、为空或者不填写，表示仅当前命名空间可见
-        # 2、列表内容仅一个元素，且为字符 *，表示所有命名空间可见（包括新增）
-        # 3、列表内容为部份命名空间名称，则只对这些命名空间下可见
+        # @param ServiceExportTo: <p>该命名空间下的服务对哪些命名空间下可见，<br>1、为空或者不填写，表示仅当前命名空间可见<br>2、列表内容仅一个元素，且为字符 *，表示所有命名空间可见（包括新增）<br>3、列表内容为部份命名空间名称，则只对这些命名空间下可见</p>
         # @type ServiceExportTo: Array
-        # @param SyncToGlobalRegistry: 是否开启同步到全局注册中心
+        # @param SyncToGlobalRegistry: <p>是否开启同步到全局注册中心</p>
         # @type SyncToGlobalRegistry: Boolean
 
         attr_accessor :Name, :Comment, :UserIds, :GroupIds, :RemoveUserIds, :RemoveGroupIds, :ServiceExportTo, :SyncToGlobalRegistry
@@ -17811,9 +17808,9 @@ module TencentCloud
 
       # ModifyGovernanceInstances请求参数结构体
       class ModifyGovernanceInstancesRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: tse实例id。
+        # @param InstanceId: <p>tse实例id。</p>
         # @type InstanceId: String
-        # @param GovernanceInstances: 服务实例信息。
+        # @param GovernanceInstances: <p>服务实例信息。</p>
         # @type GovernanceInstances: Array
 
         attr_accessor :InstanceId, :GovernanceInstances
@@ -17838,7 +17835,7 @@ module TencentCloud
 
       # ModifyGovernanceInstances返回参数结构体
       class ModifyGovernanceInstancesResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 修改是否成功。
+        # @param Result: <p>修改是否成功。</p>
         # @type Result: Boolean
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

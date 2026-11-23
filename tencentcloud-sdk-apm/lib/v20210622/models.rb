@@ -1115,10 +1115,13 @@ module TencentCloud
         # @type MetricMatchType: Integer
         # @param AppendResourceAttributes: <p>是否追加资源属性</p>
         # @type AppendResourceAttributes: Boolean
+        # @param AssociationId: 实际生效的关联记录 ID（存量 0 解析为默认关联）
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type AssociationId: Integer
 
-        attr_accessor :Id, :Name, :ServiceName, :Status, :MetricNameRule, :MetricMatchType, :AppendResourceAttributes
+        attr_accessor :Id, :Name, :ServiceName, :Status, :MetricNameRule, :MetricMatchType, :AppendResourceAttributes, :AssociationId
 
-        def initialize(id=nil, name=nil, servicename=nil, status=nil, metricnamerule=nil, metricmatchtype=nil, appendresourceattributes=nil)
+        def initialize(id=nil, name=nil, servicename=nil, status=nil, metricnamerule=nil, metricmatchtype=nil, appendresourceattributes=nil, associationid=nil)
           @Id = id
           @Name = name
           @ServiceName = servicename
@@ -1126,6 +1129,7 @@ module TencentCloud
           @MetricNameRule = metricnamerule
           @MetricMatchType = metricmatchtype
           @AppendResourceAttributes = appendresourceattributes
+          @AssociationId = associationid
         end
 
         def deserialize(params)
@@ -1136,6 +1140,7 @@ module TencentCloud
           @MetricNameRule = params['MetricNameRule']
           @MetricMatchType = params['MetricMatchType']
           @AppendResourceAttributes = params['AppendResourceAttributes']
+          @AssociationId = params['AssociationId']
         end
       end
 
@@ -1504,16 +1509,19 @@ module TencentCloud
         # @type InstanceId: String
         # @param AppendResourceAttributes: <p>是否追加资源属性</p>
         # @type AppendResourceAttributes: Boolean
+        # @param AssociationId: 归属的关联记录 ID，0 或不传表示跟随默认关联
+        # @type AssociationId: Integer
 
-        attr_accessor :Name, :ServiceName, :MetricMatchType, :MetricNameRule, :InstanceId, :AppendResourceAttributes
+        attr_accessor :Name, :ServiceName, :MetricMatchType, :MetricNameRule, :InstanceId, :AppendResourceAttributes, :AssociationId
 
-        def initialize(name=nil, servicename=nil, metricmatchtype=nil, metricnamerule=nil, instanceid=nil, appendresourceattributes=nil)
+        def initialize(name=nil, servicename=nil, metricmatchtype=nil, metricnamerule=nil, instanceid=nil, appendresourceattributes=nil, associationid=nil)
           @Name = name
           @ServiceName = servicename
           @MetricMatchType = metricmatchtype
           @MetricNameRule = metricnamerule
           @InstanceId = instanceid
           @AppendResourceAttributes = appendresourceattributes
+          @AssociationId = associationid
         end
 
         def deserialize(params)
@@ -1523,6 +1531,7 @@ module TencentCloud
           @MetricNameRule = params['MetricNameRule']
           @InstanceId = params['InstanceId']
           @AppendResourceAttributes = params['AppendResourceAttributes']
+          @AssociationId = params['AssociationId']
         end
       end
 
@@ -2026,15 +2035,19 @@ module TencentCloud
       class DescribeApmPrometheusRuleRequest < TencentCloud::Common::AbstractModel
         # @param InstanceId: 业务系统ID
         # @type InstanceId: String
+        # @param AssociationId: 按有效关联过滤，0 或不传表示不过滤
+        # @type AssociationId: Integer
 
-        attr_accessor :InstanceId
+        attr_accessor :InstanceId, :AssociationId
 
-        def initialize(instanceid=nil)
+        def initialize(instanceid=nil, associationid=nil)
           @InstanceId = instanceid
+          @AssociationId = associationid
         end
 
         def deserialize(params)
           @InstanceId = params['InstanceId']
+          @AssociationId = params['AssociationId']
         end
       end
 
@@ -4245,10 +4258,12 @@ module TencentCloud
         # @type MetricNameRule: String
         # @param AppendResourceAttributes: <p>是否追加资源属性</p>
         # @type AppendResourceAttributes: Boolean
+        # @param AssociationId: 修改归属目标 ID，0 或不传表示不改变原归属
+        # @type AssociationId: Integer
 
-        attr_accessor :Id, :InstanceId, :Name, :Status, :ServiceName, :MetricMatchType, :MetricNameRule, :AppendResourceAttributes
+        attr_accessor :Id, :InstanceId, :Name, :Status, :ServiceName, :MetricMatchType, :MetricNameRule, :AppendResourceAttributes, :AssociationId
 
-        def initialize(id=nil, instanceid=nil, name=nil, status=nil, servicename=nil, metricmatchtype=nil, metricnamerule=nil, appendresourceattributes=nil)
+        def initialize(id=nil, instanceid=nil, name=nil, status=nil, servicename=nil, metricmatchtype=nil, metricnamerule=nil, appendresourceattributes=nil, associationid=nil)
           @Id = id
           @InstanceId = instanceid
           @Name = name
@@ -4257,6 +4272,7 @@ module TencentCloud
           @MetricMatchType = metricmatchtype
           @MetricNameRule = metricnamerule
           @AppendResourceAttributes = appendresourceattributes
+          @AssociationId = associationid
         end
 
         def deserialize(params)
@@ -4268,6 +4284,7 @@ module TencentCloud
           @MetricMatchType = params['MetricMatchType']
           @MetricNameRule = params['MetricNameRule']
           @AppendResourceAttributes = params['AppendResourceAttributes']
+          @AssociationId = params['AssociationId']
         end
       end
 

@@ -1236,10 +1236,12 @@ module TencentCloud
         # @type EnableKibanaPublicAccess: String
         # @param AlarmPolicyIds: <p>已有的云监控告警策略 ID</p>
         # @type AlarmPolicyIds: Array
+        # @param EnableLvm: <p>LVM 控制台开关，0/不开，1/显式开启</p>
+        # @type EnableLvm: Integer
 
-        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType, :WebNodeTypeInfo, :Protocol, :OperationDuration, :EnableHybridStorage, :DiskEnhance, :EnableDiagnose, :EnableCosBackup, :CdcId, :DisasterRecoverGroupAffinity, :SubProductCode, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :AutoScaleDiskInfoList, :EnableKibanaPublicAccess, :AlarmPolicyIds
+        attr_accessor :Zone, :EsVersion, :VpcId, :SubnetId, :Password, :InstanceName, :NodeNum, :ChargeType, :ChargePeriod, :RenewFlag, :NodeType, :DiskType, :DiskSize, :TimeUnit, :AutoVoucher, :VoucherIds, :EnableDedicatedMaster, :MasterNodeNum, :MasterNodeType, :MasterNodeDiskSize, :ClusterNameInConf, :DeployMode, :MultiZoneInfo, :LicenseType, :NodeInfoList, :TagList, :BasicSecurityType, :SceneType, :WebNodeTypeInfo, :Protocol, :OperationDuration, :EnableHybridStorage, :DiskEnhance, :EnableDiagnose, :EnableCosBackup, :CdcId, :DisasterRecoverGroupAffinity, :SubProductCode, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :AutoScaleDiskInfoList, :EnableKibanaPublicAccess, :AlarmPolicyIds, :EnableLvm
 
-        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil, webnodetypeinfo=nil, protocol=nil, operationduration=nil, enablehybridstorage=nil, diskenhance=nil, enablediagnose=nil, enablecosbackup=nil, cdcid=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, autoscalediskinfolist=nil, enablekibanapublicaccess=nil, alarmpolicyids=nil)
+        def initialize(zone=nil, esversion=nil, vpcid=nil, subnetid=nil, password=nil, instancename=nil, nodenum=nil, chargetype=nil, chargeperiod=nil, renewflag=nil, nodetype=nil, disktype=nil, disksize=nil, timeunit=nil, autovoucher=nil, voucherids=nil, enablededicatedmaster=nil, masternodenum=nil, masternodetype=nil, masternodedisksize=nil, clusternameinconf=nil, deploymode=nil, multizoneinfo=nil, licensetype=nil, nodeinfolist=nil, taglist=nil, basicsecuritytype=nil, scenetype=nil, webnodetypeinfo=nil, protocol=nil, operationduration=nil, enablehybridstorage=nil, diskenhance=nil, enablediagnose=nil, enablecosbackup=nil, cdcid=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, autoscalediskinfolist=nil, enablekibanapublicaccess=nil, alarmpolicyids=nil, enablelvm=nil)
           @Zone = zone
           @EsVersion = esversion
           @VpcId = vpcid
@@ -1284,6 +1286,7 @@ module TencentCloud
           @AutoScaleDiskInfoList = autoscalediskinfolist
           @EnableKibanaPublicAccess = enablekibanapublicaccess
           @AlarmPolicyIds = alarmpolicyids
+          @EnableLvm = enablelvm
         end
 
         def deserialize(params)
@@ -1368,6 +1371,7 @@ module TencentCloud
           end
           @EnableKibanaPublicAccess = params['EnableKibanaPublicAccess']
           @AlarmPolicyIds = params['AlarmPolicyIds']
+          @EnableLvm = params['EnableLvm']
         end
       end
 
@@ -6183,10 +6187,14 @@ module TencentCloud
         # @type OldEsPrivateTcpUrl: String
         # @param NeedOfflineOldNodesNotify: <p>是否需要从VIP下线旧节点</p>
         # @type NeedOfflineOldNodesNotify: Boolean
+        # @param LvmStatus: <p>0 未开启 / 1 已开启 / 2 切换中</p>
+        # @type LvmStatus: Integer
+        # @param LvmSwitchFlowId: <p>仅 LvmStatus=2 时返回，值为流程id</p>
+        # @type LvmSwitchFlowId: Integer
 
-        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :RenewFlag, :ChargeType, :ChargePeriod, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :RealLicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize, :HealthStatus, :EsPrivateUrl, :EsPrivateDomain, :EsConfigSets, :OperationDuration, :OptionalWebServiceInfos, :AutoIndexEnabled, :EnableHybridStorage, :ProcessPercent, :KibanaAlteringPublicAccess, :HasKernelUpgrade, :CdcId, :KibanaPrivateVip, :CustomKibanaPrivateUrl, :OutboundPublicAcls, :NetConnectScheme, :DisasterRecoverGroupAffinity, :SubProductCode, :CosBucketStorageSize, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :EnableDestroyProtection, :ShowKibanaIpPort, :IsCdzLite, :EsPrivateTcpUrl, :IsInRecycleBin, :RecycleLockEnabled, :MayDestroyPoint, :DelayDestroyInterval, :EnableAutoReplace, :OpenMTLS, :ServerCertSource, :OldEsVip, :OldEsPrivateTcpUrl, :NeedOfflineOldNodesNotify
+        attr_accessor :InstanceId, :InstanceName, :Region, :Zone, :AppId, :Uin, :VpcUid, :SubnetUid, :Status, :RenewFlag, :ChargeType, :ChargePeriod, :NodeType, :NodeNum, :CpuNum, :MemSize, :DiskType, :DiskSize, :EsDomain, :EsVip, :EsPort, :KibanaUrl, :EsVersion, :EsConfig, :EsAcl, :CreateTime, :UpdateTime, :Deadline, :InstanceType, :IkConfig, :MasterNodeInfo, :CosBackup, :AllowCosBackup, :TagList, :LicenseType, :RealLicenseType, :EnableHotWarmMode, :WarmNodeType, :WarmNodeNum, :WarmCpuNum, :WarmMemSize, :WarmDiskType, :WarmDiskSize, :NodeInfoList, :EsPublicUrl, :MultiZoneInfo, :DeployMode, :PublicAccess, :EsPublicAcl, :KibanaPrivateUrl, :KibanaPublicAccess, :KibanaPrivateAccess, :SecurityType, :SceneType, :KibanaConfig, :KibanaNodeInfo, :WebNodeTypeInfo, :Jdk, :Protocol, :SecurityGroups, :ColdNodeType, :ColdNodeNum, :ColdCpuNum, :ColdMemSize, :ColdDiskType, :ColdDiskSize, :FrozenNodeType, :FrozenNodeNum, :FrozenCpuNum, :FrozenMemSize, :FrozenDiskType, :FrozenDiskSize, :HealthStatus, :EsPrivateUrl, :EsPrivateDomain, :EsConfigSets, :OperationDuration, :OptionalWebServiceInfos, :AutoIndexEnabled, :EnableHybridStorage, :ProcessPercent, :KibanaAlteringPublicAccess, :HasKernelUpgrade, :CdcId, :KibanaPrivateVip, :CustomKibanaPrivateUrl, :OutboundPublicAcls, :NetConnectScheme, :DisasterRecoverGroupAffinity, :SubProductCode, :CosBucketStorageSize, :ReadWriteMode, :EnableScheduleRecoverGroup, :EnableScheduleOperationDuration, :EnableDestroyProtection, :ShowKibanaIpPort, :IsCdzLite, :EsPrivateTcpUrl, :IsInRecycleBin, :RecycleLockEnabled, :MayDestroyPoint, :DelayDestroyInterval, :EnableAutoReplace, :OpenMTLS, :ServerCertSource, :OldEsVip, :OldEsPrivateTcpUrl, :NeedOfflineOldNodesNotify, :LvmStatus, :LvmSwitchFlowId
 
-        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, renewflag=nil, chargetype=nil, chargeperiod=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, reallicensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil, healthstatus=nil, esprivateurl=nil, esprivatedomain=nil, esconfigsets=nil, operationduration=nil, optionalwebserviceinfos=nil, autoindexenabled=nil, enablehybridstorage=nil, processpercent=nil, kibanaalteringpublicaccess=nil, haskernelupgrade=nil, cdcid=nil, kibanaprivatevip=nil, customkibanaprivateurl=nil, outboundpublicacls=nil, netconnectscheme=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, cosbucketstoragesize=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, enabledestroyprotection=nil, showkibanaipport=nil, iscdzlite=nil, esprivatetcpurl=nil, isinrecyclebin=nil, recyclelockenabled=nil, maydestroypoint=nil, delaydestroyinterval=nil, enableautoreplace=nil, openmtls=nil, servercertsource=nil, oldesvip=nil, oldesprivatetcpurl=nil, needofflineoldnodesnotify=nil)
+        def initialize(instanceid=nil, instancename=nil, region=nil, zone=nil, appid=nil, uin=nil, vpcuid=nil, subnetuid=nil, status=nil, renewflag=nil, chargetype=nil, chargeperiod=nil, nodetype=nil, nodenum=nil, cpunum=nil, memsize=nil, disktype=nil, disksize=nil, esdomain=nil, esvip=nil, esport=nil, kibanaurl=nil, esversion=nil, esconfig=nil, esacl=nil, createtime=nil, updatetime=nil, deadline=nil, instancetype=nil, ikconfig=nil, masternodeinfo=nil, cosbackup=nil, allowcosbackup=nil, taglist=nil, licensetype=nil, reallicensetype=nil, enablehotwarmmode=nil, warmnodetype=nil, warmnodenum=nil, warmcpunum=nil, warmmemsize=nil, warmdisktype=nil, warmdisksize=nil, nodeinfolist=nil, espublicurl=nil, multizoneinfo=nil, deploymode=nil, publicaccess=nil, espublicacl=nil, kibanaprivateurl=nil, kibanapublicaccess=nil, kibanaprivateaccess=nil, securitytype=nil, scenetype=nil, kibanaconfig=nil, kibananodeinfo=nil, webnodetypeinfo=nil, jdk=nil, protocol=nil, securitygroups=nil, coldnodetype=nil, coldnodenum=nil, coldcpunum=nil, coldmemsize=nil, colddisktype=nil, colddisksize=nil, frozennodetype=nil, frozennodenum=nil, frozencpunum=nil, frozenmemsize=nil, frozendisktype=nil, frozendisksize=nil, healthstatus=nil, esprivateurl=nil, esprivatedomain=nil, esconfigsets=nil, operationduration=nil, optionalwebserviceinfos=nil, autoindexenabled=nil, enablehybridstorage=nil, processpercent=nil, kibanaalteringpublicaccess=nil, haskernelupgrade=nil, cdcid=nil, kibanaprivatevip=nil, customkibanaprivateurl=nil, outboundpublicacls=nil, netconnectscheme=nil, disasterrecovergroupaffinity=nil, subproductcode=nil, cosbucketstoragesize=nil, readwritemode=nil, enableschedulerecovergroup=nil, enablescheduleoperationduration=nil, enabledestroyprotection=nil, showkibanaipport=nil, iscdzlite=nil, esprivatetcpurl=nil, isinrecyclebin=nil, recyclelockenabled=nil, maydestroypoint=nil, delaydestroyinterval=nil, enableautoreplace=nil, openmtls=nil, servercertsource=nil, oldesvip=nil, oldesprivatetcpurl=nil, needofflineoldnodesnotify=nil, lvmstatus=nil, lvmswitchflowid=nil)
           @InstanceId = instanceid
           @InstanceName = instancename
           @Region = region
@@ -6295,6 +6303,8 @@ module TencentCloud
           @OldEsVip = oldesvip
           @OldEsPrivateTcpUrl = oldesprivatetcpurl
           @NeedOfflineOldNodesNotify = needofflineoldnodesnotify
+          @LvmStatus = lvmstatus
+          @LvmSwitchFlowId = lvmswitchflowid
         end
 
         def deserialize(params)
@@ -6475,6 +6485,8 @@ module TencentCloud
           @OldEsVip = params['OldEsVip']
           @OldEsPrivateTcpUrl = params['OldEsPrivateTcpUrl']
           @NeedOfflineOldNodesNotify = params['NeedOfflineOldNodesNotify']
+          @LvmStatus = params['LvmStatus']
+          @LvmSwitchFlowId = params['LvmSwitchFlowId']
         end
       end
 

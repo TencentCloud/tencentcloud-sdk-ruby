@@ -1087,30 +1087,32 @@ module TencentCloud
 
       # CheckLDAPConnection请求参数结构体
       class CheckLDAPConnectionRequest < TencentCloud::Common::AbstractModel
-        # @param Enable: 是否开启LDAP认证，必须为true
+        # @param Enable: <p>是否开启LDAP认证，必须为true</p>
         # @type Enable: Boolean
-        # @param Ip: 服务器地址
+        # @param Ip: <p>服务器地址</p>
         # @type Ip: String
-        # @param Port: 服务端口
+        # @param Port: <p>服务端口</p>
         # @type Port: Integer
-        # @param EnableSSL: 是否开启SSL，false-不开启，true-开启
+        # @param EnableSSL: <p>是否开启SSL，false-不开启，true-开启</p>
         # @type EnableSSL: Boolean
-        # @param BaseDN: Base DN
+        # @param BaseDN: <p>Base DN</p>
         # @type BaseDN: String
-        # @param AdminAccount: 管理员账号
+        # @param AdminAccount: <p>管理员账号</p>
         # @type AdminAccount: String
-        # @param AdminPassword: 管理员密码
+        # @param AdminPassword: <p>管理员密码</p>
         # @type AdminPassword: String
-        # @param IpBackup: 备用服务器地址
+        # @param IpBackup: <p>备用服务器地址</p>
         # @type IpBackup: String
-        # @param DomainId: 网络域id
+        # @param DomainId: <p>网络域id</p>
         # @type DomainId: String
-        # @param AttributeUserName: 用户名称映射属性
+        # @param AttributeUserName: <p>用户名称映射属性</p>
         # @type AttributeUserName: String
+        # @param ResourceId: <p>堡垒机实例ID</p>
+        # @type ResourceId: String
 
-        attr_accessor :Enable, :Ip, :Port, :EnableSSL, :BaseDN, :AdminAccount, :AdminPassword, :IpBackup, :DomainId, :AttributeUserName
+        attr_accessor :Enable, :Ip, :Port, :EnableSSL, :BaseDN, :AdminAccount, :AdminPassword, :IpBackup, :DomainId, :AttributeUserName, :ResourceId
 
-        def initialize(enable=nil, ip=nil, port=nil, enablessl=nil, basedn=nil, adminaccount=nil, adminpassword=nil, ipbackup=nil, domainid=nil, attributeusername=nil)
+        def initialize(enable=nil, ip=nil, port=nil, enablessl=nil, basedn=nil, adminaccount=nil, adminpassword=nil, ipbackup=nil, domainid=nil, attributeusername=nil, resourceid=nil)
           @Enable = enable
           @Ip = ip
           @Port = port
@@ -1121,6 +1123,7 @@ module TencentCloud
           @IpBackup = ipbackup
           @DomainId = domainid
           @AttributeUserName = attributeusername
+          @ResourceId = resourceid
         end
 
         def deserialize(params)
@@ -1134,6 +1137,7 @@ module TencentCloud
           @IpBackup = params['IpBackup']
           @DomainId = params['DomainId']
           @AttributeUserName = params['AttributeUserName']
+          @ResourceId = params['ResourceId']
         end
       end
 
@@ -2558,13 +2562,13 @@ module TencentCloud
 
       # 部门信息
       class Department < TencentCloud::Common::AbstractModel
-        # @param Id: 部门ID
+        # @param Id: <p>部门ID</p>
         # @type Id: String
-        # @param Name: 部门名称，1 - 256个字符
+        # @param Name: <p>部门名称，1 - 256个字符</p>
         # @type Name: String
-        # @param Managers: 部门管理员账号ID
+        # @param Managers: <p>部门管理员账号ID</p>
         # @type Managers: Array
-        # @param ManagerUsers: 管理员用户
+        # @param ManagerUsers: <p>管理员用户</p>
         # @type ManagerUsers: Array
 
         attr_accessor :Id, :Name, :Managers, :ManagerUsers
@@ -3831,32 +3835,34 @@ module TencentCloud
 
       # DescribeLDAPUnitSet请求参数结构体
       class DescribeLDAPUnitSetRequest < TencentCloud::Common::AbstractModel
-        # @param Enable: 是否开启LDAP认证，true-开启
+        # @param Enable: <p>是否开启LDAP认证，true-开启</p>
         # @type Enable: Boolean
-        # @param Ip: 服务器地址
+        # @param Ip: <p>服务器地址</p>
         # @type Ip: String
-        # @param Port: 服务端口
+        # @param Port: <p>服务端口</p>
         # @type Port: Integer
-        # @param EnableSSL: 是否开启SSL，false-不开启，true-开启
+        # @param EnableSSL: <p>是否开启SSL，false-不开启，true-开启</p>
         # @type EnableSSL: Boolean
-        # @param BaseDN: Base DN
+        # @param BaseDN: <p>Base DN</p>
         # @type BaseDN: String
-        # @param AdminAccount: 管理员账号
+        # @param AdminAccount: <p>管理员账号</p>
         # @type AdminAccount: String
-        # @param AdminPassword: 管理员密码
+        # @param AdminPassword: <p>管理员密码</p>
         # @type AdminPassword: String
-        # @param AttributeUserName: 用户名映射属性
+        # @param AttributeUserName: <p>用户名映射属性</p>
         # @type AttributeUserName: String
-        # @param AttributeUnit: 部门过滤
+        # @param AttributeUnit: <p>部门过滤</p>
         # @type AttributeUnit: String
-        # @param IpBackup: 备用服务器地址
+        # @param IpBackup: <p>备用服务器地址</p>
         # @type IpBackup: String
-        # @param DomainId: 网络域Id
+        # @param DomainId: <p>网络域Id</p>
         # @type DomainId: String
+        # @param ResourceId: <p>堡垒机实例ID</p>
+        # @type ResourceId: String
 
-        attr_accessor :Enable, :Ip, :Port, :EnableSSL, :BaseDN, :AdminAccount, :AdminPassword, :AttributeUserName, :AttributeUnit, :IpBackup, :DomainId
+        attr_accessor :Enable, :Ip, :Port, :EnableSSL, :BaseDN, :AdminAccount, :AdminPassword, :AttributeUserName, :AttributeUnit, :IpBackup, :DomainId, :ResourceId
 
-        def initialize(enable=nil, ip=nil, port=nil, enablessl=nil, basedn=nil, adminaccount=nil, adminpassword=nil, attributeusername=nil, attributeunit=nil, ipbackup=nil, domainid=nil)
+        def initialize(enable=nil, ip=nil, port=nil, enablessl=nil, basedn=nil, adminaccount=nil, adminpassword=nil, attributeusername=nil, attributeunit=nil, ipbackup=nil, domainid=nil, resourceid=nil)
           @Enable = enable
           @Ip = ip
           @Port = port
@@ -3868,6 +3874,7 @@ module TencentCloud
           @AttributeUnit = attributeunit
           @IpBackup = ipbackup
           @DomainId = domainid
+          @ResourceId = resourceid
         end
 
         def deserialize(params)
@@ -3882,12 +3889,13 @@ module TencentCloud
           @AttributeUnit = params['AttributeUnit']
           @IpBackup = params['IpBackup']
           @DomainId = params['DomainId']
+          @ResourceId = params['ResourceId']
         end
       end
 
       # DescribeLDAPUnitSet返回参数结构体
       class DescribeLDAPUnitSetResponse < TencentCloud::Common::AbstractModel
-        # @param UnitSet: ou 列表
+        # @param UnitSet: <p>ou 列表</p>
         # @type UnitSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5291,13 +5299,13 @@ module TencentCloud
 
       # 组信息，用于用户组、主机组
       class Group < TencentCloud::Common::AbstractModel
-        # @param Id: 组ID
+        # @param Id: <p>组ID</p>
         # @type Id: Integer
-        # @param Name: 组名称
+        # @param Name: <p>组名称</p>
         # @type Name: String
-        # @param Department: 所属部门信息
+        # @param Department: <p>所属部门信息</p>
         # @type Department: :class:`Tencentcloud::Bh.v20230418.models.Department`
-        # @param Count: 个数
+        # @param Count: <p>个数</p>
         # @type Count: Integer
 
         attr_accessor :Id, :Name, :Department, :Count
@@ -5545,15 +5553,18 @@ module TencentCloud
         # @type InactiveUserLock: Integer
         # @param EnableSingleLogin: <p>运维账号单点登录开关：0-关闭，1-开启</p>
         # @type EnableSingleLogin: Integer
+        # @param EnableDeviceFingerprintVerify: <p>主机指纹校验开关</p><p>枚举值：</p><ul><li>0： 关闭</li><li>1： 开启</li></ul>
+        # @type EnableDeviceFingerprintVerify: Integer
 
-        attr_accessor :TimeOut, :LockThreshold, :LockTime, :InactiveUserLock, :EnableSingleLogin
+        attr_accessor :TimeOut, :LockThreshold, :LockTime, :InactiveUserLock, :EnableSingleLogin, :EnableDeviceFingerprintVerify
 
-        def initialize(timeout=nil, lockthreshold=nil, locktime=nil, inactiveuserlock=nil, enablesinglelogin=nil)
+        def initialize(timeout=nil, lockthreshold=nil, locktime=nil, inactiveuserlock=nil, enablesinglelogin=nil, enabledevicefingerprintverify=nil)
           @TimeOut = timeout
           @LockThreshold = lockthreshold
           @LockTime = locktime
           @InactiveUserLock = inactiveuserlock
           @EnableSingleLogin = enablesinglelogin
+          @EnableDeviceFingerprintVerify = enabledevicefingerprintverify
         end
 
         def deserialize(params)
@@ -5562,6 +5573,7 @@ module TencentCloud
           @LockTime = params['LockTime']
           @InactiveUserLock = params['InactiveUserLock']
           @EnableSingleLogin = params['EnableSingleLogin']
+          @EnableDeviceFingerprintVerify = params['EnableDeviceFingerprintVerify']
         end
       end
 
@@ -6160,50 +6172,52 @@ module TencentCloud
 
       # ModifyLDAPSetting请求参数结构体
       class ModifyLDAPSettingRequest < TencentCloud::Common::AbstractModel
-        # @param Enable: 是否开启LDAP认证，false-不开启，true-开启
+        # @param Enable: <p>是否开启LDAP认证，false-不开启，true-开启</p>
         # @type Enable: Boolean
-        # @param Ip: 服务器地址
+        # @param Ip: <p>服务器地址</p>
         # @type Ip: String
-        # @param IpBackup: 备用服务器地址
+        # @param IpBackup: <p>备用服务器地址</p>
         # @type IpBackup: String
-        # @param Port: 服务端口
+        # @param Port: <p>服务端口</p>
         # @type Port: Integer
-        # @param EnableSSL: 是否开启SSL，false-不开启，true-开启
+        # @param EnableSSL: <p>是否开启SSL，false-不开启，true-开启</p>
         # @type EnableSSL: Boolean
-        # @param BaseDN: Base DN
+        # @param BaseDN: <p>Base DN</p>
         # @type BaseDN: String
-        # @param AdminAccount: 管理员账号
+        # @param AdminAccount: <p>管理员账号</p>
         # @type AdminAccount: String
-        # @param AdminPassword: 管理员密码
+        # @param AdminPassword: <p>管理员密码</p>
         # @type AdminPassword: String
-        # @param AttributeUser: 用户属性
+        # @param AttributeUser: <p>用户属性</p>
         # @type AttributeUser: String
-        # @param AttributeUserName: 用户名属性
+        # @param AttributeUserName: <p>用户名属性</p>
         # @type AttributeUserName: String
-        # @param AutoSync: 自动同步，false-不开启，true-开启
+        # @param AutoSync: <p>自动同步，false-不开启，true-开启</p>
         # @type AutoSync: Boolean
-        # @param Overwrite: 覆盖用户信息，false-不开启，true-开启
+        # @param Overwrite: <p>覆盖用户信息，false-不开启，true-开启</p>
         # @type Overwrite: Boolean
-        # @param SyncPeriod: 同步周期，30～60000之间的整数
+        # @param SyncPeriod: <p>同步周期，30～60000之间的整数</p>
         # @type SyncPeriod: Integer
-        # @param SyncAll: 是否同步全部，false-不开启，true-开启
+        # @param SyncAll: <p>是否同步全部，false-不开启，true-开启</p>
         # @type SyncAll: Boolean
-        # @param SyncUnitSet: 同步OU列表，SyncAll为false时必传
+        # @param SyncUnitSet: <p>同步OU列表，SyncAll为false时必传</p>
         # @type SyncUnitSet: Array
-        # @param AttributeUnit: 组织单元属性
+        # @param AttributeUnit: <p>组织单元属性</p>
         # @type AttributeUnit: String
-        # @param AttributeRealName: 用户姓名属性
+        # @param AttributeRealName: <p>用户姓名属性</p>
         # @type AttributeRealName: String
-        # @param AttributePhone: 手机号属性
+        # @param AttributePhone: <p>手机号属性</p>
         # @type AttributePhone: String
-        # @param AttributeEmail: 邮箱属性
+        # @param AttributeEmail: <p>邮箱属性</p>
         # @type AttributeEmail: String
-        # @param DomainId: 网络域Id
+        # @param DomainId: <p>网络域Id</p>
         # @type DomainId: String
+        # @param ResourceId: <p>堡垒机实例ID</p>
+        # @type ResourceId: String
 
-        attr_accessor :Enable, :Ip, :IpBackup, :Port, :EnableSSL, :BaseDN, :AdminAccount, :AdminPassword, :AttributeUser, :AttributeUserName, :AutoSync, :Overwrite, :SyncPeriod, :SyncAll, :SyncUnitSet, :AttributeUnit, :AttributeRealName, :AttributePhone, :AttributeEmail, :DomainId
+        attr_accessor :Enable, :Ip, :IpBackup, :Port, :EnableSSL, :BaseDN, :AdminAccount, :AdminPassword, :AttributeUser, :AttributeUserName, :AutoSync, :Overwrite, :SyncPeriod, :SyncAll, :SyncUnitSet, :AttributeUnit, :AttributeRealName, :AttributePhone, :AttributeEmail, :DomainId, :ResourceId
 
-        def initialize(enable=nil, ip=nil, ipbackup=nil, port=nil, enablessl=nil, basedn=nil, adminaccount=nil, adminpassword=nil, attributeuser=nil, attributeusername=nil, autosync=nil, overwrite=nil, syncperiod=nil, syncall=nil, syncunitset=nil, attributeunit=nil, attributerealname=nil, attributephone=nil, attributeemail=nil, domainid=nil)
+        def initialize(enable=nil, ip=nil, ipbackup=nil, port=nil, enablessl=nil, basedn=nil, adminaccount=nil, adminpassword=nil, attributeuser=nil, attributeusername=nil, autosync=nil, overwrite=nil, syncperiod=nil, syncall=nil, syncunitset=nil, attributeunit=nil, attributerealname=nil, attributephone=nil, attributeemail=nil, domainid=nil, resourceid=nil)
           @Enable = enable
           @Ip = ip
           @IpBackup = ipbackup
@@ -6224,6 +6238,7 @@ module TencentCloud
           @AttributePhone = attributephone
           @AttributeEmail = attributeemail
           @DomainId = domainid
+          @ResourceId = resourceid
         end
 
         def deserialize(params)
@@ -6247,6 +6262,7 @@ module TencentCloud
           @AttributePhone = params['AttributePhone']
           @AttributeEmail = params['AttributeEmail']
           @DomainId = params['DomainId']
+          @ResourceId = params['ResourceId']
         end
       end
 

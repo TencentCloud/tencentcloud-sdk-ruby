@@ -405,6 +405,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建自定义组。自定义组用于集中管理一组可复用的匹配条目，例如可以将多个 JA3/JA4 TLS 指纹保存为一个 TLS 指纹组，并在安全规则中直接引用该组，从而避免在多条规则中重复维护相同的指纹列表。
+
+        # @param request: Request instance for CreateCustomGroup.
+        # @type request: :class:`Tencentcloud::teo::V20220901::CreateCustomGroupRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::CreateCustomGroupResponse`
+        def CreateCustomGroup(request)
+          body = send_request('CreateCustomGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreateCustomGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建自定义响应页面。
 
         # @param request: Request instance for CreateCustomizeErrorPage.
@@ -1374,6 +1398,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 删除指定自定义组。若该组已被规则引用，则不允许删除，请先解除引用关系。
+
+        # @param request: Request instance for DeleteCustomGroup.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DeleteCustomGroupRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DeleteCustomGroupResponse`
+        def DeleteCustomGroup(request)
+          body = send_request('DeleteCustomGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeleteCustomGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 您可以用本接口批量删除 DNS 记录。
 
         # @param request: Request instance for DeleteDnsRecords.
@@ -2266,6 +2314,78 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeCustomErrorPagesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询单个自定义组的详细信息，包含组内全量条目（通过 Limit/Offset 分页返回）。DescribeCustomGroups 列表接口每组最多返回前 500 个条目，如需获取全量条目，请使用本接口。GroupId 可通过 CreateCustomGroup 创建时返回或 DescribeCustomGroups 查询获取。
+
+        # @param request: Request instance for DescribeCustomGroup.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeCustomGroupRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeCustomGroupResponse`
+        def DescribeCustomGroup(request)
+          body = send_request('DescribeCustomGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCustomGroupResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 获取使用自定义组的安全策略配置。
+
+        # @param request: Request instance for DescribeCustomGroupReferences.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeCustomGroupReferencesRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeCustomGroupReferencesResponse`
+        def DescribeCustomGroupReferences(request)
+          body = send_request('DescribeCustomGroupReferences', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCustomGroupReferencesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询指定站点下的自定义组列表。本接口只返回每个自定义组前 500 个条目，如需查询组内完整条目请使用 DescribeSecurityCustomGroup 接口查询。
+
+        # @param request: Request instance for DescribeCustomGroups.
+        # @type request: :class:`Tencentcloud::teo::V20220901::DescribeCustomGroupsRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::DescribeCustomGroupsResponse`
+        def DescribeCustomGroups(request)
+          body = send_request('DescribeCustomGroups', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeCustomGroupsResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -4726,6 +4846,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyCustomErrorPageResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改自定义组内容。GroupType 创建后不可修改，修改组内条目时，可通过 GroupItemOperation 指定替换、追加或移除操作。
+
+        # @param request: Request instance for ModifyCustomGroup.
+        # @type request: :class:`Tencentcloud::teo::V20220901::ModifyCustomGroupRequest`
+        # @rtype: :class:`Tencentcloud::teo::V20220901::ModifyCustomGroupResponse`
+        def ModifyCustomGroup(request)
+          body = send_request('ModifyCustomGroup', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyCustomGroupResponse.new
             model.deserialize(response['Response'])
             model
           else

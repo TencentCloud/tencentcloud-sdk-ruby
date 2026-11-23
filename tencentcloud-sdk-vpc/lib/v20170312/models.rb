@@ -6152,13 +6152,13 @@ module TencentCloud
 
       # CreateSecurityGroup请求参数结构体
       class CreateSecurityGroupRequest < TencentCloud::Common::AbstractModel
-        # @param GroupName: 安全组名称，可任意命名，但不得超过60个字符。
+        # @param GroupName: <p>安全组名称，可任意命名，但不得超过60个字符。</p>
         # @type GroupName: String
-        # @param GroupDescription: 安全组备注，最多100个字符。
+        # @param GroupDescription: <p>安全组备注，最多100个字符。</p>
         # @type GroupDescription: String
-        # @param ProjectId: 项目ID，默认0。可在<a href="https://console.cloud.tencent.com/project">控制台项目管理页面</a>查询到。
+        # @param ProjectId: <p>项目ID，默认0。可在<a href="https://console.cloud.tencent.com/project">控制台项目管理页面</a>查询到。</p>
         # @type ProjectId: String
-        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @param Tags: <p>指定绑定的标签列表，例如：[{&quot;Key&quot;: &quot;city&quot;, &quot;Value&quot;: &quot;shanghai&quot;}]。</p>
         # @type Tags: Array
 
         attr_accessor :GroupName, :GroupDescription, :ProjectId, :Tags
@@ -6187,7 +6187,7 @@ module TencentCloud
 
       # CreateSecurityGroup返回参数结构体
       class CreateSecurityGroupResponse < TencentCloud::Common::AbstractModel
-        # @param SecurityGroup: 安全组对象。
+        # @param SecurityGroup: <p>安全组对象。</p>
         # @type SecurityGroup: :class:`Tencentcloud::Vpc.v20170312.models.SecurityGroup`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -6210,15 +6210,15 @@ module TencentCloud
 
       # CreateSecurityGroupWithPolicies请求参数结构体
       class CreateSecurityGroupWithPoliciesRequest < TencentCloud::Common::AbstractModel
-        # @param GroupName: 安全组名称，可任意命名，但不得超过60个字符。
+        # @param GroupName: <p>安全组名称，可任意命名，但不得超过60个字符。</p>
         # @type GroupName: String
-        # @param GroupDescription: 安全组备注，最多100个字符。
+        # @param GroupDescription: <p>安全组备注，最多100个字符。</p>
         # @type GroupDescription: String
-        # @param ProjectId: 项目ID，默认0。可在<a href="https://console.cloud.tencent.com/project">控制台项目管理页面</a>查询到。
+        # @param ProjectId: <p>项目ID，默认0。可在<a href="https://console.cloud.tencent.com/project">控制台项目管理页面</a>查询到。</p>
         # @type ProjectId: String
-        # @param SecurityGroupPolicySet: 安全组规则集合。
+        # @param SecurityGroupPolicySet: <p>安全组规则集合。</p>
         # @type SecurityGroupPolicySet: :class:`Tencentcloud::Vpc.v20170312.models.SecurityGroupPolicySet`
-        # @param Tags: 指定绑定的标签列表，例如：[{"Key": "city", "Value": "shanghai"}]。
+        # @param Tags: <p>指定绑定的标签列表，例如：[{&quot;Key&quot;: &quot;city&quot;, &quot;Value&quot;: &quot;shanghai&quot;}]。</p>
         # @type Tags: Array
 
         attr_accessor :GroupName, :GroupDescription, :ProjectId, :SecurityGroupPolicySet, :Tags
@@ -6252,7 +6252,7 @@ module TencentCloud
 
       # CreateSecurityGroupWithPolicies返回参数结构体
       class CreateSecurityGroupWithPoliciesResponse < TencentCloud::Common::AbstractModel
-        # @param SecurityGroup: 安全组对象。
+        # @param SecurityGroup: <p>安全组对象。</p>
         # @type SecurityGroup: :class:`Tencentcloud::Vpc.v20170312.models.SecurityGroup`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -28609,26 +28609,28 @@ module TencentCloud
 
       # 安全组对象
       class SecurityGroup < TencentCloud::Common::AbstractModel
-        # @param SecurityGroupId: 安全组实例ID，例如：sg-ohuuioma。
+        # @param SecurityGroupId: <p>安全组实例ID，例如：sg-ohuuioma。</p>
         # @type SecurityGroupId: String
-        # @param SecurityGroupName: 安全组名称，可任意命名，但不得超过60个字符。
+        # @param SecurityGroupName: <p>安全组名称，可任意命名，但不得超过60个字符。</p>
         # @type SecurityGroupName: String
-        # @param SecurityGroupDesc: 安全组备注，最多100个字符。
+        # @param SecurityGroupDesc: <p>安全组备注，最多100个字符。</p>
         # @type SecurityGroupDesc: String
-        # @param ProjectId: 项目id，默认0。可在qcloud控制台项目管理页面查询到。
+        # @param ProjectId: <p>项目id，默认0。可在qcloud控制台项目管理页面查询到。</p>
         # @type ProjectId: String
-        # @param IsDefault: 是否是默认安全组，默认安全组不支持删除。
+        # @param IsDefault: <p>是否是默认安全组，默认安全组不支持删除。</p>
         # @type IsDefault: Boolean
-        # @param CreatedTime: 安全组创建时间。
+        # @param CreatedTime: <p>安全组创建时间。</p>
         # @type CreatedTime: String
-        # @param TagSet: 标签键值对。
+        # @param TagSet: <p>标签键值对。</p>
         # @type TagSet: Array
-        # @param UpdateTime: 安全组更新时间。
+        # @param UpdateTime: <p>安全组更新时间。</p>
         # @type UpdateTime: String
+        # @param ServiceManaged: <p>是否为托管安全组</p>
+        # @type ServiceManaged: Boolean
 
-        attr_accessor :SecurityGroupId, :SecurityGroupName, :SecurityGroupDesc, :ProjectId, :IsDefault, :CreatedTime, :TagSet, :UpdateTime
+        attr_accessor :SecurityGroupId, :SecurityGroupName, :SecurityGroupDesc, :ProjectId, :IsDefault, :CreatedTime, :TagSet, :UpdateTime, :ServiceManaged
 
-        def initialize(securitygroupid=nil, securitygroupname=nil, securitygroupdesc=nil, projectid=nil, isdefault=nil, createdtime=nil, tagset=nil, updatetime=nil)
+        def initialize(securitygroupid=nil, securitygroupname=nil, securitygroupdesc=nil, projectid=nil, isdefault=nil, createdtime=nil, tagset=nil, updatetime=nil, servicemanaged=nil)
           @SecurityGroupId = securitygroupid
           @SecurityGroupName = securitygroupname
           @SecurityGroupDesc = securitygroupdesc
@@ -28637,6 +28639,7 @@ module TencentCloud
           @CreatedTime = createdtime
           @TagSet = tagset
           @UpdateTime = updatetime
+          @ServiceManaged = servicemanaged
         end
 
         def deserialize(params)
@@ -28655,6 +28658,7 @@ module TencentCloud
             end
           end
           @UpdateTime = params['UpdateTime']
+          @ServiceManaged = params['ServiceManaged']
         end
       end
 

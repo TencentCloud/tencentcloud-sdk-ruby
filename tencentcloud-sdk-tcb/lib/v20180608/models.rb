@@ -6640,6 +6640,28 @@ module TencentCloud
         end
       end
 
+      # 同[EipOutConfig](https://document.capi.woa.com/document/product/583/17244#EipOutConfig)
+      class EipOutConfig < TencentCloud::Common::AbstractModel
+        # @param EipFixed: <p>是否固定 EIP</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EipFixed: String
+        # @param Eips: <p>EIP 列表</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Eips: Array
+
+        attr_accessor :EipFixed, :Eips
+
+        def initialize(eipfixed=nil, eips=nil)
+          @EipFixed = eipfixed
+          @Eips = eips
+        end
+
+        def deserialize(params)
+          @EipFixed = params['EipFixed']
+          @Eips = params['Eips']
+        end
+      end
+
       # 邮箱登录配置
       class EmailProviderConfig < TencentCloud::Common::AbstractModel
         # @param SmtpConfig: <p>smtp配置</p>
@@ -7081,6 +7103,30 @@ module TencentCloud
           @DeductValue = params['DeductValue']
           @PackageDeductValue = params['PackageDeductValue']
           @ReportValue = params['ReportValue']
+        end
+      end
+
+      # 同[Environment](https://document.capi.woa.com/document/product/583/17244#Environment)
+      class EnvironmentOut < TencentCloud::Common::AbstractModel
+        # @param Variables: <p>环境变量数组</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Variables: Array
+
+        attr_accessor :Variables
+
+        def initialize(variables=nil)
+          @Variables = variables
+        end
+
+        def deserialize(params)
+          unless params['Variables'].nil?
+            @Variables = []
+            params['Variables'].each do |i|
+              variable_tmp = Variable.new
+              variable_tmp.deserialize(i)
+              @Variables << variable_tmp
+            end
+          end
         end
       end
 
@@ -7585,6 +7631,9 @@ module TencentCloud
         # @type VpcConfig: :class:`Tencentcloud::Tcb.v20180608.models.FunctionVpcConfig`
         # @param UseGpu: <p>是否使用 GPU (&quot;TRUE&quot;/&quot;FALSE&quot;)</p>
         # @type UseGpu: String
+        # @param Environment: <p>环境变量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Environment: :class:`Tencentcloud::Tcb.v20180608.models.EnvironmentOut`
         # @param CodeResult: <p>代码校验结果 (&quot;success&quot;/&quot;failed&quot;)</p>
         # @type CodeResult: String
         # @param ErrNo: <p>代码错误码</p>
@@ -7597,11 +7646,18 @@ module TencentCloud
         # @type InstallDependency: String
         # @param Status: <p>函数状态 (&quot;Active&quot;, &quot;Inactive&quot; 等)</p>
         # @type Status: String
+        # @param ClsLogsetId: <p>CLS 日志集 ID</p>
+        # @type ClsLogsetId: String
+        # @param ClsTopicId: <p>CLS Topic ID</p>
+        # @type ClsTopicId: String
         # @param FunctionId: <p>函数 ID</p>
         # @type FunctionId: String
         # @param Tags: <p>标签列表</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Tags: Array
+        # @param EipConfig: <p>EIP 配置</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type EipConfig: :class:`Tencentcloud::Tcb.v20180608.models.EipOutConfig`
         # @param Type: <p>函数类型 (&quot;HTTP&quot; 或 &quot;Event&quot;)</p>
         # @type Type: String
         # @param L5Enable: <p>是否启用 L5 (&quot;TRUE&quot;/&quot;FALSE&quot;)</p>
@@ -7626,9 +7682,9 @@ module TencentCloud
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ModTime, :CodeInfo, :Description, :Triggers, :Handler, :CodeSize, :Timeout, :FunctionVersion, :MemorySize, :Runtime, :FunctionName, :VpcConfig, :UseGpu, :CodeResult, :ErrNo, :Namespace, :Role, :InstallDependency, :Status, :FunctionId, :Tags, :Type, :L5Enable, :AddTime, :OnsEnable, :AvailableStatus, :Qualifier, :InitTimeout, :AsyncRunEnable, :TraceEnable, :ImageConfig, :RequestId
+        attr_accessor :ModTime, :CodeInfo, :Description, :Triggers, :Handler, :CodeSize, :Timeout, :FunctionVersion, :MemorySize, :Runtime, :FunctionName, :VpcConfig, :UseGpu, :Environment, :CodeResult, :ErrNo, :Namespace, :Role, :InstallDependency, :Status, :ClsLogsetId, :ClsTopicId, :FunctionId, :Tags, :EipConfig, :Type, :L5Enable, :AddTime, :OnsEnable, :AvailableStatus, :Qualifier, :InitTimeout, :AsyncRunEnable, :TraceEnable, :ImageConfig, :RequestId
 
-        def initialize(modtime=nil, codeinfo=nil, description=nil, triggers=nil, handler=nil, codesize=nil, timeout=nil, functionversion=nil, memorysize=nil, runtime=nil, functionname=nil, vpcconfig=nil, usegpu=nil, coderesult=nil, errno=nil, namespace=nil, role=nil, installdependency=nil, status=nil, functionid=nil, tags=nil, type=nil, l5enable=nil, addtime=nil, onsenable=nil, availablestatus=nil, qualifier=nil, inittimeout=nil, asyncrunenable=nil, traceenable=nil, imageconfig=nil, requestid=nil)
+        def initialize(modtime=nil, codeinfo=nil, description=nil, triggers=nil, handler=nil, codesize=nil, timeout=nil, functionversion=nil, memorysize=nil, runtime=nil, functionname=nil, vpcconfig=nil, usegpu=nil, environment=nil, coderesult=nil, errno=nil, namespace=nil, role=nil, installdependency=nil, status=nil, clslogsetid=nil, clstopicid=nil, functionid=nil, tags=nil, eipconfig=nil, type=nil, l5enable=nil, addtime=nil, onsenable=nil, availablestatus=nil, qualifier=nil, inittimeout=nil, asyncrunenable=nil, traceenable=nil, imageconfig=nil, requestid=nil)
           @ModTime = modtime
           @CodeInfo = codeinfo
           @Description = description
@@ -7642,14 +7698,18 @@ module TencentCloud
           @FunctionName = functionname
           @VpcConfig = vpcconfig
           @UseGpu = usegpu
+          @Environment = environment
           @CodeResult = coderesult
           @ErrNo = errno
           @Namespace = namespace
           @Role = role
           @InstallDependency = installdependency
           @Status = status
+          @ClsLogsetId = clslogsetid
+          @ClsTopicId = clstopicid
           @FunctionId = functionid
           @Tags = tags
+          @EipConfig = eipconfig
           @Type = type
           @L5Enable = l5enable
           @AddTime = addtime
@@ -7687,12 +7747,18 @@ module TencentCloud
             @VpcConfig.deserialize(params['VpcConfig'])
           end
           @UseGpu = params['UseGpu']
+          unless params['Environment'].nil?
+            @Environment = EnvironmentOut.new
+            @Environment.deserialize(params['Environment'])
+          end
           @CodeResult = params['CodeResult']
           @ErrNo = params['ErrNo']
           @Namespace = params['Namespace']
           @Role = params['Role']
           @InstallDependency = params['InstallDependency']
           @Status = params['Status']
+          @ClsLogsetId = params['ClsLogsetId']
+          @ClsTopicId = params['ClsTopicId']
           @FunctionId = params['FunctionId']
           unless params['Tags'].nil?
             @Tags = []
@@ -7701,6 +7767,10 @@ module TencentCloud
               tag_tmp.deserialize(i)
               @Tags << tag_tmp
             end
+          end
+          unless params['EipConfig'].nil?
+            @EipConfig = EipOutConfig.new
+            @EipConfig.deserialize(params['EipConfig'])
           end
           @Type = params['Type']
           @L5Enable = params['L5Enable']
@@ -9903,10 +9973,12 @@ module TencentCloud
         # @type SwitchEndTime: String
         # @param DryRun: <p>预检</p>
         # @type DryRun: Boolean
+        # @param CpuCores: <p>实例Cpu 核数</p><p>取值范围：[0.1, 1024]</p><p>单位：核数</p><p>当 CpuCores 和 Cpu 共存时，优先 CpuCores 生效</p>
+        # @type CpuCores: Float
 
-        attr_accessor :EnvId, :Cpu, :Memory, :Storage, :SwitchTag, :SwitchStartTime, :SwitchEndTime, :DryRun
+        attr_accessor :EnvId, :Cpu, :Memory, :Storage, :SwitchTag, :SwitchStartTime, :SwitchEndTime, :DryRun, :CpuCores
 
-        def initialize(envid=nil, cpu=nil, memory=nil, storage=nil, switchtag=nil, switchstarttime=nil, switchendtime=nil, dryrun=nil)
+        def initialize(envid=nil, cpu=nil, memory=nil, storage=nil, switchtag=nil, switchstarttime=nil, switchendtime=nil, dryrun=nil, cpucores=nil)
           @EnvId = envid
           @Cpu = cpu
           @Memory = memory
@@ -9915,6 +9987,7 @@ module TencentCloud
           @SwitchStartTime = switchstarttime
           @SwitchEndTime = switchendtime
           @DryRun = dryrun
+          @CpuCores = cpucores
         end
 
         def deserialize(params)
@@ -9926,6 +9999,7 @@ module TencentCloud
           @SwitchStartTime = params['SwitchStartTime']
           @SwitchEndTime = params['SwitchEndTime']
           @DryRun = params['DryRun']
+          @CpuCores = params['CpuCores']
         end
       end
 
