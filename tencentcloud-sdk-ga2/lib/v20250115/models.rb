@@ -21,6 +21,8 @@ module TencentCloud
       class AcceleratorAreas < TencentCloud::Common::AbstractModel
         # @param AccelerateRegion: <p>加速地域。</p>
         # @type AccelerateRegion: String
+        # @param AccelerateRegionName: <p>加速地域名称。</p>
+        # @type AccelerateRegionName: String
         # @param Bandwidth: <p>带宽。</p>
         # @type Bandwidth: Integer
         # @param IspType: <p>支持&#39;BGP&#39;, &#39;QUALITY_BGP&#39;, &#39;STATIC_IP&#39;，默认BGP。</p><p>枚举值：</p><ul><li>BGP： BGP</li><li>STATIC_IP： 三网</li><li>QUALITY_BGP： 精品BGP</li></ul>
@@ -35,10 +37,11 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type IpAddressInfoSet: Array
 
-        attr_accessor :AccelerateRegion, :Bandwidth, :IspType, :IpVersion, :AcceleratorAreaId, :IpAddress, :IpAddressInfoSet
+        attr_accessor :AccelerateRegion, :AccelerateRegionName, :Bandwidth, :IspType, :IpVersion, :AcceleratorAreaId, :IpAddress, :IpAddressInfoSet
 
-        def initialize(accelerateregion=nil, bandwidth=nil, isptype=nil, ipversion=nil, acceleratorareaid=nil, ipaddress=nil, ipaddressinfoset=nil)
+        def initialize(accelerateregion=nil, accelerateregionname=nil, bandwidth=nil, isptype=nil, ipversion=nil, acceleratorareaid=nil, ipaddress=nil, ipaddressinfoset=nil)
           @AccelerateRegion = accelerateregion
+          @AccelerateRegionName = accelerateregionname
           @Bandwidth = bandwidth
           @IspType = isptype
           @IpVersion = ipversion
@@ -49,6 +52,7 @@ module TencentCloud
 
         def deserialize(params)
           @AccelerateRegion = params['AccelerateRegion']
+          @AccelerateRegionName = params['AccelerateRegionName']
           @Bandwidth = params['Bandwidth']
           @IspType = params['IspType']
           @IpVersion = params['IpVersion']

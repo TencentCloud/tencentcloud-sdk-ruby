@@ -17,6 +17,38 @@
 module TencentCloud
   module Cdz
     module V20221123
+      # 专属可用区信息
+      class CloudDedicatedZone < TencentCloud::Common::AbstractModel
+        # @param Zone: 专属可用区所属的可用区
+        # @type Zone: String
+        # @param ZoneId: 地域系统中的可用区ID
+        # @type ZoneId: String
+        # @param ZoneName: 专属可用区名称
+        # @type ZoneName: String
+        # @param IsLiteMode: 是否为轻量专属可用区
+        # @type IsLiteMode: Boolean
+        # @param Region: 可用区所在地域
+        # @type Region: String
+
+        attr_accessor :Zone, :ZoneId, :ZoneName, :IsLiteMode, :Region
+
+        def initialize(zone=nil, zoneid=nil, zonename=nil, islitemode=nil, region=nil)
+          @Zone = zone
+          @ZoneId = zoneid
+          @ZoneName = zonename
+          @IsLiteMode = islitemode
+          @Region = region
+        end
+
+        def deserialize(params)
+          @Zone = params['Zone']
+          @ZoneId = params['ZoneId']
+          @ZoneName = params['ZoneName']
+          @IsLiteMode = params['IsLiteMode']
+          @Region = params['Region']
+        end
+      end
+
       # CDZ的母机和子机的对应关系
       class CloudDedicatedZoneHostsInfo < TencentCloud::Common::AbstractModel
         # @param HostUuid: Host的唯一标识uuid
@@ -228,6 +260,48 @@ module TencentCloud
           unless params['ExtraInfo'].nil?
             @ExtraInfo = ExtraInfo.new
             @ExtraInfo.deserialize(params['ExtraInfo'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeUserAvailableCloudDedicatedZones请求参数结构体
+      class DescribeUserAvailableCloudDedicatedZonesRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribeUserAvailableCloudDedicatedZones返回参数结构体
+      class DescribeUserAvailableCloudDedicatedZonesResponse < TencentCloud::Common::AbstractModel
+        # @param ZoneIdSet: 返回当前用户可使用的专属可用区 ID
+        # @type ZoneIdSet: Array
+        # @param ZoneSet: 专属可用区列表信息。
+        # @type ZoneSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :ZoneIdSet, :ZoneSet, :RequestId
+
+        def initialize(zoneidset=nil, zoneset=nil, requestid=nil)
+          @ZoneIdSet = zoneidset
+          @ZoneSet = zoneset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @ZoneIdSet = params['ZoneIdSet']
+          unless params['ZoneSet'].nil?
+            @ZoneSet = []
+            params['ZoneSet'].each do |i|
+              clouddedicatedzone_tmp = CloudDedicatedZone.new
+              clouddedicatedzone_tmp.deserialize(i)
+              @ZoneSet << clouddedicatedzone_tmp
+            end
           end
           @RequestId = params['RequestId']
         end

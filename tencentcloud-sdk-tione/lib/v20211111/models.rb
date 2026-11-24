@@ -8857,6 +8857,53 @@ module TencentCloud
         end
       end
 
+      # ModifyTrainingTaskSchedulingPolicy请求参数结构体
+      class ModifyTrainingTaskSchedulingPolicyRequest < TencentCloud::Common::AbstractModel
+        # @param TrainingTaskId: <p>训练任务 id</p>
+        # @type TrainingTaskId: String
+        # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
+        # @type TiProjectId: String
+        # @param CrossResourceGroupScheduling: <p>是否开启跨资源组调度。缺省为 false，仅改优先级时若任务已开启需显式传 true，否则会被关闭。</p>
+        # @type CrossResourceGroupScheduling: Boolean
+        # @param SchedulePolicy: <p>调度策略</p>
+        # @type SchedulePolicy: :class:`Tencentcloud::Tione.v20211111.models.SchedulePolicy`
+
+        attr_accessor :TrainingTaskId, :TiProjectId, :CrossResourceGroupScheduling, :SchedulePolicy
+
+        def initialize(trainingtaskid=nil, tiprojectid=nil, crossresourcegroupscheduling=nil, schedulepolicy=nil)
+          @TrainingTaskId = trainingtaskid
+          @TiProjectId = tiprojectid
+          @CrossResourceGroupScheduling = crossresourcegroupscheduling
+          @SchedulePolicy = schedulepolicy
+        end
+
+        def deserialize(params)
+          @TrainingTaskId = params['TrainingTaskId']
+          @TiProjectId = params['TiProjectId']
+          @CrossResourceGroupScheduling = params['CrossResourceGroupScheduling']
+          unless params['SchedulePolicy'].nil?
+            @SchedulePolicy = SchedulePolicy.new
+            @SchedulePolicy.deserialize(params['SchedulePolicy'])
+          end
+        end
+      end
+
+      # ModifyTrainingTaskSchedulingPolicy返回参数结构体
+      class ModifyTrainingTaskSchedulingPolicyResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # ModifyUserGrant请求参数结构体
       class ModifyUserGrantRequest < TencentCloud::Common::AbstractModel
         # @param TiProjectId: <p>TI工作空间ID</p><p>使用非默认空间必须填写工作空间ID，使用默认空间无需填写工作空间ID。</p>
@@ -10975,6 +11022,23 @@ module TencentCloud
             @PodSSHInfo = PodSSHInfo.new
             @PodSSHInfo.deserialize(params['PodSSHInfo'])
           end
+        end
+      end
+
+      # 任务调度策略
+      class SchedulePolicy < TencentCloud::Common::AbstractModel
+        # @param PriorityClass: <p>任务优先级，取值 p0~p9，p0 最高、p9 最低</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PriorityClass: String
+
+        attr_accessor :PriorityClass
+
+        def initialize(priorityclass=nil)
+          @PriorityClass = priorityclass
+        end
+
+        def deserialize(params)
+          @PriorityClass = params['PriorityClass']
         end
       end
 

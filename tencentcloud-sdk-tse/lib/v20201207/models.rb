@@ -1111,21 +1111,21 @@ module TencentCloud
 
       # 云原生网关限流插件参数限流的精确Qps阈值
       class AccurateQpsThreshold < TencentCloud::Common::AbstractModel
-        # @param Unit: qps阈值控制维度,包含:second、minute、hour、day、month、year
-        # @type Unit: String
         # @param GlobalConfigId: 全局配置ID
         # @type GlobalConfigId: String
+        # @param Unit: qps阈值控制维度,包含:second、minute、hour、day、month、year
+        # @type Unit: String
 
-        attr_accessor :Unit, :GlobalConfigId
+        attr_accessor :GlobalConfigId, :Unit
 
-        def initialize(unit=nil, globalconfigid=nil)
-          @Unit = unit
+        def initialize(globalconfigid=nil, unit=nil)
           @GlobalConfigId = globalconfigid
+          @Unit = unit
         end
 
         def deserialize(params)
-          @Unit = params['Unit']
           @GlobalConfigId = params['GlobalConfigId']
+          @Unit = params['Unit']
         end
       end
 
@@ -10991,6 +10991,8 @@ module TencentCloud
         # @type Limit: Integer
         # @param Offset: <p>翻页单页偏移量，默认值0</p>
         # @type Offset: Integer
+        # @param ServiceId: <p>按服务 ID 查询路由。</p>
+        # @type ServiceId: String
         # @param ServiceName: <p>服务的名字，精确匹配</p>
         # @type ServiceName: String
         # @param RouteName: <p>路由的名字，精确匹配</p>
@@ -11010,12 +11012,13 @@ module TencentCloud
         # @param TagFilters: <p>按标签 K:V 过滤路由（AND 语义，前端下拉直传场景），最多 10 个。与 TagIds 同时传时取交集</p>
         # @type TagFilters: Array
 
-        attr_accessor :GatewayId, :Limit, :Offset, :ServiceName, :RouteName, :Filters, :RouteTypes, :GrayRoutesFirst, :OrderField, :OrderType, :TagIds, :TagFilters
+        attr_accessor :GatewayId, :Limit, :Offset, :ServiceId, :ServiceName, :RouteName, :Filters, :RouteTypes, :GrayRoutesFirst, :OrderField, :OrderType, :TagIds, :TagFilters
 
-        def initialize(gatewayid=nil, limit=nil, offset=nil, servicename=nil, routename=nil, filters=nil, routetypes=nil, grayroutesfirst=nil, orderfield=nil, ordertype=nil, tagids=nil, tagfilters=nil)
+        def initialize(gatewayid=nil, limit=nil, offset=nil, serviceid=nil, servicename=nil, routename=nil, filters=nil, routetypes=nil, grayroutesfirst=nil, orderfield=nil, ordertype=nil, tagids=nil, tagfilters=nil)
           @GatewayId = gatewayid
           @Limit = limit
           @Offset = offset
+          @ServiceId = serviceid
           @ServiceName = servicename
           @RouteName = routename
           @Filters = filters
@@ -11031,6 +11034,7 @@ module TencentCloud
           @GatewayId = params['GatewayId']
           @Limit = params['Limit']
           @Offset = params['Offset']
+          @ServiceId = params['ServiceId']
           @ServiceName = params['ServiceName']
           @RouteName = params['RouteName']
           unless params['Filters'].nil?
@@ -15825,9 +15829,9 @@ module TencentCloud
 
       # 返回kong的服务和路由列表
       class KongServiceWithRoutes < TencentCloud::Common::AbstractModel
-        # @param ServiceList: 
+        # @param ServiceList: <p>服务及路由列表</p>
         # @type ServiceList: Array
-        # @param TotalCount: 总数
+        # @param TotalCount: <p>总数</p>
         # @type TotalCount: Integer
 
         attr_accessor :ServiceList, :TotalCount
@@ -16184,25 +16188,36 @@ module TencentCloud
 
       # 参数限流的规则
       class LimitRule < TencentCloud::Common::AbstractModel
+        # @param AccurateQpsThresholds: 精确限流阈值
+        # @type AccurateQpsThresholds: Array
         # @param Filters: 请求匹配条件
         # @type Filters: Array
         # @param LimitBy: 参数限流依据组合
         # @type LimitBy: Array
         # @param QpsThresholds: 限流阈值
         # @type QpsThresholds: Array
-        # @param AccurateQpsThresholds: 精确限流阈值
-        # @type AccurateQpsThresholds: Array
+        # @param Enabled: 是否启用该条参数限流规则。不传或 true 表示启用；false 表示禁用，配置保留但不对流量生效。与 LimitDetail.Enabled（整个限流插件开关）相互独立。
+        # @type Enabled: Boolean
 
-        attr_accessor :Filters, :LimitBy, :QpsThresholds, :AccurateQpsThresholds
+        attr_accessor :AccurateQpsThresholds, :Filters, :LimitBy, :QpsThresholds, :Enabled
 
-        def initialize(filters=nil, limitby=nil, qpsthresholds=nil, accurateqpsthresholds=nil)
+        def initialize(accurateqpsthresholds=nil, filters=nil, limitby=nil, qpsthresholds=nil, enabled=nil)
+          @AccurateQpsThresholds = accurateqpsthresholds
           @Filters = filters
           @LimitBy = limitby
           @QpsThresholds = qpsthresholds
-          @AccurateQpsThresholds = accurateqpsthresholds
+          @Enabled = enabled
         end
 
         def deserialize(params)
+          unless params['AccurateQpsThresholds'].nil?
+            @AccurateQpsThresholds = []
+            params['AccurateQpsThresholds'].each do |i|
+              accurateqpsthreshold_tmp = AccurateQpsThreshold.new
+              accurateqpsthreshold_tmp.deserialize(i)
+              @AccurateQpsThresholds << accurateqpsthreshold_tmp
+            end
+          end
           unless params['Filters'].nil?
             @Filters = []
             params['Filters'].each do |i|
@@ -16227,14 +16242,7 @@ module TencentCloud
               @QpsThresholds << qpsthreshold_tmp
             end
           end
-          unless params['AccurateQpsThresholds'].nil?
-            @AccurateQpsThresholds = []
-            params['AccurateQpsThresholds'].each do |i|
-              accurateqpsthreshold_tmp = AccurateQpsThreshold.new
-              accurateqpsthreshold_tmp.deserialize(i)
-              @AccurateQpsThresholds << accurateqpsthreshold_tmp
-            end
-          end
+          @Enabled = params['Enabled']
         end
       end
 
@@ -18675,21 +18683,21 @@ module TencentCloud
 
       # 云原生网关限流插件Qps阈值
       class QpsThreshold < TencentCloud::Common::AbstractModel
-        # @param Unit: qps阈值控制维度,包含:second、minute、hour、day、month、year
-        # @type Unit: String
         # @param Max: 阈值
         # @type Max: Integer
+        # @param Unit: qps阈值控制维度,包含:second、minute、hour、day、month、year
+        # @type Unit: String
 
-        attr_accessor :Unit, :Max
+        attr_accessor :Max, :Unit
 
-        def initialize(unit=nil, max=nil)
-          @Unit = unit
+        def initialize(max=nil, unit=nil)
           @Max = max
+          @Unit = unit
         end
 
         def deserialize(params)
-          @Unit = params['Unit']
           @Max = params['Max']
+          @Unit = params['Unit']
         end
       end
 
@@ -19015,27 +19023,27 @@ module TencentCloud
       class RuleFilter < TencentCloud::Common::AbstractModel
         # @param Key: 限流条件的Key
         # @type Key: String
-        # @param Values: 限流条件的Values
-        # @type Values: Array
-        # @param Operator: 操作符
-        # @type Operator: String
         # @param Name: header或query对应的name
         # @type Name: String
+        # @param Operator: 操作符
+        # @type Operator: String
+        # @param Values: 限流条件的Values
+        # @type Values: Array
 
-        attr_accessor :Key, :Values, :Operator, :Name
+        attr_accessor :Key, :Name, :Operator, :Values
 
-        def initialize(key=nil, values=nil, operator=nil, name=nil)
+        def initialize(key=nil, name=nil, operator=nil, values=nil)
           @Key = key
-          @Values = values
-          @Operator = operator
           @Name = name
+          @Operator = operator
+          @Values = values
         end
 
         def deserialize(params)
           @Key = params['Key']
-          @Values = params['Values']
-          @Operator = params['Operator']
           @Name = params['Name']
+          @Operator = params['Operator']
+          @Values = params['Values']
         end
       end
 

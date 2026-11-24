@@ -15583,28 +15583,17 @@ module TencentCloud
 
       # EnableOriginACL请求参数结构体
       class EnableOriginACLRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点 ID。
+        # @param ZoneId: <p>站点 ID。</p>
         # @type ZoneId: String
-        # @param L7EnableMode: 站点首次开启源站防护时，为七层加速域名配置特定回源 IP 网段的模式。
-        # <li>all：针对当前站点下的所有七层加速域名开启，当域名数量超过 200 时，请先通过 specific 模式启用 200 个域名，剩余资源通过 ModifyOriginACL 接口启用。</li>
-        # <li>specific：针对站点下指定的七层加速域名开启。</li>注意：当参数为空时，默认为 specific。后续新增七层加速域名/四层代理实例均请通过 ModifyOriginACL 接口配置。
+        # @param L7EnableMode: <p>七层加速域名源站防护模式，默认值: specific。<li>all：<strong>自动纳入防护模式</strong>，站点内所有七层加速域名将自动加入到源站防护列表中，包含后续新增的七层加速域名；</li><li>specific：<strong>指定加入防护模式</strong>，需要人工指定期望加入到源站防护的七层加速域名（通过 L7Hosts 参数指定），未指定的资源不会加入到源站防护列表中，后续的防护资源调整可通过 ModifyOriginACL 接口进行。</li>注意：取值为 all 时，L7Hosts 请保留为空；当站点下七层加速域名数量超过 200 时，请先通过 specific 模式启用，剩余资源通过 ModifyOriginACL 接口启用后，再通过 ModifyOriginACL 接口切换为 all。</p>
         # @type L7EnableMode: String
-        # @param L7Hosts: 开启源站防护的七层加速域名列表，仅当参数 L7EnableMode 为 specific 时生效。L7EnableMode 为 all 时，请保留此参数为空。单次最大仅支持填写 200 个七层加速域名。
+        # @param L7Hosts: <p>需要开启源站防护的七层加速域名列表，仅当参数 L7EnableMode 为 specific 时生效。本字段最多支持一次开启 200 个七层加速域名；当期望开启的域名个数超过 200 时，请联合使用 ModifyOriginACL 接口进行分片配置。</p>
         # @type L7Hosts: Array
-        # @param L4EnableMode: 站点首次开启源站防护时，为四层代理实例配置特定回源 IP 网段的模式。
-        # <li>all：针对当前站点下的所有四层代理实例开启，当实例数量超过 100 时，请先通过 specific 模式启用 100 个域名，剩余资源通过 ModifyOriginACL 接口启用。</li>
-        # <li>specific：针对站点下指定的四层代理实例开启。</li>注意：当参数为空时，默认为 specific。后续新增七层加速域名/四层代理实例均请通过 ModifyOriginACL 接口配置。
+        # @param L4EnableMode: <p>四层代理实例源站防护模式，默认值: specific。<li>all：<strong>自动纳入防护模式</strong>，站点内所有四层代理实例将自动加入到源站防护列表中，包含后续新增的四层代理实例资源；</li><li>specific：<strong>指定加入防护模式</strong>，需要人工指定期望加入到源站防护的四层代理实例（通过 L4ProxyIds 参数指定），未指定的资源不会加入到源站防护列表中，后续的防护资源调整可通过 ModifyOriginACL 接口进行。</li>注意：取值为 all 时，L4ProxyIds 请保留为空；当站点下四层代理实例数量超过 100 时，请先通过 specific 模式启用，剩余资源通过 ModifyOriginACL 接口启用后，再通过 ModifyOriginACL 接口切换为 all。</p>
         # @type L4EnableMode: String
-        # @param L4ProxyIds: 开启源站防护的四层代理实例列表，仅当参数 L4EnableMode 为 specific 时生效。L4EnableMode 为 all 时，请保留此参数为空。单次最大仅支持填写 100 个四层代理实例。
+        # @param L4ProxyIds: <p>需要开启源站防护的四层代理实例列表，仅当参数 L4EnableMode 为 specific 时生效。本字段最多支持一次开启 100 个四层代理实例；当期望开启的四层代理实例个数超过 100 时，请联合使用 ModifyOriginACL 接口进行分片配置。</p>
         # @type L4ProxyIds: Array
-        # @param OriginACLFamily: 源站防护回源ACL控制域，不填则默认用标准全球控制域；可用控制域信息可以通过DescribeAvailableOriginACLFamily接口查询获得。
-        # 具体取值说明如下：
-        # <li>gaz：标准全球可用区控制域；</li>
-        # <li>mlc：标准中国大陆可用区控制域；</li>
-        # <li>emc：标准全球(不含中国大陆)可用区控制域；</li>
-        # <li>plat-gaz：精简全球可用区控制域；</li>
-        # <li>plat-mlc：精简中国大陆可用区控制域；</li>
-        # <li>plat-emc：精简全球(不含中国大陆)可用区控制域；</li>
+        # @param OriginACLFamily: <p>源站防护回源ACL控制域，不填则默认用标准全球控制域；可用控制域信息可以通过DescribeAvailableOriginACLFamily接口查询获得。<br>具体取值说明如下：</p><li>gaz：标准全球可用区控制域；</li><li>mlc：标准中国大陆可用区控制域；</li><li>emc：标准全球(不含中国大陆)可用区控制域；</li><li>plat-gaz：精简全球可用区控制域；</li><li>plat-mlc：精简中国大陆可用区控制域；</li><li>plat-emc：精简全球(不含中国大陆)可用区控制域；</li>
         # @type OriginACLFamily: String
 
         attr_accessor :ZoneId, :L7EnableMode, :L7Hosts, :L4EnableMode, :L4ProxyIds, :OriginACLFamily
@@ -21552,30 +21541,31 @@ module TencentCloud
 
       # ModifyOriginACL请求参数结构体
       class ModifyOriginACLRequest < TencentCloud::Common::AbstractModel
-        # @param ZoneId: 站点 ID。
+        # @param ZoneId: <p>站点 ID。</p>
         # @type ZoneId: String
-        # @param OriginACLEntities: 需要启用/关闭特定回源 IP 网段回源的实例。
+        # @param L7EnableMode: <p>七层加速域名源站防护模式，默认值: specific。<li>all：<strong>自动纳入防护模式</strong>，站点内所有七层加速域名将自动加入到源站防护列表中，包含后续新增的七层加速域名；</li><li>specific：<strong>指定加入防护模式</strong>，需要人工指定期望加入到源站防护的七层加速域名（通过 L7Hosts 参数指定），未指定的资源不会加入到源站防护列表中，后续的防护资源调整可通过 ModifyOriginACL 接口进行。</li>注意：取值为 all 时，L7Hosts 请保留为空；当站点下七层加速域名数量超过 200 时，请先通过 specific 模式启用，剩余资源通过 ModifyOriginACL 接口启用后，再通过 ModifyOriginACL 接口切换为 all。</p>
+        # @type L7EnableMode: String
+        # @param L4EnableMode: <p>四层代理实例源站防护模式，默认值: specific。<li>all：<strong>自动纳入防护模式</strong>，站点内所有四层代理实例将自动加入到源站防护列表中，包含后续新增的四层代理实例资源；</li><li>specific：<strong>指定加入防护模式</strong>，需要人工指定期望加入到源站防护的四层代理实例（通过 L4ProxyIds 参数指定），未指定的资源不会加入到源站防护列表中，后续的防护资源调整可通过 ModifyOriginACL 接口进行。</li>注意：取值为 all 时，L4ProxyIds 请保留为空；当站点下四层代理实例数量超过 100 时，请先通过 specific 模式启用，剩余资源通过 ModifyOriginACL 接口启用后，再通过 ModifyOriginACL 接口切换为 all。</p>
+        # @type L4EnableMode: String
+        # @param OriginACLEntities: <p>需要启用/关闭特定回源 IP 网段回源的实例。<br>注意：本参数仅适用于 <strong>指定加入防护模式</strong> 下的资源调整；当对应层级的源站防护模式为 all 时，该类型的资源列表由系统自动维护，本参数中请勿包含该类型的资源，如需手动调整，请先通过 L7EnableMode/L4EnableMode 将对应层级切换为 specific。</p>
         # @type OriginACLEntities: Array
-        # @param OriginACLFamily: 源站防护回源ACL控制域，不填则默认不变；控制域信息可以通过DescribeAvailableOriginACLFamily接口查询获得。
-        # 具体取值说明如下：
-        # <li>gaz：标准全球可用区控制域；</li>
-        # <li>mlc：标准中国大陆可用区控制域；</li>
-        # <li>emc：标准全球(不含中国大陆)可用区控制域；</li>
-        # <li>plat-gaz：精简全球可用区控制域；</li>
-        # <li>plat-mlc：精简中国大陆可用区控制域；</li>
-        # <li>plat-emc：精简全球(不含中国大陆)可用区控制域；</li>
+        # @param OriginACLFamily: <p>源站防护回源ACL控制域，不填则默认不变；控制域信息可以通过DescribeAvailableOriginACLFamily接口查询获得。<br>具体取值说明如下：</p><li>gaz：标准全球可用区控制域；</li><li>mlc：标准中国大陆可用区控制域；</li><li>emc：标准全球(不含中国大陆)可用区控制域；</li><li>plat-gaz：精简全球可用区控制域；</li><li>plat-mlc：精简中国大陆可用区控制域；</li><li>plat-emc：精简全球(不含中国大陆)可用区控制域；</li>
         # @type OriginACLFamily: String
 
-        attr_accessor :ZoneId, :OriginACLEntities, :OriginACLFamily
+        attr_accessor :ZoneId, :L7EnableMode, :L4EnableMode, :OriginACLEntities, :OriginACLFamily
 
-        def initialize(zoneid=nil, originaclentities=nil, originaclfamily=nil)
+        def initialize(zoneid=nil, l7enablemode=nil, l4enablemode=nil, originaclentities=nil, originaclfamily=nil)
           @ZoneId = zoneid
+          @L7EnableMode = l7enablemode
+          @L4EnableMode = l4enablemode
           @OriginACLEntities = originaclentities
           @OriginACLFamily = originaclfamily
         end
 
         def deserialize(params)
           @ZoneId = params['ZoneId']
+          @L7EnableMode = params['L7EnableMode']
+          @L4EnableMode = params['L4EnableMode']
           unless params['OriginACLEntities'].nil?
             @OriginACLEntities = []
             params['OriginACLEntities'].each do |i|
@@ -23501,28 +23491,31 @@ module TencentCloud
 
       # 七层加速域名/四层代理实例与回源 IP 网段的绑定关系，同时包含回源 IP 网段详情和选择可切换的回源 IP 网段列表。
       class OriginACLInfo < TencentCloud::Common::AbstractModel
-        # @param L7Hosts: 启用了特定回源 IP 网段回源的七层加速域名列表。源站防护未开启时为空。
+        # @param L7EnableMode: <p>七层加速域名源站防护模式，取值有：<li>all：自动纳入防护模式，站点内所有七层加速域名已纳入源站防护列表，包含后续新增的七层加速域名；</li><li>specific：指定加入防护模式，仅防护已绑定的七层加速域名。</li></p>
+        # @type L7EnableMode: String
+        # @param L7Hosts: <p>启用了特定回源 IP 网段回源的七层加速域名列表。源站防护未开启时为空。</p>
         # @type L7Hosts: Array
-        # @param L4ProxyIds: 启用了特定回源 IP 网段回源的四层代理实例列表。源站防护未开启时为空。
+        # @param L4EnableMode: <p>四层代理实例源站防护模式，取值有：<li>all：自动纳入防护模式，站点内所有四层代理实例已纳入源站防护列表，包含后续新增的四层代理实例；</li><li>specific：指定加入防护模式，仅防护已绑定的四层代理实例。</li></p>
+        # @type L4EnableMode: String
+        # @param L4ProxyIds: <p>启用了特定回源 IP 网段回源的四层代理实例列表。源站防护未开启时为空。</p>
         # @type L4ProxyIds: Array
-        # @param CurrentOriginACL: 当前生效的回源 IP 网段。源站防护未开启时为空。
+        # @param CurrentOriginACL: <p>当前生效的回源 IP 网段。源站防护未开启时为空。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type CurrentOriginACL: :class:`Tencentcloud::Teo.v20220901.models.CurrentOriginACL`
-        # @param NextOriginACL: 当回源 IP 网段发生更新时，该字段会返回下一个版本将要生效的回源 IP 网段，包含与当前回源 IP 网段的对比。无更新或者源站防护未开启时该字段为空。
+        # @param NextOriginACL: <p>当回源 IP 网段发生更新时，该字段会返回下一个版本将要生效的回源 IP 网段，包含与当前回源 IP 网段的对比。无更新或者源站防护未开启时该字段为空。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type NextOriginACL: :class:`Tencentcloud::Teo.v20220901.models.NextOriginACL`
-        # @param Status: 源站防护状态，取值有：
-        # <li>online：已生效；</li>
-        # <li>offline：已停用；</li>
-        # <li>updating: 配置部署中。</li>
+        # @param Status: <p>源站防护状态，取值有：</p><li>online：已生效；</li><li>offline：已停用；</li><li>updating: 配置部署中。</li>
         # @type Status: String
-        # @param OriginACLFamily: 源站防护回源ACL控制域。
+        # @param OriginACLFamily: <p>源站防护回源ACL控制域。</p>
         # @type OriginACLFamily: String
 
-        attr_accessor :L7Hosts, :L4ProxyIds, :CurrentOriginACL, :NextOriginACL, :Status, :OriginACLFamily
+        attr_accessor :L7EnableMode, :L7Hosts, :L4EnableMode, :L4ProxyIds, :CurrentOriginACL, :NextOriginACL, :Status, :OriginACLFamily
 
-        def initialize(l7hosts=nil, l4proxyids=nil, currentoriginacl=nil, nextoriginacl=nil, status=nil, originaclfamily=nil)
+        def initialize(l7enablemode=nil, l7hosts=nil, l4enablemode=nil, l4proxyids=nil, currentoriginacl=nil, nextoriginacl=nil, status=nil, originaclfamily=nil)
+          @L7EnableMode = l7enablemode
           @L7Hosts = l7hosts
+          @L4EnableMode = l4enablemode
           @L4ProxyIds = l4proxyids
           @CurrentOriginACL = currentoriginacl
           @NextOriginACL = nextoriginacl
@@ -23531,7 +23524,9 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @L7EnableMode = params['L7EnableMode']
           @L7Hosts = params['L7Hosts']
+          @L4EnableMode = params['L4EnableMode']
           @L4ProxyIds = params['L4ProxyIds']
           unless params['CurrentOriginACL'].nil?
             @CurrentOriginACL = CurrentOriginACL.new
@@ -28832,12 +28827,12 @@ module TencentCloud
 
       # 序列化的安全结构
       class WebSecurity < TencentCloud::Common::AbstractModel
-        # @param ZoneDefaultPolicy: 站点级策略的配置详情。
+        # @param ZoneDefaultPolicy: <p>站点级策略的配置详情。</p>
         # @type ZoneDefaultPolicy: :class:`Tencentcloud::Teo.v20220901.models.SecurityPolicy`
-        # @param HostPolicy: 域名级策略的配置详情。
-        # @type HostPolicy: :class:`Tencentcloud::Teo.v20220901.models.HostPolicy`
-        # @param Templates: 策略模板的配置详情。
-        # @type Templates: :class:`Tencentcloud::Teo.v20220901.models.WebSecurityTemplates`
+        # @param HostPolicy: <p>域名级策略的配置详情。</p>
+        # @type HostPolicy: Array
+        # @param Templates: <p>策略模板的配置详情。</p>
+        # @type Templates: Array
 
         attr_accessor :ZoneDefaultPolicy, :HostPolicy, :Templates
 
@@ -28853,12 +28848,20 @@ module TencentCloud
             @ZoneDefaultPolicy.deserialize(params['ZoneDefaultPolicy'])
           end
           unless params['HostPolicy'].nil?
-            @HostPolicy = HostPolicy.new
-            @HostPolicy.deserialize(params['HostPolicy'])
+            @HostPolicy = []
+            params['HostPolicy'].each do |i|
+              hostpolicy_tmp = HostPolicy.new
+              hostpolicy_tmp.deserialize(i)
+              @HostPolicy << hostpolicy_tmp
+            end
           end
           unless params['Templates'].nil?
-            @Templates = WebSecurityTemplates.new
-            @Templates.deserialize(params['Templates'])
+            @Templates = []
+            params['Templates'].each do |i|
+              websecuritytemplates_tmp = WebSecurityTemplates.new
+              websecuritytemplates_tmp.deserialize(i)
+              @Templates << websecuritytemplates_tmp
+            end
           end
         end
       end

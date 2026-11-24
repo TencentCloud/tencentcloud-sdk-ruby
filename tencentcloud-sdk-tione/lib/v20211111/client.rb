@@ -2229,6 +2229,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 更新训练任务的调度策略
+
+        # @param request: Request instance for ModifyTrainingTaskSchedulingPolicy.
+        # @type request: :class:`Tencentcloud::tione::V20211111::ModifyTrainingTaskSchedulingPolicyRequest`
+        # @rtype: :class:`Tencentcloud::tione::V20211111::ModifyTrainingTaskSchedulingPolicyResponse`
+        def ModifyTrainingTaskSchedulingPolicy(request)
+          body = send_request('ModifyTrainingTaskSchedulingPolicy', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyTrainingTaskSchedulingPolicyResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 更新用户授权
 
         # @param request: Request instance for ModifyUserGrant.

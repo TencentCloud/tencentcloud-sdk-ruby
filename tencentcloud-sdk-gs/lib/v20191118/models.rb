@@ -154,50 +154,50 @@ module TencentCloud
 
       # 安卓实例信息
       class AndroidInstance < TencentCloud::Common::AbstractModel
-        # @param AndroidInstanceId: 实例 ID
+        # @param AndroidInstanceId: <p>实例 ID</p>
         # @type AndroidInstanceId: String
-        # @param AndroidInstanceRegion: 实例所在区域
+        # @param AndroidInstanceRegion: <p>实例所在区域</p>
         # @type AndroidInstanceRegion: String
-        # @param AndroidInstanceZone: 实例可用区
+        # @param AndroidInstanceZone: <p>实例可用区</p>
         # @type AndroidInstanceZone: String
-        # @param State: 实例状态：INITIALIZING，NORMAL，PROCESSING
+        # @param State: <p>实例状态：INITIALIZING，NORMAL，PROCESSING</p>
         # @type State: String
-        # @param AndroidInstanceType: 实例规格
+        # @param AndroidInstanceType: <p>实例规格</p>
         # @type AndroidInstanceType: String
-        # @param AndroidInstanceImageId: 实例镜像 ID
+        # @param AndroidInstanceImageId: <p>实例镜像 ID</p>
         # @type AndroidInstanceImageId: String
-        # @param Width: 分辨率宽度
+        # @param Width: <p>分辨率宽度</p>
         # @type Width: Integer
-        # @param Height: 分辨率高度
+        # @param Height: <p>分辨率高度</p>
         # @type Height: Integer
-        # @param HostSerialNumber: 宿主机 ID
+        # @param DPI: <p>每英寸像素点。</p>
+        # @type DPI: Integer
+        # @param FPS: <p>帧率</p>
+        # @type FPS: Integer
+        # @param HostSerialNumber: <p>宿主机 ID</p>
         # @type HostSerialNumber: String
-        # @param AndroidInstanceGroupId: 分组 ID
+        # @param AndroidInstanceGroupId: <p>分组 ID</p>
         # @type AndroidInstanceGroupId: String
-        # @param AndroidInstanceLabels: 标签列表
+        # @param AndroidInstanceLabels: <p>标签列表</p>
         # @type AndroidInstanceLabels: Array
-        # @param Name: 名称
+        # @param Name: <p>名称</p>
         # @type Name: String
-        # @param UserId: 用户ID
+        # @param UserId: <p>用户ID</p>
         # @type UserId: String
-        # @param PrivateIP: 内网 IP
+        # @param PrivateIP: <p>内网 IP</p>
         # @type PrivateIP: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
-        # @param HostServerSerialNumber: 机箱 ID
+        # @param HostServerSerialNumber: <p>机箱 ID</p>
         # @type HostServerSerialNumber: String
-        # @param ServiceStatus: 服务状态。
-        # IDLE：未连接
-        # ESTABLISHED：连接中
+        # @param ServiceStatus: <p>服务状态。<br>IDLE：未连接<br>ESTABLISHED：连接中</p>
         # @type ServiceStatus: String
-        # @param AndroidInstanceModel: 安卓实例型号。
-        # YS1：默认值，基础型云手机
-        # GC0、GC1、GC2：三种性能型云手机
+        # @param AndroidInstanceModel: <p>安卓实例型号。<br>YS1：默认值，基础型云手机<br>GC0、GC1、GC2：三种性能型云手机</p>
         # @type AndroidInstanceModel: String
 
-        attr_accessor :AndroidInstanceId, :AndroidInstanceRegion, :AndroidInstanceZone, :State, :AndroidInstanceType, :AndroidInstanceImageId, :Width, :Height, :HostSerialNumber, :AndroidInstanceGroupId, :AndroidInstanceLabels, :Name, :UserId, :PrivateIP, :CreateTime, :HostServerSerialNumber, :ServiceStatus, :AndroidInstanceModel
+        attr_accessor :AndroidInstanceId, :AndroidInstanceRegion, :AndroidInstanceZone, :State, :AndroidInstanceType, :AndroidInstanceImageId, :Width, :Height, :DPI, :FPS, :HostSerialNumber, :AndroidInstanceGroupId, :AndroidInstanceLabels, :Name, :UserId, :PrivateIP, :CreateTime, :HostServerSerialNumber, :ServiceStatus, :AndroidInstanceModel
 
-        def initialize(androidinstanceid=nil, androidinstanceregion=nil, androidinstancezone=nil, state=nil, androidinstancetype=nil, androidinstanceimageid=nil, width=nil, height=nil, hostserialnumber=nil, androidinstancegroupid=nil, androidinstancelabels=nil, name=nil, userid=nil, privateip=nil, createtime=nil, hostserverserialnumber=nil, servicestatus=nil, androidinstancemodel=nil)
+        def initialize(androidinstanceid=nil, androidinstanceregion=nil, androidinstancezone=nil, state=nil, androidinstancetype=nil, androidinstanceimageid=nil, width=nil, height=nil, dpi=nil, fps=nil, hostserialnumber=nil, androidinstancegroupid=nil, androidinstancelabels=nil, name=nil, userid=nil, privateip=nil, createtime=nil, hostserverserialnumber=nil, servicestatus=nil, androidinstancemodel=nil)
           @AndroidInstanceId = androidinstanceid
           @AndroidInstanceRegion = androidinstanceregion
           @AndroidInstanceZone = androidinstancezone
@@ -206,6 +206,8 @@ module TencentCloud
           @AndroidInstanceImageId = androidinstanceimageid
           @Width = width
           @Height = height
+          @DPI = dpi
+          @FPS = fps
           @HostSerialNumber = hostserialnumber
           @AndroidInstanceGroupId = androidinstancegroupid
           @AndroidInstanceLabels = androidinstancelabels
@@ -227,6 +229,8 @@ module TencentCloud
           @AndroidInstanceImageId = params['AndroidInstanceImageId']
           @Width = params['Width']
           @Height = params['Height']
+          @DPI = params['DPI']
+          @FPS = params['FPS']
           @HostSerialNumber = params['HostSerialNumber']
           @AndroidInstanceGroupId = params['AndroidInstanceGroupId']
           unless params['AndroidInstanceLabels'].nil?

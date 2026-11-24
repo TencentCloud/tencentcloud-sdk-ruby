@@ -9898,9 +9898,9 @@ module TencentCloud
         end
       end
 
-      # 解析失败的页数
+      # 解析失败的页码
       class ReconstructDocumentFailedPage < TencentCloud::Common::AbstractModel
-        # @param PageNumber: <p>解析失败页数。</p>
+        # @param PageNumber: <p>解析失败页码。</p>
         # @type PageNumber: Integer
 
         attr_accessor :PageNumber

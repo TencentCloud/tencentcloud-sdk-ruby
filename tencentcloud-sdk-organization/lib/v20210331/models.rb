@@ -3245,9 +3245,9 @@ module TencentCloud
 
       # DescribeOrganization请求参数结构体
       class DescribeOrganizationRequest < TencentCloud::Common::AbstractModel
-        # @param Lang: 国际站：en，国内站：zh
+        # @param Lang: <p>国际站：en，国内站：zh</p>
         # @type Lang: String
-        # @param Product: 可信服务产品简称。查询是否该可信服务管理员时必须指定
+        # @param Product: <p>可信服务产品简称。查询是否该可信服务管理员时必须指定</p>
         # @type Product: String
 
         attr_accessor :Lang, :Product
@@ -3265,44 +3265,48 @@ module TencentCloud
 
       # DescribeOrganization返回参数结构体
       class DescribeOrganizationResponse < TencentCloud::Common::AbstractModel
-        # @param OrgId: 企业组织ID。
+        # @param OrgId: <p>企业组织ID。</p>
         # @type OrgId: Integer
-        # @param HostUin: 创建者UIN。
+        # @param HostUin: <p>创建者UIN。</p>
         # @type HostUin: Integer
-        # @param NickName: 创建者昵称。
+        # @param NickName: <p>创建者昵称。</p>
         # @type NickName: String
-        # @param OrgType: 企业组织类型。
+        # @param OrgType: <p>企业组织类型。</p>
         # @type OrgType: Integer
-        # @param IsManager: 是否组织管理员。是：true ，否：false
+        # @param IsManager: <p>是否组织管理员。是：true ，否：false</p>
         # @type IsManager: Boolean
-        # @param OrgPolicyType: 策略类型。财务管理：Financial
+        # @param OrgPolicyType: <p>策略类型。财务管理：Financial</p>
         # @type OrgPolicyType: String
-        # @param OrgPolicyName: 策略名。
+        # @param OrgPolicyName: <p>策略名。</p>
         # @type OrgPolicyName: String
-        # @param OrgPermission: 成员财务权限列表。
+        # @param OrgPermission: <p>成员财务权限列表。</p>
         # @type OrgPermission: Array
-        # @param RootNodeId: 组织根节点ID。
+        # @param RootNodeId: <p>组织根节点ID。</p>
         # @type RootNodeId: Integer
-        # @param CreateTime: 组织创建时间。
+        # @param CreateTime: <p>组织创建时间。</p>
         # @type CreateTime: String
-        # @param JoinTime: 成员加入时间。
+        # @param JoinTime: <p>成员加入时间。</p>
         # @type JoinTime: String
-        # @param IsAllowQuit: 成员是否允许退出。允许：Allow，不允许：Denied
+        # @param IsAllowQuit: <p>成员是否允许退出。允许：Allow，不允许：Denied</p>
         # @type IsAllowQuit: String
-        # @param PayUin: 代付者Uin。
+        # @param PayUin: <p>代付者Uin。</p>
         # @type PayUin: String
-        # @param PayName: 代付者名称。
+        # @param PayName: <p>代付者名称。</p>
         # @type PayName: String
-        # @param IsAssignManager: 是否可信服务管理员。是：true，否：false
+        # @param IsAssignManager: <p>是否可信服务管理员。是：true，否：false</p>
         # @type IsAssignManager: Boolean
-        # @param IsAuthManager: 是否实名主体管理员。是：true，否：false
+        # @param IsAuthManager: <p>是否实名主体管理员。是：true，否：false</p>
         # @type IsAuthManager: Boolean
+        # @param MemberPermissionOptions: <p>创建/邀请成员时可设置的财务权限列表</p>
+        # @type MemberPermissionOptions: Array
+        # @param DefaultPayType: <p>创建/邀请成员时的默认付费方式。</p><p>枚举值：</p><ul><li>SelfPay： 自付</li><li>BehalfPay： 代付</li></ul>
+        # @type DefaultPayType: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :OrgId, :HostUin, :NickName, :OrgType, :IsManager, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :RootNodeId, :CreateTime, :JoinTime, :IsAllowQuit, :PayUin, :PayName, :IsAssignManager, :IsAuthManager, :RequestId
+        attr_accessor :OrgId, :HostUin, :NickName, :OrgType, :IsManager, :OrgPolicyType, :OrgPolicyName, :OrgPermission, :RootNodeId, :CreateTime, :JoinTime, :IsAllowQuit, :PayUin, :PayName, :IsAssignManager, :IsAuthManager, :MemberPermissionOptions, :DefaultPayType, :RequestId
 
-        def initialize(orgid=nil, hostuin=nil, nickname=nil, orgtype=nil, ismanager=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, rootnodeid=nil, createtime=nil, jointime=nil, isallowquit=nil, payuin=nil, payname=nil, isassignmanager=nil, isauthmanager=nil, requestid=nil)
+        def initialize(orgid=nil, hostuin=nil, nickname=nil, orgtype=nil, ismanager=nil, orgpolicytype=nil, orgpolicyname=nil, orgpermission=nil, rootnodeid=nil, createtime=nil, jointime=nil, isallowquit=nil, payuin=nil, payname=nil, isassignmanager=nil, isauthmanager=nil, memberpermissionoptions=nil, defaultpaytype=nil, requestid=nil)
           @OrgId = orgid
           @HostUin = hostuin
           @NickName = nickname
@@ -3319,6 +3323,8 @@ module TencentCloud
           @PayName = payname
           @IsAssignManager = isassignmanager
           @IsAuthManager = isauthmanager
+          @MemberPermissionOptions = memberpermissionoptions
+          @DefaultPayType = defaultpaytype
           @RequestId = requestid
         end
 
@@ -3346,6 +3352,15 @@ module TencentCloud
           @PayName = params['PayName']
           @IsAssignManager = params['IsAssignManager']
           @IsAuthManager = params['IsAuthManager']
+          unless params['MemberPermissionOptions'].nil?
+            @MemberPermissionOptions = []
+            params['MemberPermissionOptions'].each do |i|
+              memberpermissionoption_tmp = MemberPermissionOption.new
+              memberpermissionoption_tmp.deserialize(i)
+              @MemberPermissionOptions << memberpermissionoption_tmp
+            end
+          end
+          @DefaultPayType = params['DefaultPayType']
           @RequestId = params['RequestId']
         end
       end
@@ -6449,6 +6464,38 @@ module TencentCloud
         end
       end
 
+      # 创建/邀请成员时可设置的财务权限
+      class MemberPermissionOption < TencentCloud::Common::AbstractModel
+        # @param Id: <p>权限 ID</p>
+        # @type Id: Integer
+        # @param Name: <p>权限名</p>
+        # @type Name: String
+        # @param Status: <p>展示状态</p><p>枚举值：</p><ul><li>FIXED： 已勾选且置灰，不可修改</li><li>OPTIONAL： 正常可选</li><li>DISABLE： 置灰不可选，悬浮展示原因</li></ul><p>默认值：OPTIONAL</p>
+        # @type Status: String
+        # @param DefaultChecked: <p>是否默认勾选</p>
+        # @type DefaultChecked: Boolean
+        # @param DisabledCode: <p>置灰原因码</p><p>枚举值：</p><ul><li>TransferNotAllowAdd： 资金划拨权限未命中白名单</li><li>CreditAmountsNotAllowAdd： 信用额度设置权限未命中白名单</li><li>AddDiscountInheritNotAllow： 校验不通过或异常</li></ul>
+        # @type DisabledCode: String
+
+        attr_accessor :Id, :Name, :Status, :DefaultChecked, :DisabledCode
+
+        def initialize(id=nil, name=nil, status=nil, defaultchecked=nil, disabledcode=nil)
+          @Id = id
+          @Name = name
+          @Status = status
+          @DefaultChecked = defaultchecked
+          @DisabledCode = disabledcode
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Name = params['Name']
+          @Status = params['Status']
+          @DefaultChecked = params['DefaultChecked']
+          @DisabledCode = params['DisabledCode']
+        end
+      end
+
       # MoveOrganizationNodeMembers请求参数结构体
       class MoveOrganizationNodeMembersRequest < TencentCloud::Common::AbstractModel
         # @param NodeId: 组织节点ID。可以通过[DescribeOrganizationNodes](https://cloud.tencent.com/document/product/850/82926)获取
@@ -7338,8 +7385,8 @@ module TencentCloud
 
         attr_accessor :ProductResourceId, :ResourceGrantLast
         extend Gem::Deprecate
-        deprecate :ResourceGrantLast, :none, 2026, 10
-        deprecate :ResourceGrantLast=, :none, 2026, 10
+        deprecate :ResourceGrantLast, :none, 2026, 11
+        deprecate :ResourceGrantLast=, :none, 2026, 11
 
         def initialize(productresourceid=nil, resourcegrantlast=nil)
           @ProductResourceId = productresourceid
@@ -8195,8 +8242,8 @@ module TencentCloud
 
         attr_accessor :ResourceId, :ProductResourceId
         extend Gem::Deprecate
-        deprecate :ResourceId, :none, 2026, 10
-        deprecate :ResourceId=, :none, 2026, 10
+        deprecate :ResourceId, :none, 2026, 11
+        deprecate :ResourceId=, :none, 2026, 11
 
         def initialize(resourceid=nil, productresourceid=nil)
           @ResourceId = resourceid

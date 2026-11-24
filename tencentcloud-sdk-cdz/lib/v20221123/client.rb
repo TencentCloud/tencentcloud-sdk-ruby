@@ -77,6 +77,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询用户可使用的专属可用区列表
+
+        # @param request: Request instance for DescribeUserAvailableCloudDedicatedZones.
+        # @type request: :class:`Tencentcloud::cdz::V20221123::DescribeUserAvailableCloudDedicatedZonesRequest`
+        # @rtype: :class:`Tencentcloud::cdz::V20221123::DescribeUserAvailableCloudDedicatedZonesResponse`
+        def DescribeUserAvailableCloudDedicatedZones(request)
+          body = send_request('DescribeUserAvailableCloudDedicatedZones', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeUserAvailableCloudDedicatedZonesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
 
       end
     end

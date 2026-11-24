@@ -2531,7 +2531,7 @@ module TencentCloud
         # ```
         # {
         #   "RequestAction": "DescribeFlowComponents",
-        #   "IV": "MTIzNDU2Nzg5MGFiY2RlZg==",
+        #   "IV": "MT**************************************",
         #   "EncryptedData": "Iqp2W1jislwMNmE7bH9dKZZiMQsfkAPyvAAqDFRnWLw=",
         #   "EncryptionSignature": "4TT3PUCZgZT7YmEPtXDm5PDcM6xT7FoYHfMW8xunB5I="
         # }
@@ -2550,7 +2550,7 @@ module TencentCloud
         # ```
         # {
         #   "RequestAction": "DescribeFlowComponents",
-        #   "IV": "ZmVkY2JhMDk4NzY1NDMyMQ==",
+        #   "IV": "Zm*********************************",
         #   "EncryptedData": "GwUovQhNUPaUnVM/UDXMtPOYTpTSi2B1oyZDFbyyvns=",
         #   "EncryptionSignature": "nHB/v/AvOaDCQ66esFNnp12lHKcGkwaLGid0Warl/KE="
         # }

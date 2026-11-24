@@ -269,8 +269,8 @@ module TencentCloud
 
         attr_accessor :InstanceName, :Zone, :UserVPCId, :UserSubnetId, :ChargeProperties, :AdminPassword, :Resources, :Tags, :ProductVersion, :TagItems
         extend Gem::Deprecate
-        deprecate :Tags, :none, 2026, 9
-        deprecate :Tags=, :none, 2026, 9
+        deprecate :Tags, :none, 2026, 11
+        deprecate :Tags=, :none, 2026, 11
 
         def initialize(instancename=nil, zone=nil, uservpcid=nil, usersubnetid=nil, chargeproperties=nil, adminpassword=nil, resources=nil, tags=nil, productversion=nil, tagitems=nil)
           @InstanceName = instancename
@@ -823,16 +823,18 @@ module TencentCloud
         # @type InstanceState: String
         # @param InstanceStateDesc: <p>集群状态描述，例如：运行中</p>
         # @type InstanceStateDesc: String
-        # @param ProcessName: <p>当前步骤的名称，例如：”购买资源中“</p>
-        # @type ProcessName: String
         # @param InstanceStates: <p>批量实例状态列表（InstanceIds 入参时返回，每项含 InstanceId 与状态字段）</p>
         # @type InstanceStates: Array
+        # @param ProcessName: <p>当前步骤的名称，例如：”购买资源中“</p>
+        # @type ProcessName: String
+        # @param RecoveryState: <p>恢复状态，仅用于前端交互判断（不用于展示）。TableRecovering=表级恢复进行中；ClusterRecovering=集群恢复进行中（CBS 快照恢复/旧回档，不区分）；空字符串=无恢复进行中。批量请求时以 InstanceStates 内各项为准</p>
+        # @type RecoveryState: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :BackupOpenStatus, :BackupStatus, :FlowCreateTime, :FlowMsg, :FlowName, :FlowProgress, :InstanceState, :InstanceStateDesc, :ProcessName, :InstanceStates, :RequestId
+        attr_accessor :BackupOpenStatus, :BackupStatus, :FlowCreateTime, :FlowMsg, :FlowName, :FlowProgress, :InstanceState, :InstanceStateDesc, :InstanceStates, :ProcessName, :RecoveryState, :RequestId
 
-        def initialize(backupopenstatus=nil, backupstatus=nil, flowcreatetime=nil, flowmsg=nil, flowname=nil, flowprogress=nil, instancestate=nil, instancestatedesc=nil, processname=nil, instancestates=nil, requestid=nil)
+        def initialize(backupopenstatus=nil, backupstatus=nil, flowcreatetime=nil, flowmsg=nil, flowname=nil, flowprogress=nil, instancestate=nil, instancestatedesc=nil, instancestates=nil, processname=nil, recoverystate=nil, requestid=nil)
           @BackupOpenStatus = backupopenstatus
           @BackupStatus = backupstatus
           @FlowCreateTime = flowcreatetime
@@ -841,8 +843,9 @@ module TencentCloud
           @FlowProgress = flowprogress
           @InstanceState = instancestate
           @InstanceStateDesc = instancestatedesc
-          @ProcessName = processname
           @InstanceStates = instancestates
+          @ProcessName = processname
+          @RecoveryState = recoverystate
           @RequestId = requestid
         end
 
@@ -855,7 +858,6 @@ module TencentCloud
           @FlowProgress = params['FlowProgress']
           @InstanceState = params['InstanceState']
           @InstanceStateDesc = params['InstanceStateDesc']
-          @ProcessName = params['ProcessName']
           unless params['InstanceStates'].nil?
             @InstanceStates = []
             params['InstanceStates'].each do |i|
@@ -864,6 +866,8 @@ module TencentCloud
               @InstanceStates << instancestateitem_tmp
             end
           end
+          @ProcessName = params['ProcessName']
+          @RecoveryState = params['RecoveryState']
           @RequestId = params['RequestId']
         end
       end
@@ -1792,53 +1796,57 @@ module TencentCloud
 
       # 批量实例状态项
       class InstanceStateItem < TencentCloud::Common::AbstractModel
+        # @param BackupOpenStatus: <p>集群备份任务开启状态2</p>
+        # @type BackupOpenStatus: Integer
+        # @param BackupStatus: <p>集群备份任务开启状态</p>
+        # @type BackupStatus: Integer
+        # @param FlowCreateTime: <p>集群操作创建时间</p>
+        # @type FlowCreateTime: String
+        # @param FlowMsg: <p>集群流程错误信息</p>
+        # @type FlowMsg: String
+        # @param FlowName: <p>集群操作名称</p>
+        # @type FlowName: String
+        # @param FlowProgress: <p>集群操作进度</p>
+        # @type FlowProgress: Float
         # @param InstanceId: <p>集群实例名称</p>
         # @type InstanceId: String
         # @param InstanceState: <p>集群状态，例如：Serving</p>
         # @type InstanceState: String
         # @param InstanceStateDesc: <p>集群状态描述，例如：运行中</p>
         # @type InstanceStateDesc: String
-        # @param BackupStatus: <p>集群备份任务开启状态</p>
-        # @type BackupStatus: Integer
-        # @param BackupOpenStatus: <p>集群备份任务开启状态2</p>
-        # @type BackupOpenStatus: Integer
-        # @param FlowCreateTime: <p>集群操作创建时间</p>
-        # @type FlowCreateTime: String
-        # @param FlowName: <p>集群操作名称</p>
-        # @type FlowName: String
-        # @param FlowProgress: <p>集群操作进度</p>
-        # @type FlowProgress: Float
-        # @param FlowMsg: <p>集群流程错误信息</p>
-        # @type FlowMsg: String
         # @param ProcessName: <p>当前步骤的名称</p>
         # @type ProcessName: String
+        # @param RecoveryState: <p>恢复状态，仅用于前端交互判断（不用于展示）。TableRecovering=表级恢复进行中；ClusterRecovering=集群恢复进行中（CBS 快照恢复/旧回档，不区分）；空字符串=无恢复进行中</p>
+        # @type RecoveryState: String
 
-        attr_accessor :InstanceId, :InstanceState, :InstanceStateDesc, :BackupStatus, :BackupOpenStatus, :FlowCreateTime, :FlowName, :FlowProgress, :FlowMsg, :ProcessName
+        attr_accessor :BackupOpenStatus, :BackupStatus, :FlowCreateTime, :FlowMsg, :FlowName, :FlowProgress, :InstanceId, :InstanceState, :InstanceStateDesc, :ProcessName, :RecoveryState
 
-        def initialize(instanceid=nil, instancestate=nil, instancestatedesc=nil, backupstatus=nil, backupopenstatus=nil, flowcreatetime=nil, flowname=nil, flowprogress=nil, flowmsg=nil, processname=nil)
+        def initialize(backupopenstatus=nil, backupstatus=nil, flowcreatetime=nil, flowmsg=nil, flowname=nil, flowprogress=nil, instanceid=nil, instancestate=nil, instancestatedesc=nil, processname=nil, recoverystate=nil)
+          @BackupOpenStatus = backupopenstatus
+          @BackupStatus = backupstatus
+          @FlowCreateTime = flowcreatetime
+          @FlowMsg = flowmsg
+          @FlowName = flowname
+          @FlowProgress = flowprogress
           @InstanceId = instanceid
           @InstanceState = instancestate
           @InstanceStateDesc = instancestatedesc
-          @BackupStatus = backupstatus
-          @BackupOpenStatus = backupopenstatus
-          @FlowCreateTime = flowcreatetime
-          @FlowName = flowname
-          @FlowProgress = flowprogress
-          @FlowMsg = flowmsg
           @ProcessName = processname
+          @RecoveryState = recoverystate
         end
 
         def deserialize(params)
+          @BackupOpenStatus = params['BackupOpenStatus']
+          @BackupStatus = params['BackupStatus']
+          @FlowCreateTime = params['FlowCreateTime']
+          @FlowMsg = params['FlowMsg']
+          @FlowName = params['FlowName']
+          @FlowProgress = params['FlowProgress']
           @InstanceId = params['InstanceId']
           @InstanceState = params['InstanceState']
           @InstanceStateDesc = params['InstanceStateDesc']
-          @BackupStatus = params['BackupStatus']
-          @BackupOpenStatus = params['BackupOpenStatus']
-          @FlowCreateTime = params['FlowCreateTime']
-          @FlowName = params['FlowName']
-          @FlowProgress = params['FlowProgress']
-          @FlowMsg = params['FlowMsg']
           @ProcessName = params['ProcessName']
+          @RecoveryState = params['RecoveryState']
         end
       end
 

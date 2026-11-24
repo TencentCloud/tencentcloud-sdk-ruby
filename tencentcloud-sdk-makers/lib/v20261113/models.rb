@@ -1617,10 +1617,12 @@ module TencentCloud
         # @param ModifiedOn: <p>更新时间</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ModifiedOn: String
+        # @param BuildMachine: <p>构建规格客户契约</p><p>枚举值：</p><ul><li>standard： 4C6G，默认档，所有套餐可用</li><li>enhanced： 8C14G，专业版及以上可用；低配套餐声明时按 standard 处理并提示升级</li></ul><p>默认值：standard</p>
+        # @type BuildMachine: String
 
-        attr_accessor :ProjectId, :Name, :Status, :ZoneId, :Area, :Provider, :Channel, :PresetDomain, :PresetDomainStatus, :RootDir, :OutputDir, :BuildCmd, :InstallCmd, :Framework, :NodejsVersion, :RepoUrl, :RepoOwner, :RepoName, :RepoBranch, :RepoPreBranches, :Regions, :EnvVars, :CustomDomains, :Deployment, :IsAgent, :AgentFramework, :IsTld, :CreatedOn, :ModifiedOn
+        attr_accessor :ProjectId, :Name, :Status, :ZoneId, :Area, :Provider, :Channel, :PresetDomain, :PresetDomainStatus, :RootDir, :OutputDir, :BuildCmd, :InstallCmd, :Framework, :NodejsVersion, :RepoUrl, :RepoOwner, :RepoName, :RepoBranch, :RepoPreBranches, :Regions, :EnvVars, :CustomDomains, :Deployment, :IsAgent, :AgentFramework, :IsTld, :CreatedOn, :ModifiedOn, :BuildMachine
 
-        def initialize(projectid=nil, name=nil, status=nil, zoneid=nil, area=nil, provider=nil, channel=nil, presetdomain=nil, presetdomainstatus=nil, rootdir=nil, outputdir=nil, buildcmd=nil, installcmd=nil, framework=nil, nodejsversion=nil, repourl=nil, repoowner=nil, reponame=nil, repobranch=nil, repoprebranches=nil, regions=nil, envvars=nil, customdomains=nil, deployment=nil, isagent=nil, agentframework=nil, istld=nil, createdon=nil, modifiedon=nil)
+        def initialize(projectid=nil, name=nil, status=nil, zoneid=nil, area=nil, provider=nil, channel=nil, presetdomain=nil, presetdomainstatus=nil, rootdir=nil, outputdir=nil, buildcmd=nil, installcmd=nil, framework=nil, nodejsversion=nil, repourl=nil, repoowner=nil, reponame=nil, repobranch=nil, repoprebranches=nil, regions=nil, envvars=nil, customdomains=nil, deployment=nil, isagent=nil, agentframework=nil, istld=nil, createdon=nil, modifiedon=nil, buildmachine=nil)
           @ProjectId = projectid
           @Name = name
           @Status = status
@@ -1650,6 +1652,7 @@ module TencentCloud
           @IsTld = istld
           @CreatedOn = createdon
           @ModifiedOn = modifiedon
+          @BuildMachine = buildmachine
         end
 
         def deserialize(params)
@@ -1702,6 +1705,7 @@ module TencentCloud
           @IsTld = params['IsTld']
           @CreatedOn = params['CreatedOn']
           @ModifiedOn = params['ModifiedOn']
+          @BuildMachine = params['BuildMachine']
         end
       end
 

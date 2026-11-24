@@ -365,6 +365,54 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 创建提示词模板
+
+        # @param request: Request instance for CreatePromptTemplate.
+        # @type request: :class:`Tencentcloud::adp::V20260520::CreatePromptTemplateRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::CreatePromptTemplateResponse`
+        def CreatePromptTemplate(request)
+          body = send_request('CreatePromptTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePromptTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 创建提示词模板标签
+
+        # @param request: Request instance for CreatePromptTemplateLabel.
+        # @type request: :class:`Tencentcloud::adp::V20260520::CreatePromptTemplateLabelRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::CreatePromptTemplateLabelResponse`
+        def CreatePromptTemplateLabel(request)
+          body = send_request('CreatePromptTemplateLabel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = CreatePromptTemplateLabelResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建 QA 生成任务
 
         # @param request: Request instance for CreateQAGenerationTask.
@@ -904,6 +952,54 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DeletePluginResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除提示词模板
+
+        # @param request: Request instance for DeletePromptTemplate.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DeletePromptTemplateRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DeletePromptTemplateResponse`
+        def DeletePromptTemplate(request)
+          body = send_request('DeletePromptTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePromptTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 删除提示词模板标签
+
+        # @param request: Request instance for DeletePromptTemplateLabel.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DeletePromptTemplateLabelRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DeletePromptTemplateLabelResponse`
+        def DeletePromptTemplateLabel(request)
+          body = send_request('DeletePromptTemplateLabel', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DeletePromptTemplateLabelResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -1950,6 +2046,102 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 查询提示词模板详情
+
+        # @param request: Request instance for DescribePromptTemplate.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribePromptTemplateRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribePromptTemplateResponse`
+        def DescribePromptTemplate(request)
+          body = send_request('DescribePromptTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePromptTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询提示词模板分类列表
+
+        # @param request: Request instance for DescribePromptTemplateCategoryList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribePromptTemplateCategoryListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribePromptTemplateCategoryListResponse`
+        def DescribePromptTemplateCategoryList(request)
+          body = send_request('DescribePromptTemplateCategoryList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePromptTemplateCategoryListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询提示词模板标签列表
+
+        # @param request: Request instance for DescribePromptTemplateLabelList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribePromptTemplateLabelListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribePromptTemplateLabelListResponse`
+        def DescribePromptTemplateLabelList(request)
+          body = send_request('DescribePromptTemplateLabelList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePromptTemplateLabelListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询提示词模板摘要列表
+
+        # @param request: Request instance for DescribePromptTemplateSummaryList.
+        # @type request: :class:`Tencentcloud::adp::V20260520::DescribePromptTemplateSummaryListRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::DescribePromptTemplateSummaryListResponse`
+        def DescribePromptTemplateSummaryList(request)
+          body = send_request('DescribePromptTemplateSummaryList', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribePromptTemplateSummaryListResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 查询 QA 详情
 
         # @param request: Request instance for DescribeQA.
@@ -2406,6 +2598,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 收藏提示词模板
+
+        # @param request: Request instance for FavoritePromptTemplate.
+        # @type request: :class:`Tencentcloud::adp::V20260520::FavoritePromptTemplateRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::FavoritePromptTemplateResponse`
+        def FavoritePromptTemplate(request)
+          body = send_request('FavoritePromptTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = FavoritePromptTemplateResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 收藏skill
 
         # @param request: Request instance for FavoriteSkill.
@@ -2776,6 +2992,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = ModifyPluginResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 修改提示词模板
+
+        # @param request: Request instance for ModifyPromptTemplate.
+        # @type request: :class:`Tencentcloud::adp::V20260520::ModifyPromptTemplateRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::ModifyPromptTemplateResponse`
+        def ModifyPromptTemplate(request)
+          body = send_request('ModifyPromptTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ModifyPromptTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else
@@ -3232,6 +3472,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = UnfavoritePluginResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 取消收藏提示词模板
+
+        # @param request: Request instance for UnfavoritePromptTemplate.
+        # @type request: :class:`Tencentcloud::adp::V20260520::UnfavoritePromptTemplateRequest`
+        # @rtype: :class:`Tencentcloud::adp::V20260520::UnfavoritePromptTemplateResponse`
+        def UnfavoritePromptTemplate(request)
+          body = send_request('UnfavoritePromptTemplate', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = UnfavoritePromptTemplateResponse.new
             model.deserialize(response['Response'])
             model
           else

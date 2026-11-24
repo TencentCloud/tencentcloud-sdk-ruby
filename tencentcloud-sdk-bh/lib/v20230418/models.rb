@@ -684,6 +684,134 @@ module TencentCloud
         end
       end
 
+      # ApproveTicket请求参数结构体
+      class ApproveTicketRequest < TencentCloud::Common::AbstractModel
+        # @param Id: 工单唯一id，数据库索引id
+        # @type Id: Integer
+        # @param Status: 2-审批通过，4-审批驳回
+        # @type Status: Integer
+        # @param ApproveDesc: 审批意见
+        # @type ApproveDesc: String
+        # @param ApplyTimeVersion: 申请时间戳，单位微妙
+        # @type ApplyTimeVersion: Integer
+        # @param StartTime: 审批权限工单时，设置的有效期开始时间，默认为当前时间
+        # @type StartTime: String
+        # @param EndTime: 审批权限工单时，设置的有效期的结束时间，默认有限期为1天
+        # @type EndTime: String
+        # @param AllowDiskRedirect: 是否开启磁盘映射
+        # @type AllowDiskRedirect: Boolean
+        # @param AllowClipFileUp: 是否开启剪贴板文件上行
+        # @type AllowClipFileUp: Boolean
+        # @param AllowClipFileDown: 是否开启剪贴板文件下行
+        # @type AllowClipFileDown: Boolean
+        # @param AllowClipTextUp: 是否开启剪贴板文本（含图片）上行
+        # @type AllowClipTextUp: Boolean
+        # @param AllowClipTextDown: 是否开启剪贴板文本（含图片）下行
+        # @type AllowClipTextDown: Boolean
+        # @param AllowFileUp: 是否开启 SFTP 文件上传
+        # @type AllowFileUp: Boolean
+        # @param MaxFileUpSize: 文件传输上传大小限制（预留参数，目前暂未使用）
+        # @type MaxFileUpSize: Integer
+        # @param AllowFileDown: 是否开启 SFTP 文件下载
+        # @type AllowFileDown: Boolean
+        # @param MaxFileDownSize: 文件传输下载大小限制（预留参数，目前暂未使用）
+        # @type MaxFileDownSize: Integer
+        # @param AllowDiskFileUp: 是否开启rdp磁盘映射文件上传
+        # @type AllowDiskFileUp: Boolean
+        # @param AllowDiskFileDown: 是否开启rdp磁盘映射文件下载
+        # @type AllowDiskFileDown: Boolean
+        # @param AllowShellFileUp: 是否开启rz sz文件上传
+        # @type AllowShellFileUp: Boolean
+        # @param AllowShellFileDown: 是否开启rz sz文件下载
+        # @type AllowShellFileDown: Boolean
+        # @param AllowFileDel: 是否开启 SFTP 文件删除
+        # @type AllowFileDel: Boolean
+        # @param AllowAccessCredential: 是否允许使用访问串，默认允许
+        # @type AllowAccessCredential: Boolean
+        # @param CmdTemplateIdSet: 关联的高危命令模板ID
+        # @type CmdTemplateIdSet: Array
+        # @param ACTemplateIdSet: 关联高危DB模板ID
+        # @type ACTemplateIdSet: Array
+        # @param DepartmentId: 部门id
+        # @type DepartmentId: String
+        # @param AllowKeyboardLogger: 是否允许键盘记录
+        # @type AllowKeyboardLogger: Boolean
+
+        attr_accessor :Id, :Status, :ApproveDesc, :ApplyTimeVersion, :StartTime, :EndTime, :AllowDiskRedirect, :AllowClipFileUp, :AllowClipFileDown, :AllowClipTextUp, :AllowClipTextDown, :AllowFileUp, :MaxFileUpSize, :AllowFileDown, :MaxFileDownSize, :AllowDiskFileUp, :AllowDiskFileDown, :AllowShellFileUp, :AllowShellFileDown, :AllowFileDel, :AllowAccessCredential, :CmdTemplateIdSet, :ACTemplateIdSet, :DepartmentId, :AllowKeyboardLogger
+
+        def initialize(id=nil, status=nil, approvedesc=nil, applytimeversion=nil, starttime=nil, endtime=nil, allowdiskredirect=nil, allowclipfileup=nil, allowclipfiledown=nil, allowcliptextup=nil, allowcliptextdown=nil, allowfileup=nil, maxfileupsize=nil, allowfiledown=nil, maxfiledownsize=nil, allowdiskfileup=nil, allowdiskfiledown=nil, allowshellfileup=nil, allowshellfiledown=nil, allowfiledel=nil, allowaccesscredential=nil, cmdtemplateidset=nil, actemplateidset=nil, departmentid=nil, allowkeyboardlogger=nil)
+          @Id = id
+          @Status = status
+          @ApproveDesc = approvedesc
+          @ApplyTimeVersion = applytimeversion
+          @StartTime = starttime
+          @EndTime = endtime
+          @AllowDiskRedirect = allowdiskredirect
+          @AllowClipFileUp = allowclipfileup
+          @AllowClipFileDown = allowclipfiledown
+          @AllowClipTextUp = allowcliptextup
+          @AllowClipTextDown = allowcliptextdown
+          @AllowFileUp = allowfileup
+          @MaxFileUpSize = maxfileupsize
+          @AllowFileDown = allowfiledown
+          @MaxFileDownSize = maxfiledownsize
+          @AllowDiskFileUp = allowdiskfileup
+          @AllowDiskFileDown = allowdiskfiledown
+          @AllowShellFileUp = allowshellfileup
+          @AllowShellFileDown = allowshellfiledown
+          @AllowFileDel = allowfiledel
+          @AllowAccessCredential = allowaccesscredential
+          @CmdTemplateIdSet = cmdtemplateidset
+          @ACTemplateIdSet = actemplateidset
+          @DepartmentId = departmentid
+          @AllowKeyboardLogger = allowkeyboardlogger
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @Status = params['Status']
+          @ApproveDesc = params['ApproveDesc']
+          @ApplyTimeVersion = params['ApplyTimeVersion']
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @AllowDiskRedirect = params['AllowDiskRedirect']
+          @AllowClipFileUp = params['AllowClipFileUp']
+          @AllowClipFileDown = params['AllowClipFileDown']
+          @AllowClipTextUp = params['AllowClipTextUp']
+          @AllowClipTextDown = params['AllowClipTextDown']
+          @AllowFileUp = params['AllowFileUp']
+          @MaxFileUpSize = params['MaxFileUpSize']
+          @AllowFileDown = params['AllowFileDown']
+          @MaxFileDownSize = params['MaxFileDownSize']
+          @AllowDiskFileUp = params['AllowDiskFileUp']
+          @AllowDiskFileDown = params['AllowDiskFileDown']
+          @AllowShellFileUp = params['AllowShellFileUp']
+          @AllowShellFileDown = params['AllowShellFileDown']
+          @AllowFileDel = params['AllowFileDel']
+          @AllowAccessCredential = params['AllowAccessCredential']
+          @CmdTemplateIdSet = params['CmdTemplateIdSet']
+          @ACTemplateIdSet = params['ACTemplateIdSet']
+          @DepartmentId = params['DepartmentId']
+          @AllowKeyboardLogger = params['AllowKeyboardLogger']
+        end
+      end
+
+      # ApproveTicket返回参数结构体
+      class ApproveTicketResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 资产同步标志
       class AssetSyncFlags < TencentCloud::Common::AbstractModel
         # @param RoleGranted: 是否已完成角色授权
@@ -1203,43 +1331,43 @@ module TencentCloud
 
       # 命令集合
       class Command < TencentCloud::Common::AbstractModel
-        # @param Cmd: 命令
+        # @param Cmd: <p>命令</p>
         # @type Cmd: String
-        # @param Time: 命令输入的时间
+        # @param Time: <p>命令输入的时间</p>
         # @type Time: String
-        # @param TimeOffset: 命令执行时间相对于所属会话开始时间的偏移量，单位ms
+        # @param TimeOffset: <p>命令执行时间相对于所属会话开始时间的偏移量，单位ms</p>
         # @type TimeOffset: Integer
-        # @param Action: 命令执行情况，1--允许，2--拒绝，3--确认
+        # @param Action: <p>命令执行情况，1--已放行，2--已阻断，3--确认</p>
         # @type Action: Integer
-        # @param Sid: 会话id
+        # @param Sid: <p>会话id</p>
         # @type Sid: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param Account: 设备account
+        # @param Account: <p>设备account</p>
         # @type Account: String
-        # @param InstanceId: 设备ip
+        # @param InstanceId: <p>设备ip</p>
         # @type InstanceId: String
-        # @param FromIp: source ip
+        # @param FromIp: <p>source ip</p>
         # @type FromIp: String
-        # @param SessTime: 该命令所属会话的会话开始时间
+        # @param SessTime: <p>该命令所属会话的会话开始时间</p>
         # @type SessTime: String
-        # @param SessionTime: 该命令所属会话的会话开始时间
+        # @param SessionTime: <p>该命令所属会话的会话开始时间</p>
         # @type SessionTime: String
-        # @param ConfirmTime: 复核时间
+        # @param ConfirmTime: <p>复核时间</p>
         # @type ConfirmTime: String
-        # @param UserDepartmentId: 用户部门id
+        # @param UserDepartmentId: <p>用户部门id</p>
         # @type UserDepartmentId: String
-        # @param UserDepartmentName: 用户部门name
+        # @param UserDepartmentName: <p>用户部门name</p>
         # @type UserDepartmentName: String
-        # @param DeviceDepartmentId: 设备部门id
+        # @param DeviceDepartmentId: <p>设备部门id</p>
         # @type DeviceDepartmentId: String
-        # @param DeviceDepartmentName: 设备部门name
+        # @param DeviceDepartmentName: <p>设备部门name</p>
         # @type DeviceDepartmentName: String
-        # @param Size: 会话大小
+        # @param Size: <p>会话大小</p>
         # @type Size: Integer
-        # @param SignValue: 签名值
+        # @param SignValue: <p>签名值</p>
         # @type SignValue: String
-        # @param DeviceKind: 资产类型
+        # @param DeviceKind: <p>资产类型</p>
         # @type DeviceKind: String
 
         attr_accessor :Cmd, :Time, :TimeOffset, :Action, :Sid, :UserName, :Account, :InstanceId, :FromIp, :SessTime, :SessionTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size, :SignValue, :DeviceKind
@@ -4279,6 +4407,91 @@ module TencentCloud
               sourcetype_tmp = SourceType.new
               sourcetype_tmp.deserialize(i)
               @SourceTypeSet << sourcetype_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeTickets请求参数结构体
+      class DescribeTicketsRequest < TencentCloud::Common::AbstractModel
+        # @param StatusSet: 状态：0待提交(草稿)，1待审批，2批准，3已执行，4驳回
+        # @type StatusSet: Array
+        # @param TicketType: 工单类型：0-运维工单，1-权限工单
+        # @type TicketType: String
+        # @param Filters: 过滤数组
+        # @type Filters: Array
+        # @param DeviceFilters: 资产过滤数组
+        # @type DeviceFilters: Array
+        # @param DepartmentId: 部门id
+        # @type DepartmentId: String
+        # @param Offset: 分页偏移位置，默认值为0
+        # @type Offset: Integer
+        # @param Limit: 每页条目数量，默认20，最大500
+        # @type Limit: Integer
+
+        attr_accessor :StatusSet, :TicketType, :Filters, :DeviceFilters, :DepartmentId, :Offset, :Limit
+
+        def initialize(statusset=nil, tickettype=nil, filters=nil, devicefilters=nil, departmentid=nil, offset=nil, limit=nil)
+          @StatusSet = statusset
+          @TicketType = tickettype
+          @Filters = filters
+          @DeviceFilters = devicefilters
+          @DepartmentId = departmentid
+          @Offset = offset
+          @Limit = limit
+        end
+
+        def deserialize(params)
+          @StatusSet = params['StatusSet']
+          @TicketType = params['TicketType']
+          unless params['Filters'].nil?
+            @Filters = []
+            params['Filters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @Filters << filter_tmp
+            end
+          end
+          unless params['DeviceFilters'].nil?
+            @DeviceFilters = []
+            params['DeviceFilters'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @DeviceFilters << filter_tmp
+            end
+          end
+          @DepartmentId = params['DepartmentId']
+          @Offset = params['Offset']
+          @Limit = params['Limit']
+        end
+      end
+
+      # DescribeTickets返回参数结构体
+      class DescribeTicketsResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: 运维工单总数
+        # @type TotalCount: Integer
+        # @param TicketSet: 运维工单列表
+        # @type TicketSet: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :TicketSet, :RequestId
+
+        def initialize(totalcount=nil, ticketset=nil, requestid=nil)
+          @TotalCount = totalcount
+          @TicketSet = ticketset
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['TicketSet'].nil?
+            @TicketSet = []
+            params['TicketSet'].each do |i|
+              ticket_tmp = Ticket.new
+              ticket_tmp.deserialize(i)
+              @TicketSet << ticket_tmp
             end
           end
           @RequestId = params['RequestId']
@@ -7553,18 +7766,17 @@ module TencentCloud
 
       # SearchCommandBySid请求参数结构体
       class SearchCommandBySidRequest < TencentCloud::Common::AbstractModel
-        # @param Sid: 会话Id
+        # @param Sid: <p>会话Id</p>
         # @type Sid: String
-        # @param Cmd: 命令，可模糊搜索
+        # @param Cmd: <p>命令，可模糊搜索</p>
         # @type Cmd: String
-        # @param Encoding: Cmd字段是前端传值是否进行base64.
-        # 0:否，1：是
+        # @param Encoding: <p>Cmd字段是前端传值是否进行base64.<br>0:否，1：是</p>
         # @type Encoding: Integer
-        # @param Offset: 偏移量
+        # @param Offset: <p>偏移量</p>
         # @type Offset: Integer
-        # @param Limit: 每页容量，默认20，最大200
+        # @param Limit: <p>每页容量，默认20，最大200</p>
         # @type Limit: Integer
-        # @param AuditAction: 根据拦截状态进行过滤
+        # @param AuditAction: <p>根据拦截状态进行过滤，1-已放行，2-已阻断，3-复核</p>
         # @type AuditAction: Array
 
         attr_accessor :Sid, :Cmd, :Encoding, :Offset, :Limit, :AuditAction
@@ -7590,9 +7802,9 @@ module TencentCloud
 
       # SearchCommandBySid返回参数结构体
       class SearchCommandBySidResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总记录数
+        # @param TotalCount: <p>总记录数</p>
         # @type TotalCount: Integer
-        # @param CommandSet: 命令列表
+        # @param CommandSet: <p>命令列表</p>
         # @type CommandSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7621,32 +7833,31 @@ module TencentCloud
 
       # SearchCommand请求参数结构体
       class SearchCommandRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 搜索区间的开始时间
+        # @param StartTime: <p>搜索区间的开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 搜索区间的结束时间，不填默认为开始时间到现在为止
+        # @param EndTime: <p>搜索区间的结束时间，不填默认为开始时间到现在为止</p>
         # @type EndTime: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param RealName: 姓名
+        # @param RealName: <p>姓名</p>
         # @type RealName: String
-        # @param InstanceId: 资产实例ID
+        # @param InstanceId: <p>资产实例ID</p>
         # @type InstanceId: String
-        # @param DeviceName: 资产名称
+        # @param DeviceName: <p>资产名称</p>
         # @type DeviceName: String
-        # @param PublicIp: 资产的公网IP
+        # @param PublicIp: <p>资产的公网IP</p>
         # @type PublicIp: String
-        # @param PrivateIp: 资产的内网IP
+        # @param PrivateIp: <p>资产的内网IP</p>
         # @type PrivateIp: String
-        # @param Cmd: 执行的命令
+        # @param Cmd: <p>执行的命令</p>
         # @type Cmd: String
-        # @param Encoding: Cmd字段是前端传值是否进行base64.
-        # 0:否，1：是
+        # @param Encoding: <p>Cmd字段是前端传值是否进行base64.<br>0:否，1：是</p>
         # @type Encoding: Integer
-        # @param AuditAction: 根据拦截状态进行过滤：1 - 已执行，2 - 被阻断
+        # @param AuditAction: <p>根据拦截状态进行过滤：1 - 已放行，2 - 已阻断</p>
         # @type AuditAction: Array
-        # @param Limit: 每页容量，默认20，最大200
+        # @param Limit: <p>每页容量，默认20，最大200</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移位置，默认值为0
+        # @param Offset: <p>分页偏移位置，默认值为0</p>
         # @type Offset: Integer
 
         attr_accessor :StartTime, :EndTime, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Encoding, :AuditAction, :Limit, :Offset
@@ -7686,9 +7897,9 @@ module TencentCloud
 
       # SearchCommand返回参数结构体
       class SearchCommandResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 总记录数
+        # @param TotalCount: <p>总记录数</p>
         # @type TotalCount: Integer
-        # @param Commands: 命令列表
+        # @param Commands: <p>命令列表</p>
         # @type Commands: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7717,51 +7928,51 @@ module TencentCloud
 
       # 命令执行检索结果
       class SearchCommandResult < TencentCloud::Common::AbstractModel
-        # @param Time: 命令输入的时间
+        # @param Time: <p>命令输入的时间</p>
         # @type Time: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param RealName: 姓名
+        # @param RealName: <p>姓名</p>
         # @type RealName: String
-        # @param InstanceId: 资产ID
+        # @param InstanceId: <p>资产ID</p>
         # @type InstanceId: String
-        # @param DeviceName: 资产名称
+        # @param DeviceName: <p>资产名称</p>
         # @type DeviceName: String
-        # @param PublicIp: 资产公网IP
+        # @param PublicIp: <p>资产公网IP</p>
         # @type PublicIp: String
-        # @param PrivateIp: 资产内网IP
+        # @param PrivateIp: <p>资产内网IP</p>
         # @type PrivateIp: String
-        # @param Cmd: 命令
+        # @param Cmd: <p>命令</p>
         # @type Cmd: String
-        # @param Action: 命令执行情况，1--允许，2--拒绝
+        # @param Action: <p>命令执行情况，1--已放行，2--已阻断</p>
         # @type Action: Integer
-        # @param Sid: 命令所属的会话ID
+        # @param Sid: <p>命令所属的会话ID</p>
         # @type Sid: String
-        # @param TimeOffset: 命令执行时间相对于所属会话开始时间的偏移量，单位ms
+        # @param TimeOffset: <p>命令执行时间相对于所属会话开始时间的偏移量，单位ms</p>
         # @type TimeOffset: Integer
-        # @param Account: 账号
+        # @param Account: <p>账号</p>
         # @type Account: String
-        # @param FromIp: source ip
+        # @param FromIp: <p>source ip</p>
         # @type FromIp: String
-        # @param SessionTime: 该命令所属会话的会话开始时间
+        # @param SessionTime: <p>该命令所属会话的会话开始时间</p>
         # @type SessionTime: String
-        # @param SessTime: 该命令所属会话的会话开始时间（使用SessionTime）
+        # @param SessTime: <p>该命令所属会话的会话开始时间（使用SessionTime）</p>
         # @type SessTime: String
-        # @param ConfirmTime: 复核时间
+        # @param ConfirmTime: <p>复核时间</p>
         # @type ConfirmTime: String
-        # @param UserDepartmentId: 部门id
+        # @param UserDepartmentId: <p>部门id</p>
         # @type UserDepartmentId: String
-        # @param UserDepartmentName: 用户部门名称
+        # @param UserDepartmentName: <p>用户部门名称</p>
         # @type UserDepartmentName: String
-        # @param DeviceDepartmentId: 设备部门id
+        # @param DeviceDepartmentId: <p>设备部门id</p>
         # @type DeviceDepartmentId: String
-        # @param DeviceDepartmentName: 设备部门名称
+        # @param DeviceDepartmentName: <p>设备部门名称</p>
         # @type DeviceDepartmentName: String
-        # @param Size: 会话大小
+        # @param Size: <p>会话大小</p>
         # @type Size: Integer
-        # @param SignValue: 签名值
+        # @param SignValue: <p>签名值</p>
         # @type SignValue: String
-        # @param DeviceKind: 资产类型
+        # @param DeviceKind: <p>资产类型</p>
         # @type DeviceKind: String
 
         attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Cmd, :Action, :Sid, :TimeOffset, :Account, :FromIp, :SessionTime, :SessTime, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :Size, :SignValue, :DeviceKind
@@ -7821,21 +8032,21 @@ module TencentCloud
 
       # SearchFileBySid请求参数结构体
       class SearchFileBySidRequest < TencentCloud::Common::AbstractModel
-        # @param Sid: 若入参为Id，则其他入参字段不作为搜索依据，仅按照Id来搜索会话
+        # @param Sid: <p>若入参为Id，则其他入参字段不作为搜索依据，仅按照Id来搜索会话</p>
         # @type Sid: String
-        # @param AuditLog: 是否创建审计日志,通过查看按钮调用时为true,其他为false
+        # @param AuditLog: <p>是否创建审计日志,通过查看按钮调用时为true,其他为false</p>
         # @type AuditLog: Boolean
-        # @param Limit: 分页的页内记录数，默认为20，最大200
+        # @param Limit: <p>分页的页内记录数，默认为20，最大200</p>
         # @type Limit: Integer
-        # @param FileName: 可填写路径名或文件名
+        # @param FileName: <p>可填写路径名或文件名</p>
         # @type FileName: String
-        # @param Offset: 分页用偏移量
+        # @param Offset: <p>分页用偏移量</p>
         # @type Offset: Integer
-        # @param AuditAction: 1-已执行，  2-被阻断
+        # @param AuditAction: <p>1-已放行，  2-已阻断</p>
         # @type AuditAction: Integer
-        # @param AuditActionSet: 1-已执行，  2-被阻断
+        # @param AuditActionSet: <p>1-已放行，  2-已阻断</p>
         # @type AuditActionSet: Array
-        # @param TypeFilters: 以Protocol和Method为条件查询
+        # @param TypeFilters: <p>以Protocol和Method为条件查询</p>
         # @type TypeFilters: Array
 
         attr_accessor :Sid, :AuditLog, :Limit, :FileName, :Offset, :AuditAction, :AuditActionSet, :TypeFilters
@@ -7872,9 +8083,9 @@ module TencentCloud
 
       # SearchFileBySid返回参数结构体
       class SearchFileBySidResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 记录数
+        # @param TotalCount: <p>记录数</p>
         # @type TotalCount: Integer
-        # @param SearchFileBySidResult: 某会话的文件操作列表
+        # @param SearchFileBySidResult: <p>某会话的文件操作列表</p>
         # @type SearchFileBySidResult: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -7903,41 +8114,41 @@ module TencentCloud
 
       # 文件操作搜索结果
       class SearchFileBySidResult < TencentCloud::Common::AbstractModel
-        # @param Sid: 会话Id
+        # @param Sid: <p>会话Id</p>
         # @type Sid: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param InstanceId: 实例Id
+        # @param InstanceId: <p>实例Id</p>
         # @type InstanceId: String
-        # @param Account: 资产账号
+        # @param Account: <p>资产账号</p>
         # @type Account: String
-        # @param FromIp: 来源Ip
+        # @param FromIp: <p>来源Ip</p>
         # @type FromIp: String
-        # @param Time: 文件操作时间
+        # @param Time: <p>文件操作时间</p>
         # @type Time: String
-        # @param Method: 1-上传文件 2-下载文件 3-删除文件 4-移动文件 5-重命名文件 6-新建文件夹 7-移动文件夹 8-重命名文件夹 9-删除文件夹
+        # @param Method: <p>1-上传文件 2-下载文件 3-删除文件 4-移动文件 5-重命名文件 6-新建文件夹 7-移动文件夹 8-重命名文件夹 9-删除文件夹</p>
         # @type Method: Integer
-        # @param Protocol: 文件传输协议
+        # @param Protocol: <p>文件传输协议</p>
         # @type Protocol: String
-        # @param FileCurr: method为上传、下载、删除时文件在服务器上的位置, 或重命名、移动文件前文件的位置
+        # @param FileCurr: <p>method为上传、下载、删除时文件在服务器上的位置, 或重命名、移动文件前文件的位置</p>
         # @type FileCurr: String
-        # @param FileNew: method为重命名、移动文件时代表移动后的新位置.其他情况为null
+        # @param FileNew: <p>method为重命名、移动文件时代表移动后的新位置.其他情况为null</p>
         # @type FileNew: String
-        # @param Size: method为上传文件、下载文件、删除文件时显示文件大小。其他情况为null
+        # @param Size: <p>method为上传文件、下载文件、删除文件时显示文件大小。其他情况为null</p>
         # @type Size: Integer
-        # @param Action: 堡垒机拦截情况, 1-已执行，  2-被阻断
+        # @param Action: <p>堡垒机拦截情况, 1-已放行，  2-已阻断</p>
         # @type Action: Integer
-        # @param ConfirmTime: 复核时间，当Action是3时，需有复核时间
+        # @param ConfirmTime: <p>复核时间，当Action是3时，需有复核时间</p>
         # @type ConfirmTime: String
-        # @param UserDepartmentId: 用户部门Id
+        # @param UserDepartmentId: <p>用户部门Id</p>
         # @type UserDepartmentId: String
-        # @param UserDepartmentName: 用户部门name
+        # @param UserDepartmentName: <p>用户部门name</p>
         # @type UserDepartmentName: String
-        # @param DeviceDepartmentId: 设备部门id
+        # @param DeviceDepartmentId: <p>设备部门id</p>
         # @type DeviceDepartmentId: String
-        # @param DeviceDepartmentName: 设备部门name
+        # @param DeviceDepartmentName: <p>设备部门name</p>
         # @type DeviceDepartmentName: String
-        # @param SignValue: 签名值
+        # @param SignValue: <p>签名值</p>
         # @type SignValue: String
 
         attr_accessor :Sid, :UserName, :InstanceId, :Account, :FromIp, :Time, :Method, :Protocol, :FileCurr, :FileNew, :Size, :Action, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :SignValue
@@ -7987,31 +8198,31 @@ module TencentCloud
 
       # SearchFile请求参数结构体
       class SearchFileRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 查询开始时间
+        # @param StartTime: <p>查询开始时间</p>
         # @type StartTime: String
-        # @param EndTime: 查询结束时间
+        # @param EndTime: <p>查询结束时间</p>
         # @type EndTime: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param RealName: 姓名
+        # @param RealName: <p>姓名</p>
         # @type RealName: String
-        # @param InstanceId: 资产ID
+        # @param InstanceId: <p>资产ID</p>
         # @type InstanceId: String
-        # @param DeviceName: 资产名称
+        # @param DeviceName: <p>资产名称</p>
         # @type DeviceName: String
-        # @param PublicIp: 资产公网IP
+        # @param PublicIp: <p>资产公网IP</p>
         # @type PublicIp: String
-        # @param PrivateIp: 资产内网IP
+        # @param PrivateIp: <p>资产内网IP</p>
         # @type PrivateIp: String
-        # @param Method: 操作类型：1 - 文件上传，2 - 文件下载，3 - 文件删除，4 - 文件(夹)移动，5 - 文件(夹)重命名，6 - 新建文件夹，9 - 删除文件夹
+        # @param Method: <p>操作类型：1 - 文件上传，2 - 文件下载，3 - 文件删除，4 - 文件(夹)移动，5 - 文件(夹)重命名，6 - 新建文件夹，9 - 删除文件夹</p>
         # @type Method: Array
-        # @param FileName: 可填写路径名或文件（夹）名
+        # @param FileName: <p>可填写路径名或文件（夹）名</p>
         # @type FileName: String
-        # @param AuditAction: 1-已执行，  2-被阻断
+        # @param AuditAction: <p>1-已放行，  2-已阻断</p>
         # @type AuditAction: Array
-        # @param Limit: 分页的页内记录数，默认为20，最大200
+        # @param Limit: <p>分页的页内记录数，默认为20，最大200</p>
         # @type Limit: Integer
-        # @param Offset: 分页偏移位置，默认值为0
+        # @param Offset: <p>分页偏移位置，默认值为0</p>
         # @type Offset: Integer
 
         attr_accessor :StartTime, :EndTime, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Method, :FileName, :AuditAction, :Limit, :Offset
@@ -8051,9 +8262,9 @@ module TencentCloud
 
       # SearchFile返回参数结构体
       class SearchFileResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 记录数
+        # @param TotalCount: <p>记录数</p>
         # @type TotalCount: Integer
-        # @param Files: 文件操作列表
+        # @param Files: <p>文件操作列表</p>
         # @type Files: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -8082,49 +8293,49 @@ module TencentCloud
 
       # 文件传输检索结果
       class SearchFileResult < TencentCloud::Common::AbstractModel
-        # @param Time: 文件传输的时间
+        # @param Time: <p>文件传输的时间</p>
         # @type Time: String
-        # @param UserName: 用户名
+        # @param UserName: <p>用户名</p>
         # @type UserName: String
-        # @param RealName: 姓名
+        # @param RealName: <p>姓名</p>
         # @type RealName: String
-        # @param InstanceId: 资产ID
+        # @param InstanceId: <p>资产ID</p>
         # @type InstanceId: String
-        # @param DeviceName: 资产名称
+        # @param DeviceName: <p>资产名称</p>
         # @type DeviceName: String
-        # @param PublicIp: 资产公网IP
+        # @param PublicIp: <p>资产公网IP</p>
         # @type PublicIp: String
-        # @param PrivateIp: 资产内网IP
+        # @param PrivateIp: <p>资产内网IP</p>
         # @type PrivateIp: String
-        # @param Action: 操作结果：1 - 已执行，2 - 已阻断
+        # @param Action: <p>操作结果：1 - 已放行，2 - 已阻断</p>
         # @type Action: Integer
-        # @param Method: 操作类型：1 - 文件上传，2 - 文件下载，3 - 文件删除，4 - 文件(夹)移动，5 - 文件(夹)重命名，6 - 新建文件夹，9 - 删除文件夹
+        # @param Method: <p>操作类型：1 - 文件上传，2 - 文件下载，3 - 文件删除，4 - 文件(夹)移动，5 - 文件(夹)重命名，6 - 新建文件夹，9 - 删除文件夹</p>
         # @type Method: Integer
-        # @param FileCurr: 下载的文件（夹）路径及名称
+        # @param FileCurr: <p>下载的文件（夹）路径及名称</p>
         # @type FileCurr: String
-        # @param FileNew: 上传或新建文件（夹）路径及名称
+        # @param FileNew: <p>上传或新建文件（夹）路径及名称</p>
         # @type FileNew: String
-        # @param Sid: 会话id
+        # @param Sid: <p>会话id</p>
         # @type Sid: String
-        # @param Account: 账号
+        # @param Account: <p>账号</p>
         # @type Account: String
-        # @param FromIp: 来源id
+        # @param FromIp: <p>来源id</p>
         # @type FromIp: String
-        # @param Protocol: 协议
+        # @param Protocol: <p>协议</p>
         # @type Protocol: String
-        # @param Size: 文件大小
+        # @param Size: <p>文件大小</p>
         # @type Size: Integer
-        # @param ConfirmTime: 复核时间
+        # @param ConfirmTime: <p>复核时间</p>
         # @type ConfirmTime: String
-        # @param UserDepartmentId: 用户部门id
+        # @param UserDepartmentId: <p>用户部门id</p>
         # @type UserDepartmentId: String
-        # @param UserDepartmentName: 用户部门name
+        # @param UserDepartmentName: <p>用户部门name</p>
         # @type UserDepartmentName: String
-        # @param DeviceDepartmentId: 设备部门id
+        # @param DeviceDepartmentId: <p>设备部门id</p>
         # @type DeviceDepartmentId: String
-        # @param DeviceDepartmentName: 设备部门name
+        # @param DeviceDepartmentName: <p>设备部门name</p>
         # @type DeviceDepartmentName: String
-        # @param SignValue: 签名值
+        # @param SignValue: <p>签名值</p>
         # @type SignValue: String
 
         attr_accessor :Time, :UserName, :RealName, :InstanceId, :DeviceName, :PublicIp, :PrivateIp, :Action, :Method, :FileCurr, :FileNew, :Sid, :Account, :FromIp, :Protocol, :Size, :ConfirmTime, :UserDepartmentId, :UserDepartmentName, :DeviceDepartmentId, :DeviceDepartmentName, :SignValue
@@ -8985,6 +9196,120 @@ module TencentCloud
           @StartTime = params['StartTime']
           @EndTime = params['EndTime']
           @Category = params['Category']
+        end
+      end
+
+      # 运维工单
+      class Ticket < TencentCloud::Common::AbstractModel
+        # @param Id: <p>数据库主键</p>
+        # @type Id: Integer
+        # @param TicketId: <p>工单ID,id-s3ed4r5e</p>
+        # @type TicketId: String
+        # @param TicketType: <p>工单类型，0-运维访问工单，1-权限工单, 2-数据库变更工单,3-自动执行命令/脚本工单</p>
+        # @type TicketType: Integer
+        # @param Acl: <p>acl权限</p>
+        # @type Acl: :class:`Tencentcloud::Bh.v20230418.models.Acl`
+        # @param StartTime: <p>运维开始时间</p>
+        # @type StartTime: String
+        # @param EndTime: <p>运维结束时间</p>
+        # @type EndTime: String
+        # @param Status: <p>工单状态，0待提交(草稿)，1待审批，2批准，3已执行，4驳回,5删除，6过期</p>
+        # @type Status: Integer
+        # @param ApplyTime: <p>申请时间</p>
+        # @type ApplyTime: String
+        # @param ApplyUser: <p>申请人用户Id</p>
+        # @type ApplyUser: Integer
+        # @param ApproveUser: <p>审批人uin</p>
+        # @type ApproveUser: String
+        # @param ApproveDesc: <p>工单审批备注</p>
+        # @type ApproveDesc: String
+        # @param AclId: <p>acl权限Id</p>
+        # @type AclId: Integer
+        # @param ApproveUserSet: <p>待审批状态下，可以审批的人</p>
+        # @type ApproveUserSet: Array
+        # @param ApproveUserInfoSet: <p>审批人信息</p>
+        # @type ApproveUserInfoSet: Array
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: String
+        # @param Name: <p>申请权限</p>
+        # @type Name: String
+        # @param ApproveTime: <p>审批时间</p>
+        # @type ApproveTime: String
+        # @param DepartmentId: <p>部门ID</p>
+        # @type DepartmentId: String
+        # @param DepartmentName: <p>部门名称</p>
+        # @type DepartmentName: String
+        # @param DepartmentSequence: <p>部门Sequence</p>
+        # @type DepartmentSequence: Integer
+        # @param ApplyUserName: <p>申请人用户名</p>
+        # @type ApplyUserName: String
+        # @param ApplyRealName: <p>申请人真实姓名</p>
+        # @type ApplyRealName: String
+        # @param ApplyTimeVersion: <p>申请时间戳，微妙</p>
+        # @type ApplyTimeVersion: Integer
+
+        attr_accessor :Id, :TicketId, :TicketType, :Acl, :StartTime, :EndTime, :Status, :ApplyTime, :ApplyUser, :ApproveUser, :ApproveDesc, :AclId, :ApproveUserSet, :ApproveUserInfoSet, :UpdateTime, :Name, :ApproveTime, :DepartmentId, :DepartmentName, :DepartmentSequence, :ApplyUserName, :ApplyRealName, :ApplyTimeVersion
+
+        def initialize(id=nil, ticketid=nil, tickettype=nil, acl=nil, starttime=nil, endtime=nil, status=nil, applytime=nil, applyuser=nil, approveuser=nil, approvedesc=nil, aclid=nil, approveuserset=nil, approveuserinfoset=nil, updatetime=nil, name=nil, approvetime=nil, departmentid=nil, departmentname=nil, departmentsequence=nil, applyusername=nil, applyrealname=nil, applytimeversion=nil)
+          @Id = id
+          @TicketId = ticketid
+          @TicketType = tickettype
+          @Acl = acl
+          @StartTime = starttime
+          @EndTime = endtime
+          @Status = status
+          @ApplyTime = applytime
+          @ApplyUser = applyuser
+          @ApproveUser = approveuser
+          @ApproveDesc = approvedesc
+          @AclId = aclid
+          @ApproveUserSet = approveuserset
+          @ApproveUserInfoSet = approveuserinfoset
+          @UpdateTime = updatetime
+          @Name = name
+          @ApproveTime = approvetime
+          @DepartmentId = departmentid
+          @DepartmentName = departmentname
+          @DepartmentSequence = departmentsequence
+          @ApplyUserName = applyusername
+          @ApplyRealName = applyrealname
+          @ApplyTimeVersion = applytimeversion
+        end
+
+        def deserialize(params)
+          @Id = params['Id']
+          @TicketId = params['TicketId']
+          @TicketType = params['TicketType']
+          unless params['Acl'].nil?
+            @Acl = Acl.new
+            @Acl.deserialize(params['Acl'])
+          end
+          @StartTime = params['StartTime']
+          @EndTime = params['EndTime']
+          @Status = params['Status']
+          @ApplyTime = params['ApplyTime']
+          @ApplyUser = params['ApplyUser']
+          @ApproveUser = params['ApproveUser']
+          @ApproveDesc = params['ApproveDesc']
+          @AclId = params['AclId']
+          @ApproveUserSet = params['ApproveUserSet']
+          unless params['ApproveUserInfoSet'].nil?
+            @ApproveUserInfoSet = []
+            params['ApproveUserInfoSet'].each do |i|
+              departmentmanageruser_tmp = DepartmentManagerUser.new
+              departmentmanageruser_tmp.deserialize(i)
+              @ApproveUserInfoSet << departmentmanageruser_tmp
+            end
+          end
+          @UpdateTime = params['UpdateTime']
+          @Name = params['Name']
+          @ApproveTime = params['ApproveTime']
+          @DepartmentId = params['DepartmentId']
+          @DepartmentName = params['DepartmentName']
+          @DepartmentSequence = params['DepartmentSequence']
+          @ApplyUserName = params['ApplyUserName']
+          @ApplyRealName = params['ApplyRealName']
+          @ApplyTimeVersion = params['ApplyTimeVersion']
         end
       end
 

@@ -45064,10 +45064,13 @@ module TencentCloud
         # @param Privilege: <p>用户对该资源的最高权限</p><p>枚举值：</p><ul><li>NO_PERMISSIONS： 无权限</li><li>CAN_VIEW： 只读权限</li><li>CAN_MANAGE： 管理权限</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type Privilege: String
+        # @param WorkflowLabels: <p>工作流标签列表，仅工作流调度模式返回</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WorkflowLabels: Array
 
-        attr_accessor :WorkflowId, :Owner, :OwnerId, :ProjectId, :ProjectIdent, :ProjectName, :WorkflowDesc, :WorkflowName, :FolderId, :SparkParams, :Tasks, :Links, :Params, :WorkflowType, :UpdateUser, :UpdateUserId, :BundleId, :BundleInfo, :ExecuteUserUin, :ExecuteUserName, :Privilege
+        attr_accessor :WorkflowId, :Owner, :OwnerId, :ProjectId, :ProjectIdent, :ProjectName, :WorkflowDesc, :WorkflowName, :FolderId, :SparkParams, :Tasks, :Links, :Params, :WorkflowType, :UpdateUser, :UpdateUserId, :BundleId, :BundleInfo, :ExecuteUserUin, :ExecuteUserName, :Privilege, :WorkflowLabels
 
-        def initialize(workflowid=nil, owner=nil, ownerid=nil, projectid=nil, projectident=nil, projectname=nil, workflowdesc=nil, workflowname=nil, folderid=nil, sparkparams=nil, tasks=nil, links=nil, params=nil, workflowtype=nil, updateuser=nil, updateuserid=nil, bundleid=nil, bundleinfo=nil, executeuseruin=nil, executeusername=nil, privilege=nil)
+        def initialize(workflowid=nil, owner=nil, ownerid=nil, projectid=nil, projectident=nil, projectname=nil, workflowdesc=nil, workflowname=nil, folderid=nil, sparkparams=nil, tasks=nil, links=nil, params=nil, workflowtype=nil, updateuser=nil, updateuserid=nil, bundleid=nil, bundleinfo=nil, executeuseruin=nil, executeusername=nil, privilege=nil, workflowlabels=nil)
           @WorkflowId = workflowid
           @Owner = owner
           @OwnerId = ownerid
@@ -45089,6 +45092,7 @@ module TencentCloud
           @ExecuteUserUin = executeuseruin
           @ExecuteUserName = executeusername
           @Privilege = privilege
+          @WorkflowLabels = workflowlabels
         end
 
         def deserialize(params)
@@ -45134,6 +45138,14 @@ module TencentCloud
           @ExecuteUserUin = params['ExecuteUserUin']
           @ExecuteUserName = params['ExecuteUserName']
           @Privilege = params['Privilege']
+          unless params['WorkflowLabels'].nil?
+            @WorkflowLabels = []
+            params['WorkflowLabels'].each do |i|
+              workflowlabel_tmp = WorkflowLabel.new
+              workflowlabel_tmp.deserialize(i)
+              @WorkflowLabels << workflowlabel_tmp
+            end
+          end
         end
       end
 
@@ -45273,6 +45285,38 @@ module TencentCloud
               @Items << workflowextopsdto_tmp
             end
           end
+        end
+      end
+
+      # 工作流标签（K-V），标签字典与数据资产标签一致
+      class WorkflowLabel < TencentCloud::Common::AbstractModel
+        # @param LabelId: <p>标签ID，入参时必填</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelId: Integer
+        # @param LabelName: <p>标签名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelName: String
+        # @param LabelValueId: <p>标签值ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelValueId: Integer
+        # @param LabelValue: <p>标签值名称</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type LabelValue: String
+
+        attr_accessor :LabelId, :LabelName, :LabelValueId, :LabelValue
+
+        def initialize(labelid=nil, labelname=nil, labelvalueid=nil, labelvalue=nil)
+          @LabelId = labelid
+          @LabelName = labelname
+          @LabelValueId = labelvalueid
+          @LabelValue = labelvalue
+        end
+
+        def deserialize(params)
+          @LabelId = params['LabelId']
+          @LabelName = params['LabelName']
+          @LabelValueId = params['LabelValueId']
+          @LabelValue = params['LabelValue']
         end
       end
 

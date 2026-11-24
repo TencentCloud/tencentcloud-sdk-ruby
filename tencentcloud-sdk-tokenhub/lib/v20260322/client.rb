@@ -55,9 +55,7 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
-        # 创建推理服务。
-
-        # 创建一个在线推理服务，创建成功后返回推理服务 ID。
+        # 创建推理服务，并可指定所属企业空间。不传 WorkspaceId 时，推理服务会创建在账号默认空间。
 
         # @param request: Request instance for CreateEndpoint.
         # @type request: :class:`Tencentcloud::tokenhub::V20260322::CreateEndpointRequest`

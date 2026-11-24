@@ -2493,16 +2493,20 @@ module TencentCloud
 
       # DescribeFinanceCloudRoomUsage返回参数结构体
       class DescribeFinanceCloudRoomUsageResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>房间维度用量数据，csv 格式，单位秒。表头固定为 RoomId,Duration。</p>
+        # @type Data: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Data, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(data=nil, requestid=nil)
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          @Data = params['Data']
           @RequestId = params['RequestId']
         end
       end
@@ -5657,9 +5661,7 @@ module TencentCloud
         # @type ModerationSupplierParam: :class:`Tencentcloud::Trtc.v20190722.models.ModerationSupplierParam`
         # @param SaveModerationFile: <p>是否保存文件:  0不保存文件 1保存所有文件 2仅保存命中文件</p>
         # @type SaveModerationFile: Integer
-        # @param CallbackAllResults: <p>是否回调所有内容理解结果:
-        # 0 默认回调所有结果
-        # 1 仅回调命中结果</p>
+        # @param CallbackAllResults: <p>是否回调所有内容理解结果: 0 默认回调所有结果 1 仅回调命中结果</p>
         # @type CallbackAllResults: Integer
         # @param SubscribeStreamUserIds: <p>指定订阅流白名单或者黑名单。</p>
         # @type SubscribeStreamUserIds: :class:`Tencentcloud::Trtc.v20190722.models.SubscribeModerationUserIds`

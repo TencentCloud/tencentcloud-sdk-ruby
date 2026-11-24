@@ -101,6 +101,30 @@ module TencentCloud
           raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
         end
 
+        # 审批工单
+
+        # @param request: Request instance for ApproveTicket.
+        # @type request: :class:`Tencentcloud::bh::V20230418::ApproveTicketRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::ApproveTicketResponse`
+        def ApproveTicket(request)
+          body = send_request('ApproveTicket', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = ApproveTicketResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 绑定容器账号凭据
 
         # @param request: Request instance for BindDeviceAccountKubeconfig.
@@ -1407,6 +1431,30 @@ module TencentCloud
           response = JSON.parse(body)
           if response['Response'].key?('Error') == false
             model = DescribeSourceTypesResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
+        # 查询运维工单列表
+
+        # @param request: Request instance for DescribeTickets.
+        # @type request: :class:`Tencentcloud::bh::V20230418::DescribeTicketsRequest`
+        # @rtype: :class:`Tencentcloud::bh::V20230418::DescribeTicketsResponse`
+        def DescribeTickets(request)
+          body = send_request('DescribeTickets', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = DescribeTicketsResponse.new
             model.deserialize(response['Response'])
             model
           else

@@ -1980,31 +1980,37 @@ module TencentCloud
 
       # 模型配置
       class AppModelConfig < TencentCloud::Common::AbstractModel
-        # @param AiOptimizeModel: AI一键优化模型
+        # @param AiOptimizeModel: <p>AI一键优化模型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AiOptimizeModel: :class:`Tencentcloud::Adp.v20260520.models.AIOptimizeModel`
-        # @param FileParseModel: 实时文件解析模型
+        # @param FileParseModel: <p>实时文件解析模型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type FileParseModel: :class:`Tencentcloud::Adp.v20260520.models.FileParseModel`
-        # @param GenerateModel: 生成模型配置
+        # @param GenerateModel: <p>生成模型配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type GenerateModel: :class:`Tencentcloud::Adp.v20260520.models.GenerateModel`
-        # @param MultiModalQaModel: 多模态问答模型
+        # @param MultiModalQaModel: <p>多模态问答模型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MultiModalQaModel: :class:`Tencentcloud::Adp.v20260520.models.MultiModalQAModel`
-        # @param MultiModalUnderstandingModel: 多模态理解模型
+        # @param MultiModalUnderstandingModel: <p>多模态理解模型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type MultiModalUnderstandingModel: :class:`Tencentcloud::Adp.v20260520.models.MultiModalUnderstandingModel`
-        # @param PromptRewriteModel: Prompt改写模型
+        # @param PromptRewriteModel: <p>Prompt改写模型</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PromptRewriteModel: :class:`Tencentcloud::Adp.v20260520.models.PromptRewriteModel`
-        # @param ThinkModel: 思考模型配置
+        # @param ThinkModel: <p>思考模型配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ThinkModel: :class:`Tencentcloud::Adp.v20260520.models.ThinkModel`
+        # @param FileSplitModel: <p>实时文档切分模型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type FileSplitModel: :class:`Tencentcloud::Adp.v20260520.models.FileSplitModel`
+        # @param HeaderExtractModel: <p>表头拆分模型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type HeaderExtractModel: :class:`Tencentcloud::Adp.v20260520.models.HeaderExtractModel`
 
-        attr_accessor :AiOptimizeModel, :FileParseModel, :GenerateModel, :MultiModalQaModel, :MultiModalUnderstandingModel, :PromptRewriteModel, :ThinkModel
+        attr_accessor :AiOptimizeModel, :FileParseModel, :GenerateModel, :MultiModalQaModel, :MultiModalUnderstandingModel, :PromptRewriteModel, :ThinkModel, :FileSplitModel, :HeaderExtractModel
 
-        def initialize(aioptimizemodel=nil, fileparsemodel=nil, generatemodel=nil, multimodalqamodel=nil, multimodalunderstandingmodel=nil, promptrewritemodel=nil, thinkmodel=nil)
+        def initialize(aioptimizemodel=nil, fileparsemodel=nil, generatemodel=nil, multimodalqamodel=nil, multimodalunderstandingmodel=nil, promptrewritemodel=nil, thinkmodel=nil, filesplitmodel=nil, headerextractmodel=nil)
           @AiOptimizeModel = aioptimizemodel
           @FileParseModel = fileparsemodel
           @GenerateModel = generatemodel
@@ -2012,6 +2018,8 @@ module TencentCloud
           @MultiModalUnderstandingModel = multimodalunderstandingmodel
           @PromptRewriteModel = promptrewritemodel
           @ThinkModel = thinkmodel
+          @FileSplitModel = filesplitmodel
+          @HeaderExtractModel = headerextractmodel
         end
 
         def deserialize(params)
@@ -2042,6 +2050,14 @@ module TencentCloud
           unless params['ThinkModel'].nil?
             @ThinkModel = ThinkModel.new
             @ThinkModel.deserialize(params['ThinkModel'])
+          end
+          unless params['FileSplitModel'].nil?
+            @FileSplitModel = FileSplitModel.new
+            @FileSplitModel.deserialize(params['FileSplitModel'])
+          end
+          unless params['HeaderExtractModel'].nil?
+            @HeaderExtractModel = HeaderExtractModel.new
+            @HeaderExtractModel.deserialize(params['HeaderExtractModel'])
           end
         end
       end
@@ -2349,6 +2365,8 @@ module TencentCloud
 
       # AppTrigger
       class AppTrigger < TencentCloud::Common::AbstractModel
+        # @param AgentId: <p>Agent ID，scope=USER 时可选。</p>
+        # @type AgentId: String
         # @param AppId: <p>应用ID</p>
         # @type AppId: String
         # @param ExecuteConfig: <p>执行配置</p>
@@ -2378,9 +2396,10 @@ module TencentCloud
         # @param UserId: <p>访客ID</p>
         # @type UserId: String
 
-        attr_accessor :AppId, :ExecuteConfig, :ExecuteType, :FailedCount, :PushConfig, :Scope, :Status, :SuccessCount, :TriggerConfig, :TriggerId, :TriggerName, :TriggerStatus, :TriggerType, :UserId
+        attr_accessor :AgentId, :AppId, :ExecuteConfig, :ExecuteType, :FailedCount, :PushConfig, :Scope, :Status, :SuccessCount, :TriggerConfig, :TriggerId, :TriggerName, :TriggerStatus, :TriggerType, :UserId
 
-        def initialize(appid=nil, executeconfig=nil, executetype=nil, failedcount=nil, pushconfig=nil, scope=nil, status=nil, successcount=nil, triggerconfig=nil, triggerid=nil, triggername=nil, triggerstatus=nil, triggertype=nil, userid=nil)
+        def initialize(agentid=nil, appid=nil, executeconfig=nil, executetype=nil, failedcount=nil, pushconfig=nil, scope=nil, status=nil, successcount=nil, triggerconfig=nil, triggerid=nil, triggername=nil, triggerstatus=nil, triggertype=nil, userid=nil)
+          @AgentId = agentid
           @AppId = appid
           @ExecuteConfig = executeconfig
           @ExecuteType = executetype
@@ -2398,6 +2417,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @AgentId = params['AgentId']
           @AppId = params['AppId']
           unless params['ExecuteConfig'].nil?
             @ExecuteConfig = ExecuteConfig.new
@@ -2424,6 +2444,34 @@ module TencentCloud
           end
           @TriggerType = params['TriggerType']
           @UserId = params['UserId']
+        end
+      end
+
+      # 工蜂 Webhook 来源配置。
+      class AppTriggerGongfengWebhookConfig < TencentCloud::Common::AbstractModel
+        # @param EventList: 监听的工蜂事件标识，原值传递，1 至 20 个，如 push、merge_request。
+        # @type EventList: Array
+        # @param ProjectId: 工蜂项目 ID 或项目路径，不能为空。
+        # @type ProjectId: String
+        # @param BranchRuleList: 分支规则列表，最多 20 个；空表示全部分支。
+        # @type BranchRuleList: Array
+        # @param MRActionList: 合并请求动作标识，最多 20 个；监听 merge_request 时必填，如 open、merge。
+        # @type MRActionList: Array
+
+        attr_accessor :EventList, :ProjectId, :BranchRuleList, :MRActionList
+
+        def initialize(eventlist=nil, projectid=nil, branchrulelist=nil, mractionlist=nil)
+          @EventList = eventlist
+          @ProjectId = projectid
+          @BranchRuleList = branchrulelist
+          @MRActionList = mractionlist
+        end
+
+        def deserialize(params)
+          @EventList = params['EventList']
+          @ProjectId = params['ProjectId']
+          @BranchRuleList = params['BranchRuleList']
+          @MRActionList = params['MRActionList']
         end
       end
 
@@ -2786,10 +2834,12 @@ module TencentCloud
         # @type UnreadRunLogCount: String
         # @param UserId: <p>访客ID</p>
         # @type UserId: String
+        # @param WebhookProvider: Webhook 来源。0：未指定，兼容通用 Webhook；1：工蜂；2：TAPD。
+        # @type WebhookProvider: Integer
 
-        attr_accessor :AppId, :ExecuteType, :FailedCount, :LastSessionId, :Scope, :Status, :SuccessCount, :TriggerId, :TriggerName, :TriggerStatus, :TriggerType, :UnreadRunLogCount, :UserId
+        attr_accessor :AppId, :ExecuteType, :FailedCount, :LastSessionId, :Scope, :Status, :SuccessCount, :TriggerId, :TriggerName, :TriggerStatus, :TriggerType, :UnreadRunLogCount, :UserId, :WebhookProvider
 
-        def initialize(appid=nil, executetype=nil, failedcount=nil, lastsessionid=nil, scope=nil, status=nil, successcount=nil, triggerid=nil, triggername=nil, triggerstatus=nil, triggertype=nil, unreadrunlogcount=nil, userid=nil)
+        def initialize(appid=nil, executetype=nil, failedcount=nil, lastsessionid=nil, scope=nil, status=nil, successcount=nil, triggerid=nil, triggername=nil, triggerstatus=nil, triggertype=nil, unreadrunlogcount=nil, userid=nil, webhookprovider=nil)
           @AppId = appid
           @ExecuteType = executetype
           @FailedCount = failedcount
@@ -2803,6 +2853,7 @@ module TencentCloud
           @TriggerType = triggertype
           @UnreadRunLogCount = unreadrunlogcount
           @UserId = userid
+          @WebhookProvider = webhookprovider
         end
 
         def deserialize(params)
@@ -2822,6 +2873,27 @@ module TencentCloud
           @TriggerType = params['TriggerType']
           @UnreadRunLogCount = params['UnreadRunLogCount']
           @UserId = params['UserId']
+          @WebhookProvider = params['WebhookProvider']
+        end
+      end
+
+      # TAPD Webhook 来源配置。
+      class AppTriggerTAPDWebhookConfig < TencentCloud::Common::AbstractModel
+        # @param EventList: 监听的 TAPD 事件标识，原值传递，1 至 20 个，如 story::create、bug::update。
+        # @type EventList: Array
+        # @param ProjectId: TAPD 项目 ID，不能为空。
+        # @type ProjectId: String
+
+        attr_accessor :EventList, :ProjectId
+
+        def initialize(eventlist=nil, projectid=nil)
+          @EventList = eventlist
+          @ProjectId = projectid
+        end
+
+        def deserialize(params)
+          @EventList = params['EventList']
+          @ProjectId = params['ProjectId']
         end
       end
 
@@ -2829,18 +2901,25 @@ module TencentCloud
       class AppTriggerWebhookConfig < TencentCloud::Common::AbstractModel
         # @param ParamSchemaConfig: <p>触发器webhook参数配置</p>
         # @type ParamSchemaConfig: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerWebhookParamSchemaConfig`
+        # @param WebhookConfigExt: Webhook 来源扩展配置。通用 Webhook 不传；工蜂/TAPD 传对应配置及 OAuth 凭证，GongfengConfig 与 TAPDConfig 互斥且须与 WebhookProvider 一致。
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type WebhookConfigExt: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerWebhookConfigExt`
         # @param WebhookKey: <p>webhook的key</p>
         # @type WebhookKey: String
+        # @param WebhookProvider: Webhook 来源。0：未指定，兼容通用 Webhook；1：工蜂；2：TAPD。
+        # @type WebhookProvider: Integer
         # @param WebhookToken: <p>webhook的密钥</p>
         # @type WebhookToken: String
         # @param WebhookUrl: <p>webhook的地址</p>
         # @type WebhookUrl: String
 
-        attr_accessor :ParamSchemaConfig, :WebhookKey, :WebhookToken, :WebhookUrl
+        attr_accessor :ParamSchemaConfig, :WebhookConfigExt, :WebhookKey, :WebhookProvider, :WebhookToken, :WebhookUrl
 
-        def initialize(paramschemaconfig=nil, webhookkey=nil, webhooktoken=nil, webhookurl=nil)
+        def initialize(paramschemaconfig=nil, webhookconfigext=nil, webhookkey=nil, webhookprovider=nil, webhooktoken=nil, webhookurl=nil)
           @ParamSchemaConfig = paramschemaconfig
+          @WebhookConfigExt = webhookconfigext
           @WebhookKey = webhookkey
+          @WebhookProvider = webhookprovider
           @WebhookToken = webhooktoken
           @WebhookUrl = webhookurl
         end
@@ -2850,9 +2929,75 @@ module TencentCloud
             @ParamSchemaConfig = AppTriggerWebhookParamSchemaConfig.new
             @ParamSchemaConfig.deserialize(params['ParamSchemaConfig'])
           end
+          unless params['WebhookConfigExt'].nil?
+            @WebhookConfigExt = AppTriggerWebhookConfigExt.new
+            @WebhookConfigExt.deserialize(params['WebhookConfigExt'])
+          end
           @WebhookKey = params['WebhookKey']
+          @WebhookProvider = params['WebhookProvider']
           @WebhookToken = params['WebhookToken']
           @WebhookUrl = params['WebhookUrl']
+        end
+      end
+
+      # Webhook 来源扩展配置。
+      class AppTriggerWebhookConfigExt < TencentCloud::Common::AbstractModel
+        # @param CredentialId: 访问外部平台的 OAuth 凭证 ID，不能为空。
+        # @type CredentialId: String
+        # @param Credential: <p>绑定凭证的只读摘要；创建和修改时忽略</p>
+        # @type Credential: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerWebhookCredential`
+        # @param GongfengConfig: 工蜂配置，仅 WebhookProvider=1 时使用，与 TAPDConfig 互斥。
+        # @type GongfengConfig: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerGongfengWebhookConfig`
+        # @param TAPDConfig: TAPD 配置，仅 WebhookProvider=2 时使用，与 GongfengConfig 互斥。
+        # @type TAPDConfig: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerTAPDWebhookConfig`
+
+        attr_accessor :CredentialId, :Credential, :GongfengConfig, :TAPDConfig
+
+        def initialize(credentialid=nil, credential=nil, gongfengconfig=nil, tapdconfig=nil)
+          @CredentialId = credentialid
+          @Credential = credential
+          @GongfengConfig = gongfengconfig
+          @TAPDConfig = tapdconfig
+        end
+
+        def deserialize(params)
+          @CredentialId = params['CredentialId']
+          unless params['Credential'].nil?
+            @Credential = AppTriggerWebhookCredential.new
+            @Credential.deserialize(params['Credential'])
+          end
+          unless params['GongfengConfig'].nil?
+            @GongfengConfig = AppTriggerGongfengWebhookConfig.new
+            @GongfengConfig.deserialize(params['GongfengConfig'])
+          end
+          unless params['TAPDConfig'].nil?
+            @TAPDConfig = AppTriggerTAPDWebhookConfig.new
+            @TAPDConfig.deserialize(params['TAPDConfig'])
+          end
+        end
+      end
+
+      # <p>触发器绑定凭证的摘要，不包含授权密钥</p>
+      class AppTriggerWebhookCredential < TencentCloud::Common::AbstractModel
+        # @param CredentialId: <p>凭证ID</p>
+        # @type CredentialId: String
+        # @param Name: <p>凭证名称；凭证不存在时为空</p>
+        # @type Name: String
+        # @param Status: <p>授权状态；0：未指定，凭证不存在或状态未知；1：未授权；2：已授权；3：已失效</p>
+        # @type Status: Integer
+
+        attr_accessor :CredentialId, :Name, :Status
+
+        def initialize(credentialid=nil, name=nil, status=nil)
+          @CredentialId = credentialid
+          @Name = name
+          @Status = status
+        end
+
+        def deserialize(params)
+          @CredentialId = params['CredentialId']
+          @Name = params['Name']
+          @Status = params['Status']
         end
       end
 
@@ -3022,6 +3167,42 @@ module TencentCloud
           @GreetingInAppeal = params['GreetingInAppeal']
           @NameInAppeal = params['NameInAppeal']
           @RoleInAppeal = params['RoleInAppeal']
+        end
+      end
+
+      # 通用审计信息（创建/修改人 + 时间）
+      class Audit < TencentCloud::Common::AbstractModel
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: String
+        # @param Creator: <p>创建人</p>
+        # @type Creator: String
+        # @param CreatorName: <p>创建人姓名</p>
+        # @type CreatorName: String
+        # @param Operator: <p>最近修改人</p>
+        # @type Operator: String
+        # @param OperatorName: <p>最近修改人姓名</p>
+        # @type OperatorName: String
+        # @param UpdateTime: <p>更新时间</p>
+        # @type UpdateTime: String
+
+        attr_accessor :CreateTime, :Creator, :CreatorName, :Operator, :OperatorName, :UpdateTime
+
+        def initialize(createtime=nil, creator=nil, creatorname=nil, operator=nil, operatorname=nil, updatetime=nil)
+          @CreateTime = createtime
+          @Creator = creator
+          @CreatorName = creatorname
+          @Operator = operator
+          @OperatorName = operatorname
+          @UpdateTime = updatetime
+        end
+
+        def deserialize(params)
+          @CreateTime = params['CreateTime']
+          @Creator = params['Creator']
+          @CreatorName = params['CreatorName']
+          @Operator = params['Operator']
+          @OperatorName = params['OperatorName']
+          @UpdateTime = params['UpdateTime']
         end
       end
 
@@ -5392,6 +5573,8 @@ module TencentCloud
 
       # CreateAppTrigger请求参数结构体
       class CreateAppTriggerRequest < TencentCloud::Common::AbstractModel
+        # @param AgentId: <p>Agent ID，scope=USER 时可选。</p>
+        # @type AgentId: String
         # @param AppId: <p>应用ID</p>
         # @type AppId: String
         # @param ExecuteConfig: <p>应用触发器执行配置</p>
@@ -5411,9 +5594,10 @@ module TencentCloud
         # @param UserId: <p>访客ID</p>
         # @type UserId: String
 
-        attr_accessor :AppId, :ExecuteConfig, :ExecuteType, :PushConfig, :Scope, :TriggerConfig, :TriggerName, :TriggerType, :UserId
+        attr_accessor :AgentId, :AppId, :ExecuteConfig, :ExecuteType, :PushConfig, :Scope, :TriggerConfig, :TriggerName, :TriggerType, :UserId
 
-        def initialize(appid=nil, executeconfig=nil, executetype=nil, pushconfig=nil, scope=nil, triggerconfig=nil, triggername=nil, triggertype=nil, userid=nil)
+        def initialize(agentid=nil, appid=nil, executeconfig=nil, executetype=nil, pushconfig=nil, scope=nil, triggerconfig=nil, triggername=nil, triggertype=nil, userid=nil)
+          @AgentId = agentid
           @AppId = appid
           @ExecuteConfig = executeconfig
           @ExecuteType = executetype
@@ -5426,6 +5610,7 @@ module TencentCloud
         end
 
         def deserialize(params)
+          @AgentId = params['AgentId']
           @AppId = params['AppId']
           unless params['ExecuteConfig'].nil?
             @ExecuteConfig = ExecuteConfig.new
@@ -5848,6 +6033,87 @@ module TencentCloud
 
         def deserialize(params)
           @PluginId = params['PluginId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePromptTemplateLabel请求参数结构体
+      class CreatePromptTemplateLabelRequest < TencentCloud::Common::AbstractModel
+        # @param Content: <p>标签内容</p>
+        # @type Content: String
+
+        attr_accessor :Content
+
+        def initialize(content=nil)
+          @Content = content
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+        end
+      end
+
+      # CreatePromptTemplateLabel返回参数结构体
+      class CreatePromptTemplateLabelResponse < TencentCloud::Common::AbstractModel
+        # @param PromptTemplateLabelId: <p>提示词模板标签ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PromptTemplateLabelId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PromptTemplateLabelId, :RequestId
+
+        def initialize(prompttemplatelabelid=nil, requestid=nil)
+          @PromptTemplateLabelId = prompttemplatelabelid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PromptTemplateLabelId = params['PromptTemplateLabelId']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # CreatePromptTemplate请求参数结构体
+      class CreatePromptTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>空间ID</p>
+        # @type SpaceId: String
+        # @param Spec: <p>提示词内容</p>
+        # @type Spec: :class:`Tencentcloud::Adp.v20260520.models.PromptTemplateSpec`
+
+        attr_accessor :SpaceId, :Spec
+
+        def initialize(spaceid=nil, spec=nil)
+          @SpaceId = spaceid
+          @Spec = spec
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          unless params['Spec'].nil?
+            @Spec = PromptTemplateSpec.new
+            @Spec.deserialize(params['Spec'])
+          end
+        end
+      end
+
+      # CreatePromptTemplate返回参数结构体
+      class CreatePromptTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param PromptTemplateId: <p>提示词模板ID</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PromptTemplateId: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PromptTemplateId, :RequestId
+
+        def initialize(prompttemplateid=nil, requestid=nil)
+          @PromptTemplateId = prompttemplateid
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @PromptTemplateId = params['PromptTemplateId']
           @RequestId = params['RequestId']
         end
       end
@@ -7060,6 +7326,74 @@ module TencentCloud
 
       # DeletePlugin返回参数结构体
       class DeletePluginResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePromptTemplateLabel请求参数结构体
+      class DeletePromptTemplateLabelRequest < TencentCloud::Common::AbstractModel
+        # @param PromptTemplateLabelId: 标签ID
+        # @type PromptTemplateLabelId: String
+
+        attr_accessor :PromptTemplateLabelId
+
+        def initialize(prompttemplatelabelid=nil)
+          @PromptTemplateLabelId = prompttemplatelabelid
+        end
+
+        def deserialize(params)
+          @PromptTemplateLabelId = params['PromptTemplateLabelId']
+        end
+      end
+
+      # DeletePromptTemplateLabel返回参数结构体
+      class DeletePromptTemplateLabelResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DeletePromptTemplate请求参数结构体
+      class DeletePromptTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>空间ID</p>
+        # @type SpaceId: String
+        # @param PromptTemplateId: <p>提示词模板ID</p>
+        # @type PromptTemplateId: String
+
+        attr_accessor :SpaceId, :PromptTemplateId
+
+        def initialize(spaceid=nil, prompttemplateid=nil)
+          @SpaceId = spaceid
+          @PromptTemplateId = prompttemplateid
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @PromptTemplateId = params['PromptTemplateId']
+        end
+      end
+
+      # DeletePromptTemplate返回参数结构体
+      class DeletePromptTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -9934,6 +10268,217 @@ module TencentCloud
         end
       end
 
+      # DescribePromptTemplateCategoryList请求参数结构体
+      class DescribePromptTemplateCategoryListRequest < TencentCloud::Common::AbstractModel
+
+
+        def initialize()
+        end
+
+        def deserialize(params)
+        end
+      end
+
+      # DescribePromptTemplateCategoryList返回参数结构体
+      class DescribePromptTemplateCategoryListResponse < TencentCloud::Common::AbstractModel
+        # @param CategoryGroupList: <p>分类分组列表</p>
+        # @type CategoryGroupList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :CategoryGroupList, :RequestId
+
+        def initialize(categorygrouplist=nil, requestid=nil)
+          @CategoryGroupList = categorygrouplist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['CategoryGroupList'].nil?
+            @CategoryGroupList = []
+            params['CategoryGroupList'].each do |i|
+              prompttemplatecategorygroup_tmp = PromptTemplateCategoryGroup.new
+              prompttemplatecategorygroup_tmp.deserialize(i)
+              @CategoryGroupList << prompttemplatecategorygroup_tmp
+            end
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePromptTemplateLabelList请求参数结构体
+      class DescribePromptTemplateLabelListRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: <p>页码，从0开始</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数目，最大100</p>
+        # @type PageSize: Integer
+        # @param Query: <p>关键词模糊搜索</p>
+        # @type Query: String
+
+        attr_accessor :PageNumber, :PageSize, :Query
+
+        def initialize(pagenumber=nil, pagesize=nil, query=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @Query = query
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          @Query = params['Query']
+        end
+      end
+
+      # DescribePromptTemplateLabelList返回参数结构体
+      class DescribePromptTemplateLabelListResponse < TencentCloud::Common::AbstractModel
+        # @param PromptTemplateLabelList: <p>标签列表</p>
+        # @type PromptTemplateLabelList: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PromptTemplateLabelList, :TotalCount, :RequestId
+
+        def initialize(prompttemplatelabellist=nil, totalcount=nil, requestid=nil)
+          @PromptTemplateLabelList = prompttemplatelabellist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PromptTemplateLabelList'].nil?
+            @PromptTemplateLabelList = []
+            params['PromptTemplateLabelList'].each do |i|
+              prompttemplatelabel_tmp = PromptTemplateLabel.new
+              prompttemplatelabel_tmp.deserialize(i)
+              @PromptTemplateLabelList << prompttemplatelabel_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePromptTemplate请求参数结构体
+      class DescribePromptTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param PromptTemplateId: <p>提示词模板ID</p>
+        # @type PromptTemplateId: String
+        # @param SpaceId: <p>空间ID</p>
+        # @type SpaceId: String
+
+        attr_accessor :PromptTemplateId, :SpaceId
+
+        def initialize(prompttemplateid=nil, spaceid=nil)
+          @PromptTemplateId = prompttemplateid
+          @SpaceId = spaceid
+        end
+
+        def deserialize(params)
+          @PromptTemplateId = params['PromptTemplateId']
+          @SpaceId = params['SpaceId']
+        end
+      end
+
+      # DescribePromptTemplate返回参数结构体
+      class DescribePromptTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param PromptTemplate: <p>提示词模板完整信息</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type PromptTemplate: :class:`Tencentcloud::Adp.v20260520.models.PromptTemplate`
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PromptTemplate, :RequestId
+
+        def initialize(prompttemplate=nil, requestid=nil)
+          @PromptTemplate = prompttemplate
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PromptTemplate'].nil?
+            @PromptTemplate = PromptTemplate.new
+            @PromptTemplate.deserialize(params['PromptTemplate'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribePromptTemplateSummaryList请求参数结构体
+      class DescribePromptTemplateSummaryListRequest < TencentCloud::Common::AbstractModel
+        # @param PageNumber: <p>页码，从0开始</p>
+        # @type PageNumber: Integer
+        # @param PageSize: <p>每页数目，最大100</p>
+        # @type PageSize: Integer
+        # @param FilterList: <p>过滤条件列表</p>
+        # @type FilterList: Array
+        # @param IsFavorite: <p>是否只查询收藏的模板</p>
+        # @type IsFavorite: Boolean
+        # @param Query: <p>关键词模糊搜索</p>
+        # @type Query: String
+        # @param SpaceId: <p>空间ID</p>
+        # @type SpaceId: String
+
+        attr_accessor :PageNumber, :PageSize, :FilterList, :IsFavorite, :Query, :SpaceId
+
+        def initialize(pagenumber=nil, pagesize=nil, filterlist=nil, isfavorite=nil, query=nil, spaceid=nil)
+          @PageNumber = pagenumber
+          @PageSize = pagesize
+          @FilterList = filterlist
+          @IsFavorite = isfavorite
+          @Query = query
+          @SpaceId = spaceid
+        end
+
+        def deserialize(params)
+          @PageNumber = params['PageNumber']
+          @PageSize = params['PageSize']
+          unless params['FilterList'].nil?
+            @FilterList = []
+            params['FilterList'].each do |i|
+              filter_tmp = Filter.new
+              filter_tmp.deserialize(i)
+              @FilterList << filter_tmp
+            end
+          end
+          @IsFavorite = params['IsFavorite']
+          @Query = params['Query']
+          @SpaceId = params['SpaceId']
+        end
+      end
+
+      # DescribePromptTemplateSummaryList返回参数结构体
+      class DescribePromptTemplateSummaryListResponse < TencentCloud::Common::AbstractModel
+        # @param PromptTemplateSummaryList: <p>提示词模板摘要列表</p>
+        # @type PromptTemplateSummaryList: Array
+        # @param TotalCount: <p>总数</p>
+        # @type TotalCount: Integer
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :PromptTemplateSummaryList, :TotalCount, :RequestId
+
+        def initialize(prompttemplatesummarylist=nil, totalcount=nil, requestid=nil)
+          @PromptTemplateSummaryList = prompttemplatesummarylist
+          @TotalCount = totalcount
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['PromptTemplateSummaryList'].nil?
+            @PromptTemplateSummaryList = []
+            params['PromptTemplateSummaryList'].each do |i|
+              prompttemplatesummary_tmp = PromptTemplateSummary.new
+              prompttemplatesummary_tmp.deserialize(i)
+              @PromptTemplateSummaryList << prompttemplatesummary_tmp
+            end
+          end
+          @TotalCount = params['TotalCount']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeQA请求参数结构体
       class DescribeQARequest < TencentCloud::Common::AbstractModel
         # @param KbId: <p>所属知识库 ID</p>
@@ -11901,6 +12446,42 @@ module TencentCloud
         end
       end
 
+      # FavoritePromptTemplate请求参数结构体
+      class FavoritePromptTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>空间ID</p>
+        # @type SpaceId: String
+        # @param PromptTemplateId: <p>提示词模板ID</p>
+        # @type PromptTemplateId: String
+
+        attr_accessor :SpaceId, :PromptTemplateId
+
+        def initialize(spaceid=nil, prompttemplateid=nil)
+          @SpaceId = spaceid
+          @PromptTemplateId = prompttemplateid
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @PromptTemplateId = params['PromptTemplateId']
+        end
+      end
+
+      # FavoritePromptTemplate返回参数结构体
+      class FavoritePromptTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # FavoriteSkill请求参数结构体
       class FavoriteSkillRequest < TencentCloud::Common::AbstractModel
         # @param SkillId: <p>SkillId</p>
@@ -12007,6 +12588,26 @@ module TencentCloud
               supportedfiletype_tmp.deserialize(i)
               @SupportedFileList << supportedfiletype_tmp
             end
+          end
+        end
+      end
+
+      # 实时文档切分模型
+      class FileSplitModel < TencentCloud::Common::AbstractModel
+        # @param Model: <p>实时文档解析模型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Model: :class:`Tencentcloud::Adp.v20260520.models.ModelDetailInfo`
+
+        attr_accessor :Model
+
+        def initialize(model=nil)
+          @Model = model
+        end
+
+        def deserialize(params)
+          unless params['Model'].nil?
+            @Model = ModelDetailInfo.new
+            @Model.deserialize(params['Model'])
           end
         end
       end
@@ -12120,6 +12721,26 @@ module TencentCloud
 
         def deserialize(params)
           @Enabled = params['Enabled']
+        end
+      end
+
+      # 表头拆分模型
+      class HeaderExtractModel < TencentCloud::Common::AbstractModel
+        # @param Model: <p>实时文档解析模型</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Model: :class:`Tencentcloud::Adp.v20260520.models.ModelDetailInfo`
+
+        attr_accessor :Model
+
+        def initialize(model=nil)
+          @Model = model
+        end
+
+        def deserialize(params)
+          unless params['Model'].nil?
+            @Model = ModelDetailInfo.new
+            @Model.deserialize(params['Model'])
+          end
         end
       end
 
@@ -13989,7 +14610,7 @@ module TencentCloud
         # @type SharedKbIdList: Array
         # @param FileVolumeMountList: <p>应用挂载云盘</p>
         # @type FileVolumeMountList: Array
-        # @param UpdateMask: <p>字段掩码，指定需要更新的字段(Paths为空则不更新任何字段)。Paths枚举值：<br>【顶层】Name, Avatar, Description, AppMode, SharedKbIdList, FileVolumeMountList<br>【Greeting】Config.Greeting, Config.Greeting.Greeting, Config.Greeting.OpeningQuestionList<br>【Model】Config.Model, Config.Model.ThinkModel, Config.Model.GenerateModel, Config.Model.AiOptimizeModel, Config.Model.FileParseModel, Config.Model.PromptRewriteModel, Config.Model.MultiModalQaModel, Config.Model.MultiModalUnderstandingModel<br>【WebSearch】Config.WebSearch<br>【Memory】Config.Memory, Config.Memory.Enabled, Config.Memory.LongMemoryDay, Config.Memory.Model, Config.Memory.PromptMode, Config.Memory.PromptContent<br>【Mode】Config.Mode, Config.Mode.MultiAgentConfig, Config.Mode.SingleWorkflowConfig,Config.Mode.ClawAgentConfig<br> 【Mode.ClawAgentConfig】 Config.Mode.ClawAgentConfig.LongMemoryConfig, Config.Mode.ClawAgentConfig.AgentTeamConfig, Config.Mode.ClawAgentConfig.ChannelContextTimeoutConfig<br>【Experience】Config.Experience, Config.Experience.Conversation, Config.Experience.Role, Config.Experience.Advanced<br>【Experience.Conversation】Config.Experience.Conversation.AiCall, Config.Experience.Conversation.BackgroundImage, Config.Experience.Conversation.Method, Config.Experience.Conversation.FallbackReply, Config.Experience.Conversation.Recommended, Config.Experience.Conversation.InputBoxConfig, Config.Experience.Conversation.WebSearch,Config.Experience.Conversation.NewMessageInterrupt<br>【Experience.Conversation.AiCall】Config.Experience.Conversation.AiCall.VoiceInteract, Config.Experience.Conversation.AiCall.VoiceCall, Config.Experience.Conversation.AiCall.DigitalHuman<br>【Experience.Advanced】Config.Experience.Advanced.ContextRewrite, Config.Experience.Advanced.ImageTextRetrieval, Config.Experience.Advanced.IntentAchievement, Config.Experience.Advanced.ReplyFlexibility</p>
+        # @param UpdateMask: <p>字段掩码，指定需要更新的字段(Paths为空则不更新任何字段)。Paths枚举值：<br>【顶层】Name, Avatar, Description, AppMode, SharedKbIdList, FileVolumeMountList<br>【Greeting】Config.Greeting, Config.Greeting.Greeting, Config.Greeting.OpeningQuestionList<br>【Model】Config.Model, Config.Model.ThinkModel, Config.Model.GenerateModel, Config.Model.AiOptimizeModel, Config.Model.FileParseModel, Config.Model.PromptRewriteModel, Config.Model.MultiModalQaModel, Config.Model.MultiModalUnderstandingModel,Config.Model.FileSplitModel,Config.Model.HeaderExtractModel<br>【WebSearch】Config.WebSearch<br>【Memory】Config.Memory, Config.Memory.Enabled, Config.Memory.LongMemoryDay, Config.Memory.Model, Config.Memory.PromptMode, Config.Memory.PromptContent<br>【Mode】Config.Mode, Config.Mode.MultiAgentConfig, Config.Mode.SingleWorkflowConfig,Config.Mode.ClawAgentConfig<br> 【Mode.ClawAgentConfig】 Config.Mode.ClawAgentConfig.LongMemoryConfig, Config.Mode.ClawAgentConfig.AgentTeamConfig, Config.Mode.ClawAgentConfig.ChannelContextTimeoutConfig<br>【Experience】Config.Experience, Config.Experience.Conversation, Config.Experience.Role, Config.Experience.Advanced<br>【Experience.Conversation】Config.Experience.Conversation.AiCall, Config.Experience.Conversation.BackgroundImage, Config.Experience.Conversation.Method, Config.Experience.Conversation.FallbackReply, Config.Experience.Conversation.Recommended, Config.Experience.Conversation.InputBoxConfig, Config.Experience.Conversation.WebSearch,Config.Experience.Conversation.NewMessageInterrupt<br>【Experience.Conversation.AiCall】Config.Experience.Conversation.AiCall.VoiceInteract, Config.Experience.Conversation.AiCall.VoiceCall, Config.Experience.Conversation.AiCall.DigitalHuman<br>【Experience.Advanced】Config.Experience.Advanced.ContextRewrite, Config.Experience.Advanced.ImageTextRetrieval, Config.Experience.Advanced.IntentAchievement, Config.Experience.Advanced.ReplyFlexibility</p>
         # @type UpdateMask: :class:`Tencentcloud::Adp.v20260520.models.FieldMask`
 
         attr_accessor :AppId, :AppMode, :Avatar, :Config, :Description, :Name, :SharedKbIdList, :FileVolumeMountList, :UpdateMask
@@ -14100,16 +14721,23 @@ module TencentCloud
 
       # ModifyAppTrigger返回参数结构体
       class ModifyAppTriggerResponse < TencentCloud::Common::AbstractModel
+        # @param Credential: <p>工蜂/TAPD 触发器绑定的凭证；其他触发器不返回</p>
+        # @type Credential: :class:`Tencentcloud::Adp.v20260520.models.AppTriggerWebhookCredential`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Credential, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(credential=nil, requestid=nil)
+          @Credential = credential
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Credential'].nil?
+            @Credential = AppTriggerWebhookCredential.new
+            @Credential.deserialize(params['Credential'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -14735,6 +15363,56 @@ module TencentCloud
 
       # ModifyPlugin返回参数结构体
       class ModifyPluginResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # ModifyPromptTemplate请求参数结构体
+      class ModifyPromptTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>空间ID</p>
+        # @type SpaceId: String
+        # @param PromptTemplateId: <p>提示词模板ID</p>
+        # @type PromptTemplateId: String
+        # @param UpdateMask: <p>要更新的字段掩码</p>
+        # @type UpdateMask: :class:`Tencentcloud::Adp.v20260520.models.FieldMask`
+        # @param Spec: <p>提示词规格</p>
+        # @type Spec: :class:`Tencentcloud::Adp.v20260520.models.PromptTemplateSpec`
+
+        attr_accessor :SpaceId, :PromptTemplateId, :UpdateMask, :Spec
+
+        def initialize(spaceid=nil, prompttemplateid=nil, updatemask=nil, spec=nil)
+          @SpaceId = spaceid
+          @PromptTemplateId = prompttemplateid
+          @UpdateMask = updatemask
+          @Spec = spec
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @PromptTemplateId = params['PromptTemplateId']
+          unless params['UpdateMask'].nil?
+            @UpdateMask = FieldMask.new
+            @UpdateMask.deserialize(params['UpdateMask'])
+          end
+          unless params['Spec'].nil?
+            @Spec = PromptTemplateSpec.new
+            @Spec.deserialize(params['Spec'])
+          end
+        end
+      end
+
+      # ModifyPromptTemplate返回参数结构体
+      class ModifyPromptTemplateResponse < TencentCloud::Common::AbstractModel
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
@@ -16092,6 +16770,238 @@ module TencentCloud
             @Model = ModelDetailInfo.new
             @Model.deserialize(params['Model'])
           end
+        end
+      end
+
+      # 提示词模板完整信息
+      class PromptTemplate < TencentCloud::Common::AbstractModel
+        # @param Profile: <p>提示词模板Profile</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Profile: :class:`Tencentcloud::Adp.v20260520.models.PromptTemplateProfile`
+        # @param CustomVariableList: <p>自定义变量列表</p>
+        # @type CustomVariableList: Array
+        # @param LabelList: <p>标签列表</p>
+        # @type LabelList: Array
+        # @param PromptContent: <p>提示词内容</p>
+        # @type PromptContent: String
+
+        attr_accessor :Profile, :CustomVariableList, :LabelList, :PromptContent
+
+        def initialize(profile=nil, customvariablelist=nil, labellist=nil, promptcontent=nil)
+          @Profile = profile
+          @CustomVariableList = customvariablelist
+          @LabelList = labellist
+          @PromptContent = promptcontent
+        end
+
+        def deserialize(params)
+          unless params['Profile'].nil?
+            @Profile = PromptTemplateProfile.new
+            @Profile.deserialize(params['Profile'])
+          end
+          @CustomVariableList = params['CustomVariableList']
+          unless params['LabelList'].nil?
+            @LabelList = []
+            params['LabelList'].each do |i|
+              prompttemplatelabel_tmp = PromptTemplateLabel.new
+              prompttemplatelabel_tmp.deserialize(i)
+              @LabelList << prompttemplatelabel_tmp
+            end
+          end
+          @PromptContent = params['PromptContent']
+        end
+      end
+
+      # 提示词模板分类
+      class PromptTemplateCategory < TencentCloud::Common::AbstractModel
+        # @param Key: 分类标识
+        # @type Key: String
+        # @param Name: 分类名称
+        # @type Name: String
+
+        attr_accessor :Key, :Name
+
+        def initialize(key=nil, name=nil)
+          @Key = key
+          @Name = name
+        end
+
+        def deserialize(params)
+          @Key = params['Key']
+          @Name = params['Name']
+        end
+      end
+
+      # 提示词模板分类分组
+      class PromptTemplateCategoryGroup < TencentCloud::Common::AbstractModel
+        # @param CategoryList: 分类列表
+        # @type CategoryList: Array
+        # @param Module: 模块标识
+        # @type Module: String
+
+        attr_accessor :CategoryList, :Module
+
+        def initialize(categorylist=nil, _module=nil)
+          @CategoryList = categorylist
+          @Module = _module
+        end
+
+        def deserialize(params)
+          unless params['CategoryList'].nil?
+            @CategoryList = []
+            params['CategoryList'].each do |i|
+              prompttemplatecategory_tmp = PromptTemplateCategory.new
+              prompttemplatecategory_tmp.deserialize(i)
+              @CategoryList << prompttemplatecategory_tmp
+            end
+          end
+          @Module = params['Module']
+        end
+      end
+
+      # 提示词模板标签
+      class PromptTemplateLabel < TencentCloud::Common::AbstractModel
+        # @param Content: 标签内容
+        # @type Content: String
+        # @param PromptTemplateLabelId: 标签ID
+        # @type PromptTemplateLabelId: String
+        # @param PromptTemplateLabelType: 标签类型。1-系统标签, 2-自定义标签
+        # @type PromptTemplateLabelType: Integer
+
+        attr_accessor :Content, :PromptTemplateLabelId, :PromptTemplateLabelType
+
+        def initialize(content=nil, prompttemplatelabelid=nil, prompttemplatelabeltype=nil)
+          @Content = content
+          @PromptTemplateLabelId = prompttemplatelabelid
+          @PromptTemplateLabelType = prompttemplatelabeltype
+        end
+
+        def deserialize(params)
+          @Content = params['Content']
+          @PromptTemplateLabelId = params['PromptTemplateLabelId']
+          @PromptTemplateLabelType = params['PromptTemplateLabelType']
+        end
+      end
+
+      # 提示词模板基本信息
+      class PromptTemplateProfile < TencentCloud::Common::AbstractModel
+        # @param Category: <p>分类</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Category: :class:`Tencentcloud::Adp.v20260520.models.PromptTemplateCategory`
+        # @param Description: <p>描述</p>
+        # @type Description: String
+        # @param Name: <p>模板名称</p>
+        # @type Name: String
+        # @param PromptTemplateId: <p>提示词模板ID</p>
+        # @type PromptTemplateId: String
+        # @param PromptTemplateType: <p>模板类型。1-预置模板, 2-自定义模板</p>
+        # @type PromptTemplateType: Integer
+        # @param SpaceId: <p>空间ID</p>
+        # @type SpaceId: String
+        # @param Audit: <p>审计信息</p>
+        # @type Audit: :class:`Tencentcloud::Adp.v20260520.models.Audit`
+
+        attr_accessor :Category, :Description, :Name, :PromptTemplateId, :PromptTemplateType, :SpaceId, :Audit
+
+        def initialize(category=nil, description=nil, name=nil, prompttemplateid=nil, prompttemplatetype=nil, spaceid=nil, audit=nil)
+          @Category = category
+          @Description = description
+          @Name = name
+          @PromptTemplateId = prompttemplateid
+          @PromptTemplateType = prompttemplatetype
+          @SpaceId = spaceid
+          @Audit = audit
+        end
+
+        def deserialize(params)
+          unless params['Category'].nil?
+            @Category = PromptTemplateCategory.new
+            @Category.deserialize(params['Category'])
+          end
+          @Description = params['Description']
+          @Name = params['Name']
+          @PromptTemplateId = params['PromptTemplateId']
+          @PromptTemplateType = params['PromptTemplateType']
+          @SpaceId = params['SpaceId']
+          unless params['Audit'].nil?
+            @Audit = Audit.new
+            @Audit.deserialize(params['Audit'])
+          end
+        end
+      end
+
+      # 提示词模板规格参数（创建/修改）
+      class PromptTemplateSpec < TencentCloud::Common::AbstractModel
+        # @param CategoryKey: 分类标识
+        # @type CategoryKey: String
+        # @param CustomVariableList: 自定义变量列表
+        # @type CustomVariableList: Array
+        # @param Description: 描述
+        # @type Description: String
+        # @param LabelIdList: 标签ID列表
+        # @type LabelIdList: Array
+        # @param Name: 模板名称
+        # @type Name: String
+        # @param PromptContent: 提示词内容
+        # @type PromptContent: String
+
+        attr_accessor :CategoryKey, :CustomVariableList, :Description, :LabelIdList, :Name, :PromptContent
+
+        def initialize(categorykey=nil, customvariablelist=nil, description=nil, labelidlist=nil, name=nil, promptcontent=nil)
+          @CategoryKey = categorykey
+          @CustomVariableList = customvariablelist
+          @Description = description
+          @LabelIdList = labelidlist
+          @Name = name
+          @PromptContent = promptcontent
+        end
+
+        def deserialize(params)
+          @CategoryKey = params['CategoryKey']
+          @CustomVariableList = params['CustomVariableList']
+          @Description = params['Description']
+          @LabelIdList = params['LabelIdList']
+          @Name = params['Name']
+          @PromptContent = params['PromptContent']
+        end
+      end
+
+      # 提示词模板摘要信息
+      class PromptTemplateSummary < TencentCloud::Common::AbstractModel
+        # @param Profile: <p>提示词模板Profile</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Profile: :class:`Tencentcloud::Adp.v20260520.models.PromptTemplateProfile`
+        # @param LabelList: <p>标签列表</p>
+        # @type LabelList: Array
+        # @param IsFavorite: <p>是否已收藏</p>
+        # @type IsFavorite: Boolean
+        # @param PermissionIdList: <p>权限列表</p>
+        # @type PermissionIdList: Array
+
+        attr_accessor :Profile, :LabelList, :IsFavorite, :PermissionIdList
+
+        def initialize(profile=nil, labellist=nil, isfavorite=nil, permissionidlist=nil)
+          @Profile = profile
+          @LabelList = labellist
+          @IsFavorite = isfavorite
+          @PermissionIdList = permissionidlist
+        end
+
+        def deserialize(params)
+          unless params['Profile'].nil?
+            @Profile = PromptTemplateProfile.new
+            @Profile.deserialize(params['Profile'])
+          end
+          unless params['LabelList'].nil?
+            @LabelList = []
+            params['LabelList'].each do |i|
+              prompttemplatelabel_tmp = PromptTemplateLabel.new
+              prompttemplatelabel_tmp.deserialize(i)
+              @LabelList << prompttemplatelabel_tmp
+            end
+          end
+          @IsFavorite = params['IsFavorite']
+          @PermissionIdList = params['PermissionIdList']
         end
       end
 
@@ -19105,6 +20015,42 @@ module TencentCloud
         end
       end
 
+      # UnfavoritePromptTemplate请求参数结构体
+      class UnfavoritePromptTemplateRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>空间ID</p>
+        # @type SpaceId: String
+        # @param PromptTemplateId: <p>提示词模板ID</p>
+        # @type PromptTemplateId: String
+
+        attr_accessor :SpaceId, :PromptTemplateId
+
+        def initialize(spaceid=nil, prompttemplateid=nil)
+          @SpaceId = spaceid
+          @PromptTemplateId = prompttemplateid
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @PromptTemplateId = params['PromptTemplateId']
+        end
+      end
+
+      # UnfavoritePromptTemplate返回参数结构体
+      class UnfavoritePromptTemplateResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # UnfavoriteSkill请求参数结构体
       class UnfavoriteSkillRequest < TencentCloud::Common::AbstractModel
         # @param SkillId: <p>SkillId</p>
@@ -19306,10 +20252,12 @@ module TencentCloud
         # @type IsBuiltin: Boolean
         # @param EnableSandbox: <p>是否可注入到沙箱环境</p>
         # @type EnableSandbox: Boolean
+        # @param ValueScope: <p>值作用域</p><p>枚举值：</p><ul><li>0： 同一用户跨会话(默认): 同一用户的所有会话共用一份变量值</li><li>1： 仅当前会话: 变量值按会话隔离, 各会话互不影响</li></ul>
+        # @type ValueScope: Integer
 
-        attr_accessor :DefaultFileName, :DefaultValue, :Description, :ModuleType, :Name, :Type, :VariableId, :EnableEndpoints, :EndpointList, :IsBuiltin, :EnableSandbox
+        attr_accessor :DefaultFileName, :DefaultValue, :Description, :ModuleType, :Name, :Type, :VariableId, :EnableEndpoints, :EndpointList, :IsBuiltin, :EnableSandbox, :ValueScope
 
-        def initialize(defaultfilename=nil, defaultvalue=nil, description=nil, moduletype=nil, name=nil, type=nil, variableid=nil, enableendpoints=nil, endpointlist=nil, isbuiltin=nil, enablesandbox=nil)
+        def initialize(defaultfilename=nil, defaultvalue=nil, description=nil, moduletype=nil, name=nil, type=nil, variableid=nil, enableendpoints=nil, endpointlist=nil, isbuiltin=nil, enablesandbox=nil, valuescope=nil)
           @DefaultFileName = defaultfilename
           @DefaultValue = defaultvalue
           @Description = description
@@ -19321,6 +20269,7 @@ module TencentCloud
           @EndpointList = endpointlist
           @IsBuiltin = isbuiltin
           @EnableSandbox = enablesandbox
+          @ValueScope = valuescope
         end
 
         def deserialize(params)
@@ -19335,6 +20284,7 @@ module TencentCloud
           @EndpointList = params['EndpointList']
           @IsBuiltin = params['IsBuiltin']
           @EnableSandbox = params['EnableSandbox']
+          @ValueScope = params['ValueScope']
         end
       end
 

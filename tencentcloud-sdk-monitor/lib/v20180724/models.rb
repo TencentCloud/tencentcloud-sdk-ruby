@@ -17,6 +17,42 @@
 module TencentCloud
   module Monitor
     module V20180724
+      # AddSubnetToManagedCluster请求参数结构体
+      class AddSubnetToManagedClusterRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceId: <p>Prometheus实例ID</p>
+        # @type InstanceId: String
+        # @param SubnetId: <p>子网ID</p>
+        # @type SubnetId: String
+
+        attr_accessor :InstanceId, :SubnetId
+
+        def initialize(instanceid=nil, subnetid=nil)
+          @InstanceId = instanceid
+          @SubnetId = subnetid
+        end
+
+        def deserialize(params)
+          @InstanceId = params['InstanceId']
+          @SubnetId = params['SubnetId']
+        end
+      end
+
+      # AddSubnetToManagedCluster返回参数结构体
+      class AddSubnetToManagedClusterResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 策略过滤条件
       class AlarmConditionFilter < TencentCloud::Common::AbstractModel
         # @param Type: <p>类型</p><p>枚举值：</p><ul><li>EXPRESSION： 用表达式过滤</li><li>DIMENSION： 用维度条件过滤</li><li>BIND_ALL： 绑定全部实例</li><li>LOG_ALARM： 日志告警专用过滤</li></ul>

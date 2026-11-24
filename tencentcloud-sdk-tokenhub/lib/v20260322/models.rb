@@ -440,28 +440,28 @@ module TencentCloud
 
       # CreateTokenPlanApiKeys请求参数结构体
       class CreateTokenPlanApiKeysRequest < TencentCloud::Common::AbstractModel
-        # @param TeamId: 套餐 ID。可通过DescribeTokenPlanList接口获取。
+        # @param TeamId: <p>套餐 ID。可通过DescribeTokenPlanList接口获取。</p>
         # @type TeamId: String
-        # @param ApiKeyName: API Key 名称，最大 128 字符。如果创建 API Key 的数量超过1个，实际名称格式为 {ApiKeyName}-{序号}（如 mykey-1, mykey-2）。
+        # @param ApiKeyName: <p>API Key 名称，最大 128 字符。如果创建 API Key 的数量超过1个，实际名称格式为 {ApiKeyName}-{序号}（如 mykey-1, mykey-2）。</p>
         # @type ApiKeyName: String
-        # @param Count: 创建数量。取值范围：1 ~ 10。
+        # @param Count: <p>创建数量。取值范围：1 ~ 10。</p>
         # @type Count: Integer
-        # @param AllowedModels: 可用模型列表。如果套餐类型为企业版专业套餐，可以指定模型，也可以传入“all”，传入 “all“表示可以使用套餐支持的所有模型，如果要指定具体模型，传入 Model ID，“all“和具体的 Model ID 不能同时传入，如果不传则表示该API Key不支持任何模型，从而影响API Key的正常使用。如果套餐类型为企业版轻享套餐，则无论是否传入该字段，以及该字段传入什么值，都会被强制覆盖为["auto"]。
+        # @param AllowedModels: <p>可用模型列表。如果套餐类型为企业版专业套餐，该字段必传！可以指定模型，也可以传入“all”，传入 “all“表示可以使用套餐支持的所有模型，如果要指定具体模型，传入 Model ID，“all“和具体的 Model ID 不能同时传入。如果套餐类型为企业版轻享套餐，则无论是否传入该字段，以及该字段传入什么值，都会被强制覆盖为[&quot;auto&quot;]。</p>
         # @type AllowedModels: Array
-        # @param ExclusiveQuota: 独占额度。不传则为0，代表该 API Key 不被分配任何独占配额。单位说明如下：
-        # - 套餐类型为专业，单位取值为积分；
-        # - 套餐类型为轻享套餐，单位取值为 token。
+        # @param ExclusiveQuota: <p>独占额度。不传则为0，代表该 API Key 不被分配任何独占配额。单位说明如下：</p><ul><li>套餐类型为专业，单位取值为积分；</li><li>套餐类型为轻享套餐，单位取值为 token。</li></ul>
         # @type ExclusiveQuota: Integer
-        # @param TotalQuota: 总额度上限。-1 表示不限，必须为 -1 或 >= API Key 当前的 ExclusiveQuota（独占额度）。不传表示不设置上限。单位说明如下：
-        # - 套餐类型为专业，单位取值为积分；
-        # - 套餐类型为轻享套餐，单位取值为 token。
+        # @param TotalQuota: <p>总额度上限。-1 表示不限，必须为 -1 或 &gt;= API Key 当前的 ExclusiveQuota（独占额度）。不传表示不设置上限。单位说明如下：</p><ul><li>套餐类型为专业，单位取值为积分；</li><li>套餐类型为轻享套餐，单位取值为 token。</li></ul>
         # @type TotalQuota: Integer
-        # @param TPM: TPM（Tokens Per Minute）限制。不传使用套餐级别 TPM。必须 >= 0 且 <= 套餐 TPM。
+        # @param TPM: <p>TPM（Tokens Per Minute）限制。不传使用套餐级别 TPM。必须 &gt;= 0 且 &lt;= 套餐 TPM。</p>
         # @type TPM: Integer
+        # @param IpWhitelist: <p>IP 白名单列表。支持 IPv4 单地址（如 1.2.3.4）和 IPv4 CIDR（如 10.0.0.0/24）格式。最多 50 个条目，不允许重复；不支持 IPv6 与 IP 范围。不传或传空数组表示不限制。批量创建时所有 APIKey 共用同一份白名单。</p>
+        # @type IpWhitelist: Array
+        # @param OverageEnabled: <p>是否开启超额按量计费。默认值为 false。开启后，若 APIKey 用量达到总额度上限，并且使用的模型已开启按量计费，将自动切换至按量计费模式，该部分将按所用模型的按量计费定价额外计费；未开启时用量达上限后调用报错。</p>
+        # @type OverageEnabled: Boolean
 
-        attr_accessor :TeamId, :ApiKeyName, :Count, :AllowedModels, :ExclusiveQuota, :TotalQuota, :TPM
+        attr_accessor :TeamId, :ApiKeyName, :Count, :AllowedModels, :ExclusiveQuota, :TotalQuota, :TPM, :IpWhitelist, :OverageEnabled
 
-        def initialize(teamid=nil, apikeyname=nil, count=nil, allowedmodels=nil, exclusivequota=nil, totalquota=nil, tpm=nil)
+        def initialize(teamid=nil, apikeyname=nil, count=nil, allowedmodels=nil, exclusivequota=nil, totalquota=nil, tpm=nil, ipwhitelist=nil, overageenabled=nil)
           @TeamId = teamid
           @ApiKeyName = apikeyname
           @Count = count
@@ -469,6 +469,8 @@ module TencentCloud
           @ExclusiveQuota = exclusivequota
           @TotalQuota = totalquota
           @TPM = tpm
+          @IpWhitelist = ipwhitelist
+          @OverageEnabled = overageenabled
         end
 
         def deserialize(params)
@@ -479,14 +481,16 @@ module TencentCloud
           @ExclusiveQuota = params['ExclusiveQuota']
           @TotalQuota = params['TotalQuota']
           @TPM = params['TPM']
+          @IpWhitelist = params['IpWhitelist']
+          @OverageEnabled = params['OverageEnabled']
         end
       end
 
       # CreateTokenPlanApiKeys返回参数结构体
       class CreateTokenPlanApiKeysResponse < TencentCloud::Common::AbstractModel
-        # @param Items: 成功创建的项列表。
+        # @param Items: <p>成功创建的项列表。</p>
         # @type Items: Array
-        # @param FailedItems: 创建失败的项列表。
+        # @param FailedItems: <p>创建失败的项列表。</p>
         # @type FailedItems: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -2020,7 +2024,7 @@ module TencentCloud
 
       # 创建推理服务返回的详情信息
       class EndpointCreateDetail < TencentCloud::Common::AbstractModel
-        # @param PreResourceId: 预付费包 id
+        # @param PreResourceId: <p>预付费包 id</p>
         # @type PreResourceId: String
 
         attr_accessor :PreResourceId
@@ -2038,6 +2042,10 @@ module TencentCloud
       class EndpointDetail < TencentCloud::Common::AbstractModel
         # @param EndpointId: <p>推理服务 ID。</p>
         # @type EndpointId: String
+        # @param WorkspaceId: <p>所属企业空间 ID。</p>
+        # @type WorkspaceId: String
+        # @param OriginEndpointId: <p>跨空间展开时的原始推理服务 ID；未展开时与 EndpointId 相同。</p>
+        # @type OriginEndpointId: String
         # @param EndpointName: <p>服务名称。</p>
         # @type EndpointName: String
         # @param ModelName: <p>模型名称。</p>
@@ -2064,11 +2072,15 @@ module TencentCloud
         # @type RPM: Integer
         # @param ModelStatus: <p>模型状态</p><p>枚举值：</p><ul><li>online： 在线</li><li>pre-offline： 预下线</li><li>discontinued： 停止新购</li><li>maintenance： 维护</li><li>offline： 下线</li></ul>
         # @type ModelStatus: String
+        # @param NightDiscountEnabled: <p>是否参与夜间折扣。true 表示该接入点参与夜间时段折扣计费，false 表示不参与。</p>
+        # @type NightDiscountEnabled: Boolean
 
-        attr_accessor :EndpointId, :EndpointName, :ModelName, :ModelId, :Status, :ServiceType, :ChargeType, :PaymentEnabled, :ChargeDetail, :StopReason, :TPM, :AutoAdjustQuota, :RPM, :ModelStatus
+        attr_accessor :EndpointId, :WorkspaceId, :OriginEndpointId, :EndpointName, :ModelName, :ModelId, :Status, :ServiceType, :ChargeType, :PaymentEnabled, :ChargeDetail, :StopReason, :TPM, :AutoAdjustQuota, :RPM, :ModelStatus, :NightDiscountEnabled
 
-        def initialize(endpointid=nil, endpointname=nil, modelname=nil, modelid=nil, status=nil, servicetype=nil, chargetype=nil, paymentenabled=nil, chargedetail=nil, stopreason=nil, tpm=nil, autoadjustquota=nil, rpm=nil, modelstatus=nil)
+        def initialize(endpointid=nil, workspaceid=nil, originendpointid=nil, endpointname=nil, modelname=nil, modelid=nil, status=nil, servicetype=nil, chargetype=nil, paymentenabled=nil, chargedetail=nil, stopreason=nil, tpm=nil, autoadjustquota=nil, rpm=nil, modelstatus=nil, nightdiscountenabled=nil)
           @EndpointId = endpointid
+          @WorkspaceId = workspaceid
+          @OriginEndpointId = originendpointid
           @EndpointName = endpointname
           @ModelName = modelname
           @ModelId = modelid
@@ -2082,10 +2094,13 @@ module TencentCloud
           @AutoAdjustQuota = autoadjustquota
           @RPM = rpm
           @ModelStatus = modelstatus
+          @NightDiscountEnabled = nightdiscountenabled
         end
 
         def deserialize(params)
           @EndpointId = params['EndpointId']
+          @WorkspaceId = params['WorkspaceId']
+          @OriginEndpointId = params['OriginEndpointId']
           @EndpointName = params['EndpointName']
           @ModelName = params['ModelName']
           @ModelId = params['ModelId']
@@ -2099,6 +2114,7 @@ module TencentCloud
           @AutoAdjustQuota = params['AutoAdjustQuota']
           @RPM = params['RPM']
           @ModelStatus = params['ModelStatus']
+          @NightDiscountEnabled = params['NightDiscountEnabled']
         end
       end
 
@@ -2431,6 +2447,8 @@ module TencentCloud
         # @type Status: String
         # @param ModelStatus: <p>模型状态</p><p>枚举值：</p><ul><li>online： 在线</li><li>pre-offline： 预下线</li><li>discontinued： 停止新购</li><li>maintenance： 维护中</li><li>offline： 下线</li></ul>
         # @type ModelStatus: String
+        # @param ModelChargeUnit: <p>模型计费单位（模型维度属性，区别于计费方式 ChargeType）。取值：TOKEN（词元）、COUNT（次）、CREDIT（积分）、PICTURE（张）。未激活时为空。</p>
+        # @type ModelChargeUnit: String
         # @param ServiceType: <p>服务类型。固定为 TEXT_GENERATION（文本生成）。</p>
         # @type ServiceType: String
         # @param ChargeType: <p>计费方式。取值：FREE（免费体验）、TOKEN（按 Token 计费）。未激活时为空。</p>
@@ -2445,10 +2463,18 @@ module TencentCloud
         # @type RPM: Integer
         # @param TPM: <p>推理服务的tpm 限制，没设置就按模型维度 tpm 限制展示</p>
         # @type TPM: Integer
+        # @param ModelImage: <p>模型图标。</p>
+        # @type ModelImage: :class:`Tencentcloud::Tokenhub.v20260322.models.ModelImage`
+        # @param OfflineAt: <p>模型下线时间，Status=pre-offline 时，会配置模型下线时间</p>
+        # @type OfflineAt: String
+        # @param DiscontinuedAt: <p>停止新购时间</p>
+        # @type DiscontinuedAt: String
+        # @param NightDiscountEnabled: <p>是否参与夜间折扣。true 表示该接入点参与夜间时段折扣计费，false 表示不参与。</p>
+        # @type NightDiscountEnabled: Boolean
 
-        attr_accessor :EndpointId, :EndpointName, :ModelId, :ExtraModelIds, :ModelName, :Status, :ModelStatus, :ServiceType, :ChargeType, :PaymentEnabled, :ChargeDetail, :StopReason, :RPM, :TPM
+        attr_accessor :EndpointId, :EndpointName, :ModelId, :ExtraModelIds, :ModelName, :Status, :ModelStatus, :ModelChargeUnit, :ServiceType, :ChargeType, :PaymentEnabled, :ChargeDetail, :StopReason, :RPM, :TPM, :ModelImage, :OfflineAt, :DiscontinuedAt, :NightDiscountEnabled
 
-        def initialize(endpointid=nil, endpointname=nil, modelid=nil, extramodelids=nil, modelname=nil, status=nil, modelstatus=nil, servicetype=nil, chargetype=nil, paymentenabled=nil, chargedetail=nil, stopreason=nil, rpm=nil, tpm=nil)
+        def initialize(endpointid=nil, endpointname=nil, modelid=nil, extramodelids=nil, modelname=nil, status=nil, modelstatus=nil, modelchargeunit=nil, servicetype=nil, chargetype=nil, paymentenabled=nil, chargedetail=nil, stopreason=nil, rpm=nil, tpm=nil, modelimage=nil, offlineat=nil, discontinuedat=nil, nightdiscountenabled=nil)
           @EndpointId = endpointid
           @EndpointName = endpointname
           @ModelId = modelid
@@ -2456,6 +2482,7 @@ module TencentCloud
           @ModelName = modelname
           @Status = status
           @ModelStatus = modelstatus
+          @ModelChargeUnit = modelchargeunit
           @ServiceType = servicetype
           @ChargeType = chargetype
           @PaymentEnabled = paymentenabled
@@ -2463,6 +2490,10 @@ module TencentCloud
           @StopReason = stopreason
           @RPM = rpm
           @TPM = tpm
+          @ModelImage = modelimage
+          @OfflineAt = offlineat
+          @DiscontinuedAt = discontinuedat
+          @NightDiscountEnabled = nightdiscountenabled
         end
 
         def deserialize(params)
@@ -2473,6 +2504,7 @@ module TencentCloud
           @ModelName = params['ModelName']
           @Status = params['Status']
           @ModelStatus = params['ModelStatus']
+          @ModelChargeUnit = params['ModelChargeUnit']
           @ServiceType = params['ServiceType']
           @ChargeType = params['ChargeType']
           @PaymentEnabled = params['PaymentEnabled']
@@ -2480,6 +2512,13 @@ module TencentCloud
           @StopReason = params['StopReason']
           @RPM = params['RPM']
           @TPM = params['TPM']
+          unless params['ModelImage'].nil?
+            @ModelImage = ModelImage.new
+            @ModelImage.deserialize(params['ModelImage'])
+          end
+          @OfflineAt = params['OfflineAt']
+          @DiscontinuedAt = params['DiscontinuedAt']
+          @NightDiscountEnabled = params['NightDiscountEnabled']
         end
       end
 
@@ -2849,39 +2888,31 @@ module TencentCloud
 
       # ModifyTokenPlanApiKey请求参数结构体
       class ModifyTokenPlanApiKeyRequest < TencentCloud::Common::AbstractModel
-        # @param ApiKeyId: API Key ID。
+        # @param ApiKeyId: <p>API Key ID。</p>
         # @type ApiKeyId: String
-        # @param AllowedModels: 可用模型列表。不传则不修改。
-
-        # - 如果套餐类型为企业版专业套餐：
-        # 1）传入“all“ ：使用套餐支持的所有模型
-        # 2）传入 Model ID：指定具体模型。“all“和具体的 Model ID 不能同时传入。
-
-        # - 如果套餐类型为企业版轻享套餐，不允许传该参数。
+        # @param AllowedModels: <p>可用模型列表。不传则不修改。</p><ul><li><p>如果套餐类型为企业版专业套餐：<br>1）传入“all“ ：使用套餐支持的所有模型<br>2）传入 Model ID：指定具体模型。“all“和具体的 Model ID 不能同时传入。</p></li><li><p>如果套餐类型为企业版轻享套餐，不允许传该参数。</p></li></ul>
         # @type AllowedModels: Array
-        # @param ExclusiveQuota: 独占额度，不传则不修改。单位说明：
-
-        # - 套餐类型为专业套餐，单位取值为积分；
-        # - 套餐类型为轻享套餐，单位取值为 token。
+        # @param ExclusiveQuota: <p>独占额度，不传则不修改。单位说明：</p><ul><li>套餐类型为专业套餐，单位取值为积分；</li><li>套餐类型为轻享套餐，单位取值为 token。</li></ul>
         # @type ExclusiveQuota: Integer
-        # @param TotalQuota: 总额度上限。-1 表示不限，必须为 -1 或 >= API Key 当前的 ExclusiveQuota（独占额度），不传则不修改。单位说明如下：
-        # - 套餐类型为专业套餐，单位取值为积分；
-        # - 套餐类型为轻享套餐，单位取值为 token。
+        # @param TotalQuota: <p>总额度上限。-1 表示不限，必须为 -1 或 &gt;= API Key 当前的 ExclusiveQuota（独占额度），不传则不修改。单位说明如下：</p><ul><li>套餐类型为专业套餐，单位取值为积分；</li><li>套餐类型为轻享套餐，单位取值为 token。</li></ul>
         # @type TotalQuota: Integer
-        # @param UseStatus: 是否启用该 API Key。取值：enable（启用）、disable（停用），不传则不修改。
+        # @param UseStatus: <p>是否启用该 API Key。取值：enable（启用）、disable（停用），不传则不修改。</p>
         # @type UseStatus: String
-        # @param TPM: TPM（Tokens Per Minute）限制。不传则不修改。必须 >= 0 且 <= 套餐 TPM。
+        # @param TPM: <p>TPM（Tokens Per Minute）限制。不传则不修改。必须 &gt;= 0 且 &lt;= 套餐 TPM。</p>
         # @type TPM: Integer
+        # @param IpWhitelist: <p>IP 白名单列表。不传则不修改；传空数组表示清空（不限制 IP）；传非空数组表示覆盖。支持 IPv4 单地址（如 1.2.3.4）和 IPv4 CIDR（如 10.0.0.0/24）格式，最多 50 个条目，不允许重复；不支持 IPv6 与 IP 范围。</p>
+        # @type IpWhitelist: Array
 
-        attr_accessor :ApiKeyId, :AllowedModels, :ExclusiveQuota, :TotalQuota, :UseStatus, :TPM
+        attr_accessor :ApiKeyId, :AllowedModels, :ExclusiveQuota, :TotalQuota, :UseStatus, :TPM, :IpWhitelist
 
-        def initialize(apikeyid=nil, allowedmodels=nil, exclusivequota=nil, totalquota=nil, usestatus=nil, tpm=nil)
+        def initialize(apikeyid=nil, allowedmodels=nil, exclusivequota=nil, totalquota=nil, usestatus=nil, tpm=nil, ipwhitelist=nil)
           @ApiKeyId = apikeyid
           @AllowedModels = allowedmodels
           @ExclusiveQuota = exclusivequota
           @TotalQuota = totalquota
           @UseStatus = usestatus
           @TPM = tpm
+          @IpWhitelist = ipwhitelist
         end
 
         def deserialize(params)
@@ -2891,6 +2922,7 @@ module TencentCloud
           @TotalQuota = params['TotalQuota']
           @UseStatus = params['UseStatus']
           @TPM = params['TPM']
+          @IpWhitelist = params['IpWhitelist']
         end
       end
 
@@ -3248,44 +3280,48 @@ module TencentCloud
 
       # Token Plan API Key 列表项
       class TokenPlanApiKeyListItem < TencentCloud::Common::AbstractModel
-        # @param ApiKeyId: API Key ID。
+        # @param ApiKeyId: <p>API Key ID。</p>
         # @type ApiKeyId: String
-        # @param ApiKey: API Key 密钥值（脱敏）。
+        # @param ApiKey: <p>API Key 密钥值（脱敏）。</p>
         # @type ApiKey: String
-        # @param Name: API Key 名称。
+        # @param Name: <p>API Key 名称。</p>
         # @type Name: String
-        # @param TeamId: 所属套餐 ID。
+        # @param TeamId: <p>所属套餐 ID。</p>
         # @type TeamId: String
-        # @param AppId: 账号APP ID。
+        # @param AppId: <p>账号APP ID。</p>
         # @type AppId: String
-        # @param Uin: 主账号 UIN。最大 128 字符。
+        # @param Uin: <p>主账号 UIN。最大 128 字符。</p>
         # @type Uin: String
-        # @param AllowedModels: API Key 可用模型列表（JSON 数组字符串）。
+        # @param AllowedModels: <p>API Key 可用模型列表（JSON 数组字符串）。</p>
         # @type AllowedModels: String
-        # @param Status: API Key 是否可用。取值：enable（启用）、disable（停用）。
+        # @param Status: <p>API Key 是否可用。取值：enable（启用）、disable（停用）。</p>
         # @type Status: String
-        # @param StopReason: API Key 停用原因。取值：NORMAL（正常，默认值），QUOTA_EXHAUSTED（API Key额度包耗尽），ABNORMAL（异常，需人工介入）
+        # @param StopReason: <p>API Key 停用原因。取值：NORMAL（正常，默认值），QUOTA_EXHAUSTED（API Key额度包耗尽），ABNORMAL（异常，需人工介入）</p>
         # @type StopReason: String
-        # @param UseStatus: 用户侧开关。取值：enable（启用）、disable（停用）。
+        # @param UseStatus: <p>用户侧开关。取值：enable（启用）、disable（停用）。</p>
         # @type UseStatus: String
-        # @param KeyVersion: 密钥版本号。
+        # @param KeyVersion: <p>密钥版本号。</p>
         # @type KeyVersion: Integer
-        # @param LastRotatedAt: 最近一次重置时间。（ISO 8601）
+        # @param LastRotatedAt: <p>最近一次重置时间。（ISO 8601）</p>
         # @type LastRotatedAt: String
-        # @param Creator: 创建人，如果是子账号创建，则该值为子账号UIN。
+        # @param Creator: <p>创建人，如果是子账号创建，则该值为子账号UIN。</p>
         # @type Creator: String
-        # @param CreatedAt: 创建时间。
+        # @param CreatedAt: <p>创建时间。</p>
         # @type CreatedAt: String
-        # @param UpdatedAt: 更新时间。
+        # @param UpdatedAt: <p>更新时间。</p>
         # @type UpdatedAt: String
-        # @param Balance: API Key 额度用量信息
+        # @param Balance: <p>API Key 额度用量信息</p>
         # @type Balance: :class:`Tencentcloud::Tokenhub.v20260322.models.SubPackageBalance`
-        # @param ProductType: 套餐类型。取值：enterprise（企业版专业套餐）、enterprise-auto（企业版轻享套餐）。
+        # @param ProductType: <p>套餐类型。取值：enterprise（企业版专业套餐）、enterprise-auto（企业版轻享套餐）。</p>
         # @type ProductType: String
+        # @param IpWhitelist: <p>IP 白名单列表。支持 IPv4 单地址与 IPv4 CIDR 格式，空数组表示不限制。</p>
+        # @type IpWhitelist: Array
+        # @param OverageEnabled: <p>是否开启超额按量计费。开启后，若 APIKey 用量达到总额度上限，并且使用的模型已开启按量计费，将自动切换至按量计费模式；未开启时用量达上限后调用报错。</p>
+        # @type OverageEnabled: Boolean
 
-        attr_accessor :ApiKeyId, :ApiKey, :Name, :TeamId, :AppId, :Uin, :AllowedModels, :Status, :StopReason, :UseStatus, :KeyVersion, :LastRotatedAt, :Creator, :CreatedAt, :UpdatedAt, :Balance, :ProductType
+        attr_accessor :ApiKeyId, :ApiKey, :Name, :TeamId, :AppId, :Uin, :AllowedModels, :Status, :StopReason, :UseStatus, :KeyVersion, :LastRotatedAt, :Creator, :CreatedAt, :UpdatedAt, :Balance, :ProductType, :IpWhitelist, :OverageEnabled
 
-        def initialize(apikeyid=nil, apikey=nil, name=nil, teamid=nil, appid=nil, uin=nil, allowedmodels=nil, status=nil, stopreason=nil, usestatus=nil, keyversion=nil, lastrotatedat=nil, creator=nil, createdat=nil, updatedat=nil, balance=nil, producttype=nil)
+        def initialize(apikeyid=nil, apikey=nil, name=nil, teamid=nil, appid=nil, uin=nil, allowedmodels=nil, status=nil, stopreason=nil, usestatus=nil, keyversion=nil, lastrotatedat=nil, creator=nil, createdat=nil, updatedat=nil, balance=nil, producttype=nil, ipwhitelist=nil, overageenabled=nil)
           @ApiKeyId = apikeyid
           @ApiKey = apikey
           @Name = name
@@ -3303,6 +3339,8 @@ module TencentCloud
           @UpdatedAt = updatedat
           @Balance = balance
           @ProductType = producttype
+          @IpWhitelist = ipwhitelist
+          @OverageEnabled = overageenabled
         end
 
         def deserialize(params)
@@ -3326,6 +3364,8 @@ module TencentCloud
             @Balance.deserialize(params['Balance'])
           end
           @ProductType = params['ProductType']
+          @IpWhitelist = params['IpWhitelist']
+          @OverageEnabled = params['OverageEnabled']
         end
       end
 

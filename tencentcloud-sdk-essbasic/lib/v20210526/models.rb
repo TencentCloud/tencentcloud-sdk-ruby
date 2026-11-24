@@ -9949,21 +9949,13 @@ module TencentCloud
 
       # 注: `视频认证为白名单功能，使用前请联系对接的客户经理沟通。`
       class Intention < TencentCloud::Common::AbstractModel
-        # @param IntentionType: 视频认证类型，支持以下类型
-        # <ul><li>1 : 问答模式</li>
-        # <li>2 : 点头模式</li></ul>
-
-        # 注: `视频认证为白名单功能，使用前请联系对接的客户经理沟通。`
+        # @param IntentionType: <p>视频认证类型，支持以下类型</p><ul><li>1 : 问答模式</li><li>2 : 点头模式</li></ul><p>注: <code>视频认证为白名单功能，使用前请联系对接的客户经理沟通。</code></p>
         # @type IntentionType: Integer
-        # @param IntentionQuestions: 意愿核身语音问答模式（即语音播报+语音回答）使用的文案，包括：系统语音播报的文本、需要核验的标准文本。支持传入1～10轮问答，最多支持10轮。
-
-        # 注：`选择问答模式时，此字段可不传，不传则使用默认语音文本：请问，您是否同意签署本协议？可语音回复“同意”或“不同意”。`
+        # @param IntentionQuestions: <p>意愿核身语音问答模式（即语音播报+语音回答）使用的文案，包括：系统语音播报的文本、需要核验的标准文本。支持传入1～9轮问答，最多支持9轮。注：<code>选择问答模式时，此字段可不传，不传则使用默认语音文本：请问，您是否同意签署本协议？可语音回复“同意”或“不同意”。</code></p>
         # @type IntentionQuestions: Array
-        # @param IntentionActions: 意愿核身（点头确认模式）使用的文案，若未使用意愿核身（点头确认模式），则该字段无需传入。支持传入1～10轮点头确认文本，最多支持10轮。
-
-        # 注：`选择点头模式时，此字段可不传，不传则使用默认语音文本：请问，您是否同意签署本协议？可点头同意。`
+        # @param IntentionActions: <p>意愿核身（点头确认模式）使用的文案，若未使用意愿核身（点头确认模式），则该字段无需传入。支持传入1～9轮点头确认文本，最多支持9轮。注：<code>选择点头模式时，此字段可不传，不传则使用默认语音文本：请问，您是否同意签署本协议？可点头同意。</code></p>
         # @type IntentionActions: Array
-        # @param RuleIdConfig: 视频核身相关配置
+        # @param RuleIdConfig: <p>视频核身相关配置</p>
         # @type RuleIdConfig: :class:`Tencentcloud::Essbasic.v20210526.models.RuleIdConfig`
 
         attr_accessor :IntentionType, :IntentionQuestions, :IntentionActions, :RuleIdConfig
@@ -10055,7 +10047,7 @@ module TencentCloud
         end
       end
 
-      # 意愿核身语音问答模式（即语音播报+语音回答）使用的文案，包括：系统语音播报的文本、需要核验的标准文本。当前仅支持1轮问答。
+      # 意愿核身语音问答模式（即语音播报+语音回答）使用的文案，包括：系统语音播报的文本、需要核验的标准文本。支持9轮问答。
       class IntentionQuestion < TencentCloud::Common::AbstractModel
         # @param Question: 当选择语音问答模式时，系统自动播报的问题文本，最大长度为250个字符。
         # @type Question: String
@@ -10487,51 +10479,23 @@ module TencentCloud
 
       # OperateChannelTemplate请求参数结构体
       class OperateChannelTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param Agent: 关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。
-
-        # 此接口下面信息必填。
-        # <ul>
-        # <li>渠道应用标识: Agent.AppId</li>
-        # </ul>
+        # @param Agent: <p>关于渠道应用的相关信息，包括渠道应用标识、第三方平台子客企业标识及第三方平台子客企业中的员工标识等内容，您可以参阅开发者中心所提供的 Agent 结构体以获取详细定义。</p><p>此接口下面信息必填。</p><ul><li>渠道应用标识: Agent.AppId</li></ul>
         # @type Agent: :class:`Tencentcloud::Essbasic.v20210526.models.Agent`
-        # @param OperateType: 操作类型，可取值如下:
-        # <ul>
-        # <li>SELECT:  查询</li>
-        # <li>DELETE:  删除</li>
-        # <li>UPDATE: 更新</li>
-        # </ul>
+        # @param OperateType: <p>操作类型，可取值如下:</p><ul><li>SELECT:  查询</li><li>DELETE:  删除</li><li>UPDATE: 更新</li><li> DELETETEMPLATE: 删除指定的模板</li></ul>
         # @type OperateType: String
-        # @param TemplateId: 合同模板ID，为32位字符串。
-        # 注: ` 此处为第三方应用平台模板库模板ID，非子客模板ID`
+        # @param TemplateId: <p>合同模板ID，为32位字符串。<br>注: <code>此处为第三方应用平台模板库模板ID，非子客模板ID</code></p>
         # @type TemplateId: String
-        # @param ProxyOrganizationOpenIds: 第三方平台子客企业的唯一标识，支持批量(用,分割)
-        # 一次批量操作最多支持100个第三方平台子客
+        # @param ProxyOrganizationOpenIds: <p>第三方平台子客企业的唯一标识，支持批量(用,分割)<br>一次批量操作最多支持100个第三方平台子客</p>
         # @type ProxyOrganizationOpenIds: String
-        # @param AuthTag: 模板可见范围, 可以设置的值如下:
-
-        # **all**: 所有本第三方应用合作企业可见
-        # **part**: 指定的本第三方应用合作企业
-
-        # 对应控制台的位置
-        # ![image](https://qcloudimg.tencent-cloud.cn/raw/68b97812c68d6af77a5991e3bff5c790.png)
+        # @param AuthTag: <p>模板可见范围, 可以设置的值如下:</p><p><strong>all</strong>: 所有本第三方应用合作企业可见<br><strong>part</strong>: 指定的本第三方应用合作企业</p><p>对应控制台的位置<br><img src="https://qcloudimg.tencent-cloud.cn/raw/68b97812c68d6af77a5991e3bff5c790.png" alt="image"></p>
         # @type AuthTag: String
-        # @param Available: 当OperateType=UPDATE时，可以通过设置此字段对模板启停用状态进行操作。
-        # <ul>
-        # <li>0: 不修改模板可用状态</li>
-        # <li>1:  启用模板</li>
-        # <li>2: 停用模板</li>
-        # </ul>
-        # 启用后模板可以正常领取。
-
-        # 停用后，推送方式为【自动推送】的模板则无法被子客使用，推送方式为【手动领取】的模板则无法出现被模板库被子客领用。
-        # 如果Available更新失败，会直接返回错误。
+        # @param Available: <p>当OperateType=UPDATE时，可以通过设置此字段对模板启停用状态进行操作。</p><ul><li>0: 不修改模板可用状态</li><li>1:  启用模板</li><li>2: 停用模板</li></ul>启用后模板可以正常领取。<p>停用后，推送方式为【自动推送】的模板则无法被子客使用，推送方式为【手动领取】的模板则无法出现被模板库被子客领用。<br>如果Available更新失败，会直接返回错误。</p>
         # @type Available: Integer
-        # @param Operator: 暂未开放
+        # @param Operator: <p>暂未开放</p>
         # @type Operator: :class:`Tencentcloud::Essbasic.v20210526.models.UserInfo`
-        # @param Limit: 指定分页每页返回的数据条数，单页最大支持 100。
-        # 不传默认值为 20
+        # @param Limit: <p>指定分页每页返回的数据条数，单页最大支持 100。<br>不传默认值为 20</p>
         # @type Limit: Integer
-        # @param Offset: 分页查询偏移量，默认为0
+        # @param Offset: <p>分页查询偏移量，默认为0</p>
         # @type Offset: Integer
 
         attr_accessor :Agent, :OperateType, :TemplateId, :ProxyOrganizationOpenIds, :AuthTag, :Available, :Operator, :Limit, :Offset
@@ -10572,26 +10536,19 @@ module TencentCloud
 
       # OperateChannelTemplate返回参数结构体
       class OperateChannelTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param AppId: 第三方应用平台的应用ID
+        # @param AppId: <p>第三方应用平台的应用ID</p>
         # @type AppId: String
-        # @param TemplateId: 合同模板ID
+        # @param TemplateId: <p>合同模板ID</p>
         # @type TemplateId: String
-        # @param OperateResult: 描述模板可见性更改的结果。
-        # <ul>
-        # <li>all-success: 全部成功</li>
-        # <li>part-success: 部分成功,失败的会在FailMessageList中展示</li>
-        # <li>fail:全部失败, 失败的会在FailMessageList中展示</li>
-        # </ul>
+        # @param OperateResult: <p>描述模板可见性更改的结果。</p><ul><li>all-success: 全部成功</li><li>part-success: 部分成功,失败的会在FailMessageList中展示</li><li>fail:全部失败, 失败的会在FailMessageList中展示</li></ul>
         # @type OperateResult: String
-        # @param AuthTag: 模板可见范围:
-        # **all**: 所有本第三方应用合作企业可见
-        # **part**: 指定的本第三方应用合作企业
+        # @param AuthTag: <p>模板可见范围:<br><strong>all</strong>: 所有本第三方应用合作企业可见<br><strong>part</strong>: 指定的本第三方应用合作企业</p>
         # @type AuthTag: String
-        # @param ProxyOrganizationOpenIds: 第三方平台子客企业标识列表，仅在select 模式下返回
+        # @param ProxyOrganizationOpenIds: <p>第三方平台子客企业标识列表，仅在select 模式下返回</p>
         # @type ProxyOrganizationOpenIds: Array
-        # @param FailMessageList: 操作失败信息数组
+        # @param FailMessageList: <p>操作失败信息数组</p>
         # @type FailMessageList: Array
-        # @param Total: 授权的平台子企业数量，OperateType 为select 时返回。
+        # @param Total: <p>授权的平台子企业数量，OperateType 为select 时返回。</p>
         # @type Total: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

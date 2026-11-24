@@ -996,6 +996,50 @@ module TencentCloud
         end
       end
 
+      # DescribeStableIP请求参数结构体
+      class DescribeStableIPRequest < TencentCloud::Common::AbstractModel
+        # @param EnvId: <p>环境ID</p>
+        # @type EnvId: String
+
+        attr_accessor :EnvId
+
+        def initialize(envid=nil)
+          @EnvId = envid
+        end
+
+        def deserialize(params)
+          @EnvId = params['EnvId']
+        end
+      end
+
+      # DescribeStableIP返回参数结构体
+      class DescribeStableIPResponse < TencentCloud::Common::AbstractModel
+        # @param Address: <p>固定 IP 地址</p>
+        # @type Address: String
+        # @param Status: <p>状态：normal 正常 isolate 隔离</p>
+        # @type Status: String
+        # @param ExpireTime: <p>过期时间</p>
+        # @type ExpireTime: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :Address, :Status, :ExpireTime, :RequestId
+
+        def initialize(address=nil, status=nil, expiretime=nil, requestid=nil)
+          @Address = address
+          @Status = status
+          @ExpireTime = expiretime
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @Address = params['Address']
+          @Status = params['Status']
+          @ExpireTime = params['ExpireTime']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # DescribeStableIPTask请求参数结构体
       class DescribeStableIPTaskRequest < TencentCloud::Common::AbstractModel
         # @param EnvId: 环境 ID
