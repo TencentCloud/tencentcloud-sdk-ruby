@@ -17,6 +17,33 @@
 module TencentCloud
   module Faceid
     module V20180301
+      # 命中的攻击区域列表
+      class AttackRegion < TencentCloud::Common::AbstractModel
+        # @param Polygon: <p>攻击区域的四点坐标，固定为轴对齐矩形，按 左上 → 右上 → 右下 → 左下 顺时针顺序排列。单位为像素，坐标原点为图像左上角。数组长度固定为 4。</p>
+        # @type Polygon: Array
+        # @param Description: <p>攻击描述，对该区域命中的可疑特征进行详细说明。</p>
+        # @type Description: String
+
+        attr_accessor :Polygon, :Description
+
+        def initialize(polygon=nil, description=nil)
+          @Polygon = polygon
+          @Description = description
+        end
+
+        def deserialize(params)
+          unless params['Polygon'].nil?
+            @Polygon = []
+            params['Polygon'].each do |i|
+              point_tmp = Point.new
+              point_tmp.deserialize(i)
+              @Polygon << point_tmp
+            end
+          end
+          @Description = params['Description']
+        end
+      end
+
       # 疑似攻击风险详情
       class AttackRiskDetail < TencentCloud::Common::AbstractModel
         # @param Type: <p>疑似的攻击痕迹类型，具体类型如下：<br>SuspectedSpoofingAttack：翻拍攻击<br>SuspectedSynthesisImage：疑似合成图片<br>SuspectedSynthesisVideo：疑似合成视频<br>SuspectedAnomalyAttack：人脸特征疑似非真人<br>SuspectedAdversarialAttack：疑似对抗样本攻击<br>SuspectedBlackIndustry：疑似黑产批量模板攻击<br>SuspectedWatermark：疑似存在水印</p>
@@ -1545,6 +1572,49 @@ module TencentCloud
 
         def deserialize(params)
           @ActionSequence = params['ActionSequence']
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # GetAttackDetail请求参数结构体
+      class GetAttackDetailRequest < TencentCloud::Common::AbstractModel
+        # @param SeqId: <p>待查询的检测请求 ID，来自上游检测接口（如 <code>DetectAIFakeFaces</code>）返回的 <code>RequestId</code>。长度 32 ~ 64，仅支持数字、字母及短横线 <code>-</code>。检测结果保留期为 3 天，超期后将返回 <code>ResourceUnavailable.ResultExpired</code>。</p>
+        # @type SeqId: String
+
+        attr_accessor :SeqId
+
+        def initialize(seqid=nil)
+          @SeqId = seqid
+        end
+
+        def deserialize(params)
+          @SeqId = params['SeqId']
+        end
+      end
+
+      # GetAttackDetail返回参数结构体
+      class GetAttackDetailResponse < TencentCloud::Common::AbstractModel
+        # @param AttackRegionList: <p>检测命中的攻击区域列表。本次检测未命中任何攻击区域时返回空数组 []</p>
+        # @type AttackRegionList: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :AttackRegionList, :RequestId
+
+        def initialize(attackregionlist=nil, requestid=nil)
+          @AttackRegionList = attackregionlist
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          unless params['AttackRegionList'].nil?
+            @AttackRegionList = []
+            params['AttackRegionList'].each do |i|
+              attackregion_tmp = AttackRegion.new
+              attackregion_tmp.deserialize(i)
+              @AttackRegionList << attackregion_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -3967,6 +4037,26 @@ module TencentCloud
           @Isp = params['Isp']
           @ResultDetail = params['ResultDetail']
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 图像坐标点结构体
+      class Point < TencentCloud::Common::AbstractModel
+        # @param X: <p>横坐标，单位像素，取值范围 [0, 图像宽度]</p>
+        # @type X: Integer
+        # @param Y: <p>纵坐标，单位像素，取值范围 [0, 图像高度]</p>
+        # @type Y: Integer
+
+        attr_accessor :X, :Y
+
+        def initialize(x=nil, y=nil)
+          @X = x
+          @Y = y
+        end
+
+        def deserialize(params)
+          @X = params['X']
+          @Y = params['Y']
         end
       end
 

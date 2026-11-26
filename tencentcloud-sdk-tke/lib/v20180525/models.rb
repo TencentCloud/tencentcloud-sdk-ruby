@@ -1507,23 +1507,26 @@ module TencentCloud
 
       # 开启注册节点池支持配置信息
       class ClusterExternalConfig < TencentCloud::Common::AbstractModel
-        # @param NetworkType: 容器网络类型，支持：HostNetwork、CiliumBGP
+        # @param NetworkType: <p>容器网络类型，支持：HostNetwork、CiliumBGP</p>
         # @type NetworkType: String
-        # @param SubnetId: 子网ID
+        # @param SubnetId: <p>子网ID</p>
         # @type SubnetId: String
-        # @param ClusterCIDR: 集群CIDR，网络模式HostNetwork 时无需填写
+        # @param ClusterCIDR: <p>集群CIDR，网络模式HostNetwork 时无需填写</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ClusterCIDR: String
-        # @param Enabled: 【已废弃】是否开启专线连接能力
+        # @param Enabled: <p>【已废弃】是否开启专线连接能力</p>
         # @type Enabled: Boolean
+        # @param ProxyCLBMode: <p>ProxyCLBMode</p><p>枚举值：</p><ul><li>Dedicated： 默认，独立专属 CLB 元素</li><li>Shared： 复用支撑面 CLB</li></ul><p>默认值：Dedicated</p>
+        # @type ProxyCLBMode: String
 
-        attr_accessor :NetworkType, :SubnetId, :ClusterCIDR, :Enabled
+        attr_accessor :NetworkType, :SubnetId, :ClusterCIDR, :Enabled, :ProxyCLBMode
 
-        def initialize(networktype=nil, subnetid=nil, clustercidr=nil, enabled=nil)
+        def initialize(networktype=nil, subnetid=nil, clustercidr=nil, enabled=nil, proxyclbmode=nil)
           @NetworkType = networktype
           @SubnetId = subnetid
           @ClusterCIDR = clustercidr
           @Enabled = enabled
+          @ProxyCLBMode = proxyclbmode
         end
 
         def deserialize(params)
@@ -1531,6 +1534,7 @@ module TencentCloud
           @SubnetId = params['SubnetId']
           @ClusterCIDR = params['ClusterCIDR']
           @Enabled = params['Enabled']
+          @ProxyCLBMode = params['ProxyCLBMode']
         end
       end
 

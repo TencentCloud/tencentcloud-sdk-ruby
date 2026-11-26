@@ -347,6 +347,46 @@ module TencentCloud
         end
       end
 
+      # AsyncTTSTextSegment对应的结果
+      class AsyncTTSSegmentResult < TencentCloud::Common::AbstractModel
+        # @param Text: <p>分段文本</p>
+        # @type Text: String
+        # @param AudioDownloadUrl: <p>音频下载url</p>
+        # @type AudioDownloadUrl: String
+        # @param DurationMs: <p>音频时长</p><p>单位：ms</p>
+        # @type DurationMs: Integer
+
+        attr_accessor :Text, :AudioDownloadUrl, :DurationMs
+
+        def initialize(text=nil, audiodownloadurl=nil, durationms=nil)
+          @Text = text
+          @AudioDownloadUrl = audiodownloadurl
+          @DurationMs = durationms
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+          @AudioDownloadUrl = params['AudioDownloadUrl']
+          @DurationMs = params['DurationMs']
+        end
+      end
+
+      # 文本分段元素
+      class AsyncTTSTextSegment < TencentCloud::Common::AbstractModel
+        # @param Text: <p>分段文本</p>
+        # @type Text: String
+
+        attr_accessor :Text
+
+        def initialize(text=nil)
+          @Text = text
+        end
+
+        def deserialize(params)
+          @Text = params['Text']
+        end
+      end
+
       # AsyncTextToSpeech请求参数结构体
       class AsyncTextToSpeechRequest < TencentCloud::Common::AbstractModel
         # @param Text: <p>需要转语音的文字内容，最大允许50000字符，注意 1汉字=2字符</p>
@@ -355,6 +395,8 @@ module TencentCloud
         # @type Voice: :class:`Tencentcloud::Trtc.v20190722.models.Voice`
         # @param SdkAppId: <p>TRTC的SdkAppId</p>
         # @type SdkAppId: Integer
+        # @param TextSegments: <p>分段文本，优先级高于text，适用于定制长文本分句场景</p><p>入参限制：文本总长度不能超过50000字符，段数不能超过500</p>
+        # @type TextSegments: Array
         # @param AudioFormat: <p>文本转语音的输出音频的格式</p>
         # @type AudioFormat: :class:`Tencentcloud::Trtc.v20190722.models.AudioFormat`
         # @param Model: <p>TTS的模型，当前固定为：flow_02_turbo</p><p>枚举值：</p><ul><li>flow_02_turbo： flow_02_turbo</li></ul>
@@ -366,12 +408,13 @@ module TencentCloud
         # @param LanguageCode: <p>需要合成的语言，默认为空，表示自动识别</p><p>枚举值：</p><ul><li>zh： 中文</li><li>en： 英文</li><li>ja： 日语</li><li>ko： 韩语</li><li>yue： 粤语</li><li>ms： 马来语</li><li>ar： 阿拉伯语</li><li>id： 印尼语</li><li>th： 泰语</li><li>vi： 越南语</li></ul>
         # @type LanguageCode: String
 
-        attr_accessor :Text, :Voice, :SdkAppId, :AudioFormat, :Model, :PronunciationDict, :AlignmentMode, :LanguageCode
+        attr_accessor :Text, :Voice, :SdkAppId, :TextSegments, :AudioFormat, :Model, :PronunciationDict, :AlignmentMode, :LanguageCode
 
-        def initialize(text=nil, voice=nil, sdkappid=nil, audioformat=nil, model=nil, pronunciationdict=nil, alignmentmode=nil, languagecode=nil)
+        def initialize(text=nil, voice=nil, sdkappid=nil, textsegments=nil, audioformat=nil, model=nil, pronunciationdict=nil, alignmentmode=nil, languagecode=nil)
           @Text = text
           @Voice = voice
           @SdkAppId = sdkappid
+          @TextSegments = textsegments
           @AudioFormat = audioformat
           @Model = model
           @PronunciationDict = pronunciationdict
@@ -386,6 +429,14 @@ module TencentCloud
             @Voice.deserialize(params['Voice'])
           end
           @SdkAppId = params['SdkAppId']
+          unless params['TextSegments'].nil?
+            @TextSegments = []
+            params['TextSegments'].each do |i|
+              asyncttstextsegment_tmp = AsyncTTSTextSegment.new
+              asyncttstextsegment_tmp.deserialize(i)
+              @TextSegments << asyncttstextsegment_tmp
+            end
+          end
           unless params['AudioFormat'].nil?
             @AudioFormat = AudioFormat.new
             @AudioFormat.deserialize(params['AudioFormat'])
@@ -408,18 +459,26 @@ module TencentCloud
       class AsyncTextToSpeechResponse < TencentCloud::Common::AbstractModel
         # @param TaskId: <p>任务ID</p>
         # @type TaskId: String
+        # @param CurrentTaskCount: <p>当前正在处理的任务数</p>
+        # @type CurrentTaskCount: Integer
+        # @param MaxTaskCount: <p>最大允许提交的任务数，默认1000，有提额需求请提交工单</p>
+        # @type MaxTaskCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :TaskId, :RequestId
+        attr_accessor :TaskId, :CurrentTaskCount, :MaxTaskCount, :RequestId
 
-        def initialize(taskid=nil, requestid=nil)
+        def initialize(taskid=nil, currenttaskcount=nil, maxtaskcount=nil, requestid=nil)
           @TaskId = taskid
+          @CurrentTaskCount = currenttaskcount
+          @MaxTaskCount = maxtaskcount
           @RequestId = requestid
         end
 
         def deserialize(params)
           @TaskId = params['TaskId']
+          @CurrentTaskCount = params['CurrentTaskCount']
+          @MaxTaskCount = params['MaxTaskCount']
           @RequestId = params['RequestId']
         end
       end
@@ -2099,7 +2158,7 @@ module TencentCloud
 
       # DescribeAsyncTextToSpeech请求参数结构体
       class DescribeAsyncTextToSpeechRequest < TencentCloud::Common::AbstractModel
-        # @param TaskId: 任务ID
+        # @param TaskId: <p>任务ID</p>
         # @type TaskId: String
 
         attr_accessor :TaskId
@@ -2115,28 +2174,27 @@ module TencentCloud
 
       # DescribeAsyncTextToSpeech返回参数结构体
       class DescribeAsyncTextToSpeechResponse < TencentCloud::Common::AbstractModel
-        # @param Status: 任务状态
-        # - Processing，处理中
-        # - Success，任务成功
-        # - Failed，任务失败
-        # - Expired，任务过期
+        # @param Status: <p>任务状态</p><ul><li>Processing，处理中</li><li>Success，任务成功</li><li>Failed，任务失败</li><li>Expired，任务过期</li></ul>
         # @type Status: String
-        # @param AudioDownloadUrl: 音频下载url
+        # @param AudioDownloadUrl: <p>音频下载url</p>
         # @type AudioDownloadUrl: String
-        # @param SubtitleDownloadUrl: 字幕下载url
+        # @param SubtitleDownloadUrl: <p>字幕下载url</p>
         # @type SubtitleDownloadUrl: String
-        # @param TotalDurationMs: 音频时长
+        # @param TotalDurationMs: <p>音频时长</p>
         # @type TotalDurationMs: Integer
+        # @param SegmentResults: <p>分段文本对应的结果</p>
+        # @type SegmentResults: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :Status, :AudioDownloadUrl, :SubtitleDownloadUrl, :TotalDurationMs, :RequestId
+        attr_accessor :Status, :AudioDownloadUrl, :SubtitleDownloadUrl, :TotalDurationMs, :SegmentResults, :RequestId
 
-        def initialize(status=nil, audiodownloadurl=nil, subtitledownloadurl=nil, totaldurationms=nil, requestid=nil)
+        def initialize(status=nil, audiodownloadurl=nil, subtitledownloadurl=nil, totaldurationms=nil, segmentresults=nil, requestid=nil)
           @Status = status
           @AudioDownloadUrl = audiodownloadurl
           @SubtitleDownloadUrl = subtitledownloadurl
           @TotalDurationMs = totaldurationms
+          @SegmentResults = segmentresults
           @RequestId = requestid
         end
 
@@ -2145,6 +2203,14 @@ module TencentCloud
           @AudioDownloadUrl = params['AudioDownloadUrl']
           @SubtitleDownloadUrl = params['SubtitleDownloadUrl']
           @TotalDurationMs = params['TotalDurationMs']
+          unless params['SegmentResults'].nil?
+            @SegmentResults = []
+            params['SegmentResults'].each do |i|
+              asyncttssegmentresult_tmp = AsyncTTSSegmentResult.new
+              asyncttssegmentresult_tmp.deserialize(i)
+              @SegmentResults << asyncttssegmentresult_tmp
+            end
+          end
           @RequestId = params['RequestId']
         end
       end

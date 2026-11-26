@@ -625,10 +625,12 @@ module TencentCloud
         # @type OAuthConsent: Integer
         # @param CredentialConfig: <p>凭证配置</p>
         # @type CredentialConfig: :class:`Tencentcloud::Adp.v20260520.models.AgentPluginCredentialConfig`
+        # @param KnowledgeScope: <p>连接器知识范围，目前仅支持腾讯乐享配置</p>
+        # @type KnowledgeScope: :class:`Tencentcloud::Adp.v20260520.models.ConnectorKnowledgeScope`
 
-        attr_accessor :PluginId, :HeaderParameterList, :QueryParameterList, :EnableCamRoleAuth, :AuthType, :OAuthConsent, :CredentialConfig
+        attr_accessor :PluginId, :HeaderParameterList, :QueryParameterList, :EnableCamRoleAuth, :AuthType, :OAuthConsent, :CredentialConfig, :KnowledgeScope
 
-        def initialize(pluginid=nil, headerparameterlist=nil, queryparameterlist=nil, enablecamroleauth=nil, authtype=nil, oauthconsent=nil, credentialconfig=nil)
+        def initialize(pluginid=nil, headerparameterlist=nil, queryparameterlist=nil, enablecamroleauth=nil, authtype=nil, oauthconsent=nil, credentialconfig=nil, knowledgescope=nil)
           @PluginId = pluginid
           @HeaderParameterList = headerparameterlist
           @QueryParameterList = queryparameterlist
@@ -636,6 +638,7 @@ module TencentCloud
           @AuthType = authtype
           @OAuthConsent = oauthconsent
           @CredentialConfig = credentialconfig
+          @KnowledgeScope = knowledgescope
         end
 
         def deserialize(params)
@@ -662,6 +665,10 @@ module TencentCloud
           unless params['CredentialConfig'].nil?
             @CredentialConfig = AgentPluginCredentialConfig.new
             @CredentialConfig.deserialize(params['CredentialConfig'])
+          end
+          unless params['KnowledgeScope'].nil?
+            @KnowledgeScope = ConnectorKnowledgeScope.new
+            @KnowledgeScope.deserialize(params['KnowledgeScope'])
           end
         end
       end
@@ -4222,6 +4229,92 @@ module TencentCloud
         end
       end
 
+      # 连接器知识范围
+      class ConnectorKnowledgeScope < TencentCloud::Common::AbstractModel
+        # @param Enabled: <p>是否启用知识范围</p>
+        # @type Enabled: Boolean
+        # @param ResourceList: <p>已选资源列表，Enabled 为 true 时至少 1 项</p>
+        # @type ResourceList: Array
+
+        attr_accessor :Enabled, :ResourceList
+
+        def initialize(enabled=nil, resourcelist=nil)
+          @Enabled = enabled
+          @ResourceList = resourcelist
+        end
+
+        def deserialize(params)
+          @Enabled = params['Enabled']
+          unless params['ResourceList'].nil?
+            @ResourceList = []
+            params['ResourceList'].each do |i|
+              connectorresource_tmp = ConnectorResource.new
+              connectorresource_tmp.deserialize(i)
+              @ResourceList << connectorresource_tmp
+            end
+          end
+        end
+      end
+
+      # 连接器资源及上级链
+      class ConnectorResource < TencentCloud::Common::AbstractModel
+        # @param Type: <p>资源类型</p><p>枚举值：</p><ul><li>1： 空间（乐享知识库）</li><li>2： 文件夹</li><li>3： 文档或文件</li><li>4： 团队</li></ul>
+        # @type Type: Integer
+        # @param ResourceId: <p>连接器侧资源 ID</p>
+        # @type ResourceId: String
+        # @param Name: <p>资源名称快照</p>
+        # @type Name: String
+        # @param AncestorList: <p>祖先链快照，自顶向下且不含自身，最多 100 项；顶层资源为空。</p>
+        # @type AncestorList: Array
+
+        attr_accessor :Type, :ResourceId, :Name, :AncestorList
+
+        def initialize(type=nil, resourceid=nil, name=nil, ancestorlist=nil)
+          @Type = type
+          @ResourceId = resourceid
+          @Name = name
+          @AncestorList = ancestorlist
+        end
+
+        def deserialize(params)
+          @Type = params['Type']
+          @ResourceId = params['ResourceId']
+          @Name = params['Name']
+          unless params['AncestorList'].nil?
+            @AncestorList = []
+            params['AncestorList'].each do |i|
+              connectorresourceref_tmp = ConnectorResourceRef.new
+              connectorresourceref_tmp.deserialize(i)
+              @AncestorList << connectorresourceref_tmp
+            end
+          end
+        end
+      end
+
+      # <p>连接器资源引用</p>
+      class ConnectorResourceRef < TencentCloud::Common::AbstractModel
+        # @param ResourceId: <p>连接器侧资源 ID</p>
+        # @type ResourceId: String
+        # @param Type: <p>资源类型：1-空间（乐享知识库），2-文件夹，3-文档或文件，4-团队；0 无效。</p><table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>CONNECTOR_RESOURCE_TYPE_UNSPECIFIED</td><td>0</td><td>未指定，不允许用于资源引用</td></tr><tr><td>CONNECTOR_RESOURCE_TYPE_WORKSPACE</td><td>1</td><td>空间；乐享个人知识库和团队知识库均为此类型</td></tr><tr><td>CONNECTOR_RESOURCE_TYPE_FOLDER</td><td>2</td><td>文件夹</td></tr><tr><td>CONNECTOR_RESOURCE_TYPE_DOC</td><td>3</td><td>文档或文件</td></tr><tr><td>CONNECTOR_RESOURCE_TYPE_GROUP</td><td>4</td><td>团队或群组</td></tr></tbody></table>
+        # @type Type: Integer
+        # @param Name: <p>资源名称；请求中选填，不参与资源定位。</p>
+        # @type Name: String
+
+        attr_accessor :ResourceId, :Type, :Name
+
+        def initialize(resourceid=nil, type=nil, name=nil)
+          @ResourceId = resourceid
+          @Type = type
+          @Name = name
+        end
+
+        def deserialize(params)
+          @ResourceId = params['ResourceId']
+          @Type = params['Type']
+          @Name = params['Name']
+        end
+      end
+
       # 消耗分类
       class ConsumptionClassification < TencentCloud::Common::AbstractModel
         # @param ConsumptionScene: <p>消耗场景（如推理/训练/评测等）</p>
@@ -4322,11 +4415,11 @@ module TencentCloud
 
       # 内容过滤配置（图片名称正则/最小宽高），缺省时不启用过滤
       class ContentFilter < TencentCloud::Common::AbstractModel
-        # @param ImageMinHeight: <p>图片最小高度（像素），小于则过滤；&lt;=0 表示不启用</p>
+        # @param ImageMinHeight: 图片最小高度（像素），小于则过滤；<=0 表示不启用
         # @type ImageMinHeight: Integer
-        # @param ImageMinWidth: <p>图片最小宽度（像素），小于则过滤；&lt;=0 表示不启用</p>
+        # @param ImageMinWidth: 图片最小宽度（像素），小于则过滤；<=0 表示不启用
         # @type ImageMinWidth: Integer
-        # @param ImageNamePatterns: <p>图片名称过滤规则（用分号 &#39;;&#39; 分隔的多条正则，如 &#39;icon;notice;warning;info.*&#39;）</p>
+        # @param ImageNamePatterns: 图片名称过滤规则（用分号 ';' 分隔的多条正则，如 'icon;notice;warning;info.*'）
         # @type ImageNamePatterns: String
 
         attr_accessor :ImageMinHeight, :ImageMinWidth, :ImageNamePatterns
@@ -11955,13 +12048,16 @@ module TencentCloud
         # @param ContentFilter: <p>内容过滤配置</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContentFilter: :class:`Tencentcloud::Adp.v20260520.models.ContentFilter`
+        # @param ParseStrategy: <p>文档解析策略：1=OCR解析 2=智能解析 3=MLLM解析；不传默认智能解析<table><tbody><tr><td>枚举项</td><td>枚举值</td><td>描述</td></tr><tr><td>DOC_PARSE_STRATEGY_UNKNOWN</td><td>0</td><td>未指定，走服务端默认（智能解析）</td></tr><tr><td>DOC_PARSE_STRATEGY_OCR</td><td>1</td><td>OCR 解析</td></tr><tr><td>DOC_PARSE_STRATEGY_SMART</td><td>2</td><td>智能解析（按图片类型自动选择：数据图/思维导图/架构图/流程图用 MLLM，其他图片用 OCR）</td></tr><tr><td>DOC_PARSE_STRATEGY_MLLM</td><td>3</td><td>MLLM 解析</td></tr></tbody></table></p>
+        # @type ParseStrategy: Integer
         # @param SplitRule: <p>分割规则</p>
         # @type SplitRule: String
 
-        attr_accessor :ContentFilter, :SplitRule
+        attr_accessor :ContentFilter, :ParseStrategy, :SplitRule
 
-        def initialize(contentfilter=nil, splitrule=nil)
+        def initialize(contentfilter=nil, parsestrategy=nil, splitrule=nil)
           @ContentFilter = contentfilter
+          @ParseStrategy = parsestrategy
           @SplitRule = splitrule
         end
 
@@ -11970,6 +12066,7 @@ module TencentCloud
             @ContentFilter = ContentFilter.new
             @ContentFilter.deserialize(params['ContentFilter'])
           end
+          @ParseStrategy = params['ParseStrategy']
           @SplitRule = params['SplitRule']
         end
       end

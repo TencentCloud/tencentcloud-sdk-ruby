@@ -5834,15 +5834,19 @@ module TencentCloud
       class AigcAudioReferenceAudioInfo < TencentCloud::Common::AbstractModel
         # @param AudioUrl: <p>参考音频URL信息。需外网可访问。</p>
         # @type AudioUrl: String
+        # @param ReferenceType: <p>参考类型。</p>
+        # @type ReferenceType: String
 
-        attr_accessor :AudioUrl
+        attr_accessor :AudioUrl, :ReferenceType
 
-        def initialize(audiourl=nil)
+        def initialize(audiourl=nil, referencetype=nil)
           @AudioUrl = audiourl
+          @ReferenceType = referencetype
         end
 
         def deserialize(params)
           @AudioUrl = params['AudioUrl']
+          @ReferenceType = params['ReferenceType']
         end
       end
 

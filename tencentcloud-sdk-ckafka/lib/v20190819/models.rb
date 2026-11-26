@@ -441,13 +441,13 @@ module TencentCloud
 
       # BatchModifyGroupOffsets请求参数结构体
       class BatchModifyGroupOffsetsRequest < TencentCloud::Common::AbstractModel
-        # @param GroupName: <p>消费分组名称</p>
+        # @param GroupName: <p>消费分组名称</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40840">DescribeGroup</a></p>
         # @type GroupName: String
         # @param InstanceId: <p>ckafka集群实例Id</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40835">DescribeInstances</a></p>
         # @type InstanceId: String
         # @param Partitions: <p>partition信息</p>
         # @type Partitions: Array
-        # @param TopicName: <p>指定topic，默认所有topic</p>
+        # @param TopicName: <p>指定topic，默认所有topic</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40847">DescribeTopic</a></p>
         # @type TopicName: Array
 
         attr_accessor :GroupName, :InstanceId, :Partitions, :TopicName
@@ -2121,7 +2121,7 @@ module TencentCloud
         # @type ClusterId: Integer
         # @param RenewFlag: <p>预付费自动续费标记，0表示默认状态(用户未设置，即初始状态)， 1表示自动续费，2表示明确不自动续费(用户设置)</p>
         # @type RenewFlag: Integer
-        # @param KafkaVersion: <p>CKafka版本号[2.4.1, 2.4.2, 2.8.1, 3.2.3], 默认取值是2.4.1。2.4.1 与 2.4.2 属于同一个版本，传任意一个均可。</p>
+        # @param KafkaVersion: <p>CKafka版本号[2.4.1, 2.4.2, 2.8.1, 3.2.3, 3.9.2], 默认取值是2.4.1。2.4.1 与 2.4.2 属于同一个版本，传任意一个均可。</p>
         # @type KafkaVersion: String
         # @param SpecificationsType: <p>实例类型: [标准版实例]填写 &quot;standard&quot; (默认), [专业版实例]填写 &quot;profession&quot;,[高级版实例]填写&quot;premium&quot;</p>
         # @type SpecificationsType: String
@@ -2561,7 +2561,7 @@ module TencentCloud
         # @type MsgRetentionTime: Integer
         # @param ClusterId: <p>创建实例时可以选择集群Id, 该入参表示集群Id。不指定实例所在集群则不传入该参数</p>
         # @type ClusterId: Integer
-        # @param KafkaVersion: <p>实例版本。目前支持当前支持&quot;2.4.1&quot;, &quot;2.4.2&quot;,&quot;2.8.1&quot;, &quot;3.2.3&quot;，默认取值&quot;2.4.1&quot;。&quot;2.4.1&quot; 与 &quot;2.4.2&quot; 属于同一个版本，传任意一个均可。</p>
+        # @param KafkaVersion: <p>实例版本。目前支持当前支持&quot;2.4.1&quot;, &quot;2.4.2&quot;,&quot;2.8.1&quot;, &quot;3.2.3&quot;, &quot;3.9.2&quot;，默认取值&quot;2.4.1&quot;。&quot;2.4.1&quot; 与 &quot;2.4.2&quot; 属于同一个版本，传任意一个均可。</p>
         # @type KafkaVersion: String
         # @param SpecificationsType: <p>实例类型。&quot;standard&quot;：标准版，&quot;profession&quot;：专业版。  (标准版仅国际站支持，国内站目前支持专业版)</p>
         # @type SpecificationsType: String
@@ -4151,9 +4151,9 @@ module TencentCloud
 
       # DeleteTopic请求参数结构体
       class DeleteTopicRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: ckafka 实例Id
+        # @param InstanceId: <p>ckafka 实例Id</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40835">DescribeInstances</a></p>
         # @type InstanceId: String
-        # @param TopicName: ckafka 主题名称
+        # @param TopicName: <p>ckafka 主题名称</p><p>取值参考：<a href="https://cloud.tencent.com/document/api/597/40847">DescribeTopic</a></p>
         # @type TopicName: String
 
         attr_accessor :InstanceId, :TopicName
@@ -4171,7 +4171,7 @@ module TencentCloud
 
       # DeleteTopic返回参数结构体
       class DeleteTopicResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回的结果集
+        # @param Result: <p>返回的结果集</p>
         # @type Result: :class:`Tencentcloud::Ckafka.v20190819.models.JgwOperateResponse`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5561,9 +5561,9 @@ module TencentCloud
 
       # DescribeGroup返回实体
       class DescribeGroup < TencentCloud::Common::AbstractModel
-        # @param Group: 消费分组名称
+        # @param Group: <p>消费分组名称</p>
         # @type Group: String
-        # @param Protocol: 该 group 使用的协议。
+        # @param Protocol: <p>该 group 使用的协议。</p>
         # @type Protocol: String
 
         attr_accessor :Group, :Protocol
@@ -10247,11 +10247,11 @@ module TencentCloud
 
       # 修改实例属性的配置对象
       class ModifyInstanceAttributesConfig < TencentCloud::Common::AbstractModel
-        # @param AutoCreateTopicEnable: 自动创建 true 表示开启，false 表示不开启
+        # @param AutoCreateTopicEnable: <p>自动创建 true 表示开启，false 表示不开启</p>
         # @type AutoCreateTopicEnable: Boolean
-        # @param DefaultNumPartitions: 新创建主题的默认分区数,如果AutoCreateTopicEnable设置为true没有设置该值时，默认设置为3
+        # @param DefaultNumPartitions: <p>新创建主题的默认分区数,如果AutoCreateTopicEnable设置为true没有设置该值时，默认设置为3</p>
         # @type DefaultNumPartitions: Integer
-        # @param DefaultReplicationFactor: 新创建主题的默认副本数,如果AutoCreateTopicEnable设置为true没有指定该值时默认设置为2
+        # @param DefaultReplicationFactor: <p>新创建主题的默认副本数</p><p>如果AutoCreateTopicEnable设置为true时，该值必须大于0</p>
         # @type DefaultReplicationFactor: Integer
 
         attr_accessor :AutoCreateTopicEnable, :DefaultNumPartitions, :DefaultReplicationFactor
@@ -10661,13 +10661,13 @@ module TencentCloud
         # @type MinInsyncReplicas: Integer
         # @param UncleanLeaderElectionEnable: <p>是否允许未同步的副本选为leader</p><p>枚举值：</p><ul><li>0： 不允许</li><li>1： 允许</li></ul><p>默认值：0</p>
         # @type UncleanLeaderElectionEnable: Integer
-        # @param RetentionMs: <p>Segment分片滚动的时长</p><p>单位：毫秒</p><p>默认值：86400000</p><p>最小值为86400000ms（1天）</p>
+        # @param RetentionMs: <p>Segment分片滚动的时长</p><p>取值范围：[86400000, 31536000000]</p><p>单位：毫秒</p><p>默认值：86400000</p><p>最小值为86400000ms（1天）</p>
         # @type RetentionMs: Integer
         # @param MaxMessageBytes: <p>主题消息最大值</p><p>取值范围：[1024, 12582912]</p><p>单位：Bytes</p>
         # @type MaxMessageBytes: Integer
         # @param SegmentMs: <p>Segment 分片滚动的时长</p><p>单位：毫秒</p><p>最小值为86400000ms（1天）</p>
         # @type SegmentMs: Integer
-        # @param CleanUpPolicy: <p>消息删除策略，可以选择delete 或者compact</p>
+        # @param CleanUpPolicy: <p>消息删除策略，可以选择delete 或者compact</p><p>枚举值：</p><ul><li>delete： 按保留时间/大小删除旧消息</li><li>compact： 日志压缩，按 Key 保留最新值</li></ul>
         # @type CleanUpPolicy: String
         # @param IpWhiteList: <p>Ip白名单列表，配额限制，enableWhileList=1时必选</p>
         # @type IpWhiteList: Array
@@ -12263,7 +12263,7 @@ module TencentCloud
       class SaleInfo < TencentCloud::Common::AbstractModel
         # @param Flag: <p>手动设置的flag标志，true表示售罄，false表示可售。</p>
         # @type Flag: Boolean
-        # @param Version: <p>ckafka版本号(1.1.1/2.4.2/0.10.2)</p>
+        # @param Version: <p>ckafka版本号(1.1.1/2.4.2/0.10.2/3.9.2)</p>
         # @type Version: String
         # @param Platform: <p>专业版、标准版标志</p>
         # @type Platform: String

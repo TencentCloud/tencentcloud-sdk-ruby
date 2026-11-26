@@ -29,6 +29,30 @@ module TencentCloud
         end
 
 
+        # 封禁或解封当前账号指定站点下的项目及域名。Status 支持 Ban或Normal。
+
+        # @param request: Request instance for BlockProject.
+        # @type request: :class:`Tencentcloud::makers::V20261113::BlockProjectRequest`
+        # @rtype: :class:`Tencentcloud::makers::V20261113::BlockProjectResponse`
+        def BlockProject(request)
+          body = send_request('BlockProject', request.serialize)
+          response = JSON.parse(body)
+          if response['Response'].key?('Error') == false
+            model = BlockProjectResponse.new
+            model.deserialize(response['Response'])
+            model
+          else
+            code = response['Response']['Error']['Code']
+            message = response['Response']['Error']['Message']
+            reqid = response['Response']['RequestId']
+            raise TencentCloud::Common::TencentCloudSDKException.new(code, message, reqid)
+          end
+        rescue TencentCloud::Common::TencentCloudSDKException => e
+          raise e
+        rescue StandardError => e
+          raise TencentCloud::Common::TencentCloudSDKException.new(nil, e.inspect)
+        end
+
         # 创建部署。上传制品时 ViaMeta 和 Provider 传 Upload，TempBucketPath 传已上传对象的路径。
 
         # @param request: Request instance for CreateDeployment.

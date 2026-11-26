@@ -745,27 +745,54 @@ module TencentCloud
 
       # CreateAgentCredential请求参数结构体
       class CreateAgentCredentialRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceID: <p>实例ID</p>
+        # @type InstanceID: String
+        # @param Name: <p>名称</p>
+        # @type Name: String
+        # @param Type: <p>类型</p>
+        # @type Type: String
+        # @param Content: <p>具体内容</p>
+        # @type Content: :class:`Tencentcloud::Apis.v20240801.models.AgentCredentialContentDTO`
 
+        attr_accessor :InstanceID, :Name, :Type, :Content
 
-        def initialize()
+        def initialize(instanceid=nil, name=nil, type=nil, content=nil)
+          @InstanceID = instanceid
+          @Name = name
+          @Type = type
+          @Content = content
         end
 
         def deserialize(params)
+          @InstanceID = params['InstanceID']
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['Content'].nil?
+            @Content = AgentCredentialContentDTO.new
+            @Content.deserialize(params['Content'])
+          end
         end
       end
 
       # CreateAgentCredential返回参数结构体
       class CreateAgentCredentialResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>credential id</p>
+        # @type Data: :class:`Tencentcloud::Apis.v20240801.models.ResultIDVO`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Data, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(data=nil, requestid=nil)
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ResultIDVO.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -1512,27 +1539,43 @@ module TencentCloud
 
       # DeleteAgentCredential请求参数结构体
       class DeleteAgentCredentialRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceID: <p>实例ID</p>
+        # @type InstanceID: String
+        # @param ID: <p>credential id</p>
+        # @type ID: String
 
+        attr_accessor :InstanceID, :ID
 
-        def initialize()
+        def initialize(instanceid=nil, id=nil)
+          @InstanceID = instanceid
+          @ID = id
         end
 
         def deserialize(params)
+          @InstanceID = params['InstanceID']
+          @ID = params['ID']
         end
       end
 
       # DeleteAgentCredential返回参数结构体
       class DeleteAgentCredentialResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>credential id</p>
+        # @type Data: :class:`Tencentcloud::Apis.v20240801.models.ResultIDVO`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Data, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(data=nil, requestid=nil)
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ResultIDVO.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -2184,12 +2227,21 @@ module TencentCloud
 
       # DescribeAgentCredential请求参数结构体
       class DescribeAgentCredentialRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceID: <p>实例ID</p>
+        # @type InstanceID: String
+        # @param ID: <p>app id</p>
+        # @type ID: String
 
+        attr_accessor :InstanceID, :ID
 
-        def initialize()
+        def initialize(instanceid=nil, id=nil)
+          @InstanceID = instanceid
+          @ID = id
         end
 
         def deserialize(params)
+          @InstanceID = params['InstanceID']
+          @ID = params['ID']
         end
       end
 
@@ -2271,44 +2323,157 @@ module TencentCloud
 
       # DescribeAgentCredential返回参数结构体
       class DescribeAgentCredentialResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>Credential详情</p>
+        # @type Data: :class:`Tencentcloud::Apis.v20240801.models.DescribeAgentCredentialResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Data, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(data=nil, requestid=nil)
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeAgentCredentialResp.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end
 
       # DescribeAgentCredentials请求参数结构体
       class DescribeAgentCredentialsRequest < TencentCloud::Common::AbstractModel
+        # @param Limit: <p>分页大小</p>
+        # @type Limit: Integer
+        # @param InstanceID: <p>实例ID</p>
+        # @type InstanceID: String
+        # @param NotIDs: <p>notID列表</p>
+        # @type NotIDs: Array
+        # @param Status: <p>状态：normal正常状态，disabled下线状态</p>
+        # @type Status: String
+        # @param Offset: <p>分页偏移量</p>
+        # @type Offset: Integer
+        # @param Keyword: <p>关键词</p>
+        # @type Keyword: String
+        # @param IDs: <p>服务ID数组</p>
+        # @type IDs: Array
+        # @param Type: <p>认证类型：sts，reqKey</p>
+        # @type Type: String
+        # @param Sort: <p>排序</p>
+        # @type Sort: :class:`Tencentcloud::Apis.v20240801.models.DescribeAgentCredentialsSortDTO`
 
+        attr_accessor :Limit, :InstanceID, :NotIDs, :Status, :Offset, :Keyword, :IDs, :Type, :Sort
 
-        def initialize()
+        def initialize(limit=nil, instanceid=nil, notids=nil, status=nil, offset=nil, keyword=nil, ids=nil, type=nil, sort=nil)
+          @Limit = limit
+          @InstanceID = instanceid
+          @NotIDs = notids
+          @Status = status
+          @Offset = offset
+          @Keyword = keyword
+          @IDs = ids
+          @Type = type
+          @Sort = sort
         end
 
         def deserialize(params)
+          @Limit = params['Limit']
+          @InstanceID = params['InstanceID']
+          @NotIDs = params['NotIDs']
+          @Status = params['Status']
+          @Offset = params['Offset']
+          @Keyword = params['Keyword']
+          @IDs = params['IDs']
+          @Type = params['Type']
+          unless params['Sort'].nil?
+            @Sort = DescribeAgentCredentialsSortDTO.new
+            @Sort.deserialize(params['Sort'])
+          end
+        end
+      end
+
+      # 获取凭证列表的返回值
+      class DescribeAgentCredentialsResp < TencentCloud::Common::AbstractModel
+        # @param Total: <p>总数</p>
+        # @type Total: Integer
+        # @param Items: <p>条目</p>
+        # @type Items: Array
+
+        attr_accessor :Total, :Items
+
+        def initialize(total=nil, items=nil)
+          @Total = total
+          @Items = items
+        end
+
+        def deserialize(params)
+          @Total = params['Total']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              describeagentcredentialresp_tmp = DescribeAgentCredentialResp.new
+              describeagentcredentialresp_tmp.deserialize(i)
+              @Items << describeagentcredentialresp_tmp
+            end
+          end
         end
       end
 
       # DescribeAgentCredentials返回参数结构体
       class DescribeAgentCredentialsResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>Credential列表</p>
+        # @type Data: :class:`Tencentcloud::Apis.v20240801.models.DescribeAgentCredentialsResp`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Data, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(data=nil, requestid=nil)
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Data'].nil?
+            @Data = DescribeAgentCredentialsResp.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
+        end
+      end
+
+      # 查询凭据列表的排序
+      class DescribeAgentCredentialsSortDTO < TencentCloud::Common::AbstractModel
+        # @param CreateTime: <p>创建时间</p>
+        # @type CreateTime: Integer
+        # @param UpdateTime: <p>修改时间</p>
+        # @type UpdateTime: Integer
+        # @param Name: <p>名称</p>
+        # @type Name: Integer
+        # @param Status: <p>状态</p>
+        # @type Status: Integer
+        # @param Type: <p>类型</p>
+        # @type Type: Integer
+
+        attr_accessor :CreateTime, :UpdateTime, :Name, :Status, :Type
+
+        def initialize(createtime=nil, updatetime=nil, name=nil, status=nil, type=nil)
+          @CreateTime = createtime
+          @UpdateTime = updatetime
+          @Name = name
+          @Status = status
+          @Type = type
+        end
+
+        def deserialize(params)
+          @CreateTime = params['CreateTime']
+          @UpdateTime = params['UpdateTime']
+          @Name = params['Name']
+          @Status = params['Status']
+          @Type = params['Type']
         end
       end
 
@@ -4083,27 +4248,58 @@ module TencentCloud
 
       # ModifyAgentCredential请求参数结构体
       class ModifyAgentCredentialRequest < TencentCloud::Common::AbstractModel
+        # @param InstanceID: <p>实例ID</p>
+        # @type InstanceID: String
+        # @param ID: <p>certify id</p>
+        # @type ID: String
+        # @param Name: <p>名称</p>
+        # @type Name: String
+        # @param Type: <p>类型</p>
+        # @type Type: String
+        # @param Content: <p>具体内容</p>
+        # @type Content: :class:`Tencentcloud::Apis.v20240801.models.AgentCredentialContentDTO`
 
+        attr_accessor :InstanceID, :ID, :Name, :Type, :Content
 
-        def initialize()
+        def initialize(instanceid=nil, id=nil, name=nil, type=nil, content=nil)
+          @InstanceID = instanceid
+          @ID = id
+          @Name = name
+          @Type = type
+          @Content = content
         end
 
         def deserialize(params)
+          @InstanceID = params['InstanceID']
+          @ID = params['ID']
+          @Name = params['Name']
+          @Type = params['Type']
+          unless params['Content'].nil?
+            @Content = AgentCredentialContentDTO.new
+            @Content.deserialize(params['Content'])
+          end
         end
       end
 
       # ModifyAgentCredential返回参数结构体
       class ModifyAgentCredentialResponse < TencentCloud::Common::AbstractModel
+        # @param Data: <p>credential id</p>
+        # @type Data: :class:`Tencentcloud::Apis.v20240801.models.ResultIDVO`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :RequestId
+        attr_accessor :Data, :RequestId
 
-        def initialize(requestid=nil)
+        def initialize(data=nil, requestid=nil)
+          @Data = data
           @RequestId = requestid
         end
 
         def deserialize(params)
+          unless params['Data'].nil?
+            @Data = ResultIDVO.new
+            @Data.deserialize(params['Data'])
+          end
           @RequestId = params['RequestId']
         end
       end
@@ -4891,19 +5087,23 @@ module TencentCloud
         # @param ContextScope: <p>检测上下文</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContextScope: String
+        # @param CheckTargets: <p>检测内容类型</p>
+        # @type CheckTargets: Array
 
-        attr_accessor :Action, :InterceptMessage, :ContextScope
+        attr_accessor :Action, :InterceptMessage, :ContextScope, :CheckTargets
 
-        def initialize(action=nil, interceptmessage=nil, contextscope=nil)
+        def initialize(action=nil, interceptmessage=nil, contextscope=nil, checktargets=nil)
           @Action = action
           @InterceptMessage = interceptmessage
           @ContextScope = contextscope
+          @CheckTargets = checktargets
         end
 
         def deserialize(params)
           @Action = params['Action']
           @InterceptMessage = params['InterceptMessage']
           @ContextScope = params['ContextScope']
+          @CheckTargets = params['CheckTargets']
         end
       end
 
@@ -5264,8 +5464,12 @@ module TencentCloud
         # @param RequestProtocolType: <p>访问协议</p><p>枚举值：</p><ul><li>http： http</li><li>https： https</li></ul>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type RequestProtocolType: String
+        # @param ServiceSecurityRules: <p>安全规则</p>
+        # @type ServiceSecurityRules: Array
+        # @param ServiceSecurityRulesVO: <p>安全规则</p>
+        # @type ServiceSecurityRulesVO: Array
 
-        attr_accessor :InstanceID, :Name, :PaasID, :Description, :LabelIDs, :CategoryIDs, :AuthType, :SignType, :LoginTypes, :TargetSelect, :PubPath, :RequestMethod, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :HttpProtocolVersion, :Versions, :TargetPath, :RequestParamsValidatorStatus, :RequestParamsValidatorJsonInfoT, :ResponseParamsValidatorStatus, :ResponseParamsValidatorJsonInfoT, :InvokeLimitConfigStatus, :InvokeLimitConfig, :HealthCheckStatus, :HealthCheckConfig, :SourceTypeStatus, :SourceTypeConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :ID, :Status, :Url, :App, :Catalogs, :Labels, :Logins, :AuthAppNum, :CreateTime, :LastUpdateTime, :AppID, :Uin, :Domain, :OpenMessageLogStatus, :CurrPaasIDSubscriptionID, :TargetServiceType, :SqlTemplate, :TargetHostType, :TargetServiceHostType, :TargetServerGroupID, :TargetServerGroup, :CustomHttpHost, :HttpHostType, :MockStatusCode, :MockBody, :MockHeaders, :PathMatchType, :CustomMatch, :Timeout, :McpServerNum, :CredentialID, :CredentialName, :RequestProtocolType
+        attr_accessor :InstanceID, :Name, :PaasID, :Description, :LabelIDs, :CategoryIDs, :AuthType, :SignType, :LoginTypes, :TargetSelect, :PubPath, :RequestMethod, :TargetHosts, :HttpProtocolType, :CheckTargetCertsError, :HttpProtocolVersion, :Versions, :TargetPath, :RequestParamsValidatorStatus, :RequestParamsValidatorJsonInfoT, :ResponseParamsValidatorStatus, :ResponseParamsValidatorJsonInfoT, :InvokeLimitConfigStatus, :InvokeLimitConfig, :HealthCheckStatus, :HealthCheckConfig, :SourceTypeStatus, :SourceTypeConfig, :TokenLimitStatus, :TokenLimitConfig, :TmsStatus, :TmsConfig, :IpWhiteStatus, :IpWhiteList, :IpBlackStatus, :IpBlackList, :PluginConfigs, :ID, :Status, :Url, :App, :Catalogs, :Labels, :Logins, :AuthAppNum, :CreateTime, :LastUpdateTime, :AppID, :Uin, :Domain, :OpenMessageLogStatus, :CurrPaasIDSubscriptionID, :TargetServiceType, :SqlTemplate, :TargetHostType, :TargetServiceHostType, :TargetServerGroupID, :TargetServerGroup, :CustomHttpHost, :HttpHostType, :MockStatusCode, :MockBody, :MockHeaders, :PathMatchType, :CustomMatch, :Timeout, :McpServerNum, :CredentialID, :CredentialName, :RequestProtocolType, :ServiceSecurityRules, :ServiceSecurityRulesVO
         extend Gem::Deprecate
         deprecate :PaasID, :none, 2026, 11
         deprecate :PaasID=, :none, 2026, 11
@@ -5290,7 +5494,7 @@ module TencentCloud
         deprecate :CurrPaasIDSubscriptionID, :none, 2026, 11
         deprecate :CurrPaasIDSubscriptionID=, :none, 2026, 11
 
-        def initialize(instanceid=nil, name=nil, paasid=nil, description=nil, labelids=nil, categoryids=nil, authtype=nil, signtype=nil, logintypes=nil, targetselect=nil, pubpath=nil, requestmethod=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, httpprotocolversion=nil, versions=nil, targetpath=nil, requestparamsvalidatorstatus=nil, requestparamsvalidatorjsoninfot=nil, responseparamsvalidatorstatus=nil, responseparamsvalidatorjsoninfot=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, healthcheckstatus=nil, healthcheckconfig=nil, sourcetypestatus=nil, sourcetypeconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, id=nil, status=nil, url=nil, app=nil, catalogs=nil, labels=nil, logins=nil, authappnum=nil, createtime=nil, lastupdatetime=nil, appid=nil, uin=nil, domain=nil, openmessagelogstatus=nil, currpaasidsubscriptionid=nil, targetservicetype=nil, sqltemplate=nil, targethosttype=nil, targetservicehosttype=nil, targetservergroupid=nil, targetservergroup=nil, customhttphost=nil, httphosttype=nil, mockstatuscode=nil, mockbody=nil, mockheaders=nil, pathmatchtype=nil, custommatch=nil, timeout=nil, mcpservernum=nil, credentialid=nil, credentialname=nil, requestprotocoltype=nil)
+        def initialize(instanceid=nil, name=nil, paasid=nil, description=nil, labelids=nil, categoryids=nil, authtype=nil, signtype=nil, logintypes=nil, targetselect=nil, pubpath=nil, requestmethod=nil, targethosts=nil, httpprotocoltype=nil, checktargetcertserror=nil, httpprotocolversion=nil, versions=nil, targetpath=nil, requestparamsvalidatorstatus=nil, requestparamsvalidatorjsoninfot=nil, responseparamsvalidatorstatus=nil, responseparamsvalidatorjsoninfot=nil, invokelimitconfigstatus=nil, invokelimitconfig=nil, healthcheckstatus=nil, healthcheckconfig=nil, sourcetypestatus=nil, sourcetypeconfig=nil, tokenlimitstatus=nil, tokenlimitconfig=nil, tmsstatus=nil, tmsconfig=nil, ipwhitestatus=nil, ipwhitelist=nil, ipblackstatus=nil, ipblacklist=nil, pluginconfigs=nil, id=nil, status=nil, url=nil, app=nil, catalogs=nil, labels=nil, logins=nil, authappnum=nil, createtime=nil, lastupdatetime=nil, appid=nil, uin=nil, domain=nil, openmessagelogstatus=nil, currpaasidsubscriptionid=nil, targetservicetype=nil, sqltemplate=nil, targethosttype=nil, targetservicehosttype=nil, targetservergroupid=nil, targetservergroup=nil, customhttphost=nil, httphosttype=nil, mockstatuscode=nil, mockbody=nil, mockheaders=nil, pathmatchtype=nil, custommatch=nil, timeout=nil, mcpservernum=nil, credentialid=nil, credentialname=nil, requestprotocoltype=nil, servicesecurityrules=nil, servicesecurityrulesvo=nil)
           @InstanceID = instanceid
           @Name = name
           @PaasID = paasid
@@ -5361,6 +5565,8 @@ module TencentCloud
           @CredentialID = credentialid
           @CredentialName = credentialname
           @RequestProtocolType = requestprotocoltype
+          @ServiceSecurityRules = servicesecurityrules
+          @ServiceSecurityRulesVO = servicesecurityrulesvo
         end
 
         def deserialize(params)
@@ -5510,6 +5716,22 @@ module TencentCloud
           @CredentialID = params['CredentialID']
           @CredentialName = params['CredentialName']
           @RequestProtocolType = params['RequestProtocolType']
+          unless params['ServiceSecurityRules'].nil?
+            @ServiceSecurityRules = []
+            params['ServiceSecurityRules'].each do |i|
+              bindmcpsecurityruledto_tmp = BindMcpSecurityRuleDTO.new
+              bindmcpsecurityruledto_tmp.deserialize(i)
+              @ServiceSecurityRules << bindmcpsecurityruledto_tmp
+            end
+          end
+          unless params['ServiceSecurityRulesVO'].nil?
+            @ServiceSecurityRulesVO = []
+            params['ServiceSecurityRulesVO'].each do |i|
+              mcpsecurityrulesvo_tmp = McpSecurityRulesVO.new
+              mcpsecurityrulesvo_tmp.deserialize(i)
+              @ServiceSecurityRulesVO << mcpsecurityrulesvo_tmp
+            end
+          end
         end
       end
 
@@ -5812,10 +6034,12 @@ module TencentCloud
         # @param ContextScope: <p>检测上下文</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type ContextScope: String
+        # @param CheckTargets: <p>检测内容类型</p>
+        # @type CheckTargets: Array
 
-        attr_accessor :Scope, :Mode, :Action, :MergeCount, :BizType, :InterceptMessage, :ContextScope
+        attr_accessor :Scope, :Mode, :Action, :MergeCount, :BizType, :InterceptMessage, :ContextScope, :CheckTargets
 
-        def initialize(scope=nil, mode=nil, action=nil, mergecount=nil, biztype=nil, interceptmessage=nil, contextscope=nil)
+        def initialize(scope=nil, mode=nil, action=nil, mergecount=nil, biztype=nil, interceptmessage=nil, contextscope=nil, checktargets=nil)
           @Scope = scope
           @Mode = mode
           @Action = action
@@ -5823,6 +6047,7 @@ module TencentCloud
           @BizType = biztype
           @InterceptMessage = interceptmessage
           @ContextScope = contextscope
+          @CheckTargets = checktargets
         end
 
         def deserialize(params)
@@ -5833,6 +6058,7 @@ module TencentCloud
           @BizType = params['BizType']
           @InterceptMessage = params['InterceptMessage']
           @ContextScope = params['ContextScope']
+          @CheckTargets = params['CheckTargets']
         end
       end
 

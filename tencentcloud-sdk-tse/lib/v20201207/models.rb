@@ -554,7 +554,7 @@ module TencentCloud
         # @type RPMLimit: Integer
         # @param TPMLimit: <p>该模型服务每分钟 Token 数上限，0 表示该维度不限</p>
         # @type TPMLimit: Integer
-        # @param ConcurrentCountLimit: <p>并发限流数</p>
+        # @param ConcurrentCountLimit: <p>并发数限流</p>
         # @type ConcurrentCountLimit: Integer
 
         attr_accessor :RPMLimit, :TPMLimit, :ConcurrentCountLimit
@@ -629,9 +629,9 @@ module TencentCloud
 
       # AI 网关模型服务单次请求输入字符长度限制。只拒绝超限输入，不做截断。计量为整个请求 JSON 的 Unicode 字符数。
       class AIGWLengthLimitConfig < TencentCloud::Common::AbstractModel
-        # @param EnableInputLimit: <p>是否开启输入限制</p>
+        # @param EnableInputLimit: <p>是否开启输入长度限制</p>
         # @type EnableInputLimit: Boolean
-        # @param MaxInputChars: <p>最大输入字符数</p>
+        # @param MaxInputChars: <p>最大输入长度字符数</p>
         # @type MaxInputChars: Integer
 
         attr_accessor :EnableInputLimit, :MaxInputChars
@@ -649,7 +649,7 @@ module TencentCloud
 
       # 负载均衡配置，仅服务来源（ServiceSource，SourceId 非空）场景生效。
       class AIGWLoadBalanceConfig < TencentCloud::Common::AbstractModel
-        # @param Algorithm: <p>负载均衡算法</p>
+        # @param Algorithm: <p>负载均衡类型</p><p>枚举值：</p><ul><li>RoundRobin： 轮询</li><li>WeightedRoundRobin： 加权轮询</li><li>LeastConnections： 最少连接</li><li>Random： 随机</li></ul><p>默认值：RoundRobin</p>
         # @type Algorithm: String
 
         attr_accessor :Algorithm
@@ -11471,13 +11471,16 @@ module TencentCloud
         # @type Offset: Integer
         # @param Filters: <p>请求过滤参数，支持按照实例名称、ID和标签键值（Name、GatewayId、Tag）筛选</p>
         # @type Filters: Array
+        # @param EnableRegionFilter: <p>是否按照地域进行过滤</p>
+        # @type EnableRegionFilter: Boolean
 
-        attr_accessor :Limit, :Offset, :Filters
+        attr_accessor :Limit, :Offset, :Filters, :EnableRegionFilter
 
-        def initialize(limit=nil, offset=nil, filters=nil)
+        def initialize(limit=nil, offset=nil, filters=nil, enableregionfilter=nil)
           @Limit = limit
           @Offset = offset
           @Filters = filters
+          @EnableRegionFilter = enableregionfilter
         end
 
         def deserialize(params)
@@ -11491,6 +11494,7 @@ module TencentCloud
               @Filters << filter_tmp
             end
           end
+          @EnableRegionFilter = params['EnableRegionFilter']
         end
       end
 

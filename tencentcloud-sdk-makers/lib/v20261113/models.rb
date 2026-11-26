@@ -17,6 +17,46 @@
 module TencentCloud
   module Makers
     module V20261113
+      # BlockProject请求参数结构体
+      class BlockProjectRequest < TencentCloud::Common::AbstractModel
+        # @param ZoneId: <p>Makers 站点 ID</p>
+        # @type ZoneId: String
+        # @param ProjectId: <p>项目 ID</p>
+        # @type ProjectId: String
+        # @param Status: <p>操作类型，目前支持 Ban表示封禁项目， Normal表示解封项目。</p><p>枚举值：</p><ul><li>Ban： 表示封禁项目</li><li>Normal： 表示解封项目</li></ul>
+        # @type Status: String
+
+        attr_accessor :ZoneId, :ProjectId, :Status
+
+        def initialize(zoneid=nil, projectid=nil, status=nil)
+          @ZoneId = zoneid
+          @ProjectId = projectid
+          @Status = status
+        end
+
+        def deserialize(params)
+          @ZoneId = params['ZoneId']
+          @ProjectId = params['ProjectId']
+          @Status = params['Status']
+        end
+      end
+
+      # BlockProject返回参数结构体
+      class BlockProjectResponse < TencentCloud::Common::AbstractModel
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :RequestId
+
+        def initialize(requestid=nil)
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @RequestId = params['RequestId']
+        end
+      end
+
       # COS 临时密钥
       class CosCredentials < TencentCloud::Common::AbstractModel
         # @param TmpSecretId: <p>临时 SecretId</p>

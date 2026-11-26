@@ -1754,7 +1754,7 @@ module TencentCloud
         # @type Operator: String
         # @param Output: <p>任务输出信息</p>
         # @type Output: String
-        # @param Status: <p>任务状态</p>
+        # @param Status: <p>任务状态</p><p>枚举值：</p><ul><li>waiting： 等待执行</li><li>processing： 执行中</li><li>success： 执行成功</li><li>fail： 任务失败</li><li>paused： 任务暂停（存量任务状态）</li><li>undoing： 回滚中</li><li>undoed： 任务已回滚</li></ul>
         # @type Status: String
         # @param TaskType: <p>任务类型</p>
         # @type TaskType: String
@@ -4774,37 +4774,40 @@ module TencentCloud
 
       # CreateProxy请求参数结构体
       class CreateProxyRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param Cpu: cpu核数
+        # @param Cpu: <p>cpu核数</p>
         # @type Cpu: Integer
-        # @param Mem: 内存
+        # @param Mem: <p>内存</p>
         # @type Mem: Integer
-        # @param UniqueVpcId: 私有网络ID，默认与集群私有网络ID保持一致
+        # @param ProxyVersion: <p>代理内核版本。不传时默认使用最新稳定版本（白名单用户以appoint策略为准）；显式指定时将实时校验该版本是否在当前集群支持的代理版本集合内，不在则返回错误。集群存在已开启列存索引的只读实例时，所选版本需不低于列存转发要求的最低版本（如1.4.7）</p>
+        # @type ProxyVersion: String
+        # @param UniqueVpcId: <p>私有网络ID，默认与集群私有网络ID保持一致</p>
         # @type UniqueVpcId: String
-        # @param UniqueSubnetId: 私有网络子网ID，默认与集群子网ID保持一致
+        # @param UniqueSubnetId: <p>私有网络子网ID，默认与集群子网ID保持一致</p>
         # @type UniqueSubnetId: String
-        # @param ProxyCount: 数据库代理组节点个数（该参数不再建议使用，建议使用ProxyZones)
+        # @param ProxyCount: <p>数据库代理组节点个数（该参数不再建议使用，建议使用ProxyZones)</p>
         # @type ProxyCount: Integer
-        # @param ConnectionPoolType: 连接池类型：SessionConnectionPool(会话级别连接池 )
+        # @param ConnectionPoolType: <p>连接池类型：SessionConnectionPool(会话级别连接池 )</p>
         # @type ConnectionPoolType: String
-        # @param OpenConnectionPool: 是否开启连接池,yes-开启，no-不开启
+        # @param OpenConnectionPool: <p>是否开启连接池,yes-开启，no-不开启</p>
         # @type OpenConnectionPool: String
-        # @param ConnectionPoolTimeOut: 连接池阈值：单位（秒）
+        # @param ConnectionPoolTimeOut: <p>连接池阈值：单位（秒）</p>
         # @type ConnectionPoolTimeOut: Integer
-        # @param SecurityGroupIds: 安全组ID数组
+        # @param SecurityGroupIds: <p>安全组ID数组</p>
         # @type SecurityGroupIds: Array
-        # @param Description: 描述说明
+        # @param Description: <p>描述说明</p>
         # @type Description: String
-        # @param ProxyZones: 数据库节点信息（该参数与ProxyCount需要任选一个输入）
+        # @param ProxyZones: <p>数据库节点信息（该参数与ProxyCount需要任选一个输入）</p>
         # @type ProxyZones: Array
 
-        attr_accessor :ClusterId, :Cpu, :Mem, :UniqueVpcId, :UniqueSubnetId, :ProxyCount, :ConnectionPoolType, :OpenConnectionPool, :ConnectionPoolTimeOut, :SecurityGroupIds, :Description, :ProxyZones
+        attr_accessor :ClusterId, :Cpu, :Mem, :ProxyVersion, :UniqueVpcId, :UniqueSubnetId, :ProxyCount, :ConnectionPoolType, :OpenConnectionPool, :ConnectionPoolTimeOut, :SecurityGroupIds, :Description, :ProxyZones
 
-        def initialize(clusterid=nil, cpu=nil, mem=nil, uniquevpcid=nil, uniquesubnetid=nil, proxycount=nil, connectionpooltype=nil, openconnectionpool=nil, connectionpooltimeout=nil, securitygroupids=nil, description=nil, proxyzones=nil)
+        def initialize(clusterid=nil, cpu=nil, mem=nil, proxyversion=nil, uniquevpcid=nil, uniquesubnetid=nil, proxycount=nil, connectionpooltype=nil, openconnectionpool=nil, connectionpooltimeout=nil, securitygroupids=nil, description=nil, proxyzones=nil)
           @ClusterId = clusterid
           @Cpu = cpu
           @Mem = mem
+          @ProxyVersion = proxyversion
           @UniqueVpcId = uniquevpcid
           @UniqueSubnetId = uniquesubnetid
           @ProxyCount = proxycount
@@ -4820,6 +4823,7 @@ module TencentCloud
           @ClusterId = params['ClusterId']
           @Cpu = params['Cpu']
           @Mem = params['Mem']
+          @ProxyVersion = params['ProxyVersion']
           @UniqueVpcId = params['UniqueVpcId']
           @UniqueSubnetId = params['UniqueSubnetId']
           @ProxyCount = params['ProxyCount']
@@ -4841,11 +4845,11 @@ module TencentCloud
 
       # CreateProxy返回参数结构体
       class CreateProxyResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 异步流程ID
+        # @param FlowId: <p>异步流程ID</p>
         # @type FlowId: Integer
-        # @param TaskId: 异步任务ID
+        # @param TaskId: <p>异步任务ID</p>
         # @type TaskId: Integer
-        # @param ProxyGroupId: 数据库代理组ID
+        # @param ProxyGroupId: <p>数据库代理组ID</p>
         # @type ProxyGroupId: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -12438,31 +12442,47 @@ module TencentCloud
 
       # DescribeSupportProxyVersion请求参数结构体
       class DescribeSupportProxyVersionRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID。与Zone/DbVersion/CynosVersion二选一：查询存量集群支持的代理版本时必填；不传时表示创建集群前查询场景，需同时传入Zone、DbVersion、CynosVersion</p>
         # @type ClusterId: String
-        # @param ProxyGroupId: 数据库代理组ID
+        # @param ProxyGroupId: <p>数据库代理组ID。仅在传入ClusterId时有效，传入时返回当前代理版本号</p>
         # @type ProxyGroupId: String
+        # @param Zone: <p>可用区，如ap-guangzhou-3。创建集群前查询场景（不传ClusterId时）必填</p>
+        # @type Zone: String
+        # @param DbVersion: <p>数据库引擎版本，如5.7、8.0。创建集群前查询场景（不传ClusterId时）必填</p>
+        # @type DbVersion: String
+        # @param CynosVersion: <p>目标内核版本，如3.1.20.001。创建集群前查询场景（不传ClusterId时）必填</p>
+        # @type CynosVersion: String
+        # @param StorageVersion: <p>存储版本，枚举值：1.0、2.0。可选，仅创建集群前查询场景有效</p>
+        # @type StorageVersion: String
 
-        attr_accessor :ClusterId, :ProxyGroupId
+        attr_accessor :ClusterId, :ProxyGroupId, :Zone, :DbVersion, :CynosVersion, :StorageVersion
 
-        def initialize(clusterid=nil, proxygroupid=nil)
+        def initialize(clusterid=nil, proxygroupid=nil, zone=nil, dbversion=nil, cynosversion=nil, storageversion=nil)
           @ClusterId = clusterid
           @ProxyGroupId = proxygroupid
+          @Zone = zone
+          @DbVersion = dbversion
+          @CynosVersion = cynosversion
+          @StorageVersion = storageversion
         end
 
         def deserialize(params)
           @ClusterId = params['ClusterId']
           @ProxyGroupId = params['ProxyGroupId']
+          @Zone = params['Zone']
+          @DbVersion = params['DbVersion']
+          @CynosVersion = params['CynosVersion']
+          @StorageVersion = params['StorageVersion']
         end
       end
 
       # DescribeSupportProxyVersion返回参数结构体
       class DescribeSupportProxyVersionResponse < TencentCloud::Common::AbstractModel
-        # @param SupportProxyVersions: 支持的数据库代理版本集合
+        # @param SupportProxyVersions: <p>支持的数据库代理版本集合</p>
         # @type SupportProxyVersions: Array
-        # @param CurrentProxyVersion: 当前proxy版本号
+        # @param CurrentProxyVersion: <p>当前proxy版本号</p>
         # @type CurrentProxyVersion: String
-        # @param SupportProxyVersionDetail: 代理版本详情
+        # @param SupportProxyVersionDetail: <p>代理版本详情</p>
         # @type SupportProxyVersionDetail: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -14579,25 +14599,28 @@ module TencentCloud
 
       # IsolateCluster请求参数结构体
       class IsolateClusterRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param DbType: 该参数已废用
+        # @param DbType: <p>该参数已废用</p>
         # @type DbType: String
-        # @param IsolateReasonTypes: 实例退还原因类型
+        # @param IsolateReasonTypes: <p>实例退还原因类型</p>
         # @type IsolateReasonTypes: Array
-        # @param IsolateReason: 实例退还原因补充
+        # @param IsolateReason: <p>实例退还原因补充</p>
         # @type IsolateReason: String
-        # @param SaveBackup: 保留备份,true-保留（会产生费用）
+        # @param SaveBackup: <p>保留备份,true-保留（会产生费用）</p>
         # @type SaveBackup: Boolean
+        # @param ImmediateRecycleRo: <p>立即彻底删除RO实例</p>
+        # @type ImmediateRecycleRo: Boolean
 
-        attr_accessor :ClusterId, :DbType, :IsolateReasonTypes, :IsolateReason, :SaveBackup
+        attr_accessor :ClusterId, :DbType, :IsolateReasonTypes, :IsolateReason, :SaveBackup, :ImmediateRecycleRo
 
-        def initialize(clusterid=nil, dbtype=nil, isolatereasontypes=nil, isolatereason=nil, savebackup=nil)
+        def initialize(clusterid=nil, dbtype=nil, isolatereasontypes=nil, isolatereason=nil, savebackup=nil, immediaterecyclero=nil)
           @ClusterId = clusterid
           @DbType = dbtype
           @IsolateReasonTypes = isolatereasontypes
           @IsolateReason = isolatereason
           @SaveBackup = savebackup
+          @ImmediateRecycleRo = immediaterecyclero
         end
 
         def deserialize(params)
@@ -14606,14 +14629,15 @@ module TencentCloud
           @IsolateReasonTypes = params['IsolateReasonTypes']
           @IsolateReason = params['IsolateReason']
           @SaveBackup = params['SaveBackup']
+          @ImmediateRecycleRo = params['ImmediateRecycleRo']
         end
       end
 
       # IsolateCluster返回参数结构体
       class IsolateClusterResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 任务流ID(后付费或者serverless资源返回，如果需要同步任务状态，请使用DescribeFlow接口)
+        # @param FlowId: <p>任务流ID(后付费或者serverless资源返回，如果需要同步任务状态，请使用DescribeFlow接口)</p>
         # @type FlowId: Integer
-        # @param DealNames: 退款订单号(预付费资源返回，如果需要同步订单状态，请使用计费产品的DescribeDealsByCond同步订单状态)
+        # @param DealNames: <p>退款订单号(预付费资源返回，如果需要同步订单状态，请使用计费产品的DescribeDealsByCond同步订单状态)</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -14636,28 +14660,31 @@ module TencentCloud
 
       # IsolateInstance请求参数结构体
       class IsolateInstanceRequest < TencentCloud::Common::AbstractModel
-        # @param ClusterId: 集群ID
+        # @param ClusterId: <p>集群ID</p>
         # @type ClusterId: String
-        # @param InstanceIdList: 实例ID数组，例如["cynosdbbmysql-ins-asd","cynosdbmysql-ins-zxc"]
+        # @param InstanceIdList: <p>实例ID数组，例如[&quot;cynosdbbmysql-ins-asd&quot;,&quot;cynosdbmysql-ins-zxc&quot;]</p>
         # @type InstanceIdList: Array
-        # @param DbType: 该参数已废弃
+        # @param DbType: <p>该参数已废弃</p>
         # @type DbType: String
-        # @param IsolateReasonTypes: 实例退还原因类型
+        # @param IsolateReasonTypes: <p>实例退还原因类型</p>
         # @type IsolateReasonTypes: Array
-        # @param IsolateReason: 实例退还原因补充
+        # @param IsolateReason: <p>实例退还原因补充</p>
         # @type IsolateReason: String
-        # @param SaveBackup: 保留备份
+        # @param SaveBackup: <p>保留备份</p>
         # @type SaveBackup: Boolean
+        # @param ImmediateRecycleRo: <p>立即彻底删除RO实例</p>
+        # @type ImmediateRecycleRo: Boolean
 
-        attr_accessor :ClusterId, :InstanceIdList, :DbType, :IsolateReasonTypes, :IsolateReason, :SaveBackup
+        attr_accessor :ClusterId, :InstanceIdList, :DbType, :IsolateReasonTypes, :IsolateReason, :SaveBackup, :ImmediateRecycleRo
 
-        def initialize(clusterid=nil, instanceidlist=nil, dbtype=nil, isolatereasontypes=nil, isolatereason=nil, savebackup=nil)
+        def initialize(clusterid=nil, instanceidlist=nil, dbtype=nil, isolatereasontypes=nil, isolatereason=nil, savebackup=nil, immediaterecyclero=nil)
           @ClusterId = clusterid
           @InstanceIdList = instanceidlist
           @DbType = dbtype
           @IsolateReasonTypes = isolatereasontypes
           @IsolateReason = isolatereason
           @SaveBackup = savebackup
+          @ImmediateRecycleRo = immediaterecyclero
         end
 
         def deserialize(params)
@@ -14667,14 +14694,15 @@ module TencentCloud
           @IsolateReasonTypes = params['IsolateReasonTypes']
           @IsolateReason = params['IsolateReason']
           @SaveBackup = params['SaveBackup']
+          @ImmediateRecycleRo = params['ImmediateRecycleRo']
         end
       end
 
       # IsolateInstance返回参数结构体
       class IsolateInstanceResponse < TencentCloud::Common::AbstractModel
-        # @param FlowId: 任务流id
+        # @param FlowId: <p>任务流id</p>
         # @type FlowId: Integer
-        # @param DealNames: 隔离实例的订单id（预付费实例）
+        # @param DealNames: <p>隔离实例的订单id（预付费实例）</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DealNames: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -19669,13 +19697,15 @@ module TencentCloud
         # @type Description: String
         # @param ProxyZones: <p>数据库节点信息（该参数与ProxyCount需要任选一个输入）</p>
         # @type ProxyZones: Array
+        # @param ProxyVersion: <p>proxy版本号</p>
+        # @type ProxyVersion: String
 
-        attr_accessor :ProxyCount, :Cpu, :Mem, :ConnectionPoolType, :OpenConnectionPool, :ConnectionPoolTimeOut, :Description, :ProxyZones
+        attr_accessor :ProxyCount, :Cpu, :Mem, :ConnectionPoolType, :OpenConnectionPool, :ConnectionPoolTimeOut, :Description, :ProxyZones, :ProxyVersion
         extend Gem::Deprecate
         deprecate :ProxyCount, :none, 2026, 11
         deprecate :ProxyCount=, :none, 2026, 11
 
-        def initialize(proxycount=nil, cpu=nil, mem=nil, connectionpooltype=nil, openconnectionpool=nil, connectionpooltimeout=nil, description=nil, proxyzones=nil)
+        def initialize(proxycount=nil, cpu=nil, mem=nil, connectionpooltype=nil, openconnectionpool=nil, connectionpooltimeout=nil, description=nil, proxyzones=nil, proxyversion=nil)
           @ProxyCount = proxycount
           @Cpu = cpu
           @Mem = mem
@@ -19684,6 +19714,7 @@ module TencentCloud
           @ConnectionPoolTimeOut = connectionpooltimeout
           @Description = description
           @ProxyZones = proxyzones
+          @ProxyVersion = proxyversion
         end
 
         def deserialize(params)
@@ -19702,6 +19733,7 @@ module TencentCloud
               @ProxyZones << proxyzone_tmp
             end
           end
+          @ProxyVersion = params['ProxyVersion']
         end
       end
 
@@ -23799,25 +23831,29 @@ module TencentCloud
 
       # 用户主机权限
       class UserHostPrivilege < TencentCloud::Common::AbstractModel
-        # @param DbUserName: 授权用户
+        # @param DbUserName: <p>授权用户</p>
         # @type DbUserName: String
-        # @param DbHost: 客户端ip
+        # @param DbHost: <p>客户端ip</p>
         # @type DbHost: String
-        # @param DbPrivilege: 用户权限
+        # @param DbPrivilege: <p>用户权限</p>
         # @type DbPrivilege: String
+        # @param PrivilegeList: <p>权限明细列表</p>
+        # @type PrivilegeList: Array
 
-        attr_accessor :DbUserName, :DbHost, :DbPrivilege
+        attr_accessor :DbUserName, :DbHost, :DbPrivilege, :PrivilegeList
 
-        def initialize(dbusername=nil, dbhost=nil, dbprivilege=nil)
+        def initialize(dbusername=nil, dbhost=nil, dbprivilege=nil, privilegelist=nil)
           @DbUserName = dbusername
           @DbHost = dbhost
           @DbPrivilege = dbprivilege
+          @PrivilegeList = privilegelist
         end
 
         def deserialize(params)
           @DbUserName = params['DbUserName']
           @DbHost = params['DbHost']
           @DbPrivilege = params['DbPrivilege']
+          @PrivilegeList = params['PrivilegeList']
         end
       end
 

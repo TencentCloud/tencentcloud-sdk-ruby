@@ -711,13 +711,13 @@ module TencentCloud
 
       # CreateWhitelist请求参数结构体
       class CreateWhitelistRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceID: 实例ID：taw-123
+        # @param InstanceID: <p>实例ID：taw-123</p>
         # @type InstanceID: String
-        # @param Remark: 备注（暂未作字节数限制）
+        # @param Remark: <p>备注（暂未作字节数限制）</p>
         # @type Remark: String
-        # @param WhitelistUin: uin：业务方标识
+        # @param WhitelistUin: <p>uin：业务方标识</p>
         # @type WhitelistUin: String
-        # @param Aid: 业务方标识
+        # @param Aid: <p>业务方标识</p>
         # @type Aid: String
 
         attr_accessor :InstanceID, :Remark, :WhitelistUin, :Aid
@@ -739,9 +739,9 @@ module TencentCloud
 
       # CreateWhitelist返回参数结构体
       class CreateWhitelistResponse < TencentCloud::Common::AbstractModel
-        # @param Msg: 消息
+        # @param Msg: <p>消息</p>
         # @type Msg: String
-        # @param ID: 白名单ID
+        # @param ID: <p>白名单ID</p>
         # @type ID: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4437,51 +4437,51 @@ module TencentCloud
 
       # DescribeDataStaticProject请求参数结构体
       class DescribeDataStaticProjectRequest < TencentCloud::Common::AbstractModel
-        # @param StartTime: 开始时间
+        # @param StartTime: <p>开始时间</p>
         # @type StartTime: Integer
-        # @param Type: allcount：性能视图，day：14天数据，condition：条件列表，area：请求速度分布，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等
+        # @param Type: <p>allcount：性能视图，day：14天数据，condition：条件列表，area：请求速度分布，nettype/version/platform/isp/region/device/browser/ext1/ext2/ext3/ret/status/from/url/env/：网络平台视图/Version视图/设备视图/ISP视图/地区视图/浏览器视图/ext1视图等等</p>
         # @type Type: String
-        # @param EndTime: 结束时间
+        # @param EndTime: <p>结束时间</p>
         # @type EndTime: Integer
-        # @param ID: 项目ID
+        # @param ID: <p>项目ID</p>
         # @type ID: Integer
-        # @param ExtSecond: 自定义2
+        # @param ExtSecond: <p>自定义2</p>
         # @type ExtSecond: String
-        # @param Engine: 浏览器引擎
+        # @param Engine: <p>浏览器引擎</p>
         # @type Engine: String
-        # @param Isp: 运营商
+        # @param Isp: <p>运营商</p>
         # @type Isp: String
-        # @param From: 来源页面
+        # @param From: <p>来源页面</p>
         # @type From: String
-        # @param Level: 日志等级（1表示白名单日志，2表示一般日志，4表示错误日志，8表示Promise 错误，16表示Ajax 请求异常，32表示JS 加载异常，64表示图片加载异常，128表示css 加载异常，256表示console.error，512表示音视频资源异常，1024表示retcode 异常，2048表示aegis report，4096表示PV日志，8192表示自定义事件，16384表示小程序 页面不存在，32768表示websocket错误，65536表示js bridge错误）
+        # @param Level: <p>日志等级（1表示白名单日志，2表示一般日志，4表示错误日志，8表示Promise 错误，16表示Ajax 请求异常，32表示JS 加载异常，64表示图片加载异常，128表示css 加载异常，256表示console.error，512表示音视频资源异常，1024表示retcode 异常，2048表示aegis report，4096表示PV日志，8192表示自定义事件，16384表示小程序 页面不存在，32768表示websocket错误，65536表示js bridge错误）</p>
         # @type Level: String
-        # @param Brand: 品牌
+        # @param Brand: <p>品牌</p>
         # @type Brand: String
-        # @param Area: 地区
+        # @param Area: <p>地区</p>
         # @type Area: String
-        # @param VersionNum: 版本
+        # @param VersionNum: <p>版本</p>
         # @type VersionNum: String
-        # @param Platform: 平台
+        # @param Platform: <p>平台</p>
         # @type Platform: String
-        # @param ExtThird: 自定义3
+        # @param ExtThird: <p>自定义3</p>
         # @type ExtThird: String
-        # @param ExtFirst: 自定义1
+        # @param ExtFirst: <p>自定义1</p>
         # @type ExtFirst: String
-        # @param NetType: 网络类型（1,2,3,4,5,100），1表示WIFI, 2表示2G, 3表示3G, 4表示4G, 5表示5G, 6表示6G, 100表示未知。
+        # @param NetType: <p>网络类型（1,2,3,4,5,100），1表示WIFI, 2表示2G, 3表示3G, 4表示4G, 5表示5G, 6表示6G, 100表示未知。</p>
         # @type NetType: String
-        # @param Device: 机型
+        # @param Device: <p>机型</p>
         # @type Device: String
-        # @param IsAbroad: 显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。
+        # @param IsAbroad: <p>显示是否海外,1表示海外，0表示非海外；默认值为空，查询所有。</p>
         # @type IsAbroad: String
-        # @param Os: 操作系统
+        # @param Os: <p>操作系统</p>
         # @type Os: String
-        # @param Browser: 浏览器
+        # @param Browser: <p>浏览器</p>
         # @type Browser: String
-        # @param CostType: 耗时口径："50"/"75"/"90"/"95"/"99"/"99.5" 分别表示 TP50/TP75/TP90/TP95/TP99/TP99.5（percentile2）；"avg" 表示均值（avg）。
+        # @param CostType: <p>耗时口径：&quot;50&quot;/&quot;75&quot;/&quot;90&quot;/&quot;95&quot;/&quot;99&quot;/&quot;99.5&quot; 分别表示 TP50/TP75/TP90/TP95/TP99/TP99.5（percentile2）；&quot;avg&quot; 表示均值（avg）。</p>
         # @type CostType: String
-        # @param Url: 来源
+        # @param Url: <p>来源</p>
         # @type Url: Array
-        # @param Env: 环境
+        # @param Env: <p>环境</p>
         # @type Env: String
 
         attr_accessor :StartTime, :Type, :EndTime, :ID, :ExtSecond, :Engine, :Isp, :From, :Level, :Brand, :Area, :VersionNum, :Platform, :ExtThird, :ExtFirst, :NetType, :Device, :IsAbroad, :Os, :Browser, :CostType, :Url, :Env
@@ -4541,7 +4541,7 @@ module TencentCloud
 
       # DescribeDataStaticProject返回参数结构体
       class DescribeDataStaticProjectResponse < TencentCloud::Common::AbstractModel
-        # @param Result: 返回值
+        # @param Result: <p>返回值</p>
         # @type Result: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11860,15 +11860,15 @@ module TencentCloud
 
       # DescribeTawAreas请求参数结构体
       class DescribeTawAreasRequest < TencentCloud::Common::AbstractModel
-        # @param AreaIds: 片区Id
+        # @param AreaIds: <p>片区Id</p>
         # @type AreaIds: Array
-        # @param AreaKeys: 片区Key
+        # @param AreaKeys: <p>片区Key</p>
         # @type AreaKeys: Array
-        # @param Limit: 分页Limit，默认根据AreaKeys和AreaStatuses参数查询所有。
+        # @param Limit: <p>分页Limit，默认根据AreaKeys和AreaStatuses参数查询所有。</p>
         # @type Limit: Integer
-        # @param AreaStatuses: 片区状态(1=有效，2=无效)
+        # @param AreaStatuses: <p>片区状态(1=有效，2=无效)</p>
         # @type AreaStatuses: Array
-        # @param Offset: 分页Offset，默认根据AreaKeys和AreaStatuses参数查询所有。
+        # @param Offset: <p>分页Offset，默认根据AreaKeys和AreaStatuses参数查询所有。</p>
         # @type Offset: Integer
 
         attr_accessor :AreaIds, :AreaKeys, :Limit, :AreaStatuses, :Offset
@@ -11892,9 +11892,9 @@ module TencentCloud
 
       # DescribeTawAreas返回参数结构体
       class DescribeTawAreasResponse < TencentCloud::Common::AbstractModel
-        # @param TotalCount: 片区总数
+        # @param TotalCount: <p>片区总数</p>
         # @type TotalCount: Integer
-        # @param AreaSet: 片区列表
+        # @param AreaSet: <p>片区列表</p>
         # @type AreaSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -13494,9 +13494,9 @@ module TencentCloud
       # · 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
       # · 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
       class Filter < TencentCloud::Common::AbstractModel
-        # @param Values: 一个或者多个过滤值。
+        # @param Values: <p>一个或者多个过滤值。</p>
         # @type Values: Array
-        # @param Name: 过滤键的名称。
+        # @param Name: <p>过滤键的名称。</p>
         # @type Name: String
 
         attr_accessor :Values, :Name
@@ -15308,11 +15308,11 @@ module TencentCloud
 
       # RumUv 访问量
       class RumUvInfo < TencentCloud::Common::AbstractModel
-        # @param ProjectId: 项目ID
+        # @param ProjectId: <p>项目ID</p>
         # @type ProjectId: Integer
-        # @param Uv: uv访问量
+        # @param Uv: <p>uv访问量</p>
         # @type Uv: String
-        # @param CreateTime: 创建时间
+        # @param CreateTime: <p>创建时间</p>
         # @type CreateTime: String
 
         attr_accessor :ProjectId, :Uv, :CreateTime

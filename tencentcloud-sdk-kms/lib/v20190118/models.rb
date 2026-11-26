@@ -1881,21 +1881,29 @@ module TencentCloud
 
       # 独享版集群
       class ExclusiveHSM < TencentCloud::Common::AbstractModel
-        # @param HsmClusterId: 独享集群Id
+        # @param HsmClusterId: <p>独享集群Id</p>
         # @type HsmClusterId: String
-        # @param HsmClusterName: 独享集群名称
+        # @param HsmClusterName: <p>独享集群名称</p>
         # @type HsmClusterName: String
+        # @param CmkUserCount: <p>根密钥的使用量</p><p>单位：个</p>
+        # @type CmkUserCount: Integer
+        # @param CmkLimit: <p>根密钥的额度</p><p>单位：个</p>
+        # @type CmkLimit: Integer
 
-        attr_accessor :HsmClusterId, :HsmClusterName
+        attr_accessor :HsmClusterId, :HsmClusterName, :CmkUserCount, :CmkLimit
 
-        def initialize(hsmclusterid=nil, hsmclustername=nil)
+        def initialize(hsmclusterid=nil, hsmclustername=nil, cmkusercount=nil, cmklimit=nil)
           @HsmClusterId = hsmclusterid
           @HsmClusterName = hsmclustername
+          @CmkUserCount = cmkusercount
+          @CmkLimit = cmklimit
         end
 
         def deserialize(params)
           @HsmClusterId = params['HsmClusterId']
           @HsmClusterName = params['HsmClusterName']
+          @CmkUserCount = params['CmkUserCount']
+          @CmkLimit = params['CmkLimit']
         end
       end
 
