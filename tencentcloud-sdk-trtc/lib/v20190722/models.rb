@@ -8329,7 +8329,7 @@ module TencentCloud
 
       # 伴生转录TTS参数
       class TTSParam < TencentCloud::Common::AbstractModel
-        # @param Model: <p>tts模型参数，仅支持填写&quot;flow_02_turbo&quot;。</p>
+        # @param Model: <p>tts模型参数，当前支持填写&quot;flow_02_turbo&quot;。</p>
         # @type Model: String
         # @param Language: <p>tts语言，必须在TranslationParam 的TargetLang列表中。</p>
         # @type Language: String
@@ -8339,15 +8339,18 @@ module TencentCloud
         # @type TTSRobotUser: :class:`Tencentcloud::Trtc.v20190722.models.TranscriptionUserInfoParams`
         # @param Voice: <p>TTS的声音配置参数。</p>
         # @type Voice: :class:`Tencentcloud::Trtc.v20190722.models.TTSVoice`
+        # @param ExtraParams: <p>TTS高级扩展参数，使用需要联系我们支持</p><p>参数格式：{"Type":"xxx", "Data":{}}</p>
+        # @type ExtraParams: String
 
-        attr_accessor :Model, :Language, :TargetUser, :TTSRobotUser, :Voice
+        attr_accessor :Model, :Language, :TargetUser, :TTSRobotUser, :Voice, :ExtraParams
 
-        def initialize(model=nil, language=nil, targetuser=nil, ttsrobotuser=nil, voice=nil)
+        def initialize(model=nil, language=nil, targetuser=nil, ttsrobotuser=nil, voice=nil, extraparams=nil)
           @Model = model
           @Language = language
           @TargetUser = targetuser
           @TTSRobotUser = ttsrobotuser
           @Voice = voice
+          @ExtraParams = extraparams
         end
 
         def deserialize(params)
@@ -8365,6 +8368,7 @@ module TencentCloud
             @Voice = TTSVoice.new
             @Voice.deserialize(params['Voice'])
           end
+          @ExtraParams = params['ExtraParams']
         end
       end
 

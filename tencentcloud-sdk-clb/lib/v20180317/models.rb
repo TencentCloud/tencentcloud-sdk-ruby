@@ -1927,10 +1927,20 @@ module TencentCloud
         # @type OutputVideoSecondCoefficient: Float
         # @param OutputImageCoefficient: <p>输出图片系数</p>
         # @type OutputImageCoefficient: Float
+        # @param InputAudioTokenCoefficient: <p>Realtime 音频输入积分系数，单位为积分/百万音频 Token。</p><p>取值范围：[0, 5000]</p><p>默认值：80</p><p>仅 Capability=realtime 支持，最多 6 位小数。修改时未提供此字段则保留旧值；0 表示零价，不接受 null。</p>
+        # @type InputAudioTokenCoefficient: Float
+        # @param InputCachedAudioTokenCoefficient: <p>Realtime 音频缓存命中输入积分系数，单位为积分/百万音频 Token。</p><p>取值范围：[0, 5000]</p><p>默认值：5</p><p>仅 Capability=realtime 支持，最多 6 位小数。修改时未提供此字段则保留旧值；0 表示零价，不接受 null。</p>
+        # @type InputCachedAudioTokenCoefficient: Float
+        # @param InputImageTokenCoefficient: <p>Realtime 图像输入积分系数，单位为积分/百万图像 Token。</p><p>取值范围：[0, 5000]</p><p>默认值：12.5</p><p>仅 Capability=realtime 支持，最多 6 位小数。修改时未提供此字段则保留旧值；0 表示零价，不接受 null。</p>
+        # @type InputImageTokenCoefficient: Float
+        # @param InputCachedImageTokenCoefficient: <p>Realtime 图像缓存命中输入积分系数，单位为积分/百万图像 Token。</p><p>取值范围：[0, 5000]</p><p>默认值：5</p><p>仅 Capability=realtime 支持，最多 6 位小数。修改时未提供此字段则保留旧值；0 表示零价，不接受 null。</p>
+        # @type InputCachedImageTokenCoefficient: Float
+        # @param OutputAudioTokenCoefficient: <p>Realtime 音频输出积分系数，单位为积分/百万音频 Token。</p><p>取值范围：[0, 5000]</p><p>默认值：300</p><p>仅 Capability=realtime 支持，最多 6 位小数。修改时未提供此字段则保留旧值；0 表示零价，不接受 null。</p>
+        # @type OutputAudioTokenCoefficient: Float
 
-        attr_accessor :InputCachedCoefficient, :InputCacheCreationCoefficient, :InputCoefficient, :OutputCoefficient, :InputImageCoefficient, :InputVideoSecondCoefficient, :OutputVideoSecondCoefficient, :OutputImageCoefficient
+        attr_accessor :InputCachedCoefficient, :InputCacheCreationCoefficient, :InputCoefficient, :OutputCoefficient, :InputImageCoefficient, :InputVideoSecondCoefficient, :OutputVideoSecondCoefficient, :OutputImageCoefficient, :InputAudioTokenCoefficient, :InputCachedAudioTokenCoefficient, :InputImageTokenCoefficient, :InputCachedImageTokenCoefficient, :OutputAudioTokenCoefficient
 
-        def initialize(inputcachedcoefficient=nil, inputcachecreationcoefficient=nil, inputcoefficient=nil, outputcoefficient=nil, inputimagecoefficient=nil, inputvideosecondcoefficient=nil, outputvideosecondcoefficient=nil, outputimagecoefficient=nil)
+        def initialize(inputcachedcoefficient=nil, inputcachecreationcoefficient=nil, inputcoefficient=nil, outputcoefficient=nil, inputimagecoefficient=nil, inputvideosecondcoefficient=nil, outputvideosecondcoefficient=nil, outputimagecoefficient=nil, inputaudiotokencoefficient=nil, inputcachedaudiotokencoefficient=nil, inputimagetokencoefficient=nil, inputcachedimagetokencoefficient=nil, outputaudiotokencoefficient=nil)
           @InputCachedCoefficient = inputcachedcoefficient
           @InputCacheCreationCoefficient = inputcachecreationcoefficient
           @InputCoefficient = inputcoefficient
@@ -1939,6 +1949,11 @@ module TencentCloud
           @InputVideoSecondCoefficient = inputvideosecondcoefficient
           @OutputVideoSecondCoefficient = outputvideosecondcoefficient
           @OutputImageCoefficient = outputimagecoefficient
+          @InputAudioTokenCoefficient = inputaudiotokencoefficient
+          @InputCachedAudioTokenCoefficient = inputcachedaudiotokencoefficient
+          @InputImageTokenCoefficient = inputimagetokencoefficient
+          @InputCachedImageTokenCoefficient = inputcachedimagetokencoefficient
+          @OutputAudioTokenCoefficient = outputaudiotokencoefficient
         end
 
         def deserialize(params)
@@ -1950,6 +1965,11 @@ module TencentCloud
           @InputVideoSecondCoefficient = params['InputVideoSecondCoefficient']
           @OutputVideoSecondCoefficient = params['OutputVideoSecondCoefficient']
           @OutputImageCoefficient = params['OutputImageCoefficient']
+          @InputAudioTokenCoefficient = params['InputAudioTokenCoefficient']
+          @InputCachedAudioTokenCoefficient = params['InputCachedAudioTokenCoefficient']
+          @InputImageTokenCoefficient = params['InputImageTokenCoefficient']
+          @InputCachedImageTokenCoefficient = params['InputCachedImageTokenCoefficient']
+          @OutputAudioTokenCoefficient = params['OutputAudioTokenCoefficient']
         end
       end
 
@@ -3040,10 +3060,12 @@ module TencentCloud
         # @type DecisionsConfig: :class:`Tencentcloud::Clb.v20180317.models.DecisionsConfig`
         # @param ImageConfig: <p>Images 生图配置</p>
         # @type ImageConfig: :class:`Tencentcloud::Clb.v20180317.models.ImageConfig`
+        # @param RealtimeConfig: <p>可选的 Realtime 路由配置，提供此参数时预置 realtime 能力的路由策略。</p><p>支持 SimpleShuffle、LeastBusy、CostBasedRouting；省略配置子字段时默认 RoutingStrategy=SimpleShuffle、NumRetries=2。配置及子字段不接受 null。</p>
+        # @type RealtimeConfig: :class:`Tencentcloud::Clb.v20180317.models.RealtimeConfig`
 
-        attr_accessor :ModelRouterType, :BudgetId, :CertId, :ClusterInfo, :ModelRouterName, :NetworkType, :Port, :RateLimitConfig, :RouterSetting, :Schema, :SubnetId, :Tags, :VpcId, :ModelRouterBillingConfig, :ClientToken, :EipAddressId, :Bandwidth, :EmbeddingConfig, :VideoConfig, :RerankConfig, :DecisionsConfig, :ImageConfig
+        attr_accessor :ModelRouterType, :BudgetId, :CertId, :ClusterInfo, :ModelRouterName, :NetworkType, :Port, :RateLimitConfig, :RouterSetting, :Schema, :SubnetId, :Tags, :VpcId, :ModelRouterBillingConfig, :ClientToken, :EipAddressId, :Bandwidth, :EmbeddingConfig, :VideoConfig, :RerankConfig, :DecisionsConfig, :ImageConfig, :RealtimeConfig
 
-        def initialize(modelroutertype=nil, budgetid=nil, certid=nil, clusterinfo=nil, modelroutername=nil, networktype=nil, port=nil, ratelimitconfig=nil, routersetting=nil, schema=nil, subnetid=nil, tags=nil, vpcid=nil, modelrouterbillingconfig=nil, clienttoken=nil, eipaddressid=nil, bandwidth=nil, embeddingconfig=nil, videoconfig=nil, rerankconfig=nil, decisionsconfig=nil, imageconfig=nil)
+        def initialize(modelroutertype=nil, budgetid=nil, certid=nil, clusterinfo=nil, modelroutername=nil, networktype=nil, port=nil, ratelimitconfig=nil, routersetting=nil, schema=nil, subnetid=nil, tags=nil, vpcid=nil, modelrouterbillingconfig=nil, clienttoken=nil, eipaddressid=nil, bandwidth=nil, embeddingconfig=nil, videoconfig=nil, rerankconfig=nil, decisionsconfig=nil, imageconfig=nil, realtimeconfig=nil)
           @ModelRouterType = modelroutertype
           @BudgetId = budgetid
           @CertId = certid
@@ -3066,6 +3088,7 @@ module TencentCloud
           @RerankConfig = rerankconfig
           @DecisionsConfig = decisionsconfig
           @ImageConfig = imageconfig
+          @RealtimeConfig = realtimeconfig
         end
 
         def deserialize(params)
@@ -3124,6 +3147,10 @@ module TencentCloud
           unless params['ImageConfig'].nil?
             @ImageConfig = ImageConfig.new
             @ImageConfig.deserialize(params['ImageConfig'])
+          end
+          unless params['RealtimeConfig'].nil?
+            @RealtimeConfig = RealtimeConfig.new
+            @RealtimeConfig.deserialize(params['RealtimeConfig'])
           end
         end
       end
@@ -13055,6 +13082,53 @@ module TencentCloud
         def deserialize(params)
           @RPM = params['RPM']
           @TPM = params['TPM']
+        end
+      end
+
+      # Realtime 路由配置。支持 SimpleShuffle、LeastBusy、CostBasedRouting，创建时默认 SimpleShuffle、NumRetries=2。修改时仅更新显式传入字段；切换策略时清理旧策略参数。所有字段选填，不接受显式 null。
+      class RealtimeConfig < TencentCloud::Common::AbstractModel
+        # @param RoutingStrategy: <p>Realtime 模型路由策略。</p><p>入参限制：仅支持 SimpleShuffle（随机）、LeastBusy（最少繁忙）、CostBasedRouting（最低成本）。</p><p>默认值：SimpleShuffle</p><p>修改时未传保留旧策略；切换策略会清理旧策略的 RoutingStrategyArgs。不接受 null。</p>
+        # @type RoutingStrategy: String
+        # @param NumRetries: <p>Realtime 路由重试次数。</p><p>取值范围：[0, 5]</p><p>默认值：2</p><p>仅接受整数，0 表示不重试。修改时未提供此字段则保留旧值，不接受 null。</p>
+        # @type NumRetries: Integer
+        # @param RoutingStrategyArgs: <p>Realtime 路由策略的附加参数。</p><p>入参限制：LeastBusy 仅接受 LeastBusyBuffer；CostBasedRouting 仅接受 LowestCostBuffer；SimpleShuffle 仅接受空对象。</p><p>修改时未提供的参数保留旧值，切换策略时清理旧参数；适用的 Buffer 默认 0。不接受 null。</p>
+        # @type RoutingStrategyArgs: :class:`Tencentcloud::Clb.v20180317.models.RealtimeRoutingStrategyArgs`
+
+        attr_accessor :RoutingStrategy, :NumRetries, :RoutingStrategyArgs
+
+        def initialize(routingstrategy=nil, numretries=nil, routingstrategyargs=nil)
+          @RoutingStrategy = routingstrategy
+          @NumRetries = numretries
+          @RoutingStrategyArgs = routingstrategyargs
+        end
+
+        def deserialize(params)
+          @RoutingStrategy = params['RoutingStrategy']
+          @NumRetries = params['NumRetries']
+          unless params['RoutingStrategyArgs'].nil?
+            @RoutingStrategyArgs = RealtimeRoutingStrategyArgs.new
+            @RoutingStrategyArgs.deserialize(params['RoutingStrategyArgs'])
+          end
+        end
+      end
+
+      # Realtime 路由策略参数。LeastBusy 仅支持 LeastBusyBuffer，CostBasedRouting 仅支持 LowestCostBuffer，SimpleShuffle 不支持策略参数。Buffer 取值为 0～1000，最多两位小数，默认 0；修改时未传字段保留旧值。
+      class RealtimeRoutingStrategyArgs < TencentCloud::Common::AbstractModel
+        # @param LeastBusyBuffer: <p>LeastBusy 路由策略的缓冲参数，仅 RoutingStrategy=LeastBusy 时允许设置。</p><p>取值范围：[0, 1000]</p><p>默认值：0</p><p>最多支持两位小数；不接受字符串、布尔值或 null。修改时未传保留旧值，显式 0 生效。</p>
+        # @type LeastBusyBuffer: Float
+        # @param LowestCostBuffer: <p>CostBasedRouting 路由策略的缓冲参数，仅 RoutingStrategy=CostBasedRouting 时允许设置。</p><p>取值范围：[0, 1000]</p><p>默认值：0</p><p>最多支持两位小数；不接受字符串、布尔值或 null。修改时未传保留旧值，显式 0 生效。</p>
+        # @type LowestCostBuffer: Float
+
+        attr_accessor :LeastBusyBuffer, :LowestCostBuffer
+
+        def initialize(leastbusybuffer=nil, lowestcostbuffer=nil)
+          @LeastBusyBuffer = leastbusybuffer
+          @LowestCostBuffer = lowestcostbuffer
+        end
+
+        def deserialize(params)
+          @LeastBusyBuffer = params['LeastBusyBuffer']
+          @LowestCostBuffer = params['LowestCostBuffer']
         end
       end
 

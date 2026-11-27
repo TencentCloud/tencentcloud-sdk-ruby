@@ -1422,8 +1422,8 @@ module TencentCloud
 
         attr_accessor :Domain, :Subdomain, :RecordType, :Value, :ParentDomain, :SubDomain, :RequestId
         extend Gem::Deprecate
-        deprecate :Subdomain, :none, 2026, 7
-        deprecate :Subdomain=, :none, 2026, 7
+        deprecate :Subdomain, :none, 2026, 11
+        deprecate :Subdomain=, :none, 2026, 11
 
         def initialize(domain=nil, recordtype=nil, value=nil, parentdomain=nil, subdomain=nil, requestid=nil)
           @Domain = domain
@@ -2234,8 +2234,8 @@ module TencentCloud
 
         attr_accessor :Domain, :StartDate, :EndDate, :DnsFormat, :DomainId, :DNSFormat
         extend Gem::Deprecate
-        deprecate :DnsFormat, :none, 2026, 7
-        deprecate :DnsFormat=, :none, 2026, 7
+        deprecate :DnsFormat, :none, 2026, 11
+        deprecate :DnsFormat=, :none, 2026, 11
 
         def initialize(domain=nil, startdate=nil, enddate=nil, domainid=nil, dnsformat=nil)
           @Domain = domain
@@ -2729,13 +2729,13 @@ module TencentCloud
 
       # DescribeDomainLogList请求参数结构体
       class DescribeDomainLogListRequest < TencentCloud::Common::AbstractModel
-        # @param Domain: 域名
+        # @param Domain: <p>域名</p>
         # @type Domain: String
-        # @param DomainId: 域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId
+        # @param DomainId: <p>域名 ID 。参数 DomainId 优先级比参数 Domain 高，如果传递参数 DomainId 将忽略参数 Domain 。可以通过接口DescribeDomainList查到所有的Domain以及DomainId</p>
         # @type DomainId: Integer
-        # @param Offset: 记录开始的偏移，第一条记录为 0，依次类推，默认为0
+        # @param Offset: <p>记录开始的偏移，第一条记录为 0，依次类推，默认为0</p>
         # @type Offset: Integer
-        # @param Limit: 共要获取的日志条数，比如获取20条，则为20，默认为500条，单次最多获取500条。
+        # @param Limit: <p>共要获取的日志条数，比如获取20条，则为20，默认为500条，单次最多获取500条。</p>
         # @type Limit: Integer
 
         attr_accessor :Domain, :DomainId, :Offset, :Limit
@@ -2757,11 +2757,11 @@ module TencentCloud
 
       # DescribeDomainLogList返回参数结构体
       class DescribeDomainLogListResponse < TencentCloud::Common::AbstractModel
-        # @param LogList: 域名日志信息
+        # @param LogList: <p>域名日志信息</p>
         # @type LogList: Array
-        # @param PageSize: 分页大小
+        # @param PageSize: <p>分页大小</p>
         # @type PageSize: Integer
-        # @param TotalCount: 日志总条数
+        # @param TotalCount: <p>日志总条数</p>
         # @type TotalCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -3656,8 +3656,8 @@ module TencentCloud
 
         attr_accessor :Domain, :DomainId, :Subdomain, :RecordType, :RecordLine, :RecordLineId, :GroupId, :Keyword, :SortField, :SortType, :Offset, :Limit, :ErrorOnEmpty, :SubDomain
         extend Gem::Deprecate
-        deprecate :Subdomain, :none, 2026, 7
-        deprecate :Subdomain=, :none, 2026, 7
+        deprecate :Subdomain, :none, 2026, 11
+        deprecate :Subdomain=, :none, 2026, 11
 
         def initialize(domain=nil, domainid=nil, recordtype=nil, recordline=nil, recordlineid=nil, groupid=nil, keyword=nil, sortfield=nil, sorttype=nil, offset=nil, limit=nil, erroronempty=nil, subdomain=nil)
           @Domain = domain
@@ -3922,8 +3922,8 @@ module TencentCloud
 
         attr_accessor :Domain, :StartDate, :EndDate, :DnsFormat, :DomainId, :DNSFormat
         extend Gem::Deprecate
-        deprecate :DnsFormat, :none, 2026, 7
-        deprecate :DnsFormat=, :none, 2026, 7
+        deprecate :DnsFormat, :none, 2026, 11
+        deprecate :DnsFormat=, :none, 2026, 11
 
         def initialize(domain=nil, startdate=nil, enddate=nil, domainid=nil, dnsformat=nil)
           @Domain = domain
@@ -4261,10 +4261,10 @@ module TencentCloud
 
         attr_accessor :Domain, :StartDate, :EndDate, :DnsFormat, :DomainId, :Subdomain, :SubDomain, :DNSFormat
         extend Gem::Deprecate
-        deprecate :DnsFormat, :none, 2026, 7
-        deprecate :DnsFormat=, :none, 2026, 7
-        deprecate :Subdomain, :none, 2026, 7
-        deprecate :Subdomain=, :none, 2026, 7
+        deprecate :DnsFormat, :none, 2026, 11
+        deprecate :DnsFormat=, :none, 2026, 11
+        deprecate :Subdomain, :none, 2026, 11
+        deprecate :Subdomain=, :none, 2026, 11
 
         def initialize(domain=nil, startdate=nil, enddate=nil, domainid=nil, subdomain=nil, dnsformat=nil)
           @Domain = domain
@@ -4484,8 +4484,8 @@ module TencentCloud
 
         attr_accessor :TotalCount, :VasList, :VASList, :RequestId
         extend Gem::Deprecate
-        deprecate :VasList, :none, 2026, 7
-        deprecate :VasList=, :none, 2026, 7
+        deprecate :VasList, :none, 2026, 11
+        deprecate :VasList=, :none, 2026, 11
 
         def initialize(totalcount=nil, vaslist=nil, requestid=nil)
           @TotalCount = totalcount
@@ -4605,10 +4605,10 @@ module TencentCloud
 
         attr_accessor :DnsFormat, :DnsTotal, :Domain, :StartDate, :EndDate, :DNSFormat, :DNSTotal
         extend Gem::Deprecate
-        deprecate :DnsFormat, :none, 2026, 7
-        deprecate :DnsFormat=, :none, 2026, 7
-        deprecate :DnsTotal, :none, 2026, 7
-        deprecate :DnsTotal=, :none, 2026, 7
+        deprecate :DnsFormat, :none, 2026, 11
+        deprecate :DnsFormat=, :none, 2026, 11
+        deprecate :DnsTotal, :none, 2026, 11
+        deprecate :DnsTotal=, :none, 2026, 11
 
         def initialize(domain=nil, startdate=nil, enddate=nil, dnsformat=nil, dnstotal=nil)
           @Domain = domain
@@ -4794,10 +4794,10 @@ module TencentCloud
 
         attr_accessor :DomainId, :Status, :Grade, :GroupId, :IsMark, :TTL, :CnameSpeedup, :Remark, :Punycode, :DnsStatus, :DnspodNsList, :Domain, :GradeLevel, :UserId, :IsVip, :Owner, :GradeTitle, :CreatedOn, :UpdatedOn, :Uin, :ActualNsList, :RecordCount, :OwnerNick, :IsGracePeriod, :VipBuffered, :VipStartAt, :VipEndAt, :VipAutoRenew, :VipResourceId, :IsSubDomain, :TagList, :SearchEnginePush, :SlaveDNS, :DNSStatus, :CNAMESpeedup
         extend Gem::Deprecate
-        deprecate :CnameSpeedup, :none, 2026, 7
-        deprecate :CnameSpeedup=, :none, 2026, 7
-        deprecate :DnsStatus, :none, 2026, 7
-        deprecate :DnsStatus=, :none, 2026, 7
+        deprecate :CnameSpeedup, :none, 2026, 11
+        deprecate :CnameSpeedup=, :none, 2026, 11
+        deprecate :DnsStatus, :none, 2026, 11
+        deprecate :DnsStatus=, :none, 2026, 11
 
         def initialize(domainid=nil, status=nil, grade=nil, groupid=nil, ismark=nil, ttl=nil, remark=nil, punycode=nil, dnspodnslist=nil, domain=nil, gradelevel=nil, userid=nil, isvip=nil, owner=nil, gradetitle=nil, createdon=nil, updatedon=nil, uin=nil, actualnslist=nil, recordcount=nil, ownernick=nil, isgraceperiod=nil, vipbuffered=nil, vipstartat=nil, vipendat=nil, vipautorenew=nil, vipresourceid=nil, issubdomain=nil, taglist=nil, searchenginepush=nil, slavedns=nil, dnsstatus=nil, cnamespeedup=nil)
           @DomainId = domainid
@@ -5837,8 +5837,8 @@ module TencentCloud
 
         attr_accessor :Domain, :RecordId, :RecordLine, :DomainId, :SubDomain, :RecordLineId, :Value, :Ttl, :TTL
         extend Gem::Deprecate
-        deprecate :Ttl, :none, 2026, 7
-        deprecate :Ttl=, :none, 2026, 7
+        deprecate :Ttl, :none, 2026, 11
+        deprecate :Ttl=, :none, 2026, 11
 
         def initialize(domain=nil, recordid=nil, recordline=nil, domainid=nil, subdomain=nil, recordlineid=nil, value=nil, ttl=nil)
           @Domain = domain
@@ -7265,10 +7265,10 @@ module TencentCloud
 
         attr_accessor :DnsTotal, :Domain, :StartDate, :EndDate, :SubDomain, :DnsFormat, :DNSTotal, :DNSFormat
         extend Gem::Deprecate
-        deprecate :DnsTotal, :none, 2026, 7
-        deprecate :DnsTotal=, :none, 2026, 7
-        deprecate :DnsFormat, :none, 2026, 7
-        deprecate :DnsFormat=, :none, 2026, 7
+        deprecate :DnsTotal, :none, 2026, 11
+        deprecate :DnsTotal=, :none, 2026, 11
+        deprecate :DnsFormat, :none, 2026, 11
+        deprecate :DnsFormat=, :none, 2026, 11
 
         def initialize(domain=nil, startdate=nil, enddate=nil, subdomain=nil, dnstotal=nil, dnsformat=nil)
           @Domain = domain
@@ -7651,12 +7651,12 @@ module TencentCloud
 
         attr_accessor :DnsFormat, :DnsTotal, :Domain, :StartDate, :EndDate, :Subdomain, :DNSFormat, :DNSTotal, :SubDomain
         extend Gem::Deprecate
-        deprecate :DnsFormat, :none, 2026, 7
-        deprecate :DnsFormat=, :none, 2026, 7
-        deprecate :DnsTotal, :none, 2026, 7
-        deprecate :DnsTotal=, :none, 2026, 7
-        deprecate :Subdomain, :none, 2026, 7
-        deprecate :Subdomain=, :none, 2026, 7
+        deprecate :DnsFormat, :none, 2026, 11
+        deprecate :DnsFormat=, :none, 2026, 11
+        deprecate :DnsTotal, :none, 2026, 11
+        deprecate :DnsTotal=, :none, 2026, 11
+        deprecate :Subdomain, :none, 2026, 11
+        deprecate :Subdomain=, :none, 2026, 11
 
         def initialize(domain=nil, startdate=nil, enddate=nil, dnsformat=nil, dnstotal=nil, subdomain=nil)
           @Domain = domain

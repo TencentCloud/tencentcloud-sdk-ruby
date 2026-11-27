@@ -5732,10 +5732,12 @@ module TencentCloud
         # @type Metadata: Array
         # @param AuthMode: <p>沙箱访问认证模式</p><p>枚举值：</p><ul><li>DEFAULT： 默认，即 TOKEN 认证</li><li>TOKEN： Token认证，即所有端口访问都需携带TOKEN</li><li>NONE： 免认证，即所有端口访问无需携带TOKEN</li><li>PUBLIC： 公开模式，即ENVD管理端口（49983）访问需携带TOKEN，其他端口无需携带TOKEN</li></ul><p>默认值：DEFAULT</p>
         # @type AuthMode: String
+        # @param SubAccountUin: <p>表示发起实例启动并取得该实例的账号 UIN</p>
+        # @type SubAccountUin: String
 
-        attr_accessor :InstanceId, :ToolId, :ToolName, :Status, :Persistent, :TimeoutSeconds, :ExpiresAt, :StopReason, :CreateTime, :UpdateTime, :MountOptions, :CustomConfiguration, :ComputerConfiguration, :NetworkMode, :Metadata, :AuthMode
+        attr_accessor :InstanceId, :ToolId, :ToolName, :Status, :Persistent, :TimeoutSeconds, :ExpiresAt, :StopReason, :CreateTime, :UpdateTime, :MountOptions, :CustomConfiguration, :ComputerConfiguration, :NetworkMode, :Metadata, :AuthMode, :SubAccountUin
 
-        def initialize(instanceid=nil, toolid=nil, toolname=nil, status=nil, persistent=nil, timeoutseconds=nil, expiresat=nil, stopreason=nil, createtime=nil, updatetime=nil, mountoptions=nil, customconfiguration=nil, computerconfiguration=nil, networkmode=nil, metadata=nil, authmode=nil)
+        def initialize(instanceid=nil, toolid=nil, toolname=nil, status=nil, persistent=nil, timeoutseconds=nil, expiresat=nil, stopreason=nil, createtime=nil, updatetime=nil, mountoptions=nil, customconfiguration=nil, computerconfiguration=nil, networkmode=nil, metadata=nil, authmode=nil, subaccountuin=nil)
           @InstanceId = instanceid
           @ToolId = toolid
           @ToolName = toolname
@@ -5752,6 +5754,7 @@ module TencentCloud
           @NetworkMode = networkmode
           @Metadata = metadata
           @AuthMode = authmode
+          @SubAccountUin = subaccountuin
         end
 
         def deserialize(params)
@@ -5791,6 +5794,7 @@ module TencentCloud
             end
           end
           @AuthMode = params['AuthMode']
+          @SubAccountUin = params['SubAccountUin']
         end
       end
 

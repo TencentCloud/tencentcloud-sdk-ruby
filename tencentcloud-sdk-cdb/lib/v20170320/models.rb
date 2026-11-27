@@ -1489,6 +1489,42 @@ module TencentCloud
         end
       end
 
+      # 金融围拢、独享集群详情
+      class CageInfoItem < TencentCloud::Common::AbstractModel
+        # @param CageId: <p>金融围拢ID、独享集群ID</p>
+        # @type CageId: String
+        # @param ZoneId: <p>可用区ID</p>
+        # @type ZoneId: Integer
+        # @param CageName: <p>金融围拢名称/独享集群名称</p>
+        # @type CageName: String
+        # @param Status: <p>是否对外售卖</p>
+        # @type Status: String
+        # @param DeviceType: <p>后端支持围拢发货的设备类型，normal/common</p>
+        # @type DeviceType: String
+        # @param ZoneIds: <p>支持独享集群的可用区</p>
+        # @type ZoneIds: Array
+
+        attr_accessor :CageId, :ZoneId, :CageName, :Status, :DeviceType, :ZoneIds
+
+        def initialize(cageid=nil, zoneid=nil, cagename=nil, status=nil, devicetype=nil, zoneids=nil)
+          @CageId = cageid
+          @ZoneId = zoneid
+          @CageName = cagename
+          @Status = status
+          @DeviceType = devicetype
+          @ZoneIds = zoneids
+        end
+
+        def deserialize(params)
+          @CageId = params['CageId']
+          @ZoneId = params['ZoneId']
+          @CageName = params['CageName']
+          @Status = params['Status']
+          @DeviceType = params['DeviceType']
+          @ZoneIds = params['ZoneIds']
+        end
+      end
+
       # 地域售卖配置
       class CdbRegionSellConf < TencentCloud::Common::AbstractModel
         # @param RegionName: 地域中文名称
@@ -5190,7 +5226,7 @@ module TencentCloud
 
       # DescribeBackupConfig请求参数结构体
       class DescribeBackupConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
+        # @param InstanceId: <p>实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。</p>
         # @type InstanceId: String
 
         attr_accessor :InstanceId
@@ -5206,43 +5242,43 @@ module TencentCloud
 
       # DescribeBackupConfig返回参数结构体
       class DescribeBackupConfigResponse < TencentCloud::Common::AbstractModel
-        # @param StartTimeMin: 自动备份开始的最早时间点，单位为时刻。例如，2 - 凌晨 2:00。（该字段已废弃，建议使用 BackupTimeWindow 字段）
+        # @param StartTimeMin: <p>自动备份开始的最早时间点，单位为时刻。例如，2 - 凌晨 2:00。（该字段已废弃，建议使用 BackupTimeWindow 字段）</p>
         # @type StartTimeMin: Integer
-        # @param StartTimeMax: 自动备份开始的最晚时间点，单位为时刻。例如，6 - 凌晨 6:00。（该字段已废弃，建议使用 BackupTimeWindow 字段）
+        # @param StartTimeMax: <p>自动备份开始的最晚时间点，单位为时刻。例如，6 - 凌晨 6:00。（该字段已废弃，建议使用 BackupTimeWindow 字段）</p>
         # @type StartTimeMax: Integer
-        # @param BackupExpireDays: 备份文件保留时间，单位为天。
+        # @param BackupExpireDays: <p>备份文件保留时间，单位为天。</p>
         # @type BackupExpireDays: Integer
-        # @param BackupMethod: 备份方式，可能的值为：physical - 物理备份，logical - 逻辑备份。
+        # @param BackupMethod: <p>备份方式，可能的值为：physical - 物理备份，logical - 逻辑备份。</p>
         # @type BackupMethod: String
-        # @param BinlogExpireDays: Binlog 文件保留时间，单位为天。
+        # @param BinlogExpireDays: <p>Binlog 文件保留时间，单位为天。</p>
         # @type BinlogExpireDays: Integer
-        # @param BackupTimeWindow: 实例自动备份的时间窗。
+        # @param BackupTimeWindow: <p>实例自动备份的时间窗。</p>
         # @type BackupTimeWindow: :class:`Tencentcloud::Cdb.v20170320.models.CommonTimeWindow`
-        # @param EnableBackupPeriodSave: 定期保留开关，off - 不开启定期保留策略，on - 开启定期保留策略，默认为off
+        # @param EnableBackupPeriodSave: <p>定期保留开关，off - 不开启定期保留策略，on - 开启定期保留策略，默认为off</p>
         # @type EnableBackupPeriodSave: String
-        # @param BackupPeriodSaveDays: 定期保留最长天数，最小值：90，最大值：3650，默认值：1080
+        # @param BackupPeriodSaveDays: <p>定期保留最长天数，最小值：90，最大值：3650，默认值：1080</p>
         # @type BackupPeriodSaveDays: Integer
-        # @param BackupPeriodSaveInterval: 定期保留策略周期，可取值：weekly - 周，monthly - 月， quarterly - 季度，yearly - 年，默认为monthly
+        # @param BackupPeriodSaveInterval: <p>定期保留策略周期，可取值：weekly - 周，monthly - 月， quarterly - 季度，yearly - 年，默认为monthly</p>
         # @type BackupPeriodSaveInterval: String
-        # @param BackupPeriodSaveCount: 定期保留的备份数量，最小值为1，最大值不超过定期保留策略周期内常规备份个数，默认值为1
+        # @param BackupPeriodSaveCount: <p>定期保留的备份数量，最小值为1，最大值不超过定期保留策略周期内常规备份个数，默认值为1</p>
         # @type BackupPeriodSaveCount: Integer
-        # @param StartBackupPeriodSaveDate: 定期保留策略周期起始日期，格式：YYYY-MM-dd HH:mm:ss
+        # @param StartBackupPeriodSaveDate: <p>定期保留策略周期起始日期，格式：YYYY-MM-dd HH:mm:ss</p>
         # @type StartBackupPeriodSaveDate: String
-        # @param EnableBackupArchive: 是否开启数据备份归档策略，off-关闭，on-打开，默认为off
+        # @param EnableBackupArchive: <p>是否开启数据备份归档策略，off-关闭，on-打开，默认为off</p>
         # @type EnableBackupArchive: String
-        # @param BackupArchiveDays: 数据备份归档起始天数，数据备份达到归档起始天数时进行归档，最小为180天，不得大于数据备份保留天数
+        # @param BackupArchiveDays: <p>数据备份归档起始天数，数据备份达到归档起始天数时进行归档，最小为180天，不得大于数据备份保留天数</p>
         # @type BackupArchiveDays: Integer
-        # @param EnableBinlogArchive: 是否开启日志备份归档策略，off-关闭，on-打开，默认为off
+        # @param EnableBinlogArchive: <p>是否开启日志备份归档策略，off-关闭，on-打开，默认为off</p>
         # @type EnableBinlogArchive: String
-        # @param BinlogArchiveDays: 日志备份归档起始天数，日志备份达到归档起始天数时进行归档，最小为180天，不得大于日志备份保留天数
+        # @param BinlogArchiveDays: <p>日志备份归档起始天数，日志备份达到归档起始天数时进行归档，最小为180天，不得大于日志备份保留天数</p>
         # @type BinlogArchiveDays: Integer
-        # @param EnableBackupStandby: 是否开启数据备份标准存储策略，off-关闭，on-打开，默认为off
+        # @param EnableBackupStandby: <p>是否开启数据备份标准存储策略，off-关闭，on-打开，默认为off</p>
         # @type EnableBackupStandby: String
-        # @param BackupStandbyDays: 数据备份标准存储起始天数，数据备份达到标准存储起始天数时进行转换，最小为30天，不得大于数据备份保留天数。如果开启备份归档，不得大于等于备份归档天数
+        # @param BackupStandbyDays: <p>数据备份标准存储起始天数，数据备份达到标准存储起始天数时进行转换，最小为30天，不得大于数据备份保留天数。如果开启备份归档，不得大于等于备份归档天数</p>
         # @type BackupStandbyDays: Integer
-        # @param EnableBinlogStandby: 是否开启日志备份标准存储策略，off-关闭，on-打开，默认为off
+        # @param EnableBinlogStandby: <p>是否开启日志备份标准存储策略，off-关闭，on-打开，默认为off</p>
         # @type EnableBinlogStandby: String
-        # @param BinlogStandbyDays: 日志备份标准存储起始天数，日志备份达到标准存储起始天数时进行转换，最小为30天，不得大于日志备份保留天数。如果开启备份归档，不得大于等于备份归档天数
+        # @param BinlogStandbyDays: <p>日志备份标准存储起始天数，日志备份达到标准存储起始天数时进行转换，最小为30天，不得大于日志备份保留天数。如果开启备份归档，不得大于等于备份归档天数</p>
         # @type BinlogStandbyDays: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -5815,6 +5851,71 @@ module TencentCloud
           unless params['TimeIntervalStrategy'].nil?
             @TimeIntervalStrategy = TimeIntervalStrategy.new
             @TimeIntervalStrategy.deserialize(params['TimeIntervalStrategy'])
+          end
+          @RequestId = params['RequestId']
+        end
+      end
+
+      # DescribeCageList请求参数结构体
+      class DescribeCageListRequest < TencentCloud::Common::AbstractModel
+        # @param CageIds: <p>金融围拢ID、或者独享集群ID</p>
+        # @type CageIds: Array
+        # @param CageName: <p>金融围拢名称/独享集群名称</p>
+        # @type CageName: String
+        # @param ZoneId: <p>本地专属集群所在可用用ID</p>
+        # @type ZoneId: Integer
+        # @param Limit: <p>查询本地专属集群列表LIMIT</p>
+        # @type Limit: Integer
+        # @param Offset: <p>分页</p>
+        # @type Offset: Integer
+
+        attr_accessor :CageIds, :CageName, :ZoneId, :Limit, :Offset
+
+        def initialize(cageids=nil, cagename=nil, zoneid=nil, limit=nil, offset=nil)
+          @CageIds = cageids
+          @CageName = cagename
+          @ZoneId = zoneid
+          @Limit = limit
+          @Offset = offset
+        end
+
+        def deserialize(params)
+          @CageIds = params['CageIds']
+          @CageName = params['CageName']
+          @ZoneId = params['ZoneId']
+          @Limit = params['Limit']
+          @Offset = params['Offset']
+        end
+      end
+
+      # DescribeCageList返回参数结构体
+      class DescribeCageListResponse < TencentCloud::Common::AbstractModel
+        # @param TotalCount: <p>金融围拢、独享集群返回数量</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type TotalCount: Integer
+        # @param Items: <p>详情</p>
+        # 注意：此字段可能返回 null，表示取不到有效值。
+        # @type Items: Array
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :TotalCount, :Items, :RequestId
+
+        def initialize(totalcount=nil, items=nil, requestid=nil)
+          @TotalCount = totalcount
+          @Items = items
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @TotalCount = params['TotalCount']
+          unless params['Items'].nil?
+            @Items = []
+            params['Items'].each do |i|
+              cageinfoitem_tmp = CageInfoItem.new
+              cageinfoitem_tmp.deserialize(i)
+              @Items << cageinfoitem_tmp
+            end
           end
           @RequestId = params['RequestId']
         end
@@ -9712,6 +9813,8 @@ module TencentCloud
         # @type InstanceNodes: Integer
         # @param TagList: <p>标签列表</p>
         # @type TagList: Array
+        # @param CageId: <p>金融围拢 ID 。</p>
+        # @type CageId: String
         # @param EngineType: <p>引擎类型</p>
         # @type EngineType: String
         # @param MaxDelayTime: <p>最大延迟阈值</p>
@@ -9736,9 +9839,9 @@ module TencentCloud
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type AnalysisUpgradeVersionInfo: :class:`Tencentcloud::Cdb.v20170320.models.UpgradeAnalysisInstanceVersionInfo`
 
-        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes, :TagList, :EngineType, :MaxDelayTime, :DiskType, :ExpandCpu, :ClusterInfo, :AnalysisNodeInfos, :DeviceBandwidth, :DestroyProtect, :DiskEncryption, :CpuModel, :AnalysisUpgradeVersionInfo
+        attr_accessor :WanStatus, :Zone, :InitFlag, :RoVipInfo, :Memory, :Status, :VpcId, :SlaveInfo, :InstanceId, :Volume, :AutoRenew, :ProtectMode, :RoGroups, :SubnetId, :InstanceType, :ProjectId, :Region, :DeadlineTime, :DeployMode, :TaskStatus, :MasterInfo, :DeviceType, :EngineVersion, :InstanceName, :DrInfo, :WanDomain, :WanPort, :PayType, :CreateTime, :Vip, :Vport, :CdbError, :UniqVpcId, :UniqSubnetId, :PhysicalId, :Cpu, :Qps, :ZoneName, :DeviceClass, :DeployGroupId, :ZoneId, :InstanceNodes, :TagList, :CageId, :EngineType, :MaxDelayTime, :DiskType, :ExpandCpu, :ClusterInfo, :AnalysisNodeInfos, :DeviceBandwidth, :DestroyProtect, :DiskEncryption, :CpuModel, :AnalysisUpgradeVersionInfo
 
-        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil, taglist=nil, enginetype=nil, maxdelaytime=nil, disktype=nil, expandcpu=nil, clusterinfo=nil, analysisnodeinfos=nil, devicebandwidth=nil, destroyprotect=nil, diskencryption=nil, cpumodel=nil, analysisupgradeversioninfo=nil)
+        def initialize(wanstatus=nil, zone=nil, initflag=nil, rovipinfo=nil, memory=nil, status=nil, vpcid=nil, slaveinfo=nil, instanceid=nil, volume=nil, autorenew=nil, protectmode=nil, rogroups=nil, subnetid=nil, instancetype=nil, projectid=nil, region=nil, deadlinetime=nil, deploymode=nil, taskstatus=nil, masterinfo=nil, devicetype=nil, engineversion=nil, instancename=nil, drinfo=nil, wandomain=nil, wanport=nil, paytype=nil, createtime=nil, vip=nil, vport=nil, cdberror=nil, uniqvpcid=nil, uniqsubnetid=nil, physicalid=nil, cpu=nil, qps=nil, zonename=nil, deviceclass=nil, deploygroupid=nil, zoneid=nil, instancenodes=nil, taglist=nil, cageid=nil, enginetype=nil, maxdelaytime=nil, disktype=nil, expandcpu=nil, clusterinfo=nil, analysisnodeinfos=nil, devicebandwidth=nil, destroyprotect=nil, diskencryption=nil, cpumodel=nil, analysisupgradeversioninfo=nil)
           @WanStatus = wanstatus
           @Zone = zone
           @InitFlag = initflag
@@ -9782,6 +9885,7 @@ module TencentCloud
           @ZoneId = zoneid
           @InstanceNodes = instancenodes
           @TagList = taglist
+          @CageId = cageid
           @EngineType = enginetype
           @MaxDelayTime = maxdelaytime
           @DiskType = disktype
@@ -9869,6 +9973,7 @@ module TencentCloud
               @TagList << taginfoitem_tmp
             end
           end
+          @CageId = params['CageId']
           @EngineType = params['EngineType']
           @MaxDelayTime = params['MaxDelayTime']
           @DiskType = params['DiskType']
@@ -10694,32 +10799,17 @@ module TencentCloud
 
       # ModifyAuditService请求参数结构体
       class ModifyAuditServiceRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID。可通过 [DescribeDBInstances](https://cloud.tencent.com/document/product/236/15872) 接口获取。
+        # @param InstanceId: <p>实例 ID。可通过 <a href="https://cloud.tencent.com/document/product/236/15872">DescribeDBInstances</a> 接口获取。</p>
         # @type InstanceId: String
-        # @param LogExpireDay: 日志保留时长。支持值包括：
-        # 7 - 一周；
-        # 30 - 一个月；
-        # 90 - 三个月；
-        # 180 - 六个月；
-        # 365 - 一年；
-        # 1095 - 三年；
-        # 1825 - 五年。
+        # @param LogExpireDay: <p>审计日志保存时长。</p><p>枚举值：</p><ul><li>7： 一周</li><li>30： 一个月</li><li>90：  三个月</li><li>180： 六个月</li><li>365： 一年</li><li>1095： 三年</li><li>1825： 五年</li></ul>
         # @type LogExpireDay: Integer
-        # @param HighLogExpireDay: 高频日志保留时长。默认值为7，此项取值需小于等于 LogExpireDay，支持值包括：
-        # 3 - 3天；
-        # 7 - 一周；
-        # 30 - 一个月；
-        # 90 - 三个月；
-        # 180 - 六个月；
-        # 365 - 一年；
-        # 1095 - 三年；
-        # 1825 - 五年。
+        # @param HighLogExpireDay: <p>高频审计日志保存时长。</p><p>枚举值：</p><ul><li>7： 一周</li><li>30： 一个月</li><li>90：  三个月</li><li>180： 六个月</li><li>365： 一年</li><li>1095： 三年</li><li>1825： 五年</li></ul><p>此项取值需小于等于 LogExpireDay。</p>
         # @type HighLogExpireDay: Integer
-        # @param AuditAll: 修改实例审计规则为全审计。
+        # @param AuditAll: <p>修改实例审计规则为全审计。</p>
         # @type AuditAll: Boolean
-        # @param AuditRuleFilters: 废弃。
+        # @param AuditRuleFilters: <p>废弃。</p>
         # @type AuditRuleFilters: Array
-        # @param RuleTemplateIds: 规则模板 ID。可通过 [DescribeAuditRuleTemplates](https://cloud.tencent.com/document/api/236/101811) 接口获取。
+        # @param RuleTemplateIds: <p>规则模板 ID。可通过 <a href="https://cloud.tencent.com/document/api/236/101811">DescribeAuditRuleTemplates</a> 接口获取。</p>
         # @type RuleTemplateIds: Array
 
         attr_accessor :InstanceId, :LogExpireDay, :HighLogExpireDay, :AuditAll, :AuditRuleFilters, :RuleTemplateIds
@@ -10812,49 +10902,45 @@ module TencentCloud
 
       # ModifyBackupConfig请求参数结构体
       class ModifyBackupConfigRequest < TencentCloud::Common::AbstractModel
-        # @param InstanceId: 实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。
+        # @param InstanceId: <p>实例 ID，格式如：cdb-c1nl9rpv。与云数据库控制台页面中显示的实例 ID 相同。</p>
         # @type InstanceId: String
-        # @param ExpireDays: 数据备份文件的保留时间，单位为天。
-        # 1. MySQL 双节点、三节点、云盘版数据备份文件可以保留7天 - 1830天。
-        # 2. MySQL 单节点（云盘）数据备份文件可以保留7天 - 30天。
+        # @param ExpireDays: <p>数据备份文件的保留时间，单位为天。</p><ol><li>MySQL 双节点、三节点、云盘版数据备份文件可以保留7天 - 1830天。</li><li>MySQL 单节点（云盘）数据备份文件可以保留7天 - 30天。</li></ol>
         # @type ExpireDays: Integer
-        # @param StartTime: (将废弃，建议使用 BackupTimeWindow 参数) 备份时间范围，格式为：02:00-06:00，起点和终点时间目前限制为整点，目前可以选择的范围为： 00:00-12:00，02:00-06:00，06：00-10：00，10:00-14:00，14:00-18:00，18:00-22:00，22:00-02:00。
+        # @param StartTime: <p>(将废弃，建议使用 BackupTimeWindow 参数) 备份时间范围，格式为：02:00-06:00，起点和终点时间目前限制为整点，目前可以选择的范围为： 00:00-12:00，02:00-06:00，06：00-10：00，10:00-14:00，14:00-18:00，18:00-22:00，22:00-02:00。</p>
         # @type StartTime: String
-        # @param BackupMethod: 自动备份方式，仅支持：physical - 物理冷备
+        # @param BackupMethod: <p>自动备份方式，仅支持：physical - 物理冷备</p>
         # @type BackupMethod: String
-        # @param BinlogExpireDays: binlog 的保留时间，单位为天。
-        # 1. MySQL 双节点、三节点、云盘版日志备份文件可以保留7天 - 3650天。
-        # 2. MySQL 单节点（云盘）日志备份文件可以保留7天 - 30天。
+        # @param BinlogExpireDays: <p>binlog 的保留时间，单位为天。</p><ol><li>MySQL 双节点、三节点、云盘版日志备份文件可以保留7天 - 3650天。</li><li>MySQL 单节点（云盘）日志备份文件可以保留7天 - 30天。</li></ol>
         # @type BinlogExpireDays: Integer
-        # @param BackupTimeWindow: 备份时间窗，比如要设置每周二和周日 10:00-14:00之间备份，该参数如下：{"Monday": "", "Tuesday": "10:00-14:00", "Wednesday": "", "Thursday": "", "Friday": "", "Saturday": "", "Sunday": "10:00-14:00"}    （注：可以设置一周的某几天备份，但是每天的备份时间需要设置为相同的时间段。 如果设置了该字段，将忽略StartTime字段的设置）
+        # @param BackupTimeWindow: <p>备份时间窗，比如要设置每周二和周日 10:00-14:00之间备份，该参数如下：{&quot;Monday&quot;: &quot;&quot;, &quot;Tuesday&quot;: &quot;10:00-14:00&quot;, &quot;Wednesday&quot;: &quot;&quot;, &quot;Thursday&quot;: &quot;&quot;, &quot;Friday&quot;: &quot;&quot;, &quot;Saturday&quot;: &quot;&quot;, &quot;Sunday&quot;: &quot;10:00-14:00&quot;}    （注：可以设置一周的某几天备份，但是每天的备份时间需要设置为相同的时间段。 如果设置了该字段，将忽略StartTime字段的设置）</p>
         # @type BackupTimeWindow: :class:`Tencentcloud::Cdb.v20170320.models.CommonTimeWindow`
-        # @param EnableBackupPeriodSave: 定期保留开关，off - 不开启定期保留策略，on - 开启定期保留策略，默认为off。
+        # @param EnableBackupPeriodSave: <p>定期保留开关，off - 不开启定期保留策略，on - 开启定期保留策略，默认为off。</p>
         # @type EnableBackupPeriodSave: String
-        # @param EnableBackupPeriodLongTermSave: 长期保留开关,该字段功能暂未上线，可忽略。off - 不开启长期保留策略，on - 开启长期保留策略，默认为off，如果开启，则BackupPeriodSaveDays，BackupPeriodSaveInterval，BackupPeriodSaveCount参数无效
+        # @param EnableBackupPeriodLongTermSave: <p>长期保留开关,该字段功能暂未上线，可忽略。off - 不开启长期保留策略，on - 开启长期保留策略，默认为off，如果开启，则BackupPeriodSaveDays，BackupPeriodSaveInterval，BackupPeriodSaveCount参数无效</p>
         # @type EnableBackupPeriodLongTermSave: String
-        # @param BackupPeriodSaveDays: 定期保留最长天数，最小值：90，最大值：3650，默认值：1080
+        # @param BackupPeriodSaveDays: <p>定期保留最长天数，最小值：90，最大值：3650，默认值：1080</p>
         # @type BackupPeriodSaveDays: Integer
-        # @param BackupPeriodSaveInterval: 定期保留策略周期，可取值：weekly - 周，monthly - 月， quarterly - 季度，yearly - 年，默认为monthly
+        # @param BackupPeriodSaveInterval: <p>定期保留策略周期，可取值：weekly - 周，monthly - 月， quarterly - 季度，yearly - 年，默认为monthly</p>
         # @type BackupPeriodSaveInterval: String
-        # @param BackupPeriodSaveCount: 定期保留的备份数量，最小值为1，最大值不超过定期保留策略周期内常规备份个数，默认值为1
+        # @param BackupPeriodSaveCount: <p>定期保留的备份数量，最小值为1，最大值不超过定期保留策略周期内常规备份个数，默认值为1</p>
         # @type BackupPeriodSaveCount: Integer
-        # @param StartBackupPeriodSaveDate: 定期保留策略周期起始日期，格式：YYYY-MM-dd HH:mm:ss
+        # @param StartBackupPeriodSaveDate: <p>定期保留策略周期起始日期，格式：YYYY-MM-dd HH:mm:ss</p>
         # @type StartBackupPeriodSaveDate: String
-        # @param EnableBackupArchive: 是否开启数据备份归档策略，off-关闭，on-打开，如果不指定该入参， 则保持不变。
+        # @param EnableBackupArchive: <p>是否开启数据备份归档策略，off-关闭，on-打开，如果不指定该入参， 则保持不变。</p>
         # @type EnableBackupArchive: String
-        # @param BackupArchiveDays: 数据备份归档起始天数，数据备份达到归档起始天数时进行归档，最小为180天，不得大于数据备份保留天数
+        # @param BackupArchiveDays: <p>数据备份归档起始天数，数据备份达到归档起始天数时进行归档，最小为180天，不得大于数据备份保留天数</p>
         # @type BackupArchiveDays: Integer
-        # @param BinlogArchiveDays: 日志备份归档起始天数，日志备份达到归档起始天数时进行归档，最小为180天，不得大于日志备份保留天数
+        # @param BinlogArchiveDays: <p>日志备份归档起始天数，日志备份达到归档起始天数时进行归档，最小为180天，不得大于日志备份保留天数</p>
         # @type BinlogArchiveDays: Integer
-        # @param EnableBinlogArchive: 是否开启日志备份归档策略，off-关闭，on-打开，如果不指定该入参， 则保持不变。
+        # @param EnableBinlogArchive: <p>是否开启日志备份归档策略，off-关闭，on-打开，如果不指定该入参， 则保持不变。</p>
         # @type EnableBinlogArchive: String
-        # @param EnableBackupStandby: 是否开启数据备份标准存储策略，off-关闭，on-打开，如果不指定该入参， 则保持不变。
+        # @param EnableBackupStandby: <p>是否开启数据备份标准存储策略，off-关闭，on-打开，如果不指定该入参， 则保持不变。</p>
         # @type EnableBackupStandby: String
-        # @param BackupStandbyDays: 数据备份标准存储起始天数，数据备份达到标准存储起始天数时进行转换，最小为30天，不得大于数据备份保留天数。如果开启备份归档，不得大于等于备份归档天数
+        # @param BackupStandbyDays: <p>数据备份标准存储起始天数，数据备份达到标准存储起始天数时进行转换，最小为30天，不得大于数据备份保留天数。如果开启备份归档，不得大于等于备份归档天数</p>
         # @type BackupStandbyDays: Integer
-        # @param EnableBinlogStandby: 是否开启日志备份标准存储策略，off-关闭，on-打开，如果不指定该入参， 则保持不变。
+        # @param EnableBinlogStandby: <p>是否开启日志备份标准存储策略，off-关闭，on-打开，如果不指定该入参， 则保持不变。</p>
         # @type EnableBinlogStandby: String
-        # @param BinlogStandbyDays: 日志备份标准存储起始天数，日志备份达到标准存储起始天数时进行转换，最小为30天，不得大于日志备份保留天数。如果开启备份归档，不得大于等于备份归档天数
+        # @param BinlogStandbyDays: <p>日志备份标准存储起始天数，日志备份达到标准存储起始天数时进行转换，最小为30天，不得大于日志备份保留天数。如果开启备份归档，不得大于等于备份归档天数</p>
         # @type BinlogStandbyDays: Integer
 
         attr_accessor :InstanceId, :ExpireDays, :StartTime, :BackupMethod, :BinlogExpireDays, :BackupTimeWindow, :EnableBackupPeriodSave, :EnableBackupPeriodLongTermSave, :BackupPeriodSaveDays, :BackupPeriodSaveInterval, :BackupPeriodSaveCount, :StartBackupPeriodSaveDate, :EnableBackupArchive, :BackupArchiveDays, :BinlogArchiveDays, :EnableBinlogArchive, :EnableBackupStandby, :BackupStandbyDays, :EnableBinlogStandby, :BinlogStandbyDays

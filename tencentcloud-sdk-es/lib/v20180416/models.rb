@@ -9331,6 +9331,58 @@ module TencentCloud
         end
       end
 
+      # SearchServerlessSpaceData请求参数结构体
+      class SearchServerlessSpaceDataRequest < TencentCloud::Common::AbstractModel
+        # @param SpaceId: <p>space空间id</p>
+        # @type SpaceId: String
+        # @param Uri: <p>请求url</p>
+        # @type Uri: String
+        # @param Method: <p>method</p><p>枚举值：</p><ul><li>GET： get请求</li><li>POST： post请求</li><li>PUT： put请求</li></ul>
+        # @type Method: String
+        # @param Body: <p>请求体</p>
+        # @type Body: String
+
+        attr_accessor :SpaceId, :Uri, :Method, :Body
+
+        def initialize(spaceid=nil, uri=nil, method=nil, body=nil)
+          @SpaceId = spaceid
+          @Uri = uri
+          @Method = method
+          @Body = body
+        end
+
+        def deserialize(params)
+          @SpaceId = params['SpaceId']
+          @Uri = params['Uri']
+          @Method = params['Method']
+          @Body = params['Body']
+        end
+      end
+
+      # SearchServerlessSpaceData返回参数结构体
+      class SearchServerlessSpaceDataResponse < TencentCloud::Common::AbstractModel
+        # @param HttpStatus: <p>请求状态</p>
+        # @type HttpStatus: Integer
+        # @param Result: <p>返回结果</p>
+        # @type Result: String
+        # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
+        # @type RequestId: String
+
+        attr_accessor :HttpStatus, :Result, :RequestId
+
+        def initialize(httpstatus=nil, result=nil, requestid=nil)
+          @HttpStatus = httpstatus
+          @Result = result
+          @RequestId = requestid
+        end
+
+        def deserialize(params)
+          @HttpStatus = params['HttpStatus']
+          @Result = params['Result']
+          @RequestId = params['RequestId']
+        end
+      end
+
       # 创建serverless索引时创建数据接入
       class ServerlessDi < TencentCloud::Common::AbstractModel
         # @param DiSourceType: 数据链路采集源类型，如cvm_collector、tke_collector

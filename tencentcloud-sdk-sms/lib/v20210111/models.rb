@@ -1720,18 +1720,15 @@ module TencentCloud
 
       # SmsPackagesStatistics请求参数结构体
       class SmsPackagesStatisticsRequest < TencentCloud::Common::AbstractModel
-        # @param SmsSdkAppId: 短信 SdkAppId 在 [短信控制台](https://console.cloud.tencent.com/smsv2/app-manage)  添加应用后生成的实际 SdkAppId，示例如1400006666。
+        # @param SmsSdkAppId: <p>短信 SdkAppId 在 <a href="https://console.cloud.tencent.com/smsv2/app-manage">短信控制台</a>  添加应用后生成的实际 SdkAppId，示例如1400006666。</p>
         # @type SmsSdkAppId: String
-        # @param Limit: 最大上限(需要拉取的套餐包个数)。
-        # 注：Limit默认最大值为500，可结合Offset实现分页查询。
+        # @param Limit: <p>最大上限(需要拉取的套餐包个数)。<br>注：Limit默认最大值为500，可结合Offset实现分页查询。</p>
         # @type Limit: Integer
-        # @param Offset: 偏移量。
+        # @param Offset: <p>偏移量。</p>
         # @type Offset: Integer
-        # @param BeginTime: 起始时间，格式为yyyymmddhh，精确到小时，例如2024050113，表示2024年5月1号13时。
-        # 注：接口会返回 BeginTime 到 EndTime 之间创建的套餐包的统计信息。
+        # @param BeginTime: <p>起始时间，格式为yyyymmddhh，精确到小时，例如2024050113，表示2024年5月1号13时。<br>注：接口会返回 BeginTime 到 EndTime 之间创建的套餐包的统计信息。</p>
         # @type BeginTime: String
-        # @param EndTime: 结束时间，格式为yyyymmddhh，精确到小时，例如2024050118，表示2024年5月1号18时。
-        # 注：EndTime 必须大于 BeginTime 且小于当前时间。
+        # @param EndTime: <p>结束时间，格式为yyyymmddhh，精确到小时，例如2024050118，表示2024年5月1号18时。<br>注：EndTime 必须大于 BeginTime 且小于当前时间。</p>
         # @type EndTime: String
 
         attr_accessor :SmsSdkAppId, :Limit, :Offset, :BeginTime, :EndTime
@@ -1755,7 +1752,7 @@ module TencentCloud
 
       # SmsPackagesStatistics返回参数结构体
       class SmsPackagesStatisticsResponse < TencentCloud::Common::AbstractModel
-        # @param SmsPackagesStatisticsSet: 发送数据统计响应包体。
+        # @param SmsPackagesStatisticsSet: <p>套餐包统计信息响应包体。</p>
         # @type SmsPackagesStatisticsSet: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String

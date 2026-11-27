@@ -374,39 +374,39 @@ module TencentCloud
 
       # 节省计划覆盖率数据
       class SavingPlanCoverageDetail < TencentCloud::Common::AbstractModel
-        # @param ResourceId: 资源 ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID
+        # @param ResourceId: <p>资源 ID：账单中出账对象 ID，不同产品因资源形态不同，资源内容不完全相同，如云服务器 CVM 为对应的实例 ID</p>
         # @type ResourceId: String
-        # @param RegionId: 地域ID
+        # @param RegionId: <p>地域ID</p>
         # @type RegionId: Integer
-        # @param ProductCode: 产品编码
+        # @param ProductCode: <p>产品编码</p>
         # @type ProductCode: String
-        # @param SubProductCode: 子产品编码
+        # @param SubProductCode: <p>子产品编码</p>
         # @type SubProductCode: String
-        # @param StartDate: 费用起始日期，格式yyyy-MM-dd
+        # @param StartDate: <p>费用起始日期，格式yyyy-MM-dd</p>
         # @type StartDate: String
-        # @param EndDate: 费用结束日期，格式yyyy-MM-dd，目前与StartDate相等
+        # @param EndDate: <p>费用结束日期，格式yyyy-MM-dd，目前与StartDate相等</p>
         # @type EndDate: String
-        # @param SpCoveredAmount: 节省计划覆盖金额（即节省计划支付金额）
+        # @param SpCoveredAmount: <p>节省计划覆盖金额（即节省计划支付金额）</p>
         # @type SpCoveredAmount: Float
-        # @param SpUncoveredAmount: 节省计划未覆盖金额（即优惠后总价）
+        # @param SpUncoveredAmount: <p>节省计划未覆盖金额（即优惠后总价）</p>
         # @type SpUncoveredAmount: Float
-        # @param TotalRealAmount: 总支出（即节省计划未覆盖金额 + 节省计划覆盖金额）
+        # @param TotalRealAmount: <p>总支出（即节省计划未覆盖金额 + 节省计划覆盖金额）</p>
         # @type TotalRealAmount: Float
-        # @param ExpectedAmount: 按量计费预期金额（即折前价 * 折扣）
+        # @param ExpectedAmount: <p>按量计费预期金额（即折前价 * 折扣）</p>
         # @type ExpectedAmount: Float
-        # @param SpCoverage: 覆盖率结果，取值[0, 100]
+        # @param SpCoverage: <p>覆盖率结果，取值为百分比值，取值范围[0,100]</p>
         # @type SpCoverage: Float
-        # @param PayerUinName: 支付者昵称
+        # @param PayerUinName: <p>支付者昵称</p>
         # @type PayerUinName: String
-        # @param OwnerUinName: 使用者昵称
+        # @param OwnerUinName: <p>使用者昵称</p>
         # @type OwnerUinName: String
-        # @param PayerUin: 支付者uin
+        # @param PayerUin: <p>支付者uin</p>
         # @type PayerUin: String
-        # @param SubBillingItemName: 计费项名称
+        # @param SubBillingItemName: <p>计费项名称</p>
         # @type SubBillingItemName: String
-        # @param BillingItemName: 计费细项名称
+        # @param BillingItemName: <p>计费细项名称</p>
         # @type BillingItemName: String
-        # @param SubProductName: 子产品名称
+        # @param SubProductName: <p>子产品名称</p>
         # @type SubProductName: String
 
         attr_accessor :ResourceId, :RegionId, :ProductCode, :SubProductCode, :StartDate, :EndDate, :SpCoveredAmount, :SpUncoveredAmount, :TotalRealAmount, :ExpectedAmount, :SpCoverage, :PayerUinName, :OwnerUinName, :PayerUin, :SubBillingItemName, :BillingItemName, :SubProductName

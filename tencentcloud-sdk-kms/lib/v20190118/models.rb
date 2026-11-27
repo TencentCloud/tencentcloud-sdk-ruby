@@ -2371,12 +2371,14 @@ module TencentCloud
         # @type MultiAccountLimit: Integer
         # @param MultiAccountUsedCount: <p>多账号启用个数</p><p>单位：个数</p>
         # @type MultiAccountUsedCount: Integer
+        # @param CmkExtPackCount: <p>根密钥的扩展包数量</p><p>单位：个</p>
+        # @type CmkExtPackCount: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
 
-        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :CmkUserCount, :CmkLimit, :ExclusiveHSMList, :IsAllowedDataKeyHosted, :DataKeyLimit, :FreeDataKeyLimit, :DataKeyUsedCount, :SyncTaskList, :IsAllowedSync, :QpsLimit, :QpsTotalLimit, :RegionsQps, :ResourceZone, :ResourceRegion, :MultiAccountLimit, :MultiAccountUsedCount, :RequestId
+        attr_accessor :ServiceEnabled, :InvalidType, :UserLevel, :ProExpireTime, :ProRenewFlag, :ProResourceId, :ExclusiveVSMEnabled, :ExclusiveHSMEnabled, :SubscriptionInfo, :CmkUserCount, :CmkLimit, :ExclusiveHSMList, :IsAllowedDataKeyHosted, :DataKeyLimit, :FreeDataKeyLimit, :DataKeyUsedCount, :SyncTaskList, :IsAllowedSync, :QpsLimit, :QpsTotalLimit, :RegionsQps, :ResourceZone, :ResourceRegion, :MultiAccountLimit, :MultiAccountUsedCount, :CmkExtPackCount, :RequestId
 
-        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, cmkusercount=nil, cmklimit=nil, exclusivehsmlist=nil, isalloweddatakeyhosted=nil, datakeylimit=nil, freedatakeylimit=nil, datakeyusedcount=nil, synctasklist=nil, isallowedsync=nil, qpslimit=nil, qpstotallimit=nil, regionsqps=nil, resourcezone=nil, resourceregion=nil, multiaccountlimit=nil, multiaccountusedcount=nil, requestid=nil)
+        def initialize(serviceenabled=nil, invalidtype=nil, userlevel=nil, proexpiretime=nil, prorenewflag=nil, proresourceid=nil, exclusivevsmenabled=nil, exclusivehsmenabled=nil, subscriptioninfo=nil, cmkusercount=nil, cmklimit=nil, exclusivehsmlist=nil, isalloweddatakeyhosted=nil, datakeylimit=nil, freedatakeylimit=nil, datakeyusedcount=nil, synctasklist=nil, isallowedsync=nil, qpslimit=nil, qpstotallimit=nil, regionsqps=nil, resourcezone=nil, resourceregion=nil, multiaccountlimit=nil, multiaccountusedcount=nil, cmkextpackcount=nil, requestid=nil)
           @ServiceEnabled = serviceenabled
           @InvalidType = invalidtype
           @UserLevel = userlevel
@@ -2402,6 +2404,7 @@ module TencentCloud
           @ResourceRegion = resourceregion
           @MultiAccountLimit = multiaccountlimit
           @MultiAccountUsedCount = multiaccountusedcount
+          @CmkExtPackCount = cmkextpackcount
           @RequestId = requestid
         end
 
@@ -2452,6 +2455,7 @@ module TencentCloud
           @ResourceRegion = params['ResourceRegion']
           @MultiAccountLimit = params['MultiAccountLimit']
           @MultiAccountUsedCount = params['MultiAccountUsedCount']
+          @CmkExtPackCount = params['CmkExtPackCount']
           @RequestId = params['RequestId']
         end
       end

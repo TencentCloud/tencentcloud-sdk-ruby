@@ -7418,18 +7418,11 @@ module TencentCloud
 
       # DescribeBillDownloadUrl请求参数结构体
       class DescribeBillDownloadUrlRequest < TencentCloud::Common::AbstractModel
-        # @param FileType: 账单类型，枚举值
-        # billOverview=L0-PDF账单
-        # billSummary=L1-汇总账单
-        # billResource=L2-资源账单
-        # billDetail=L3-明细账单
-        # billPack=账单包
+        # @param FileType: <p>账单类型，枚举值<br>billOverview=L0-PDF账单<br>billSummary=L1-汇总账单<br>billResource=L2-资源账单<br>billDetail=L3-明细账单<br>billPack=账单包</p>
         # @type FileType: String
-        # @param Month: 账单月份
-        # 支持的最早开始月份为2021-01
-        # L0-PDF&账单包不支持当月下载，当月账单请在次月1号19:00出账后下载
+        # @param Month: <p>月份，格式为yyyy-mm，不能早于2021-01  示例值：2026-11</p>
         # @type Month: String
-        # @param ChildUin: 下载的账号 ID列表，默认查询本账号账单，如集团管理账号需下载成员账号自付的账单，该字段需入参成员账号UIN
+        # @param ChildUin: <p>下载的账号 ID列表，默认查询本账号账单，如集团管理账号需下载成员账号自付的账单，该字段需入参成员账号UIN</p>
         # @type ChildUin: Array
 
         attr_accessor :FileType, :Month, :ChildUin
@@ -7449,9 +7442,9 @@ module TencentCloud
 
       # DescribeBillDownloadUrl返回参数结构体
       class DescribeBillDownloadUrlResponse < TencentCloud::Common::AbstractModel
-        # @param Ready: 账单文件是否准备就绪，0文件生成中，1文件已生成
+        # @param Ready: <p>账单文件是否准备就绪，0文件生成中，1文件已生成</p>
         # @type Ready: Integer
-        # @param DownloadUrl: 账单文件下载链接，有效时长为一天
+        # @param DownloadUrl: <p>账单文件下载链接，有效时长为一天</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type DownloadUrl: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -7703,7 +7696,7 @@ module TencentCloud
         # @type Offset: Integer
         # @param Limit: <p>数量，最大值为1000</p>
         # @type Limit: Integer
-        # @param Month: <p>月份，格式为yyyy-mm。不能早于开通账单2.0的月份</p>
+        # @param Month: <p>月份，格式为yyyy-mm，不能早于2021-01  示例值：2026-11</p>
         # @type Month: String
         # @param PeriodType: <p>周期类型，byUsedTime按计费周期/byPayTime按扣费周期。需要与费用中心该月份账单的周期保持一致。您可前往<a href="https://console.cloud.tencent.com/expense/bill/overview">账单概览</a>页面顶部查看确认您的账单统计周期类型。</p>
         # @type PeriodType: String
@@ -7794,11 +7787,11 @@ module TencentCloud
 
       # DescribeBillSummaryByPayMode请求参数结构体
       class DescribeBillSummaryByPayModeRequest < TencentCloud::Common::AbstractModel
-        # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @param BeginTime: <p>目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2026-11，EndTime 为 2026-11，查询结果是 2026 年 11 月数据。格式为yyyy-mm，不能早于2021-01</p>
         # @type BeginTime: String
-        # @param EndTime: 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @param EndTime: <p>目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2026-11，EndTime 为 2026-11，查询结果是 2026 年 11 月数据。格式为yyyy-mm，不能早于2021-01</p>
         # @type EndTime: String
-        # @param PayerUin: 查询账单数据的用户UIN
+        # @param PayerUin: <p>查询账单数据的用户UIN</p>
         # @type PayerUin: String
 
         attr_accessor :BeginTime, :EndTime, :PayerUin
@@ -7818,9 +7811,9 @@ module TencentCloud
 
       # DescribeBillSummaryByPayMode返回参数结构体
       class DescribeBillSummaryByPayModeResponse < TencentCloud::Common::AbstractModel
-        # @param Ready: 数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）
+        # @param Ready: <p>数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）</p>
         # @type Ready: Integer
-        # @param SummaryOverview: 各付费模式花费分布详情
+        # @param SummaryOverview: <p>各付费模式花费分布详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SummaryOverview: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -7850,18 +7843,13 @@ module TencentCloud
 
       # DescribeBillSummaryByProduct请求参数结构体
       class DescribeBillSummaryByProductRequest < TencentCloud::Common::AbstractModel
-        # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @param BeginTime: <p>目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2026-11，EndTime 为 2026-11，查询结果是 2026 年 11 月数据。格式为yyyy-mm，不能早于2021-01</p>
         # @type BeginTime: String
-        # @param EndTime: 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @param EndTime: <p>目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2026-11，EndTime 为 2026-11，查询结果是 2026 年 11 月数据。格式为yyyy-mm，不能早于2021-01</p>
         # @type EndTime: String
-        # @param PayerUin: 查询账单数据的用户UIN
+        # @param PayerUin: <p>查询账单数据的用户UIN</p>
         # @type PayerUin: String
-        # @param PayType: 款项类别，与L0账单上的汇总类别对应。
-        # 此参数自账单3.0（即2021-05）之后开始生效。
-        # 枚举值：
-        # consume-消费
-        # refund-退款
-        # adjustment-调账
+        # @param PayType: <p>款项类别，与L0账单上的汇总类别对应。 此参数自账单3.0（即2021-01）之后开始生效。</p><p>枚举值：</p><ul><li>consume： 消费</li><li>refund： 退款</li><li>adjustment： 调账</li></ul>
         # @type PayType: String
 
         attr_accessor :BeginTime, :EndTime, :PayerUin, :PayType
@@ -7883,12 +7871,12 @@ module TencentCloud
 
       # DescribeBillSummaryByProduct返回参数结构体
       class DescribeBillSummaryByProductResponse < TencentCloud::Common::AbstractModel
-        # @param Ready: 数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）
+        # @param Ready: <p>数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）</p>
         # @type Ready: Integer
-        # @param SummaryTotal: 总花费详情
+        # @param SummaryTotal: <p>总花费详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SummaryTotal: :class:`Tencentcloud::Billing.v20180709.models.BusinessSummaryTotal`
-        # @param SummaryOverview: 各产品花费分布
+        # @param SummaryOverview: <p>各产品花费分布</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SummaryOverview: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -7979,11 +7967,11 @@ module TencentCloud
 
       # DescribeBillSummaryByRegion请求参数结构体
       class DescribeBillSummaryByRegionRequest < TencentCloud::Common::AbstractModel
-        # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @param BeginTime: <p>目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2026-11，EndTime 为 2026-11，查询结果是 2026 年 11 月数据。格式为yyyy-mm，不能早于2021-01</p>
         # @type BeginTime: String
-        # @param EndTime: 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @param EndTime: <p>目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2026-11，EndTime 为 2026-11，查询结果是 2026 年 11 月数据。格式为yyyy-mm，不能早于2021-01</p>
         # @type EndTime: String
-        # @param PayerUin: 查询账单数据的用户UIN
+        # @param PayerUin: <p>查询账单数据的用户UIN</p>
         # @type PayerUin: String
 
         attr_accessor :BeginTime, :EndTime, :PayerUin
@@ -8003,9 +7991,9 @@ module TencentCloud
 
       # DescribeBillSummaryByRegion返回参数结构体
       class DescribeBillSummaryByRegionResponse < TencentCloud::Common::AbstractModel
-        # @param Ready: 数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）
+        # @param Ready: <p>数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）</p>
         # @type Ready: Integer
-        # @param SummaryOverview: 各地域花费分布详情
+        # @param SummaryOverview: <p>各地域花费分布详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SummaryOverview: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -8035,15 +8023,15 @@ module TencentCloud
 
       # DescribeBillSummaryByTag请求参数结构体
       class DescribeBillSummaryByTagRequest < TencentCloud::Common::AbstractModel
-        # @param BeginTime: 目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @param BeginTime: <p>目前必须和EndTime相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2026-11，EndTime 为 2026-11，查询结果是 2026 年 11 月数据。格式为yyyy-mm，不能早于2021-01</p>
         # @type BeginTime: String
-        # @param EndTime: 目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2018-09，EndTime 为 2018-09，查询结果是 2018 年 9 月数据。
+        # @param EndTime: <p>目前必须和BeginTime为相同月份，不支持跨月查询，且查询结果是整月数据，例如 BeginTime为2026-11，EndTime 为 2026-11，查询结果是 2026 年 11 月数据。格式为yyyy-mm，不能早于2021-01</p>
         # @type EndTime: String
-        # @param TagKey: 分账标签键，用户自定义
+        # @param TagKey: <p>分账标签键，用户自定义</p>
         # @type TagKey: String
-        # @param PayerUin: 查询账单数据的用户UIN
+        # @param PayerUin: <p>查询账单数据的用户UIN</p>
         # @type PayerUin: String
-        # @param TagValue: 分账标签值
+        # @param TagValue: <p>分账标签值</p>
         # @type TagValue: String
 
         attr_accessor :BeginTime, :EndTime, :TagKey, :PayerUin, :TagValue
@@ -8067,12 +8055,12 @@ module TencentCloud
 
       # DescribeBillSummaryByTag返回参数结构体
       class DescribeBillSummaryByTagResponse < TencentCloud::Common::AbstractModel
-        # @param Ready: 数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）
+        # @param Ready: <p>数据是否准备好，0准备中，1已就绪。（Ready=0，为当前UIN首次进行初始化出账，预计需要5~10分钟出账，请于10分钟后重试即可）</p>
         # @type Ready: Integer
-        # @param SummaryOverview: 各标签值花费分布详情
+        # @param SummaryOverview: <p>各标签值花费分布详情</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SummaryOverview: Array
-        # @param SummaryTotal: 总数
+        # @param SummaryTotal: <p>总数</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type SummaryTotal: :class:`Tencentcloud::Billing.v20180709.models.SummaryTotal`
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
@@ -8162,7 +8150,7 @@ module TencentCloud
 
       # DescribeBillSummary请求参数结构体
       class DescribeBillSummaryRequest < TencentCloud::Common::AbstractModel
-        # @param Month: <p>账单月份，格式为2023-04</p>
+        # @param Month: <p>月份，格式为yyyy-mm，不能早于2021-01  示例值：2026-11</p>
         # @type Month: String
         # @param GroupType: <p>账单维度类型，枚举值如下：business、project、region、payMode、tag</p>
         # @type GroupType: String

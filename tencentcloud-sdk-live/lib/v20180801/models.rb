@@ -960,46 +960,46 @@ module TencentCloud
 
       # 数字人直播间信息。
       class AvatarRoomInfo < TencentCloud::Common::AbstractModel
-        # @param RoomId: 数字人直播间 ID。
+        # @param RoomId: <p>数字人直播间 ID。</p>
         # @type RoomId: String
-        # @param Name: 数字人直播间名称。
+        # @param Name: <p>数字人直播间名称。</p>
         # @type Name: String
-        # @param Status: 数字人直播间状态，
-        # CLOSE - 未开播。
-        # OPEN - 直播中。
+        # @param Status: <p>数字人直播间状态，<br>CLOSE - 未开播。<br>OPEN - 直播中。</p><p>枚举值：</p><ul><li>CLOSE： 未开播</li><li>OPEN： 直播中</li></ul>
         # @type Status: String
-        # @param AvatarKey: 数字人形象 KEY。
+        # @param AvatarKey: <p>数字人形象 KEY。</p>
         # @type AvatarKey: String
-        # @param TimbreKey: 音色 KEy。
+        # @param TimbreKey: <p>音色 KEY。</p>
         # @type TimbreKey: String
-        # @param AvatarImageUrl: 数字人形象图片 URL。
+        # @param AvatarImageUrl: <p>数字人形象图片 URL。</p>
         # @type AvatarImageUrl: String
-        # @param BackgroundUrl: 背景图片 URL。
+        # @param BackgroundUrl: <p>背景图片 URL。</p>
         # @type BackgroundUrl: String
-        # @param Comment: 推流目标描述。
+        # @param Comment: <p>推流目标描述。</p>
         # @type Comment: String
-        # @param ToUrl: 目标推流地址。
+        # @param ToUrl: <p>目标推流地址。</p>
         # @type ToUrl: String
-        # @param AnchorScale: 主播大小，默认1.00。 取值范围(0, 15.00]。
+        # @param AnchorScale: <p>主播大小，默认1.00。 取值范围(0, 15.00]。</p>
         # @type AnchorScale: Float
-        # @param AnchorVerticalPos: 主播纵向位置。默认-1贴底部。
+        # @param AnchorVerticalPos: <p>主播纵向位置。默认-1贴底部。</p>
         # @type AnchorVerticalPos: Integer
-        # @param AnchorHorizontalPos: 主播横向位置。默认-1居中。
+        # @param AnchorHorizontalPos: <p>主播横向位置。默认-1居中。</p>
         # @type AnchorHorizontalPos: Integer
-        # @param SpeechSpeed: 语速（1.0为正常语速，范围[0.5-1.5]，值为0.5时播报语速最慢，值为1.5时播报语速最快。
+        # @param SpeechSpeed: <p>语速（1.0为正常语速，范围[0.5-1.5]，值为0.5时播报语速最慢，值为1.5时播报语速最快。</p>
         # @type SpeechSpeed: Float
-        # @param SpeechVolume: 音量大小，范围[0，10]，对应音量大小。默认为0，代表正常音量，值越大音量越高。
+        # @param SpeechVolume: <p>音量大小，范围[0，10]，对应音量大小。默认为0，代表正常音量，值越大音量越高。</p>
         # @type SpeechVolume: Integer
-        # @param CreateTime: 直播间创建时间，UTC时间。
-        # 注意：UTC时间和北京时间相差八小时。
+        # @param CreateTime: <p>直播间创建时间，UTC时间。<br>注意：UTC时间和北京时间相差八小时。</p>
         # @type CreateTime: String
-        # @param UpdateTime: 直播间最后更新时间，UTC时间。
-        # 注意：UTC时间和北京时间相差八小时。
+        # @param UpdateTime: <p>直播间最后更新时间，UTC时间。<br>注意：UTC时间和北京时间相差八小时。</p>
         # @type UpdateTime: String
+        # @param RoomType: <p>直播间类型。</p><p>枚举值：</p><ul><li>AIGC： AIGC直播</li></ul>
+        # @type RoomType: String
+        # @param AvatarAigcImageUrl: <p>通过AIGC生成的数字人形象图片 URL。</p>
+        # @type AvatarAigcImageUrl: String
 
-        attr_accessor :RoomId, :Name, :Status, :AvatarKey, :TimbreKey, :AvatarImageUrl, :BackgroundUrl, :Comment, :ToUrl, :AnchorScale, :AnchorVerticalPos, :AnchorHorizontalPos, :SpeechSpeed, :SpeechVolume, :CreateTime, :UpdateTime
+        attr_accessor :RoomId, :Name, :Status, :AvatarKey, :TimbreKey, :AvatarImageUrl, :BackgroundUrl, :Comment, :ToUrl, :AnchorScale, :AnchorVerticalPos, :AnchorHorizontalPos, :SpeechSpeed, :SpeechVolume, :CreateTime, :UpdateTime, :RoomType, :AvatarAigcImageUrl
 
-        def initialize(roomid=nil, name=nil, status=nil, avatarkey=nil, timbrekey=nil, avatarimageurl=nil, backgroundurl=nil, comment=nil, tourl=nil, anchorscale=nil, anchorverticalpos=nil, anchorhorizontalpos=nil, speechspeed=nil, speechvolume=nil, createtime=nil, updatetime=nil)
+        def initialize(roomid=nil, name=nil, status=nil, avatarkey=nil, timbrekey=nil, avatarimageurl=nil, backgroundurl=nil, comment=nil, tourl=nil, anchorscale=nil, anchorverticalpos=nil, anchorhorizontalpos=nil, speechspeed=nil, speechvolume=nil, createtime=nil, updatetime=nil, roomtype=nil, avataraigcimageurl=nil)
           @RoomId = roomid
           @Name = name
           @Status = status
@@ -1016,6 +1016,8 @@ module TencentCloud
           @SpeechVolume = speechvolume
           @CreateTime = createtime
           @UpdateTime = updatetime
+          @RoomType = roomtype
+          @AvatarAigcImageUrl = avataraigcimageurl
         end
 
         def deserialize(params)
@@ -1035,6 +1037,8 @@ module TencentCloud
           @SpeechVolume = params['SpeechVolume']
           @CreateTime = params['CreateTime']
           @UpdateTime = params['UpdateTime']
+          @RoomType = params['RoomType']
+          @AvatarAigcImageUrl = params['AvatarAigcImageUrl']
         end
       end
 
@@ -2181,25 +2185,21 @@ module TencentCloud
 
       # 证书信息。
       class CertInfo < TencentCloud::Common::AbstractModel
-        # @param CertId: 证书 ID。
+        # @param CertId: <p>证书 ID。</p>
         # @type CertId: Integer
-        # @param CertName: 证书名称。
+        # @param CertName: <p>证书名称。</p>
         # @type CertName: String
-        # @param Description: 描述信息。
+        # @param Description: <p>描述信息。</p>
         # @type Description: String
-        # @param CreateTime: 创建时间，UTC 格式。
-        # 注：此字段为北京时间（UTC+8时区）。
+        # @param CreateTime: <p>创建时间，UTC 格式。<br>注：此字段为北京时间（UTC+8时区）。</p>
         # @type CreateTime: String
-        # @param HttpsCrt: 证书内容。
+        # @param HttpsCrt: <p>证书内容。</p>
         # @type HttpsCrt: String
-        # @param CertType: 证书类型。
-        # 0：用户添加证书，
-        # 1：腾讯云托管证书。
+        # @param CertType: <p>证书类型。<br>0：用户添加证书，<br>1：腾讯云托管证书。</p>
         # @type CertType: Integer
-        # @param CertExpireTime: 证书过期时间，UTC 格式。
-        # 注：此字段为北京时间（UTC+8时区）。
+        # @param CertExpireTime: <p>证书过期时间，UTC 格式。<br>注：此字段为北京时间（UTC+8时区）。</p>
         # @type CertExpireTime: String
-        # @param DomainList: 使用此证书的域名列表。
+        # @param DomainList: <p>使用此证书的域名列表。</p>
         # @type DomainList: Array
 
         attr_accessor :CertId, :CertName, :Description, :CreateTime, :HttpsCrt, :CertType, :CertExpireTime, :DomainList
@@ -3455,7 +3455,7 @@ module TencentCloud
         # @type FigureName: String
         # @param MaterialUrl: <p>克隆的形象的url</p>
         # @type MaterialUrl: String
-        # @param Gender: <p>克隆的形象的性别</p><p>枚举值：</p><ul><li>MALE： 男</li><li>FEMALE： 女</li><li>UNHNOWN： 不知道</li></ul>
+        # @param Gender: <p>克隆的形象的性别</p><p>枚举值：</p><ul><li>MALE： 男</li><li>FEMALE： 女</li><li>UNKNOWN： 不知道</li></ul>
         # @type Gender: String
         # @param IdentityWrittenUrl: <p>授权pdf</p>
         # @type IdentityWrittenUrl: String
@@ -4272,32 +4272,29 @@ module TencentCloud
 
       # CreateLiveRecordTemplate请求参数结构体
       class CreateLiveRecordTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateName: 模板名。仅支持中文、英文、数字、_、-。
+        # @param TemplateName: <p>模板名。仅支持中文、英文、数字、_、-。</p>
         # @type TemplateName: String
-        # @param Description: 描述信息。
+        # @param Description: <p>描述信息。</p>
         # @type Description: String
-        # @param FlvParam: Flv录制参数，开启Flv录制时设置。
+        # @param FlvParam: <p>Flv录制参数，开启Flv录制时设置。</p>
         # @type FlvParam: :class:`Tencentcloud::Live.v20180801.models.RecordParam`
-        # @param HlsParam: Hls录制参数，开启hls录制时设置。
+        # @param HlsParam: <p>Hls录制参数，开启hls录制时设置。</p>
         # @type HlsParam: :class:`Tencentcloud::Live.v20180801.models.RecordParam`
-        # @param Mp4Param: Mp4录制参数，开启Mp4录制时设置。
+        # @param Mp4Param: <p>Mp4录制参数，开启Mp4录制时设置。</p>
         # @type Mp4Param: :class:`Tencentcloud::Live.v20180801.models.RecordParam`
-        # @param AacParam: Aac录制参数，开启Aac录制时设置。
+        # @param AacParam: <p>Aac录制参数，开启Aac录制时设置。</p>
         # @type AacParam: :class:`Tencentcloud::Live.v20180801.models.RecordParam`
-        # @param IsDelayLive: 直播类型，默认 0。
-        # 0：普通直播，
-        # 1：慢直播。
+        # @param IsDelayLive: <p>直播类型，默认 0。<br>0：普通直播，<br>1：慢直播。</p>
         # @type IsDelayLive: Integer
-        # @param HlsSpecialParam: HLS专属录制参数。
+        # @param HlsSpecialParam: <p>HLS专属录制参数。</p>
         # @type HlsSpecialParam: :class:`Tencentcloud::Live.v20180801.models.HlsSpecialParam`
-        # @param Mp3Param: Mp3录制参数，开启Mp3录制时设置。
+        # @param Mp3Param: <p>Mp3录制参数，开启Mp3录制时设置。</p>
         # @type Mp3Param: :class:`Tencentcloud::Live.v20180801.models.RecordParam`
-        # @param CosStore: 是否存储至 cos，值为 1 时表示存储至 cos。
+        # @param CosStore: <p>是否存储至 cos，值为 1 时表示存储至 cos。</p>
         # @type CosStore: Integer
-        # @param RemoveWatermark: 是否去除水印，类型为慢直播时此参数无效。
-        # 如果为false，则录制水印流或转码流；如果为true，则录制原始流。
+        # @param RemoveWatermark: <p>是否去除水印，类型为慢直播时此参数无效。<br>如果为false，则录制水印流或转码流；如果为true，则录制原始流。</p>
         # @type RemoveWatermark: Boolean
-        # @param FlvSpecialParam: FLV 录制特殊参数。
+        # @param FlvSpecialParam: <p>FLV 录制特殊参数。</p>
         # @type FlvSpecialParam: :class:`Tencentcloud::Live.v20180801.models.FlvSpecialParam`
 
         attr_accessor :TemplateName, :Description, :FlvParam, :HlsParam, :Mp4Param, :AacParam, :IsDelayLive, :HlsSpecialParam, :Mp3Param, :CosStore, :RemoveWatermark, :FlvSpecialParam
@@ -4356,7 +4353,7 @@ module TencentCloud
 
       # CreateLiveRecordTemplate返回参数结构体
       class CreateLiveRecordTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板Id。
+        # @param TemplateId: <p>模板Id。</p>
         # @type TemplateId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -4771,31 +4768,19 @@ module TencentCloud
 
       # CreateLiveTimeShiftTemplate请求参数结构体
       class CreateLiveTimeShiftTemplateRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateName: 模板名称。
-        # 长度上限：255字节。
-        # 仅支持中文、英文、数字、_、-。
+        # @param TemplateName: <p>模板名称。<br>长度上限：255字节。<br>仅支持中文、英文、数字、_、-。</p>
         # @type TemplateName: String
-        # @param Duration: 时移时长。单位：s。取值范围：86400 259200 604800 1296000 2592000。
+        # @param Duration: <p>时移时长。单位：s。取值范围：86400 259200 604800 1296000 2592000。</p>
         # @type Duration: Integer
-        # @param Description: 描述信息。
-        # 仅支持中文、英文、数字、_、-。
+        # @param Description: <p>描述信息。<br>仅支持中文、英文、数字、_、-。</p>
         # @type Description: String
-        # @param Area: 地域。
-        # Mainland：中国大陆。
-        # Overseas：海外及港澳台地区。
-        # 默认值：Mainland。
+        # @param Area: <p>地域。<br>Mainland：中国大陆。<br>Overseas：海外及港澳台地区。<br>EuropeFrankfurt：欧洲-法兰克福。<br>NorthAmericaSiliconValley：北美-硅谷。<br>MiddleEastRiyadh：中东-利雅得。<br>AsiaTokyo：亚太-东京。<br>AsiaSeoul：亚太-首尔。<br>默认值：Mainland。</p>
         # @type Area: String
-        # @param ItemDuration: 分片时长。
-        # 可取3-10。
-        # 单位：s。
-        # 默认值：5。
+        # @param ItemDuration: <p>分片时长。<br>可取3-10。<br>单位：s。<br>默认值：5。</p>
         # @type ItemDuration: Integer
-        # @param RemoveWatermark: 是否去除水印。
-        # 传true则将录制原始流。
-        # 默认值：false。
+        # @param RemoveWatermark: <p>是否去除水印。<br>传true则将录制原始流。<br>默认值：false。</p>
         # @type RemoveWatermark: Boolean
-        # @param TranscodeTemplateIds: 转码流id列表。
-        # 此参数仅在 RemoveWatermark为false时生效。
+        # @param TranscodeTemplateIds: <p>转码流id列表。<br>此参数仅在 RemoveWatermark为false时生效。</p>
         # @type TranscodeTemplateIds: Array
 
         attr_accessor :TemplateName, :Duration, :Description, :Area, :ItemDuration, :RemoveWatermark, :TranscodeTemplateIds
@@ -4823,7 +4808,7 @@ module TencentCloud
 
       # CreateLiveTimeShiftTemplate返回参数结构体
       class CreateLiveTimeShiftTemplateResponse < TencentCloud::Common::AbstractModel
-        # @param TemplateId: 模板Id。
+        # @param TemplateId: <p>模板Id。</p>
         # @type TemplateId: Integer
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -9649,24 +9634,13 @@ module TencentCloud
 
       # DescribeLivePackageInfo请求参数结构体
       class DescribeLivePackageInfoRequest < TencentCloud::Common::AbstractModel
-        # @param PackageType: 包类型，可选值：
-        # 0：流量包
-        # 1：转码包
-        # 2: 连麦包。
+        # @param PackageType: <p>包类型，可选值：<br>0：流量包<br>1：转码包<br>2: 连麦包。</p>
         # @type PackageType: Integer
-        # @param OrderBy: 排序规则:
-        # 1. BuyTimeDesc： 最新购买的排在最前面
-        # 2. BuyTimeAsc： 最老购买的排在最前面
-        # 3. ExpireTimeDesc： 最后过期的排在最前面
-        # 4. ExpireTimeAsc：最先过期的排在最前面。
-
-        # 注意：
-        # 1. PackageType 为 2（连麦包） 的时候，不支持 3、4 排序。
+        # @param OrderBy: <p>排序规则:</p><ol><li>BuyTimeDesc： 最新购买的排在最前面</li><li>BuyTimeAsc： 最老购买的排在最前面</li><li>ExpireTimeDesc： 最后过期的排在最前面</li><li>ExpireTimeAsc：最先过期的排在最前面。</li></ol><p>注意：</p><ol><li>PackageType 为 2（连麦包） 的时候，不支持 3、4 排序。</li></ol>
         # @type OrderBy: String
-        # @param PageNum: 取得第几页的数据，和 PageSize 同时传递才会生效。
+        # @param PageNum: <p>取得第几页的数据，和 PageSize 同时传递才会生效。</p>
         # @type PageNum: Integer
-        # @param PageSize: 分页大小，和 PageNum 同时传递才会生效。
-        # 取值：10 ～ 100 之间的任意整数。
+        # @param PageSize: <p>分页大小，和 PageNum 同时传递才会生效。<br>取值：10 ～ 100 之间的任意整数。</p>
         # @type PageSize: Integer
 
         attr_accessor :PackageType, :OrderBy, :PageNum, :PageSize
@@ -9688,36 +9662,23 @@ module TencentCloud
 
       # DescribeLivePackageInfo返回参数结构体
       class DescribeLivePackageInfoResponse < TencentCloud::Common::AbstractModel
-        # @param LivePackageInfoList: 套餐包信息。
+        # @param LivePackageInfoList: <p>套餐包信息。</p>
         # @type LivePackageInfoList: Array
-        # @param PackageBillMode: 套餐包当前计费方式:
-        # -1: 无计费方式或获取失败
-        # 0: 无计费方式
-        # 201: 月结带宽
-        # 202: 月结流量
-        # 203: 日结带宽
-        # 204: 日结流量
-        # 205: 日结时长
-        # 206: 月结时长
-        # 304: 日结流量。
+        # @param PackageBillMode: <p>套餐包当前计费方式:<br>-1: 无计费方式或获取失败<br>0: 无计费方式<br>201: 月结带宽<br>202: 月结流量<br>203: 日结带宽<br>204: 日结流量<br>205: 日结时长<br>206: 月结时长<br>304: 日结流量。</p>
         # @type PackageBillMode: Integer
-        # @param TotalPage: 总页数。
+        # @param TotalPage: <p>总页数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalPage: Integer
-        # @param TotalNum: 数据总条数。
+        # @param TotalNum: <p>数据总条数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type TotalNum: Integer
-        # @param PageNum: 当前页数。
+        # @param PageNum: <p>当前页数。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageNum: Integer
-        # @param PageSize: 当前每页数量。
+        # @param PageSize: <p>当前每页数量。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PageSize: Integer
-        # @param FluxPackageBillMode: 当请求参数 PackageType = 0 时生效，逗号分隔，从第一个到最后一个分别表示：
-        # 标准直播，中国大陆（境内全地区）计费方式。
-        # 标准直播，国际/港澳台（境外多地区）计费方式。
-        # 快直播，中国大陆（境内全地区）计费方式。
-        # 快直播，国际/港澳台（境外多地区）计费方式。
+        # @param FluxPackageBillMode: <p>当请求参数 PackageType = 0 时生效，逗号分隔，从第一个到最后一个分别表示：<br>标准直播，中国大陆（境内全地区）计费方式。<br>标准直播，国际/港澳台（境外多地区）计费方式。<br>快直播，中国大陆（境内全地区）计费方式。<br>快直播，国际/港澳台（境外多地区）计费方式。</p>
         # @type FluxPackageBillMode: String
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11270,9 +11231,9 @@ module TencentCloud
 
       # DescribeLiveTranscodeRules请求参数结构体
       class DescribeLiveTranscodeRulesRequest < TencentCloud::Common::AbstractModel
-        # @param TemplateIds: 要筛选的模板ID数组。
+        # @param TemplateIds: <p>要筛选的模板ID数组。</p>
         # @type TemplateIds: Array
-        # @param DomainNames: 要筛选的域名数组。
+        # @param DomainNames: <p>要筛选的域名数组。</p>
         # @type DomainNames: Array
 
         attr_accessor :TemplateIds, :DomainNames
@@ -11290,7 +11251,7 @@ module TencentCloud
 
       # DescribeLiveTranscodeRules返回参数结构体
       class DescribeLiveTranscodeRulesResponse < TencentCloud::Common::AbstractModel
-        # @param Rules: 转码规则列表。
+        # @param Rules: <p>转码规则列表。</p>
         # @type Rules: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -11803,7 +11764,7 @@ module TencentCloud
         # @param PassThroughHttpHeader: <p>是否透传 http 头信息，可取值：on、off。<br>当原站播放协议为 hls 时，传递该字段才会生效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PassThroughHttpHeader: String
-        # @param PassThroughResponse: <p>是否透传相应，可取值：on、off。<br>当原站播放协议为 hls 时，传递该字段才会生效。</p>
+        # @param PassThroughResponse: <p>是否透传响应，可取值：on、off。当原站播放协议为 hls 时，传递该字段才会生效。</p>
         # 注意：此字段可能返回 null，表示取不到有效值。
         # @type PassThroughResponse: String
         # @param PassThroughParam: <p>是否透传参数，可取值：on、off。<br>当原站播放协议为 hls 时，传递该字段才会生效。</p>
@@ -13814,32 +13775,27 @@ module TencentCloud
 
       # 域名证书信息
       class DomainCertInfo < TencentCloud::Common::AbstractModel
-        # @param CertId: 证书Id。
+        # @param CertId: <p>证书Id。</p>
         # @type CertId: Integer
-        # @param CertName: 证书名称。
+        # @param CertName: <p>证书名称。</p>
         # @type CertName: String
-        # @param Description: 描述信息。
+        # @param Description: <p>描述信息。</p>
         # @type Description: String
-        # @param CreateTime: 创建时间，UTC格式。
-        # 注：此字段为北京时间（UTC+8时区）。
+        # @param CreateTime: <p>创建时间，UTC格式。<br>注：此字段为北京时间（UTC+8时区）。</p>
         # @type CreateTime: String
-        # @param HttpsCrt: 证书内容。
+        # @param HttpsCrt: <p>证书内容。</p>
         # @type HttpsCrt: String
-        # @param CertType: 证书类型。
-        # 0：用户添加证书，
-        # 1：腾讯云托管证书。
+        # @param CertType: <p>证书类型。<br>0：用户添加证书，<br>1：腾讯云托管证书。</p>
         # @type CertType: Integer
-        # @param CertExpireTime: 证书过期时间，UTC格式。
-        # 注：此字段为北京时间（UTC+8时区）。
+        # @param CertExpireTime: <p>证书过期时间，UTC格式。<br>注：此字段为北京时间（UTC+8时区）。</p>
         # @type CertExpireTime: String
-        # @param DomainName: 使用此证书的域名名称。
+        # @param DomainName: <p>使用此证书的域名名称。</p>
         # @type DomainName: String
-        # @param Status: 证书状态。
+        # @param Status: <p>证书状态。</p>
         # @type Status: Integer
-        # @param CertDomains: 证书本身标识的域名列表。
-        # 比如: ["*.x.com"]
+        # @param CertDomains: <p>证书本身标识的域名列表。<br>比如: [&quot;*.x.com&quot;]</p>
         # @type CertDomains: Array
-        # @param CloudCertId: 腾讯云ssl的证书Id
+        # @param CloudCertId: <p>腾讯云ssl的证书Id</p>
         # @type CloudCertId: String
 
         attr_accessor :CertId, :CertName, :Description, :CreateTime, :HttpsCrt, :CertType, :CertExpireTime, :DomainName, :Status, :CertDomains, :CloudCertId
@@ -14510,7 +14466,7 @@ module TencentCloud
         # @type SceneType: String
         # @param FigureName: <p>形象名称</p>
         # @type FigureName: String
-        # @param Gender: <p>性别：男或者女</p>
+        # @param Gender: <p>性别：男或者女或者UNKNOWN</p>
         # @type Gender: String
         # @param Status: <p>状态</p><p>枚举值：</p><ul><li>SUCCESS： 成功</li><li>FAILED： 失败</li><li>PROCESSING： 生成中</li></ul>
         # @type Status: String
@@ -14997,14 +14953,13 @@ module TencentCloud
 
       # 日志url信息。
       class LogInfo < TencentCloud::Common::AbstractModel
-        # @param LogName: 日志名称。
+        # @param LogName: <p>日志名称。</p>
         # @type LogName: String
-        # @param LogUrl: 日志 URL。
+        # @param LogUrl: <p>日志 URL。</p>
         # @type LogUrl: String
-        # @param LogTime: 日志生成时间。
-        # 注：此字段为北京时间（UTC+8时区）。
+        # @param LogTime: <p>日志生成时间。<br>注：此字段为北京时间（UTC+8时区）。</p>
         # @type LogTime: String
-        # @param FileSize: 文件大小。
+        # @param FileSize: <p>文件大小，单位字节。</p>
         # @type FileSize: Integer
 
         attr_accessor :LogName, :LogUrl, :LogTime, :FileSize
@@ -15664,19 +15619,15 @@ module TencentCloud
 
       # ModifyLiveDomainCertBindings请求参数结构体
       class ModifyLiveDomainCertBindingsRequest < TencentCloud::Common::AbstractModel
-        # @param DomainInfos: 要绑定证书的播放域名/状态 信息列表。
-        # 如果CloudCertId和证书公钥私钥对均不传，且域名列表已有绑定规则，只批量更新域名https规则的启用状态，并把未上传至腾讯云ssl的已有自有证书上传。
+        # @param DomainInfos: <p>要绑定证书的播放域名/状态 信息列表。<br>如果CloudCertId和证书公钥私钥对均不传，且域名列表已有绑定规则，只批量更新域名https规则的启用状态，并把未上传至腾讯云ssl的已有自有证书上传。</p>
         # @type DomainInfos: Array
-        # @param CloudCertId: 腾讯云ssl的证书Id。
-        # 见 https://cloud.tencent.com/document/api/400/41665
+        # @param CloudCertId: <p>腾讯云ssl的证书Id。<br>见 https://cloud.tencent.com/document/api/400/41665</p>
         # @type CloudCertId: String
-        # @param CertificatePublicKey: 证书公钥。
-        # CloudCertId和公钥私钥对二选一，若CloudCertId将会舍弃公钥和私钥参数，否则将自动先把公钥私钥对上传至ssl新建证书，并使用上传成功后返回的CloudCertId。
+        # @param CertificatePublicKey: <p>证书公钥。<br>CloudCertId和公钥私钥对二选一，若CloudCertId将会舍弃公钥和私钥参数，否则将自动先把公钥私钥对上传至ssl新建证书，并使用上传成功后返回的CloudCertId。</p>
         # @type CertificatePublicKey: String
-        # @param CertificatePrivateKey: 证书私钥。
-        # CloudCertId和公钥私钥对二选一，若传CloudCertId将会舍弃公钥和私钥参数，否则将自动先把公钥私钥对上传至ssl新建证书，并使用上传成功后返回的CloudCertId。
+        # @param CertificatePrivateKey: <p>证书私钥。<br>CloudCertId和公钥私钥对二选一，若传CloudCertId将会舍弃公钥和私钥参数，否则将自动先把公钥私钥对上传至ssl新建证书，并使用上传成功后返回的CloudCertId。</p>
         # @type CertificatePrivateKey: String
-        # @param CertificateAlias: 上传至ssl证书中心的备注信息，只有新建证书时有效。传CloudCertId时会忽略。
+        # @param CertificateAlias: <p>上传至ssl证书中心的备注信息，只有新建证书时有效。传CloudCertId时会忽略。</p>
         # @type CertificateAlias: String
 
         attr_accessor :DomainInfos, :CloudCertId, :CertificatePublicKey, :CertificatePrivateKey, :CertificateAlias
@@ -15707,9 +15658,9 @@ module TencentCloud
 
       # ModifyLiveDomainCertBindings返回参数结构体
       class ModifyLiveDomainCertBindingsResponse < TencentCloud::Common::AbstractModel
-        # @param MismatchedDomainNames: DomainNames 入参中，与证书不匹配的域名列表，将会跳过处理。
+        # @param MismatchedDomainNames: <p>DomainNames 入参中，与证书不匹配的域名列表，将会跳过处理。</p>
         # @type MismatchedDomainNames: Array
-        # @param Errors: 操作失败的域名及错误码，错误信息，包括MismatchedDomainNames中的域名。
+        # @param Errors: <p>操作失败的域名及错误码，错误信息，包括MismatchedDomainNames中的域名。</p>
         # @type Errors: Array
         # @param RequestId: 唯一请求 ID，由服务端生成，每次请求都会返回（若请求因其他原因未能抵达服务端，则该次请求不会获得 RequestId）。定位问题时需要提供该次请求的 RequestId。
         # @type RequestId: String
@@ -19741,7 +19692,7 @@ module TencentCloud
         # @type AudioBitrate: Integer
         # @param Width: <p>宽，默认0。<br>范围[0-3000]<br>数值必须是2的倍数，0是原始宽度</p>
         # @type Width: Integer
-        # @param Height: <p>高，默认0。<br>范围[0-3000]<br>数值必须是2的倍数，0是原始宽度</p>
+        # @param Height: <p>高，默认0。<br>范围[0-3000]<br>数值必须是2的倍数，0是原始高度</p>
         # @type Height: Integer
         # @param Fps: <p>帧率，默认0。<br>范围0-60fps</p>
         # @type Fps: Integer
